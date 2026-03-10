@@ -22,8 +22,39 @@ const emit = defineEmits<{
   dragend: []
 }>()
 
+const KEYBOARD_STEP = 10
+
 const dragging = ref(false)
 let startPos = 0
+
+function onKeydown(e: KeyboardEvent) {
+  const isHorizontal = props.orientation === 'horizontal'
+  let delta = 0
+
+  switch (e.key) {
+    case 'ArrowRight':
+      if (isHorizontal) delta = KEYBOARD_STEP
+      break
+    case 'ArrowLeft':
+      if (isHorizontal) delta = -KEYBOARD_STEP
+      break
+    case 'ArrowDown':
+      if (!isHorizontal) delta = KEYBOARD_STEP
+      break
+    case 'ArrowUp':
+      if (!isHorizontal) delta = -KEYBOARD_STEP
+      break
+    default:
+      return
+  }
+
+  if (delta !== 0) {
+    e.preventDefault()
+    emit('dragstart')
+    emit('drag', { delta, position: 0 })
+    emit('dragend')
+  }
+}
 
 function onPointerDown(e: PointerEvent) {
   e.preventDefault()
@@ -68,6 +99,7 @@ function onPointerDown(e: PointerEvent) {
     :data-dragging="dragging || undefined"
     tabindex="0"
     @pointerdown="onPointerDown"
+    @keydown="onKeydown"
   >
     <slot />
   </div>

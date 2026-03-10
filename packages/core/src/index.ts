@@ -40,7 +40,9 @@ export {
   useGlobalState,
   useCommandRegistry,
   useTooltip,
+  useVirtualList,
 } from './composables'
+export type { VirtualItem, VirtualState } from './composables'
 
 // Primitives
 export {
@@ -53,6 +55,7 @@ export {
   Checkbox,
   Switch,
   Radio,
+  RadioGroup,
   Badge,
   Progress,
   InlineEditor,
@@ -62,4 +65,8 @@ export {
   Kbd,
   TagInput,
   Combobox,
+  Label,
+  Toggle,
+  ToggleGroup,
+  Slider,
 } from './primitives'

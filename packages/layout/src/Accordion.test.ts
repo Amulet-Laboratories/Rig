@@ -107,4 +107,19 @@ describe('Accordion', () => {
     ;(exposed.toggle as (v: string) => void)('a')
     expect(wrapper.emitted('update:modelValue')).toBeUndefined()
   })
+
+  it('exposes headerId and panelId for ARIA linkage', () => {
+    let exposed: Record<string, unknown> = {}
+    mount(Accordion, {
+      props: { modelValue: '' },
+      slots: {
+        default: (scope: { headerId: (v: string) => string; panelId: (v: string) => string }) => {
+          exposed = { headerId: scope.headerId, panelId: scope.panelId }
+          return ''
+        },
+      },
+    })
+    expect((exposed.headerId as (v: string) => string)('section-1')).toBe('rig-accordion-header-section-1')
+    expect((exposed.panelId as (v: string) => string)('section-1')).toBe('rig-accordion-panel-section-1')
+  })
 })

@@ -49,15 +49,24 @@ function selectItem(action: Action) {
   }
 }
 
+function findNextEnabled(from: number, direction: 1 | -1): number {
+  let idx = from + direction
+  while (idx >= 0 && idx < props.items.length) {
+    if (!props.items[idx].disabled) return idx
+    idx += direction
+  }
+  return from
+}
+
 function onKeydown(e: KeyboardEvent) {
   switch (e.key) {
     case 'ArrowDown':
       e.preventDefault()
-      focusedIndex.value = Math.min(focusedIndex.value + 1, props.items.length - 1)
+      focusedIndex.value = findNextEnabled(focusedIndex.value, 1)
       break
     case 'ArrowUp':
       e.preventDefault()
-      focusedIndex.value = Math.max(focusedIndex.value - 1, 0)
+      focusedIndex.value = findNextEnabled(focusedIndex.value, -1)
       break
     case 'Enter':
       e.preventDefault()

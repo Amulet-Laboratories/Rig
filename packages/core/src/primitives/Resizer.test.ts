@@ -27,4 +27,30 @@ describe('Resizer', () => {
     const wrapper = mount(Resizer)
     expect(wrapper.attributes('tabindex')).toBe('0')
   })
+
+  it('emits drag on ArrowRight key for horizontal orientation', async () => {
+    const wrapper = mount(Resizer, { props: { orientation: 'horizontal' } })
+    await wrapper.trigger('keydown', { key: 'ArrowRight' })
+    expect(wrapper.emitted('dragstart')).toHaveLength(1)
+    expect(wrapper.emitted('drag')?.[0]).toEqual([{ delta: 10, position: 0 }])
+    expect(wrapper.emitted('dragend')).toHaveLength(1)
+  })
+
+  it('emits drag on ArrowLeft key for horizontal orientation', async () => {
+    const wrapper = mount(Resizer, { props: { orientation: 'horizontal' } })
+    await wrapper.trigger('keydown', { key: 'ArrowLeft' })
+    expect(wrapper.emitted('drag')?.[0]).toEqual([{ delta: -10, position: 0 }])
+  })
+
+  it('emits drag on ArrowDown key for vertical orientation', async () => {
+    const wrapper = mount(Resizer, { props: { orientation: 'vertical' } })
+    await wrapper.trigger('keydown', { key: 'ArrowDown' })
+    expect(wrapper.emitted('drag')?.[0]).toEqual([{ delta: 10, position: 0 }])
+  })
+
+  it('ignores ArrowDown for horizontal orientation', async () => {
+    const wrapper = mount(Resizer, { props: { orientation: 'horizontal' } })
+    await wrapper.trigger('keydown', { key: 'ArrowDown' })
+    expect(wrapper.emitted('drag')).toBeUndefined()
+  })
 })

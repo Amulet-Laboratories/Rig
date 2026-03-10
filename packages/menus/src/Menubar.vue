@@ -108,16 +108,24 @@ function onMenuKeydown(e: KeyboardEvent, index: number) {
   const items = getMenuItems(index)
 
   switch (e.key) {
-    case 'ArrowDown':
+    case 'ArrowDown': {
       e.preventDefault()
-      menuFocusedIndex.value = Math.min(menuFocusedIndex.value + 1, items.length - 1)
-      items[menuFocusedIndex.value]?.focus()
+      const nextDown = menuFocusedIndex.value + 1
+      if (nextDown < items.length) {
+        menuFocusedIndex.value = nextDown
+        items[menuFocusedIndex.value]?.focus()
+      }
       break
-    case 'ArrowUp':
+    }
+    case 'ArrowUp': {
       e.preventDefault()
-      menuFocusedIndex.value = Math.max(menuFocusedIndex.value - 1, 0)
-      items[menuFocusedIndex.value]?.focus()
+      const nextUp = menuFocusedIndex.value - 1
+      if (nextUp >= 0) {
+        menuFocusedIndex.value = nextUp
+        items[menuFocusedIndex.value]?.focus()
+      }
       break
+    }
     case 'ArrowRight': {
       e.preventDefault()
       e.stopPropagation()

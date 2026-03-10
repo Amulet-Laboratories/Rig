@@ -27,6 +27,14 @@ function isOpen(value: string): boolean {
   return props.modelValue === value
 }
 
+function headerId(value: string): string {
+  return `rig-accordion-header-${value}`
+}
+
+function panelId(value: string): string {
+  return `rig-accordion-panel-${value}`
+}
+
 function toggle(value: string) {
   if (props.disabled) return
 
@@ -50,6 +58,6 @@ function toggle(value: string) {
     :data-type="type"
     :data-disabled="disabled || undefined"
   >
-    <slot :isOpen="isOpen" :toggle="toggle" :disabled="disabled" />
+    <slot :isOpen="isOpen" :toggle="toggle" :disabled="disabled" :headerId="headerId" :panelId="panelId" />
   </div>
 </template>

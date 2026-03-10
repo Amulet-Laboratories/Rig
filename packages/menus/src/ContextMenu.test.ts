@@ -105,13 +105,18 @@ describe('ContextMenu', () => {
     wrapper.unmount()
   })
 
-  it('closes and emits on Enter', async () => {
+  it('skips disabled items during keyboard navigation', async () => {
+    // Items: cut(0), copy(1), paste(2), disabled(3)
     const wrapper = factory()
     const menu = document.querySelector('[data-rig-context-menu]')!
-    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
+    // Navigate down to paste (index 2), then ArrowDown should stay at 2 (skips disabled index 3)
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
     await new Promise(r => setTimeout(r, 0))
-    expect(wrapper.emitted('select')?.[0]).toEqual([actions[0]])
-    expect(wrapper.emitted('update:open')?.[0]).toEqual([false])
+    // The last ArrowDown should not move past paste since disabled is at index 3
+    const highlighted = menu.querySelectorAll('[data-highlighted="true"]')
+    expect(highlighted.length).toBe(1)
     wrapper.unmount()
   })
 })

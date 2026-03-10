@@ -17,6 +17,10 @@ const props = withDefaults(
     debounce?: number
     /** Native input type */
     type?: string
+    /** Whether the current value is invalid (for form validation) */
+    invalid?: boolean
+    /** ID of an element describing the input (e.g. error message element) */
+    describedBy?: string
   }>(),
   {
     modelValue: '',
@@ -83,6 +87,8 @@ defineExpose({ focus })
       :placeholder="placeholder"
       :disabled="disabled"
       :type="type"
+      :aria-invalid="invalid || undefined"
+      :aria-describedby="describedBy || undefined"
       @input="onInput"
       @keydown="onKeydown"
       @focus="$emit('focus', $event)"

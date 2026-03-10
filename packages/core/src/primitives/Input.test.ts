@@ -56,4 +56,24 @@ describe('Input', () => {
     expect(wrapper.attributes('data-disabled')).toBeDefined()
     expect(wrapper.find('input').attributes('disabled')).toBeDefined()
   })
+
+  it('sets aria-invalid when invalid prop is true', () => {
+    const wrapper = mount(Input, { props: { invalid: true } })
+    expect(wrapper.find('input').attributes('aria-invalid')).toBe('true')
+  })
+
+  it('does not set aria-invalid when invalid is false', () => {
+    const wrapper = mount(Input)
+    expect(wrapper.find('input').attributes('aria-invalid')).toBeUndefined()
+  })
+
+  it('sets aria-describedby when describedBy prop is provided', () => {
+    const wrapper = mount(Input, { props: { describedBy: 'error-msg' } })
+    expect(wrapper.find('input').attributes('aria-describedby')).toBe('error-msg')
+  })
+
+  it('does not set aria-describedby when not provided', () => {
+    const wrapper = mount(Input)
+    expect(wrapper.find('input').attributes('aria-describedby')).toBeUndefined()
+  })
 })
