@@ -1,0 +1,7 @@
+export { default as ActivityBar } from './ActivityBar.vue'
+export { default as SideBar } from './SideBar.vue'
+export { default as View } from './View.vue'
+export { default as PanelBar } from './PanelBar.vue'
+export { default as StatusBar } from './StatusBar.vue'
+export { default as Breadcrumbs } from './Breadcrumbs.vue'
+export { default as Tabs } from './Tabs.vue'

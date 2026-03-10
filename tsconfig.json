@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "jsx": "preserve",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "paths": {
+      "@core/*": ["./packages/core/src/*"],
+      "@layout/*": ["./packages/layout/src/*"],
+      "@nav/*": ["./packages/nav/src/*"],
+      "@editor/*": ["./packages/editor/src/*"],
+      "@lists/*": ["./packages/lists/src/*"],
+      "@menus/*": ["./packages/menus/src/*"],
+      "@extras/*": ["./packages/extras/src/*"]
+    },
+    "types": ["vitest/globals"]
+  },
+  "include": [
+    "packages/*/src/**/*.ts",
+    "packages/*/src/**/*.vue",
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

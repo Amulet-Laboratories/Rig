@@ -1,0 +1,55 @@
+import type { ID } from './common'
+
+/** An executable action (menu item, command, toolbar button) */
+export interface Action {
+  id: ID
+  label: string
+  icon?: string
+  keybinding?: string
+  disabled?: boolean
+  handler?: () => void
+}
+
+/** An editor tab or panel tab */
+export interface TabItem {
+  id: ID
+  label: string
+  icon?: string
+  dirty?: boolean
+  pinned?: boolean
+  closable?: boolean
+  data?: unknown
+}
+
+/** A status bar entry */
+export interface StatusBarItem {
+  id: ID
+  content?: string
+  priority: number
+  align: 'left' | 'right'
+}
+
+/** A column definition for table components */
+export interface ColumnDef {
+  id: string
+  label: string
+  width?: number
+  minWidth?: number
+  sortable?: boolean
+  align?: 'left' | 'center' | 'right'
+}
+
+/** Sort state for tables */
+export interface SortState {
+  column: string
+  direction: 'asc' | 'desc'
+}
+
+/** A toast notification item */
+export interface ToastItem {
+  id: ID
+  message: string
+  severity: 'info' | 'success' | 'warning' | 'error'
+  duration?: number
+  dismissible?: boolean
+}
