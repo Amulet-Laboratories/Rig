@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, useId } from 'vue'
+import { ref, useId, onMounted, onUnmounted } from 'vue'
 import { useNotifications } from './useNotifications'
 
 const panelId = useId()
@@ -11,6 +11,20 @@ function toggle() {
   open.value = !open.value
   if (open.value) markAllRead()
 }
+
+function close() {
+  open.value = false
+}
+
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape' && open.value) {
+    e.preventDefault()
+    close()
+  }
+}
+
+onMounted(() => document.addEventListener('keydown', onKeydown))
+onUnmounted(() => document.removeEventListener('keydown', onKeydown))
 
 function onDismiss(id: string) {
   dismiss(id)
@@ -43,14 +57,18 @@ function formatTime(timestamp: number): string {
       </slot>
     </button>
 
-    <div v-if="open" :id="panelId" data-rig-notification-panel role="region" aria-label="Notifications">
+    <div
+      v-if="open"
+      :id="panelId"
+      data-rig-notification-panel
+      role="region"
+      aria-label="Notifications"
+    >
       <div data-rig-notification-header>
         <span>Notifications</span>
-        <button
-          v-if="notifications.length > 0"
-          data-rig-notification-clear
-          @click="onClear"
-        >Clear all</button>
+        <button v-if="notifications.length > 0" data-rig-notification-clear @click="onClear">
+          Clear all
+        </button>
       </div>
 
       <div v-if="notifications.length === 0" data-rig-notification-empty>
@@ -68,11 +86,9 @@ function formatTime(timestamp: number): string {
         >
           <span data-rig-notification-message>{{ n.message }}</span>
           <span data-rig-notification-time>{{ formatTime(n.timestamp) }}</span>
-          <button
-            data-rig-notification-dismiss
-            aria-label="Dismiss"
-            @click="onDismiss(n.id)"
-          >&times;</button>
+          <button data-rig-notification-dismiss aria-label="Dismiss" @click="onDismiss(n.id)">
+            &times;
+          </button>
         </li>
       </ul>
     </div>

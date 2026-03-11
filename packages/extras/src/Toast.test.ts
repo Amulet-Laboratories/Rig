@@ -106,7 +106,7 @@ describe('Toast', () => {
     await wrapper.vm.$nextTick()
     const toasts = document.querySelectorAll('[data-rig-toast]')
     expect(toasts.length).toBe(1)
-    expect(toasts[0].textContent).toContain('Second')
+    expect(toasts[0]!.textContent).toContain('Second')
     wrapper.unmount()
   })
 

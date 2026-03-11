@@ -10,6 +10,22 @@ describe('Modal', () => {
     wrapper.unmount()
   })
 
+  it('sets aria-hidden and inert when closed', () => {
+    const wrapper = mount(Modal, { props: { open: false }, attachTo: document.body })
+    const overlay = document.querySelector('[data-rig-modal-overlay]') as HTMLElement
+    expect(overlay?.getAttribute('aria-hidden')).toBe('true')
+    expect(overlay?.hasAttribute('inert')).toBe(true)
+    wrapper.unmount()
+  })
+
+  it('removes aria-hidden and inert when open', () => {
+    const wrapper = mount(Modal, { props: { open: true }, attachTo: document.body })
+    const overlay = document.querySelector('[data-rig-modal-overlay]') as HTMLElement
+    expect(overlay?.getAttribute('aria-hidden')).toBeNull()
+    expect(overlay?.hasAttribute('inert')).toBe(false)
+    wrapper.unmount()
+  })
+
   it('renders when open', () => {
     const wrapper = mount(Modal, {
       props: { open: true },

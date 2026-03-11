@@ -1,0 +1,170 @@
+/* Rig Structural — Extras Components
+ * Toast, EmptyState, NotificationCenter
+ */
+
+/* ── Toast ── */
+
+[data-rig-toast-container] {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+[data-rig-toast] {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  max-width: 20rem;
+  cursor: pointer;
+}
+
+[data-rig-toast-dismiss] {
+  margin-left: auto;
+}
+
+[data-rig-toast-message] {
+  flex: 1 1 0%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Empty State ── */
+
+[data-rig-empty-state] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+[data-rig-empty-state-title] {
+  margin-bottom: 0.5rem;
+}
+
+[data-rig-empty-state-description] {
+  text-align: center;
+}
+
+[data-rig-empty-state-icon] {
+  margin-bottom: 0.5rem;
+}
+
+/* ── Notification Center ── */
+
+[data-rig-notification-center] {
+  position: relative;
+  display: inline-flex;
+}
+
+[data-rig-notification-bell] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  border: 0;
+  background: none;
+  padding: 0;
+  position: relative;
+}
+
+[data-rig-notification-bell-icon] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  color: inherit;
+}
+
+[data-rig-notification-badge] {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 14px;
+  height: 14px;
+  padding: 0 3px;
+  line-height: 14px;
+  text-align: center;
+  pointer-events: none;
+}
+
+[data-rig-notification-panel] {
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  margin-bottom: 6px;
+  width: 320px;
+  max-height: 400px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+
+[data-rig-notification-header] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+}
+
+[data-rig-notification-header] button {
+  cursor: pointer;
+  padding: 2px 6px;
+  background: none;
+  border: 0;
+}
+
+[data-rig-notification-clear] {
+  cursor: pointer;
+  padding: 2px 6px;
+  background: none;
+  border: 0;
+}
+
+[data-rig-notification-list] {
+  overflow-y: auto;
+  flex: 1 1 0%;
+}
+
+[data-rig-notification-item] {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+}
+
+[data-rig-notification-message] {
+  flex: 1 1 0%;
+}
+
+[data-rig-notification-time] {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+[data-rig-notification-dismiss] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+[data-rig-notification-empty] {
+  padding: 24px 12px;
+  text-align: center;
+}

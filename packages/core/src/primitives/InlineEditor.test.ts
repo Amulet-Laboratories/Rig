@@ -50,7 +50,9 @@ describe('InlineEditor', () => {
     await input.trigger('keydown', { key: 'Enter' })
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['Updated'])
     expect(wrapper.emitted('submit')?.[0]).toEqual(['Updated'])
-    expect(wrapper.emitted('update:editing')?.[1] ?? wrapper.emitted('update:editing')?.[0]).toEqual([false])
+    expect(
+      wrapper.emitted('update:editing')?.[1] ?? wrapper.emitted('update:editing')?.[0],
+    ).toEqual([false])
   })
 
   it('cancels on Escape key in edit mode', async () => {

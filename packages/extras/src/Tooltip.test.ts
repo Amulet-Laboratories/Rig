@@ -4,12 +4,14 @@ import { ref } from 'vue'
 import { TooltipKey } from '@core/injection-keys'
 import Tooltip from './Tooltip.vue'
 
-function factory(overrides: {
-  visible?: boolean
-  content?: string
-  referenceEl?: HTMLElement | null
-  placement?: 'top' | 'bottom' | 'left' | 'right'
-} = {}) {
+function factory(
+  overrides: {
+    visible?: boolean
+    content?: string
+    referenceEl?: HTMLElement | null
+    placement?: 'top' | 'bottom' | 'left' | 'right'
+  } = {},
+) {
   const state = {
     visible: ref(overrides.visible ?? false),
     content: ref(overrides.content ?? ''),
@@ -30,7 +32,7 @@ function tip() {
 }
 
 afterEach(() => {
-  document.querySelectorAll('[data-rig-tooltip]').forEach(el => el.remove())
+  document.querySelectorAll('[data-rig-tooltip]').forEach((el) => el.remove())
 })
 
 describe('Tooltip', () => {

@@ -50,13 +50,9 @@ function onResize(payload: { delta: number }) {
   emit('update:size', newSize)
 }
 
-const resizerOrientation = computed(() =>
-  props.position === 'bottom' ? 'vertical' : 'horizontal',
-)
+const resizerOrientation = computed(() => (props.position === 'bottom' ? 'vertical' : 'horizontal'))
 
-const sizeProperty = computed(() =>
-  props.position === 'bottom' ? 'height' : 'width',
-)
+const sizeProperty = computed(() => (props.position === 'bottom' ? 'height' : 'width'))
 </script>
 
 <template>
@@ -68,11 +64,7 @@ const sizeProperty = computed(() =>
     :style="{ [sizeProperty]: `${size}px` }"
     @keydown="onKeydown"
   >
-    <Resizer
-      v-if="resizable"
-      :orientation="resizerOrientation"
-      @drag="onResize"
-    />
+    <Resizer v-if="resizable" :orientation="resizerOrientation" @drag="onResize" />
     <div data-rig-panel-header>
       <slot name="header" />
     </div>

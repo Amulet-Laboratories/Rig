@@ -8,11 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <label
-    data-rig-label
-    :data-disabled="disabled || undefined"
-    :for="$props.for"
-  >
+  <label data-rig-label :data-disabled="disabled || undefined" :for="$props.for">
     <slot />
   </label>
 </template>

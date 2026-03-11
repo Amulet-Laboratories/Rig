@@ -77,7 +77,7 @@ export function useVirtualList<T>(
     const end = endIndex.value
     const items: VirtualItem<T>[] = []
     for (let i = start; i <= end; i++) {
-      items.push({ item: list[i], index: i, offsetTop: i * itemHeight })
+      items.push({ item: list[i]!, index: i, offsetTop: i * itemHeight })
     }
     return {
       totalHeight: list.length * itemHeight,

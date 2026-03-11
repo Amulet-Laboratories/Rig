@@ -41,8 +41,8 @@ describe('TreeView', () => {
       props: { nodes, expanded: ['src'] },
     })
     const items = wrapper.findAll('[data-rig-tree-node]')
-    expect(items[0].attributes('data-depth')).toBe('0')
-    expect(items[1].attributes('data-depth')).toBe('1')
+    expect(items[0]!.attributes('data-depth')).toBe('0')
+    expect(items[1]!.attributes('data-depth')).toBe('1')
   })
 
   it('marks leaf nodes', () => {
@@ -50,8 +50,8 @@ describe('TreeView', () => {
       props: { nodes, expanded: ['src'] },
     })
     const items = wrapper.findAll('[data-rig-tree-node]')
-    expect(items[0].attributes('data-leaf')).toBeUndefined() // src is not leaf
-    expect(items[1].attributes('data-leaf')).toBeDefined() // App.vue is leaf
+    expect(items[0]!.attributes('data-leaf')).toBeUndefined() // src is not leaf
+    expect(items[1]!.attributes('data-leaf')).toBeDefined() // App.vue is leaf
   })
 
   it('sets aria-level', () => {
@@ -59,8 +59,8 @@ describe('TreeView', () => {
       props: { nodes, expanded: ['src'] },
     })
     const items = wrapper.findAll('[data-rig-tree-node]')
-    expect(items[0].attributes('aria-level')).toBe('1')
-    expect(items[1].attributes('aria-level')).toBe('2')
+    expect(items[0]!.attributes('aria-level')).toBe('1')
+    expect(items[1]!.attributes('aria-level')).toBe('2')
   })
 
   it('emits update:expanded on toggle click', async () => {
@@ -76,7 +76,7 @@ describe('TreeView', () => {
       props: { nodes, expanded: ['src'] },
     })
     const items = wrapper.findAll('[data-rig-tree-node]')
-    await items[1].trigger('click')
+    await items[1]!.trigger('click')
     expect(wrapper.emitted('update:selected')?.[0]).toEqual(['app'])
   })
 
@@ -88,12 +88,8 @@ describe('TreeView', () => {
   })
 
   it('calls onExpand for lazy loading', async () => {
-    const lazyNodes: TreeNode[] = [
-      { id: 'lazy', label: 'Lazy Folder' },
-    ]
-    const onExpand = vi.fn().mockResolvedValue([
-      { id: 'child1', label: 'Child 1' },
-    ])
+    const lazyNodes: TreeNode[] = [{ id: 'lazy', label: 'Lazy Folder' }]
+    const onExpand = vi.fn().mockResolvedValue([{ id: 'child1', label: 'Child 1' }])
 
     const wrapper = mount(TreeView, {
       props: { nodes: lazyNodes, expanded: [], onExpand },
@@ -121,5 +117,152 @@ describe('TreeView', () => {
     const items = wrapper.findAll('[data-rig-tree-node]')
     // src + App.vue + main.ts + README.md = 4
     expect(items.length).toBeGreaterThan(0)
+  })
+
+  // ── Keyboard Navigation ──
+
+  it('moves focus down with ArrowDown', async () => {
+    const wrapper = mount(TreeView, {
+      props: { nodes, expanded: ['src'] },
+      attachTo: document.body,
+    })
+    const tree = wrapper.find('[data-rig-tree]')
+    const items = wrapper.findAll('[data-rig-tree-node]')
+    // First item should have tabindex 0
+    expect(items[0]!.attributes('tabindex')).toBe('0')
+
+    await tree.trigger('keydown', { key: 'ArrowDown' })
+    // After ArrowDown, focusedIndex moves to 1
+    const updatedItems = wrapper.findAll('[data-rig-tree-node]')
+    expect(updatedItems[1]!.attributes('tabindex')).toBe('0')
+    expect(updatedItems[0]!.attributes('tabindex')).toBe('-1')
+    wrapper.unmount()
+  })
+
+  it('moves focus up with ArrowUp', async () => {
+    const wrapper = mount(TreeView, {
+      props: { nodes, expanded: ['src'] },
+      attachTo: document.body,
+    })
+    const tree = wrapper.find('[data-rig-tree]')
+
+    // Move down first, then up
+    await tree.trigger('keydown', { key: 'ArrowDown' })
+    await tree.trigger('keydown', { key: 'ArrowUp' })
+
+    const items = wrapper.findAll('[data-rig-tree-node]')
+    expect(items[0]!.attributes('tabindex')).toBe('0')
+    wrapper.unmount()
+  })
+
+  it('expands a collapsed node with ArrowRight', async () => {
+    const wrapper = mount(TreeView, {
+      props: { nodes, expanded: [] },
+      attachTo: document.body,
+    })
+    const tree = wrapper.find('[data-rig-tree]')
+
+    // First node is 'src' which is collapsible
+    await tree.trigger('keydown', { key: 'ArrowRight' })
+    expect(wrapper.emitted('update:expanded')?.[0]).toEqual([['src']])
+    wrapper.unmount()
+  })
+
+  it('collapses an expanded node with ArrowLeft', async () => {
+    const wrapper = mount(TreeView, {
+      props: { nodes, expanded: ['src'] },
+      attachTo: document.body,
+    })
+    const tree = wrapper.find('[data-rig-tree]')
+
+    // First node is 'src' which is expanded — ArrowLeft should collapse it
+    await tree.trigger('keydown', { key: 'ArrowLeft' })
+    expect(wrapper.emitted('update:expanded')?.[0]).toEqual([[]])
+    wrapper.unmount()
+  })
+
+  it('moves to first child with ArrowRight on expanded node', async () => {
+    const wrapper = mount(TreeView, {
+      props: { nodes, expanded: ['src'] },
+      attachTo: document.body,
+    })
+    const tree = wrapper.find('[data-rig-tree]')
+
+    // src is expanded, ArrowRight should move to first child (App.vue)
+    await tree.trigger('keydown', { key: 'ArrowRight' })
+    const items = wrapper.findAll('[data-rig-tree-node]')
+    expect(items[1]!.attributes('tabindex')).toBe('0')
+    wrapper.unmount()
+  })
+
+  it('moves to parent with ArrowLeft on child node', async () => {
+    const wrapper = mount(TreeView, {
+      props: { nodes, expanded: ['src'] },
+      attachTo: document.body,
+    })
+    const tree = wrapper.find('[data-rig-tree]')
+
+    // Move to child first (App.vue at index 1)
+    await tree.trigger('keydown', { key: 'ArrowDown' })
+    // ArrowLeft on a leaf node at depth > 0 should move to parent
+    await tree.trigger('keydown', { key: 'ArrowLeft' })
+    const items = wrapper.findAll('[data-rig-tree-node]')
+    expect(items[0]!.attributes('tabindex')).toBe('0')
+    wrapper.unmount()
+  })
+
+  it('jumps to first node with Home', async () => {
+    const wrapper = mount(TreeView, {
+      props: { nodes, expanded: ['src'] },
+      attachTo: document.body,
+    })
+    const tree = wrapper.find('[data-rig-tree]')
+
+    // Move down a few times
+    await tree.trigger('keydown', { key: 'ArrowDown' })
+    await tree.trigger('keydown', { key: 'ArrowDown' })
+    // Press Home
+    await tree.trigger('keydown', { key: 'Home' })
+    const items = wrapper.findAll('[data-rig-tree-node]')
+    expect(items[0]!.attributes('tabindex')).toBe('0')
+    wrapper.unmount()
+  })
+
+  it('jumps to last node with End', async () => {
+    const wrapper = mount(TreeView, {
+      props: { nodes, expanded: ['src'] },
+      attachTo: document.body,
+    })
+    const tree = wrapper.find('[data-rig-tree]')
+
+    await tree.trigger('keydown', { key: 'End' })
+    const items = wrapper.findAll('[data-rig-tree-node]')
+    // Last node is 'readme' at index 3
+    expect(items[3]!.attributes('tabindex')).toBe('0')
+    wrapper.unmount()
+  })
+
+  it('emits activate on Enter', async () => {
+    const wrapper = mount(TreeView, {
+      props: { nodes, expanded: ['src'] },
+      attachTo: document.body,
+    })
+    const tree = wrapper.find('[data-rig-tree]')
+
+    await tree.trigger('keydown', { key: 'Enter' })
+    expect(wrapper.emitted('activate')?.[0]).toEqual([nodes[0]])
+    wrapper.unmount()
+  })
+
+  it('selects node on Space', async () => {
+    const wrapper = mount(TreeView, {
+      props: { nodes, expanded: ['src'] },
+      attachTo: document.body,
+    })
+    const tree = wrapper.find('[data-rig-tree]')
+
+    await tree.trigger('keydown', { key: ' ' })
+    expect(wrapper.emitted('update:selected')?.[0]).toEqual(['src'])
+    wrapper.unmount()
   })
 })

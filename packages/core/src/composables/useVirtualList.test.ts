@@ -40,8 +40,8 @@ describe('useVirtualList', () => {
     // start=0, end = ceil(300/20)+2 = 17, items = 0..17 = 18 items
     expect(wrapper.vm.virtualState.items.length).toBeGreaterThan(0)
     // First item is at the beginning
-    expect(wrapper.vm.virtualState.items[0].index).toBe(0)
-    expect(wrapper.vm.virtualState.items[0].offsetTop).toBe(0)
+    expect(wrapper.vm.virtualState.items[0]!.index).toBe(0)
+    expect(wrapper.vm.virtualState.items[0]!.offsetTop).toBe(0)
   })
 
   it('paddingTop is 0 at start', () => {

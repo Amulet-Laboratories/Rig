@@ -6,15 +6,18 @@ const props = defineProps<{
   shortcut: string
 }>()
 
-const isMac =
-  typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.userAgent)
+const isMac = typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.userAgent)
 
 const keys = computed(() =>
   props.shortcut.split('+').map((k) => {
     const trimmed = k.trim()
     if (isMac) {
       if (trimmed.toLowerCase() === 'ctrl' || trimmed.toLowerCase() === 'control') return '⌃'
-      if (trimmed.toLowerCase() === 'cmd' || trimmed.toLowerCase() === 'meta' || trimmed.toLowerCase() === 'mod')
+      if (
+        trimmed.toLowerCase() === 'cmd' ||
+        trimmed.toLowerCase() === 'meta' ||
+        trimmed.toLowerCase() === 'mod'
+      )
         return '⌘'
       if (trimmed.toLowerCase() === 'alt' || trimmed.toLowerCase() === 'option') return '⌥'
       if (trimmed.toLowerCase() === 'shift') return '⇧'

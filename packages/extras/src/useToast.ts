@@ -39,7 +39,7 @@ function add(options: ToastOptions): string {
 function dismiss(id: string) {
   const idx = toasts.value.findIndex((t) => t.id === id)
   if (idx > -1) {
-    const entry = toasts.value[idx]
+    const entry = toasts.value[idx]!
     if (entry.timer) clearTimeout(entry.timer)
     toasts.value.splice(idx, 1)
   }

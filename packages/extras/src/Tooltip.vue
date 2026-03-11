@@ -6,16 +6,12 @@ import { useTooltip } from '@core/composables'
 const tooltip = useTooltip()
 const floatingRef = ref<HTMLElement | null>(null)
 
-const { floatingStyles, placement: computedSide } = useFloating(
-  tooltip.referenceEl,
-  floatingRef,
-  {
-    placement: tooltip.placement,
-    strategy: 'fixed',
-    whileElementsMounted: autoUpdate,
-    middleware: [offset(6), flip(), shift({ padding: 8 })],
-  },
-)
+const { floatingStyles, placement: computedSide } = useFloating(tooltip.referenceEl, floatingRef, {
+  placement: tooltip.placement,
+  strategy: 'fixed',
+  whileElementsMounted: autoUpdate,
+  middleware: [offset(6), flip(), shift({ padding: 8 })],
+})
 </script>
 
 <template>

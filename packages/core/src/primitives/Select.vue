@@ -7,6 +7,8 @@ const {
   options = [],
   placeholder,
   disabled,
+  ariaLabel,
+  ariaLabelledby,
 } = defineProps<{
   /** DOM id for the select element (enables external <label for=""> linkage) */
   id?: string
@@ -18,6 +20,10 @@ const {
   placeholder?: string
   /** Whether the select is disabled */
   disabled?: boolean
+  /** Accessible label when no visible label exists */
+  ariaLabel?: string
+  /** ID of the element that labels this select */
+  ariaLabelledby?: string
 }>()
 
 const emit = defineEmits<{
@@ -42,6 +48,8 @@ function onChange(e: Event) {
       :id="id"
       :value="modelValue"
       :disabled="disabled"
+      :aria-label="ariaLabel"
+      :aria-labelledby="ariaLabelledby"
       @change="onChange"
     >
       <option

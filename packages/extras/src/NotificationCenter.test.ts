@@ -12,14 +12,14 @@ describe('useNotifications', () => {
     const { notifications } = useNotifications()
     notification.push({ message: 'Hello' })
     expect(notifications.value).toHaveLength(1)
-    expect(notifications.value[0].message).toBe('Hello')
+    expect(notifications.value[0]!.message).toBe('Hello')
   })
 
   it('assigns unique IDs', () => {
     notification.push({ message: 'A' })
     notification.push({ message: 'B' })
     const { notifications } = useNotifications()
-    expect(notifications.value[0].id).not.toBe(notifications.value[1].id)
+    expect(notifications.value[0]!.id).not.toBe(notifications.value[1]!.id)
   })
 
   it('replaces existing notification with same ID', () => {
@@ -27,7 +27,7 @@ describe('useNotifications', () => {
     notification.push({ id: 'sync', message: 'Sync complete' })
     const { notifications } = useNotifications()
     expect(notifications.value).toHaveLength(1)
-    expect(notifications.value[0].message).toBe('Sync complete')
+    expect(notifications.value[0]!.message).toBe('Sync complete')
   })
 
   it('dismisses a notification', () => {

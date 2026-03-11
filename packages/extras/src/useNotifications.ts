@@ -29,7 +29,7 @@ function push(options: NotificationOptions): string {
   // Replace existing with same ID
   const existingIdx = notifications.value.findIndex((n) => n.id === id)
   if (existingIdx > -1) {
-    const existing = notifications.value[existingIdx]
+    const existing = notifications.value[existingIdx]!
     if (existing.timer) clearTimeout(existing.timer)
     notifications.value.splice(existingIdx, 1)
   }
@@ -56,7 +56,7 @@ function push(options: NotificationOptions): string {
 function dismiss(id: string) {
   const idx = notifications.value.findIndex((n) => n.id === id)
   if (idx > -1) {
-    const entry = notifications.value[idx]
+    const entry = notifications.value[idx]!
     if (entry.timer) clearTimeout(entry.timer)
     notifications.value.splice(idx, 1)
   }
@@ -68,7 +68,9 @@ function markRead(id: string) {
 }
 
 function markAllRead() {
-  notifications.value.forEach((n) => { n.read = true })
+  notifications.value.forEach((n) => {
+    n.read = true
+  })
 }
 
 function clear() {

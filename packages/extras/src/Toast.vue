@@ -23,8 +23,8 @@ defineExpose({ toasts, add, dismiss, clear })
         role="alert"
       >
         <slot
-          name="toast"
           :id="entry.id"
+          name="toast"
           :message="entry.message"
           :variant="entry.variant"
           :dismissible="entry.dismissible"

@@ -31,15 +31,15 @@ describe('Skeleton', () => {
   it('applies uniform width as string', () => {
     const wrapper = mount(Skeleton, { props: { lines: 2, width: '80%' } })
     const lines = wrapper.findAll('[data-rig-skeleton-line]')
-    expect(lines[0].attributes('style')).toContain('width: 80%')
-    expect(lines[1].attributes('style')).toContain('width: 80%')
+    expect(lines[0]!.attributes('style')).toContain('width: 80%')
+    expect(lines[1]!.attributes('style')).toContain('width: 80%')
   })
 
   it('applies per-line widths from array', () => {
     const wrapper = mount(Skeleton, { props: { lines: 3, width: ['100%', '60%', '80%'] } })
     const lines = wrapper.findAll('[data-rig-skeleton-line]')
-    expect(lines[0].attributes('style')).toContain('width: 100%')
-    expect(lines[1].attributes('style')).toContain('width: 60%')
-    expect(lines[2].attributes('style')).toContain('width: 80%')
+    expect(lines[0]!.attributes('style')).toContain('width: 100%')
+    expect(lines[1]!.attributes('style')).toContain('width: 60%')
+    expect(lines[2]!.attributes('style')).toContain('width: 80%')
   })
 })

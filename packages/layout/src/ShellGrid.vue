@@ -51,19 +51,11 @@ const panelStyle = computed(() => ({
     <div data-rig-shell-sidebar :style="sideStyle">
       <slot name="sidebar" />
     </div>
-    <Resizer
-      v-if="resizable"
-      orientation="horizontal"
-      @drag="onSideResize"
-    />
+    <Resizer v-if="resizable" orientation="horizontal" @drag="onSideResize" />
     <div data-rig-shell-editor>
       <slot name="editor" />
     </div>
-    <Resizer
-      v-if="resizable"
-      orientation="vertical"
-      @drag="onPanelResize"
-    />
+    <Resizer v-if="resizable" orientation="vertical" @drag="onPanelResize" />
     <div data-rig-shell-panel :style="panelStyle">
       <slot name="panel" />
     </div>

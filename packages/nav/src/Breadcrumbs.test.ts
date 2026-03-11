@@ -36,7 +36,7 @@ describe('Breadcrumbs', () => {
 
   it('emits select on segment click', async () => {
     const wrapper = mount(Breadcrumbs, { props: { items } })
-    await wrapper.findAll('[data-rig-breadcrumbs-link]')[0].trigger('click')
+    await wrapper.findAll('[data-rig-breadcrumbs-link]')[0]!.trigger('click')
     expect(wrapper.emitted('select')?.[0]).toEqual(['root'])
   })
 
@@ -44,12 +44,12 @@ describe('Breadcrumbs', () => {
     const wrapper = mount(Breadcrumbs, { props: { items } })
     const seps = wrapper.findAll('[data-rig-breadcrumbs-separator]')
     expect(seps).toHaveLength(2)
-    expect(seps[0].text()).toBe('/')
+    expect(seps[0]!.text()).toBe('/')
   })
 
   it('uses custom separator', () => {
     const wrapper = mount(Breadcrumbs, { props: { items, separator: '>' } })
     const seps = wrapper.findAll('[data-rig-breadcrumbs-separator]')
-    expect(seps[0].text()).toBe('>')
+    expect(seps[0]!.text()).toBe('>')
   })
 })

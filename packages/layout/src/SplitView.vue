@@ -39,14 +39,10 @@ function onResize(index: number, payload: { delta: number }) {
     emit('update:sizes', newSizes)
   }
 }
-
 </script>
 
 <template>
-  <div
-    data-rig-split-view
-    :data-orientation="orientation"
-  >
+  <div data-rig-split-view :data-orientation="orientation">
     <template v-for="(size, i) in sizes" :key="i">
       <div
         data-rig-split-pane

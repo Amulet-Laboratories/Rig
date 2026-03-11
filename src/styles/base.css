@@ -1,0 +1,16 @@
+/* Rig — Structural CSS
+ * Layout, sizing, and interaction behavior for all Rig components.
+ * Import a Hex theme (or custom CSS) for colors, fonts, and visual styles.
+ *
+ * Usage:
+ *   import '@amulet-laboratories/rig/styles'    // structural layout
+ *   import '@amulet-laboratories/hex/obelisk'   // theme (colors, fonts, etc.)
+ */
+
+@import './layout.css';
+@import './nav.css';
+@import './editor.css';
+@import './lists.css';
+@import './menus.css';
+@import './extras.css';
+@import './core.css';

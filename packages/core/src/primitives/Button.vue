@@ -39,8 +39,11 @@ const isNativeButton = !props.as || props.as === 'button'
     :data-size="size"
     :data-disabled="disabled || loading || undefined"
     :data-loading="loading || undefined"
-    :disabled="isNativeButton ? (disabled || loading) : undefined"
+    :disabled="isNativeButton ? disabled || loading : undefined"
     :aria-busy="loading || undefined"
+    :aria-disabled="!isNativeButton && (disabled || loading) ? true : undefined"
+    :role="!isNativeButton ? 'button' : undefined"
+    :tabindex="!isNativeButton && !(disabled || loading) ? 0 : undefined"
     :type="isNativeButton ? type : undefined"
     @click="$emit('click', $event)"
   >

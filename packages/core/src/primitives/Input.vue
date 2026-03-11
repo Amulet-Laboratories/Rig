@@ -81,8 +81,8 @@ defineExpose({ focus })
   >
     <slot name="leading" />
     <input
-      ref="inputRef"
       :id="id"
+      ref="inputRef"
       :value="modelValue"
       :placeholder="placeholder"
       :disabled="disabled"

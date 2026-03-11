@@ -1,7 +1,6 @@
 import { onMounted, onUnmounted, computed } from 'vue'
 
-const isMac =
-  typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.userAgent)
+const isMac = typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.userAgent)
 
 function normalizeKey(key: string): string {
   return key

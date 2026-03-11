@@ -12,8 +12,8 @@ describe('TagInput', () => {
     const wrapper = mount(TagInput, { props: { modelValue: ['alpha', 'beta'] } })
     const tags = wrapper.findAll('[data-rig-tag]')
     expect(tags).toHaveLength(2)
-    expect(tags[0].text()).toContain('alpha')
-    expect(tags[1].text()).toContain('beta')
+    expect(tags[0]!.text()).toContain('alpha')
+    expect(tags[1]!.text()).toContain('beta')
   })
 
   it('adds a tag on Enter', async () => {
@@ -42,7 +42,7 @@ describe('TagInput', () => {
   it('removes a specific tag via remove button', async () => {
     const wrapper = mount(TagInput, { props: { modelValue: ['x', 'y', 'z'] } })
     const removeButtons = wrapper.findAll('[data-rig-tag-remove]')
-    await removeButtons[1].trigger('click')
+    await removeButtons[1]!.trigger('click')
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([['x', 'z']])
   })
 
@@ -68,8 +68,8 @@ describe('TagInput', () => {
     await input.setValue('ap')
     const suggestions = wrapper.findAll('[data-rig-tag-suggestion]')
     expect(suggestions).toHaveLength(2)
-    expect(suggestions[0].text()).toBe('apple')
-    expect(suggestions[1].text()).toBe('apricot')
+    expect(suggestions[0]!.text()).toBe('apple')
+    expect(suggestions[1]!.text()).toBe('apricot')
   })
 
   it('does not suggest already-selected tags', async () => {
@@ -80,6 +80,6 @@ describe('TagInput', () => {
     await input.setValue('ap')
     const suggestions = wrapper.findAll('[data-rig-tag-suggestion]')
     expect(suggestions).toHaveLength(1)
-    expect(suggestions[0].text()).toBe('apricot')
+    expect(suggestions[0]!.text()).toBe('apricot')
   })
 })

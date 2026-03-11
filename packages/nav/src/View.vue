@@ -38,10 +38,7 @@ function onActionMouseLeave() {
 </script>
 
 <template>
-  <section
-    data-rig-view
-    :data-collapsed="collapsed || undefined"
-  >
+  <section data-rig-view :data-collapsed="collapsed || undefined">
     <div
       data-rig-view-header
       role="button"

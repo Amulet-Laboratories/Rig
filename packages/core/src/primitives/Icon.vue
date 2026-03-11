@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import { computed, defineAsyncComponent } from 'vue'
+import { computed, defineAsyncComponent, type Component } from 'vue'
 import type { Size } from '../types'
-
-const IconifyIcon = defineAsyncComponent(() =>
-  import('@iconify/vue').then((m) => ({ default: m.Icon })),
-)
 
 const props = withDefaults(
   defineProps<{
@@ -19,6 +15,10 @@ const props = withDefaults(
     size: 'md',
   },
 )
+
+const IconifyIcon = defineAsyncComponent({
+  loader: () => import('@iconify/vue').then((m) => m.Icon as Component),
+})
 
 const isDecorative = computed(() => !props.label)
 </script>

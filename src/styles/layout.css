@@ -1,0 +1,333 @@
+/* Rig Structural — Layout Components
+ * ShellGrid, Sidebar, View, Panel, Modal, Accordion, Collapsible,
+ * PeekView, Popover, ScrollArea, SplitView, Resizer
+ */
+
+/* ── Shell Grid ── */
+
+[data-rig-shell-grid] {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  grid-template-areas:
+    'activity sidebar editor'
+    'activity sidebar panel'
+    'statusbar statusbar statusbar';
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: 1fr auto auto;
+}
+
+[data-rig-shell-activity] {
+  grid-area: activity;
+}
+
+[data-rig-shell-sidebar] {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+[data-rig-shell-editor] {
+  grid-area: editor;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+[data-rig-shell-panel] {
+  grid-area: panel;
+  overflow: hidden;
+}
+
+[data-rig-shell-statusbar] {
+  grid-area: statusbar;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 1rem;
+}
+
+/* ── Sidebar ── */
+
+[data-rig-sidebar] {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+[data-rig-sidebar-header] {
+  padding: 0.75rem 1rem;
+}
+
+[data-rig-sidebar-content] {
+  flex: 1 1 0%;
+  overflow: auto;
+}
+
+/* ── View ── */
+
+[data-rig-view] {
+  display: flex;
+  flex-direction: column;
+}
+
+[data-rig-view-header] {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+[data-rig-view-content] {
+  padding: 0.25rem 0.5rem;
+}
+
+[data-rig-view-title] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-rig-view-actions] {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+[data-rig-view-action] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+/* ── Panel ── */
+
+[data-rig-panel] {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+[data-rig-panel-header] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+}
+
+[data-rig-panel-content] {
+  flex: 1 1 0%;
+  overflow: auto;
+}
+
+/* ── Modal ── */
+
+[data-rig-modal-overlay] {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-rig-modal] {
+  overflow: hidden;
+  max-width: 32rem;
+  width: 100%;
+}
+
+/* ── Accordion ── */
+
+[data-rig-accordion] {
+  display: flex;
+  flex-direction: column;
+}
+
+[data-rig-accordion][data-disabled] {
+  pointer-events: none;
+}
+
+[data-rig-accordion-trigger] {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: 0;
+  text-align: left;
+}
+
+/* ── Collapsible ── */
+
+[data-rig-collapsible] {
+  display: flex;
+  flex-direction: column;
+}
+
+[data-rig-collapsible][data-disabled] {
+  pointer-events: none;
+}
+
+[data-rig-collapsible-content] {
+  overflow: hidden;
+}
+
+[data-rig-collapsible-content][data-state='closed'] {
+  display: none;
+}
+
+/* ── PeekView ── */
+
+[data-rig-peek-view] {
+  overflow: hidden;
+}
+
+[data-rig-peek-view][data-state='closed'] {
+  display: none;
+}
+
+[data-rig-peek-view-header] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+}
+
+[data-rig-peek-view-title] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-rig-peek-view-close] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+[data-rig-peek-view-content] {
+  overflow: auto;
+  max-height: 300px;
+}
+
+/* ── Popover ── */
+
+[data-rig-popover] {
+  position: relative;
+  display: inline-flex;
+}
+
+[data-rig-popover-trigger] {
+  display: inline-flex;
+}
+
+[data-rig-popover-content] {
+  padding: 0.5rem 0.75rem;
+}
+
+[data-rig-popover-content][data-state='closed'] {
+  display: none;
+}
+
+/* ── ScrollArea ── */
+
+[data-rig-scroll-area] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-rig-scroll-viewport] {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+[data-rig-scroll-viewport]::-webkit-scrollbar {
+  display: none;
+}
+
+[data-rig-scroll-bar] {
+  position: absolute;
+  user-select: none;
+  touch-action: none;
+}
+
+[data-rig-scroll-bar][data-orientation='vertical'] {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 6px;
+}
+
+[data-rig-scroll-bar][data-orientation='horizontal'] {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6px;
+}
+
+[data-rig-scroll-bar][data-orientation='vertical'] [data-rig-scroll-thumb] {
+  width: 100%;
+}
+
+[data-rig-scroll-bar][data-orientation='horizontal'] [data-rig-scroll-thumb] {
+  height: 100%;
+}
+
+/* ── SplitView ── */
+
+[data-rig-split-view] {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+[data-rig-split-view][data-orientation='vertical'] {
+  flex-direction: column;
+}
+
+[data-rig-split-pane] {
+  overflow: hidden;
+}
+
+/* ── Resizer ── */
+
+[data-rig-resizer] {
+  position: relative;
+}
+
+[data-rig-resizer][data-direction='horizontal'],
+[data-rig-resizer][data-orientation='horizontal'] {
+  width: 0.25rem;
+  cursor: col-resize;
+}
+
+[data-rig-resizer][data-direction='vertical'],
+[data-rig-resizer][data-orientation='vertical'] {
+  height: 0.25rem;
+  cursor: row-resize;
+}

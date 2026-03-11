@@ -51,23 +51,23 @@ describe('Menubar', () => {
 
   it('opens menu on trigger click', async () => {
     const wrapper = factory()
-    await wrapper.findAll('[data-rig-menubar-trigger]')[0].trigger('click')
-    expect(wrapper.findAll('[data-rig-menubar-entry]')[0].attributes('data-state')).toBe('open')
+    await wrapper.findAll('[data-rig-menubar-trigger]')[0]!.trigger('click')
+    expect(wrapper.findAll('[data-rig-menubar-entry]')[0]!.attributes('data-state')).toBe('open')
     wrapper.unmount()
   })
 
   it('closes menu on second trigger click', async () => {
     const wrapper = factory()
-    const trigger = wrapper.findAll('[data-rig-menubar-trigger]')[0]
+    const trigger = wrapper.findAll('[data-rig-menubar-trigger]')[0]!
     await trigger.trigger('click')
     await trigger.trigger('click')
-    expect(wrapper.findAll('[data-rig-menubar-entry]')[0].attributes('data-state')).toBe('closed')
+    expect(wrapper.findAll('[data-rig-menubar-entry]')[0]!.attributes('data-state')).toBe('closed')
     wrapper.unmount()
   })
 
   it('shows menu items when open', async () => {
     const wrapper = factory()
-    await wrapper.findAll('[data-rig-menubar-trigger]')[0].trigger('click')
+    await wrapper.findAll('[data-rig-menubar-trigger]')[0]!.trigger('click')
     const content = wrapper.find('[data-rig-menubar-content]')
     expect(content.findAll('[data-rig-menubar-item]')).toHaveLength(3)
     wrapper.unmount()
@@ -75,42 +75,42 @@ describe('Menubar', () => {
 
   it('emits select when item is clicked', async () => {
     const wrapper = factory()
-    await wrapper.findAll('[data-rig-menubar-trigger]')[0].trigger('click')
+    await wrapper.findAll('[data-rig-menubar-trigger]')[0]!.trigger('click')
     const items = wrapper.findAll('[data-rig-menubar-item]')
-    await items[0].trigger('click')
+    await items[0]!.trigger('click')
     const emitted = wrapper.emitted('select')?.[0] as Action[]
-    expect(emitted[0].id).toBe('new')
+    expect(emitted[0]!.id).toBe('new')
     wrapper.unmount()
   })
 
   it('does not emit select for disabled items', async () => {
     const wrapper = factory()
-    await wrapper.findAll('[data-rig-menubar-trigger]')[0].trigger('click')
+    await wrapper.findAll('[data-rig-menubar-trigger]')[0]!.trigger('click')
     const items = wrapper.findAll('[data-rig-menubar-item]')
-    await items[2].trigger('click') // disabled-save
+    await items[2]!.trigger('click') // disabled-save
     expect(wrapper.emitted('select')).toBeUndefined()
     wrapper.unmount()
   })
 
   it('marks disabled items with data-disabled', async () => {
     const wrapper = factory()
-    await wrapper.findAll('[data-rig-menubar-trigger]')[0].trigger('click')
+    await wrapper.findAll('[data-rig-menubar-trigger]')[0]!.trigger('click')
     const items = wrapper.findAll('[data-rig-menubar-item]')
-    expect(items[2].attributes('data-disabled')).toBeDefined()
+    expect(items[2]!.attributes('data-disabled')).toBeDefined()
     wrapper.unmount()
   })
 
   it('closes open menu on Escape', async () => {
     const wrapper = factory()
-    await wrapper.findAll('[data-rig-menubar-trigger]')[0].trigger('click')
+    await wrapper.findAll('[data-rig-menubar-trigger]')[0]!.trigger('click')
     await wrapper.trigger('keydown', { key: 'Escape' })
-    expect(wrapper.findAll('[data-rig-menubar-entry]')[0].attributes('data-state')).toBe('closed')
+    expect(wrapper.findAll('[data-rig-menubar-entry]')[0]!.attributes('data-state')).toBe('closed')
     wrapper.unmount()
   })
 
   it('renders keybindings', async () => {
     const wrapper = factory()
-    await wrapper.findAll('[data-rig-menubar-trigger]')[0].trigger('click')
+    await wrapper.findAll('[data-rig-menubar-trigger]')[0]!.trigger('click')
     const kb = wrapper.find('[data-rig-menubar-item-keybinding]')
     expect(kb.text()).toBe('Ctrl+N')
     wrapper.unmount()

@@ -58,14 +58,10 @@ interface FlatNode {
   posInSet: number
 }
 
-function flatten(
-  nodes: TreeNode<T>[],
-  depth: number,
-  expandedSet: Set<ID>,
-): FlatNode[] {
+function flatten(nodes: TreeNode<T>[], depth: number, expandedSet: Set<ID>): FlatNode[] {
   const result: FlatNode[] = []
   for (let i = 0; i < nodes.length; i++) {
-    const node = nodes[i]
+    const node = nodes[i]!
     const resolvedChildren = loadedChildren.value.get(node.id) ?? node.children
     const hasChildren = resolvedChildren && resolvedChildren.length > 0
     const isExpandable = hasChildren || (!!props.onExpand && node.children === undefined)
@@ -137,10 +133,17 @@ async function toggleExpand(node: TreeNode<T>) {
   const current = [...(props.expanded ?? [])]
 
   if (isExpanded(node.id)) {
-    emit('update:expanded', current.filter((id) => id !== node.id))
+    emit(
+      'update:expanded',
+      current.filter((id) => id !== node.id),
+    )
   } else {
     // Lazy load — store results in internal map to avoid mutating props
-    if (props.onExpand && (!node.children || node.children.length === 0) && !loadedChildren.value.has(node.id)) {
+    if (
+      props.onExpand &&
+      (!node.children || node.children.length === 0) &&
+      !loadedChildren.value.has(node.id)
+    ) {
       loadingNodes.value.add(node.id)
       try {
         const children = await props.onExpand(node)
@@ -191,7 +194,7 @@ function onKeydown(e: KeyboardEvent) {
       } else if (current.depth > 0) {
         // Move to parent
         for (let i = focusedIndex.value - 1; i >= 0; i--) {
-          if (flat[i].depth < current.depth) {
+          if (flat[i]!.depth < current.depth) {
             focusedIndex.value = i
             itemRefs.value[i]?.focus()
             break
@@ -231,46 +234,46 @@ function onKeydown(e: KeyboardEvent) {
     @scroll="virtual ? onScroll() : undefined"
   >
     <div :style="{ paddingTop: `${paddingTop}px`, paddingBottom: `${paddingBottom}px` }">
-    <div
-      v-for="{ item: flat, index } in renderedNodes"
-      :key="flat.node.id"
-      :ref="(el) => setItemRef(el, index)"
-      data-rig-tree-node
-      role="treeitem"
-      :aria-level="flat.depth + 1"
-      :aria-expanded="flat.isLeaf ? undefined : isExpanded(flat.node.id)"
-      :aria-selected="isSelected(flat.node.id)"
-      :aria-setsize="flat.setSize"
-      :aria-posinset="flat.posInSet"
-      :data-state="isExpanded(flat.node.id) ? 'open' : 'closed'"
-      :data-selected="isSelected(flat.node.id) || undefined"
-      :data-depth="flat.depth"
-      :data-leaf="flat.isLeaf || undefined"
-      :data-loading="loadingNodes.has(flat.node.id) || undefined"
-      :tabindex="index === focusedIndex ? 0 : -1"
-      :style="{ paddingInlineStart: `calc(${flat.depth} * var(--rig-tree-indent, 16px))` }"
-      @click.stop="select(flat.node)"
-      @dblclick.stop="!flat.isLeaf ? toggleExpand(flat.node) : emit('activate', flat.node)"
-      @contextmenu.prevent="emit('contextmenu', { node: flat.node, event: $event })"
-    >
-      <button
-        v-if="!flat.isLeaf"
-        data-rig-tree-toggle
-        tabindex="-1"
-        :aria-label="isExpanded(flat.node.id) ? 'Collapse' : 'Expand'"
-        @click.stop="toggleExpand(flat.node)"
-      />
-      <slot
-        name="node"
-        :node="flat.node"
-        :depth="flat.depth"
-        :expanded="isExpanded(flat.node.id)"
-        :selected="isSelected(flat.node.id)"
-        :toggle="() => toggleExpand(flat.node)"
+      <div
+        v-for="{ item: flat, index } in renderedNodes"
+        :key="flat.node.id"
+        :ref="(el) => setItemRef(el, index)"
+        data-rig-tree-node
+        role="treeitem"
+        :aria-level="flat.depth + 1"
+        :aria-expanded="flat.isLeaf ? undefined : isExpanded(flat.node.id)"
+        :aria-selected="isSelected(flat.node.id)"
+        :aria-setsize="flat.setSize"
+        :aria-posinset="flat.posInSet"
+        :data-state="isExpanded(flat.node.id) ? 'open' : 'closed'"
+        :data-selected="isSelected(flat.node.id) || undefined"
+        :data-depth="flat.depth"
+        :data-leaf="flat.isLeaf || undefined"
+        :data-loading="loadingNodes.has(flat.node.id) || undefined"
+        :tabindex="index === focusedIndex ? 0 : -1"
+        :style="{ paddingInlineStart: `calc(${flat.depth} * var(--rig-tree-indent, 16px))` }"
+        @click.stop="select(flat.node)"
+        @dblclick.stop="!flat.isLeaf ? toggleExpand(flat.node) : emit('activate', flat.node)"
+        @contextmenu.prevent="emit('contextmenu', { node: flat.node, event: $event })"
       >
-        <span data-rig-tree-node-label>{{ flat.node.label }}</span>
-      </slot>
-    </div>
+        <button
+          v-if="!flat.isLeaf"
+          data-rig-tree-toggle
+          tabindex="-1"
+          :aria-label="isExpanded(flat.node.id) ? 'Collapse' : 'Expand'"
+          @click.stop="toggleExpand(flat.node)"
+        />
+        <slot
+          name="node"
+          :node="flat.node"
+          :depth="flat.depth"
+          :expanded="isExpanded(flat.node.id)"
+          :selected="isSelected(flat.node.id)"
+          :toggle="() => toggleExpand(flat.node)"
+        >
+          <span data-rig-tree-node-label>{{ flat.node.label }}</span>
+        </slot>
+      </div>
     </div>
   </div>
 </template>

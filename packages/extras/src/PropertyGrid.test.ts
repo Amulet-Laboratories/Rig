@@ -20,18 +20,18 @@ describe('PropertyGrid', () => {
   })
 
   it('displays key and value', () => {
-    const wrapper = mount(PropertyGrid, { props: { items: [items[0]] } })
+    const wrapper = mount(PropertyGrid, { props: { items: [items[0]!] } })
     expect(wrapper.find('[data-rig-property-key]').text()).toBe('Name')
     expect(wrapper.find('[data-rig-property-value]').text()).toBe('Alice')
   })
 
   it('sets mono data attribute', () => {
-    const wrapper = mount(PropertyGrid, { props: { items: [items[1]] } })
+    const wrapper = mount(PropertyGrid, { props: { items: [items[1]!] } })
     expect(wrapper.find('[data-rig-property-value]').attributes('data-mono')).toBeDefined()
   })
 
   it('applies keyWidth style', () => {
-    const wrapper = mount(PropertyGrid, { props: { items: [items[0]], keyWidth: '120px' } })
+    const wrapper = mount(PropertyGrid, { props: { items: [items[0]!], keyWidth: '120px' } })
     const key = wrapper.find('[data-rig-property-key]')
     expect(key.attributes('style')).toContain('width: 120px')
   })

@@ -15,11 +15,7 @@ withDefaults(
 </script>
 
 <template>
-  <span
-    data-rig-badge
-    :data-variant="variant"
-    :data-size="size"
-  >
+  <span data-rig-badge :data-variant="variant" :data-size="size">
     <slot />
   </span>
 </template>

@@ -4,11 +4,7 @@ import { ref, watch, getCurrentScope, onScopeDispose, type Ref } from 'vue'
  * Reactive state that persists to Storage (localStorage by default).
  * Debounces writes by 100ms. Listens for cross-tab `storage` events.
  */
-export function usePersistedState<T>(
-  key: string,
-  initial: T,
-  storage?: Storage,
-): Ref<T> {
+export function usePersistedState<T>(key: string, initial: T, storage?: Storage): Ref<T> {
   const store = storage ?? (typeof localStorage !== 'undefined' ? localStorage : undefined)
   const state = ref<T>(initial) as Ref<T>
 

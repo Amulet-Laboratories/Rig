@@ -24,26 +24,26 @@ describe('EditorWorkbench', () => {
     const wrapper = mount(EditorWorkbench, {
       props: { tabs, activeId: 'b' },
     })
-    const active = wrapper.findAll('[data-rig-editor-tab]')[1]
+    const active = wrapper.findAll('[data-rig-editor-tab]')[1]!
     expect(active.attributes('data-state')).toBe('active')
     expect(active.attributes('aria-selected')).toBe('true')
   })
 
   it('emits update:activeId on tab click', async () => {
     const wrapper = mount(EditorWorkbench, { props: { tabs } })
-    await wrapper.findAll('[data-rig-editor-tab]')[1].trigger('click')
+    await wrapper.findAll('[data-rig-editor-tab]')[1]!.trigger('click')
     expect(wrapper.emitted('update:activeId')?.[0]).toEqual(['b'])
   })
 
   it('emits close on close button click', async () => {
     const wrapper = mount(EditorWorkbench, { props: { tabs, activeId: 'a' } })
-    await wrapper.findAll('[data-rig-editor-tab-close]')[0].trigger('click')
+    await wrapper.findAll('[data-rig-editor-tab-close]')[0]!.trigger('click')
     expect(wrapper.emitted('close')?.[0]).toEqual(['a'])
   })
 
   it('shows dirty indicator', () => {
     const wrapper = mount(EditorWorkbench, { props: { tabs, activeId: 'b' } })
-    const dirtyTab = wrapper.findAll('[data-rig-editor-tab]')[1]
+    const dirtyTab = wrapper.findAll('[data-rig-editor-tab]')[1]!
     expect(dirtyTab.attributes('data-dirty')).toBeDefined()
   })
 
@@ -70,17 +70,17 @@ describe('EditorWorkbench', () => {
   it('emits reorder when tab is dropped onto another', async () => {
     const wrapper = mount(EditorWorkbench, { props: { tabs } })
     const tabEls = wrapper.findAll('[data-rig-editor-tab]')
-    await tabEls[0].trigger('dragstart')
-    await tabEls[2].trigger('dragover')
-    await tabEls[2].trigger('drop')
+    await tabEls[0]!.trigger('dragstart')
+    await tabEls[2]!.trigger('dragover')
+    await tabEls[2]!.trigger('drop')
     expect(wrapper.emitted('reorder')?.[0]).toEqual([{ from: 0, to: 2 }])
   })
 
   it('sets data-drag-over on hovered tab', async () => {
     const wrapper = mount(EditorWorkbench, { props: { tabs } })
     const tabEls = wrapper.findAll('[data-rig-editor-tab]')
-    await tabEls[0].trigger('dragstart')
-    await tabEls[1].trigger('dragover')
-    expect(tabEls[1].attributes('data-drag-over')).toBeDefined()
+    await tabEls[0]!.trigger('dragstart')
+    await tabEls[1]!.trigger('dragover')
+    expect(tabEls[1]!.attributes('data-drag-over')).toBeDefined()
   })
 })

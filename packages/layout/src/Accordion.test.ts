@@ -119,7 +119,12 @@ describe('Accordion', () => {
         },
       },
     })
-    expect((exposed.headerId as (v: string) => string)('section-1')).toBe('rig-accordion-header-section-1')
-    expect((exposed.panelId as (v: string) => string)('section-1')).toBe('rig-accordion-panel-section-1')
+    const headerId = (exposed.headerId as (v: string) => string)('section-1')
+    const panelId = (exposed.panelId as (v: string) => string)('section-1')
+    // IDs are prefixed with a unique instance ID from useId()
+    expect(headerId).toContain('accordion-header-section-1')
+    expect(panelId).toContain('accordion-panel-section-1')
+    // Header and panel IDs share the same prefix
+    expect(headerId.replace('header', '')).toEqual(panelId.replace('panel', ''))
   })
 })

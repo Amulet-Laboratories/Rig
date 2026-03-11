@@ -25,9 +25,7 @@ const visibleActions = computed(() =>
 )
 
 const overflowActions = computed(() =>
-  props.maxVisible < props.actions.length
-    ? props.actions.slice(props.maxVisible)
-    : [],
+  props.maxVisible < props.actions.length ? props.actions.slice(props.maxVisible) : [],
 )
 </script>
 

@@ -44,9 +44,9 @@ describe('ContextMenu', () => {
     const wrapper = factory()
     const menu = document.querySelector('[data-rig-context-menu]')!
     const labels = menu.querySelectorAll('[data-rig-context-menu-label]')
-    expect(labels[0].textContent).toBe('Cut')
+    expect(labels[0]!.textContent).toBe('Cut')
     const keybindings = menu.querySelectorAll('[data-rig-context-menu-keybinding]')
-    expect(keybindings[0].textContent?.trim()).toBe('Ctrl+X')
+    expect(keybindings[0]!.textContent?.trim()).toBe('Ctrl+X')
     wrapper.unmount()
   })
 
@@ -63,8 +63,8 @@ describe('ContextMenu', () => {
     const wrapper = factory()
     const menu = document.querySelector('[data-rig-context-menu]')!
     const items = menu.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')
-    items[1].dispatchEvent(new MouseEvent('click', { bubbles: true }))
-    await new Promise(r => setTimeout(r, 0))
+    items[1]!.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+    await new Promise((r) => setTimeout(r, 0))
     expect(wrapper.emitted('select')?.[0]).toEqual([actions[1]])
     wrapper.unmount()
   })
@@ -73,7 +73,7 @@ describe('ContextMenu', () => {
     const wrapper = factory()
     const menu = document.querySelector('[data-rig-context-menu]')!
     const items = menu.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')
-    await items[3].click()
+    await items[3]!.click()
     expect(wrapper.emitted('select')).toBeUndefined()
     wrapper.unmount()
   })
@@ -82,8 +82,8 @@ describe('ContextMenu', () => {
     const wrapper = factory()
     const menu = document.querySelector('[data-rig-context-menu]')!
     const items = menu.querySelectorAll('[role="menuitem"]')
-    expect(items[3].getAttribute('data-disabled')).toBe('true')
-    expect(items[3].hasAttribute('disabled')).toBe(true)
+    expect(items[3]!.getAttribute('data-disabled')).toBe('true')
+    expect(items[3]!.hasAttribute('disabled')).toBe(true)
     wrapper.unmount()
   })
 
@@ -91,7 +91,7 @@ describe('ContextMenu', () => {
     const wrapper = factory()
     const menu = document.querySelector('[data-rig-context-menu]')!
     menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))
-    await new Promise(r => setTimeout(r, 0))
+    await new Promise((r) => setTimeout(r, 0))
     expect(wrapper.emitted('update:open')?.[0]).toEqual([false])
     wrapper.unmount()
   })
@@ -100,7 +100,7 @@ describe('ContextMenu', () => {
     const wrapper = factory()
     const menu = document.querySelector('[data-rig-context-menu]')!
     await menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
-    let focused = menu.querySelectorAll('[data-highlighted="true"]')
+    const focused = menu.querySelectorAll('[data-highlighted="true"]')
     expect(focused.length).toBe(1)
     wrapper.unmount()
   })
@@ -113,7 +113,7 @@ describe('ContextMenu', () => {
     menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
     menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
     menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
-    await new Promise(r => setTimeout(r, 0))
+    await new Promise((r) => setTimeout(r, 0))
     // The last ArrowDown should not move past paste since disabled is at index 3
     const highlighted = menu.querySelectorAll('[data-highlighted="true"]')
     expect(highlighted.length).toBe(1)

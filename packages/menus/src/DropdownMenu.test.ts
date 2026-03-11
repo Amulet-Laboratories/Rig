@@ -64,9 +64,9 @@ describe('DropdownMenu', () => {
     const wrapper = factory({ open: true })
     const menu = document.querySelector('[data-rig-dropdown-menu]')!
     const labels = menu.querySelectorAll('[data-rig-dropdown-item-label]')
-    expect(labels[0].textContent).toBe('New File')
+    expect(labels[0]!.textContent).toBe('New File')
     const keybindings = menu.querySelectorAll('[data-rig-dropdown-item-keybinding]')
-    expect(keybindings[0].textContent?.trim()).toBe('Ctrl+N')
+    expect(keybindings[0]!.textContent?.trim()).toBe('Ctrl+N')
     wrapper.unmount()
   })
 
@@ -74,7 +74,7 @@ describe('DropdownMenu', () => {
     const wrapper = factory({ open: true })
     const menu = document.querySelector('[data-rig-dropdown-menu]')!
     const menuItems = menu.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')
-    menuItems[1].dispatchEvent(new MouseEvent('click', { bubbles: true }))
+    menuItems[1]!.dispatchEvent(new MouseEvent('click', { bubbles: true }))
     await new Promise((r) => setTimeout(r, 0))
     expect(wrapper.emitted('select')?.[0]).toEqual([items[1]])
     wrapper.unmount()
@@ -84,7 +84,7 @@ describe('DropdownMenu', () => {
     const wrapper = factory({ open: true })
     const menu = document.querySelector('[data-rig-dropdown-menu]')!
     const menuItems = menu.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')
-    menuItems[3].dispatchEvent(new MouseEvent('click', { bubbles: true }))
+    menuItems[3]!.dispatchEvent(new MouseEvent('click', { bubbles: true }))
     await new Promise((r) => setTimeout(r, 0))
     expect(wrapper.emitted('select')).toBeUndefined()
     wrapper.unmount()
@@ -94,7 +94,7 @@ describe('DropdownMenu', () => {
     const wrapper = factory({ open: true })
     const menu = document.querySelector('[data-rig-dropdown-menu]')!
     const menuItems = menu.querySelectorAll('[role="menuitem"]')
-    expect(menuItems[3].getAttribute('data-disabled')).toBe('true')
+    expect(menuItems[3]!.getAttribute('data-disabled')).toBe('true')
     wrapper.unmount()
   })
 

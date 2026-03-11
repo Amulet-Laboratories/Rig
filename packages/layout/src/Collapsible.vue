@@ -30,11 +30,7 @@ function toggle() {
     :data-disabled="disabled || undefined"
   >
     <slot name="trigger" :open="open" :toggle="toggle" />
-    <div
-      v-show="open"
-      data-rig-collapsible-content
-      :data-state="open ? 'open' : 'closed'"
-    >
+    <div v-show="open" data-rig-collapsible-content :data-state="open ? 'open' : 'closed'">
       <slot />
     </div>
   </div>

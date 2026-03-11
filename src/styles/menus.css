@@ -1,0 +1,239 @@
+/* Rig Structural — Menu Components
+ * CommandPalette, ContextMenu, Menubar, DropdownMenu, ActionBar, KeyboardHint
+ */
+
+/* ── Command Palette ── */
+
+[data-rig-command-palette-overlay] {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+}
+
+[data-rig-command-palette] {
+  position: relative;
+  width: 100%;
+  max-width: 32rem;
+  overflow: hidden;
+}
+
+[data-rig-command-palette-input] {
+  flex: 1 1 0%;
+  width: 100%;
+  padding: 0.75rem 1rem;
+}
+
+[data-rig-command-palette-results] {
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+[data-rig-command-palette-item] {
+  width: 100%;
+  text-align: left;
+  padding: 0.625rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+[data-rig-command-palette-item-label] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-rig-command-palette-item-description] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-rig-command-palette-empty] {
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+/* ── Context Menu ── */
+
+[data-rig-context-menu] {
+  min-width: 180px;
+  padding: 0.25rem 0;
+}
+
+[data-rig-context-menu-item] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.375rem 0.75rem;
+  cursor: pointer;
+}
+
+[data-rig-context-menu-item][data-disabled] {
+  pointer-events: none;
+}
+
+[data-rig-context-menu-label] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-rig-context-menu-keybinding] {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* ── Menubar ── */
+
+[data-rig-menubar] {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+[data-rig-menubar-entry] {
+  position: relative;
+}
+
+[data-rig-menubar-trigger] {
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+[data-rig-menubar-content] {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 9999;
+  min-width: 200px;
+  padding: 4px 0;
+}
+
+[data-rig-menubar-item] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.375rem 0.75rem;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+[data-rig-menubar-item][data-disabled] {
+  pointer-events: none;
+}
+
+[data-rig-menubar-item-label] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-rig-menubar-item-keybinding] {
+  flex-shrink: 0;
+}
+
+/* ── Dropdown Menu ── */
+
+[data-rig-dropdown] {
+  position: relative;
+  display: inline-flex;
+}
+
+[data-rig-dropdown-trigger] {
+  display: inline-flex;
+}
+
+[data-rig-dropdown-menu] {
+  min-width: 180px;
+  padding: 4px 0;
+}
+
+[data-rig-dropdown-item] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.375rem 0.75rem;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+[data-rig-dropdown-item][data-disabled] {
+  pointer-events: none;
+}
+
+[data-rig-dropdown-item-label] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-rig-dropdown-item-keybinding] {
+  flex-shrink: 0;
+}
+
+/* ── Action Bar ── */
+
+[data-rig-action-bar] {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+[data-rig-action-bar-item] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+[data-rig-action-bar-item][data-disabled] {
+  pointer-events: none;
+}
+
+[data-rig-action-bar-overflow] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+/* ── Keyboard Hint ── */
+
+[data-rig-keyboard-hint] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+[data-rig-keyboard-hint-key] {
+  padding: 0.125rem 0.375rem;
+}

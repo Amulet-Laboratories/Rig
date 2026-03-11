@@ -7,9 +7,10 @@ Headless, accessible Vue 3 component library. VSCode-style layout, completely un
 ## Tech Stack
 
 - Vue 3 + TypeScript strict — `<script setup lang="ts">` only
-- Vite 6 library mode (ESM + CJS)
+- Vite 7 library mode (ESM + CJS)
 - Vitest + @vue/test-utils for testing
 - pnpm (never npm or yarn)
+- Vue peer dependency: ^3.5.0
 
 ## Code Style
 
@@ -42,6 +43,7 @@ pnpm format           # Prettier
 ## Testing
 
 Every component has a `.test.ts` file. Tests cover:
+
 - Renders without errors
 - Data attributes reflect props/state
 - Emits fire with correct payloads

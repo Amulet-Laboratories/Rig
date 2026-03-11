@@ -28,9 +28,7 @@ describe('useKeyboard', () => {
     const handler = vi.fn()
     createWrapper({ 'Ctrl+K': handler })
 
-    window.dispatchEvent(
-      new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, bubbles: true }),
-    )
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, bubbles: true }))
 
     expect(handler).toHaveBeenCalledOnce()
   })
@@ -39,9 +37,7 @@ describe('useKeyboard', () => {
     const handler = vi.fn()
     createWrapper({ 'Ctrl+K': handler })
 
-    window.dispatchEvent(
-      new KeyboardEvent('keydown', { key: 'j', ctrlKey: true, bubbles: true }),
-    )
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'j', ctrlKey: true, bubbles: true }))
 
     expect(handler).not.toHaveBeenCalled()
   })
@@ -93,9 +89,7 @@ describe('useKeyboard', () => {
     const wrapper = createWrapper({ 'Ctrl+K': handler })
     wrapper.unmount()
 
-    window.dispatchEvent(
-      new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, bubbles: true }),
-    )
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, bubbles: true }))
 
     expect(handler).not.toHaveBeenCalled()
   })

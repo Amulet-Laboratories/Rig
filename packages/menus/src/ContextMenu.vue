@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, nextTick, onUnmounted } from 'vue'
 import { useFloating, flip, shift, offset } from '@floating-ui/vue'
 import type { Action } from '@core/types'
 
@@ -52,7 +52,7 @@ function selectItem(action: Action) {
 function findNextEnabled(from: number, direction: 1 | -1): number {
   let idx = from + direction
   while (idx >= 0 && idx < props.items.length) {
-    if (!props.items[idx].disabled) return idx
+    if (!props.items[idx]!.disabled) return idx
     idx += direction
   }
   return from
@@ -70,7 +70,7 @@ function onKeydown(e: KeyboardEvent) {
       break
     case 'Enter':
       e.preventDefault()
-      selectItem(props.items[focusedIndex.value])
+      selectItem(props.items[focusedIndex.value]!)
       break
     case 'Escape':
       e.preventDefault()
@@ -85,22 +85,30 @@ function onClickOutside(e: MouseEvent) {
   }
 }
 
+function onContextMenuOutside(e: MouseEvent) {
+  if (menuRef.value && !menuRef.value.contains(e.target as Node)) {
+    close()
+  }
+}
+
 watch(
   () => props.open,
   (isOpen) => {
     if (isOpen) {
       focusedIndex.value = 0
       nextTick(() => menuRef.value?.focus())
+      document.addEventListener('click', onClickOutside, true)
+      document.addEventListener('contextmenu', onContextMenuOutside, true)
+    } else {
+      document.removeEventListener('click', onClickOutside, true)
+      document.removeEventListener('contextmenu', onContextMenuOutside, true)
     }
   },
 )
 
-onMounted(() => {
-  document.addEventListener('click', onClickOutside, true)
-})
-
 onUnmounted(() => {
   document.removeEventListener('click', onClickOutside, true)
+  document.removeEventListener('contextmenu', onContextMenuOutside, true)
 })
 </script>
 

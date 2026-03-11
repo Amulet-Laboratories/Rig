@@ -42,6 +42,14 @@ function toggleSort(col: ColumnDef) {
   }
 }
 
+function onHeaderKeydown(e: KeyboardEvent, col: ColumnDef) {
+  if (!col.sortable) return
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault()
+    toggleSort(col)
+  }
+}
+
 function ariaSortValue(col: ColumnDef): 'none' | 'ascending' | 'descending' | 'other' | undefined {
   if (!col.sortable) return undefined
   if (props.sort?.column !== col.id) return 'none'
@@ -61,8 +69,15 @@ function ariaSortValue(col: ColumnDef): 'none' | 'ascending' | 'descending' | 'o
           :data-sort-direction="sort?.column === col.id ? sort.direction : undefined"
           :data-align="col.align"
           :aria-sort="ariaSortValue(col)"
-          :style="col.width ? { width: col.width + 'px', minWidth: (col.minWidth ?? col.width) + 'px' } : undefined"
+          :tabindex="col.sortable ? 0 : undefined"
+          :role="col.sortable ? 'columnheader' : undefined"
+          :style="
+            col.width
+              ? { width: col.width + 'px', minWidth: (col.minWidth ?? col.width) + 'px' }
+              : undefined
+          "
           @click="toggleSort(col)"
+          @keydown="onHeaderKeydown($event, col)"
         >
           <slot :name="`header-${col.id}`" :column="col">
             {{ col.label }}

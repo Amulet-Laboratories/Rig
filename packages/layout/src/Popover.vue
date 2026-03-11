@@ -46,10 +46,7 @@ function toggle() {
 function onClickOutside(e: MouseEvent) {
   if (props.persistent) return
   const target = e.target as Node
-  if (
-    triggerRef.value?.contains(target) ||
-    contentRef.value?.contains(target)
-  ) {
+  if (triggerRef.value?.contains(target) || contentRef.value?.contains(target)) {
     return
   }
   close()

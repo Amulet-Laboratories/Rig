@@ -19,16 +19,16 @@ describe('KeyboardHint', () => {
     const wrapper = factory('Ctrl+Shift+P')
     const keys = wrapper.findAll('[data-rig-keyboard-hint-key]')
     expect(keys.length).toBe(3)
-    expect(keys[0].text()).toBe('Ctrl')
-    expect(keys[1].text()).toBe('Shift')
-    expect(keys[2].text()).toBe('P')
+    expect(keys[0]!.text()).toBe('Ctrl')
+    expect(keys[1]!.text()).toBe('Shift')
+    expect(keys[2]!.text()).toBe('P')
   })
 
   it('renders single key shortcuts', () => {
     const wrapper = factory('Escape')
     const keys = wrapper.findAll('[data-rig-keyboard-hint-key]')
     expect(keys.length).toBe(1)
-    expect(keys[0].text()).toBe('Escape')
+    expect(keys[0]!.text()).toBe('Escape')
   })
 
   it('renders all kbd sub-elements as KBD tags', () => {
@@ -43,8 +43,8 @@ describe('KeyboardHint', () => {
     const wrapper = factory('Ctrl+Alt+Delete')
     const keys = wrapper.findAll('[data-rig-keyboard-hint-key]')
     expect(keys.length).toBe(3)
-    expect(keys[0].text()).toBe('Ctrl')
-    expect(keys[1].text()).toBe('Alt')
-    expect(keys[2].text()).toBe('Delete')
+    expect(keys[0]!.text()).toBe('Ctrl')
+    expect(keys[1]!.text()).toBe('Alt')
+    expect(keys[2]!.text()).toBe('Delete')
   })
 })

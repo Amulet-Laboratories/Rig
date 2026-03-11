@@ -1,12 +1,5 @@
 export type { ID, Size, Orientation, Direction, ThemeName } from './common'
-export type {
-  Action,
-  TabItem,
-  StatusBarItem,
-  ColumnDef,
-  SortState,
-  ToastItem,
-} from './actions'
+export type { Action, TabItem, StatusBarItem, ColumnDef, SortState, ToastItem } from './actions'
 export type { TreeNode } from './tree'
 export type { ListItem } from './list'
 export type { SelectOption } from './select'

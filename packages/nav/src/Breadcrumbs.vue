@@ -21,32 +21,16 @@ const emit = defineEmits<{
 <template>
   <nav data-rig-breadcrumbs aria-label="Breadcrumb">
     <ol data-rig-breadcrumbs-list>
-      <li
-        v-for="(item, index) in items"
-        :key="item.id"
-        data-rig-breadcrumbs-item
-      >
-        <span
-          v-if="index > 0"
-          data-rig-breadcrumbs-separator
-          aria-hidden="true"
-        >
+      <li v-for="(item, index) in items" :key="item.id" data-rig-breadcrumbs-item>
+        <span v-if="index > 0" data-rig-breadcrumbs-separator aria-hidden="true">
           {{ separator }}
         </span>
-        <span
-          v-if="index === items.length - 1"
-          data-rig-breadcrumbs-current
-          aria-current="page"
-        >
+        <span v-if="index === items.length - 1" data-rig-breadcrumbs-current aria-current="page">
           <slot name="item" :item="item" :isLast="true">
             {{ item.label }}
           </slot>
         </span>
-        <button
-          v-else
-          data-rig-breadcrumbs-link
-          @click="emit('select', item.id)"
-        >
+        <button v-else data-rig-breadcrumbs-link @click="emit('select', item.id)">
           <slot name="item" :item="item" :isLast="false">
             {{ item.label }}
           </slot>

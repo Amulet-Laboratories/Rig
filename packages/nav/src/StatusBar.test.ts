@@ -19,11 +19,11 @@ describe('StatusBar', () => {
     const wrapper = mount(StatusBar, { props: { items } })
 
     const leftItems = wrapper.findAll('[data-rig-status-bar-left] [data-rig-status-bar-item]')
-    expect(leftItems[0].text()).toBe('A')
-    expect(leftItems[1].text()).toBe('B')
+    expect(leftItems[0]!.text()).toBe('A')
+    expect(leftItems[1]!.text()).toBe('B')
 
     const rightItems = wrapper.findAll('[data-rig-status-bar-right] [data-rig-status-bar-item]')
     expect(rightItems).toHaveLength(1)
-    expect(rightItems[0].text()).toBe('C')
+    expect(rightItems[0]!.text()).toBe('C')
   })
 })

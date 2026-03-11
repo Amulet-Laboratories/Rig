@@ -28,7 +28,7 @@ describe('Combobox', () => {
     await input.setValue('an')
     const items = wrapper.findAll('[data-rig-combobox-option]')
     expect(items).toHaveLength(1)
-    expect(items[0].text()).toContain('Banana')
+    expect(items[0]!.text()).toContain('Banana')
   })
 
   it('filters by description', async () => {
@@ -38,14 +38,14 @@ describe('Combobox', () => {
     await input.setValue('stone')
     const items = wrapper.findAll('[data-rig-combobox-option]')
     expect(items).toHaveLength(1)
-    expect(items[0].text()).toContain('Cherry')
+    expect(items[0]!.text()).toContain('Cherry')
   })
 
   it('selects option on mousedown', async () => {
     const wrapper = mount(Combobox, { props: { options } })
     await wrapper.find('input').trigger('focus')
     const items = wrapper.findAll('[data-rig-combobox-option]')
-    await items[1].trigger('mousedown')
+    await items[1]!.trigger('mousedown')
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['2'])
     expect(wrapper.emitted('select')?.[0]).toEqual([options[1]])
   })

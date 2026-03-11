@@ -2,8 +2,6 @@
 import { ref, watch, computed, nextTick, onUnmounted, useId } from 'vue'
 import type { ListItem } from '@core/types'
 
-const listboxId = useId()
-
 const props = withDefaults(
   defineProps<{
     /** Whether the palette is open */
@@ -23,6 +21,8 @@ const emit = defineEmits<{
   'update:open': [value: boolean]
   select: [item: ListItem]
 }>()
+
+const listboxId = useId()
 
 const query = ref('')
 const resolvedItems = ref<ListItem[]>([])
@@ -97,7 +97,7 @@ function onKeydown(e: KeyboardEvent) {
     case 'Enter':
       e.preventDefault()
       if (resolvedItems.value[focusedIndex.value]) {
-        selectItem(resolvedItems.value[focusedIndex.value])
+        selectItem(resolvedItems.value[focusedIndex.value]!)
       }
       break
     case 'Escape':
@@ -116,11 +116,7 @@ function onOverlayClick(e: MouseEvent) {
 
 <template>
   <Teleport to="body">
-    <div
-      v-if="open"
-      data-rig-command-palette-overlay
-      @click="onOverlayClick"
-    >
+    <div v-if="open" data-rig-command-palette-overlay @click="onOverlayClick">
       <div
         ref="paletteRef"
         data-rig-command-palette
@@ -140,15 +136,11 @@ function onOverlayClick(e: MouseEvent) {
           :aria-controls="listboxId"
           :aria-activedescendant="focusedId"
         />
-        <div
-          :id="listboxId"
-          data-rig-command-palette-results
-          role="listbox"
-        >
+        <div :id="listboxId" data-rig-command-palette-results role="listbox">
           <div
             v-for="(item, index) in resolvedItems"
-            :key="item.id"
             :id="item.id"
+            :key="item.id"
             data-rig-command-palette-item
             role="option"
             :aria-selected="focusedIndex === index"
@@ -163,10 +155,7 @@ function onOverlayClick(e: MouseEvent) {
               </span>
             </slot>
           </div>
-          <div
-            v-if="resolvedItems.length === 0"
-            data-rig-command-palette-empty
-          >
+          <div v-if="resolvedItems.length === 0" data-rig-command-palette-empty>
             <slot name="empty">No results</slot>
           </div>
         </div>

@@ -38,8 +38,8 @@ describe('ActionBar', () => {
     const wrapper = factory({ maxVisible: 2 })
     const visible = wrapper.findAll('[data-rig-action-bar-item]')
     expect(visible.length).toBe(2)
-    expect(visible[0].text()).toBe('Save')
-    expect(visible[1].text()).toBe('Undo')
+    expect(visible[0]!.text()).toBe('Save')
+    expect(visible[1]!.text()).toBe('Undo')
     expect(wrapper.find('[data-rig-action-bar-overflow]').exists()).toBe(true)
   })
 
@@ -53,21 +53,21 @@ describe('ActionBar', () => {
   it('emits select on action click', async () => {
     const wrapper = factory()
     const items = wrapper.findAll('[data-rig-action-bar-item]')
-    await items[0].trigger('click')
+    await items[0]!.trigger('click')
     expect(wrapper.emitted('select')?.[0]).toEqual([actions[0]])
   })
 
   it('marks disabled actions', () => {
     const wrapper = factory()
     const items = wrapper.findAll('[data-rig-action-bar-item]')
-    expect(items[4].attributes('disabled')).toBeDefined()
-    expect(items[4].attributes('data-disabled')).toBe('true')
+    expect(items[4]!.attributes('disabled')).toBeDefined()
+    expect(items[4]!.attributes('data-disabled')).toBe('true')
   })
 
   it('provides aria-label for each action', () => {
     const wrapper = factory()
     const items = wrapper.findAll('[data-rig-action-bar-item]')
-    expect(items[0].attributes('aria-label')).toBe('Save')
+    expect(items[0]!.attributes('aria-label')).toBe('Save')
   })
 
   it('does not show overflow when maxVisible >= actions length', () => {

@@ -53,8 +53,8 @@ function onKeydown(e: KeyboardEvent) {
       return
     }
 
-    const first = focusable[0]
-    const last = focusable[focusable.length - 1]
+    const first = focusable[0]!
+    const last = focusable[focusable.length - 1]!
 
     if (e.shiftKey) {
       if (document.activeElement === first) {
@@ -95,6 +95,8 @@ watch(
       v-show="open"
       data-rig-modal-overlay
       :data-state="open ? 'open' : 'closed'"
+      :aria-hidden="!open || undefined"
+      :inert="!open || undefined"
       @click="onOverlayClick"
       @keydown="onKeydown"
     >

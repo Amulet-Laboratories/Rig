@@ -58,21 +58,27 @@ function onKeydown(e: KeyboardEvent) {
       e.preventDefault()
       // Skip over disabled items
       for (let i = focusedIndex.value + 1; i < props.items.length; i++) {
-        if (!props.items[i].disabled) { focusedIndex.value = i; break }
+        if (!props.items[i]!.disabled) {
+          focusedIndex.value = i
+          break
+        }
       }
       break
     }
     case 'ArrowUp': {
       e.preventDefault()
       for (let i = focusedIndex.value - 1; i >= 0; i--) {
-        if (!props.items[i].disabled) { focusedIndex.value = i; break }
+        if (!props.items[i]!.disabled) {
+          focusedIndex.value = i
+          break
+        }
       }
       break
     }
     case 'Enter':
     case ' ':
       e.preventDefault()
-      selectItem(props.items[focusedIndex.value])
+      selectItem(props.items[focusedIndex.value]!)
       break
     case 'Escape':
       e.preventDefault()
@@ -126,6 +132,8 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
     <div
       ref="triggerRef"
       data-rig-dropdown-trigger
+      aria-haspopup="menu"
+      :aria-expanded="open"
       @click="toggle"
       @keydown="onTriggerKeydown"
     >
@@ -134,7 +142,7 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
 
     <Teleport to="body">
       <div
-        v-show="open"
+        v-if="open"
         ref="menuRef"
         data-rig-dropdown-menu
         role="menu"

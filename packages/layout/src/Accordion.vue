@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useId } from 'vue'
+
 const props = withDefaults(
   defineProps<{
     /** Open item ID (single) or IDs (multiple) */
@@ -21,6 +23,8 @@ const emit = defineEmits<{
   'update:modelValue': [value: string | string[]]
 }>()
 
+const instanceId = useId()
+
 function isOpen(value: string): boolean {
   if (!props.modelValue) return false
   if (Array.isArray(props.modelValue)) return props.modelValue.includes(value)
@@ -28,11 +32,11 @@ function isOpen(value: string): boolean {
 }
 
 function headerId(value: string): string {
-  return `rig-accordion-header-${value}`
+  return `${instanceId}-accordion-header-${value}`
 }
 
 function panelId(value: string): string {
-  return `rig-accordion-panel-${value}`
+  return `${instanceId}-accordion-panel-${value}`
 }
 
 function toggle(value: string) {
@@ -50,6 +54,41 @@ function toggle(value: string) {
     emit('update:modelValue', alreadyOpen ? '' : value)
   }
 }
+
+function onKeydown(e: KeyboardEvent) {
+  const headers = Array.from(
+    (e.currentTarget as HTMLElement).querySelectorAll<HTMLElement>(
+      '[data-rig-accordion-trigger]',
+    ),
+  )
+  const currentIndex = headers.indexOf(e.target as HTMLElement)
+  if (currentIndex < 0) return
+
+  let nextIndex: number | null = null
+
+  switch (e.key) {
+    case 'ArrowDown':
+      e.preventDefault()
+      nextIndex = (currentIndex + 1) % headers.length
+      break
+    case 'ArrowUp':
+      e.preventDefault()
+      nextIndex = (currentIndex - 1 + headers.length) % headers.length
+      break
+    case 'Home':
+      e.preventDefault()
+      nextIndex = 0
+      break
+    case 'End':
+      e.preventDefault()
+      nextIndex = headers.length - 1
+      break
+  }
+
+  if (nextIndex !== null) {
+    headers[nextIndex]?.focus()
+  }
+}
 </script>
 
 <template>
@@ -57,7 +96,14 @@ function toggle(value: string) {
     data-rig-accordion
     :data-type="type"
     :data-disabled="disabled || undefined"
+    @keydown="onKeydown"
   >
-    <slot :isOpen="isOpen" :toggle="toggle" :disabled="disabled" :headerId="headerId" :panelId="panelId" />
+    <slot
+      :isOpen="isOpen"
+      :toggle="toggle"
+      :disabled="disabled"
+      :headerId="headerId"
+      :panelId="panelId"
+    />
   </div>
 </template>

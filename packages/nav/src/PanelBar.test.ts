@@ -19,8 +19,8 @@ describe('PanelBar', () => {
     const wrapper = mount(PanelBar, { props: { tabs } })
     const tabEls = wrapper.findAll('[data-rig-panel-bar-tab]')
     expect(tabEls).toHaveLength(3)
-    expect(tabEls[0].text()).toContain('Terminal')
-    expect(tabEls[1].text()).toContain('Output')
+    expect(tabEls[0]!.text()).toContain('Terminal')
+    expect(tabEls[1]!.text()).toContain('Output')
   })
 
   it('has tablist role', () => {
@@ -33,14 +33,14 @@ describe('PanelBar', () => {
       props: { tabs, activeId: 'output' },
     })
     const tabEls = wrapper.findAll('[data-rig-panel-bar-tab]')
-    expect(tabEls[1].attributes('aria-selected')).toBe('true')
-    expect(tabEls[1].attributes('data-state')).toBe('active')
-    expect(tabEls[0].attributes('aria-selected')).toBe('false')
+    expect(tabEls[1]!.attributes('aria-selected')).toBe('true')
+    expect(tabEls[1]!.attributes('data-state')).toBe('active')
+    expect(tabEls[0]!.attributes('aria-selected')).toBe('false')
   })
 
   it('emits update:activeId on tab click', async () => {
     const wrapper = mount(PanelBar, { props: { tabs } })
-    await wrapper.findAll('[data-rig-panel-bar-tab]')[1].trigger('click')
+    await wrapper.findAll('[data-rig-panel-bar-tab]')[1]!.trigger('click')
     expect(wrapper.emitted('update:activeId')?.[0]).toEqual(['output'])
   })
 
@@ -66,8 +66,8 @@ describe('PanelBar', () => {
   it('supports roving tabindex', () => {
     const wrapper = mount(PanelBar, { props: { tabs } })
     const tabEls = wrapper.findAll('[data-rig-panel-bar-tab]')
-    expect(tabEls[0].attributes('tabindex')).toBe('0')
-    expect(tabEls[1].attributes('tabindex')).toBe('-1')
-    expect(tabEls[2].attributes('tabindex')).toBe('-1')
+    expect(tabEls[0]!.attributes('tabindex')).toBe('0')
+    expect(tabEls[1]!.attributes('tabindex')).toBe('-1')
+    expect(tabEls[2]!.attributes('tabindex')).toBe('-1')
   })
 })

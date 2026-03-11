@@ -99,11 +99,7 @@ onUnmounted(() => {
 
 <template>
   <div data-rig-scroll-area>
-    <div
-      ref="viewportRef"
-      data-rig-scroll-viewport
-      @scroll="onScroll"
-    >
+    <div ref="viewportRef" data-rig-scroll-viewport @scroll="onScroll">
       <slot />
     </div>
 

@@ -19,9 +19,9 @@ describe('Select', () => {
     const wrapper = mount(Select, { props: { options } })
     const opts = wrapper.findAll('option')
     expect(opts).toHaveLength(3)
-    expect(opts[0].text()).toBe('Alpha')
-    expect(opts[1].text()).toBe('Beta')
-    expect(opts[2].text()).toBe('Gamma')
+    expect(opts[0]!.text()).toBe('Alpha')
+    expect(opts[1]!.text()).toBe('Beta')
+    expect(opts[2]!.text()).toBe('Gamma')
   })
 
   it('renders placeholder when provided', () => {
@@ -60,7 +60,7 @@ describe('Select', () => {
   it('disables individual options', () => {
     const wrapper = mount(Select, { props: { options } })
     const opts = wrapper.findAll('option')
-    expect(opts[2].attributes('disabled')).toBeDefined()
+    expect(opts[2]!.attributes('disabled')).toBeDefined()
   })
 
   it('sets id on select element', () => {

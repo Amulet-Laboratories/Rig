@@ -125,11 +125,11 @@ function onKeydown(e: KeyboardEvent) {
       break
     case 'Enter':
       e.preventDefault()
-      activate(props.items[focusedIndex.value])
+      activate(props.items[focusedIndex.value]!)
       break
     case ' ':
       e.preventDefault()
-      select(props.items[focusedIndex.value])
+      select(props.items[focusedIndex.value]!)
       break
   }
 }
@@ -146,26 +146,31 @@ function onKeydown(e: KeyboardEvent) {
     @scroll="virtual ? onScroll() : undefined"
   >
     <div :style="{ paddingTop: `${paddingTop}px`, paddingBottom: `${paddingBottom}px` }">
-    <div
-      v-for="{ item, index } in renderedItems"
-      :key="item.id"
-      :ref="(el) => setItemRef(el, index)"
-      data-rig-list-item
-      role="option"
-      :aria-selected="isSelected(item.id)"
-      :data-selected="isSelected(item.id) || undefined"
-      :data-highlighted="focusedIndex === index || undefined"
-      :data-disabled="item.disabled || undefined"
-      :tabindex="index === focusedIndex ? 0 : -1"
-      @click="select(item, $event)"
-      @dblclick="activate(item)"
-      @contextmenu="onContextMenu(item, $event)"
-    >
-      <slot name="item" :item="item" :selected="isSelected(item.id)" :focused="focusedIndex === index">
-        <span data-rig-list-item-label>{{ item.label }}</span>
-        <span v-if="item.description" data-rig-list-item-description>{{ item.description }}</span>
-      </slot>
-    </div>
+      <div
+        v-for="{ item, index } in renderedItems"
+        :key="item.id"
+        :ref="(el) => setItemRef(el, index)"
+        data-rig-list-item
+        role="option"
+        :aria-selected="isSelected(item.id)"
+        :data-selected="isSelected(item.id) || undefined"
+        :data-highlighted="focusedIndex === index || undefined"
+        :data-disabled="item.disabled || undefined"
+        :tabindex="index === focusedIndex ? 0 : -1"
+        @click="select(item, $event)"
+        @dblclick="activate(item)"
+        @contextmenu="onContextMenu(item, $event)"
+      >
+        <slot
+          name="item"
+          :item="item"
+          :selected="isSelected(item.id)"
+          :focused="focusedIndex === index"
+        >
+          <span data-rig-list-item-label>{{ item.label }}</span>
+          <span v-if="item.description" data-rig-list-item-description>{{ item.description }}</span>
+        </slot>
+      </div>
     </div>
   </div>
 </template>

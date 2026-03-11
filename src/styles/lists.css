@@ -1,0 +1,101 @@
+/* Rig Structural — List Components
+ * Table, List, TreeView
+ */
+
+/* ── Table ── */
+
+[data-rig-table] {
+  width: 100%;
+}
+
+[data-rig-table-head] {
+  position: sticky;
+  top: 0;
+}
+
+[data-rig-table-header] {
+  text-align: left;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+[data-rig-table-header][data-sortable] {
+  cursor: pointer;
+}
+
+[data-rig-table-body] [data-rig-table-row] {
+  cursor: pointer;
+}
+
+[data-rig-table-cell] {
+  padding: 0.625rem 1.25rem;
+}
+
+[data-rig-table-empty] {
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+
+/* ── List ── */
+
+[data-rig-list] {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+[data-rig-list-item] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+[data-rig-list-item-label] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-rig-list-item-description] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Tree ── */
+
+[data-rig-tree] {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+[data-rig-tree-node] {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  cursor: pointer;
+}
+
+[data-rig-tree-toggle] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 100%;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+[data-rig-tree-node-label] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

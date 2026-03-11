@@ -47,13 +47,10 @@ defineExpose({ focus })
 </script>
 
 <template>
-  <div
-    data-rig-textarea
-    :data-disabled="disabled || undefined"
-  >
+  <div data-rig-textarea :data-disabled="disabled || undefined">
     <textarea
-      ref="textareaRef"
       :id="id"
+      ref="textareaRef"
       :value="modelValue"
       :placeholder="placeholder"
       :disabled="disabled"
@@ -64,10 +61,7 @@ defineExpose({ focus })
       @focus="$emit('focus', $event)"
       @blur="$emit('blur', $event)"
     />
-    <div
-      v-if="maxlength > 0"
-      data-rig-textarea-count
-    >
+    <div v-if="maxlength > 0" data-rig-textarea-count>
       {{ modelValue.length }} / {{ maxlength }}
     </div>
   </div>

@@ -38,21 +38,12 @@ watch(
 </script>
 
 <template>
-  <div
-    v-show="open"
-    data-rig-peek-view
-    :data-state="open ? 'open' : 'closed'"
-  >
+  <div v-show="open" data-rig-peek-view :data-state="open ? 'open' : 'closed'">
     <div data-rig-peek-view-header>
       <slot name="header" :close="close">
         <span v-if="title" data-rig-peek-view-title>{{ title }}</span>
       </slot>
-      <button
-        data-rig-peek-view-close
-        aria-label="Close peek view"
-        type="button"
-        @click="close"
-      />
+      <button data-rig-peek-view-close aria-label="Close peek view" type="button" @click="close" />
     </div>
 
     <div ref="contentRef" data-rig-peek-view-content>

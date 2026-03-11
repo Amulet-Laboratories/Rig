@@ -15,11 +15,7 @@ defineProps<{
 
 <template>
   <div data-rig-property-grid>
-    <div
-      v-for="item in items"
-      :key="item.key"
-      data-rig-property-row
-    >
+    <div v-for="item in items" :key="item.key" data-rig-property-row>
       <span
         data-rig-property-key
         :style="keyWidth ? { width: keyWidth, flexShrink: 0 } : undefined"

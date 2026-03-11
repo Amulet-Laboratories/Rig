@@ -62,7 +62,7 @@ function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Enter') {
     e.preventDefault()
     if (highlightedIndex.value >= 0 && filteredSuggestions.value[highlightedIndex.value]) {
-      addTag(filteredSuggestions.value[highlightedIndex.value])
+      addTag(filteredSuggestions.value[highlightedIndex.value]!)
     } else {
       addTag(inputValue.value)
     }
@@ -100,16 +100,8 @@ function focusInput() {
 </script>
 
 <template>
-  <div
-    data-rig-tag-input
-    :data-disabled="disabled || undefined"
-    @click="focusInput"
-  >
-    <span
-      v-for="(tag, i) in modelValue"
-      :key="tag"
-      data-rig-tag
-    >
+  <div data-rig-tag-input :data-disabled="disabled || undefined" @click="focusInput">
+    <span v-for="(tag, i) in modelValue" :key="tag" data-rig-tag>
       <slot name="tag" :tag="tag" :index="i" :remove="() => removeTag(i)">
         {{ tag }}
       </slot>
@@ -119,7 +111,9 @@ function focusInput() {
         type="button"
         :aria-label="`Remove ${tag}`"
         @click.stop="removeTag(i)"
-      >&times;</button>
+      >
+        &times;
+      </button>
     </span>
 
     <input

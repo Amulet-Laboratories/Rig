@@ -36,9 +36,7 @@ function isActive(id: ID): boolean {
 
 /** Navigate to the next/prev tab by querying [role="tab"] children. */
 function onKeydown(e: KeyboardEvent) {
-  const tabs = Array.from(
-    tablistRef.value?.querySelectorAll<HTMLElement>('[role="tab"]') ?? [],
-  )
+  const tabs = Array.from(tablistRef.value?.querySelectorAll<HTMLElement>('[role="tab"]') ?? [])
   if (!tabs.length) return
 
   const ci = tabs.indexOf(document.activeElement as HTMLElement)
@@ -68,19 +66,16 @@ function onKeydown(e: KeyboardEvent) {
     return
   }
 
-  tabs[next].focus()
+  tabs[next]?.focus()
   if (props.activationMode !== 'manual') {
-    const id = tabs[next].getAttribute('data-tab-id')
+    const id = tabs[next]?.getAttribute('data-tab-id')
     if (id) activate(id)
   }
 }
 </script>
 
 <template>
-  <div
-    data-rig-tabs
-    :data-orientation="orientation"
-  >
+  <div data-rig-tabs :data-orientation="orientation">
     <div
       ref="tablistRef"
       data-rig-tablist

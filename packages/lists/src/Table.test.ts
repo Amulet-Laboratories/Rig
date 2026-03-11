@@ -34,7 +34,7 @@ describe('Table', () => {
     })
     const headers = wrapper.findAll('[data-rig-table-header]')
     expect(headers).toHaveLength(2)
-    expect(headers[0].text()).toBe('Name')
+    expect(headers[0]!.text()).toBe('Name')
   })
 
   it('renders all rows', () => {
@@ -49,18 +49,16 @@ describe('Table', () => {
       props: { columns, rows, rowKey: 'id' },
     })
     const cells = wrapper.findAll('[data-rig-table-cell]')
-    expect(cells[0].text()).toBe('Alpha')
-    expect(cells[1].text()).toBe('active')
+    expect(cells[0]!.text()).toBe('Alpha')
+    expect(cells[1]!.text()).toBe('active')
   })
 
   it('emits update:sort on header click', async () => {
     const wrapper = mount(Table, {
       props: { columns, rows, rowKey: 'id' },
     })
-    await wrapper.findAll('[data-rig-table-header]')[0].trigger('click')
-    expect(wrapper.emitted('update:sort')?.[0]).toEqual([
-      { column: 'name', direction: 'asc' },
-    ])
+    await wrapper.findAll('[data-rig-table-header]')[0]!.trigger('click')
+    expect(wrapper.emitted('update:sort')?.[0]).toEqual([{ column: 'name', direction: 'asc' }])
   })
 
   it('toggles sort direction', async () => {
@@ -72,10 +70,8 @@ describe('Table', () => {
         sort: { column: 'name', direction: 'asc' },
       },
     })
-    await wrapper.findAll('[data-rig-table-header]')[0].trigger('click')
-    expect(wrapper.emitted('update:sort')?.[0]).toEqual([
-      { column: 'name', direction: 'desc' },
-    ])
+    await wrapper.findAll('[data-rig-table-header]')[0]!.trigger('click')
+    expect(wrapper.emitted('update:sort')?.[0]).toEqual([{ column: 'name', direction: 'desc' }])
   })
 
   it('sets aria-sort on sorted column', () => {
@@ -88,15 +84,15 @@ describe('Table', () => {
       },
     })
     const headers = wrapper.findAll('[data-rig-table-header]')
-    expect(headers[0].attributes('aria-sort')).toBe('ascending')
-    expect(headers[1].attributes('aria-sort')).toBe('none')
+    expect(headers[0]!.attributes('aria-sort')).toBe('ascending')
+    expect(headers[1]!.attributes('aria-sort')).toBe('none')
   })
 
   it('emits rowClick on row click', async () => {
     const wrapper = mount(Table, {
       props: { columns, rows, rowKey: 'id' },
     })
-    await wrapper.findAll('[data-rig-table-row]')[0].trigger('click')
+    await wrapper.findAll('[data-rig-table-row]')[0]!.trigger('click')
     expect(wrapper.emitted('rowClick')?.[0]?.[0]).toEqual(rows[0])
   })
 

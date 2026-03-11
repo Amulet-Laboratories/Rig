@@ -172,11 +172,7 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
 </script>
 
 <template>
-  <div
-    data-rig-menubar
-    role="menubar"
-    @keydown="onBarKeydown"
-  >
+  <div data-rig-menubar role="menubar" @keydown="onBarKeydown">
     <div
       v-for="(entry, index) in items"
       :key="entry.id"

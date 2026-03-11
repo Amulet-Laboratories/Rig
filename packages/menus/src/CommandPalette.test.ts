@@ -10,9 +10,7 @@ const items: ListItem[] = [
   { id: 'disabled-cmd', label: 'Disabled Command', disabled: true },
 ]
 
-function factory(
-  props: Partial<InstanceType<typeof CommandPalette>['$props']> = {},
-) {
+function factory(props: Partial<InstanceType<typeof CommandPalette>['$props']> = {}) {
   return mount(CommandPalette, {
     props: {
       open: true,
@@ -67,7 +65,7 @@ describe('CommandPalette', () => {
     await flushPromises()
     const options = document.querySelectorAll('[role="option"]')
     expect(options.length).toBe(1)
-    expect(options[0].textContent).toContain('Git: Commit')
+    expect(options[0]!.textContent).toContain('Git: Commit')
     wrapper.unmount()
   })
 
@@ -91,7 +89,7 @@ describe('CommandPalette', () => {
     await wrapper.vm.$nextTick()
     const options = document.querySelectorAll<HTMLElement>('[role="option"]')
     expect(options.length).toBeGreaterThan(0)
-    options[0].click()
+    options[0]!.click()
     expect(wrapper.emitted('select')?.[0]).toEqual([items[0]])
     wrapper.unmount()
   })
@@ -101,7 +99,7 @@ describe('CommandPalette', () => {
     await flushPromises()
     await wrapper.vm.$nextTick()
     const options = document.querySelectorAll<HTMLElement>('[role="option"]')
-    options[3].click()
+    options[3]!.click()
     expect(wrapper.emitted('select')).toBeUndefined()
     wrapper.unmount()
   })
@@ -146,7 +144,7 @@ describe('CommandPalette', () => {
     await flushPromises()
     await wrapper.vm.$nextTick()
     const options = document.querySelectorAll('[role="option"]')
-    expect(options[0].getAttribute('aria-selected')).toBe('true')
+    expect(options[0]!.getAttribute('aria-selected')).toBe('true')
     wrapper.unmount()
   })
 

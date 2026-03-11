@@ -52,11 +52,7 @@ const activeTab = computed(() => props.tabs.find((t) => t.id === props.activeId)
 
 <template>
   <div data-rig-panel-bar>
-    <div
-      data-rig-panel-bar-tabs
-      role="tablist"
-      @keydown="onKeydown"
-    >
+    <div data-rig-panel-bar-tabs role="tablist" @keydown="onKeydown">
       <button
         v-for="(tab, index) in tabs"
         :key="tab.id"
@@ -82,10 +78,7 @@ const activeTab = computed(() => props.tabs.find((t) => t.id === props.activeId)
         </button>
       </button>
     </div>
-    <div
-      data-rig-panel-bar-content
-      role="tabpanel"
-    >
+    <div data-rig-panel-bar-content role="tabpanel">
       <slot :activeId="activeId" :activeTab="activeTab" />
     </div>
   </div>
