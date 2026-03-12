@@ -44,8 +44,10 @@ export {
   useCommandRegistry,
   useTooltip,
   useVirtualList,
+  provideDragDrop,
+  useDragDrop,
 } from './composables'
-export type { VirtualItem, VirtualState } from './composables'
+export type { VirtualItem, VirtualState, DragItem, DropResult, DragOptions } from './composables'
 
 // Primitives
 export {
@@ -72,4 +74,5 @@ export {
   Toggle,
   ToggleGroup,
   Slider,
+  Avatar,
 } from './primitives'

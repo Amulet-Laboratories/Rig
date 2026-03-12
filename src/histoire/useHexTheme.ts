@@ -4,9 +4,9 @@ import { ref, watch, onUnmounted } from 'vue'
  * Available Hex themes that can be loaded in Histoire.
  * 'none' uses the built-in scaffold styles only.
  */
-export type HexTheme = 'none' | 'obelisk' | 'calcite' | 'obsidian'
+export type HexTheme = 'none' | 'obelisk' | 'calcite' | 'obsidian' | 'vscode'
 
-export const hexThemes: HexTheme[] = ['none', 'obelisk', 'calcite', 'obsidian']
+export const hexThemes: HexTheme[] = ['none', 'obelisk', 'calcite', 'obsidian', 'vscode']
 
 const STORAGE_KEY = 'rig-histoire-hex-theme'
 const LINK_ID = 'hex-theme-stylesheet'
