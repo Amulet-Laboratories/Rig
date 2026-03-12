@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import EditorWorkbench from '@editor/EditorWorkbench.vue'
 import type { TabItem } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 const activeId = ref('app')
 
 const tabs: TabItem[] = [
@@ -22,12 +18,8 @@ function handleClose(id: string) {
 </script>
 
 <template>
-  <Story title="Editor / EditorWorkbench" icon="lucide:code">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Interactive">
+  <Story title="EditorWorkbench" icon="lucide:code">
+        <Variant title="Interactive">
       <div style="padding: 24px; height: 300px">
         <EditorWorkbench v-model:active-id="activeId" :tabs="tabs" @close="handleClose">
           <template #default="{ activeTab }">

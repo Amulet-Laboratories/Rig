@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Collapsible from '@layout/Collapsible.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const open = ref(false)
 const disabled = ref(false)
 </script>
 
 <template>
-  <Story title="Layout / Collapsible" icon="lucide:chevrons-down-up">
+  <Story title="Collapsible" icon="lucide:chevrons-down-up">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstCheckbox v-model="disabled" title="Disabled" />
     </template>
 

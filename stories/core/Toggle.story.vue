@@ -1,20 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Toggle from '@core/primitives/Toggle.vue'
 import ToggleGroup from '@core/primitives/ToggleGroup.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const pressed = ref(false)
 const disabled = ref(false)
 const groupValue = ref('center')
 </script>
 
 <template>
-  <Story title="Core / Toggle" icon="lucide:toggle-right">
+  <Story title="Toggle" icon="lucide:toggle-right">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstCheckbox v-model="disabled" title="Disabled" />
     </template>
 

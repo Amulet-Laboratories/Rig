@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Button from '@core/primitives/Button.vue'
 import type { Size } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 const variant = ref('')
 const size = ref<Size>('md')
 const disabled = ref(false)
@@ -13,9 +9,8 @@ const loading = ref(false)
 </script>
 
 <template>
-  <Story title="Core / Button" icon="lucide:square">
+  <Story title="Button" icon="lucide:square">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstSelect
         v-model="variant"
         title="Variant"

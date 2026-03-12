@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Tabs from '@nav/Tabs.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const activeTab = ref('overview')
 const orientation = ref<'horizontal' | 'vertical'>('horizontal')
 
@@ -12,9 +8,8 @@ const tabs = ['overview', 'settings', 'permissions', 'logs']
 </script>
 
 <template>
-  <Story title="Navigation / Tabs" icon="lucide:layout-grid">
+  <Story title="Tabs" icon="lucide:layout-grid">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstSelect v-model="orientation" title="Orientation" :options="['horizontal', 'vertical']" />
     </template>
 

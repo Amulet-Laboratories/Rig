@@ -48,6 +48,7 @@ function onActionMouseLeave() {
       @keydown.enter.prevent="toggle"
       @keydown.space.prevent="toggle"
     >
+      <span data-rig-view-chevron :data-state="collapsed ? 'closed' : 'open'" aria-hidden="true" />
       <slot name="header">
         <span data-rig-view-title>{{ title }}</span>
       </slot>

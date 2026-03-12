@@ -1,6 +1,6 @@
 /* =========================================================================
    Showcase — Shared styles for story sub-components
-   (CodeViewer, ChatPanel, TerminalEmulator)
+   (CodeViewer, ChatPanel, TerminalEmulator, RecordViewer)
    App-specific layout/visual. Rig components are styled by Hex themes.
    ========================================================================= */
 
@@ -360,4 +360,121 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+/* ---- Record Viewer ---- */
+
+.showcase-record-viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+}
+
+.showcase-record-header {
+  padding: 16px 20px 12px;
+  flex-shrink: 0;
+}
+
+.showcase-record-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.showcase-record-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-parchment, #d4d4d4);
+  margin: 0;
+}
+
+.showcase-record-edit-btn {
+  padding: 4px 12px;
+  font-size: 12px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--color-muted, #858585);
+  cursor: pointer;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+}
+
+.showcase-record-edit-btn:hover {
+  color: var(--color-parchment, #ccc);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.showcase-record-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.showcase-record-id {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  color: var(--color-muted, #858585);
+}
+
+.showcase-record-body {
+  flex: 1;
+  overflow: auto;
+  padding: 16px 20px;
+}
+
+.showcase-record-section {
+  margin-bottom: 20px;
+}
+
+.showcase-record-section-title {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--color-parchment, #d4d4d4) 50%, transparent);
+  margin: 0 0 10px;
+}
+
+.showcase-record-fields {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 2px 12px;
+  font-size: 13px;
+}
+
+.showcase-record-field {
+  display: contents;
+}
+
+.showcase-record-field-key {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  color: var(--color-muted, #858585);
+  padding: 3px 0;
+  text-transform: capitalize;
+}
+
+.showcase-record-field-value {
+  color: var(--color-parchment, #d4d4d4);
+  padding: 3px 0;
+}
+
+.showcase-record-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.showcase-record-content {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 13px;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--color-parchment, #d4d4d4) 70%, transparent);
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }

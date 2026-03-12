@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Skeleton from '@extras/Skeleton.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const lines = ref(3)
 const animate = ref(true)
 </script>
 
 <template>
-  <Story title="Extras / Skeleton" icon="lucide:loader">
+  <Story title="Skeleton" icon="lucide:loader">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstNumber v-model="lines" title="Lines" />
       <HstCheckbox v-model="animate" title="Animate" />
     </template>

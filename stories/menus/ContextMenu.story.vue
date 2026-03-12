@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import ContextMenu from '@menus/ContextMenu.vue'
 import type { Action } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 const open = ref(false)
 const x = ref(0)
 const y = ref(0)
@@ -26,12 +22,8 @@ function onContextMenu(e: MouseEvent) {
 </script>
 
 <template>
-  <Story title="Menus / ContextMenu" icon="lucide:mouse-pointer-click">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Right-click Area">
+  <Story title="ContextMenu" icon="lucide:mouse-pointer-click">
+        <Variant title="Right-click Area">
       <div
         style="
           height: 300px;

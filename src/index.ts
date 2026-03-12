@@ -18,3 +18,6 @@ export * from '@menus/index'
 
 // Extras — Toast, EmptyState
 export * from '@extras/index'
+
+// Shell — IdeShell, useShellState
+export * from '@shell/index'

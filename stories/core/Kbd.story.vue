@@ -1,17 +1,11 @@
 <script setup lang="ts">
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Kbd from '@core/primitives/Kbd.vue'
 
-const { theme, themeOptions } = useHexTheme()
 </script>
 
 <template>
-  <Story title="Core / Kbd" icon="lucide:keyboard">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Single Keys">
+  <Story title="Kbd" icon="lucide:keyboard">
+        <Variant title="Single Keys">
       <div style="padding: 24px; display: flex; gap: 8px; align-items: center">
         <Kbd keys="Esc" />
         <Kbd keys="Tab" />

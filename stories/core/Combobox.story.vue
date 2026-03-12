@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Combobox from '@core/primitives/Combobox.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const value = ref<string | null>(null)
 
 const options = [
@@ -17,12 +13,8 @@ const options = [
 </script>
 
 <template>
-  <Story title="Core / Combobox" icon="lucide:list">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Interactive">
+  <Story title="Combobox" icon="lucide:list">
+        <Variant title="Interactive">
       <div style="padding: 24px; max-width: 320px">
         <Combobox
           v-model="value"

@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Input from '@core/primitives/Input.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const value = ref('')
 const placeholder = ref('Enter text...')
 const disabled = ref(false)
@@ -14,9 +10,8 @@ const type = ref('text')
 </script>
 
 <template>
-  <Story title="Core / Input" icon="lucide:text-cursor-input">
+  <Story title="Input" icon="lucide:text-cursor-input">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstText v-model="placeholder" title="Placeholder" />
       <HstSelect
         v-model="type"

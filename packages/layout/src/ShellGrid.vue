@@ -23,14 +23,26 @@ const emit = defineEmits<{
   'update:sizes': [sizes: { sideWidth: number; panelHeight: number }]
 }>()
 
+// Snapshot sizes at drag start — apply absolute delta against these
+let sideWidthAtStart = 0
+let panelHeightAtStart = 0
+
+function onSideDragStart() {
+  sideWidthAtStart = props.sizes.sideWidth
+}
+
 function onSideResize(payload: { delta: number }) {
-  const newWidth = Math.max(120, props.sizes.sideWidth + payload.delta)
+  const newWidth = Math.max(120, sideWidthAtStart + payload.delta)
   emit('update:sizes', { ...props.sizes, sideWidth: newWidth })
+}
+
+function onPanelDragStart() {
+  panelHeightAtStart = props.sizes.panelHeight
 }
 
 function onPanelResize(payload: { delta: number }) {
   // Dragging up = negative delta = larger panel
-  const newHeight = Math.max(100, props.sizes.panelHeight - payload.delta)
+  const newHeight = Math.max(100, panelHeightAtStart - payload.delta)
   emit('update:sizes', { ...props.sizes, panelHeight: newHeight })
 }
 
@@ -45,17 +57,20 @@ const panelStyle = computed(() => ({
 
 <template>
   <div data-rig-shell-grid :data-direction="direction">
+    <div v-if="$slots.titlebar" data-rig-shell-titlebar>
+      <slot name="titlebar" />
+    </div>
     <div data-rig-shell-activity>
       <slot name="activity" />
     </div>
     <div data-rig-shell-sidebar :style="sideStyle">
       <slot name="sidebar" />
     </div>
-    <Resizer v-if="resizable" orientation="horizontal" @drag="onSideResize" />
+    <Resizer v-if="resizable" orientation="horizontal" @dragstart="onSideDragStart" @drag="onSideResize" />
     <div data-rig-shell-editor>
       <slot name="editor" />
     </div>
-    <Resizer v-if="resizable" orientation="vertical" @drag="onPanelResize" />
+    <Resizer v-if="resizable" orientation="vertical" @dragstart="onPanelDragStart" @drag="onPanelResize" />
     <div data-rig-shell-panel :style="panelStyle">
       <slot name="panel" />
     </div>

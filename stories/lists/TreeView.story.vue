@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import TreeView from '@lists/TreeView.vue'
 import type { TreeNode } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 const selected = ref<string | string[]>('')
 const expanded = ref<string[]>(['src', 'components'])
 
@@ -52,12 +48,8 @@ const nodes: TreeNode[] = [
 </script>
 
 <template>
-  <Story title="Lists / TreeView" icon="lucide:git-branch">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Interactive">
+  <Story title="TreeView" icon="lucide:git-branch">
+        <Variant title="Interactive">
       <div style="padding: 24px; max-width: 360px; height: 400px">
         <TreeView
           v-model:selected="selected"

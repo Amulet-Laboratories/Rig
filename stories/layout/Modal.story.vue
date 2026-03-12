@@ -1,19 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Modal from '@layout/Modal.vue'
 import Button from '@core/primitives/Button.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const open = ref(false)
 const persistent = ref(false)
 </script>
 
 <template>
-  <Story title="Layout / Modal" icon="lucide:panel-top">
+  <Story title="Modal" icon="lucide:panel-top">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstCheckbox v-model="persistent" title="Persistent (no outside click)" />
     </template>
 

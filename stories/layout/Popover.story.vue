@@ -1,21 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Popover from '@layout/Popover.vue'
 import Button from '@core/primitives/Button.vue'
 
 import type { Placement } from '@floating-ui/vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const open = ref(false)
 const placement = ref<Placement>('bottom')
 </script>
 
 <template>
-  <Story title="Layout / Popover" icon="lucide:message-square">
+  <Story title="Popover" icon="lucide:message-square">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstSelect
         v-model="placement"
         title="Placement"

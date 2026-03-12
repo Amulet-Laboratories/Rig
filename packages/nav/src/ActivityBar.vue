@@ -82,23 +82,35 @@ function onKeydown(e: KeyboardEvent) {
     :aria-orientation="orientation"
     @keydown="onKeydown"
   >
-    <button
-      v-for="(item, index) in items"
-      :key="item.id"
-      :ref="(el) => setItemRef(el, index)"
-      data-rig-activity-bar-item
-      :data-state="activeId === item.id ? 'active' : 'inactive'"
-      :data-disabled="item.disabled || undefined"
-      :disabled="item.disabled"
-      :tabindex="index === focusedIndex ? 0 : -1"
-      :aria-label="item.label"
-      @click="onItemClick(item)"
-      @mouseenter="(e) => onItemMouseEnter(e, item)"
-      @mouseleave="onItemMouseLeave"
-    >
-      <slot name="item" :item="item" :active="activeId === item.id">
-        {{ item.label }}
-      </slot>
-    </button>
+    <div data-rig-activity-bar-top>
+      <button
+        v-for="(item, index) in items"
+        :key="item.id"
+        :ref="(el) => setItemRef(el, index)"
+        data-rig-activity-bar-item
+        :data-state="activeId === item.id ? 'active' : 'inactive'"
+        :data-disabled="item.disabled || undefined"
+        :disabled="item.disabled"
+        :tabindex="index === focusedIndex ? 0 : -1"
+        :aria-label="item.label"
+        @click="onItemClick(item)"
+        @mouseenter="(e) => onItemMouseEnter(e, item)"
+        @mouseleave="onItemMouseLeave"
+      >
+        <slot name="item" :item="item" :active="activeId === item.id">
+          {{ item.label }}
+        </slot>
+        <span
+          v-if="item.badge != null && item.badge !== ''"
+          data-rig-activity-bar-badge
+          :aria-label="`${item.badge} notifications`"
+        >
+          {{ item.badge }}
+        </span>
+      </button>
+    </div>
+    <div v-if="$slots.bottom" data-rig-activity-bar-bottom>
+      <slot name="bottom" />
+    </div>
   </nav>
 </template>

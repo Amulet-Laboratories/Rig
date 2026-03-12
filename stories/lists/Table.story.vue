@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Table from '@lists/Table.vue'
 import type { ColumnDef, SortState } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 const sort = ref<SortState | undefined>(undefined)
 const resizableColumns = ref(false)
 
@@ -27,9 +23,8 @@ const rows = [
 </script>
 
 <template>
-  <Story title="Lists / Table" icon="lucide:table">
+  <Story title="Table" icon="lucide:table">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstCheckbox v-model="resizableColumns" title="Resizable Columns" />
     </template>
 

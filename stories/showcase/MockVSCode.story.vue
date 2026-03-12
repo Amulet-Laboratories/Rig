@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, computed, watchEffect, onMounted, onUnmounted, watch } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 
 // ---- Rig Components ----
 import ShellGrid from '@layout/ShellGrid.vue'
@@ -58,9 +57,6 @@ import type { FileContent } from './fixtures/ide-files'
 
 // ---- Types ----
 import type { Action, TabItem, TreeNode, ListItem } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 // ---------------------------------------------------------------------------
 // Activity Bar
 // ---------------------------------------------------------------------------
@@ -295,15 +291,11 @@ onUnmounted(() => document.removeEventListener('keydown', onGlobalKeydown))
 
 <template>
   <Story
-    title="Showcase / Mock VS Code"
+    title="Mock VS Code"
     icon="lucide:monitor"
     :layout="{ type: 'single', iframe: true }"
   >
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Full IDE">
+        <Variant title="Full IDE">
       <div class="ide-mock">
         <!-- Title Bar -->
         <div class="ide-titlebar">
@@ -581,7 +573,7 @@ onUnmounted(() => document.removeEventListener('keydown', onGlobalKeydown))
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-size: 13px;

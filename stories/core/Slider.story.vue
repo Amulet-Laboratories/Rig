@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Slider from '@core/primitives/Slider.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const value = ref(50)
 const min = ref(0)
 const max = ref(100)
@@ -13,9 +9,8 @@ const disabled = ref(false)
 </script>
 
 <template>
-  <Story title="Core / Slider" icon="lucide:sliders-horizontal">
+  <Story title="Slider" icon="lucide:sliders-horizontal">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstNumber v-model="min" title="Min" />
       <HstNumber v-model="max" title="Max" />
       <HstNumber v-model="step" title="Step" />

@@ -7,6 +7,8 @@ export interface Action {
   icon?: string
   keybinding?: string
   disabled?: boolean
+  /** Badge text or count to display on the action (e.g. notification count) */
+  badge?: string | number
   handler?: () => void
 }
 
@@ -27,6 +29,10 @@ export interface StatusBarItem {
   content?: string
   priority: number
   align: 'left' | 'right'
+  /** Tooltip text on hover */
+  tooltip?: string
+  /** Command ID or handler for click interaction */
+  command?: string | (() => void)
 }
 
 /** A column definition for table components */

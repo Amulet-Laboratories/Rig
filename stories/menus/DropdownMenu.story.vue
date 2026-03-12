@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import DropdownMenu from '@menus/DropdownMenu.vue'
 import Button from '@core/primitives/Button.vue'
 import type { Action } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 const open = ref(false)
 
 const items: Action[] = [
@@ -20,12 +16,8 @@ const items: Action[] = [
 </script>
 
 <template>
-  <Story title="Menus / DropdownMenu" icon="lucide:chevron-down">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Interactive">
+  <Story title="DropdownMenu" icon="lucide:chevron-down">
+        <Variant title="Interactive">
       <div style="padding: 24px">
         <DropdownMenu v-model:open="open" :items="items">
           <template #trigger="{ toggle }">

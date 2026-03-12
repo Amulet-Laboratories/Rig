@@ -1,18 +1,12 @@
 <script setup lang="ts">
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import EmptyState from '@extras/EmptyState.vue'
 import Button from '@core/primitives/Button.vue'
 
-const { theme, themeOptions } = useHexTheme()
 </script>
 
 <template>
-  <Story title="Extras / EmptyState" icon="lucide:inbox">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="With Action">
+  <Story title="EmptyState" icon="lucide:inbox">
+        <Variant title="With Action">
       <div style="padding: 48px; display: flex; justify-content: center">
         <EmptyState
           title="No results found"

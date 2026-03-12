@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Menubar from '@menus/Menubar.vue'
 import type { Action } from '@core/types'
 
@@ -8,9 +7,6 @@ interface MenubarEntry {
   label: string
   items: Action[]
 }
-
-const { theme, themeOptions } = useHexTheme()
-
 const items: MenubarEntry[] = [
   {
     id: 'file',
@@ -45,12 +41,8 @@ const items: MenubarEntry[] = [
 </script>
 
 <template>
-  <Story title="Menus / Menubar" icon="lucide:menu">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Default">
+  <Story title="Menubar" icon="lucide:menu">
+        <Variant title="Default">
       <Menubar :items="items" @select="(a) => console.log('selected', a.label)" />
     </Variant>
   </Story>

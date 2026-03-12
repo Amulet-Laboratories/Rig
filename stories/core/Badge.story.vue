@@ -1,19 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Badge from '@core/primitives/Badge.vue'
 import type { Size } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 const variant = ref('')
 const size = ref<Size>('md')
 </script>
 
 <template>
-  <Story title="Core / Badge" icon="lucide:tag">
+  <Story title="Badge" icon="lucide:tag">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstSelect
         v-model="variant"
         title="Variant"

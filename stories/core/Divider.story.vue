@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Divider from '@core/primitives/Divider.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const vertical = ref(false)
 const label = ref('')
 </script>
 
 <template>
-  <Story title="Core / Divider" icon="lucide:minus">
+  <Story title="Divider" icon="lucide:minus">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstCheckbox v-model="vertical" title="Vertical" />
       <HstText v-model="label" title="Label" />
     </template>

@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import List from '@lists/List.vue'
 import type { ListItem } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 const selected = ref<string | string[]>('')
 const multiSelect = ref(false)
 
@@ -22,9 +18,8 @@ const items: ListItem[] = [
 </script>
 
 <template>
-  <Story title="Lists / List" icon="lucide:list">
+  <Story title="List" icon="lucide:list">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstCheckbox v-model="multiSelect" title="Multi Select" />
     </template>
 

@@ -20,6 +20,7 @@ export default defineConfig({
       '@lists': resolve(__dirname, 'packages/lists/src'),
       '@menus': resolve(__dirname, 'packages/menus/src'),
       '@extras': resolve(__dirname, 'packages/extras/src'),
+      '@shell': resolve(__dirname, 'packages/shell/src'),
     },
   },
   build: {

@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Accordion from '@layout/Accordion.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const value = ref<string | string[]>('item-1')
 const type = ref<'single' | 'multiple'>('single')
 const disabled = ref(false)
@@ -17,9 +13,8 @@ const items = [
 </script>
 
 <template>
-  <Story title="Layout / Accordion" icon="lucide:list-collapse">
+  <Story title="Accordion" icon="lucide:list-collapse">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstSelect v-model="type" title="Type" :options="['single', 'multiple']" />
       <HstCheckbox v-model="disabled" title="Disabled" />
     </template>

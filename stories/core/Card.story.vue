@@ -1,20 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Card from '@core/primitives/Card.vue'
 import type { Size } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 const variant = ref('')
 const size = ref<Size>('md')
 const interactive = ref(false)
 </script>
 
 <template>
-  <Story title="Core / Card" icon="lucide:square">
+  <Story title="Card" icon="lucide:square">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstSelect
         v-model="variant"
         title="Variant"

@@ -1,19 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Progress from '@core/primitives/Progress.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const value = ref(42)
 const max = ref(100)
 const indeterminate = ref(false)
 </script>
 
 <template>
-  <Story title="Core / Progress" icon="lucide:loader">
+  <Story title="Progress" icon="lucide:loader">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstSlider v-model="value" title="Value" :min="0" :max="max" />
       <HstNumber v-model="max" title="Max" />
       <HstCheckbox v-model="indeterminate" title="Indeterminate" />

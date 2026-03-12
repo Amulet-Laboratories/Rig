@@ -1,22 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Toggle from '@core/primitives/Toggle.vue'
 import ToggleGroup from '@core/primitives/ToggleGroup.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const singleValue = ref('center')
 const multiValue = ref<string[]>(['bold'])
 </script>
 
 <template>
-  <Story title="Core / ToggleGroup" icon="lucide:group">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Single Select">
+  <Story title="ToggleGroup" icon="lucide:group">
+        <Variant title="Single Select">
       <div style="padding: 24px">
         <ToggleGroup v-model="singleValue" type="single">
           <template #default="{ isPressed, toggle }">

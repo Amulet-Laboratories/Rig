@@ -13,6 +13,7 @@ const emit = defineEmits<{
   'update:activeId': [id: ID]
   close: [id: ID]
   reorder: [payload: { from: number; to: number }]
+  contextmenu: [payload: { tab: TabItem; event: MouseEvent }]
 }>()
 
 const activeTab = computed(() => props.tabs.find((t) => t.id === props.activeId))
@@ -59,6 +60,7 @@ function onDragEnd() {
           :data-pinned="tab.pinned || undefined"
           :data-drag-over="dragTo === index || undefined"
           @click="emit('update:activeId', tab.id)"
+          @contextmenu.prevent="emit('contextmenu', { tab, event: $event })"
           @mousedown.middle.prevent="tab.closable !== false && emit('close', tab.id)"
           @dragstart="onDragStart(index)"
           @dragover="onDragOver(index, $event)"

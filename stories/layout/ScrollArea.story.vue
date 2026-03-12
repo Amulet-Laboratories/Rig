@@ -1,19 +1,11 @@
 <script setup lang="ts">
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import ScrollArea from '@layout/ScrollArea.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const items = Array.from({ length: 50 }, (_, i) => `Item ${i + 1}`)
 </script>
 
 <template>
-  <Story title="Layout / ScrollArea" icon="lucide:scroll">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Vertical">
+  <Story title="ScrollArea" icon="lucide:scroll">
+        <Variant title="Vertical">
       <div style="padding: 24px">
         <ScrollArea style="height: 200px; border: 1px solid rgba(128,128,128,0.2); border-radius: 4px">
           <div style="padding: 8px">

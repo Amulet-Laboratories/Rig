@@ -1,20 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import IconButton from '@core/primitives/IconButton.vue'
 import type { Size } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 const size = ref<Size>('md')
 const disabled = ref(false)
 const loading = ref(false)
 </script>
 
 <template>
-  <Story title="Core / IconButton" icon="lucide:square">
+  <Story title="IconButton" icon="lucide:square">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstSelect v-model="size" title="Size" :options="['xs', 'sm', 'md', 'lg', 'xl']" />
       <HstCheckbox v-model="disabled" title="Disabled" />
       <HstCheckbox v-model="loading" title="Loading" />

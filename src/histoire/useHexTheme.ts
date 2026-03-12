@@ -1,59 +1,68 @@
-import { ref, watchEffect } from 'vue'
-
-export type ThemeName = 'obelisk' | 'calcite' | 'obsidian'
-
-const TOKENS: Record<ThemeName, Record<string, string>> = {
-  obelisk: {
-    '--color-ink': '#0f0d0a',
-    '--color-ink-light': '#1a1714',
-    '--color-parchment': '#f5f1ed',
-    '--color-bronze': '#c9956d',
-    '--color-muted': '#8a8078',
-    '--color-subtle': '#6b6560',
-  },
-  calcite: {
-    '--color-ink': '#f8f5f1',
-    '--color-ink-light': '#eee9e3',
-    '--color-parchment': '#1a1714',
-    '--color-bronze': '#a0714a',
-    '--color-muted': '#6b6560',
-    '--color-subtle': '#8a8078',
-  },
-  obsidian: {
-    '--color-ink': '#000000',
-    '--color-ink-light': '#0a0a0a',
-    '--color-parchment': '#f0f0f0',
-    '--color-bronze': '#60a5fa',
-    '--color-muted': '#a3a3a3',
-    '--color-subtle': '#737373',
-  },
-}
-
-const THEME_OPTIONS = [
-  { label: 'Obelisk (dark)', value: 'obelisk' },
-  { label: 'Calcite (light)', value: 'calcite' },
-  { label: 'Obsidian (high contrast)', value: 'obsidian' },
-]
+import { ref, watch, onUnmounted } from 'vue'
 
 /**
- * Composable for switching Hex themes in Histoire stories.
- * Sets CSS custom properties on :root to override the compiled Hex token fallbacks.
+ * Available Hex themes that can be loaded in Histoire.
+ * 'none' uses the built-in scaffold styles only.
  */
-export function useHexTheme(initial: ThemeName = 'obelisk') {
-  const theme = ref<ThemeName>(initial)
+export type HexTheme = 'none' | 'obelisk' | 'calcite' | 'obsidian'
 
-  watchEffect(() => {
-    const tokens = TOKENS[theme.value]
-    if (!tokens) return
-    const root = document.documentElement
-    for (const [key, value] of Object.entries(tokens)) {
-      root.style.setProperty(key, value)
-    }
+export const hexThemes: HexTheme[] = ['none', 'obelisk', 'calcite', 'obsidian']
+
+const STORAGE_KEY = 'rig-histoire-hex-theme'
+const LINK_ID = 'hex-theme-stylesheet'
+
+/** Resolve the dist CSS URL for a given theme. */
+function resolveThemeUrl(theme: Exclude<HexTheme, 'none'>): string {
+  // Vite serves node_modules files via /@fs/ or direct dep resolution.
+  // The Hex package exports "./obelisk": "./dist/obelisk.css" etc.
+  // We use the node_modules path which Vite will serve in dev.
+  return `/node_modules/@amulet-laboratories/hex/dist/${theme}.css`
+}
+
+/** Inject or swap a <link> for the chosen Hex theme. */
+function applyTheme(theme: HexTheme) {
+  const existing = document.getElementById(LINK_ID)
+
+  if (theme === 'none') {
+    existing?.remove()
+    return
+  }
+
+  const url = resolveThemeUrl(theme)
+
+  if (existing instanceof HTMLLinkElement) {
+    existing.href = url
+  } else {
+    const link = document.createElement('link')
+    link.id = LINK_ID
+    link.rel = 'stylesheet'
+    link.href = url
+    document.head.appendChild(link)
+  }
+}
+
+/**
+ * Composable for toggling Hex themes in Histoire stories.
+ * Persists the selected theme in localStorage across reloads.
+ */
+export function useHexTheme() {
+  const stored = (localStorage.getItem(STORAGE_KEY) ?? 'none') as HexTheme
+  const theme = ref<HexTheme>(
+    hexThemes.includes(stored) ? stored : 'none',
+  )
+
+  // Apply immediately on creation
+  applyTheme(theme.value)
+
+  watch(theme, (next) => {
+    localStorage.setItem(STORAGE_KEY, next)
+    applyTheme(next)
   })
 
-  return {
-    theme,
-    themes: Object.keys(TOKENS) as ThemeName[],
-    themeOptions: THEME_OPTIONS,
-  }
+  onUnmounted(() => {
+    // Clean up when the wrapper unmounts (e.g., HMR)
+    document.getElementById(LINK_ID)?.remove()
+  })
+
+  return { theme, hexThemes }
 }

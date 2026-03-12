@@ -1,21 +1,13 @@
 <script setup lang="ts">
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Resizer from '@core/primitives/Resizer.vue'
 import { ref } from 'vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const width = ref(300)
 const height = ref(200)
 </script>
 
 <template>
-  <Story title="Core / Resizer" icon="lucide:grip-vertical">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Horizontal">
+  <Story title="Resizer" icon="lucide:grip-vertical">
+        <Variant title="Horizontal">
       <div style="padding: 24px; display: flex; height: 200px">
         <div :style="{ width: width + 'px', background: 'var(--rig-surface, #1e1e1e)', padding: '12px' }">
           Left pane ({{ width }}px)

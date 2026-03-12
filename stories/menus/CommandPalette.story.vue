@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import CommandPalette from '@menus/CommandPalette.vue'
 import Button from '@core/primitives/Button.vue'
 import type { ListItem } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 const open = ref(false)
 
 const items: ListItem[] = [
@@ -22,12 +18,8 @@ const items: ListItem[] = [
 </script>
 
 <template>
-  <Story title="Menus / CommandPalette" icon="lucide:terminal">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Interactive">
+  <Story title="CommandPalette" icon="lucide:terminal">
+        <Variant title="Interactive">
       <div style="padding: 24px">
         <Button @click="open = true">Open Command Palette</Button>
         <CommandPalette v-model:open="open" :items="items" placeholder="Type a command..." />

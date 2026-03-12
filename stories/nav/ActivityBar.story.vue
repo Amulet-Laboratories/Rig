@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import ActivityBar from '@nav/ActivityBar.vue'
 import type { Action } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 const activeId = ref('files')
 
 const items: Action[] = [
@@ -18,12 +14,8 @@ const items: Action[] = [
 </script>
 
 <template>
-  <Story title="Navigation / ActivityBar" icon="lucide:sidebar">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Vertical">
+  <Story title="ActivityBar" icon="lucide:sidebar">
+        <Variant title="Vertical">
       <div style="padding: 24px; display: flex; height: 300px">
         <ActivityBar v-model:active-id="activeId" :items="items" orientation="vertical" />
         <div style="padding: 16px; flex: 1">

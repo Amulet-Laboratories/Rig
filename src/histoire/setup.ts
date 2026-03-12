@@ -1,9 +1,10 @@
 import { defineSetupVue3 } from '@histoire/plugin-vue'
+import StoryWrapper from './StoryWrapper.vue'
 import '../styles/base.css'
-import '@amulet-laboratories/hex/obelisk'
+import '../styles/scaffold.css'
 
-export const setupVue3 = defineSetupVue3(({ app: _app }) => {
-  // Rig structural CSS loaded first (layout, sizing, interaction).
-  // Hex obelisk CSS loaded second (colors, fonts, visual styles).
-  // Theme switching handled per-story via the useHexTheme composable.
+export const setupVue3 = defineSetupVue3(({ addWrapper }) => {
+  // Structural CSS (layout, sizing) + scaffold (monochrome defaults).
+  // StoryWrapper provides consistent padding on every story.
+  addWrapper(StoryWrapper)
 })

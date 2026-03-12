@@ -20,6 +20,8 @@ const emit = defineEmits<{
   drag: [payload: { delta: number; position: number }]
   dragstart: []
   dragend: []
+  /** Emitted on double-click — consumers can reset to default size */
+  reset: []
 }>()
 
 const KEYBOARD_STEP = 10
@@ -75,7 +77,6 @@ function onPointerDown(e: PointerEvent) {
     if (props.maxPosition !== undefined) position = Math.min(position, props.maxPosition)
 
     emit('drag', { delta, position })
-    startPos = currentPos
   }
 
   function onPointerUp() {
@@ -99,6 +100,7 @@ function onPointerDown(e: PointerEvent) {
     :data-dragging="dragging || undefined"
     tabindex="0"
     @pointerdown="onPointerDown"
+    @dblclick="emit('reset')"
     @keydown="onKeydown"
   >
     <slot />

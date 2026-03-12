@@ -12,6 +12,10 @@ const props = withDefaults(
   },
 )
 
+const emit = defineEmits<{
+  'item-click': [item: StatusBarItem]
+}>()
+
 const leftItems = computed(() =>
   props.items.filter((i) => i.align === 'left').sort((a, b) => a.priority - b.priority),
 )
@@ -19,26 +23,47 @@ const leftItems = computed(() =>
 const rightItems = computed(() =>
   props.items.filter((i) => i.align === 'right').sort((a, b) => a.priority - b.priority),
 )
+
+function onItemClick(item: StatusBarItem) {
+  if (typeof item.command === 'function') {
+    item.command()
+  }
+  emit('item-click', item)
+}
 </script>
 
 <template>
   <footer data-rig-status-bar role="status">
     <div data-rig-status-bar-left>
       <slot name="left">
-        <span v-for="item in leftItems" :key="item.id" data-rig-status-bar-item>
+        <component
+          :is="item.command ? 'button' : 'span'"
+          v-for="item in leftItems"
+          :key="item.id"
+          data-rig-status-bar-item
+          :title="item.tooltip"
+          @click="item.command ? onItemClick(item) : undefined"
+        >
           <slot name="item" :item="item">
             {{ item.content }}
           </slot>
-        </span>
+        </component>
       </slot>
     </div>
     <div data-rig-status-bar-right>
       <slot name="right">
-        <span v-for="item in rightItems" :key="item.id" data-rig-status-bar-item>
+        <component
+          :is="item.command ? 'button' : 'span'"
+          v-for="item in rightItems"
+          :key="item.id"
+          data-rig-status-bar-item
+          :title="item.tooltip"
+          @click="item.command ? onItemClick(item) : undefined"
+        >
           <slot name="item" :item="item">
             {{ item.content }}
           </slot>
-        </span>
+        </component>
       </slot>
     </div>
   </footer>

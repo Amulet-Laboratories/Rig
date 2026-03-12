@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Breadcrumbs from '@nav/Breadcrumbs.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const items = [
   { id: 'home', label: 'Home' },
   { id: 'projects', label: 'Projects' },
@@ -13,12 +9,8 @@ const items = [
 </script>
 
 <template>
-  <Story title="Navigation / Breadcrumbs" icon="lucide:chevrons-right">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Default">
+  <Story title="Breadcrumbs" icon="lucide:chevrons-right">
+        <Variant title="Default">
       <div style="padding: 24px">
         <Breadcrumbs :items="items" />
       </div>

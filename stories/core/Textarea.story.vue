@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Textarea from '@core/primitives/Textarea.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const value = ref('')
 const placeholder = ref('Write something...')
 const disabled = ref(false)
@@ -14,9 +10,8 @@ const maxlength = ref(0)
 </script>
 
 <template>
-  <Story title="Core / Textarea" icon="lucide:align-left">
+  <Story title="Textarea" icon="lucide:align-left">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstText v-model="placeholder" title="Placeholder" />
       <HstNumber v-model="rows" title="Rows" />
       <HstSelect

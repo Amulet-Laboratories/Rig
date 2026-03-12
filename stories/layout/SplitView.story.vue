@@ -1,19 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import SplitView from '@layout/SplitView.vue'
 import type { Orientation } from '@core/types'
-
-const { theme, themeOptions } = useHexTheme()
-
 const orientation = ref<Orientation>('horizontal')
 const sizes = ref([300, 300])
 </script>
 
 <template>
-  <Story title="Layout / SplitView" icon="lucide:columns">
+  <Story title="SplitView" icon="lucide:columns">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstSelect
         v-model="orientation"
         title="Orientation"

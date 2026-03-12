@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Select from '@core/primitives/Select.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const value = ref('')
 const disabled = ref(false)
 
@@ -18,9 +14,8 @@ const options = [
 </script>
 
 <template>
-  <Story title="Core / Select" icon="lucide:chevron-down">
+  <Story title="Select" icon="lucide:chevron-down">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstCheckbox v-model="disabled" title="Disabled" />
     </template>
 

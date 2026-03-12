@@ -1,19 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import TagInput from '@core/primitives/TagInput.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const tags = ref(['vue', 'typescript', 'tailwind'])
 const disabled = ref(false)
 const max = ref(0)
 </script>
 
 <template>
-  <Story title="Core / TagInput" icon="lucide:tags">
+  <Story title="TagInput" icon="lucide:tags">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstNumber v-model="max" title="Max Tags (0=unlimited)" />
       <HstCheckbox v-model="disabled" title="Disabled" />
     </template>

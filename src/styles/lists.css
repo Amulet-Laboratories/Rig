@@ -49,8 +49,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 0 12px;
   cursor: pointer;
+  height: 22px;
+  line-height: 22px;
 }
 
 [data-rig-list-item-label] {
@@ -71,14 +73,36 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  --rig-tree-indent: 8px;
 }
 
 [data-rig-tree-node] {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  padding: 0.125rem 0.5rem;
+  gap: 0;
+  padding: 0;
+  padding-left: 4px;
   cursor: pointer;
+  height: 22px;
+  line-height: 22px;
+  position: relative;
+}
+
+/* Indent guides container */
+[data-rig-tree-indent] {
+  display: inline-flex;
+  align-items: stretch;
+  height: 100%;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+[data-rig-tree-indent-guide] {
+  display: inline-block;
+  box-sizing: border-box;
+  width: var(--rig-tree-indent, 8px);
+  height: 100%;
+  border-left: 1px solid transparent;
 }
 
 [data-rig-tree-toggle] {
@@ -86,7 +110,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 1rem;
+  width: 18px;
   height: 100%;
   cursor: pointer;
   background: none;
@@ -94,8 +118,14 @@
   padding: 0;
 }
 
+/* Leaf spacer — reserve the same width as the toggle for leaf nodes */
+[data-rig-tree-node][data-leaf] {
+  padding-left: 22px;
+}
+
 [data-rig-tree-node-label] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-left: 4px;
 }

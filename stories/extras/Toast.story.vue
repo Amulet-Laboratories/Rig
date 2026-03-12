@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Toast from '@extras/Toast.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const toastRef = ref<InstanceType<typeof Toast> | null>(null)
 
 function addInfo() {
@@ -21,12 +17,8 @@ function addError() {
 </script>
 
 <template>
-  <Story title="Extras / Toast" icon="lucide:bell-ring">
-    <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
-    </template>
-
-    <Variant title="Interactive">
+  <Story title="Toast" icon="lucide:bell-ring">
+        <Variant title="Interactive">
       <div style="display: flex; gap: 8px; padding: 16px">
         <button @click="addInfo">Info Toast</button>
         <button @click="addWarning">Warning Toast</button>

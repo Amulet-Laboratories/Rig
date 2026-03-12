@@ -52,31 +52,36 @@ const activeTab = computed(() => props.tabs.find((t) => t.id === props.activeId)
 
 <template>
   <div data-rig-panel-bar>
-    <div data-rig-panel-bar-tabs role="tablist" @keydown="onKeydown">
-      <button
-        v-for="(tab, index) in tabs"
-        :key="tab.id"
-        :ref="(el) => setTabRef(el, index)"
-        data-rig-panel-bar-tab
-        role="tab"
-        :aria-selected="activeId === tab.id"
-        :data-state="activeId === tab.id ? 'active' : 'inactive'"
-        :tabindex="index === focusedIndex ? 0 : -1"
-        @click="activateTab(tab)"
-      >
-        <slot name="tab" :tab="tab" :active="activeId === tab.id">
-          {{ tab.label }}
-        </slot>
+    <div data-rig-panel-bar-header>
+      <div data-rig-panel-bar-tabs role="tablist" @keydown="onKeydown">
         <button
-          v-if="tab.closable"
-          data-rig-panel-bar-close
-          aria-label="Close tab"
-          tabindex="-1"
-          @click="closeTab(tab.id, $event)"
+          v-for="(tab, index) in tabs"
+          :key="tab.id"
+          :ref="(el) => setTabRef(el, index)"
+          data-rig-panel-bar-tab
+          role="tab"
+          :aria-selected="activeId === tab.id"
+          :data-state="activeId === tab.id ? 'active' : 'inactive'"
+          :tabindex="index === focusedIndex ? 0 : -1"
+          @click="activateTab(tab)"
         >
-          &times;
+          <slot name="tab" :tab="tab" :active="activeId === tab.id">
+            {{ tab.label }}
+          </slot>
+          <button
+            v-if="tab.closable"
+            data-rig-panel-bar-close
+            aria-label="Close tab"
+            tabindex="-1"
+            @click="closeTab(tab.id, $event)"
+          >
+            &times;
+          </button>
         </button>
-      </button>
+      </div>
+      <div v-if="$slots.actions" data-rig-panel-bar-actions>
+        <slot name="actions" />
+      </div>
     </div>
     <div data-rig-panel-bar-content role="tabpanel">
       <slot :activeId="activeId" :activeTab="activeTab" />

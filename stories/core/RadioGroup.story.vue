@@ -1,20 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Radio from '@core/primitives/Radio.vue'
 import RadioGroup from '@core/primitives/RadioGroup.vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const value = ref('medium')
 const disabled = ref(false)
 const orientation = ref<'vertical' | 'horizontal'>('vertical')
 </script>
 
 <template>
-  <Story title="Core / RadioGroup" icon="lucide:circle-dot">
+  <Story title="RadioGroup" icon="lucide:circle-dot">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstSelect
         v-model="orientation"
         title="Orientation"

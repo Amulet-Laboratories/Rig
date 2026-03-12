@@ -251,15 +251,23 @@ function onKeydown(e: KeyboardEvent) {
         :data-leaf="flat.isLeaf || undefined"
         :data-loading="loadingNodes.has(flat.node.id) || undefined"
         :tabindex="index === focusedIndex ? 0 : -1"
-        :style="{ paddingInlineStart: `calc(${flat.depth} * var(--rig-tree-indent, 16px))` }"
         @click.stop="select(flat.node)"
         @dblclick.stop="!flat.isLeaf ? toggleExpand(flat.node) : emit('activate', flat.node)"
         @contextmenu.prevent="emit('contextmenu', { node: flat.node, event: $event })"
       >
+        <!-- Indent guides -->
+        <span v-if="flat.depth > 0" data-rig-tree-indent aria-hidden="true">
+          <span
+            v-for="level in flat.depth"
+            :key="level"
+            data-rig-tree-indent-guide
+          />
+        </span>
         <button
           v-if="!flat.isLeaf"
           data-rig-tree-toggle
           tabindex="-1"
+          :data-state="isExpanded(flat.node.id) ? 'open' : 'closed'"
           :aria-label="isExpanded(flat.node.id) ? 'Collapse' : 'Expand'"
           @click.stop="toggleExpand(flat.node)"
         />

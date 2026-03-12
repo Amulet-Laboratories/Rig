@@ -1,18 +1,13 @@
 <script setup lang="ts">
-import { useHexTheme } from '../../src/histoire/useHexTheme'
 import Icon from '@core/primitives/Icon.vue'
 import type { Size } from '@core/types'
 import { ref } from 'vue'
-
-const { theme, themeOptions } = useHexTheme()
-
 const size = ref<Size>('md')
 </script>
 
 <template>
-  <Story title="Core / Icon" icon="lucide:image">
+  <Story title="Icon" icon="lucide:image">
     <template #controls>
-      <HstSelect v-model="theme" title="Theme" :options="themeOptions" />
       <HstSelect v-model="size" title="Size" :options="['xs', 'sm', 'md', 'lg', 'xl']" />
     </template>
 
