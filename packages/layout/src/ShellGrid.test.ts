@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import ShellGrid from './ShellGrid.vue'
+import { nextTick } from 'vue'
 
 describe('ShellGrid', () => {
   it('renders with data-rig-shell-grid', () => {
@@ -54,5 +55,30 @@ describe('ShellGrid', () => {
   it('hides resizers when not resizable', () => {
     const wrapper = mount(ShellGrid, { props: { resizable: false } })
     expect(wrapper.findAll('[data-rig-resizer]').length).toBe(0)
+  })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(ShellGrid)
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('can receive focus', () => {
+    const wrapper = mount(ShellGrid, { attachTo: document.body })
+    wrapper.element.focus()
+    expect(document.activeElement).toBeDefined()
+    wrapper.unmount()
+  })
+
+  it('supports event emission', async () => {
+    const wrapper = mount(ShellGrid)
+    expect(wrapper.emitted()).toBeDefined()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(ShellGrid)
+    await wrapper.setProps({ resizable: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

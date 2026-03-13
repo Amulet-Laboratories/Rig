@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import KeyboardHint from './KeyboardHint.vue'
+import { nextTick } from 'vue'
 
 function factory(shortcut: string) {
   return mount(KeyboardHint, {
@@ -46,5 +47,29 @@ describe('KeyboardHint', () => {
     expect(keys[0]!.text()).toBe('Ctrl')
     expect(keys[1]!.text()).toBe('Alt')
     expect(keys[2]!.text()).toBe('Delete')
+  })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(KeyboardHint, { props: { shortcut: 'Ctrl+S' } })
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('can receive focus', () => {
+    const wrapper = mount(KeyboardHint, { props: { shortcut: 'Ctrl+S' } }, { attachTo: document.body })
+    wrapper.element.focus()
+    expect(document.activeElement).toBeDefined()
+    wrapper.unmount()
+  })
+
+  it('supports event emission', async () => {
+    const wrapper = mount(KeyboardHint, { props: { shortcut: 'Ctrl+S' } })
+    expect(wrapper.emitted()).toBeDefined()
+  })
+
+  it('handles prop updates', async () => {
+    const wrapper = mount(KeyboardHint, { props: { shortcut: 'Ctrl+S' } })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

@@ -22,7 +22,7 @@ function lineWidth(index: number, width?: string | string[]): string | undefined
 </script>
 
 <template>
-  <div data-rig-skeleton :data-animate="animate || undefined">
+  <div data-rig-skeleton tabindex="-1" @keydown.stop role="status" aria-busy="true" aria-label="Loading" :data-animate="animate || undefined">
     <div
       v-for="i in lines"
       :key="i"

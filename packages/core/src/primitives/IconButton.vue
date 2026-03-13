@@ -45,11 +45,20 @@ function onMouseEnter(e: MouseEvent) {
 function onMouseLeave() {
   tip.hide()
 }
+
+function onFocus(e: FocusEvent) {
+  const text = props.tooltip ?? props.ariaLabel
+  if (text) tip.show(e.currentTarget as HTMLElement, text, props.tooltipPlacement)
+}
+
+function onBlur() {
+  tip.hide()
+}
 </script>
 
 <template>
   <Button
-    data-rig-icon-button
+    data-rig-icon-button tabindex="-1"
     :as="as"
     :variant="variant"
     :size="size"
@@ -59,6 +68,9 @@ function onMouseLeave() {
     @click="$emit('click', $event)"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
+    @focus="onFocus"
+    @keydown.escape="onBlur"
+    @blur="onBlur"
   >
     <slot>
       <span v-if="icon" data-rig-icon :data-size="size" aria-hidden="true">

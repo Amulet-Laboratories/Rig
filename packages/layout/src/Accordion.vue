@@ -94,6 +94,8 @@ function onKeydown(e: KeyboardEvent) {
 <template>
   <div
     data-rig-accordion
+    role="group"
+    :aria-label="`Accordion (${type})`"
     :data-type="type"
     :data-disabled="disabled || undefined"
     @keydown="onKeydown"

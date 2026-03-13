@@ -20,6 +20,11 @@ jobs:
           repository: Amulet-Laboratories/Config
           path: Config
 
+      - uses: actions/checkout@v4
+        with:
+          repository: Amulet-Laboratories/Hex
+          path: Hex
+
       - uses: pnpm/action-setup@v4
         with:
           version: 10
@@ -30,7 +35,15 @@ jobs:
           cache: pnpm
           cache-dependency-path: Rig/pnpm-lock.yaml
 
-      - name: Install dependencies
+      - name: Install Hex dependencies
+        working-directory: Hex
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Hex
+        working-directory: Hex
+        run: pnpm build
+
+      - name: Install Rig dependencies
         working-directory: Rig
         run: pnpm install --frozen-lockfile
 
@@ -42,10 +55,30 @@ jobs:
         working-directory: Rig
         run: pnpm typecheck
 
-      - name: Unit tests
+      - name: Unit tests with coverage
         working-directory: Rig
-        run: pnpm test
+        run: pnpm test:coverage
 
-      - name: Build
+      - name: Build library
         working-directory: Rig
         run: pnpm build
+
+      - name: Build demo
+        working-directory: Rig/demo
+        run: pnpm install --frozen-lockfile && pnpm build
+
+      - name: Install Playwright browsers
+        working-directory: Rig/demo
+        run: npx playwright install --with-deps chromium
+
+      - name: E2E & a11y tests
+        working-directory: Rig/demo
+        run: npx playwright test
+
+      - name: Upload demo artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-dist
+          path: Rig/demo/dist
+          retention-days: 7

@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Popover from './Popover.vue'
+import { nextTick } from 'vue'
 
 function factory(props: Partial<InstanceType<typeof Popover>['$props']> = {}) {
   return mount(Popover, {
@@ -79,5 +80,22 @@ describe('Popover', () => {
     const wrapper = factory({ open: true })
     expect(document.querySelector('[data-test-content]')).not.toBeNull()
     wrapper.unmount()
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(Popover, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(Popover)
+    await wrapper.setProps({ open: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

@@ -21,6 +21,8 @@ const props = withDefaults(
     invalid?: boolean
     /** ID of an element describing the input (e.g. error message element) */
     describedBy?: string
+    /** Accessible label for the input (when no visible <label> is provided) */
+    ariaLabel?: string
   }>(),
   {
     modelValue: '',
@@ -89,6 +91,7 @@ defineExpose({ focus })
       :type="type"
       :aria-invalid="invalid || undefined"
       :aria-describedby="describedBy || undefined"
+      :aria-label="ariaLabel"
       @input="onInput"
       @keydown="onKeydown"
       @focus="$emit('focus', $event)"

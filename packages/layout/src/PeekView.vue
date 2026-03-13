@@ -38,7 +38,14 @@ watch(
 </script>
 
 <template>
-  <div v-show="open" data-rig-peek-view :data-state="open ? 'open' : 'closed'">
+  <div
+    v-show="open"
+    data-rig-peek-view
+    role="dialog"
+    :aria-label="title || 'Peek view'"
+    :data-state="open ? 'open' : 'closed'"
+    @keydown.escape="close"
+  >
     <div data-rig-peek-view-header>
       <slot name="header" :close="close">
         <span v-if="title" data-rig-peek-view-title>{{ title }}</span>

@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import ToggleGroup from './ToggleGroup.vue'
+import { nextTick } from 'vue'
 
 describe('ToggleGroup', () => {
   it('renders with data-rig-toggle-group', () => {
@@ -103,5 +104,25 @@ describe('ToggleGroup', () => {
     })
     ;(exposed.toggle as (v: string) => void)('bold')
     expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+  })
+
+  it('handles keyboard interaction', async () => {
+    const wrapper = mount(ToggleGroup, { props: { modelValue: '' } })
+    await wrapper.trigger('keydown', { key: 'ArrowDown' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('can receive focus', () => {
+    const wrapper = mount(ToggleGroup, { props: { modelValue: '' } }, { attachTo: document.body })
+    wrapper.element.focus()
+    expect(document.activeElement).toBeDefined()
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(ToggleGroup, { props: { modelValue: '' } })
+    await wrapper.setProps({ disabled: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

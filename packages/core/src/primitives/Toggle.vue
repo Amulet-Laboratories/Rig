@@ -11,6 +11,8 @@ withDefaults(
     variant?: string
     /** Size scale */
     size?: Size
+    /** Accessible label for the toggle button */
+    ariaLabel?: string
   }>(),
   {
     pressed: false,
@@ -24,7 +26,7 @@ defineEmits<{
 
 <template>
   <button
-    data-rig-toggle
+    data-rig-toggle tabindex="0"
     type="button"
     :aria-pressed="pressed"
     :data-state="pressed ? 'on' : 'off'"
@@ -32,7 +34,9 @@ defineEmits<{
     :data-size="size"
     :data-disabled="disabled || undefined"
     :disabled="disabled"
+    :aria-label="ariaLabel"
     @click="$emit('update:pressed', !pressed)"
+    @keydown.enter.prevent="$emit('update:pressed', !pressed)"
   >
     <slot />
   </button>

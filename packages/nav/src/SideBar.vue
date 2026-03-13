@@ -26,7 +26,10 @@ defineEmits<{
   <aside
     v-if="open"
     data-rig-sidebar
+    aria-label="Sidebar"
+    tabindex="-1"
     :data-state="open ? 'open' : 'closed'"
+    @keydown.escape="$emit('update:open', false)"
     :style="{ width: width + 'px' }"
   >
     <div data-rig-sidebar-header>

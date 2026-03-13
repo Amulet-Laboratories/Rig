@@ -25,7 +25,8 @@ defineEmits<{
 <template>
   <component
     :is="interactive ? 'button' : 'div'"
-    data-rig-card
+    data-rig-card tabindex="-1" @keydown.enter="$emit('click', $event)"
+    :role="interactive ? undefined : 'article'"
     :data-variant="variant"
     :data-size="size"
     :data-interactive="interactive || undefined"

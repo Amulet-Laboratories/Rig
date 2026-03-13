@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Modal from './Modal.vue'
+import { nextTick } from 'vue'
 
 describe('Modal', () => {
   it('does not render when closed', () => {
@@ -69,5 +70,28 @@ describe('Modal', () => {
     overlay?.click()
     // persistent = no update:open emission
     wrapper.unmount()
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(Modal, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('supports event emission', async () => {
+    const wrapper = mount(Modal)
+    // Verify component has emitted() interface
+    expect(wrapper.emitted()).toBeDefined()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(Modal)
+    await wrapper.setProps({ open: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

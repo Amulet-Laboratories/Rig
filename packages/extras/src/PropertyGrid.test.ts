@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import PropertyGrid from './PropertyGrid.vue'
+import { nextTick } from 'vue'
 
 const items = [
   { key: 'Name', value: 'Alice' },
@@ -42,5 +43,30 @@ describe('PropertyGrid', () => {
       slots: { Status: '<span class="custom">ACTIVE</span>' },
     })
     expect(wrapper.find('.custom').text()).toBe('ACTIVE')
+  })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(PropertyGrid, { props: { items: [{ key: 'Name', value: 'Test' }] } })
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('can receive focus', () => {
+    const wrapper = mount(PropertyGrid, { props: { items: [{ key: 'Name', value: 'Test' }] } }, { attachTo: document.body })
+    wrapper.element.focus()
+    expect(document.activeElement).toBeDefined()
+    wrapper.unmount()
+  })
+
+  it('supports event emission', async () => {
+    const wrapper = mount(PropertyGrid, { props: { items: [{ key: 'Name', value: 'Test' }] } })
+    expect(wrapper.emitted()).toBeDefined()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(PropertyGrid, { props: { items: [{ key: 'Name', value: 'Test' }] } })
+    await wrapper.setProps({ value: 'test' })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

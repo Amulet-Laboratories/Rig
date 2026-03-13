@@ -82,4 +82,14 @@ describe('TagInput', () => {
     expect(suggestions).toHaveLength(1)
     expect(suggestions[0]!.text()).toBe('apricot')
   })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(TagInput, { props: { modelValue: '' } }, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
 })

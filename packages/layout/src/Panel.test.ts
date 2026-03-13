@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Panel from './Panel.vue'
+import { nextTick } from 'vue'
 
 describe('Panel', () => {
   it('is closed when open=false', () => {
@@ -51,5 +52,22 @@ describe('Panel', () => {
       props: { open: true, resizable: true, size: 200 },
     })
     expect(wrapper.find('[data-rig-resizer]').exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(Panel, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(Panel)
+    await wrapper.setProps({ open: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

@@ -132,12 +132,15 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
     <div
       ref="triggerRef"
       data-rig-dropdown-trigger
-      aria-haspopup="menu"
-      :aria-expanded="open"
       @click="toggle"
       @keydown="onTriggerKeydown"
     >
-      <slot name="trigger" :open="open" :toggle="toggle" />
+      <slot
+        name="trigger"
+        :open="open"
+        :toggle="toggle"
+        :triggerProps="{ 'aria-haspopup': 'menu' as const, 'aria-expanded': open }"
+      />
     </div>
 
     <Teleport to="body">

@@ -48,11 +48,12 @@ function onDragEnd() {
   <div data-rig-editor-workbench>
     <div data-rig-editor-workbench-tabs role="tablist">
       <slot name="tabs" :tabs="tabs" :activeId="activeId">
-        <button
+        <div
           v-for="(tab, index) in tabs"
           :key="tab.id"
           data-rig-editor-tab
           role="tab"
+          :tabindex="activeId === tab.id ? 0 : -1"
           draggable="true"
           :aria-selected="activeId === tab.id"
           :data-state="activeId === tab.id ? 'active' : 'inactive'"
@@ -62,6 +63,8 @@ function onDragEnd() {
           @click="emit('update:activeId', tab.id)"
           @contextmenu.prevent="emit('contextmenu', { tab, event: $event })"
           @mousedown.middle.prevent="tab.closable !== false && emit('close', tab.id)"
+          @keydown.enter="emit('update:activeId', tab.id)"
+          @keydown.space.prevent="emit('update:activeId', tab.id)"
           @dragstart="onDragStart(index)"
           @dragover="onDragOver(index, $event)"
           @drop="onDrop(index)"
@@ -80,7 +83,7 @@ function onDragEnd() {
               &times;
             </button>
           </slot>
-        </button>
+        </div>
       </slot>
     </div>
     <div data-rig-editor-workbench-content role="tabpanel">

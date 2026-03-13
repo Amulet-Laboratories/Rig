@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, watch, computed, nextTick, onUnmounted, useId } from 'vue'
+import { ref, watch, computed, nextTick, toRef, onUnmounted, useId } from 'vue'
 import type { ListItem } from '@core/types'
+import { useFocusTrap } from '@core/composables'
 
 const props = withDefaults(
   defineProps<{
@@ -36,6 +37,15 @@ function close() {
   focusedIndex.value = 0
   emit('update:open', false)
 }
+
+// Focus trap — keeps Tab/Shift+Tab within the palette while open
+useFocusTrap({
+  containerRef: paletteRef,
+  active: toRef(props, 'open'),
+  onEscape: close,
+  autoFocus: false,  // We handle initial focus ourselves (input)
+  restoreFocus: true,
+})
 
 onUnmounted(() => {
   if (debounceTimer) clearTimeout(debounceTimer)
@@ -99,10 +109,6 @@ function onKeydown(e: KeyboardEvent) {
       if (resolvedItems.value[focusedIndex.value]) {
         selectItem(resolvedItems.value[focusedIndex.value]!)
       }
-      break
-    case 'Escape':
-      e.preventDefault()
-      close()
       break
   }
 }

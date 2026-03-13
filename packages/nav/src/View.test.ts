@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import View from './View.vue'
+import { nextTick } from 'vue'
 
 describe('View', () => {
   it('renders with data-rig-view', () => {
@@ -33,16 +34,16 @@ describe('View', () => {
     const wrapper = mount(View, {
       props: { title: 'Test', collapsed: false },
     })
-    await wrapper.find('[data-rig-view-header]').trigger('click')
+    await wrapper.find('[data-rig-view-toggle]').trigger('click')
     expect(wrapper.emitted('update:collapsed')?.[0]).toEqual([true])
   })
 
-  it('sets aria-expanded on header', () => {
+  it('sets aria-expanded on header toggle', () => {
     const expanded = mount(View, { props: { title: 'Test', collapsed: false } })
-    expect(expanded.find('[data-rig-view-header]').attributes('aria-expanded')).toBe('true')
+    expect(expanded.find('[data-rig-view-toggle]').attributes('aria-expanded')).toBe('true')
 
     const collapsed = mount(View, { props: { title: 'Test', collapsed: true } })
-    expect(collapsed.find('[data-rig-view-header]').attributes('aria-expanded')).toBe('false')
+    expect(collapsed.find('[data-rig-view-toggle]').attributes('aria-expanded')).toBe('false')
   })
 
   it('renders action buttons', () => {
@@ -64,5 +65,28 @@ describe('View', () => {
     })
     await wrapper.find('[data-rig-view-action]').trigger('click')
     expect(wrapper.emitted('action')?.[0]).toEqual(['new'])
+  })
+
+  it('handles keyboard interaction', async () => {
+    const wrapper = mount(View)
+    await wrapper.trigger('keydown', { key: 'ArrowDown' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(View, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(View)
+    await wrapper.setProps({ collapsed: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

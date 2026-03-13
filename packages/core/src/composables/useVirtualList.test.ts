@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { defineComponent, ref } from 'vue'
 import { mount } from '@vue/test-utils'
 import { useVirtualList } from './useVirtualList'
+import { nextTick } from 'vue'
 
 /** Minimal harness component to mount the composable */
 function makeHarness<T>(source: () => T[], itemHeight: number, overscan = 5) {

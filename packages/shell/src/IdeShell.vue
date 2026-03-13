@@ -39,13 +39,32 @@ const props = withDefaults(
 
 const shell = useShellState({ ...props.config, provide: true })
 
+function onShellKeydown(e: KeyboardEvent) {
+  // Shell-level keyboard shortcuts (Ctrl/Cmd + key)
+  if (e.ctrlKey || e.metaKey) {
+    switch (e.key.toLowerCase()) {
+      case 'b':
+        e.preventDefault()
+        shell.sidebarVisible.value = !shell.sidebarVisible.value
+        break
+      case 'j':
+        e.preventDefault()
+        shell.panelVisible.value = !shell.panelVisible.value
+        break
+    }
+  }
+}
+
 defineExpose({ shell })
 </script>
 
 <template>
   <ShellGrid
+    aria-label="IDE workspace"
+    tabindex="-1"
     :sizes="shell.shellSizes.value"
     @update:sizes="shell.onShellResize"
+    @keydown="onShellKeydown"
   >
     <template v-if="$slots.titlebar" #titlebar>
       <slot name="titlebar" :shell="shell" />
@@ -68,7 +87,7 @@ defineExpose({ shell })
     </template>
 
     <template #editor>
-      <slot name="settings" v-if="shell.settingsOpen.value" :shell="shell" />
+      <slot v-if="shell.settingsOpen.value" name="settings" :shell="shell" />
       <EditorWorkbench
         v-else
         :tabs="shell.openTabs.value"

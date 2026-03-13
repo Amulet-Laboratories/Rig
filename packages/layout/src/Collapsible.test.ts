@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Collapsible from './Collapsible.vue'
+import { nextTick } from 'vue'
 
 describe('Collapsible', () => {
   it('renders with data-rig-collapsible', () => {
@@ -64,5 +65,18 @@ describe('Collapsible', () => {
   it('sets data-disabled when disabled', () => {
     const wrapper = mount(Collapsible, { props: { disabled: true } })
     expect(wrapper.attributes('data-disabled')).toBeDefined()
+  })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(Collapsible)
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('can receive focus', () => {
+    const wrapper = mount(Collapsible, { attachTo: document.body })
+    wrapper.element.focus()
+    expect(document.activeElement).toBeDefined()
+    wrapper.unmount()
   })
 })

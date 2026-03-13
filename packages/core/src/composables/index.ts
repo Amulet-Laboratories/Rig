@@ -1,3 +1,5 @@
+export { useFocusTrap } from './useFocusTrap'
+export type { FocusTrapOptions } from './useFocusTrap'
 export { useKeyboard } from './useKeyboard'
 export { usePersistedState } from './usePersistedState'
 export { useGlobalState } from './useGlobalState'

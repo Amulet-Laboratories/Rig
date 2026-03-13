@@ -25,6 +25,15 @@ const emit = defineEmits<{
   'update:sizes': [sizes: number[]]
 }>()
 
+function onKeydown(e: KeyboardEvent) {
+  if (!props.resizable) return
+  const delta = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 10 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -10 : 0
+  if (delta) {
+    e.preventDefault()
+    onResize(0, { delta })
+  }
+}
+
 function onResize(index: number, payload: { delta: number }) {
   const newSizes = [...props.sizes]
   const minA = props.minSizes[index] ?? 50
@@ -42,7 +51,7 @@ function onResize(index: number, payload: { delta: number }) {
 </script>
 
 <template>
-  <div data-rig-split-view :data-orientation="orientation">
+  <div data-rig-split-view tabindex="-1" role="group" aria-label="Split view" @keydown="onKeydown" :data-orientation="orientation">
     <template v-for="(size, i) in sizes" :key="i">
       <div
         data-rig-split-pane

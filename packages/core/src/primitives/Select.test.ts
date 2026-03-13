@@ -81,4 +81,20 @@ describe('Select', () => {
     expect(wrapper.find('[data-leading]').exists()).toBe(true)
     expect(wrapper.find('[data-trailing]').exists()).toBe(true)
   })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(Select)
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(Select, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
 })

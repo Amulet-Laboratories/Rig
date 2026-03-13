@@ -5,6 +5,8 @@ const props = withDefaults(
     modelValue?: boolean
     /** Whether the switch is disabled */
     disabled?: boolean
+    /** Accessible label for icon-only or label-less switches */
+    ariaLabel?: string
   }>(),
   {
     modelValue: false,
@@ -32,9 +34,11 @@ function onKeydown(e: KeyboardEvent) {
 <template>
   <button
     data-rig-switch
+    tabindex="0"
     type="button"
     role="switch"
     :aria-checked="modelValue"
+    :aria-label="ariaLabel"
     :data-state="modelValue ? 'checked' : 'unchecked'"
     :data-disabled="disabled || undefined"
     :disabled="disabled"

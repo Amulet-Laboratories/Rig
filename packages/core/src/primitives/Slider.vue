@@ -16,6 +16,8 @@ const props = withDefaults(
     disabled?: boolean
     /** Orientation */
     orientation?: Orientation
+    /** Accessible label for the range input */
+    ariaLabel?: string
   }>(),
   {
     min: 0,
@@ -42,13 +44,13 @@ function onInput(e: Event) {
 
 <template>
   <div
-    data-rig-slider
+    data-rig-slider @keydown.stop
     :data-orientation="orientation"
     :data-disabled="disabled || undefined"
     :style="{ '--rig-slider-percent': `${percent}%` }"
   >
     <input
-      data-rig-slider-input
+      data-rig-slider-input tabindex="0"
       type="range"
       :min="min"
       :max="max"
@@ -56,6 +58,7 @@ function onInput(e: Event) {
       :value="modelValue ?? min"
       :disabled="disabled"
       :aria-orientation="orientation"
+      :aria-label="ariaLabel"
       @input="onInput"
     />
     <slot name="thumb" :percent="percent" />

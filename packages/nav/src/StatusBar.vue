@@ -30,10 +30,31 @@ function onItemClick(item: StatusBarItem) {
   }
   emit('item-click', item)
 }
+
+function onKeydown(e: KeyboardEvent) {
+  const buttons = Array.from(
+    (e.currentTarget as HTMLElement).querySelectorAll<HTMLElement>('button'),
+  )
+  const idx = buttons.indexOf(e.target as HTMLElement)
+  if (idx < 0) return
+
+  let next: number | null = null
+  switch (e.key) {
+    case 'ArrowRight':
+      e.preventDefault()
+      next = (idx + 1) % buttons.length
+      break
+    case 'ArrowLeft':
+      e.preventDefault()
+      next = (idx - 1 + buttons.length) % buttons.length
+      break
+  }
+  if (next !== null) buttons[next]?.focus()
+}
 </script>
 
 <template>
-  <footer data-rig-status-bar role="status">
+  <footer data-rig-status-bar role="contentinfo" aria-label="Status bar" tabindex="-1" @keydown="onKeydown">
     <div data-rig-status-bar-left>
       <slot name="left">
         <component

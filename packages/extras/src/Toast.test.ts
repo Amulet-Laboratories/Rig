@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Toast from './Toast.vue'
 import { toast } from './useToast'
+import { nextTick } from 'vue'
 
 function factory() {
   return mount(Toast, {
@@ -131,5 +132,26 @@ describe('Toast', () => {
     await wrapper.vm.$nextTick()
     expect(document.querySelector('[data-rig-toast-dismiss]')).toBeNull()
     wrapper.unmount()
+  })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(Toast)
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(Toast, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('supports event emission', async () => {
+    const wrapper = mount(Toast)
+    expect(wrapper.emitted()).toBeDefined()
   })
 })

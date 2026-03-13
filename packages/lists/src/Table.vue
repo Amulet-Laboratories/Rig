@@ -66,7 +66,7 @@ function ariaSortValue(col: ColumnDef): 'none' | 'ascending' | 'descending' | 'o
           :key="col.id"
           data-rig-table-header
           :data-sortable="col.sortable || undefined"
-          :data-sort-direction="sort?.column === col.id ? sort.direction : undefined"
+          :data-sort-direction="sort?.column === col.id ? sort?.direction : undefined"
           :data-align="col.align"
           :aria-sort="ariaSortValue(col)"
           :tabindex="col.sortable ? 0 : undefined"

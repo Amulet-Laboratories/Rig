@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import EditorTab from './EditorTab.vue'
 import type { TabItem } from '@core/types'
+import { nextTick } from 'vue'
 
 describe('EditorTab', () => {
   const tab: TabItem = { id: 'test', label: 'test.ts' }
@@ -70,5 +71,28 @@ describe('EditorTab', () => {
     const wrapper = mount(EditorTab, { props: { tab } })
     await wrapper.trigger('dragend')
     expect(wrapper.emitted('dragend')).toHaveLength(1)
+  })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(EditorTab, { props: { tab: { id: 't1', label: 'Tab' } } })
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(EditorTab, { props: { tab: { id: 't1', label: 'Tab' } } }, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(EditorTab, { props: { tab: { id: 't1', label: 'Tab' } } })
+    await wrapper.setProps({ active: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

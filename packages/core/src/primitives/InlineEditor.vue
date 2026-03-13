@@ -69,7 +69,7 @@ function onKeydown(e: KeyboardEvent) {
     />
     <span
       v-else
-      data-rig-inline-editor-display
+      data-rig-inline-editor-display :aria-label="`Edit ${modelValue}`"
       tabindex="0"
       @dblclick="startEditing"
       @keydown.enter.prevent="startEditing"

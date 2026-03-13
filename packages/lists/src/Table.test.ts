@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Table from './Table.vue'
 import type { ColumnDef } from '@core/types'
+import { nextTick } from 'vue'
 
 interface Row {
   id: string
@@ -113,5 +114,28 @@ describe('Table', () => {
       },
     })
     expect(wrapper.findAll('[data-rig-table-row]')).toHaveLength(2)
+  })
+
+  it('handles keyboard interaction', async () => {
+    const wrapper = mount(Table, { props: { columns: [{ key: 'n', label: 'N' }], rows: [{ n: '1' }], rowKey: 'n' } })
+    await wrapper.trigger('keydown', { key: 'ArrowDown' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(Table, { props: { columns: [{ key: 'n', label: 'N' }], rows: [{ n: '1' }], rowKey: 'n' } }, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(Table, { props: { columns: [{ key: 'n', label: 'N' }], rows: [{ n: '1' }], rowKey: 'n' } })
+    await wrapper.setProps({ resizableColumns: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

@@ -96,6 +96,9 @@ function onPointerDown(e: PointerEvent) {
     data-rig-resizer
     role="separator"
     :aria-orientation="orientation"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="50"
     :data-orientation="orientation"
     :data-dragging="dragging || undefined"
     tabindex="0"

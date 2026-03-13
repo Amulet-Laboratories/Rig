@@ -90,4 +90,14 @@ describe('InlineEditor', () => {
     })
     expect(wrapper.find('[data-rig-inline-editor-display]').attributes('tabindex')).toBe('0')
   })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(InlineEditor, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
 })

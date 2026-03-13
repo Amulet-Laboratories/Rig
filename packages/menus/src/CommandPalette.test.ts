@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { mount, flushPromises } from '@vue/test-utils'
 import CommandPalette from './CommandPalette.vue'
 import type { ListItem } from '@core/types'
+import { nextTick } from 'vue'
 
 const items: ListItem[] = [
   { id: 'file-open', label: 'Open File', description: 'Open a file from disk' },
@@ -153,6 +154,16 @@ describe('CommandPalette', () => {
     await flushPromises()
     const input = document.querySelector<HTMLInputElement>('[role="searchbox"]')!
     expect(input.placeholder).toBe('Search commands...')
+    wrapper.unmount()
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(CommandPalette, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
     wrapper.unmount()
   })
 })

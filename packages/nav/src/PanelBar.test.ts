@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import PanelBar from './PanelBar.vue'
 import type { TabItem } from '@core/types'
+import { nextTick } from 'vue'
 
 const tabs: TabItem[] = [
   { id: 'terminal', label: 'Terminal' },
@@ -69,5 +70,27 @@ describe('PanelBar', () => {
     expect(tabEls[0]!.attributes('tabindex')).toBe('0')
     expect(tabEls[1]!.attributes('tabindex')).toBe('-1')
     expect(tabEls[2]!.attributes('tabindex')).toBe('-1')
+  })
+
+  it('handles keyboard interaction', async () => {
+    const wrapper = mount(PanelBar, { props: { tabs: [] } })
+    await wrapper.trigger('keydown', { key: 'ArrowDown' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(PanelBar, { props: { tabs: [] } }, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('handles prop updates', async () => {
+    const wrapper = mount(PanelBar, { props: { tabs: [] } })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

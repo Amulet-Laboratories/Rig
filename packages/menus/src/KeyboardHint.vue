@@ -28,7 +28,7 @@ const keys = computed(() =>
 </script>
 
 <template>
-  <kbd data-rig-keyboard-hint>
+  <kbd data-rig-keyboard-hint tabindex="-1" :aria-label="shortcut" @keydown.stop>
     <kbd v-for="(key, i) in keys" :key="i" data-rig-keyboard-hint-key>
       {{ key }}
     </kbd>

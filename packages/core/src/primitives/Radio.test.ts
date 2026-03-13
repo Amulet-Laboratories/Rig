@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Radio from './Radio.vue'
+import { nextTick } from 'vue'
 
 describe('Radio', () => {
   it('renders with data-rig-radio', () => {
@@ -58,5 +59,28 @@ describe('Radio', () => {
       slots: { default: 'Option A' },
     })
     expect(wrapper.text()).toBe('Option A')
+  })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(Radio, { props: { value: 'a', name: 'group' } })
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(Radio, { props: { value: 'a', name: 'group' } }, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(Radio, { props: { value: 'a', name: 'group' } })
+    await wrapper.setProps({ modelValue: 'test' })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

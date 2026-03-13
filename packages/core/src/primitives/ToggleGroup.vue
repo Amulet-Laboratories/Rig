@@ -39,15 +39,39 @@ function toggle(value: string) {
     emit('update:modelValue', props.modelValue === value ? '' : value)
   }
 }
+
+function onKeydown(e: KeyboardEvent) {
+  const buttons = Array.from(
+    (e.currentTarget as HTMLElement).querySelectorAll<HTMLElement>('button:not([disabled])'),
+  )
+  const idx = buttons.indexOf(e.target as HTMLElement)
+  if (idx < 0) return
+
+  const isHorizontal = props.orientation === 'horizontal'
+  let next: number | null = null
+  switch (e.key) {
+    case isHorizontal ? 'ArrowRight' : 'ArrowDown':
+      e.preventDefault()
+      next = (idx + 1) % buttons.length
+      break
+    case isHorizontal ? 'ArrowLeft' : 'ArrowUp':
+      e.preventDefault()
+      next = (idx - 1 + buttons.length) % buttons.length
+      break
+  }
+  if (next !== null) buttons[next]?.focus()
+}
 </script>
 
 <template>
   <div
     data-rig-toggle-group
     role="group"
+    :aria-label="`Toggle group (${type})`"
     :data-type="type"
     :data-orientation="orientation"
     :data-disabled="disabled || undefined"
+    @keydown="onKeydown"
   >
     <slot :isPressed="isPressed" :toggle="toggle" :disabled="disabled" />
   </div>

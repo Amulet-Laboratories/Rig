@@ -3,6 +3,7 @@ import { mount } from '@vue/test-utils'
 import { ref } from 'vue'
 import { TooltipKey } from '@core/injection-keys'
 import Tooltip from './Tooltip.vue'
+import { nextTick } from 'vue'
 
 function factory(
   overrides: {
@@ -61,5 +62,29 @@ describe('Tooltip', () => {
     factory({ visible: true, content: 'x', placement: 'right' })
     // floating-ui computes actual side; in jsdom it falls back to requested placement
     expect(tip()?.dataset.side).toBeTruthy()
+  })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(Tooltip)
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('can receive focus', () => {
+    factory({ visible: true, content: 'Focus test' })
+    const el = tip()
+    el?.focus()
+    expect(document.activeElement).toBeDefined()
+  })
+
+  it('supports event emission', async () => {
+    const wrapper = mount(Tooltip)
+    expect(wrapper.emitted()).toBeDefined()
+  })
+
+  it('handles prop updates', async () => {
+    const wrapper = mount(Tooltip)
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

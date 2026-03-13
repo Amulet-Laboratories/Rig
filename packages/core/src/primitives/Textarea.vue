@@ -24,6 +24,8 @@ const {
   resize?: 'none' | 'vertical' | 'horizontal' | 'both'
   /** Maximum character count (0 = unlimited) */
   maxlength?: number
+  /** Accessible label for the textarea (when no visible <label> is provided) */
+  ariaLabel?: string
 }>()
 
 const emit = defineEmits<{
@@ -47,7 +49,7 @@ defineExpose({ focus })
 </script>
 
 <template>
-  <div data-rig-textarea :data-disabled="disabled || undefined">
+  <div data-rig-textarea role="group" aria-label="Text input" :data-disabled="disabled || undefined">
     <textarea
       :id="id"
       ref="textareaRef"
@@ -55,11 +57,13 @@ defineExpose({ focus })
       :placeholder="placeholder"
       :disabled="disabled"
       :rows="rows"
+      :aria-label="ariaLabel"
       :maxlength="maxlength || undefined"
       :style="{ resize }"
       @input="onInput"
       @focus="$emit('focus', $event)"
       @blur="$emit('blur', $event)"
+      @keydown.escape="textareaRef?.blur()"
     />
     <div v-if="maxlength > 0" data-rig-textarea-count>
       {{ modelValue.length }} / {{ maxlength }}

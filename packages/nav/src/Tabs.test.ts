@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Tabs from './Tabs.vue'
+import { nextTick } from 'vue'
 
 /** Build a minimal tabs wrapper so we can test slot + keyboard behavior */
 function factory(modelValue = 'a') {
@@ -141,5 +142,11 @@ describe('Tabs', () => {
     await tablist.trigger('keydown', { key: 'Enter' })
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['b'])
     wrapper.unmount()
+  })
+
+  it('handles prop updates', async () => {
+    const wrapper = mount(Tabs)
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

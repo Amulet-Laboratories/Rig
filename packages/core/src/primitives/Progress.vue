@@ -9,6 +9,8 @@ const props = withDefaults(
     max?: number
     /** Show indeterminate animation instead of a fill */
     indeterminate?: boolean
+    /** Accessible label for screen readers */
+    ariaLabel?: string
   }>(),
   {
     value: 0,
@@ -24,8 +26,10 @@ const percent = computed(() => {
 
 <template>
   <div
-    data-rig-progress
+    data-rig-progress tabindex="-1"
+    @keydown.stop
     role="progressbar"
+    :aria-label="ariaLabel"
     :aria-valuenow="indeterminate ? undefined : value"
     :aria-valuemin="0"
     :aria-valuemax="max"

@@ -5,7 +5,15 @@ import { resolve } from 'node:path'
 export default defineConfig({
   plugins: [HstVue()],
   setupFile: '/src/histoire/setup.ts',
-  storyMatch: ['stories/**/*.story.vue'],
+  storyMatch: [
+    'stories/core/**/*.story.vue',
+    'stories/layout/**/*.story.vue',
+    'stories/nav/**/*.story.vue',
+    'stories/editor/**/*.story.vue',
+    'stories/lists/**/*.story.vue',
+    'stories/menus/**/*.story.vue',
+    'stories/extras/**/*.story.vue',
+  ],
   theme: {
     title: 'Rig — Component Library',
     colors: {
@@ -21,7 +29,6 @@ export default defineConfig({
   ],
   tree: {
     groups: [
-      { id: 'showcase', title: 'Showcase', include: (file) => file.path.includes('stories/showcase/') },
       { id: 'core', title: 'Core', include: (file) => file.path.includes('stories/core/') },
       { id: 'layout', title: 'Layout', include: (file) => file.path.includes('stories/layout/') },
       { id: 'nav', title: 'Navigation', include: (file) => file.path.includes('stories/nav/') },
@@ -42,8 +49,6 @@ export default defineConfig({
         '@menus': resolve(import.meta.dirname!, 'packages/menus/src'),
         '@extras': resolve(import.meta.dirname!, 'packages/extras/src'),
         '@shell': resolve(import.meta.dirname!, 'packages/shell/src'),
-        '@story': resolve(import.meta.dirname!, 'src/histoire'),
-        '@hex': resolve(import.meta.dirname!, 'node_modules/@amulet-laboratories/hex'),
       },
     },
   },

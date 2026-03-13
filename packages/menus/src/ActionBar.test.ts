@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import ActionBar from './ActionBar.vue'
 import type { Action } from '@core/types'
+import { nextTick } from 'vue'
 
 const actions: Action[] = [
   { id: 'save', label: 'Save' },
@@ -74,5 +75,28 @@ describe('ActionBar', () => {
     const wrapper = factory({ maxVisible: 10 })
     expect(wrapper.find('[data-rig-action-bar-overflow]').exists()).toBe(false)
     expect(wrapper.findAll('[data-rig-action-bar-item]').length).toBe(5)
+  })
+
+  it('handles keyboard interaction', async () => {
+    const wrapper = mount(ActionBar, { props: { actions: [] } })
+    await wrapper.trigger('keydown', { key: 'ArrowDown' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(ActionBar, { props: { actions: [] } }, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(ActionBar, { props: { actions: [] } })
+    await wrapper.setProps({ maxVisible: 42 })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

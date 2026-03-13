@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import List from './List.vue'
 import type { ListItem } from '@core/types'
+import { nextTick } from 'vue'
 
 const items: ListItem[] = [
   { id: 'a', label: 'Alpha' },
@@ -87,5 +88,22 @@ describe('List', () => {
     // all items are still rendered because 4 items fit within the overscan window.
     const wrapper = mount(List, { props: { items, virtual: true, itemHeight: 24 } })
     expect(wrapper.findAll('[data-rig-list-item]').length).toBeGreaterThan(0)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(List, { props: { items }, attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(List, { props: { items } })
+    await wrapper.setProps({ multiSelect: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

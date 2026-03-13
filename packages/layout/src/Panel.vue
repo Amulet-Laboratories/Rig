@@ -59,6 +59,9 @@ const sizeProperty = computed(() => (props.position === 'bottom' ? 'height' : 'w
   <div
     v-show="open"
     data-rig-panel
+    role="region"
+    aria-label="Panel"
+    tabindex="-1"
     :data-position="position"
     :data-state="open ? 'open' : 'closed'"
     :style="{ [sizeProperty]: `${size}px` }"

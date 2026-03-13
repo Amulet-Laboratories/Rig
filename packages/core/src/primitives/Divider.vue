@@ -9,7 +9,8 @@ defineProps<{
 
 <template>
   <div
-    data-rig-divider
+    data-rig-divider tabindex="-1"
+    @keydown.stop
     :data-vertical="vertical || undefined"
     role="separator"
     :aria-orientation="vertical ? 'vertical' : 'horizontal'"

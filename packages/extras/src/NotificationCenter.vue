@@ -1,19 +1,29 @@
 <script setup lang="ts">
-import { ref, useId, onMounted, onUnmounted } from 'vue'
+import { ref, useId, onMounted, onUnmounted, nextTick } from 'vue'
 import { useNotifications } from './useNotifications'
 
 const panelId = useId()
+const bellRef = ref<HTMLElement | null>(null)
+const panelRef = ref<HTMLElement | null>(null)
 
 const { notifications, unreadCount, dismiss, markAllRead, clear } = useNotifications()
 const open = ref(false)
 
-function toggle() {
+async function toggle() {
   open.value = !open.value
-  if (open.value) markAllRead()
+  if (open.value) {
+    markAllRead()
+    await nextTick()
+    // Focus the first focusable element in the panel
+    const first = panelRef.value?.querySelector<HTMLElement>('button, [tabindex]')
+    first?.focus()
+  }
 }
 
 function close() {
   open.value = false
+  // Return focus to the bell trigger
+  bellRef.value?.focus()
 }
 
 function onKeydown(e: KeyboardEvent) {
@@ -44,6 +54,7 @@ function formatTime(timestamp: number): string {
 <template>
   <div data-rig-notification-center>
     <button
+      ref="bellRef"
       data-rig-notification-bell
       :data-unread="unreadCount > 0 || undefined"
       :aria-label="`Notifications${unreadCount > 0 ? ` (${unreadCount} unread)` : ''}`"
@@ -59,6 +70,7 @@ function formatTime(timestamp: number): string {
 
     <div
       v-if="open"
+      ref="panelRef"
       :id="panelId"
       data-rig-notification-panel
       role="region"

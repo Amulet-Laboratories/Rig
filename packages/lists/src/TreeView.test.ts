@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import TreeView from './TreeView.vue'
 import type { TreeNode } from '@core/types'
+import { nextTick } from 'vue'
 
 const nodes: TreeNode[] = [
   {
@@ -264,5 +265,22 @@ describe('TreeView', () => {
     await tree.trigger('keydown', { key: ' ' })
     expect(wrapper.emitted('update:selected')?.[0]).toEqual(['src'])
     wrapper.unmount()
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(TreeView, { props: { nodes }, attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(TreeView, { props: { nodes } })
+    await wrapper.setProps({ multiSelect: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

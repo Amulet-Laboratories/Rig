@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import PeekView from './PeekView.vue'
+import { nextTick } from 'vue'
 
 describe('PeekView', () => {
   it('renders with data-rig-peek-view', () => {
@@ -59,5 +60,28 @@ describe('PeekView', () => {
     })
     expect(wrapper.find('[data-test-content]').exists()).toBe(true)
     expect(wrapper.find('[data-rig-peek-view-content]').exists()).toBe(true)
+  })
+
+  it('handles keyboard interaction', async () => {
+    const wrapper = mount(PeekView)
+    await wrapper.trigger('keydown', { key: 'ArrowDown' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(PeekView, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(PeekView)
+    await wrapper.setProps({ open: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

@@ -39,19 +39,21 @@ function onActionMouseLeave() {
 
 <template>
   <section data-rig-view :data-collapsed="collapsed || undefined">
-    <div
-      data-rig-view-header
-      role="button"
-      :aria-expanded="!collapsed"
-      tabindex="0"
-      @click="toggle"
-      @keydown.enter.prevent="toggle"
-      @keydown.space.prevent="toggle"
-    >
-      <span data-rig-view-chevron :data-state="collapsed ? 'closed' : 'open'" aria-hidden="true" />
-      <slot name="header">
-        <span data-rig-view-title>{{ title }}</span>
-      </slot>
+    <div data-rig-view-header>
+      <div
+        data-rig-view-toggle
+        role="button"
+        :aria-expanded="!collapsed"
+        tabindex="0"
+        @click="toggle"
+        @keydown.enter.prevent="toggle"
+        @keydown.space.prevent="toggle"
+      >
+        <span data-rig-view-chevron :data-state="collapsed ? 'closed' : 'open'" aria-hidden="true" />
+        <slot name="header">
+          <span data-rig-view-title>{{ title }}</span>
+        </slot>
+      </div>
       <div v-if="actions.length > 0" data-rig-view-actions>
         <slot name="actions">
           <button

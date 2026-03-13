@@ -21,6 +21,34 @@ withDefaults(
 defineEmits<{
   'update:modelValue': [value: string]
 }>()
+
+function onKeydown(e: KeyboardEvent) {
+  const radios = Array.from(
+    (e.currentTarget as HTMLElement).querySelectorAll<HTMLElement>(
+      'input[type="radio"]:not([disabled]), [role="radio"]:not([aria-disabled="true"])',
+    ),
+  )
+  const idx = radios.indexOf(e.target as HTMLElement)
+  if (idx < 0) return
+
+  let next: number | null = null
+  switch (e.key) {
+    case 'ArrowDown':
+    case 'ArrowRight':
+      e.preventDefault()
+      next = (idx + 1) % radios.length
+      break
+    case 'ArrowUp':
+    case 'ArrowLeft':
+      e.preventDefault()
+      next = (idx - 1 + radios.length) % radios.length
+      break
+  }
+  if (next !== null) {
+    radios[next]?.focus()
+    radios[next]?.click()
+  }
+}
 </script>
 
 <template>
@@ -33,6 +61,7 @@ defineEmits<{
     :aria-disabled="disabled || undefined"
     :data-orientation="orientation"
     :data-disabled="disabled || undefined"
+    @keydown="onKeydown"
   >
     <!--
       Slot receives the bound modelValue so consumers can pass it down to

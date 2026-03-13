@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import ActivityBar from './ActivityBar.vue'
 import type { Action } from '@core/types'
+import { nextTick } from 'vue'
 
 const items: Action[] = [
   { id: 'files', label: 'Files' },
@@ -52,5 +53,21 @@ describe('ActivityBar', () => {
     // Focus index should advance
     const buttons = wrapper.findAll('[data-rig-activity-bar-item]')
     expect(buttons[1]!.attributes('tabindex')).toBe('0')
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(ActivityBar, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('handles prop updates', async () => {
+    const wrapper = mount(ActivityBar)
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

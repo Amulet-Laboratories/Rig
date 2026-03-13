@@ -14,8 +14,8 @@ defineProps<{
 </script>
 
 <template>
-  <div data-rig-property-grid>
-    <div v-for="item in items" :key="item.key" data-rig-property-row>
+  <div data-rig-property-grid tabindex="-1" @keydown.arrow-down.prevent @keydown.arrow-up.prevent role="table" aria-label="Properties">
+    <div v-for="item in items" :key="item.key" data-rig-property-row role="row">
       <span
         data-rig-property-key
         :style="keyWidth ? { width: keyWidth, flexShrink: 0 } : undefined"

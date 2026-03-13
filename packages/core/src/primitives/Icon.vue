@@ -25,7 +25,8 @@ const isDecorative = computed(() => !props.label)
 
 <template>
   <span
-    data-rig-icon
+    data-rig-icon tabindex="-1"
+    @keydown.stop
     :data-size="size"
     :role="isDecorative ? undefined : 'img'"
     :aria-label="label"

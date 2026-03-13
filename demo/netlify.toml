@@ -1,0 +1,19 @@
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+# Node 22 for build
+[build.environment]
+  NODE_VERSION = "22"
+
+# SPA fallback — Vue Router handles all routes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Cache immutable hashed assets aggressively
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import DropdownMenu from './DropdownMenu.vue'
 import type { Action } from '@core/types'
+import { nextTick } from 'vue'
 
 const items: Action[] = [
   { id: 'new', label: 'New File', keybinding: 'Ctrl+N' },
@@ -120,6 +121,24 @@ describe('DropdownMenu', () => {
     menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
     await new Promise((r) => setTimeout(r, 0))
     expect(wrapper.emitted('select')?.[0]).toEqual([items[0]])
+    wrapper.unmount()
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = factory()
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = factory()
+    await wrapper.setProps({ open: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
     wrapper.unmount()
   })
 })

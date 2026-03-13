@@ -10,7 +10,7 @@ defineExpose({ toasts, add, dismiss, clear })
   <Teleport to="body">
     <div
       v-if="toasts.length > 0"
-      data-rig-toast-container
+      data-rig-toast-container tabindex="-1" @keydown.escape="clear()"
       role="status"
       aria-live="polite"
       aria-relevant="additions removals"

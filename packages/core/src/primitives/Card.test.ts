@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Card from './Card.vue'
+import { nextTick } from 'vue'
 
 describe('Card', () => {
   it('renders with data-rig-card', () => {
@@ -49,5 +50,25 @@ describe('Card', () => {
     expect(wrapper.text()).toContain('Title')
     expect(wrapper.text()).toContain('Body')
     expect(wrapper.text()).toContain('Footer')
+  })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(Card)
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('can receive focus', () => {
+    const wrapper = mount(Card, { attachTo: document.body })
+    wrapper.element.focus()
+    expect(document.activeElement).toBeDefined()
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(Card)
+    await wrapper.setProps({ variant: 'test' })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

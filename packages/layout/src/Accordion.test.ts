@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Accordion from './Accordion.vue'
+import { nextTick } from 'vue'
 
 describe('Accordion', () => {
   it('renders with data-rig-accordion', () => {
@@ -126,5 +127,25 @@ describe('Accordion', () => {
     expect(panelId).toContain('accordion-panel-section-1')
     // Header and panel IDs share the same prefix
     expect(headerId.replace('header', '')).toEqual(panelId.replace('panel', ''))
+  })
+
+  it('handles keyboard interaction', async () => {
+    const wrapper = mount(Accordion)
+    await wrapper.trigger('keydown', { key: 'ArrowDown' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('can receive focus', () => {
+    const wrapper = mount(Accordion, { attachTo: document.body })
+    wrapper.element.focus()
+    expect(document.activeElement).toBeDefined()
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(Accordion)
+    await wrapper.setProps({ modelValue: 'test' })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

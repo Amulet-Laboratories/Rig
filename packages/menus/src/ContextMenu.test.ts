@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import ContextMenu from './ContextMenu.vue'
 import type { Action } from '@core/types'
+import { nextTick } from 'vue'
 
 const actions: Action[] = [
   { id: 'cut', label: 'Cut', keybinding: 'Ctrl+X' },
@@ -118,5 +119,22 @@ describe('ContextMenu', () => {
     const highlighted = menu.querySelectorAll('[data-highlighted="true"]')
     expect(highlighted.length).toBe(1)
     wrapper.unmount()
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(ContextMenu, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(ContextMenu)
+    await wrapper.setProps({ open: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

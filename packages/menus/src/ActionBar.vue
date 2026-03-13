@@ -27,10 +27,39 @@ const visibleActions = computed(() =>
 const overflowActions = computed(() =>
   props.maxVisible < props.actions.length ? props.actions.slice(props.maxVisible) : [],
 )
+
+function onKeydown(e: KeyboardEvent) {
+  const buttons = Array.from(
+    (e.currentTarget as HTMLElement).querySelectorAll<HTMLElement>('button:not([disabled])'),
+  )
+  const idx = buttons.indexOf(e.target as HTMLElement)
+  if (idx < 0) return
+
+  let next: number | null = null
+  switch (e.key) {
+    case 'ArrowRight':
+      e.preventDefault()
+      next = (idx + 1) % buttons.length
+      break
+    case 'ArrowLeft':
+      e.preventDefault()
+      next = (idx - 1 + buttons.length) % buttons.length
+      break
+    case 'Home':
+      e.preventDefault()
+      next = 0
+      break
+    case 'End':
+      e.preventDefault()
+      next = buttons.length - 1
+      break
+  }
+  if (next !== null) buttons[next]?.focus()
+}
 </script>
 
 <template>
-  <div data-rig-action-bar role="toolbar">
+  <div data-rig-action-bar role="toolbar" aria-orientation="horizontal" @keydown="onKeydown">
     <button
       v-for="action in visibleActions"
       :key="action.id"

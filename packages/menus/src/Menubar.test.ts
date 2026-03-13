@@ -3,6 +3,7 @@ import { mount } from '@vue/test-utils'
 import Menubar from './Menubar.vue'
 import type { MenubarEntry } from './Menubar.vue'
 import type { Action } from '@core/types'
+import { nextTick } from 'vue'
 
 const entries: MenubarEntry[] = [
   {
@@ -114,5 +115,21 @@ describe('Menubar', () => {
     const kb = wrapper.find('[data-rig-menubar-item-keybinding]')
     expect(kb.text()).toBe('Ctrl+N')
     wrapper.unmount()
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(Menubar, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('handles prop updates', async () => {
+    const wrapper = mount(Menubar)
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

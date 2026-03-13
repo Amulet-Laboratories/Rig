@@ -8,6 +8,8 @@ const props = defineProps<{
   name: string
   /** Whether this radio is disabled */
   disabled?: boolean
+  /** Accessible label for the radio input */
+  ariaLabel?: string
 }>()
 
 const emit = defineEmits<{
@@ -21,16 +23,17 @@ function onChange() {
 
 <template>
   <label
-    data-rig-radio
+    data-rig-radio @keydown.stop
     :data-state="modelValue === value ? 'checked' : 'unchecked'"
     :data-disabled="disabled || undefined"
   >
     <input
-      type="radio"
+      type="radio" tabindex="0"
       :name="name"
       :value="value"
       :checked="modelValue === value"
       :disabled="disabled"
+      :aria-label="ariaLabel"
       @change="onChange"
     />
     <slot />

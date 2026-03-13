@@ -76,7 +76,7 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
 
 <template>
   <div data-rig-popover :data-state="open ? 'open' : 'closed'">
-    <div ref="triggerRef" data-rig-popover-trigger>
+    <div ref="triggerRef" data-rig-popover-trigger :aria-expanded="open">
       <slot name="trigger" :open="open" :toggle="toggle" />
     </div>
 
@@ -84,7 +84,7 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
       <div
         v-show="open"
         ref="contentRef"
-        data-rig-popover-content
+        data-rig-popover-content role="dialog"
         :data-state="open ? 'open' : 'closed'"
         :data-side="computedPlacement"
         tabindex="-1"

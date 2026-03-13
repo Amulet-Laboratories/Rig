@@ -46,6 +46,7 @@ const isNativeButton = !props.as || props.as === 'button'
     :tabindex="!isNativeButton && !(disabled || loading) ? 0 : undefined"
     :type="isNativeButton ? type : undefined"
     @click="$emit('click', $event)"
+    @keydown.enter="!isNativeButton && $emit('click', $event)"
   >
     <slot name="icon" />
     <slot />

@@ -13,6 +13,8 @@ const props = withDefaults(
     disabled?: boolean
     /** Maximum number of tags (0 = unlimited) */
     max?: number
+    /** Accessible label for screen readers */
+    ariaLabel?: string
   }>(),
   {
     placeholder: 'Add tag…',
@@ -123,6 +125,7 @@ function focusInput() {
       :disabled="disabled"
       data-rig-tag-input-field
       role="combobox"
+      :aria-label="ariaLabel"
       :aria-expanded="showSuggestions"
       aria-autocomplete="list"
       @keydown="onKeydown"

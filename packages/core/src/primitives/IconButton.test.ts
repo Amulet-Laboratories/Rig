@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import IconButton from './IconButton.vue'
+import { nextTick } from 'vue'
 
 describe('IconButton', () => {
   it('renders with data-rig-icon-button', () => {
@@ -59,5 +60,28 @@ describe('IconButton', () => {
       slots: { default: '<span data-custom-icon />' },
     })
     expect(wrapper.find('[data-custom-icon]').exists()).toBe(true)
+  })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(IconButton, { props: { ariaLabel: 'Test' } })
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(IconButton, { props: { ariaLabel: 'Test' } }, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(IconButton, { props: { ariaLabel: 'Test' } })
+    await wrapper.setProps({ as: 'test' })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

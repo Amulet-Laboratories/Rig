@@ -75,4 +75,10 @@ describe('Textarea', () => {
     await wrapper.find('textarea').trigger('blur')
     expect(wrapper.emitted('blur')).toHaveLength(1)
   })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(Textarea)
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
 })

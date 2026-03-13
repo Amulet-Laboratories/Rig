@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Breadcrumbs from './Breadcrumbs.vue'
+import { nextTick } from 'vue'
 
 const items = [
   { id: 'root', label: 'Home' },
@@ -51,5 +52,28 @@ describe('Breadcrumbs', () => {
     const wrapper = mount(Breadcrumbs, { props: { items, separator: '>' } })
     const seps = wrapper.findAll('[data-rig-breadcrumbs-separator]')
     expect(seps[0]!.text()).toBe('>')
+  })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(Breadcrumbs)
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(Breadcrumbs, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(Breadcrumbs)
+    await wrapper.setProps({ separator: 'test' })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

@@ -35,6 +35,7 @@ const emit = defineEmits<{
     :data-pinned="tab.pinned || undefined"
     :draggable="draggable"
     @click="emit('activate')"
+    @keydown.delete="tab.closable !== false && emit('close')"
     @mousedown.middle.prevent="tab.closable !== false && emit('close')"
     @dragstart="emit('dragstart')"
     @dragend="emit('dragend')"

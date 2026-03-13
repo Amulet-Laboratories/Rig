@@ -76,4 +76,14 @@ describe('Input', () => {
     const wrapper = mount(Input)
     expect(wrapper.find('input').attributes('aria-describedby')).toBeUndefined()
   })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(Input, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
 })

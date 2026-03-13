@@ -22,7 +22,7 @@ const { floatingStyles, placement: computedSide } = useFloating(tooltip.referenc
       data-rig-tooltip
       :data-state="tooltip.visible.value ? 'visible' : 'hidden'"
       :data-side="computedSide"
-      role="tooltip"
+      role="tooltip" tabindex="-1" @keydown.escape="tooltip.hide()"
       :style="floatingStyles"
     >
       {{ tooltip.content.value }}

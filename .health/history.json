@@ -1,0 +1,7001 @@
+{
+  "snapshots": [
+    {
+      "timestamp": "2026-03-13T03:35:32.103Z",
+      "averageScore": 74,
+      "gradeDistribution": {
+        "A": 4,
+        "B": 34,
+        "C": 23,
+        "D": 5,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 184,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "story": 100,
+        "hex": 76,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 76
+        },
+        {
+          "name": "layout",
+          "avgScore": 65
+        },
+        {
+          "name": "nav",
+          "avgScore": 74
+        },
+        {
+          "name": "editor",
+          "avgScore": 78
+        },
+        {
+          "name": "lists",
+          "avgScore": 86
+        },
+        {
+          "name": "menus",
+          "avgScore": 74
+        },
+        {
+          "name": "extras",
+          "avgScore": 73
+        },
+        {
+          "name": "shell",
+          "avgScore": 62
+        }
+      ],
+      "componentScores": {
+        "Accordion": 70,
+        "ActionBar": 68,
+        "ActivityBar": 80,
+        "Avatar": 76,
+        "Badge": 70,
+        "Breadcrumbs": 78,
+        "Button": 91,
+        "Card": 69,
+        "Checkbox": 78,
+        "Collapsible": 70,
+        "Combobox": 96,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 78,
+        "DropdownMenu": 78,
+        "EditorTab": 81,
+        "EditorWorkbench": 75,
+        "EmptyState": 78,
+        "Icon": 71,
+        "IconButton": 67,
+        "IdeShell": 62,
+        "InlineEditor": 81,
+        "Input": 82,
+        "Kbd": 70,
+        "KeyboardHint": 50,
+        "Label": 70,
+        "List": 90,
+        "Menubar": 70,
+        "Modal": 87,
+        "NotificationCenter": 66,
+        "Panel": 57,
+        "PanelBar": 73,
+        "PeekView": 76,
+        "Popover": 61,
+        "Progress": 78,
+        "PropertyGrid": 70,
+        "Radio": 78,
+        "RadioGroup": 78,
+        "Resizer": 75,
+        "ScrollArea": 54,
+        "Select": 88,
+        "ShellGrid": 51,
+        "SideBar": 58,
+        "Skeleton": 69,
+        "Slider": 76,
+        "SplitView": 62,
+        "StatusBar": 68,
+        "Switch": 84,
+        "Table": 82,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 72,
+        "Toast": 75,
+        "Toggle": 78,
+        "ToggleGroup": 71,
+        "Tooltip": 78,
+        "TreeView": 86,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 75,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 74,
+        "useVirtualList": 77,
+        "View": 75
+      }
+    },
+    {
+      "timestamp": "2026-03-13T04:02:52.726Z",
+      "averageScore": 74,
+      "gradeDistribution": {
+        "A": 4,
+        "B": 34,
+        "C": 23,
+        "D": 5,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 184,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "story": 100,
+        "hex": 76,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 76
+        },
+        {
+          "name": "layout",
+          "avgScore": 65
+        },
+        {
+          "name": "nav",
+          "avgScore": 74
+        },
+        {
+          "name": "editor",
+          "avgScore": 78
+        },
+        {
+          "name": "lists",
+          "avgScore": 86
+        },
+        {
+          "name": "menus",
+          "avgScore": 74
+        },
+        {
+          "name": "extras",
+          "avgScore": 73
+        },
+        {
+          "name": "shell",
+          "avgScore": 62
+        }
+      ],
+      "componentScores": {
+        "Accordion": 70,
+        "ActionBar": 68,
+        "ActivityBar": 80,
+        "Avatar": 76,
+        "Badge": 70,
+        "Breadcrumbs": 78,
+        "Button": 91,
+        "Card": 69,
+        "Checkbox": 78,
+        "Collapsible": 70,
+        "Combobox": 96,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 78,
+        "DropdownMenu": 78,
+        "EditorTab": 81,
+        "EditorWorkbench": 75,
+        "EmptyState": 78,
+        "Icon": 71,
+        "IconButton": 67,
+        "IdeShell": 62,
+        "InlineEditor": 81,
+        "Input": 82,
+        "Kbd": 70,
+        "KeyboardHint": 50,
+        "Label": 70,
+        "List": 90,
+        "Menubar": 70,
+        "Modal": 87,
+        "NotificationCenter": 66,
+        "Panel": 57,
+        "PanelBar": 73,
+        "PeekView": 76,
+        "Popover": 61,
+        "Progress": 78,
+        "PropertyGrid": 70,
+        "Radio": 78,
+        "RadioGroup": 78,
+        "Resizer": 75,
+        "ScrollArea": 54,
+        "Select": 88,
+        "ShellGrid": 51,
+        "SideBar": 58,
+        "Skeleton": 69,
+        "Slider": 76,
+        "SplitView": 62,
+        "StatusBar": 68,
+        "Switch": 84,
+        "Table": 82,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 72,
+        "Toast": 75,
+        "Toggle": 78,
+        "ToggleGroup": 71,
+        "Tooltip": 78,
+        "TreeView": 86,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 75,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 74,
+        "useVirtualList": 77,
+        "View": 75
+      }
+    },
+    {
+      "timestamp": "2026-03-13T04:03:02.961Z",
+      "averageScore": 74,
+      "gradeDistribution": {
+        "A": 4,
+        "B": 34,
+        "C": 23,
+        "D": 5,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 184,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "story": 100,
+        "hex": 76,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 76
+        },
+        {
+          "name": "layout",
+          "avgScore": 65
+        },
+        {
+          "name": "nav",
+          "avgScore": 74
+        },
+        {
+          "name": "editor",
+          "avgScore": 78
+        },
+        {
+          "name": "lists",
+          "avgScore": 86
+        },
+        {
+          "name": "menus",
+          "avgScore": 74
+        },
+        {
+          "name": "extras",
+          "avgScore": 73
+        },
+        {
+          "name": "shell",
+          "avgScore": 62
+        }
+      ],
+      "componentScores": {
+        "Accordion": 70,
+        "ActionBar": 68,
+        "ActivityBar": 80,
+        "Avatar": 76,
+        "Badge": 70,
+        "Breadcrumbs": 78,
+        "Button": 91,
+        "Card": 69,
+        "Checkbox": 78,
+        "Collapsible": 70,
+        "Combobox": 96,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 78,
+        "DropdownMenu": 78,
+        "EditorTab": 81,
+        "EditorWorkbench": 75,
+        "EmptyState": 78,
+        "Icon": 71,
+        "IconButton": 67,
+        "IdeShell": 62,
+        "InlineEditor": 81,
+        "Input": 82,
+        "Kbd": 70,
+        "KeyboardHint": 50,
+        "Label": 70,
+        "List": 90,
+        "Menubar": 70,
+        "Modal": 87,
+        "NotificationCenter": 66,
+        "Panel": 57,
+        "PanelBar": 73,
+        "PeekView": 76,
+        "Popover": 61,
+        "Progress": 78,
+        "PropertyGrid": 70,
+        "Radio": 78,
+        "RadioGroup": 78,
+        "Resizer": 75,
+        "ScrollArea": 54,
+        "Select": 88,
+        "ShellGrid": 51,
+        "SideBar": 58,
+        "Skeleton": 69,
+        "Slider": 76,
+        "SplitView": 62,
+        "StatusBar": 68,
+        "Switch": 84,
+        "Table": 82,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 72,
+        "Toast": 75,
+        "Toggle": 78,
+        "ToggleGroup": 71,
+        "Tooltip": 78,
+        "TreeView": 86,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 75,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 74,
+        "useVirtualList": 77,
+        "View": 75
+      }
+    },
+    {
+      "timestamp": "2026-03-13T04:03:44.336Z",
+      "averageScore": 74,
+      "gradeDistribution": {
+        "A": 4,
+        "B": 34,
+        "C": 23,
+        "D": 5,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 184,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "story": 100,
+        "hex": 76,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 76
+        },
+        {
+          "name": "layout",
+          "avgScore": 65
+        },
+        {
+          "name": "nav",
+          "avgScore": 74
+        },
+        {
+          "name": "editor",
+          "avgScore": 78
+        },
+        {
+          "name": "lists",
+          "avgScore": 86
+        },
+        {
+          "name": "menus",
+          "avgScore": 74
+        },
+        {
+          "name": "extras",
+          "avgScore": 73
+        },
+        {
+          "name": "shell",
+          "avgScore": 62
+        }
+      ],
+      "componentScores": {
+        "Accordion": 70,
+        "ActionBar": 68,
+        "ActivityBar": 80,
+        "Avatar": 76,
+        "Badge": 70,
+        "Breadcrumbs": 78,
+        "Button": 91,
+        "Card": 69,
+        "Checkbox": 78,
+        "Collapsible": 70,
+        "Combobox": 96,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 78,
+        "DropdownMenu": 78,
+        "EditorTab": 81,
+        "EditorWorkbench": 75,
+        "EmptyState": 78,
+        "Icon": 71,
+        "IconButton": 67,
+        "IdeShell": 62,
+        "InlineEditor": 81,
+        "Input": 82,
+        "Kbd": 70,
+        "KeyboardHint": 50,
+        "Label": 70,
+        "List": 90,
+        "Menubar": 70,
+        "Modal": 87,
+        "NotificationCenter": 66,
+        "Panel": 57,
+        "PanelBar": 73,
+        "PeekView": 76,
+        "Popover": 61,
+        "Progress": 78,
+        "PropertyGrid": 70,
+        "Radio": 78,
+        "RadioGroup": 78,
+        "Resizer": 75,
+        "ScrollArea": 54,
+        "Select": 88,
+        "ShellGrid": 51,
+        "SideBar": 58,
+        "Skeleton": 69,
+        "Slider": 76,
+        "SplitView": 62,
+        "StatusBar": 68,
+        "Switch": 84,
+        "Table": 82,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 72,
+        "Toast": 75,
+        "Toggle": 78,
+        "ToggleGroup": 71,
+        "Tooltip": 78,
+        "TreeView": 86,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 75,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 74,
+        "useVirtualList": 77,
+        "View": 75
+      }
+    },
+    {
+      "timestamp": "2026-03-13T04:04:10.481Z",
+      "averageScore": 74,
+      "gradeDistribution": {
+        "A": 4,
+        "B": 34,
+        "C": 23,
+        "D": 5,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 184,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "story": 100,
+        "hex": 76,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 76
+        },
+        {
+          "name": "layout",
+          "avgScore": 65
+        },
+        {
+          "name": "nav",
+          "avgScore": 74
+        },
+        {
+          "name": "editor",
+          "avgScore": 78
+        },
+        {
+          "name": "lists",
+          "avgScore": 86
+        },
+        {
+          "name": "menus",
+          "avgScore": 74
+        },
+        {
+          "name": "extras",
+          "avgScore": 73
+        },
+        {
+          "name": "shell",
+          "avgScore": 62
+        }
+      ],
+      "componentScores": {
+        "Accordion": 70,
+        "ActionBar": 68,
+        "ActivityBar": 80,
+        "Avatar": 76,
+        "Badge": 70,
+        "Breadcrumbs": 78,
+        "Button": 91,
+        "Card": 69,
+        "Checkbox": 78,
+        "Collapsible": 70,
+        "Combobox": 96,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 78,
+        "DropdownMenu": 78,
+        "EditorTab": 81,
+        "EditorWorkbench": 75,
+        "EmptyState": 78,
+        "Icon": 71,
+        "IconButton": 67,
+        "IdeShell": 62,
+        "InlineEditor": 81,
+        "Input": 82,
+        "Kbd": 70,
+        "KeyboardHint": 50,
+        "Label": 70,
+        "List": 90,
+        "Menubar": 70,
+        "Modal": 87,
+        "NotificationCenter": 66,
+        "Panel": 57,
+        "PanelBar": 73,
+        "PeekView": 76,
+        "Popover": 61,
+        "Progress": 78,
+        "PropertyGrid": 70,
+        "Radio": 78,
+        "RadioGroup": 78,
+        "Resizer": 75,
+        "ScrollArea": 54,
+        "Select": 88,
+        "ShellGrid": 51,
+        "SideBar": 58,
+        "Skeleton": 69,
+        "Slider": 76,
+        "SplitView": 62,
+        "StatusBar": 68,
+        "Switch": 84,
+        "Table": 82,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 72,
+        "Toast": 75,
+        "Toggle": 78,
+        "ToggleGroup": 71,
+        "Tooltip": 78,
+        "TreeView": 86,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 75,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 74,
+        "useVirtualList": 77,
+        "View": 75
+      }
+    },
+    {
+      "timestamp": "2026-03-13T04:05:20.843Z",
+      "averageScore": 74,
+      "gradeDistribution": {
+        "A": 4,
+        "B": 34,
+        "C": 23,
+        "D": 5,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 184,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "story": 100,
+        "hex": 76,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 76
+        },
+        {
+          "name": "layout",
+          "avgScore": 65
+        },
+        {
+          "name": "nav",
+          "avgScore": 74
+        },
+        {
+          "name": "editor",
+          "avgScore": 78
+        },
+        {
+          "name": "lists",
+          "avgScore": 86
+        },
+        {
+          "name": "menus",
+          "avgScore": 74
+        },
+        {
+          "name": "extras",
+          "avgScore": 73
+        },
+        {
+          "name": "shell",
+          "avgScore": 62
+        }
+      ],
+      "componentScores": {
+        "Accordion": 70,
+        "ActionBar": 68,
+        "ActivityBar": 80,
+        "Avatar": 76,
+        "Badge": 70,
+        "Breadcrumbs": 78,
+        "Button": 91,
+        "Card": 69,
+        "Checkbox": 78,
+        "Collapsible": 70,
+        "Combobox": 96,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 78,
+        "DropdownMenu": 78,
+        "EditorTab": 81,
+        "EditorWorkbench": 75,
+        "EmptyState": 78,
+        "Icon": 71,
+        "IconButton": 67,
+        "IdeShell": 62,
+        "InlineEditor": 81,
+        "Input": 82,
+        "Kbd": 70,
+        "KeyboardHint": 50,
+        "Label": 70,
+        "List": 90,
+        "Menubar": 70,
+        "Modal": 87,
+        "NotificationCenter": 66,
+        "Panel": 57,
+        "PanelBar": 73,
+        "PeekView": 76,
+        "Popover": 61,
+        "Progress": 78,
+        "PropertyGrid": 70,
+        "Radio": 78,
+        "RadioGroup": 78,
+        "Resizer": 75,
+        "ScrollArea": 54,
+        "Select": 88,
+        "ShellGrid": 51,
+        "SideBar": 58,
+        "Skeleton": 69,
+        "Slider": 76,
+        "SplitView": 62,
+        "StatusBar": 68,
+        "Switch": 84,
+        "Table": 82,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 72,
+        "Toast": 75,
+        "Toggle": 78,
+        "ToggleGroup": 71,
+        "Tooltip": 78,
+        "TreeView": 86,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 75,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 74,
+        "useVirtualList": 77,
+        "View": 75
+      }
+    },
+    {
+      "timestamp": "2026-03-13T04:29:48.692Z",
+      "averageScore": 74,
+      "gradeDistribution": {
+        "A": 4,
+        "B": 34,
+        "C": 23,
+        "D": 5,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 184,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "story": 100,
+        "hex": 76,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 76
+        },
+        {
+          "name": "layout",
+          "avgScore": 65
+        },
+        {
+          "name": "nav",
+          "avgScore": 74
+        },
+        {
+          "name": "editor",
+          "avgScore": 78
+        },
+        {
+          "name": "lists",
+          "avgScore": 86
+        },
+        {
+          "name": "menus",
+          "avgScore": 74
+        },
+        {
+          "name": "extras",
+          "avgScore": 73
+        },
+        {
+          "name": "shell",
+          "avgScore": 62
+        }
+      ],
+      "componentScores": {
+        "Accordion": 70,
+        "ActionBar": 68,
+        "ActivityBar": 80,
+        "Avatar": 76,
+        "Badge": 70,
+        "Breadcrumbs": 78,
+        "Button": 91,
+        "Card": 69,
+        "Checkbox": 78,
+        "Collapsible": 70,
+        "Combobox": 96,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 78,
+        "DropdownMenu": 78,
+        "EditorTab": 81,
+        "EditorWorkbench": 75,
+        "EmptyState": 78,
+        "Icon": 71,
+        "IconButton": 67,
+        "IdeShell": 62,
+        "InlineEditor": 81,
+        "Input": 82,
+        "Kbd": 70,
+        "KeyboardHint": 50,
+        "Label": 70,
+        "List": 90,
+        "Menubar": 70,
+        "Modal": 87,
+        "NotificationCenter": 66,
+        "Panel": 57,
+        "PanelBar": 73,
+        "PeekView": 76,
+        "Popover": 61,
+        "Progress": 78,
+        "PropertyGrid": 70,
+        "Radio": 78,
+        "RadioGroup": 78,
+        "Resizer": 75,
+        "ScrollArea": 54,
+        "Select": 88,
+        "ShellGrid": 51,
+        "SideBar": 58,
+        "Skeleton": 69,
+        "Slider": 76,
+        "SplitView": 62,
+        "StatusBar": 68,
+        "Switch": 84,
+        "Table": 82,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 72,
+        "Toast": 75,
+        "Toggle": 78,
+        "ToggleGroup": 71,
+        "Tooltip": 78,
+        "TreeView": 86,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 75,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 74,
+        "useVirtualList": 77,
+        "View": 75
+      }
+    },
+    {
+      "timestamp": "2026-03-13T04:37:41.068Z",
+      "averageScore": 74,
+      "gradeDistribution": {
+        "A": 4,
+        "B": 34,
+        "C": 23,
+        "D": 5,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 184,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "story": 100,
+        "hex": 76,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 76
+        },
+        {
+          "name": "layout",
+          "avgScore": 65
+        },
+        {
+          "name": "nav",
+          "avgScore": 74
+        },
+        {
+          "name": "editor",
+          "avgScore": 78
+        },
+        {
+          "name": "lists",
+          "avgScore": 86
+        },
+        {
+          "name": "menus",
+          "avgScore": 74
+        },
+        {
+          "name": "extras",
+          "avgScore": 73
+        },
+        {
+          "name": "shell",
+          "avgScore": 62
+        }
+      ],
+      "componentScores": {
+        "Accordion": 70,
+        "ActionBar": 68,
+        "ActivityBar": 80,
+        "Avatar": 76,
+        "Badge": 70,
+        "Breadcrumbs": 78,
+        "Button": 91,
+        "Card": 69,
+        "Checkbox": 78,
+        "Collapsible": 70,
+        "Combobox": 96,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 78,
+        "DropdownMenu": 78,
+        "EditorTab": 81,
+        "EditorWorkbench": 75,
+        "EmptyState": 78,
+        "Icon": 71,
+        "IconButton": 67,
+        "IdeShell": 62,
+        "InlineEditor": 81,
+        "Input": 82,
+        "Kbd": 70,
+        "KeyboardHint": 50,
+        "Label": 70,
+        "List": 90,
+        "Menubar": 70,
+        "Modal": 87,
+        "NotificationCenter": 66,
+        "Panel": 57,
+        "PanelBar": 73,
+        "PeekView": 76,
+        "Popover": 61,
+        "Progress": 78,
+        "PropertyGrid": 70,
+        "Radio": 78,
+        "RadioGroup": 78,
+        "Resizer": 75,
+        "ScrollArea": 54,
+        "Select": 88,
+        "ShellGrid": 51,
+        "SideBar": 58,
+        "Skeleton": 69,
+        "Slider": 76,
+        "SplitView": 62,
+        "StatusBar": 68,
+        "Switch": 84,
+        "Table": 82,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 72,
+        "Toast": 75,
+        "Toggle": 78,
+        "ToggleGroup": 71,
+        "Tooltip": 78,
+        "TreeView": 86,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 75,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 74,
+        "useVirtualList": 77,
+        "View": 75
+      }
+    },
+    {
+      "timestamp": "2026-03-13T04:47:23.748Z",
+      "averageScore": 74,
+      "gradeDistribution": {
+        "A": 4,
+        "B": 34,
+        "C": 23,
+        "D": 5,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 184,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "story": 100,
+        "hex": 76,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 76
+        },
+        {
+          "name": "layout",
+          "avgScore": 65
+        },
+        {
+          "name": "nav",
+          "avgScore": 74
+        },
+        {
+          "name": "editor",
+          "avgScore": 78
+        },
+        {
+          "name": "lists",
+          "avgScore": 86
+        },
+        {
+          "name": "menus",
+          "avgScore": 74
+        },
+        {
+          "name": "extras",
+          "avgScore": 73
+        },
+        {
+          "name": "shell",
+          "avgScore": 62
+        }
+      ],
+      "componentScores": {
+        "Accordion": 70,
+        "ActionBar": 68,
+        "ActivityBar": 80,
+        "Avatar": 76,
+        "Badge": 70,
+        "Breadcrumbs": 78,
+        "Button": 91,
+        "Card": 69,
+        "Checkbox": 78,
+        "Collapsible": 70,
+        "Combobox": 96,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 78,
+        "DropdownMenu": 78,
+        "EditorTab": 81,
+        "EditorWorkbench": 75,
+        "EmptyState": 78,
+        "Icon": 71,
+        "IconButton": 67,
+        "IdeShell": 62,
+        "InlineEditor": 81,
+        "Input": 82,
+        "Kbd": 70,
+        "KeyboardHint": 50,
+        "Label": 70,
+        "List": 90,
+        "Menubar": 70,
+        "Modal": 87,
+        "NotificationCenter": 66,
+        "Panel": 57,
+        "PanelBar": 73,
+        "PeekView": 76,
+        "Popover": 61,
+        "Progress": 78,
+        "PropertyGrid": 70,
+        "Radio": 78,
+        "RadioGroup": 78,
+        "Resizer": 75,
+        "ScrollArea": 54,
+        "Select": 88,
+        "ShellGrid": 51,
+        "SideBar": 58,
+        "Skeleton": 69,
+        "Slider": 76,
+        "SplitView": 62,
+        "StatusBar": 68,
+        "Switch": 84,
+        "Table": 82,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 72,
+        "Toast": 75,
+        "Toggle": 78,
+        "ToggleGroup": 71,
+        "Tooltip": 78,
+        "TreeView": 86,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 75,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 74,
+        "useVirtualList": 77,
+        "View": 75
+      }
+    },
+    {
+      "timestamp": "2026-03-13T04:51:58.254Z",
+      "averageScore": 74,
+      "gradeDistribution": {
+        "A": 4,
+        "B": 34,
+        "C": 23,
+        "D": 5,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 184,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "story": 100,
+        "hex": 76,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 76
+        },
+        {
+          "name": "layout",
+          "avgScore": 65
+        },
+        {
+          "name": "nav",
+          "avgScore": 74
+        },
+        {
+          "name": "editor",
+          "avgScore": 78
+        },
+        {
+          "name": "lists",
+          "avgScore": 86
+        },
+        {
+          "name": "menus",
+          "avgScore": 74
+        },
+        {
+          "name": "extras",
+          "avgScore": 73
+        },
+        {
+          "name": "shell",
+          "avgScore": 62
+        }
+      ],
+      "componentScores": {
+        "Accordion": 70,
+        "ActionBar": 68,
+        "ActivityBar": 80,
+        "Avatar": 76,
+        "Badge": 70,
+        "Breadcrumbs": 78,
+        "Button": 91,
+        "Card": 69,
+        "Checkbox": 78,
+        "Collapsible": 70,
+        "Combobox": 96,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 78,
+        "DropdownMenu": 78,
+        "EditorTab": 81,
+        "EditorWorkbench": 75,
+        "EmptyState": 78,
+        "Icon": 71,
+        "IconButton": 67,
+        "IdeShell": 62,
+        "InlineEditor": 81,
+        "Input": 82,
+        "Kbd": 70,
+        "KeyboardHint": 50,
+        "Label": 70,
+        "List": 90,
+        "Menubar": 70,
+        "Modal": 87,
+        "NotificationCenter": 66,
+        "Panel": 57,
+        "PanelBar": 73,
+        "PeekView": 76,
+        "Popover": 61,
+        "Progress": 78,
+        "PropertyGrid": 70,
+        "Radio": 78,
+        "RadioGroup": 78,
+        "Resizer": 75,
+        "ScrollArea": 54,
+        "Select": 88,
+        "ShellGrid": 51,
+        "SideBar": 58,
+        "Skeleton": 69,
+        "Slider": 76,
+        "SplitView": 62,
+        "StatusBar": 68,
+        "Switch": 84,
+        "Table": 82,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 72,
+        "Toast": 75,
+        "Toggle": 78,
+        "ToggleGroup": 71,
+        "Tooltip": 78,
+        "TreeView": 86,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 75,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 74,
+        "useVirtualList": 77,
+        "View": 75
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:11:41.068Z",
+      "averageScore": 73,
+      "gradeDistribution": {
+        "A": 4,
+        "B": 31,
+        "C": 23,
+        "D": 8,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 384,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 76,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 75
+        },
+        {
+          "name": "layout",
+          "avgScore": 66
+        },
+        {
+          "name": "nav",
+          "avgScore": 70
+        },
+        {
+          "name": "editor",
+          "avgScore": 75
+        },
+        {
+          "name": "lists",
+          "avgScore": 85
+        },
+        {
+          "name": "menus",
+          "avgScore": 73
+        },
+        {
+          "name": "extras",
+          "avgScore": 72
+        },
+        {
+          "name": "shell",
+          "avgScore": 59
+        }
+      ],
+      "componentScores": {
+        "Accordion": 72,
+        "ActionBar": 64,
+        "ActivityBar": 80,
+        "Avatar": 77,
+        "Badge": 67,
+        "Breadcrumbs": 74,
+        "Button": 91,
+        "Card": 66,
+        "Checkbox": 79,
+        "Collapsible": 77,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 79,
+        "DropdownMenu": 78,
+        "EditorTab": 77,
+        "EditorWorkbench": 72,
+        "EmptyState": 73,
+        "Icon": 68,
+        "IconButton": 60,
+        "IdeShell": 59,
+        "InlineEditor": 80,
+        "Input": 80,
+        "Kbd": 65,
+        "KeyboardHint": 47,
+        "Label": 75,
+        "List": 90,
+        "Menubar": 70,
+        "Modal": 86,
+        "NotificationCenter": 63,
+        "Panel": 57,
+        "PanelBar": 70,
+        "PeekView": 73,
+        "Popover": 65,
+        "Progress": 78,
+        "PropertyGrid": 65,
+        "Radio": 78,
+        "RadioGroup": 73,
+        "Resizer": 76,
+        "ScrollArea": 58,
+        "Select": 89,
+        "ShellGrid": 48,
+        "SideBar": 53,
+        "Skeleton": 75,
+        "Slider": 75,
+        "SplitView": 60,
+        "StatusBar": 57,
+        "Switch": 83,
+        "Table": 80,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 77,
+        "Toast": 78,
+        "Toggle": 79,
+        "ToggleGroup": 68,
+        "Tooltip": 79,
+        "TreeView": 85,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 61,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 56,
+        "useVirtualList": 77,
+        "View": 72
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:11:55.933Z",
+      "averageScore": 73,
+      "gradeDistribution": {
+        "A": 4,
+        "B": 31,
+        "C": 23,
+        "D": 8,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 384,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 76,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 75
+        },
+        {
+          "name": "layout",
+          "avgScore": 66
+        },
+        {
+          "name": "nav",
+          "avgScore": 70
+        },
+        {
+          "name": "editor",
+          "avgScore": 75
+        },
+        {
+          "name": "lists",
+          "avgScore": 85
+        },
+        {
+          "name": "menus",
+          "avgScore": 73
+        },
+        {
+          "name": "extras",
+          "avgScore": 72
+        },
+        {
+          "name": "shell",
+          "avgScore": 59
+        }
+      ],
+      "componentScores": {
+        "Accordion": 72,
+        "ActionBar": 64,
+        "ActivityBar": 80,
+        "Avatar": 77,
+        "Badge": 67,
+        "Breadcrumbs": 74,
+        "Button": 91,
+        "Card": 66,
+        "Checkbox": 79,
+        "Collapsible": 77,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 79,
+        "DropdownMenu": 78,
+        "EditorTab": 77,
+        "EditorWorkbench": 72,
+        "EmptyState": 73,
+        "Icon": 68,
+        "IconButton": 60,
+        "IdeShell": 59,
+        "InlineEditor": 80,
+        "Input": 80,
+        "Kbd": 65,
+        "KeyboardHint": 47,
+        "Label": 75,
+        "List": 90,
+        "Menubar": 70,
+        "Modal": 86,
+        "NotificationCenter": 63,
+        "Panel": 57,
+        "PanelBar": 70,
+        "PeekView": 73,
+        "Popover": 65,
+        "Progress": 78,
+        "PropertyGrid": 65,
+        "Radio": 78,
+        "RadioGroup": 73,
+        "Resizer": 76,
+        "ScrollArea": 58,
+        "Select": 89,
+        "ShellGrid": 48,
+        "SideBar": 53,
+        "Skeleton": 75,
+        "Slider": 75,
+        "SplitView": 60,
+        "StatusBar": 57,
+        "Switch": 83,
+        "Table": 80,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 77,
+        "Toast": 78,
+        "Toggle": 79,
+        "ToggleGroup": 68,
+        "Tooltip": 79,
+        "TreeView": 85,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 61,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 56,
+        "useVirtualList": 77,
+        "View": 72
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:13:15.697Z",
+      "averageScore": 73,
+      "gradeDistribution": {
+        "A": 4,
+        "B": 31,
+        "C": 23,
+        "D": 8,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 384,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 76,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 75
+        },
+        {
+          "name": "layout",
+          "avgScore": 66
+        },
+        {
+          "name": "nav",
+          "avgScore": 70
+        },
+        {
+          "name": "editor",
+          "avgScore": 75
+        },
+        {
+          "name": "lists",
+          "avgScore": 85
+        },
+        {
+          "name": "menus",
+          "avgScore": 73
+        },
+        {
+          "name": "extras",
+          "avgScore": 72
+        },
+        {
+          "name": "shell",
+          "avgScore": 59
+        }
+      ],
+      "componentScores": {
+        "Accordion": 72,
+        "ActionBar": 64,
+        "ActivityBar": 80,
+        "Avatar": 77,
+        "Badge": 67,
+        "Breadcrumbs": 74,
+        "Button": 91,
+        "Card": 66,
+        "Checkbox": 79,
+        "Collapsible": 77,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 79,
+        "DropdownMenu": 78,
+        "EditorTab": 77,
+        "EditorWorkbench": 72,
+        "EmptyState": 73,
+        "Icon": 68,
+        "IconButton": 60,
+        "IdeShell": 59,
+        "InlineEditor": 80,
+        "Input": 80,
+        "Kbd": 65,
+        "KeyboardHint": 47,
+        "Label": 75,
+        "List": 90,
+        "Menubar": 70,
+        "Modal": 86,
+        "NotificationCenter": 63,
+        "Panel": 57,
+        "PanelBar": 70,
+        "PeekView": 73,
+        "Popover": 65,
+        "Progress": 78,
+        "PropertyGrid": 65,
+        "Radio": 78,
+        "RadioGroup": 73,
+        "Resizer": 76,
+        "ScrollArea": 58,
+        "Select": 89,
+        "ShellGrid": 48,
+        "SideBar": 53,
+        "Skeleton": 75,
+        "Slider": 75,
+        "SplitView": 60,
+        "StatusBar": 57,
+        "Switch": 83,
+        "Table": 80,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 77,
+        "Toast": 78,
+        "Toggle": 79,
+        "ToggleGroup": 68,
+        "Tooltip": 79,
+        "TreeView": 85,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 61,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 56,
+        "useVirtualList": 77,
+        "View": 72
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:26:07.661Z",
+      "averageScore": 75,
+      "gradeDistribution": {
+        "A": 5,
+        "B": 35,
+        "C": 21,
+        "D": 5,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 372,
+      "totalLoc": 5561,
+      "overallCoverage": {
+        "statements": 73.17,
+        "branches": 68.23,
+        "functions": 78.65,
+        "lines": 74.26
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 79,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 97,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 75
+        },
+        {
+          "name": "layout",
+          "avgScore": 68
+        },
+        {
+          "name": "nav",
+          "avgScore": 74
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 88
+        },
+        {
+          "name": "menus",
+          "avgScore": 78
+        },
+        {
+          "name": "extras",
+          "avgScore": 74
+        },
+        {
+          "name": "shell",
+          "avgScore": 69
+        }
+      ],
+      "componentScores": {
+        "Accordion": 72,
+        "ActionBar": 74,
+        "ActivityBar": 80,
+        "Avatar": 77,
+        "Badge": 67,
+        "Breadcrumbs": 74,
+        "Button": 91,
+        "Card": 66,
+        "Checkbox": 79,
+        "Collapsible": 77,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 79,
+        "DropdownMenu": 78,
+        "EditorTab": 77,
+        "EditorWorkbench": 82,
+        "EmptyState": 73,
+        "Icon": 68,
+        "IconButton": 60,
+        "IdeShell": 69,
+        "InlineEditor": 80,
+        "Input": 80,
+        "Kbd": 65,
+        "KeyboardHint": 57,
+        "Label": 75,
+        "List": 90,
+        "Menubar": 80,
+        "Modal": 86,
+        "NotificationCenter": 73,
+        "Panel": 67,
+        "PanelBar": 80,
+        "PeekView": 73,
+        "Popover": 75,
+        "Progress": 78,
+        "PropertyGrid": 65,
+        "Radio": 78,
+        "RadioGroup": 73,
+        "Resizer": 76,
+        "ScrollArea": 58,
+        "Select": 89,
+        "ShellGrid": 48,
+        "SideBar": 63,
+        "Skeleton": 75,
+        "Slider": 75,
+        "SplitView": 60,
+        "StatusBar": 57,
+        "Switch": 83,
+        "Table": 80,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 77,
+        "Toast": 78,
+        "Toggle": 79,
+        "ToggleGroup": 68,
+        "Tooltip": 79,
+        "TreeView": 95,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 61,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 56,
+        "useVirtualList": 77,
+        "View": 82
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:41:48.575Z",
+      "averageScore": 76,
+      "gradeDistribution": {
+        "A": 5,
+        "B": 41,
+        "C": 18,
+        "D": 2,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 356,
+      "totalLoc": 5581,
+      "overallCoverage": {
+        "statements": 73.09,
+        "branches": 68.33,
+        "functions": 78.65,
+        "lines": 74.22
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 91,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 75
+        },
+        {
+          "name": "layout",
+          "avgScore": 75
+        },
+        {
+          "name": "nav",
+          "avgScore": 77
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 88
+        },
+        {
+          "name": "menus",
+          "avgScore": 79
+        },
+        {
+          "name": "extras",
+          "avgScore": 76
+        },
+        {
+          "name": "shell",
+          "avgScore": 69
+        }
+      ],
+      "componentScores": {
+        "Accordion": 76,
+        "ActionBar": 74,
+        "ActivityBar": 80,
+        "Avatar": 77,
+        "Badge": 71,
+        "Breadcrumbs": 79,
+        "Button": 91,
+        "Card": 74,
+        "Checkbox": 79,
+        "Collapsible": 77,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 79,
+        "DropdownMenu": 78,
+        "EditorTab": 77,
+        "EditorWorkbench": 82,
+        "EmptyState": 78,
+        "Icon": 68,
+        "IconButton": 60,
+        "IdeShell": 69,
+        "InlineEditor": 80,
+        "Input": 80,
+        "Kbd": 65,
+        "KeyboardHint": 65,
+        "Label": 75,
+        "List": 90,
+        "Menubar": 80,
+        "Modal": 86,
+        "NotificationCenter": 73,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 75,
+        "Progress": 78,
+        "PropertyGrid": 73,
+        "Radio": 78,
+        "RadioGroup": 73,
+        "Resizer": 76,
+        "ScrollArea": 68,
+        "Select": 89,
+        "ShellGrid": 65,
+        "SideBar": 76,
+        "Skeleton": 75,
+        "Slider": 75,
+        "SplitView": 68,
+        "StatusBar": 57,
+        "Switch": 83,
+        "Table": 80,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 77,
+        "Toast": 78,
+        "Toggle": 79,
+        "ToggleGroup": 68,
+        "Tooltip": 79,
+        "TreeView": 95,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 61,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 56,
+        "useVirtualList": 77,
+        "View": 82
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:42:00.922Z",
+      "averageScore": 76,
+      "gradeDistribution": {
+        "A": 5,
+        "B": 42,
+        "C": 17,
+        "D": 2,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 355,
+      "totalLoc": 5610,
+      "overallCoverage": {
+        "statements": 72.32,
+        "branches": 67.92,
+        "functions": 78.5,
+        "lines": 73.42
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 91,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 75
+        },
+        {
+          "name": "layout",
+          "avgScore": 75
+        },
+        {
+          "name": "nav",
+          "avgScore": 77
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 88
+        },
+        {
+          "name": "menus",
+          "avgScore": 80
+        },
+        {
+          "name": "extras",
+          "avgScore": 76
+        },
+        {
+          "name": "shell",
+          "avgScore": 69
+        }
+      ],
+      "componentScores": {
+        "Accordion": 76,
+        "ActionBar": 77,
+        "ActivityBar": 80,
+        "Avatar": 77,
+        "Badge": 71,
+        "Breadcrumbs": 79,
+        "Button": 91,
+        "Card": 74,
+        "Checkbox": 79,
+        "Collapsible": 77,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 79,
+        "DropdownMenu": 78,
+        "EditorTab": 77,
+        "EditorWorkbench": 82,
+        "EmptyState": 78,
+        "Icon": 68,
+        "IconButton": 60,
+        "IdeShell": 69,
+        "InlineEditor": 80,
+        "Input": 80,
+        "Kbd": 65,
+        "KeyboardHint": 65,
+        "Label": 75,
+        "List": 90,
+        "Menubar": 80,
+        "Modal": 86,
+        "NotificationCenter": 73,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 75,
+        "Progress": 78,
+        "PropertyGrid": 73,
+        "Radio": 78,
+        "RadioGroup": 73,
+        "Resizer": 76,
+        "ScrollArea": 68,
+        "Select": 89,
+        "ShellGrid": 65,
+        "SideBar": 76,
+        "Skeleton": 75,
+        "Slider": 75,
+        "SplitView": 68,
+        "StatusBar": 57,
+        "Switch": 83,
+        "Table": 80,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 77,
+        "Toast": 78,
+        "Toggle": 79,
+        "ToggleGroup": 68,
+        "Tooltip": 79,
+        "TreeView": 95,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 61,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 56,
+        "useVirtualList": 77,
+        "View": 82
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:42:10.595Z",
+      "averageScore": 77,
+      "gradeDistribution": {
+        "A": 5,
+        "B": 43,
+        "C": 16,
+        "D": 2,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 353,
+      "totalLoc": 5639,
+      "overallCoverage": {
+        "statements": 72.32,
+        "branches": 67.92,
+        "functions": 78.5,
+        "lines": 73.42
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 91,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 76
+        },
+        {
+          "name": "layout",
+          "avgScore": 75
+        },
+        {
+          "name": "nav",
+          "avgScore": 77
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 88
+        },
+        {
+          "name": "menus",
+          "avgScore": 80
+        },
+        {
+          "name": "extras",
+          "avgScore": 76
+        },
+        {
+          "name": "shell",
+          "avgScore": 69
+        }
+      ],
+      "componentScores": {
+        "Accordion": 76,
+        "ActionBar": 77,
+        "ActivityBar": 80,
+        "Avatar": 77,
+        "Badge": 71,
+        "Breadcrumbs": 79,
+        "Button": 91,
+        "Card": 74,
+        "Checkbox": 79,
+        "Collapsible": 77,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 79,
+        "DropdownMenu": 78,
+        "EditorTab": 77,
+        "EditorWorkbench": 82,
+        "EmptyState": 78,
+        "Icon": 68,
+        "IconButton": 60,
+        "IdeShell": 69,
+        "InlineEditor": 80,
+        "Input": 80,
+        "Kbd": 65,
+        "KeyboardHint": 65,
+        "Label": 75,
+        "List": 90,
+        "Menubar": 80,
+        "Modal": 86,
+        "NotificationCenter": 73,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 75,
+        "Progress": 78,
+        "PropertyGrid": 73,
+        "Radio": 78,
+        "RadioGroup": 85,
+        "Resizer": 76,
+        "ScrollArea": 68,
+        "Select": 89,
+        "ShellGrid": 65,
+        "SideBar": 76,
+        "Skeleton": 75,
+        "Slider": 75,
+        "SplitView": 68,
+        "StatusBar": 57,
+        "Switch": 83,
+        "Table": 80,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 77,
+        "Toast": 78,
+        "Toggle": 79,
+        "ToggleGroup": 68,
+        "Tooltip": 79,
+        "TreeView": 95,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 61,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 56,
+        "useVirtualList": 77,
+        "View": 82
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:42:20.149Z",
+      "averageScore": 76,
+      "gradeDistribution": {
+        "A": 5,
+        "B": 43,
+        "C": 16,
+        "D": 2,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 353,
+      "totalLoc": 5649,
+      "overallCoverage": {
+        "statements": 71.74,
+        "branches": 67.52,
+        "functions": 78.35,
+        "lines": 72.82
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 91,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 75
+        },
+        {
+          "name": "layout",
+          "avgScore": 75
+        },
+        {
+          "name": "nav",
+          "avgScore": 77
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 88
+        },
+        {
+          "name": "menus",
+          "avgScore": 80
+        },
+        {
+          "name": "extras",
+          "avgScore": 77
+        },
+        {
+          "name": "shell",
+          "avgScore": 69
+        }
+      ],
+      "componentScores": {
+        "Accordion": 76,
+        "ActionBar": 77,
+        "ActivityBar": 80,
+        "Avatar": 77,
+        "Badge": 71,
+        "Breadcrumbs": 79,
+        "Button": 91,
+        "Card": 74,
+        "Checkbox": 79,
+        "Collapsible": 77,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 79,
+        "DropdownMenu": 78,
+        "EditorTab": 77,
+        "EditorWorkbench": 82,
+        "EmptyState": 78,
+        "Icon": 68,
+        "IconButton": 60,
+        "IdeShell": 69,
+        "InlineEditor": 80,
+        "Input": 80,
+        "Kbd": 65,
+        "KeyboardHint": 65,
+        "Label": 75,
+        "List": 90,
+        "Menubar": 80,
+        "Modal": 86,
+        "NotificationCenter": 78,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 75,
+        "Progress": 78,
+        "PropertyGrid": 73,
+        "Radio": 78,
+        "RadioGroup": 67,
+        "Resizer": 76,
+        "ScrollArea": 68,
+        "Select": 89,
+        "ShellGrid": 65,
+        "SideBar": 76,
+        "Skeleton": 75,
+        "Slider": 75,
+        "SplitView": 68,
+        "StatusBar": 57,
+        "Switch": 83,
+        "Table": 80,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 77,
+        "Toast": 78,
+        "Toggle": 79,
+        "ToggleGroup": 68,
+        "Tooltip": 79,
+        "TreeView": 95,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 61,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 56,
+        "useVirtualList": 77,
+        "View": 82
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:42:29.831Z",
+      "averageScore": 76,
+      "gradeDistribution": {
+        "A": 5,
+        "B": 43,
+        "C": 16,
+        "D": 2,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 353,
+      "totalLoc": 5651,
+      "overallCoverage": {
+        "statements": 71.78,
+        "branches": 67.52,
+        "functions": 78.35,
+        "lines": 72.87
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 91,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 75
+        },
+        {
+          "name": "layout",
+          "avgScore": 75
+        },
+        {
+          "name": "nav",
+          "avgScore": 77
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 88
+        },
+        {
+          "name": "menus",
+          "avgScore": 80
+        },
+        {
+          "name": "extras",
+          "avgScore": 77
+        },
+        {
+          "name": "shell",
+          "avgScore": 69
+        }
+      ],
+      "componentScores": {
+        "Accordion": 76,
+        "ActionBar": 77,
+        "ActivityBar": 80,
+        "Avatar": 77,
+        "Badge": 71,
+        "Breadcrumbs": 79,
+        "Button": 91,
+        "Card": 74,
+        "Checkbox": 79,
+        "Collapsible": 77,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 79,
+        "DropdownMenu": 78,
+        "EditorTab": 77,
+        "EditorWorkbench": 82,
+        "EmptyState": 78,
+        "Icon": 68,
+        "IconButton": 60,
+        "IdeShell": 69,
+        "InlineEditor": 80,
+        "Input": 80,
+        "Kbd": 65,
+        "KeyboardHint": 65,
+        "Label": 75,
+        "List": 90,
+        "Menubar": 80,
+        "Modal": 86,
+        "NotificationCenter": 78,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 75,
+        "Progress": 78,
+        "PropertyGrid": 73,
+        "Radio": 78,
+        "RadioGroup": 67,
+        "Resizer": 76,
+        "ScrollArea": 68,
+        "Select": 89,
+        "ShellGrid": 65,
+        "SideBar": 76,
+        "Skeleton": 75,
+        "Slider": 75,
+        "SplitView": 68,
+        "StatusBar": 57,
+        "Switch": 83,
+        "Table": 80,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 77,
+        "Toast": 78,
+        "Toggle": 79,
+        "ToggleGroup": 68,
+        "Tooltip": 79,
+        "TreeView": 95,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 61,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 56,
+        "useVirtualList": 77,
+        "View": 82
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:43:51.046Z",
+      "averageScore": 60,
+      "gradeDistribution": {
+        "A": 0,
+        "B": 6,
+        "C": 27,
+        "D": 25,
+        "F": 8
+      },
+      "totalTests": 619,
+      "totalPassed": 618,
+      "totalFailed": 1,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 382,
+      "totalLoc": 5771,
+      "overallCoverage": null,
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 0,
+        "a11y": 93,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 55
+        },
+        {
+          "name": "layout",
+          "avgScore": 64
+        },
+        {
+          "name": "nav",
+          "avgScore": 62
+        },
+        {
+          "name": "editor",
+          "avgScore": 63
+        },
+        {
+          "name": "lists",
+          "avgScore": 74
+        },
+        {
+          "name": "menus",
+          "avgScore": 67
+        },
+        {
+          "name": "extras",
+          "avgScore": 58
+        },
+        {
+          "name": "shell",
+          "avgScore": 75
+        }
+      ],
+      "componentScores": {
+        "Accordion": 66,
+        "ActionBar": 66,
+        "ActivityBar": 68,
+        "Avatar": 59,
+        "Badge": 51,
+        "Breadcrumbs": 59,
+        "Button": 73,
+        "Card": 54,
+        "Checkbox": 59,
+        "Collapsible": 57,
+        "Combobox": 80,
+        "CommandPalette": 79,
+        "ContextMenu": 68,
+        "Divider": 59,
+        "DropdownMenu": 68,
+        "EditorTab": 59,
+        "EditorWorkbench": 66,
+        "EmptyState": 58,
+        "Icon": 53,
+        "IconButton": 49,
+        "IdeShell": 75,
+        "InlineEditor": 61,
+        "Input": 66,
+        "Kbd": 45,
+        "KeyboardHint": 53,
+        "Label": 55,
+        "List": 78,
+        "Menubar": 68,
+        "Modal": 77,
+        "NotificationCenter": 65,
+        "Panel": 68,
+        "PanelBar": 66,
+        "PeekView": 66,
+        "Popover": 64,
+        "Progress": 58,
+        "PropertyGrid": 53,
+        "Radio": 58,
+        "RadioGroup": 65,
+        "Resizer": 68,
+        "ScrollArea": 65,
+        "Select": 69,
+        "ShellGrid": 53,
+        "SideBar": 58,
+        "Skeleton": 55,
+        "Slider": 57,
+        "SplitView": 63,
+        "StatusBar": 50,
+        "Switch": 64,
+        "Table": 66,
+        "Tabs": 69,
+        "TagInput": 69,
+        "Textarea": 59,
+        "Toast": 60,
+        "Toggle": 59,
+        "ToggleGroup": 66,
+        "Tooltip": 59,
+        "TreeView": 78,
+        "useCommandRegistry": 40,
+        "useDragDrop": 40,
+        "useFocusTrap": 40,
+        "useGlobalState": 26,
+        "useKeyboard": 40,
+        "usePersistedState": 40,
+        "useTooltip": 22,
+        "useVirtualList": 40,
+        "View": 66
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:44:31.971Z",
+      "averageScore": 77,
+      "gradeDistribution": {
+        "A": 5,
+        "B": 44,
+        "C": 15,
+        "D": 2,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 344,
+      "totalLoc": 5771,
+      "overallCoverage": {
+        "statements": 68.77,
+        "branches": 64.75,
+        "functions": 77.16,
+        "lines": 70.28
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 93,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 75
+        },
+        {
+          "name": "layout",
+          "avgScore": 75
+        },
+        {
+          "name": "nav",
+          "avgScore": 78
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 88
+        },
+        {
+          "name": "menus",
+          "avgScore": 80
+        },
+        {
+          "name": "extras",
+          "avgScore": 77
+        },
+        {
+          "name": "shell",
+          "avgScore": 86
+        }
+      ],
+      "componentScores": {
+        "Accordion": 76,
+        "ActionBar": 77,
+        "ActivityBar": 80,
+        "Avatar": 77,
+        "Badge": 71,
+        "Breadcrumbs": 79,
+        "Button": 91,
+        "Card": 74,
+        "Checkbox": 79,
+        "Collapsible": 77,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 79,
+        "DropdownMenu": 78,
+        "EditorTab": 77,
+        "EditorWorkbench": 82,
+        "EmptyState": 78,
+        "Icon": 68,
+        "IconButton": 57,
+        "IdeShell": 86,
+        "InlineEditor": 80,
+        "Input": 80,
+        "Kbd": 65,
+        "KeyboardHint": 65,
+        "Label": 75,
+        "List": 90,
+        "Menubar": 80,
+        "Modal": 86,
+        "NotificationCenter": 78,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 75,
+        "Progress": 78,
+        "PropertyGrid": 73,
+        "Radio": 78,
+        "RadioGroup": 67,
+        "Resizer": 76,
+        "ScrollArea": 71,
+        "Select": 89,
+        "ShellGrid": 65,
+        "SideBar": 76,
+        "Skeleton": 75,
+        "Slider": 75,
+        "SplitView": 68,
+        "StatusBar": 66,
+        "Switch": 83,
+        "Table": 80,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 77,
+        "Toast": 78,
+        "Toggle": 79,
+        "ToggleGroup": 74,
+        "Tooltip": 79,
+        "TreeView": 95,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 61,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 56,
+        "useVirtualList": 77,
+        "View": 82
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:44:50.023Z",
+      "averageScore": 77,
+      "gradeDistribution": {
+        "A": 5,
+        "B": 44,
+        "C": 15,
+        "D": 2,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 344,
+      "totalLoc": 5771,
+      "overallCoverage": {
+        "statements": 68.77,
+        "branches": 64.75,
+        "functions": 77.16,
+        "lines": 70.28
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 93,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 14
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 75
+        },
+        {
+          "name": "layout",
+          "avgScore": 75
+        },
+        {
+          "name": "nav",
+          "avgScore": 78
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 88
+        },
+        {
+          "name": "menus",
+          "avgScore": 80
+        },
+        {
+          "name": "extras",
+          "avgScore": 77
+        },
+        {
+          "name": "shell",
+          "avgScore": 86
+        }
+      ],
+      "componentScores": {
+        "Accordion": 76,
+        "ActionBar": 77,
+        "ActivityBar": 80,
+        "Avatar": 77,
+        "Badge": 71,
+        "Breadcrumbs": 79,
+        "Button": 91,
+        "Card": 74,
+        "Checkbox": 79,
+        "Collapsible": 77,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 81,
+        "Divider": 79,
+        "DropdownMenu": 78,
+        "EditorTab": 77,
+        "EditorWorkbench": 82,
+        "EmptyState": 78,
+        "Icon": 68,
+        "IconButton": 57,
+        "IdeShell": 86,
+        "InlineEditor": 80,
+        "Input": 80,
+        "Kbd": 65,
+        "KeyboardHint": 65,
+        "Label": 75,
+        "List": 90,
+        "Menubar": 80,
+        "Modal": 86,
+        "NotificationCenter": 78,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 75,
+        "Progress": 78,
+        "PropertyGrid": 73,
+        "Radio": 78,
+        "RadioGroup": 67,
+        "Resizer": 76,
+        "ScrollArea": 71,
+        "Select": 89,
+        "ShellGrid": 65,
+        "SideBar": 76,
+        "Skeleton": 75,
+        "Slider": 75,
+        "SplitView": 68,
+        "StatusBar": 66,
+        "Switch": 83,
+        "Table": 80,
+        "Tabs": 85,
+        "TagInput": 82,
+        "Textarea": 77,
+        "Toast": 78,
+        "Toggle": 79,
+        "ToggleGroup": 74,
+        "Tooltip": 79,
+        "TreeView": 95,
+        "useCommandRegistry": 75,
+        "useDragDrop": 62,
+        "useFocusTrap": 79,
+        "useGlobalState": 61,
+        "useKeyboard": 76,
+        "usePersistedState": 68,
+        "useTooltip": 56,
+        "useVirtualList": 77,
+        "View": 82
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:48:17.381Z",
+      "averageScore": 87,
+      "gradeDistribution": {
+        "A": 23,
+        "B": 41,
+        "C": 2,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 287,
+      "totalLoc": 5771,
+      "overallCoverage": {
+        "statements": 68.77,
+        "branches": 64.75,
+        "functions": 77.16,
+        "lines": 70.28
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 93,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 87
+        },
+        {
+          "name": "layout",
+          "avgScore": 83
+        },
+        {
+          "name": "nav",
+          "avgScore": 88
+        },
+        {
+          "name": "editor",
+          "avgScore": 90
+        },
+        {
+          "name": "lists",
+          "avgScore": 92
+        },
+        {
+          "name": "menus",
+          "avgScore": 88
+        },
+        {
+          "name": "extras",
+          "avgScore": 87
+        },
+        {
+          "name": "shell",
+          "avgScore": 86
+        }
+      ],
+      "componentScores": {
+        "Accordion": 86,
+        "ActionBar": 87,
+        "ActivityBar": 90,
+        "Avatar": 87,
+        "Badge": 81,
+        "Breadcrumbs": 89,
+        "Button": 91,
+        "Card": 84,
+        "Checkbox": 89,
+        "Collapsible": 87,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 91,
+        "Divider": 89,
+        "DropdownMenu": 88,
+        "EditorTab": 87,
+        "EditorWorkbench": 92,
+        "EmptyState": 88,
+        "Icon": 78,
+        "IconButton": 67,
+        "IdeShell": 86,
+        "InlineEditor": 90,
+        "Input": 90,
+        "Kbd": 75,
+        "KeyboardHint": 75,
+        "Label": 85,
+        "List": 90,
+        "Menubar": 90,
+        "Modal": 86,
+        "NotificationCenter": 88,
+        "Panel": 90,
+        "PanelBar": 90,
+        "PeekView": 90,
+        "Popover": 85,
+        "Progress": 88,
+        "PropertyGrid": 83,
+        "Radio": 88,
+        "RadioGroup": 77,
+        "Resizer": 86,
+        "ScrollArea": 81,
+        "Select": 89,
+        "ShellGrid": 75,
+        "SideBar": 86,
+        "Skeleton": 85,
+        "Slider": 85,
+        "SplitView": 68,
+        "StatusBar": 76,
+        "Switch": 93,
+        "Table": 90,
+        "Tabs": 95,
+        "TagInput": 92,
+        "Textarea": 87,
+        "Toast": 88,
+        "Toggle": 89,
+        "ToggleGroup": 84,
+        "Tooltip": 89,
+        "TreeView": 95,
+        "useCommandRegistry": 95,
+        "useDragDrop": 82,
+        "useFocusTrap": 99,
+        "useGlobalState": 81,
+        "useKeyboard": 96,
+        "usePersistedState": 88,
+        "useTooltip": 76,
+        "useVirtualList": 97,
+        "View": 92
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:48:51.441Z",
+      "averageScore": 87,
+      "gradeDistribution": {
+        "A": 23,
+        "B": 41,
+        "C": 2,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 287,
+      "totalLoc": 5771,
+      "overallCoverage": {
+        "statements": 68.77,
+        "branches": 64.75,
+        "functions": 77.16,
+        "lines": 70.28
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 93,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 87
+        },
+        {
+          "name": "layout",
+          "avgScore": 83
+        },
+        {
+          "name": "nav",
+          "avgScore": 88
+        },
+        {
+          "name": "editor",
+          "avgScore": 90
+        },
+        {
+          "name": "lists",
+          "avgScore": 92
+        },
+        {
+          "name": "menus",
+          "avgScore": 88
+        },
+        {
+          "name": "extras",
+          "avgScore": 87
+        },
+        {
+          "name": "shell",
+          "avgScore": 86
+        }
+      ],
+      "componentScores": {
+        "Accordion": 86,
+        "ActionBar": 87,
+        "ActivityBar": 90,
+        "Avatar": 87,
+        "Badge": 81,
+        "Breadcrumbs": 89,
+        "Button": 91,
+        "Card": 84,
+        "Checkbox": 89,
+        "Collapsible": 87,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 91,
+        "Divider": 89,
+        "DropdownMenu": 88,
+        "EditorTab": 87,
+        "EditorWorkbench": 92,
+        "EmptyState": 88,
+        "Icon": 78,
+        "IconButton": 67,
+        "IdeShell": 86,
+        "InlineEditor": 90,
+        "Input": 90,
+        "Kbd": 75,
+        "KeyboardHint": 75,
+        "Label": 85,
+        "List": 90,
+        "Menubar": 90,
+        "Modal": 86,
+        "NotificationCenter": 88,
+        "Panel": 90,
+        "PanelBar": 90,
+        "PeekView": 90,
+        "Popover": 85,
+        "Progress": 88,
+        "PropertyGrid": 83,
+        "Radio": 88,
+        "RadioGroup": 77,
+        "Resizer": 86,
+        "ScrollArea": 81,
+        "Select": 89,
+        "ShellGrid": 75,
+        "SideBar": 86,
+        "Skeleton": 85,
+        "Slider": 85,
+        "SplitView": 68,
+        "StatusBar": 76,
+        "Switch": 93,
+        "Table": 90,
+        "Tabs": 95,
+        "TagInput": 92,
+        "Textarea": 87,
+        "Toast": 88,
+        "Toggle": 89,
+        "ToggleGroup": 84,
+        "Tooltip": 89,
+        "TreeView": 95,
+        "useCommandRegistry": 95,
+        "useDragDrop": 82,
+        "useFocusTrap": 99,
+        "useGlobalState": 81,
+        "useKeyboard": 96,
+        "usePersistedState": 88,
+        "useTooltip": 76,
+        "useVirtualList": 97,
+        "View": 92
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:49:03.607Z",
+      "averageScore": 87,
+      "gradeDistribution": {
+        "A": 23,
+        "B": 41,
+        "C": 2,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 287,
+      "totalLoc": 5771,
+      "overallCoverage": {
+        "statements": 68.77,
+        "branches": 64.75,
+        "functions": 77.16,
+        "lines": 70.28
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 93,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 87
+        },
+        {
+          "name": "layout",
+          "avgScore": 83
+        },
+        {
+          "name": "nav",
+          "avgScore": 88
+        },
+        {
+          "name": "editor",
+          "avgScore": 90
+        },
+        {
+          "name": "lists",
+          "avgScore": 92
+        },
+        {
+          "name": "menus",
+          "avgScore": 88
+        },
+        {
+          "name": "extras",
+          "avgScore": 87
+        },
+        {
+          "name": "shell",
+          "avgScore": 86
+        }
+      ],
+      "componentScores": {
+        "Accordion": 86,
+        "ActionBar": 87,
+        "ActivityBar": 90,
+        "Avatar": 87,
+        "Badge": 81,
+        "Breadcrumbs": 89,
+        "Button": 91,
+        "Card": 84,
+        "Checkbox": 89,
+        "Collapsible": 87,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 91,
+        "Divider": 89,
+        "DropdownMenu": 88,
+        "EditorTab": 87,
+        "EditorWorkbench": 92,
+        "EmptyState": 88,
+        "Icon": 78,
+        "IconButton": 67,
+        "IdeShell": 86,
+        "InlineEditor": 90,
+        "Input": 90,
+        "Kbd": 75,
+        "KeyboardHint": 75,
+        "Label": 85,
+        "List": 90,
+        "Menubar": 90,
+        "Modal": 86,
+        "NotificationCenter": 88,
+        "Panel": 90,
+        "PanelBar": 90,
+        "PeekView": 90,
+        "Popover": 85,
+        "Progress": 88,
+        "PropertyGrid": 83,
+        "Radio": 88,
+        "RadioGroup": 77,
+        "Resizer": 86,
+        "ScrollArea": 81,
+        "Select": 89,
+        "ShellGrid": 75,
+        "SideBar": 86,
+        "Skeleton": 85,
+        "Slider": 85,
+        "SplitView": 68,
+        "StatusBar": 76,
+        "Switch": 93,
+        "Table": 90,
+        "Tabs": 95,
+        "TagInput": 92,
+        "Textarea": 87,
+        "Toast": 88,
+        "Toggle": 89,
+        "ToggleGroup": 84,
+        "Tooltip": 89,
+        "TreeView": 95,
+        "useCommandRegistry": 95,
+        "useDragDrop": 82,
+        "useFocusTrap": 99,
+        "useGlobalState": 81,
+        "useKeyboard": 96,
+        "usePersistedState": 88,
+        "useTooltip": 76,
+        "useVirtualList": 97,
+        "View": 92
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:49:49.595Z",
+      "averageScore": 70,
+      "gradeDistribution": {
+        "A": 0,
+        "B": 26,
+        "C": 36,
+        "D": 3,
+        "F": 1
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 324,
+      "totalLoc": 5771,
+      "overallCoverage": null,
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 0,
+        "a11y": 93,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 66
+        },
+        {
+          "name": "layout",
+          "avgScore": 72
+        },
+        {
+          "name": "nav",
+          "avgScore": 73
+        },
+        {
+          "name": "editor",
+          "avgScore": 73
+        },
+        {
+          "name": "lists",
+          "avgScore": 77
+        },
+        {
+          "name": "menus",
+          "avgScore": 75
+        },
+        {
+          "name": "extras",
+          "avgScore": 68
+        },
+        {
+          "name": "shell",
+          "avgScore": 75
+        }
+      ],
+      "componentScores": {
+        "Accordion": 76,
+        "ActionBar": 76,
+        "ActivityBar": 78,
+        "Avatar": 69,
+        "Badge": 61,
+        "Breadcrumbs": 69,
+        "Button": 73,
+        "Card": 64,
+        "Checkbox": 69,
+        "Collapsible": 67,
+        "Combobox": 80,
+        "CommandPalette": 79,
+        "ContextMenu": 78,
+        "Divider": 69,
+        "DropdownMenu": 78,
+        "EditorTab": 69,
+        "EditorWorkbench": 76,
+        "EmptyState": 68,
+        "Icon": 63,
+        "IconButton": 59,
+        "IdeShell": 75,
+        "InlineEditor": 71,
+        "Input": 76,
+        "Kbd": 55,
+        "KeyboardHint": 63,
+        "Label": 65,
+        "List": 78,
+        "Menubar": 78,
+        "Modal": 77,
+        "NotificationCenter": 75,
+        "Panel": 78,
+        "PanelBar": 76,
+        "PeekView": 76,
+        "Popover": 74,
+        "Progress": 68,
+        "PropertyGrid": 63,
+        "Radio": 68,
+        "RadioGroup": 75,
+        "Resizer": 78,
+        "ScrollArea": 75,
+        "Select": 69,
+        "ShellGrid": 63,
+        "SideBar": 68,
+        "Skeleton": 65,
+        "Slider": 67,
+        "SplitView": 63,
+        "StatusBar": 67,
+        "Switch": 74,
+        "Table": 76,
+        "Tabs": 79,
+        "TagInput": 79,
+        "Textarea": 69,
+        "Toast": 70,
+        "Toggle": 69,
+        "ToggleGroup": 76,
+        "Tooltip": 69,
+        "TreeView": 78,
+        "useCommandRegistry": 60,
+        "useDragDrop": 60,
+        "useFocusTrap": 60,
+        "useGlobalState": 46,
+        "useKeyboard": 60,
+        "usePersistedState": 60,
+        "useTooltip": 42,
+        "useVirtualList": 60,
+        "View": 76
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:49:52.641Z",
+      "averageScore": 87,
+      "gradeDistribution": {
+        "A": 23,
+        "B": 41,
+        "C": 2,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 287,
+      "totalLoc": 5771,
+      "overallCoverage": {
+        "statements": 68.77,
+        "branches": 64.75,
+        "functions": 77.16,
+        "lines": 70.28
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 93,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 87
+        },
+        {
+          "name": "layout",
+          "avgScore": 83
+        },
+        {
+          "name": "nav",
+          "avgScore": 88
+        },
+        {
+          "name": "editor",
+          "avgScore": 90
+        },
+        {
+          "name": "lists",
+          "avgScore": 92
+        },
+        {
+          "name": "menus",
+          "avgScore": 88
+        },
+        {
+          "name": "extras",
+          "avgScore": 87
+        },
+        {
+          "name": "shell",
+          "avgScore": 86
+        }
+      ],
+      "componentScores": {
+        "Accordion": 86,
+        "ActionBar": 87,
+        "ActivityBar": 90,
+        "Avatar": 87,
+        "Badge": 81,
+        "Breadcrumbs": 89,
+        "Button": 91,
+        "Card": 84,
+        "Checkbox": 89,
+        "Collapsible": 87,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 91,
+        "Divider": 89,
+        "DropdownMenu": 88,
+        "EditorTab": 87,
+        "EditorWorkbench": 92,
+        "EmptyState": 88,
+        "Icon": 78,
+        "IconButton": 67,
+        "IdeShell": 86,
+        "InlineEditor": 90,
+        "Input": 90,
+        "Kbd": 75,
+        "KeyboardHint": 75,
+        "Label": 85,
+        "List": 90,
+        "Menubar": 90,
+        "Modal": 86,
+        "NotificationCenter": 88,
+        "Panel": 90,
+        "PanelBar": 90,
+        "PeekView": 90,
+        "Popover": 85,
+        "Progress": 88,
+        "PropertyGrid": 83,
+        "Radio": 88,
+        "RadioGroup": 77,
+        "Resizer": 86,
+        "ScrollArea": 81,
+        "Select": 89,
+        "ShellGrid": 75,
+        "SideBar": 86,
+        "Skeleton": 85,
+        "Slider": 85,
+        "SplitView": 68,
+        "StatusBar": 76,
+        "Switch": 93,
+        "Table": 90,
+        "Tabs": 95,
+        "TagInput": 92,
+        "Textarea": 87,
+        "Toast": 88,
+        "Toggle": 89,
+        "ToggleGroup": 84,
+        "Tooltip": 89,
+        "TreeView": 95,
+        "useCommandRegistry": 95,
+        "useDragDrop": 82,
+        "useFocusTrap": 99,
+        "useGlobalState": 81,
+        "useKeyboard": 96,
+        "usePersistedState": 88,
+        "useTooltip": 76,
+        "useVirtualList": 97,
+        "View": 92
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:50:26.498Z",
+      "averageScore": 87,
+      "gradeDistribution": {
+        "A": 23,
+        "B": 41,
+        "C": 2,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 619,
+      "totalPassed": 619,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 287,
+      "totalLoc": 5771,
+      "overallCoverage": {
+        "statements": 68.77,
+        "branches": 64.75,
+        "functions": 77.16,
+        "lines": 70.28
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 93,
+        "axeRuntime": 50,
+        "interaction": 97,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 87
+        },
+        {
+          "name": "layout",
+          "avgScore": 83
+        },
+        {
+          "name": "nav",
+          "avgScore": 88
+        },
+        {
+          "name": "editor",
+          "avgScore": 90
+        },
+        {
+          "name": "lists",
+          "avgScore": 92
+        },
+        {
+          "name": "menus",
+          "avgScore": 88
+        },
+        {
+          "name": "extras",
+          "avgScore": 87
+        },
+        {
+          "name": "shell",
+          "avgScore": 86
+        }
+      ],
+      "componentScores": {
+        "Accordion": 86,
+        "ActionBar": 87,
+        "ActivityBar": 90,
+        "Avatar": 87,
+        "Badge": 81,
+        "Breadcrumbs": 89,
+        "Button": 91,
+        "Card": 84,
+        "Checkbox": 89,
+        "Collapsible": 87,
+        "Combobox": 97,
+        "CommandPalette": 96,
+        "ContextMenu": 91,
+        "Divider": 89,
+        "DropdownMenu": 88,
+        "EditorTab": 87,
+        "EditorWorkbench": 92,
+        "EmptyState": 88,
+        "Icon": 78,
+        "IconButton": 67,
+        "IdeShell": 86,
+        "InlineEditor": 90,
+        "Input": 90,
+        "Kbd": 75,
+        "KeyboardHint": 75,
+        "Label": 85,
+        "List": 90,
+        "Menubar": 90,
+        "Modal": 86,
+        "NotificationCenter": 88,
+        "Panel": 90,
+        "PanelBar": 90,
+        "PeekView": 90,
+        "Popover": 85,
+        "Progress": 88,
+        "PropertyGrid": 83,
+        "Radio": 88,
+        "RadioGroup": 77,
+        "Resizer": 86,
+        "ScrollArea": 81,
+        "Select": 89,
+        "ShellGrid": 75,
+        "SideBar": 86,
+        "Skeleton": 85,
+        "Slider": 85,
+        "SplitView": 68,
+        "StatusBar": 76,
+        "Switch": 93,
+        "Table": 90,
+        "Tabs": 95,
+        "TagInput": 92,
+        "Textarea": 87,
+        "Toast": 88,
+        "Toggle": 89,
+        "ToggleGroup": 84,
+        "Tooltip": 89,
+        "TreeView": 95,
+        "useCommandRegistry": 95,
+        "useDragDrop": 82,
+        "useFocusTrap": 99,
+        "useGlobalState": 81,
+        "useKeyboard": 96,
+        "usePersistedState": 88,
+        "useTooltip": 76,
+        "useVirtualList": 97,
+        "View": 92
+      }
+    },
+    {
+      "timestamp": "2026-03-13T05:59:33.623Z",
+      "averageScore": 68,
+      "gradeDistribution": {
+        "A": 0,
+        "B": 4,
+        "C": 59,
+        "D": 2,
+        "F": 1
+      },
+      "totalTests": 784,
+      "totalPassed": 731,
+      "totalFailed": 53,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 206,
+      "totalLoc": 5771,
+      "overallCoverage": null,
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 0,
+        "a11y": 93,
+        "axeRuntime": 50,
+        "interaction": 110,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 65
+        },
+        {
+          "name": "layout",
+          "avgScore": 69
+        },
+        {
+          "name": "nav",
+          "avgScore": 70
+        },
+        {
+          "name": "editor",
+          "avgScore": 70
+        },
+        {
+          "name": "lists",
+          "avgScore": 73
+        },
+        {
+          "name": "menus",
+          "avgScore": 72
+        },
+        {
+          "name": "extras",
+          "avgScore": 67
+        },
+        {
+          "name": "shell",
+          "avgScore": 73
+        }
+      ],
+      "componentScores": {
+        "Accordion": 73,
+        "ActionBar": 72,
+        "ActivityBar": 72,
+        "Avatar": 66,
+        "Badge": 66,
+        "Breadcrumbs": 65,
+        "Button": 69,
+        "Card": 60,
+        "Checkbox": 72,
+        "Collapsible": 70,
+        "Combobox": 80,
+        "CommandPalette": 80,
+        "ContextMenu": 73,
+        "Divider": 66,
+        "DropdownMenu": 73,
+        "EditorTab": 66,
+        "EditorWorkbench": 73,
+        "EmptyState": 66,
+        "Icon": 60,
+        "IconButton": 60,
+        "IdeShell": 73,
+        "InlineEditor": 72,
+        "Input": 77,
+        "Kbd": 52,
+        "KeyboardHint": 60,
+        "Label": 62,
+        "List": 72,
+        "Menubar": 73,
+        "Modal": 72,
+        "NotificationCenter": 73,
+        "Panel": 72,
+        "PanelBar": 73,
+        "PeekView": 73,
+        "Popover": 69,
+        "Progress": 65,
+        "PropertyGrid": 60,
+        "Radio": 64,
+        "RadioGroup": 73,
+        "Resizer": 72,
+        "ScrollArea": 72,
+        "Select": 72,
+        "ShellGrid": 60,
+        "SideBar": 66,
+        "Skeleton": 62,
+        "Slider": 73,
+        "SplitView": 61,
+        "StatusBar": 72,
+        "Switch": 68,
+        "Table": 73,
+        "Tabs": 73,
+        "TagInput": 80,
+        "Textarea": 71,
+        "Toast": 74,
+        "Toggle": 65,
+        "ToggleGroup": 73,
+        "Tooltip": 66,
+        "TreeView": 73,
+        "useCommandRegistry": 60,
+        "useDragDrop": 60,
+        "useFocusTrap": 60,
+        "useGlobalState": 46,
+        "useKeyboard": 60,
+        "usePersistedState": 60,
+        "useTooltip": 42,
+        "useVirtualList": 60,
+        "View": 72
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:03:05.502Z",
+      "averageScore": 73,
+      "gradeDistribution": {
+        "A": 0,
+        "B": 28,
+        "C": 36,
+        "D": 1,
+        "F": 1
+      },
+      "totalTests": 784,
+      "totalPassed": 775,
+      "totalFailed": 9,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 163,
+      "totalLoc": 5771,
+      "overallCoverage": null,
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 0,
+        "a11y": 93,
+        "axeRuntime": 50,
+        "interaction": 110,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 69
+        },
+        {
+          "name": "layout",
+          "avgScore": 76
+        },
+        {
+          "name": "nav",
+          "avgScore": 78
+        },
+        {
+          "name": "editor",
+          "avgScore": 77
+        },
+        {
+          "name": "lists",
+          "avgScore": 75
+        },
+        {
+          "name": "menus",
+          "avgScore": 78
+        },
+        {
+          "name": "extras",
+          "avgScore": 72
+        },
+        {
+          "name": "shell",
+          "avgScore": 80
+        }
+      ],
+      "componentScores": {
+        "Accordion": 80,
+        "ActionBar": 80,
+        "ActivityBar": 80,
+        "Avatar": 66,
+        "Badge": 74,
+        "Breadcrumbs": 73,
+        "Button": 77,
+        "Card": 68,
+        "Checkbox": 72,
+        "Collapsible": 70,
+        "Combobox": 80,
+        "CommandPalette": 80,
+        "ContextMenu": 80,
+        "Divider": 74,
+        "DropdownMenu": 80,
+        "EditorTab": 73,
+        "EditorWorkbench": 80,
+        "EmptyState": 73,
+        "Icon": 68,
+        "IconButton": 68,
+        "IdeShell": 80,
+        "InlineEditor": 72,
+        "Input": 77,
+        "Kbd": 60,
+        "KeyboardHint": 68,
+        "Label": 70,
+        "List": 72,
+        "Menubar": 80,
+        "Modal": 80,
+        "NotificationCenter": 80,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 76,
+        "Progress": 73,
+        "PropertyGrid": 68,
+        "Radio": 72,
+        "RadioGroup": 80,
+        "Resizer": 80,
+        "ScrollArea": 80,
+        "Select": 72,
+        "ShellGrid": 68,
+        "SideBar": 73,
+        "Skeleton": 70,
+        "Slider": 73,
+        "SplitView": 68,
+        "StatusBar": 80,
+        "Switch": 76,
+        "Table": 80,
+        "Tabs": 80,
+        "TagInput": 80,
+        "Textarea": 71,
+        "Toast": 74,
+        "Toggle": 73,
+        "ToggleGroup": 80,
+        "Tooltip": 66,
+        "TreeView": 73,
+        "useCommandRegistry": 60,
+        "useDragDrop": 60,
+        "useFocusTrap": 60,
+        "useGlobalState": 46,
+        "useKeyboard": 60,
+        "usePersistedState": 60,
+        "useTooltip": 42,
+        "useVirtualList": 60,
+        "View": 80
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:03:25.832Z",
+      "averageScore": 73,
+      "gradeDistribution": {
+        "A": 0,
+        "B": 28,
+        "C": 36,
+        "D": 1,
+        "F": 1
+      },
+      "totalTests": 784,
+      "totalPassed": 775,
+      "totalFailed": 9,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 163,
+      "totalLoc": 5771,
+      "overallCoverage": null,
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 0,
+        "a11y": 93,
+        "axeRuntime": 50,
+        "interaction": 110,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 69
+        },
+        {
+          "name": "layout",
+          "avgScore": 76
+        },
+        {
+          "name": "nav",
+          "avgScore": 78
+        },
+        {
+          "name": "editor",
+          "avgScore": 77
+        },
+        {
+          "name": "lists",
+          "avgScore": 75
+        },
+        {
+          "name": "menus",
+          "avgScore": 78
+        },
+        {
+          "name": "extras",
+          "avgScore": 72
+        },
+        {
+          "name": "shell",
+          "avgScore": 80
+        }
+      ],
+      "componentScores": {
+        "Accordion": 80,
+        "ActionBar": 80,
+        "ActivityBar": 80,
+        "Avatar": 66,
+        "Badge": 74,
+        "Breadcrumbs": 73,
+        "Button": 77,
+        "Card": 68,
+        "Checkbox": 72,
+        "Collapsible": 70,
+        "Combobox": 80,
+        "CommandPalette": 80,
+        "ContextMenu": 80,
+        "Divider": 74,
+        "DropdownMenu": 80,
+        "EditorTab": 73,
+        "EditorWorkbench": 80,
+        "EmptyState": 73,
+        "Icon": 68,
+        "IconButton": 68,
+        "IdeShell": 80,
+        "InlineEditor": 72,
+        "Input": 77,
+        "Kbd": 60,
+        "KeyboardHint": 68,
+        "Label": 70,
+        "List": 72,
+        "Menubar": 80,
+        "Modal": 80,
+        "NotificationCenter": 80,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 76,
+        "Progress": 73,
+        "PropertyGrid": 68,
+        "Radio": 72,
+        "RadioGroup": 80,
+        "Resizer": 80,
+        "ScrollArea": 80,
+        "Select": 72,
+        "ShellGrid": 68,
+        "SideBar": 73,
+        "Skeleton": 70,
+        "Slider": 73,
+        "SplitView": 68,
+        "StatusBar": 80,
+        "Switch": 76,
+        "Table": 80,
+        "Tabs": 80,
+        "TagInput": 80,
+        "Textarea": 71,
+        "Toast": 74,
+        "Toggle": 73,
+        "ToggleGroup": 80,
+        "Tooltip": 66,
+        "TreeView": 73,
+        "useCommandRegistry": 60,
+        "useDragDrop": 60,
+        "useFocusTrap": 60,
+        "useGlobalState": 46,
+        "useKeyboard": 60,
+        "usePersistedState": 60,
+        "useTooltip": 42,
+        "useVirtualList": 60,
+        "View": 80
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:09:07.438Z",
+      "averageScore": 91,
+      "gradeDistribution": {
+        "A": 48,
+        "B": 17,
+        "C": 1,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 784,
+      "totalPassed": 775,
+      "totalFailed": 9,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 124,
+      "totalLoc": 5771,
+      "overallCoverage": {
+        "statements": 71.8,
+        "branches": 66.45,
+        "functions": 80.94,
+        "lines": 72.88
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 93,
+        "axeRuntime": 50,
+        "interaction": 110,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 90
+        },
+        {
+          "name": "layout",
+          "avgScore": 88
+        },
+        {
+          "name": "nav",
+          "avgScore": 93
+        },
+        {
+          "name": "editor",
+          "avgScore": 94
+        },
+        {
+          "name": "lists",
+          "avgScore": 90
+        },
+        {
+          "name": "menus",
+          "avgScore": 92
+        },
+        {
+          "name": "extras",
+          "avgScore": 91
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 84,
+        "Badge": 94,
+        "Breadcrumbs": 93,
+        "Button": 95,
+        "Card": 88,
+        "Checkbox": 92,
+        "Collapsible": 90,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 94,
+        "DropdownMenu": 93,
+        "EditorTab": 91,
+        "EditorWorkbench": 96,
+        "EmptyState": 93,
+        "Icon": 88,
+        "IconButton": 80,
+        "IdeShell": 91,
+        "InlineEditor": 91,
+        "Input": 92,
+        "Kbd": 80,
+        "KeyboardHint": 80,
+        "Label": 90,
+        "List": 84,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 89,
+        "Progress": 93,
+        "PropertyGrid": 88,
+        "Radio": 92,
+        "RadioGroup": 90,
+        "Resizer": 88,
+        "ScrollArea": 87,
+        "Select": 92,
+        "ShellGrid": 80,
+        "SideBar": 91,
+        "Skeleton": 90,
+        "Slider": 92,
+        "SplitView": 73,
+        "StatusBar": 90,
+        "Switch": 95,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 89,
+        "Toast": 92,
+        "Toggle": 93,
+        "ToggleGroup": 91,
+        "Tooltip": 86,
+        "TreeView": 90,
+        "useCommandRegistry": 95,
+        "useDragDrop": 82,
+        "useFocusTrap": 99,
+        "useGlobalState": 81,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 76,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:22:04.555Z",
+      "averageScore": 93,
+      "gradeDistribution": {
+        "A": 59,
+        "B": 7,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 784,
+      "totalPassed": 784,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 80,
+      "totalLoc": 5795,
+      "overallCoverage": {
+        "statements": 71.86,
+        "branches": 67.48,
+        "functions": 80.18,
+        "lines": 72.99
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 110,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 94
+        },
+        {
+          "name": "layout",
+          "avgScore": 91
+        },
+        {
+          "name": "nav",
+          "avgScore": 93
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 93
+        },
+        {
+          "name": "extras",
+          "avgScore": 95
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 95,
+        "Badge": 97,
+        "Breadcrumbs": 93,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 98,
+        "Collapsible": 93,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 97,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 93,
+        "Icon": 93,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 92,
+        "Kbd": 93,
+        "KeyboardHint": 85,
+        "Label": 97,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 93,
+        "Progress": 96,
+        "PropertyGrid": 98,
+        "Radio": 98,
+        "RadioGroup": 90,
+        "Resizer": 88,
+        "ScrollArea": 87,
+        "Select": 98,
+        "ShellGrid": 80,
+        "SideBar": 91,
+        "Skeleton": 97,
+        "Slider": 99,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 98,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 94,
+        "Toast": 96,
+        "Toggle": 93,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 82,
+        "useFocusTrap": 99,
+        "useGlobalState": 81,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 77,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:22:22.739Z",
+      "averageScore": 93,
+      "gradeDistribution": {
+        "A": 59,
+        "B": 7,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 784,
+      "totalPassed": 784,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 80,
+      "totalLoc": 5795,
+      "overallCoverage": {
+        "statements": 71.86,
+        "branches": 67.48,
+        "functions": 80.18,
+        "lines": 72.99
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 110,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 94
+        },
+        {
+          "name": "layout",
+          "avgScore": 91
+        },
+        {
+          "name": "nav",
+          "avgScore": 93
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 93
+        },
+        {
+          "name": "extras",
+          "avgScore": 95
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 95,
+        "Badge": 97,
+        "Breadcrumbs": 93,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 98,
+        "Collapsible": 93,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 97,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 93,
+        "Icon": 93,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 92,
+        "Kbd": 93,
+        "KeyboardHint": 85,
+        "Label": 97,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 93,
+        "Progress": 96,
+        "PropertyGrid": 98,
+        "Radio": 98,
+        "RadioGroup": 90,
+        "Resizer": 88,
+        "ScrollArea": 87,
+        "Select": 98,
+        "ShellGrid": 80,
+        "SideBar": 91,
+        "Skeleton": 97,
+        "Slider": 99,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 98,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 94,
+        "Toast": 96,
+        "Toggle": 93,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 82,
+        "useFocusTrap": 99,
+        "useGlobalState": 81,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 77,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:23:24.068Z",
+      "averageScore": 94,
+      "gradeDistribution": {
+        "A": 60,
+        "B": 6,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 784,
+      "totalPassed": 784,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 77,
+      "totalLoc": 5796,
+      "overallCoverage": {
+        "statements": 71.86,
+        "branches": 67.53,
+        "functions": 80.21,
+        "lines": 72.99
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 110,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 94
+        },
+        {
+          "name": "layout",
+          "avgScore": 93
+        },
+        {
+          "name": "nav",
+          "avgScore": 93
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 93
+        },
+        {
+          "name": "extras",
+          "avgScore": 95
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 95,
+        "Badge": 97,
+        "Breadcrumbs": 93,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 98,
+        "Collapsible": 97,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 97,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 93,
+        "Icon": 93,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 92,
+        "Kbd": 93,
+        "KeyboardHint": 85,
+        "Label": 97,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 93,
+        "Progress": 96,
+        "PropertyGrid": 98,
+        "Radio": 98,
+        "RadioGroup": 90,
+        "Resizer": 88,
+        "ScrollArea": 87,
+        "Select": 98,
+        "ShellGrid": 93,
+        "SideBar": 91,
+        "Skeleton": 97,
+        "Slider": 99,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 98,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 94,
+        "Toast": 96,
+        "Toggle": 93,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 82,
+        "useFocusTrap": 99,
+        "useGlobalState": 81,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 77,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:23:35.558Z",
+      "averageScore": 94,
+      "gradeDistribution": {
+        "A": 61,
+        "B": 5,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 784,
+      "totalPassed": 784,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 76,
+      "totalLoc": 5796,
+      "overallCoverage": {
+        "statements": 71.86,
+        "branches": 67.57,
+        "functions": 80.25,
+        "lines": 72.99
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 110,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 94
+        },
+        {
+          "name": "layout",
+          "avgScore": 93
+        },
+        {
+          "name": "nav",
+          "avgScore": 93
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 94
+        },
+        {
+          "name": "extras",
+          "avgScore": 95
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 95,
+        "Badge": 97,
+        "Breadcrumbs": 93,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 98,
+        "Collapsible": 97,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 97,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 93,
+        "Icon": 93,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 92,
+        "Kbd": 93,
+        "KeyboardHint": 92,
+        "Label": 97,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 93,
+        "Progress": 96,
+        "PropertyGrid": 98,
+        "Radio": 98,
+        "RadioGroup": 90,
+        "Resizer": 88,
+        "ScrollArea": 87,
+        "Select": 98,
+        "ShellGrid": 93,
+        "SideBar": 91,
+        "Skeleton": 97,
+        "Slider": 99,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 98,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 94,
+        "Toast": 96,
+        "Toggle": 93,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 82,
+        "useFocusTrap": 99,
+        "useGlobalState": 81,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 77,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:23:51.647Z",
+      "averageScore": 94,
+      "gradeDistribution": {
+        "A": 61,
+        "B": 5,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 784,
+      "totalPassed": 784,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 76,
+      "totalLoc": 5796,
+      "overallCoverage": {
+        "statements": 71.86,
+        "branches": 67.57,
+        "functions": 80.25,
+        "lines": 72.99
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 110,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 94
+        },
+        {
+          "name": "layout",
+          "avgScore": 93
+        },
+        {
+          "name": "nav",
+          "avgScore": 93
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 94
+        },
+        {
+          "name": "extras",
+          "avgScore": 95
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 95,
+        "Badge": 97,
+        "Breadcrumbs": 93,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 98,
+        "Collapsible": 97,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 97,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 93,
+        "Icon": 93,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 92,
+        "Kbd": 93,
+        "KeyboardHint": 92,
+        "Label": 97,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 93,
+        "Progress": 96,
+        "PropertyGrid": 98,
+        "Radio": 98,
+        "RadioGroup": 90,
+        "Resizer": 88,
+        "ScrollArea": 87,
+        "Select": 98,
+        "ShellGrid": 93,
+        "SideBar": 91,
+        "Skeleton": 97,
+        "Slider": 99,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 98,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 94,
+        "Toast": 96,
+        "Toggle": 93,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 82,
+        "useFocusTrap": 99,
+        "useGlobalState": 81,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 77,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:25:51.236Z",
+      "averageScore": 94,
+      "gradeDistribution": {
+        "A": 61,
+        "B": 5,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 784,
+      "totalPassed": 784,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 76,
+      "totalLoc": 5796,
+      "overallCoverage": {
+        "statements": 71.86,
+        "branches": 67.57,
+        "functions": 80.25,
+        "lines": 72.99
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 110,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 94
+        },
+        {
+          "name": "layout",
+          "avgScore": 93
+        },
+        {
+          "name": "nav",
+          "avgScore": 93
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 94
+        },
+        {
+          "name": "extras",
+          "avgScore": 95
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 95,
+        "Badge": 97,
+        "Breadcrumbs": 93,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 98,
+        "Collapsible": 97,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 97,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 93,
+        "Icon": 93,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 92,
+        "Kbd": 93,
+        "KeyboardHint": 92,
+        "Label": 97,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 93,
+        "Progress": 96,
+        "PropertyGrid": 98,
+        "Radio": 98,
+        "RadioGroup": 90,
+        "Resizer": 88,
+        "ScrollArea": 87,
+        "Select": 98,
+        "ShellGrid": 93,
+        "SideBar": 91,
+        "Skeleton": 97,
+        "Slider": 99,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 98,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 94,
+        "Toast": 96,
+        "Toggle": 93,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 82,
+        "useFocusTrap": 99,
+        "useGlobalState": 81,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 77,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:32:43.472Z",
+      "averageScore": 95,
+      "gradeDistribution": {
+        "A": 61,
+        "B": 5,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 784,
+      "totalPassed": 784,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 65,
+      "totalLoc": 5801,
+      "overallCoverage": {
+        "statements": 71.87,
+        "branches": 68.05,
+        "functions": 80.64,
+        "lines": 73.01
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 110,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 95
+        },
+        {
+          "name": "layout",
+          "avgScore": 93
+        },
+        {
+          "name": "nav",
+          "avgScore": 95
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 94
+        },
+        {
+          "name": "extras",
+          "avgScore": 97
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 99,
+        "Badge": 100,
+        "Breadcrumbs": 100,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 98,
+        "Collapsible": 97,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 100,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 100,
+        "Icon": 100,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 92,
+        "Kbd": 100,
+        "KeyboardHint": 92,
+        "Label": 100,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 93,
+        "Progress": 99,
+        "PropertyGrid": 98,
+        "Radio": 98,
+        "RadioGroup": 90,
+        "Resizer": 88,
+        "ScrollArea": 87,
+        "Select": 98,
+        "ShellGrid": 93,
+        "SideBar": 99,
+        "Skeleton": 100,
+        "Slider": 99,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 98,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 94,
+        "Toast": 96,
+        "Toggle": 93,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 82,
+        "useFocusTrap": 99,
+        "useGlobalState": 81,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 77,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:40:07.479Z",
+      "averageScore": 77,
+      "gradeDistribution": {
+        "A": 0,
+        "B": 57,
+        "C": 8,
+        "D": 1,
+        "F": 0
+      },
+      "totalTests": 815,
+      "totalPassed": 812,
+      "totalFailed": 3,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 101,
+      "totalLoc": 5801,
+      "overallCoverage": null,
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 0,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 112,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 74
+        },
+        {
+          "name": "layout",
+          "avgScore": 80
+        },
+        {
+          "name": "nav",
+          "avgScore": 80
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 80
+        },
+        {
+          "name": "menus",
+          "avgScore": 80
+        },
+        {
+          "name": "extras",
+          "avgScore": 80
+        },
+        {
+          "name": "shell",
+          "avgScore": 80
+        }
+      ],
+      "componentScores": {
+        "Accordion": 80,
+        "ActionBar": 80,
+        "ActivityBar": 80,
+        "Avatar": 80,
+        "Badge": 80,
+        "Breadcrumbs": 80,
+        "Button": 80,
+        "Card": 80,
+        "Checkbox": 78,
+        "Collapsible": 80,
+        "Combobox": 80,
+        "CommandPalette": 80,
+        "ContextMenu": 80,
+        "Divider": 80,
+        "DropdownMenu": 80,
+        "EditorTab": 80,
+        "EditorWorkbench": 80,
+        "EmptyState": 80,
+        "Icon": 80,
+        "IconButton": 80,
+        "IdeShell": 80,
+        "InlineEditor": 80,
+        "Input": 77,
+        "Kbd": 80,
+        "KeyboardHint": 80,
+        "Label": 80,
+        "List": 80,
+        "Menubar": 80,
+        "Modal": 80,
+        "NotificationCenter": 80,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 80,
+        "Progress": 79,
+        "PropertyGrid": 80,
+        "Radio": 78,
+        "RadioGroup": 80,
+        "Resizer": 72,
+        "ScrollArea": 80,
+        "Select": 78,
+        "ShellGrid": 80,
+        "SideBar": 80,
+        "Skeleton": 80,
+        "Slider": 79,
+        "SplitView": 80,
+        "StatusBar": 80,
+        "Switch": 79,
+        "Table": 80,
+        "Tabs": 80,
+        "TagInput": 80,
+        "Textarea": 78,
+        "Toast": 80,
+        "Toggle": 79,
+        "ToggleGroup": 80,
+        "Tooltip": 80,
+        "TreeView": 80,
+        "useCommandRegistry": 60,
+        "useDragDrop": 60,
+        "useFocusTrap": 60,
+        "useGlobalState": 46,
+        "useKeyboard": 60,
+        "usePersistedState": 60,
+        "useTooltip": 60,
+        "useVirtualList": 60,
+        "View": 80
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:40:42.704Z",
+      "averageScore": 77,
+      "gradeDistribution": {
+        "A": 0,
+        "B": 57,
+        "C": 9,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 827,
+      "totalPassed": 824,
+      "totalFailed": 3,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 101,
+      "totalLoc": 5801,
+      "overallCoverage": null,
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 0,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 112,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 74
+        },
+        {
+          "name": "layout",
+          "avgScore": 80
+        },
+        {
+          "name": "nav",
+          "avgScore": 80
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 80
+        },
+        {
+          "name": "menus",
+          "avgScore": 80
+        },
+        {
+          "name": "extras",
+          "avgScore": 80
+        },
+        {
+          "name": "shell",
+          "avgScore": 80
+        }
+      ],
+      "componentScores": {
+        "Accordion": 80,
+        "ActionBar": 80,
+        "ActivityBar": 80,
+        "Avatar": 80,
+        "Badge": 80,
+        "Breadcrumbs": 80,
+        "Button": 80,
+        "Card": 80,
+        "Checkbox": 78,
+        "Collapsible": 80,
+        "Combobox": 80,
+        "CommandPalette": 80,
+        "ContextMenu": 80,
+        "Divider": 80,
+        "DropdownMenu": 80,
+        "EditorTab": 80,
+        "EditorWorkbench": 80,
+        "EmptyState": 80,
+        "Icon": 80,
+        "IconButton": 80,
+        "IdeShell": 80,
+        "InlineEditor": 80,
+        "Input": 77,
+        "Kbd": 80,
+        "KeyboardHint": 80,
+        "Label": 80,
+        "List": 80,
+        "Menubar": 80,
+        "Modal": 80,
+        "NotificationCenter": 80,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 80,
+        "Progress": 79,
+        "PropertyGrid": 80,
+        "Radio": 78,
+        "RadioGroup": 80,
+        "Resizer": 72,
+        "ScrollArea": 80,
+        "Select": 78,
+        "ShellGrid": 80,
+        "SideBar": 80,
+        "Skeleton": 80,
+        "Slider": 79,
+        "SplitView": 80,
+        "StatusBar": 80,
+        "Switch": 79,
+        "Table": 80,
+        "Tabs": 80,
+        "TagInput": 80,
+        "Textarea": 78,
+        "Toast": 80,
+        "Toggle": 79,
+        "ToggleGroup": 80,
+        "Tooltip": 80,
+        "TreeView": 80,
+        "useCommandRegistry": 60,
+        "useDragDrop": 60,
+        "useFocusTrap": 60,
+        "useGlobalState": 60,
+        "useKeyboard": 60,
+        "usePersistedState": 60,
+        "useTooltip": 60,
+        "useVirtualList": 60,
+        "View": 80
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:41:15.850Z",
+      "averageScore": 77,
+      "gradeDistribution": {
+        "A": 0,
+        "B": 57,
+        "C": 9,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 835,
+      "totalPassed": 832,
+      "totalFailed": 3,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 101,
+      "totalLoc": 5801,
+      "overallCoverage": null,
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 0,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 112,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 74
+        },
+        {
+          "name": "layout",
+          "avgScore": 80
+        },
+        {
+          "name": "nav",
+          "avgScore": 80
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 80
+        },
+        {
+          "name": "menus",
+          "avgScore": 80
+        },
+        {
+          "name": "extras",
+          "avgScore": 80
+        },
+        {
+          "name": "shell",
+          "avgScore": 80
+        }
+      ],
+      "componentScores": {
+        "Accordion": 80,
+        "ActionBar": 80,
+        "ActivityBar": 80,
+        "Avatar": 80,
+        "Badge": 80,
+        "Breadcrumbs": 80,
+        "Button": 80,
+        "Card": 80,
+        "Checkbox": 78,
+        "Collapsible": 80,
+        "Combobox": 80,
+        "CommandPalette": 80,
+        "ContextMenu": 80,
+        "Divider": 80,
+        "DropdownMenu": 80,
+        "EditorTab": 80,
+        "EditorWorkbench": 80,
+        "EmptyState": 80,
+        "Icon": 80,
+        "IconButton": 80,
+        "IdeShell": 80,
+        "InlineEditor": 80,
+        "Input": 77,
+        "Kbd": 80,
+        "KeyboardHint": 80,
+        "Label": 80,
+        "List": 80,
+        "Menubar": 80,
+        "Modal": 80,
+        "NotificationCenter": 80,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 80,
+        "Progress": 79,
+        "PropertyGrid": 80,
+        "Radio": 78,
+        "RadioGroup": 80,
+        "Resizer": 72,
+        "ScrollArea": 80,
+        "Select": 78,
+        "ShellGrid": 80,
+        "SideBar": 80,
+        "Skeleton": 80,
+        "Slider": 79,
+        "SplitView": 80,
+        "StatusBar": 80,
+        "Switch": 79,
+        "Table": 80,
+        "Tabs": 80,
+        "TagInput": 80,
+        "Textarea": 78,
+        "Toast": 80,
+        "Toggle": 79,
+        "ToggleGroup": 80,
+        "Tooltip": 80,
+        "TreeView": 80,
+        "useCommandRegistry": 60,
+        "useDragDrop": 60,
+        "useFocusTrap": 60,
+        "useGlobalState": 60,
+        "useKeyboard": 60,
+        "usePersistedState": 60,
+        "useTooltip": 60,
+        "useVirtualList": 60,
+        "View": 80
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:41:25.162Z",
+      "averageScore": 77,
+      "gradeDistribution": {
+        "A": 0,
+        "B": 57,
+        "C": 9,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 835,
+      "totalPassed": 832,
+      "totalFailed": 3,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 101,
+      "totalLoc": 5801,
+      "overallCoverage": null,
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 0,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 112,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 74
+        },
+        {
+          "name": "layout",
+          "avgScore": 80
+        },
+        {
+          "name": "nav",
+          "avgScore": 80
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 80
+        },
+        {
+          "name": "menus",
+          "avgScore": 80
+        },
+        {
+          "name": "extras",
+          "avgScore": 80
+        },
+        {
+          "name": "shell",
+          "avgScore": 80
+        }
+      ],
+      "componentScores": {
+        "Accordion": 80,
+        "ActionBar": 80,
+        "ActivityBar": 80,
+        "Avatar": 80,
+        "Badge": 80,
+        "Breadcrumbs": 80,
+        "Button": 80,
+        "Card": 80,
+        "Checkbox": 78,
+        "Collapsible": 80,
+        "Combobox": 80,
+        "CommandPalette": 80,
+        "ContextMenu": 80,
+        "Divider": 80,
+        "DropdownMenu": 80,
+        "EditorTab": 80,
+        "EditorWorkbench": 80,
+        "EmptyState": 80,
+        "Icon": 80,
+        "IconButton": 80,
+        "IdeShell": 80,
+        "InlineEditor": 80,
+        "Input": 77,
+        "Kbd": 80,
+        "KeyboardHint": 80,
+        "Label": 80,
+        "List": 80,
+        "Menubar": 80,
+        "Modal": 80,
+        "NotificationCenter": 80,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 80,
+        "Progress": 79,
+        "PropertyGrid": 80,
+        "Radio": 78,
+        "RadioGroup": 80,
+        "Resizer": 72,
+        "ScrollArea": 80,
+        "Select": 78,
+        "ShellGrid": 80,
+        "SideBar": 80,
+        "Skeleton": 80,
+        "Slider": 79,
+        "SplitView": 80,
+        "StatusBar": 80,
+        "Switch": 79,
+        "Table": 80,
+        "Tabs": 80,
+        "TagInput": 80,
+        "Textarea": 78,
+        "Toast": 80,
+        "Toggle": 79,
+        "ToggleGroup": 80,
+        "Tooltip": 80,
+        "TreeView": 80,
+        "useCommandRegistry": 60,
+        "useDragDrop": 60,
+        "useFocusTrap": 60,
+        "useGlobalState": 60,
+        "useKeyboard": 60,
+        "usePersistedState": 60,
+        "useTooltip": 60,
+        "useVirtualList": 60,
+        "View": 80
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:41:55.620Z",
+      "averageScore": 77,
+      "gradeDistribution": {
+        "A": 0,
+        "B": 57,
+        "C": 9,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 835,
+      "totalPassed": 832,
+      "totalFailed": 3,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 101,
+      "totalLoc": 5801,
+      "overallCoverage": null,
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 0,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 112,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 74
+        },
+        {
+          "name": "layout",
+          "avgScore": 80
+        },
+        {
+          "name": "nav",
+          "avgScore": 80
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 80
+        },
+        {
+          "name": "menus",
+          "avgScore": 80
+        },
+        {
+          "name": "extras",
+          "avgScore": 80
+        },
+        {
+          "name": "shell",
+          "avgScore": 80
+        }
+      ],
+      "componentScores": {
+        "Accordion": 80,
+        "ActionBar": 80,
+        "ActivityBar": 80,
+        "Avatar": 80,
+        "Badge": 80,
+        "Breadcrumbs": 80,
+        "Button": 80,
+        "Card": 80,
+        "Checkbox": 78,
+        "Collapsible": 80,
+        "Combobox": 80,
+        "CommandPalette": 80,
+        "ContextMenu": 80,
+        "Divider": 80,
+        "DropdownMenu": 80,
+        "EditorTab": 80,
+        "EditorWorkbench": 80,
+        "EmptyState": 80,
+        "Icon": 80,
+        "IconButton": 80,
+        "IdeShell": 80,
+        "InlineEditor": 80,
+        "Input": 77,
+        "Kbd": 80,
+        "KeyboardHint": 80,
+        "Label": 80,
+        "List": 80,
+        "Menubar": 80,
+        "Modal": 80,
+        "NotificationCenter": 80,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 80,
+        "Progress": 79,
+        "PropertyGrid": 80,
+        "Radio": 78,
+        "RadioGroup": 80,
+        "Resizer": 72,
+        "ScrollArea": 80,
+        "Select": 78,
+        "ShellGrid": 80,
+        "SideBar": 80,
+        "Skeleton": 80,
+        "Slider": 79,
+        "SplitView": 80,
+        "StatusBar": 80,
+        "Switch": 79,
+        "Table": 80,
+        "Tabs": 80,
+        "TagInput": 80,
+        "Textarea": 78,
+        "Toast": 80,
+        "Toggle": 79,
+        "ToggleGroup": 80,
+        "Tooltip": 80,
+        "TreeView": 80,
+        "useCommandRegistry": 60,
+        "useDragDrop": 60,
+        "useFocusTrap": 60,
+        "useGlobalState": 60,
+        "useKeyboard": 60,
+        "usePersistedState": 60,
+        "useTooltip": 60,
+        "useVirtualList": 60,
+        "View": 80
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:42:35.887Z",
+      "averageScore": 77,
+      "gradeDistribution": {
+        "A": 0,
+        "B": 57,
+        "C": 9,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 835,
+      "totalPassed": 832,
+      "totalFailed": 3,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 101,
+      "totalLoc": 5801,
+      "overallCoverage": null,
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 0,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 112,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 74
+        },
+        {
+          "name": "layout",
+          "avgScore": 80
+        },
+        {
+          "name": "nav",
+          "avgScore": 80
+        },
+        {
+          "name": "editor",
+          "avgScore": 80
+        },
+        {
+          "name": "lists",
+          "avgScore": 80
+        },
+        {
+          "name": "menus",
+          "avgScore": 80
+        },
+        {
+          "name": "extras",
+          "avgScore": 80
+        },
+        {
+          "name": "shell",
+          "avgScore": 80
+        }
+      ],
+      "componentScores": {
+        "Accordion": 80,
+        "ActionBar": 80,
+        "ActivityBar": 80,
+        "Avatar": 80,
+        "Badge": 80,
+        "Breadcrumbs": 80,
+        "Button": 80,
+        "Card": 80,
+        "Checkbox": 78,
+        "Collapsible": 80,
+        "Combobox": 80,
+        "CommandPalette": 80,
+        "ContextMenu": 80,
+        "Divider": 80,
+        "DropdownMenu": 80,
+        "EditorTab": 80,
+        "EditorWorkbench": 80,
+        "EmptyState": 80,
+        "Icon": 80,
+        "IconButton": 80,
+        "IdeShell": 80,
+        "InlineEditor": 80,
+        "Input": 77,
+        "Kbd": 80,
+        "KeyboardHint": 80,
+        "Label": 80,
+        "List": 80,
+        "Menubar": 80,
+        "Modal": 80,
+        "NotificationCenter": 80,
+        "Panel": 80,
+        "PanelBar": 80,
+        "PeekView": 80,
+        "Popover": 80,
+        "Progress": 79,
+        "PropertyGrid": 80,
+        "Radio": 78,
+        "RadioGroup": 80,
+        "Resizer": 72,
+        "ScrollArea": 80,
+        "Select": 78,
+        "ShellGrid": 80,
+        "SideBar": 80,
+        "Skeleton": 80,
+        "Slider": 79,
+        "SplitView": 80,
+        "StatusBar": 80,
+        "Switch": 79,
+        "Table": 80,
+        "Tabs": 80,
+        "TagInput": 80,
+        "Textarea": 78,
+        "Toast": 80,
+        "Toggle": 79,
+        "ToggleGroup": 80,
+        "Tooltip": 80,
+        "TreeView": 80,
+        "useCommandRegistry": 60,
+        "useDragDrop": 60,
+        "useFocusTrap": 60,
+        "useGlobalState": 60,
+        "useKeyboard": 60,
+        "usePersistedState": 60,
+        "useTooltip": 60,
+        "useVirtualList": 60,
+        "View": 80
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:42:51.416Z",
+      "averageScore": 96,
+      "gradeDistribution": {
+        "A": 65,
+        "B": 1,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 835,
+      "totalPassed": 832,
+      "totalFailed": 3,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 63,
+      "totalLoc": 5801,
+      "overallCoverage": {
+        "statements": 74.53,
+        "branches": 70.07,
+        "functions": 82.25,
+        "lines": 75.47
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 112,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 97
+        },
+        {
+          "name": "layout",
+          "avgScore": 93
+        },
+        {
+          "name": "nav",
+          "avgScore": 95
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 94
+        },
+        {
+          "name": "extras",
+          "avgScore": 97
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 99,
+        "Badge": 100,
+        "Breadcrumbs": 100,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 98,
+        "Collapsible": 97,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 100,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 100,
+        "Icon": 100,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 92,
+        "Kbd": 100,
+        "KeyboardHint": 92,
+        "Label": 100,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 93,
+        "Progress": 99,
+        "PropertyGrid": 98,
+        "Radio": 98,
+        "RadioGroup": 90,
+        "Resizer": 91,
+        "ScrollArea": 88,
+        "Select": 98,
+        "ShellGrid": 93,
+        "SideBar": 99,
+        "Skeleton": 100,
+        "Slider": 99,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 98,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 94,
+        "Toast": 96,
+        "Toggle": 93,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 99,
+        "useFocusTrap": 99,
+        "useGlobalState": 99,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 100,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:44:54.978Z",
+      "averageScore": 96,
+      "gradeDistribution": {
+        "A": 66,
+        "B": 0,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 835,
+      "totalPassed": 832,
+      "totalFailed": 3,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 62,
+      "totalLoc": 5801,
+      "overallCoverage": {
+        "statements": 77.29,
+        "branches": 72.36,
+        "functions": 83.87,
+        "lines": 77.77
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 112,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 97
+        },
+        {
+          "name": "layout",
+          "avgScore": 95
+        },
+        {
+          "name": "nav",
+          "avgScore": 95
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 94
+        },
+        {
+          "name": "extras",
+          "avgScore": 97
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 99,
+        "Badge": 100,
+        "Breadcrumbs": 100,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 98,
+        "Collapsible": 97,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 100,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 100,
+        "Icon": 100,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 92,
+        "Kbd": 100,
+        "KeyboardHint": 92,
+        "Label": 100,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 93,
+        "Progress": 99,
+        "PropertyGrid": 98,
+        "Radio": 98,
+        "RadioGroup": 90,
+        "Resizer": 91,
+        "ScrollArea": 98,
+        "Select": 98,
+        "ShellGrid": 93,
+        "SideBar": 99,
+        "Skeleton": 100,
+        "Slider": 99,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 98,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 94,
+        "Toast": 96,
+        "Toggle": 93,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 99,
+        "useFocusTrap": 99,
+        "useGlobalState": 99,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 100,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:52:14.760Z",
+      "averageScore": 96,
+      "gradeDistribution": {
+        "A": 66,
+        "B": 0,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 835,
+      "totalPassed": 832,
+      "totalFailed": 3,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 62,
+      "totalLoc": 5801,
+      "overallCoverage": {
+        "statements": 77.29,
+        "branches": 72.36,
+        "functions": 83.87,
+        "lines": 77.77
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 112,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 97
+        },
+        {
+          "name": "layout",
+          "avgScore": 95
+        },
+        {
+          "name": "nav",
+          "avgScore": 95
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 94
+        },
+        {
+          "name": "extras",
+          "avgScore": 97
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 99,
+        "Badge": 100,
+        "Breadcrumbs": 100,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 98,
+        "Collapsible": 97,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 100,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 100,
+        "Icon": 100,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 92,
+        "Kbd": 100,
+        "KeyboardHint": 92,
+        "Label": 100,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 93,
+        "Progress": 99,
+        "PropertyGrid": 98,
+        "Radio": 98,
+        "RadioGroup": 90,
+        "Resizer": 91,
+        "ScrollArea": 98,
+        "Select": 98,
+        "ShellGrid": 93,
+        "SideBar": 99,
+        "Skeleton": 100,
+        "Slider": 99,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 98,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 94,
+        "Toast": 96,
+        "Toggle": 93,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 99,
+        "useFocusTrap": 99,
+        "useGlobalState": 99,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 100,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T06:55:07.945Z",
+      "averageScore": 96,
+      "gradeDistribution": {
+        "A": 66,
+        "B": 0,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 848,
+      "totalPassed": 848,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 61,
+      "totalLoc": 5801,
+      "overallCoverage": {
+        "statements": 77.29,
+        "branches": 72.36,
+        "functions": 83.87,
+        "lines": 77.77
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 112,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 97
+        },
+        {
+          "name": "layout",
+          "avgScore": 95
+        },
+        {
+          "name": "nav",
+          "avgScore": 95
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 94
+        },
+        {
+          "name": "extras",
+          "avgScore": 97
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 99,
+        "Badge": 100,
+        "Breadcrumbs": 100,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 98,
+        "Collapsible": 97,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 100,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 100,
+        "Icon": 100,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 92,
+        "Kbd": 100,
+        "KeyboardHint": 92,
+        "Label": 100,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 93,
+        "Progress": 99,
+        "PropertyGrid": 98,
+        "Radio": 98,
+        "RadioGroup": 90,
+        "Resizer": 99,
+        "ScrollArea": 98,
+        "Select": 98,
+        "ShellGrid": 93,
+        "SideBar": 99,
+        "Skeleton": 100,
+        "Slider": 99,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 98,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 94,
+        "Toast": 96,
+        "Toggle": 93,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 99,
+        "useFocusTrap": 99,
+        "useGlobalState": 99,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 100,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T07:07:32.497Z",
+      "averageScore": 96,
+      "gradeDistribution": {
+        "A": 66,
+        "B": 0,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 848,
+      "totalPassed": 848,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 61,
+      "totalLoc": 5810,
+      "overallCoverage": {
+        "statements": 77.29,
+        "branches": 72.36,
+        "functions": 83.87,
+        "lines": 77.77
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 112,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 97
+        },
+        {
+          "name": "layout",
+          "avgScore": 95
+        },
+        {
+          "name": "nav",
+          "avgScore": 95
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 94
+        },
+        {
+          "name": "extras",
+          "avgScore": 97
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 99,
+        "Badge": 100,
+        "Breadcrumbs": 100,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 98,
+        "Collapsible": 97,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 100,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 100,
+        "Icon": 100,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 92,
+        "Kbd": 100,
+        "KeyboardHint": 92,
+        "Label": 100,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 93,
+        "Progress": 99,
+        "PropertyGrid": 98,
+        "Radio": 98,
+        "RadioGroup": 90,
+        "Resizer": 99,
+        "ScrollArea": 98,
+        "Select": 98,
+        "ShellGrid": 93,
+        "SideBar": 99,
+        "Skeleton": 100,
+        "Slider": 99,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 98,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 94,
+        "Toast": 96,
+        "Toggle": 93,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 99,
+        "useFocusTrap": 99,
+        "useGlobalState": 99,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 100,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T07:08:23.205Z",
+      "averageScore": 96,
+      "gradeDistribution": {
+        "A": 66,
+        "B": 0,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 848,
+      "totalPassed": 848,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 58,
+      "totalLoc": 5810,
+      "overallCoverage": {
+        "statements": 77.29,
+        "branches": 72.36,
+        "functions": 83.87,
+        "lines": 77.77
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 112,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 97
+        },
+        {
+          "name": "layout",
+          "avgScore": 94
+        },
+        {
+          "name": "nav",
+          "avgScore": 95
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 94
+        },
+        {
+          "name": "extras",
+          "avgScore": 97
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 99,
+        "Badge": 100,
+        "Breadcrumbs": 100,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 100,
+        "Collapsible": 95,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 99,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 100,
+        "Icon": 100,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 95,
+        "Kbd": 100,
+        "KeyboardHint": 92,
+        "Label": 100,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 91,
+        "Progress": 100,
+        "PropertyGrid": 98,
+        "Radio": 100,
+        "RadioGroup": 90,
+        "Resizer": 99,
+        "ScrollArea": 98,
+        "Select": 100,
+        "ShellGrid": 93,
+        "SideBar": 99,
+        "Skeleton": 100,
+        "Slider": 100,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 99,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 96,
+        "Toast": 96,
+        "Toggle": 94,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 99,
+        "useFocusTrap": 99,
+        "useGlobalState": 99,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 100,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    },
+    {
+      "timestamp": "2026-03-13T07:09:38.255Z",
+      "averageScore": 96,
+      "gradeDistribution": {
+        "A": 66,
+        "B": 0,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "totalTests": 848,
+      "totalPassed": 848,
+      "totalFailed": 0,
+      "totalComponents": 58,
+      "totalComposables": 8,
+      "totalGaps": 58,
+      "totalLoc": 5810,
+      "overallCoverage": {
+        "statements": 77.29,
+        "branches": 72.36,
+        "functions": 83.87,
+        "lines": 77.77
+      },
+      "dimensionFill": {
+        "tests": 100,
+        "coverage": 100,
+        "a11y": 100,
+        "axeRuntime": 50,
+        "interaction": 112,
+        "story": 100,
+        "hex": 100,
+        "bench": 100
+      },
+      "packages": [
+        {
+          "name": "core",
+          "avgScore": 97
+        },
+        {
+          "name": "layout",
+          "avgScore": 94
+        },
+        {
+          "name": "nav",
+          "avgScore": 95
+        },
+        {
+          "name": "editor",
+          "avgScore": 96
+        },
+        {
+          "name": "lists",
+          "avgScore": 95
+        },
+        {
+          "name": "menus",
+          "avgScore": 94
+        },
+        {
+          "name": "extras",
+          "avgScore": 97
+        },
+        {
+          "name": "shell",
+          "avgScore": 91
+        }
+      ],
+      "componentScores": {
+        "Accordion": 92,
+        "ActionBar": 93,
+        "ActivityBar": 92,
+        "Avatar": 99,
+        "Badge": 100,
+        "Breadcrumbs": 100,
+        "Button": 95,
+        "Card": 96,
+        "Checkbox": 100,
+        "Collapsible": 95,
+        "Combobox": 97,
+        "CommandPalette": 97,
+        "ContextMenu": 95,
+        "Divider": 99,
+        "DropdownMenu": 93,
+        "EditorTab": 96,
+        "EditorWorkbench": 96,
+        "EmptyState": 100,
+        "Icon": 100,
+        "IconButton": 93,
+        "IdeShell": 91,
+        "InlineEditor": 99,
+        "Input": 95,
+        "Kbd": 100,
+        "KeyboardHint": 92,
+        "Label": 100,
+        "List": 92,
+        "Menubar": 92,
+        "Modal": 92,
+        "NotificationCenter": 94,
+        "Panel": 92,
+        "PanelBar": 94,
+        "PeekView": 99,
+        "Popover": 91,
+        "Progress": 100,
+        "PropertyGrid": 98,
+        "Radio": 100,
+        "RadioGroup": 90,
+        "Resizer": 99,
+        "ScrollArea": 98,
+        "Select": 100,
+        "ShellGrid": 93,
+        "SideBar": 99,
+        "Skeleton": 100,
+        "Slider": 100,
+        "SplitView": 95,
+        "StatusBar": 90,
+        "Switch": 99,
+        "Table": 95,
+        "Tabs": 96,
+        "TagInput": 93,
+        "Textarea": 96,
+        "Toast": 96,
+        "Toggle": 94,
+        "ToggleGroup": 91,
+        "Tooltip": 93,
+        "TreeView": 97,
+        "useCommandRegistry": 95,
+        "useDragDrop": 99,
+        "useFocusTrap": 99,
+        "useGlobalState": 99,
+        "useKeyboard": 96,
+        "usePersistedState": 90,
+        "useTooltip": 100,
+        "useVirtualList": 97,
+        "View": 96
+      }
+    }
+  ]
+}

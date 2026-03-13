@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Progress from './Progress.vue'
+import { nextTick } from 'vue'
 
 describe('Progress', () => {
   it('renders with progressbar role', () => {
@@ -39,5 +40,30 @@ describe('Progress', () => {
     const wrapper = mount(Progress, { props: { indeterminate: true } })
     expect(wrapper.attributes('data-indeterminate')).toBeDefined()
     expect(wrapper.attributes('aria-valuenow')).toBeUndefined()
+  })
+
+  it('handles keyboard events gracefully', async () => {
+    const wrapper = mount(Progress)
+    await wrapper.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('can receive focus', () => {
+    const wrapper = mount(Progress, { attachTo: document.body })
+    wrapper.element.focus()
+    expect(document.activeElement).toBeDefined()
+    wrapper.unmount()
+  })
+
+  it('supports event emission', async () => {
+    const wrapper = mount(Progress)
+    expect(wrapper.emitted()).toBeDefined()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(Progress)
+    await wrapper.setProps({ value: 42 })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

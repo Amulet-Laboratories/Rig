@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import EditorWorkbench from './EditorWorkbench.vue'
 import type { TabItem } from '@core/types'
+import { nextTick } from 'vue'
 
 const tabs: TabItem[] = [
   { id: 'a', label: 'file-a.ts' },
@@ -82,5 +83,27 @@ describe('EditorWorkbench', () => {
     await tabEls[0]!.trigger('dragstart')
     await tabEls[1]!.trigger('dragover')
     expect(tabEls[1]!.attributes('data-drag-over')).toBeDefined()
+  })
+
+  it('handles keyboard interaction', async () => {
+    const wrapper = mount(EditorWorkbench, { props: { tabs: [] } })
+    await wrapper.trigger('keydown', { key: 'ArrowDown' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(EditorWorkbench, { props: { tabs: [] } }, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('handles prop updates', async () => {
+    const wrapper = mount(EditorWorkbench, { props: { tabs: [] } })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

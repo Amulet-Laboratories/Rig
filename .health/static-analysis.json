@@ -1,0 +1,109 @@
+{
+  "timestamp": "2026-03-13T04:47:31.084Z",
+  "packages": [
+    {
+      "key": "rig",
+      "name": "@amulet-laboratories/rig",
+      "version": "0.1.0",
+      "installSizeBytes": 379220,
+      "installSizeFormatted": "370.3KB",
+      "directDeps": 2,
+      "peerDeps": 2,
+      "hasTypeScript": true,
+      "estimatedComponents": 58,
+      "isVueNative": true,
+      "framework": "vue"
+    },
+    {
+      "key": "radix",
+      "name": "radix-vue",
+      "version": "1.9.17",
+      "installSizeBytes": 1962156,
+      "installSizeFormatted": "1.9MB",
+      "directDeps": 11,
+      "peerDeps": 1,
+      "hasTypeScript": true,
+      "estimatedComponents": 56,
+      "isVueNative": true,
+      "framework": "vue"
+    },
+    {
+      "key": "hui",
+      "name": "@headlessui/vue",
+      "version": "1.7.23",
+      "installSizeBytes": 601931,
+      "installSizeFormatted": "587.8KB",
+      "directDeps": 1,
+      "peerDeps": 1,
+      "hasTypeScript": true,
+      "estimatedComponents": 14,
+      "isVueNative": true,
+      "framework": "vue"
+    },
+    {
+      "key": "ant",
+      "name": "ant-design-vue",
+      "version": "4.2.6",
+      "installSizeBytes": 77953156,
+      "installSizeFormatted": "74.3MB",
+      "directDeps": 22,
+      "peerDeps": 1,
+      "hasTypeScript": true,
+      "estimatedComponents": 104,
+      "isVueNative": true,
+      "framework": "vue"
+    },
+    {
+      "key": "fwb",
+      "name": "flowbite-vue",
+      "version": "0.2.3",
+      "installSizeBytes": 980386,
+      "installSizeFormatted": "957.4KB",
+      "directDeps": 12,
+      "peerDeps": 1,
+      "hasTypeScript": true,
+      "estimatedComponents": 36,
+      "isVueNative": true,
+      "framework": "vue"
+    },
+    {
+      "key": "mui",
+      "name": "@mui/material",
+      "version": "7.3.9",
+      "installSizeBytes": 5746152,
+      "installSizeFormatted": "5.5MB",
+      "directDeps": 12,
+      "peerDeps": 6,
+      "hasTypeScript": true,
+      "estimatedComponents": 136,
+      "isVueNative": false,
+      "framework": "react"
+    },
+    {
+      "key": "chakra",
+      "name": "@chakra-ui/react",
+      "version": "3.34.0",
+      "installSizeBytes": 2618061,
+      "installSizeFormatted": "2.5MB",
+      "directDeps": 7,
+      "peerDeps": 3,
+      "hasTypeScript": true,
+      "estimatedComponents": 114,
+      "isVueNative": false,
+      "framework": "react"
+    },
+    {
+      "key": "mantine",
+      "name": "@mantine/core",
+      "version": "8.3.16",
+      "installSizeBytes": 12027234,
+      "installSizeFormatted": "11.5MB",
+      "directDeps": 6,
+      "peerDeps": 3,
+      "hasTypeScript": true,
+      "estimatedComponents": 102,
+      "isVueNative": false,
+      "framework": "react"
+    }
+  ]
+}

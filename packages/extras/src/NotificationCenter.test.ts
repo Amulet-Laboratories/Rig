@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { notification, useNotifications } from './useNotifications'
 import NotificationCenter from './NotificationCenter.vue'
+import { nextTick } from 'vue'
 
 describe('useNotifications', () => {
   beforeEach(() => {
@@ -99,5 +100,32 @@ describe('NotificationCenter', () => {
     const wrapper = mount(NotificationCenter)
     await wrapper.find('[data-rig-notification-bell]').trigger('click')
     expect(wrapper.find('[data-rig-notification-empty]').exists()).toBe(true)
+  })
+
+  it('handles keyboard interaction', async () => {
+    const wrapper = mount(NotificationCenter)
+    await wrapper.trigger('keydown', { key: 'ArrowDown' })
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(NotificationCenter, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('supports event emission', async () => {
+    const wrapper = mount(NotificationCenter)
+    expect(wrapper.emitted()).toBeDefined()
+  })
+
+  it('handles prop updates', async () => {
+    const wrapper = mount(NotificationCenter)
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

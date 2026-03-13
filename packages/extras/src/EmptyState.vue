@@ -13,7 +13,7 @@ withDefaults(
 </script>
 
 <template>
-  <div data-rig-empty-state role="status">
+  <div data-rig-empty-state role="status" aria-live="polite" tabindex="-1" @keydown.stop>
     <slot name="icon">
       <span v-if="icon" data-rig-empty-state-icon>{{ icon }}</span>
     </slot>

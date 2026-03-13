@@ -16,6 +16,13 @@ const emit = defineEmits<{
   'update:open': [value: boolean]
 }>()
 
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault()
+    toggle()
+  }
+}
+
 function toggle() {
   if (!props.disabled) {
     emit('update:open', !props.open)
@@ -26,11 +33,13 @@ function toggle() {
 <template>
   <div
     data-rig-collapsible
+    :aria-expanded="open"
+    @keydown="onKeydown"
     :data-state="open ? 'open' : 'closed'"
     :data-disabled="disabled || undefined"
   >
     <slot name="trigger" :open="open" :toggle="toggle" />
-    <div v-show="open" data-rig-collapsible-content :data-state="open ? 'open' : 'closed'">
+    <div v-show="open" data-rig-collapsible-content tabindex="-1" :data-state="open ? 'open' : 'closed'">
       <slot />
     </div>
   </div>

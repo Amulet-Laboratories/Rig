@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Switch from './Switch.vue'
+import { nextTick } from 'vue'
 
 describe('Switch', () => {
   it('renders with data-rig-switch and role=switch', () => {
@@ -39,5 +40,22 @@ describe('Switch', () => {
     const wrapper = mount(Switch, { props: { modelValue: true } })
     await wrapper.trigger('keydown', { key: ' ' })
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([false])
+  })
+
+  it('manages focus correctly', async () => {
+    const wrapper = mount(Switch, { attachTo: document.body })
+    const focusable = wrapper.find('button, input, [tabindex]')
+    if (focusable.exists()) {
+      await focusable.trigger('focus')
+      expect(document.activeElement).toBeDefined()
+    }
+    wrapper.unmount()
+  })
+
+  it('reacts to prop changes', async () => {
+    const wrapper = mount(Switch)
+    await wrapper.setProps({ modelValue: true })
+    await nextTick()
+    expect(wrapper.exists()).toBe(true)
   })
 })

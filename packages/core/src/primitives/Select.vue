@@ -40,7 +40,7 @@ function onChange(e: Event) {
 
 <template>
   <div
-    data-rig-select
+    data-rig-select @keydown.stop
     :data-disabled="disabled || undefined"
   >
     <slot name="leading" />
@@ -50,6 +50,7 @@ function onChange(e: Event) {
       :disabled="disabled"
       :aria-label="ariaLabel"
       :aria-labelledby="ariaLabelledby"
+      tabindex="0"
       @change="onChange"
     >
       <option
