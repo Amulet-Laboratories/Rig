@@ -2,7 +2,6 @@ import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import TreeView from './TreeView.vue'
 import type { TreeNode } from '@core/types'
-import { nextTick } from 'vue'
 
 const nodes: TreeNode[] = [
   {
@@ -269,18 +268,17 @@ describe('TreeView', () => {
 
   it('manages focus correctly', async () => {
     const wrapper = mount(TreeView, { props: { nodes }, attachTo: document.body })
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+    const firstNode = wrapper.findAll('[data-rig-tree-node]')[0]!
+    expect(firstNode.attributes('tabindex')).toBe('0')
+    ;(firstNode.element as HTMLElement).focus()
+    expect(document.activeElement).toBe(firstNode.element)
     wrapper.unmount()
   })
 
   it('reacts to prop changes', async () => {
-    const wrapper = mount(TreeView, { props: { nodes } })
-    await wrapper.setProps({ multiSelect: true })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+    const wrapper = mount(TreeView, { props: { nodes, expanded: [] } })
+    expect(wrapper.findAll('[data-rig-tree-node]')).toHaveLength(2)
+    await wrapper.setProps({ expanded: ['src'] })
+    expect(wrapper.findAll('[data-rig-tree-node]')).toHaveLength(4)
   })
 })

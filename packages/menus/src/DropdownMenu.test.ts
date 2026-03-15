@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import DropdownMenu from './DropdownMenu.vue'
 import type { Action } from '@core/types'
-import { nextTick } from 'vue'
 
 const items: Action[] = [
   { id: 'new', label: 'New File', keybinding: 'Ctrl+N' },
@@ -124,21 +123,136 @@ describe('DropdownMenu', () => {
     wrapper.unmount()
   })
 
-  it('manages focus correctly', async () => {
-    const wrapper = factory()
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+  it('focuses first non-disabled item when opened', async () => {
+    const wrapper = factory({ open: false })
+    await wrapper.setProps({ open: true })
+    await new Promise((r) => setTimeout(r, 0))
+    const menu = document.querySelector('[data-rig-dropdown-menu]')!
+    const firstItem = menu.querySelector<HTMLButtonElement>('[role="menuitem"]:not([disabled])')!
+    expect(document.activeElement).toBe(firstItem)
     wrapper.unmount()
   })
 
-  it('reacts to prop changes', async () => {
-    const wrapper = factory()
+  it('toggles data-state when open prop changes', async () => {
+    const wrapper = factory({ open: false })
+    expect(wrapper.find('[data-rig-dropdown]').attributes('data-state')).toBe('closed')
     await wrapper.setProps({ open: true })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.find('[data-rig-dropdown]').attributes('data-state')).toBe('open')
+    expect(document.querySelector('[data-rig-dropdown-menu]')).not.toBeNull()
+    wrapper.unmount()
+  })
+
+  it('ArrowDown highlights the next non-disabled item', async () => {
+    const wrapper = factory({ open: false })
+    await wrapper.setProps({ open: true })
+    await new Promise((r) => setTimeout(r, 0))
+    const menu = document.querySelector('[data-rig-dropdown-menu]')!
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
+    await new Promise((r) => setTimeout(r, 0))
+    const menuItems = menu.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')
+    expect(menuItems[1]!.getAttribute('data-state')).toBe('highlighted')
+    wrapper.unmount()
+  })
+
+  it('ArrowUp highlights the previous non-disabled item', async () => {
+    const wrapper = factory({ open: false })
+    await wrapper.setProps({ open: true })
+    await new Promise((r) => setTimeout(r, 0))
+    const menu = document.querySelector('[data-rig-dropdown-menu]')!
+    // Move down first
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
+    await new Promise((r) => setTimeout(r, 0))
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }))
+    await new Promise((r) => setTimeout(r, 0))
+    const menuItems = menu.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')
+    expect(menuItems[0]!.getAttribute('data-state')).toBe('highlighted')
+    wrapper.unmount()
+  })
+
+  it('Space key selects the focused item', async () => {
+    const wrapper = factory({ open: false })
+    await wrapper.setProps({ open: true })
+    await new Promise((r) => setTimeout(r, 0))
+    const menu = document.querySelector('[data-rig-dropdown-menu]')!
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }))
+    await new Promise((r) => setTimeout(r, 0))
+    expect(wrapper.emitted('select')?.[0]).toEqual([items[0]])
+    wrapper.unmount()
+  })
+
+  it('Tab closes the menu', async () => {
+    const wrapper = factory({ open: false })
+    await wrapper.setProps({ open: true })
+    await new Promise((r) => setTimeout(r, 0))
+    const menu = document.querySelector('[data-rig-dropdown-menu]')!
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }))
+    await new Promise((r) => setTimeout(r, 0))
+    expect(wrapper.emitted('update:open')).toBeTruthy()
+    const closeEvents = wrapper.emitted('update:open')!.filter((e) => e[0] === false)
+    expect(closeEvents.length).toBeGreaterThanOrEqual(1)
+    wrapper.unmount()
+  })
+
+  it('ArrowDown on trigger opens the menu', async () => {
+    const wrapper = factory({ open: false })
+    await wrapper.find('[data-rig-dropdown-trigger]').trigger('keydown', { key: 'ArrowDown' })
+    expect(wrapper.emitted('update:open')?.[0]).toEqual([true])
+    wrapper.unmount()
+  })
+
+  it('Space on trigger opens the menu', async () => {
+    const wrapper = factory({ open: false })
+    await wrapper.find('[data-rig-dropdown-trigger]').trigger('keydown', { key: ' ' })
+    expect(wrapper.emitted('update:open')?.[0]).toEqual([true])
+    wrapper.unmount()
+  })
+
+  it('closes menu on outside click', async () => {
+    const wrapper = factory({ open: false })
+    await wrapper.setProps({ open: true })
+    await new Promise((r) => setTimeout(r, 0))
+    document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+    await new Promise((r) => setTimeout(r, 0))
+    const closeEvents = wrapper.emitted('update:open')!.filter((e) => e[0] === false)
+    expect(closeEvents.length).toBeGreaterThanOrEqual(1)
+    wrapper.unmount()
+  })
+
+  it('mouseenter highlights the hovered item', async () => {
+    const wrapper = factory({ open: true })
+    const menu = document.querySelector('[data-rig-dropdown-menu]')!
+    const menuItems = menu.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')
+    menuItems[2]!.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }))
+    await new Promise((r) => setTimeout(r, 0))
+    expect(menuItems[2]!.getAttribute('data-state')).toBe('highlighted')
+    wrapper.unmount()
+  })
+
+  it('Escape emits close and attempts trigger refocus', async () => {
+    const wrapper = factory({ open: false })
+    await wrapper.setProps({ open: true })
+    await new Promise((r) => setTimeout(r, 0))
+    const menu = document.querySelector('[data-rig-dropdown-menu]')!
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))
+    await new Promise((r) => setTimeout(r, 0))
+    const closeEvents = wrapper.emitted('update:open')!.filter((e) => e[0] === false)
+    expect(closeEvents.length).toBeGreaterThanOrEqual(1)
+    wrapper.unmount()
+  })
+
+  it('skips disabled items on ArrowDown', async () => {
+    // items[3] is disabled, so ArrowDown from items[2] should not advance
+    const wrapper = factory({ open: true })
+    const menu = document.querySelector('[data-rig-dropdown-menu]')!
+    // Move to index 2 (Save)
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
+    await new Promise((r) => setTimeout(r, 0))
+    // focusedIndex should be 2, trying to go down should stay at 2 (3 is disabled, no more after)
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
+    await new Promise((r) => setTimeout(r, 0))
+    const menuItems = menu.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')
+    expect(menuItems[2]!.getAttribute('data-state')).toBe('highlighted')
     wrapper.unmount()
   })
 })

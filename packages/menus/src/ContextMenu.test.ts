@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import ContextMenu from './ContextMenu.vue'
 import type { Action } from '@core/types'
-import { nextTick } from 'vue'
 
 const actions: Action[] = [
   { id: 'cut', label: 'Cut', keybinding: 'Ctrl+X' },
@@ -121,20 +120,20 @@ describe('ContextMenu', () => {
     wrapper.unmount()
   })
 
-  it('manages focus correctly', async () => {
-    const wrapper = mount(ContextMenu, { attachTo: document.body })
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+  it('focuses the menu element when opened', async () => {
+    const wrapper = factory({ open: false })
+    await wrapper.setProps({ open: true })
+    await new Promise((r) => setTimeout(r, 0))
+    const menu = document.querySelector('[data-rig-context-menu]') as HTMLElement
+    expect(document.activeElement).toBe(menu)
     wrapper.unmount()
   })
 
-  it('reacts to prop changes', async () => {
-    const wrapper = mount(ContextMenu)
+  it('renders menu when open prop changes to true', async () => {
+    const wrapper = factory({ open: false })
+    expect(document.querySelector('[data-rig-context-menu]')).toBeNull()
     await wrapper.setProps({ open: true })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+    expect(document.querySelector('[data-rig-context-menu]')).not.toBeNull()
+    wrapper.unmount()
   })
 })

@@ -21,3 +21,12 @@ export * from '@extras/index'
 
 // Shell — IdeShell, useShellState
 export * from '@shell/index'
+
+// Data — Sparkline, MiniBar, StatCard, BarChart, LineChart, AreaChart, ScatterPlot, Heatmap, RadarChart, Treemap, SankeyDiagram
+export * from '@data/index'
+
+// Spatial — MapCanvas, GlobeView, ScatterPlot3D, GraphNetwork, PointCloud
+export * from '@spatial/index'
+
+// Temporal — TimelineScrubber, AnimatedChart, PlaybackControls, TemporalHeatmap, ParticleField
+export * from '@temporal/index'

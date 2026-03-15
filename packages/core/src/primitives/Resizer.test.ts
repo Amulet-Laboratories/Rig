@@ -55,21 +55,18 @@ describe('Resizer', () => {
     expect(wrapper.emitted('drag')).toBeUndefined()
   })
 
-  it('manages focus correctly', async () => {
+  it('focuses the separator element', async () => {
     const wrapper = mount(Resizer, { attachTo: document.body })
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+    const separator = wrapper.find('[role="separator"]')
+    ;(separator.element as HTMLElement).focus()
+    expect(document.activeElement).toBe(separator.element)
     wrapper.unmount()
   })
 
-  it('reacts to prop changes', async () => {
-    const wrapper = mount(Resizer)
-    await wrapper.setProps({ minPosition: 42 })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+  it('has separator role with orientation', () => {
+    const wrapper = mount(Resizer, { props: { orientation: 'vertical' } })
+    expect(wrapper.attributes('role')).toBe('separator')
+    expect(wrapper.attributes('aria-orientation')).toBe('vertical')
   })
 
   describe('keyboard navigation', () => {
@@ -167,7 +164,7 @@ describe('Resizer', () => {
 
       const dragEvents = wrapper.emitted('drag')
       expect(dragEvents).toBeDefined()
-      expect(dragEvents![0][0]).toEqual(
+      expect(dragEvents![0]![0]).toEqual(
         expect.objectContaining({ delta: expect.any(Number), position: expect.any(Number) }),
       )
       wrapper.unmount()

@@ -2,9 +2,10 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { ref, nextTick, defineComponent, h } from 'vue'
 import { mount } from '@vue/test-utils'
 import { useFocusTrap } from './useFocusTrap'
-import { nextTick } from 'vue'
 
-function createWrapper(opts: { autoFocus?: boolean; restoreFocus?: boolean; onEscape?: () => void } = {}) {
+function createWrapper(
+  opts: { autoFocus?: boolean; restoreFocus?: boolean; onEscape?: () => void } = {},
+) {
   const active = ref(false)
 
   const Comp = defineComponent({

@@ -1,0 +1,122 @@
+/* Hex — Shared Editor Components
+ * Theme styles for Rig's editor package: EditorWorkbench, EditorTab.
+ */
+
+/* ───────── Editor Workbench ───────── */
+
+[data-rig-editor-workbench-tabs] {
+  @apply bg-background border-b border-foreground/10;
+}
+
+[data-rig-editor-tab] {
+  @apply font-mono transition-colors
+         text-foreground/40 hover:text-foreground/60
+         border-t-2 border-t-transparent
+         border-b-2 border-b-transparent;
+
+  font-size: 13px;
+}
+
+[data-rig-editor-tab][data-state='active'] {
+  @apply text-foreground bg-muted;
+
+  border-top: 1px solid var(--domain-accent, var(--color-foreground));
+  border-bottom-color: transparent;
+}
+
+[data-rig-editor-tab-dirty] {
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+[data-rig-editor-tab-close] {
+  @apply text-muted-foreground hover:text-foreground/50 text-xs;
+}
+
+[data-rig-editor-workbench-empty] {
+  @apply text-muted-foreground text-sm;
+}
+
+/* ───────── CodeBlock ───────── */
+
+[data-rig-code-block] {
+  @apply bg-foreground/5 border border-foreground/10 rounded font-mono text-sm;
+}
+
+[data-rig-code-block-header] {
+  @apply bg-foreground/[0.03] border-b border-foreground/10 px-3 py-1.5 text-xs text-foreground/50;
+}
+
+[data-rig-code-block-line-number] {
+  @apply text-foreground/20 select-none text-right pr-3;
+}
+
+[data-rig-code-block-line] {
+  @apply text-foreground/80;
+}
+
+[data-rig-code-block-copy] {
+  @apply text-foreground/30 hover:text-foreground/60 transition-colors text-xs rounded px-1.5 py-0.5;
+}
+
+[data-rig-code-block-copy]:hover {
+  @apply bg-foreground/5;
+}
+
+/* ───────── DiffViewer ───────── */
+
+[data-rig-diff-viewer] {
+  @apply bg-foreground/5 border border-foreground/10 rounded font-mono text-sm;
+}
+
+[data-rig-diff-viewer-header] {
+  @apply bg-foreground/[0.03] border-b border-foreground/10 px-3 py-1.5 text-xs text-foreground/50;
+}
+
+[data-rig-diff-viewer-line-number] {
+  @apply text-foreground/20 select-none text-right pr-3;
+}
+
+[data-rig-diff-viewer-line][data-diff='added'] {
+  background: color-mix(in srgb, var(--color-success, #22c55e) 10%, transparent);
+  color: var(--color-success, #22c55e);
+}
+
+[data-rig-diff-viewer-line][data-diff='removed'] {
+  background: color-mix(in srgb, var(--color-destructive, #ef4444) 10%, transparent);
+  color: var(--color-destructive, #ef4444);
+}
+
+[data-rig-diff-viewer-line][data-diff='unchanged'] {
+  @apply text-foreground/50;
+}
+
+/* ───────── ColorPicker ───────── */
+
+[data-rig-color-picker] {
+  @apply bg-background border border-foreground/10 rounded p-3;
+}
+
+[data-rig-color-picker-preview] {
+  @apply rounded ring-1 ring-foreground/10;
+}
+
+[data-rig-color-picker-slider] {
+  @apply appearance-none h-2 rounded cursor-pointer;
+
+  background: linear-gradient(to right, red, yellow, lime, aqua, blue, fuchsia, red);
+}
+
+[data-rig-color-picker-input] {
+  @apply bg-foreground/5 border border-foreground/10 rounded px-2 py-1 text-foreground text-xs font-mono;
+}
+
+[data-rig-color-picker-input]:focus {
+  @apply outline-none ring-1;
+
+  ring-color: var(--domain-accent, var(--color-primary));
+}
+
+[data-rig-color-picker-label] {
+  @apply text-foreground/50 text-xs;
+}

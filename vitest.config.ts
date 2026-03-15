@@ -16,6 +16,9 @@ export default defineConfig({
       '@menus': resolve(__dirname, 'packages/menus/src'),
       '@extras': resolve(__dirname, 'packages/extras/src'),
       '@shell': resolve(__dirname, 'packages/shell/src'),
+      '@data': resolve(__dirname, 'packages/data/src'),
+      '@spatial': resolve(__dirname, 'packages/spatial/src'),
+      '@temporal': resolve(__dirname, 'packages/temporal/src'),
     },
   },
   test: {
@@ -25,12 +28,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['packages/*/src/**/*.{ts,vue}'],
-      exclude: [
-        '**/*.test.ts',
-        '**/*.bench.ts',
-        '**/*.story.vue',
-        '**/index.ts',
-      ],
+      exclude: ['**/*.test.ts', '**/*.bench.ts', '**/*.story.vue', '**/index.ts'],
       reporter: ['text', 'lcov', 'json-summary'],
       thresholds: {
         statements: 70,

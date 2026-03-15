@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import SplitView from './SplitView.vue'
-import { nextTick } from 'vue'
 
 describe('SplitView', () => {
   it('renders with data-rig-split-view', () => {
@@ -70,29 +69,39 @@ describe('SplitView', () => {
     expect(wrapper.findAll('[data-rig-resizer]')).toHaveLength(1)
   })
 
-  it('handles keyboard interaction', async () => {
-    const wrapper = mount(SplitView)
-    await wrapper.trigger('keydown', { key: 'ArrowDown' })
-    expect(wrapper.exists()).toBe(true)
+  it('emits update:sizes on ArrowRight when resizable', async () => {
+    const wrapper = mount(SplitView, {
+      props: { sizes: [200, 400], resizable: true },
+    })
+    await wrapper.find('[data-rig-split-view]').trigger('keydown', { key: 'ArrowRight' })
+    expect(wrapper.emitted('update:sizes')?.[0]).toEqual([[210, 390]])
   })
 
-  it('can receive focus', () => {
-    const wrapper = mount(SplitView, { attachTo: document.body })
-    wrapper.element.focus()
-    expect(document.activeElement).toBeDefined()
+  it('can receive programmatic focus', () => {
+    const wrapper = mount(SplitView, {
+      props: { sizes: [200, 400] },
+      attachTo: document.body,
+    })
+    const splitView = wrapper.find('[data-rig-split-view]')
+    ;(splitView.element as HTMLElement).focus()
+    expect(document.activeElement).toBe(splitView.element)
     wrapper.unmount()
   })
 
-  it('supports event emission', async () => {
-    const wrapper = mount(SplitView)
-    // Verify component has emitted() interface
-    expect(wrapper.emitted()).toBeDefined()
+  it('does not emit update:sizes on arrow keys when not resizable', async () => {
+    const wrapper = mount(SplitView, {
+      props: { sizes: [200, 400], resizable: false },
+    })
+    await wrapper.find('[data-rig-split-view]').trigger('keydown', { key: 'ArrowRight' })
+    expect(wrapper.emitted('update:sizes')).toBeUndefined()
   })
 
-  it('reacts to prop changes', async () => {
-    const wrapper = mount(SplitView)
-    await wrapper.setProps({ sizes: 42 })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+  it('updates data-orientation when orientation prop changes', async () => {
+    const wrapper = mount(SplitView, {
+      props: { sizes: [200, 400], orientation: 'horizontal' },
+    })
+    expect(wrapper.find('[data-rig-split-view]').attributes('data-orientation')).toBe('horizontal')
+    await wrapper.setProps({ orientation: 'vertical' })
+    expect(wrapper.find('[data-rig-split-view]').attributes('data-orientation')).toBe('vertical')
   })
 })

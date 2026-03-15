@@ -1,0 +1,257 @@
+/* Hex — Shared Layout Components
+ * Theme styles for Rig's layout package: ShellGrid, Sidebar, View, Panel,
+ * Modal, Resizer, plus Accordion, Collapsible, Popover, PeekView, ScrollArea.
+ */
+
+/* ───────── Shell Grid ───────── */
+
+[data-rig-shell-sidebar] {
+  @apply border-r border-foreground/10;
+}
+
+[data-rig-shell-panel] {
+  @apply border-t border-foreground/10;
+}
+
+[data-rig-shell-statusbar] {
+  @apply bg-muted text-muted-foreground font-mono
+         border-t border-foreground/10;
+
+  font-size: 12px;
+  height: 22px;
+}
+
+/* ───────── Sidebar ───────── */
+
+[data-rig-sidebar-header] {
+  @apply border-b border-foreground/10;
+
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 35px;
+}
+
+/* ───────── View (collapsible section) ───────── */
+
+[data-rig-view-header] {
+  @apply font-semibold uppercase text-foreground/40
+         hover:bg-foreground/5;
+
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+[data-rig-view-chevron]::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 8px;
+  background: var(--color-foreground);
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  transition: transform 0.15s ease;
+}
+
+[data-rig-view-chevron][data-state='open']::before {
+  transform: rotate(90deg);
+}
+
+[data-rig-view-title] {
+  @apply text-foreground/60;
+}
+
+[data-rig-view-actions] {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-view-header]:hover [data-rig-view-actions],
+[data-rig-view-header]:focus-within [data-rig-view-actions] {
+  opacity: 1;
+}
+
+[data-rig-view-action] {
+  @apply text-muted-foreground
+         hover:text-foreground/60 hover:bg-foreground/5
+         transition-colors;
+
+  border-radius: 6px;
+}
+
+/* ───────── Panel ───────── */
+
+[data-rig-panel-header] {
+  @apply border-b border-foreground/10 text-sm text-foreground/50;
+}
+
+/* ───────── Modal ───────── */
+
+[data-rig-modal-overlay] {
+  @apply bg-black/60 backdrop-blur-sm;
+}
+
+[data-rig-modal] {
+  @apply bg-muted border border-foreground/15 shadow-2xl;
+
+  border-radius: 12px;
+}
+
+/* ───────── Accordion ───────── */
+
+[data-rig-accordion][data-disabled] {
+  @apply opacity-40;
+}
+
+[data-rig-accordion-trigger] {
+  @apply font-semibold uppercase text-foreground/40
+         hover:bg-foreground/5 transition-colors;
+
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+/* ───────── Collapsible ───────── */
+
+[data-rig-collapsible][data-disabled] {
+  @apply opacity-40;
+}
+
+/* ───────── PeekView ───────── */
+
+[data-rig-peek-view] {
+  border: 1px solid color-mix(in srgb, var(--color-foreground) 15%, transparent);
+  border-radius: 2px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 40%);
+}
+
+[data-rig-peek-view-header] {
+  background: color-mix(in srgb, var(--color-muted) 90%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-foreground) 10%, transparent);
+}
+
+[data-rig-peek-view-title] {
+  @apply text-sm text-foreground/70 font-mono;
+}
+
+[data-rig-peek-view-close] {
+  @apply text-muted-foreground hover:text-foreground/60
+         transition-colors;
+
+  border-radius: 6px;
+}
+
+[data-rig-peek-view-content] {
+  background: var(--color-background);
+}
+
+/* ───────── Popover ───────── */
+
+[data-rig-popover-content] {
+  background: color-mix(in srgb, var(--color-muted) 98%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-foreground) 15%, transparent);
+  border-radius: 3px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+  font-size: 13px;
+  color: var(--color-foreground);
+  animation: popover-in 0.12s ease;
+}
+
+@keyframes popover-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ───────── ScrollArea ───────── */
+
+[data-rig-scroll-bar] {
+  transition: opacity 0.15s;
+}
+
+[data-rig-scroll-thumb] {
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--color-foreground) 20%, transparent);
+  transition: background 0.15s;
+  min-height: 20px;
+}
+
+[data-rig-scroll-bar][data-orientation='vertical'] [data-rig-scroll-thumb] {
+  margin: 0 2px;
+}
+
+[data-rig-scroll-bar][data-orientation='horizontal'] [data-rig-scroll-thumb] {
+  margin: 2px 0;
+}
+
+[data-rig-scroll-thumb]:hover {
+  background: color-mix(in srgb, var(--color-foreground) 25%, transparent);
+}
+
+/* ───────── SplitView ───────── */
+
+[data-rig-split-view] {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+[data-rig-split-view][data-orientation='vertical'] {
+  flex-direction: column;
+}
+
+[data-rig-split-pane] {
+  overflow: auto;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* ───────── Resizer ───────── */
+
+[data-rig-resizer][data-orientation='horizontal'],
+[data-rig-resizer][data-orientation='vertical'] {
+  transition: background-color 0.1s ease-out 0.3s;
+}
+
+[data-rig-resizer][data-orientation='horizontal']:hover,
+[data-rig-resizer][data-orientation='vertical']:hover {
+  background: color-mix(in srgb, var(--domain-accent, var(--color-primary)) 50%, transparent);
+  transition-delay: 0.3s;
+}
+
+[data-rig-resizer][data-orientation='horizontal']:active,
+[data-rig-resizer][data-orientation='vertical']:active {
+  background: color-mix(in srgb, var(--domain-accent, var(--color-primary)) 70%, transparent);
+  transition-delay: 0s;
+}
+
+[data-rig-resizer][data-dragging] {
+  background: color-mix(in srgb, var(--domain-accent, var(--color-primary)) 50%, transparent);
+}
+
+/* ───────── ResizablePanel ───────── */
+
+[data-rig-resizable-panel] {
+  @apply bg-background;
+}
+
+[data-rig-resizable-panel-content] {
+  @apply overflow-auto;
+}
+
+[data-rig-resizable-panel-handle] {
+  background: color-mix(in srgb, var(--color-foreground) 8%, transparent);
+  transition: background 0.15s ease;
+}
+
+[data-rig-resizable-panel-handle]:hover {
+  background: color-mix(in srgb, var(--domain-accent, var(--color-primary)) 40%, transparent);
+}
+
+[data-rig-resizable-panel-handle]:active,
+[data-rig-resizable-panel-handle][data-dragging] {
+  background: color-mix(in srgb, var(--domain-accent, var(--color-primary)) 60%, transparent);
+}
+
+[data-rig-resizable-panel][data-disabled] [data-rig-resizable-panel-handle] {
+  @apply opacity-30 cursor-not-allowed;
+}

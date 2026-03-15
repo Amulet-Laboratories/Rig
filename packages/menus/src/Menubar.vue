@@ -17,6 +17,11 @@ const emit = defineEmits<{
   select: [action: Action]
 }>()
 
+defineSlots<{
+  trigger: (props: { entry: MenubarEntry; open: boolean }) => unknown
+  item: (props: { item: Action }) => unknown
+}>()
+
 const openIndex = ref(-1)
 const focusedIndex = ref(0)
 const triggerRefs = ref<(HTMLElement | null)[]>([])
@@ -94,6 +99,24 @@ function onBarKeydown(e: KeyboardEvent) {
         triggerRefs.value[focusedIndex.value]?.focus()
       }
       break
+    case 'Home':
+      e.preventDefault()
+      focusedIndex.value = 0
+      if (openIndex.value !== -1) {
+        openMenu(0)
+      } else {
+        triggerRefs.value[0]?.focus()
+      }
+      break
+    case 'End':
+      e.preventDefault()
+      focusedIndex.value = len - 1
+      if (openIndex.value !== -1) {
+        openMenu(len - 1)
+      } else {
+        triggerRefs.value[len - 1]?.focus()
+      }
+      break
     case 'Escape':
       if (openIndex.value !== -1) {
         e.preventDefault()
@@ -124,6 +147,20 @@ function onMenuKeydown(e: KeyboardEvent, index: number) {
         menuFocusedIndex.value = nextUp
         items[menuFocusedIndex.value]?.focus()
       }
+      break
+    }
+    case 'Home': {
+      e.preventDefault()
+      e.stopPropagation()
+      menuFocusedIndex.value = 0
+      items[0]?.focus()
+      break
+    }
+    case 'End': {
+      e.preventDefault()
+      e.stopPropagation()
+      menuFocusedIndex.value = items.length - 1
+      items[items.length - 1]?.focus()
       break
     }
     case 'ArrowRight': {

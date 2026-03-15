@@ -26,10 +26,7 @@ let running = false
 let lastRun = 0
 let pendingWhileRunning = false
 
-const WATCH_DIRS = [
-  resolve(ROOT, 'packages'),
-  resolve(ROOT, 'stories'),
-]
+const WATCH_DIRS = [resolve(ROOT, 'packages'), resolve(ROOT, 'stories')]
 
 function collect() {
   if (running) {

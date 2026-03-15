@@ -2,11 +2,16 @@
 import { ref, useId, onMounted, onUnmounted, nextTick } from 'vue'
 import { useNotifications } from './useNotifications'
 
+defineSlots<{
+  bell?: (props: { unreadCount: number }) => unknown
+  empty?: (props: Record<string, never>) => unknown
+}>()
 const panelId = useId()
 const bellRef = ref<HTMLElement | null>(null)
 const panelRef = ref<HTMLElement | null>(null)
 
 const { notifications, unreadCount, dismiss, markAllRead, clear } = useNotifications()
+
 const open = ref(false)
 
 async function toggle() {
@@ -70,11 +75,12 @@ function formatTime(timestamp: number): string {
 
     <div
       v-if="open"
-      ref="panelRef"
       :id="panelId"
+      ref="panelRef"
       data-rig-notification-panel
       role="region"
       aria-label="Notifications"
+      aria-live="polite"
     >
       <div data-rig-notification-header>
         <span>Notifications</span>

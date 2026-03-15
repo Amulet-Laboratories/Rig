@@ -6,7 +6,7 @@ describe('Table mount', () => {
   bench('default mount', () => {
     const w = mount(Table, {
       props: {
-        columns: [{ key: 'name', label: 'Name' }],
+        columns: [{ id: 'name', label: 'Name' }],
         rows: [{ name: 'Test' }],
         rowKey: 'name',
       },

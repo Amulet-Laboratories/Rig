@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { useToast } from './useToast'
 
+defineSlots<{
+  toast: (props: {
+    id: string
+    message: string
+    variant: 'info' | 'success' | 'warning' | 'error'
+    dismissible: boolean
+    dismiss: () => void
+  }) => unknown
+}>()
+
 const { toasts, add, dismiss, clear } = useToast()
 
 defineExpose({ toasts, add, dismiss, clear })
@@ -10,18 +20,14 @@ defineExpose({ toasts, add, dismiss, clear })
   <Teleport to="body">
     <div
       v-if="toasts.length > 0"
-      data-rig-toast-container tabindex="-1" @keydown.escape="clear()"
-      role="status"
+      data-rig-toast-container
+      tabindex="-1"
+      role="log"
       aria-live="polite"
       aria-relevant="additions removals"
+      @keydown.escape="clear()"
     >
-      <div
-        v-for="entry in toasts"
-        :key="entry.id"
-        data-rig-toast
-        :data-variant="entry.variant"
-        role="alert"
-      >
+      <div v-for="entry in toasts" :key="entry.id" data-rig-toast :data-variant="entry.variant">
         <slot
           :id="entry.id"
           name="toast"

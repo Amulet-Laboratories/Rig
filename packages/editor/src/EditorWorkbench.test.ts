@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import EditorWorkbench from './EditorWorkbench.vue'
 import type { TabItem } from '@core/types'
-import { nextTick } from 'vue'
 
 const tabs: TabItem[] = [
   { id: 'a', label: 'file-a.ts' },
@@ -85,25 +84,28 @@ describe('EditorWorkbench', () => {
     expect(tabEls[1]!.attributes('data-drag-over')).toBeDefined()
   })
 
-  it('handles keyboard interaction', async () => {
-    const wrapper = mount(EditorWorkbench, { props: { tabs: [] } })
-    await wrapper.trigger('keydown', { key: 'ArrowDown' })
-    expect(wrapper.exists()).toBe(true)
+  it('activates tab on Enter key', async () => {
+    const wrapper = mount(EditorWorkbench, { props: { tabs } })
+    await wrapper.findAll('[data-rig-editor-tab]')[1]!.trigger('keydown', { key: 'Enter' })
+    expect(wrapper.emitted('update:activeId')?.[0]).toEqual(['b'])
   })
 
   it('manages focus correctly', async () => {
-    const wrapper = mount(EditorWorkbench, { props: { tabs: [] } }, { attachTo: document.body })
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+    const wrapper = mount(EditorWorkbench, {
+      props: { tabs, activeId: 'a' },
+      attachTo: document.body,
+    })
+    const activeTab = wrapper.findAll('[data-rig-editor-tab]')[0]!
+    ;(activeTab.element as HTMLElement).focus()
+    expect(document.activeElement).toBe(activeTab.element)
     wrapper.unmount()
   })
 
-  it('handles prop updates', async () => {
-    const wrapper = mount(EditorWorkbench, { props: { tabs: [] } })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+  it('reflects activeId prop change', async () => {
+    const wrapper = mount(EditorWorkbench, { props: { tabs, activeId: 'a' } })
+    expect(wrapper.findAll('[data-rig-editor-tab]')[0]!.attributes('data-state')).toBe('active')
+    await wrapper.setProps({ activeId: 'b' })
+    expect(wrapper.findAll('[data-rig-editor-tab]')[0]!.attributes('data-state')).toBe('inactive')
+    expect(wrapper.findAll('[data-rig-editor-tab]')[1]!.attributes('data-state')).toBe('active')
   })
 })

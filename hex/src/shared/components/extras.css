@@ -1,0 +1,405 @@
+/* Hex — Shared Extras Components
+ * Theme styles for Rig's extras package: Toast, EmptyState, NotificationCenter.
+ */
+
+/* ───────── Toast ───────── */
+
+[data-rig-toast] {
+  @apply bg-muted border shadow-xl
+         font-mono text-xs;
+
+  border-radius: 4px;
+}
+
+[data-rig-toast][data-variant='info'] {
+  @apply border-foreground/20 text-foreground/70;
+}
+
+[data-rig-toast][data-variant='success'] {
+  @apply border-success/30 text-success/80;
+}
+
+[data-rig-toast][data-variant='error'] {
+  @apply border-destructive/30 text-destructive/80;
+}
+
+[data-rig-toast][data-variant='warning'] {
+  @apply border-warning/30 text-warning/80;
+}
+
+[data-rig-toast-message] {
+  @apply text-foreground/70;
+}
+
+[data-rig-toast-dismiss] {
+  @apply text-muted-foreground hover:text-foreground/40;
+}
+
+/* ───────── Empty State ───────── */
+
+[data-rig-empty-state] {
+  @apply text-muted-foreground text-sm;
+}
+
+[data-rig-empty-state-title] {
+  @apply text-foreground/50 font-mono text-base;
+}
+
+[data-rig-empty-state-description] {
+  @apply text-muted-foreground text-sm;
+}
+
+[data-rig-empty-state-icon] {
+  @apply text-muted-foreground text-2xl;
+}
+
+/* ───────── NotificationCenter ───────── */
+
+[data-rig-notification-bell] {
+  color: color-mix(in srgb, var(--color-foreground) 40%, transparent);
+  font-size: 14px;
+  border-radius: 2px;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+[data-rig-notification-bell]:hover {
+  color: color-mix(in srgb, var(--color-foreground) 70%, transparent);
+  background: color-mix(in srgb, var(--color-foreground) 6%, transparent);
+}
+
+[data-rig-notification-bell-icon] {
+  color: inherit;
+}
+
+[data-rig-notification-badge] {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--color-background);
+  background: var(--color-primary);
+  border-radius: 7px;
+}
+
+[data-rig-notification-panel] {
+  background: color-mix(in srgb, var(--color-muted) 98%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-foreground) 15%, transparent);
+  border-radius: 3px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+  animation: notification-panel-in 0.12s ease;
+}
+
+@keyframes notification-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-rig-notification-header] {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-foreground) 10%, transparent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: color-mix(in srgb, var(--color-foreground) 50%, transparent);
+}
+
+[data-rig-notification-header] button {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: color-mix(in srgb, var(--color-foreground) 30%, transparent);
+  border-radius: 2px;
+  transition: color 0.1s ease;
+}
+
+[data-rig-notification-header] button:hover {
+  color: color-mix(in srgb, var(--color-foreground) 60%, transparent);
+}
+
+[data-rig-notification-clear] {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: color-mix(in srgb, var(--color-foreground) 30%, transparent);
+  border-radius: 2px;
+  transition: color 0.1s ease;
+}
+
+[data-rig-notification-clear]:hover {
+  color: color-mix(in srgb, var(--color-foreground) 60%, transparent);
+}
+
+[data-rig-notification-item] {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-foreground) 5%, transparent);
+  transition: background-color 0.1s ease;
+}
+
+[data-rig-notification-item]:hover {
+  background: color-mix(in srgb, var(--color-foreground) 3%, transparent);
+}
+
+[data-rig-notification-item]:last-child {
+  border-bottom: none;
+}
+
+/* Variant dot via pseudo-element */
+[data-rig-notification-item]::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+  background: var(--color-info);
+}
+
+[data-rig-notification-item][data-variant='info']::before {
+  background: var(--color-info);
+}
+
+[data-rig-notification-item][data-variant='success']::before {
+  background: var(--color-success);
+}
+
+[data-rig-notification-item][data-variant='warning']::before {
+  background: var(--color-warning);
+}
+
+[data-rig-notification-item][data-variant='error']::before {
+  background: var(--color-destructive);
+}
+
+[data-rig-notification-message] {
+  font-size: 12px;
+  color: color-mix(in srgb, var(--color-foreground) 70%, transparent);
+  line-height: 1.4;
+}
+
+[data-rig-notification-time] {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: color-mix(in srgb, var(--color-foreground) 20%, transparent);
+}
+
+[data-rig-notification-dismiss] {
+  font-size: 12px;
+  color: color-mix(in srgb, var(--color-foreground) 20%, transparent);
+  border-radius: 2px;
+  transition: color 0.1s ease;
+}
+
+[data-rig-notification-dismiss]:hover {
+  color: color-mix(in srgb, var(--color-foreground) 50%, transparent);
+}
+
+[data-rig-notification-empty] {
+  font-size: 12px;
+  color: color-mix(in srgb, var(--color-foreground) 20%, transparent);
+  font-style: italic;
+}
+
+/* ───────── KanbanBoard ───────── */
+
+[data-rig-kanban-board] {
+  @apply gap-4;
+}
+
+[data-rig-kanban-column] {
+  @apply bg-foreground/[0.03] border border-foreground/8 rounded-lg;
+}
+
+[data-rig-kanban-column-header] {
+  @apply text-foreground text-sm font-medium px-3 py-2 border-b border-foreground/8;
+}
+
+[data-rig-kanban-card] {
+  @apply bg-background border border-foreground/10 rounded p-3 transition-all text-sm;
+
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-foreground) 3%, transparent);
+}
+
+[data-rig-kanban-card]:hover {
+  @apply border-foreground/15;
+
+  box-shadow: 0 2px 4px color-mix(in srgb, var(--color-foreground) 6%, transparent);
+}
+
+[data-rig-kanban-card][draggable='true'] {
+  @apply cursor-grab;
+}
+
+[data-rig-kanban-card-title] {
+  @apply text-foreground/80 font-medium;
+}
+
+[data-rig-kanban-card-description] {
+  @apply text-foreground/40 text-xs;
+}
+
+[data-rig-kanban-tag] {
+  @apply text-xs rounded-full px-2 py-0.5;
+
+  background: color-mix(in srgb, var(--domain-accent, var(--color-primary)) 15%, transparent);
+  color: var(--domain-accent, var(--color-primary));
+}
+
+/* ───────── CalendarGrid ───────── */
+
+[data-rig-calendar-grid] {
+  @apply bg-background border border-foreground/10 rounded p-3;
+}
+
+[data-rig-calendar-grid-title] {
+  @apply text-foreground text-sm font-medium;
+}
+
+[data-rig-calendar-grid-nav] {
+  @apply text-foreground/40 hover:text-foreground/60 transition-colors;
+}
+
+[data-rig-calendar-grid-weekday] {
+  @apply text-foreground/30 text-xs font-mono text-center;
+}
+
+[data-rig-calendar-grid-day] {
+  @apply text-sm text-foreground/60 rounded transition-colors;
+}
+
+[data-rig-calendar-grid-day]:hover {
+  @apply bg-foreground/5;
+}
+
+[data-rig-calendar-grid-day][data-selected] {
+  background: var(--domain-accent, var(--color-primary));
+  color: var(--color-background);
+}
+
+[data-rig-calendar-grid-day][data-today] {
+  @apply ring-1 ring-foreground/20;
+}
+
+[data-rig-calendar-grid-day]:not([data-current-month]) {
+  @apply text-foreground/20;
+}
+
+[data-rig-calendar-grid-event] {
+  @apply text-[10px] rounded px-1 truncate;
+
+  background: color-mix(in srgb, var(--domain-accent, var(--color-primary)) 15%, transparent);
+  color: var(--domain-accent, var(--color-primary));
+}
+
+/* ───────── Shimmer ───────── */
+
+[data-rig-shimmer] {
+  background: color-mix(in srgb, var(--color-foreground) 8%, transparent);
+
+  overflow: hidden;
+  position: relative;
+}
+
+[data-rig-shimmer]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-foreground) 4%, transparent), transparent);
+  animation: rig-shimmer-wave 1.5s ease-in-out infinite;
+}
+
+@keyframes rig-shimmer-wave {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ───────── Tooltip ───────── */
+
+[data-rig-tooltip] {
+  position: fixed;
+  z-index: 9999;
+  background: color-mix(in srgb, var(--color-muted) 97%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-foreground) 15%, transparent);
+  border-radius: 2px;
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-foreground);
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 50%);
+  animation: tooltip-in 0.1s ease;
+}
+
+@keyframes tooltip-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ───────── Skeleton ───────── */
+
+[data-rig-skeleton] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+[data-rig-skeleton-line] {
+  height: 12px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--color-foreground) 6%, transparent);
+}
+
+[data-rig-skeleton][data-animate] [data-rig-skeleton-line] {
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* ───────── PropertyGrid ───────── */
+
+[data-rig-property-grid] {
+  display: grid;
+  gap: 0;
+}
+
+[data-rig-property-row] {
+  display: contents;
+}
+
+[data-rig-property-key] {
+  padding: 4px 12px 4px 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: color-mix(in srgb, var(--color-foreground) 40%, transparent);
+  white-space: nowrap;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-foreground) 5%, transparent);
+}
+
+[data-rig-property-value] {
+  padding: 4px 0;
+  font-size: 12px;
+  color: color-mix(in srgb, var(--color-foreground) 70%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-foreground) 5%, transparent);
+  word-break: break-word;
+}
+
+[data-rig-property-value][data-mono] {
+  font-family: var(--font-mono);
+  font-size: 11px;
+}

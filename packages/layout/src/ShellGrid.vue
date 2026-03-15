@@ -56,25 +56,41 @@ const panelStyle = computed(() => ({
 </script>
 
 <template>
-  <div data-rig-shell-grid aria-label="Application shell" :data-direction="direction" tabindex="-1" @keydown.stop>
+  <div
+    data-rig-shell-grid
+    aria-label="Application shell"
+    :data-direction="direction"
+    tabindex="-1"
+    @keydown.stop
+  >
     <div v-if="$slots.titlebar" data-rig-shell-titlebar role="banner">
       <slot name="titlebar" />
     </div>
-    <div data-rig-shell-activity role="navigation" aria-label="Activity bar">
+    <div data-rig-shell-activity>
       <slot name="activity" />
     </div>
-    <div data-rig-shell-sidebar role="complementary" aria-label="Sidebar" :style="sideStyle">
+    <div data-rig-shell-sidebar :style="sideStyle">
       <slot name="sidebar" />
     </div>
-    <Resizer v-if="resizable" orientation="horizontal" @dragstart="onSideDragStart" @drag="onSideResize" />
+    <Resizer
+      v-if="resizable"
+      orientation="horizontal"
+      @dragstart="onSideDragStart"
+      @drag="onSideResize"
+    />
     <div data-rig-shell-editor role="main" aria-label="Editor">
       <slot name="editor" />
     </div>
-    <Resizer v-if="resizable" orientation="vertical" @dragstart="onPanelDragStart" @drag="onPanelResize" />
-    <div data-rig-shell-panel role="region" aria-label="Panel" :style="panelStyle">
+    <Resizer
+      v-if="resizable"
+      orientation="vertical"
+      @dragstart="onPanelDragStart"
+      @drag="onPanelResize"
+    />
+    <div data-rig-shell-panel :style="panelStyle">
       <slot name="panel" />
     </div>
-    <div data-rig-shell-statusbar role="contentinfo">
+    <div data-rig-shell-statusbar>
       <slot name="statusbar" />
     </div>
   </div>

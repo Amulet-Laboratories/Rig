@@ -17,6 +17,11 @@ const emit = defineEmits<{
   'update:open': [value: boolean]
 }>()
 
+defineSlots<{
+  header?: (props: { close: () => void }) => unknown
+  default?: (props: Record<string, never>) => unknown
+}>()
+
 const contentRef = ref<HTMLElement | null>(null)
 
 function close() {

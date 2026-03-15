@@ -1,0 +1,9 @@
+/* Hex — Shared Shell Components
+ * Theme styles for Rig's shell package: IdeShell.
+ */
+
+/* ───────── IdeShell ───────── */
+
+[data-rig-ide-shell] {
+  @apply bg-background text-foreground font-mono text-sm;
+}

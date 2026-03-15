@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useReducedMotion } from '../composables'
 
 const props = withDefaults(
   defineProps<{
@@ -18,6 +19,8 @@ const props = withDefaults(
   },
 )
 
+const prefersReducedMotion = useReducedMotion()
+
 const percent = computed(() => {
   if (props.indeterminate) return undefined
   return Math.min(100, Math.max(0, (props.value / props.max) * 100))
@@ -26,14 +29,15 @@ const percent = computed(() => {
 
 <template>
   <div
-    data-rig-progress tabindex="-1"
-    @keydown.stop
+    data-rig-progress
+    tabindex="-1"
     role="progressbar"
     :aria-label="ariaLabel"
     :aria-valuenow="indeterminate ? undefined : value"
     :aria-valuemin="0"
     :aria-valuemax="max"
-    :data-indeterminate="indeterminate || undefined"
+    :data-indeterminate="(indeterminate && !prefersReducedMotion) || undefined"
+    @keydown.stop
   >
     <div
       data-rig-progress-fill

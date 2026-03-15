@@ -1,0 +1,60 @@
+{
+  "name": "@amulet-laboratories/hex",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Multi-theme layer for Rig — curated palettes targeting data-rig-* selectors",
+  "license": "MIT",
+  "author": "Amulet Laboratories",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10"
+  },
+  "keywords": ["css", "themes", "design-tokens", "tailwindcss", "vue", "design-system"],
+  "homepage": "https://github.com/Amulet-Laboratories/hex#readme",
+  "bugs": {
+    "url": "https://github.com/Amulet-Laboratories/hex/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Amulet-Laboratories/hex"
+  },
+  "exports": {
+    ".": "./dist/hex.css",
+    "./source": "./src/index.css",
+    "./hexrig": "./dist/hexrig.css",
+    "./hexrig/source": "./src/themes/hexrig/index.css",
+    "./vscode": "./dist/vscode.css",
+    "./vscode/source": "./src/themes/vscode/index.css",
+    "./spotify": "./dist/spotify.css",
+    "./spotify/source": "./src/themes/spotify/index.css",
+    "./gmail": "./dist/gmail.css",
+    "./gmail/source": "./src/themes/gmail/index.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs --watch",
+    "test": "node --test build.test.mjs",
+    "lint": "eslint .",
+    "lint:css": "stylelint 'src/**/*.css'",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@amulet-laboratories/config": "workspace:*",
+    "@tailwindcss/postcss": "^4.2.1",
+    "cssnano": "^7.1.3",
+    "eslint": "^9.20.0",
+    "postcss": "^8.5.0",
+    "postcss-import": "^16.1.0",
+    "prettier": "^3.5.0",
+    "stylelint": "^17.4.0",
+    "stylelint-config-standard": "^40.0.0",
+    "tailwindcss": "^4.2.1"
+  }
+}

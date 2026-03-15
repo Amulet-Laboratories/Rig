@@ -208,3 +208,157 @@ button[data-rig-status-bar-item] {
   background: none;
   border: 0;
 }
+
+/* ── Timeline ── */
+
+[data-rig-timeline] {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+[data-rig-timeline][data-orientation='horizontal'] {
+  flex-direction: row;
+}
+
+[data-rig-timeline-item] {
+  display: flex;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+[data-rig-timeline-marker] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+[data-rig-timeline-dot] {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+[data-rig-timeline-line] {
+  flex: 1;
+  width: 2px;
+}
+
+[data-rig-timeline-content] {
+  flex: 1;
+  padding-bottom: 1rem;
+}
+
+/* ── DatePicker ── */
+
+[data-rig-date-picker] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+[data-rig-date-picker-header] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+[data-rig-date-picker-nav] {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0.25rem;
+}
+
+[data-rig-date-picker-grid] {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+[data-rig-date-picker-day] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+[data-rig-date-picker-day][data-disabled] {
+  pointer-events: none;
+}
+
+/* ── DateRangePicker ── */
+
+[data-rig-date-range-picker] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+[data-rig-date-range-picker-header] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+[data-rig-date-range-picker-nav] {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0.25rem;
+}
+
+[data-rig-date-range-picker-grid] {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+[data-rig-date-range-picker-day] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+/* ── Stepper ── */
+
+[data-rig-stepper] {
+  display: flex;
+  gap: 0;
+}
+
+[data-rig-stepper][data-orientation='vertical'] {
+  flex-direction: column;
+}
+
+[data-rig-stepper-step] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+[data-rig-stepper-indicator] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+[data-rig-stepper-connector] {
+  flex: 1;
+  height: 2px;
+}
+
+[data-rig-stepper][data-orientation='vertical'] [data-rig-stepper-connector] {
+  width: 2px;
+  height: auto;
+  flex: 1;
+}

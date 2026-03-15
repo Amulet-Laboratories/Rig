@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import PanelBar from './PanelBar.vue'
 import type { TabItem } from '@core/types'
-import { nextTick } from 'vue'
 
 const tabs: TabItem[] = [
   { id: 'terminal', label: 'Terminal' },
@@ -72,25 +71,30 @@ describe('PanelBar', () => {
     expect(tabEls[2]!.attributes('tabindex')).toBe('-1')
   })
 
-  it('handles keyboard interaction', async () => {
-    const wrapper = mount(PanelBar, { props: { tabs: [] } })
-    await wrapper.trigger('keydown', { key: 'ArrowDown' })
-    expect(wrapper.exists()).toBe(true)
-  })
-
-  it('manages focus correctly', async () => {
-    const wrapper = mount(PanelBar, { props: { tabs: [] } }, { attachTo: document.body })
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+  it('moves focus to next tab on ArrowRight', async () => {
+    const wrapper = mount(PanelBar, { props: { tabs }, attachTo: document.body })
+    const tablist = wrapper.find('[data-rig-panel-bar-tabs]')
+    const tabEls = wrapper.findAll('[data-rig-panel-bar-tab]')
+    ;(tabEls[0]!.element as HTMLElement).focus()
+    await tablist.trigger('keydown', { key: 'ArrowRight' })
+    expect(document.activeElement).toBe(tabEls[1]!.element)
     wrapper.unmount()
   })
 
-  it('handles prop updates', async () => {
-    const wrapper = mount(PanelBar, { props: { tabs: [] } })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+  it('can focus a tab element', () => {
+    const wrapper = mount(PanelBar, { props: { tabs }, attachTo: document.body })
+    const tabEl = wrapper.find('[data-rig-panel-bar-tab]')
+    ;(tabEl.element as HTMLElement).focus()
+    expect(document.activeElement).toBe(tabEl.element)
+    wrapper.unmount()
+  })
+
+  it('updates aria-selected when activeId prop changes', async () => {
+    const wrapper = mount(PanelBar, { props: { tabs, activeId: 'terminal' } })
+    const tabEls = wrapper.findAll('[data-rig-panel-bar-tab]')
+    expect(tabEls[0]!.attributes('aria-selected')).toBe('true')
+    await wrapper.setProps({ activeId: 'output' })
+    expect(tabEls[0]!.attributes('aria-selected')).toBe('false')
+    expect(tabEls[1]!.attributes('aria-selected')).toBe('true')
   })
 })

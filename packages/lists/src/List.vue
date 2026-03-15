@@ -15,6 +15,8 @@ const props = withDefaults(
     virtual?: boolean
     /** Row height in px — used for virtual scroll calculations */
     itemHeight?: number
+    /** Accessible label for the listbox */
+    ariaLabel?: string
   }>(),
   {
     multiSelect: false,
@@ -27,6 +29,10 @@ const emit = defineEmits<{
   'update:selected': [value: ID | ID[]]
   activate: [item: ListItem<T>]
   contextmenu: [payload: { item: ListItem<T>; event: MouseEvent }]
+}>()
+
+defineSlots<{
+  item: (props: { item: ListItem<T>; selected: boolean; focused: boolean }) => unknown
 }>()
 
 const focusedIndex = ref(0)
@@ -140,6 +146,7 @@ function onKeydown(e: KeyboardEvent) {
     ref="containerRef"
     data-rig-list
     role="listbox"
+    :aria-label="ariaLabel"
     :aria-multiselectable="multiSelect || undefined"
     :data-virtual="virtual || undefined"
     @keydown="onKeydown"

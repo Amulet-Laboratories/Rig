@@ -16,6 +16,13 @@ const emit = defineEmits<{
   contextmenu: [payload: { tab: TabItem; event: MouseEvent }]
 }>()
 
+defineSlots<{
+  tabs?: (props: { tabs: TabItem[]; activeId: ID | undefined }) => unknown
+  tab?: (props: { tab: TabItem; isActive: boolean }) => unknown
+  default?: (props: { activeTab: TabItem | undefined }) => unknown
+  empty?: (props: Record<string, never>) => unknown
+}>()
+
 const activeTab = computed(() => props.tabs.find((t) => t.id === props.activeId))
 
 const dragFrom = ref(-1)

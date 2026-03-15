@@ -10,8 +10,7 @@
 //   2. coverage/coverage-summary.json -- v8 coverage per file
 //   3. packages/{pkg}/src/         -- source file scanning (a11y, structure)
 //   4. ../Hex/src/shared/          -- CSS selector coverage
-//   5. stories/                    -- story file existence
-//   6. .health/bench.json          -- benchmark results (optional)
+//   5. .health/bench.json          -- benchmark results (optional)
 //
 // Run:
 //   pnpm health              -- collect + generate
@@ -23,14 +22,26 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from '
 import { resolve, join, relative, basename } from 'node:path'
 
 const ROOT = resolve(import.meta.dirname, '..')
-const HEX_ROOT = resolve(ROOT, '../Hex')
+const HEX_ROOT = resolve(ROOT, 'hex')
 const HEALTH_DIR = resolve(ROOT, '.health')
 const TESTS_JSON = resolve(HEALTH_DIR, 'tests.json')
 const BENCH_JSON = resolve(HEALTH_DIR, 'bench.json')
 const COVERAGE_JSON = resolve(ROOT, 'coverage', 'coverage-summary.json')
 const MANIFEST_OUT = resolve(HEALTH_DIR, 'manifest.json')
 
-const PACKAGES = ['core', 'layout', 'nav', 'editor', 'lists', 'menus', 'extras', 'shell']
+const PACKAGES = [
+  'core',
+  'layout',
+  'nav',
+  'editor',
+  'lists',
+  'menus',
+  'extras',
+  'shell',
+  'data',
+  'spatial',
+  'temporal',
+]
 
 // ── Helpers ──────────────────────────────────────────────────────────
 
@@ -51,7 +62,9 @@ function findFiles(dir, pattern) {
         results.push(join(entry.parentPath ?? entry.path, entry.name))
       }
     }
-  } catch { /* dir doesn't exist */ }
+  } catch {
+    /* dir doesn't exist */
+  }
   return results
 }
 
@@ -103,6 +116,26 @@ function discoverComponents() {
         })
       }
     }
+
+    // Composables at src/ root (use*.ts / provide*.ts files not in composables/)
+    const rootTsFiles = readdirSync(srcDir).filter(
+      (f) => /^(?:use|provide)[A-Z].*\.ts$/.test(f) && !f.includes('.test.') && !f.includes('.bench.'),
+    )
+    for (const fileName of rootTsFiles) {
+      const name = basename(fileName, '.ts')
+      const fullPath = join(srcDir, fileName)
+      // Skip if already discovered from composables/ dir
+      if (components.some((c) => c.name === name)) continue
+
+      components.push({
+        name,
+        package: pkg,
+        type: 'composable',
+        source: relative(ROOT, fullPath),
+        testFile: findSibling(fullPath, '.test.ts'),
+        benchFile: findSibling(fullPath, '.bench.ts'),
+      })
+    }
   }
 
   return components
@@ -124,9 +157,7 @@ function mapTestResults(testsJson) {
     const relPath = relative(ROOT, suite.name)
     map[relPath] = {
       status: suite.status,
-      duration: Math.round(
-        suite.assertionResults.reduce((s, t) => s + (t.duration || 0), 0),
-      ),
+      duration: Math.round(suite.assertionResults.reduce((s, t) => s + (t.duration || 0), 0)),
       tests: suite.assertionResults.map((t) => ({
         name: t.fullName,
         status: t.status,
@@ -225,9 +256,8 @@ function scanA11y(sourcePath) {
     const hasAria = /aria-|:aria-/.test(content)
     const hasRole = /\brole=|:role=/.test(content)
     const hasKeyboardNav = /@keydown|@keyup|useKeyboard|handleKeydown|onKeydown/.test(content)
-    const hasFocusManagement =
-      /useFocusTrap|\.focus\(\)|tabindex|:tabindex|roving/i.test(content)
-    const hasReducedMotion = /prefers-reduced-motion/.test(content)
+    const hasFocusManagement = /useFocusTrap|\.focus\(\)|tabindex|:tabindex|roving/i.test(content)
+    const hasReducedMotion = /prefers-reduced-motion|useReducedMotion/.test(content)
 
     return {
       hasAriaAttributes: hasAria || hasRole,
@@ -253,6 +283,101 @@ function scanA11y(sourcePath) {
   }
 }
 
+// ── 5b. Scan TypeScript strictness ───────────────────────────────────
+
+function scanTsStrictness(sourcePath) {
+  const absPath = resolve(ROOT, sourcePath)
+  try {
+    const content = readFileSync(absPath, 'utf-8')
+
+    const anyCasts = (content.match(/\bas\s+any\b/g) || []).length
+    const anyTypes = (content.match(/:\s*any\b/g) || []).length
+    const tsIgnores = (content.match(/@ts-ignore/g) || []).length
+    const tsExpectErrors = (content.match(/@ts-expect-error/g) || []).length
+    const nonNullAssertions = (content.match(/!\./g) || []).length
+
+    const issues = anyCasts + anyTypes + tsIgnores + tsExpectErrors + nonNullAssertions
+    const isStrict = issues === 0
+
+    return {
+      isStrict,
+      anyCasts,
+      anyTypes,
+      tsIgnores,
+      tsExpectErrors,
+      nonNullAssertions,
+      totalIssues: issues,
+    }
+  } catch {
+    return {
+      isStrict: true,
+      anyCasts: 0,
+      anyTypes: 0,
+      tsIgnores: 0,
+      tsExpectErrors: 0,
+      nonNullAssertions: 0,
+      totalIssues: 0,
+    }
+  }
+}
+
+// ── 5c. Scan documentation coverage ─────────────────────────────────
+
+function scanDocumentation(sourcePath, sourceMetrics) {
+  const absPath = resolve(ROOT, sourcePath)
+  try {
+    const content = readFileSync(absPath, 'utf-8')
+
+    // Check for JSDoc comments (/** ... */)
+    const jsdocCount = (content.match(/\/\*\*[\s\S]*?\*\//g) || []).length
+
+    // Check for inline comments preceding defineProps/defineEmits
+    const hasPropsDoc =
+      /\/\*\*[\s\S]*?\*\/\s*\n\s*(const\s+\w+\s*=\s*)?defineProps/m.test(content) ||
+      /\/\/.*\n\s*(const\s+\w+\s*=\s*)?defineProps/m.test(content)
+    const hasEmitsDoc =
+      /\/\*\*[\s\S]*?\*\/\s*\n\s*(const\s+\w+\s*=\s*)?defineEmits/m.test(content) ||
+      /\/\/.*\n\s*(const\s+\w+\s*=\s*)?defineEmits/m.test(content)
+
+    // Check for @description, @param, @returns tags
+    const hasParamDocs = /@param\s/.test(content)
+    const hasReturnDocs = /@returns?\s/.test(content)
+
+    // For composables: check if exported return values are documented
+    const hasExportDoc = /\/\*\*[\s\S]*?\*\/\s*\n\s*export\s/.test(content)
+
+    const documented = [hasPropsDoc, hasEmitsDoc, hasParamDocs, hasReturnDocs, hasExportDoc].filter(
+      Boolean,
+    ).length
+
+    // Rough doc coverage: jsdoc comments vs (props + emits + 1 for the component itself)
+    const expected = Math.max(sourceMetrics.propCount + sourceMetrics.emitCount + 1, 1)
+    const ratio = Math.min(1, jsdocCount / expected)
+
+    return {
+      jsdocCount,
+      hasPropsDoc,
+      hasEmitsDoc,
+      hasParamDocs,
+      hasReturnDocs,
+      hasExportDoc,
+      documentedFeatures: documented,
+      docCoverageRatio: Math.round(ratio * 100) / 100,
+    }
+  } catch {
+    return {
+      jsdocCount: 0,
+      hasPropsDoc: false,
+      hasEmitsDoc: false,
+      hasParamDocs: false,
+      hasReturnDocs: false,
+      hasExportDoc: false,
+      documentedFeatures: 0,
+      docCoverageRatio: 0,
+    }
+  }
+}
+
 // ── 6. Scan Hex CSS for component selectors ──────────────────────────
 
 function scanHexSelectors() {
@@ -265,8 +390,8 @@ function scanHexSelectors() {
   const cssFiles = findFiles(cssDir, /\.css$/)
   for (const cssFile of cssFiles) {
     const content = readFileSync(cssFile, 'utf-8')
-    // Match [data-rig-component-name] selectors
-    const matches = content.matchAll(/\[data-rig-([a-z-]+)\]/g)
+    // Match [data-rig-component-name] selectors (include digits for e.g. scatter-plot-3d)
+    const matches = content.matchAll(/\[data-rig-([a-z0-9-]+)\]/g)
     for (const m of matches) {
       allSelectors.add(m[1])
       const selectorAttribute = m[0]
@@ -309,6 +434,7 @@ const RIG_SELECTOR_ALIASES = {
   'ide-shell': 'shell',
   'shell-grid': 'shell',
   'scroll-area': 'scroll',
+  'scatter-plot3-d': 'scatter-plot-3d',
 }
 
 /** Map a component name to its data-rig-* selector name */
@@ -318,44 +444,70 @@ function componentToRigSelector(name) {
   return RIG_SELECTOR_ALIASES[kebab] ?? kebab
 }
 
-// ── 7. Find stories ──────────────────────────────────────────────────
-
-function findStories() {
-  const storiesDir = join(ROOT, 'stories')
-  if (!existsSync(storiesDir)) return {}
-
-  const storyFiles = findFiles(storiesDir, /\.story\.vue$/)
-  const map = {}
-
-  for (const sf of storyFiles) {
-    const name = basename(sf, '.story.vue')
-    const content = readFileSync(sf, 'utf-8')
-    const variantCount = (content.match(/<Variant/g) || []).length
-
-    map[name] = {
-      path: relative(ROOT, sf),
-      variants: variantCount,
-    }
-  }
-
-  return map
-}
-
 // -- 8. Compute health score --
 
 // ── 8x. Scan interaction test quality ─────────────────────────────────
 
 /** Scan a test file's content for interaction-quality signals */
 function scanInteractionTests(testFilePath) {
-  if (!testFilePath) return { hasKeyboardTests: false, hasFocusTests: false, hasEmitTests: false, hasSlotTests: false, hasReactivityTests: false, interactionPatterns: [] }
+  const empty = {
+    hasKeyboardTests: false,
+    hasFocusTests: false,
+    hasEmitTests: false,
+    hasSlotTests: false,
+    hasReactivityTests: false,
+    interactionPatterns: [],
+    boilerplateCount: 0,
+  }
+  if (!testFilePath) return empty
   const absPath = resolve(ROOT, testFilePath)
   try {
     const content = readFileSync(absPath, 'utf-8')
-    const hasKeyboardTests = /trigger\(['"]keydown|trigger\(['"]keyup|KeyboardEvent|@keydown|key:\s*['"]Arrow|key:\s*['"]Enter|key:\s*['"]Escape|key:\s*['"]Tab|key:\s*['"]Home|key:\s*['"]End/.test(content)
-    const hasFocusTests = /\.focus\(|document\.activeElement|focusTrap|focusIn|focusOut|trigger\(['"]focus/.test(content)
-    const hasEmitTests = /emitted\(|emit\(/.test(content)
-    const hasSlotTests = /slots:\s*\{|#default|v-slot|slot:/.test(content)
-    const hasReactivityTests = /setProps|setValue|nextTick|flushPromises|wrapper\.vm\.\$/.test(content)
+
+    // ── Boilerplate detection ──
+    // Count assertions that are always-true and therefore test nothing:
+    //   expect(wrapper.exists()).toBe(true)  — always true after mount
+    //   expect(document.activeElement).toBeDefined()  — always true in jsdom
+    const boilerplateExists = (content.match(/expect\(wrapper\.exists\(\)\)/g) || []).length
+    const boilerplateActive = (
+      content.match(/expect\(document\.activeElement\)\.toBeDefined/g) || []
+    ).length
+    const boilerplateCount = boilerplateExists + boilerplateActive
+
+    // ── Trigger detection (raw presence) ──
+    const hasKeyboardTriggers =
+      /trigger\(['"]keydown|trigger\(['"]keyup|KeyboardEvent|@keydown|key:\s*['"]Arrow|key:\s*['"]Enter|key:\s*['"]Escape|key:\s*['"]Tab|key:\s*['"]Home|key:\s*['"]End/.test(
+        content,
+      )
+    const hasFocusTriggers =
+      /\.focus\(|document\.activeElement|focusTrap|focusIn|focusOut|trigger\(['"]focus/.test(
+        content,
+      )
+    const hasEmitPatterns = /emitted\(|emit\(/.test(content)
+    const hasSlotPatterns = /slots:\s*\{|#default|v-slot|slot:/.test(content)
+    const hasReactivityTriggers = /setProps|setValue|nextTick|flushPromises|wrapper\.vm\.\$/.test(
+      content,
+    )
+
+    // ── Substantive assertion detection ──
+    // These indicate real behavioral assertions (not just existence checks)
+    const substantivePatterns =
+      /toHaveAttribute|toContain|toHaveBeenCalled|toEqual|toHaveClass|toMatch|toHaveLength|toBeNull|toBeUndefined|toBeFalsy|emitted\(/
+    const totalExpects = (content.match(/expect\(/g) || []).length
+    const substantiveCount = totalExpects - boilerplateCount
+
+    // ── Quality-gated flags ──
+    // A dimension counts as tested only if the file has BOTH the trigger pattern
+    // AND substantive assertions (not dominated by boilerplate).
+    // boilerplateRatio > 0.5 means more boilerplate than real assertions.
+    const boilerplateRatio = totalExpects > 0 ? boilerplateCount / totalExpects : 0
+    const hasQuality = substantiveCount > boilerplateCount
+
+    const hasKeyboardTests = hasKeyboardTriggers && (hasQuality || !boilerplateExists)
+    const hasFocusTests = hasFocusTriggers && (hasQuality || !boilerplateActive)
+    const hasEmitTests = hasEmitPatterns && substantivePatterns.test(content)
+    const hasSlotTests = hasSlotPatterns
+    const hasReactivityTests = hasReactivityTriggers && (hasQuality || !boilerplateExists)
 
     const patterns = []
     if (hasKeyboardTests) patterns.push('keyboard-interaction')
@@ -364,9 +516,18 @@ function scanInteractionTests(testFilePath) {
     if (hasSlotTests) patterns.push('slot-rendering')
     if (hasReactivityTests) patterns.push('reactivity')
 
-    return { hasKeyboardTests, hasFocusTests, hasEmitTests, hasSlotTests, hasReactivityTests, interactionPatterns: patterns }
+    return {
+      hasKeyboardTests,
+      hasFocusTests,
+      hasEmitTests,
+      hasSlotTests,
+      hasReactivityTests,
+      interactionPatterns: patterns,
+      boilerplateCount,
+      boilerplateRatio: Math.round(boilerplateRatio * 100) / 100,
+    }
   } catch {
-    return { hasKeyboardTests: false, hasFocusTests: false, hasEmitTests: false, hasSlotTests: false, hasReactivityTests: false, interactionPatterns: [] }
+    return empty
   }
 }
 
@@ -391,21 +552,33 @@ function loadAxeResults() {
   return map
 }
 
+// ── 8y2. Load per-component tree-shake sizes ────────────────────────
+
+function loadTreeShakeResults() {
+  const TREE_SHAKE_JSON = resolve(HEALTH_DIR, 'tree-shake.json')
+  const data = readJSON(TREE_SHAKE_JSON)
+  if (!data?.components) return {}
+  return data.components // { ComponentName: { rawBytes, gzipBytes, rawKb, gzipKb } }
+}
+
 // ── 8z. Compute test depth ratio ─────────────────────────────────────
 
 /**
- * Compute a test-depth multiplier (0.0 – 1.0) based on how many tests
- * exist relative to component complexity.
+ * Compute a test-depth multiplier (0.0 – 1.0) based on how many
+ * SUBSTANTIVE tests exist relative to component complexity.
  *
- * Complexity proxy = max(propCount + emitCount, 1) + floor(LOC / 50)
- * Expected tests  = complexity proxy (roughly 1 test per prop/emit + 1 per 50 LOC)
- * Depth ratio     = clamp(testCount / expectedTests, 0, 1)
+ * Complexity proxy = max(propCount + emitCount, 1) * 2 + ceil(LOC / 25)
+ * Effective tests  = testCount − boilerplateCount
+ * Expected tests   = max(complexity, 5)
+ * Depth ratio      = clamp(effectiveTests / expectedTests, 0, 1)
  */
-function computeTestDepth(testCount, sourceMetrics) {
-  const complexity = Math.max(sourceMetrics.propCount + sourceMetrics.emitCount, 1)
-    + Math.floor(sourceMetrics.loc / 50)
-  const expected = Math.max(complexity, 3) // minimum 3 tests expected
-  return Math.min(1, testCount / expected)
+function computeTestDepth(testCount, sourceMetrics, boilerplateCount = 0) {
+  const effectiveTests = Math.max(0, testCount - boilerplateCount)
+  const complexity =
+    Math.max(sourceMetrics.propCount + sourceMetrics.emitCount, 1) * 2 +
+    Math.ceil(sourceMetrics.loc / 25)
+  const expected = Math.max(complexity, 5)
+  return Math.round(Math.min(1, effectiveTests / expected) * 100) / 100
 }
 
 // ── 8a. Scan source metrics (LOC, props, emits, deps, file size) ─────
@@ -446,13 +619,16 @@ function scanSourceMetrics(sourcePath, type) {
     } else {
       // Composable: count exported functions/refs as "props" equivalent
       propCount = (content.match(/return\s*\{([^}]*)\}/s) || ['', ''])[1]
-        .split(',').filter((s) => s.trim()).length
+        .split(',')
+        .filter((s) => s.trim()).length
     }
 
     // Count import dependencies (from rig packages only)
     const importMatches = content.matchAll(/from\s+['"]\.\.?\//g)
     for (const m of importMatches) deps.add(m[0])
-    const rigImports = content.matchAll(/from\s+['"]@(core|layout|nav|editor|lists|menus|extras|shell)\//g)
+    const rigImports = content.matchAll(
+      /from\s+['"]@(core|layout|nav|editor|lists|menus|extras|shell)\//g,
+    )
     for (const m of rigImports) deps.add(m[1])
 
     return {
@@ -469,7 +645,7 @@ function scanSourceMetrics(sourcePath, type) {
 
 // ── 8b. Compute health score ─────────────────────────────────────────
 
-// Components: Tests(25) + Coverage(25) + A11y(20) + Story(10) + Hex(10) + Bench(10) = 100
+// Components: Tests(30) + Coverage(25) + A11y(20) + Interaction(5) + Hex(10) + Bench(10) = 100
 // Composables: Tests(40) + Coverage(40) + Bench(20) = 100
 //
 // Test scoring is depth-weighted: points scale by testDepth ratio and
@@ -514,20 +690,20 @@ function computeScore(entry) {
     if (entry.benchmark?.available) score += 20
   } else {
     // -- Component scoring profile --
-    // Tests: depth-weighted (25 points)
+    // Tests: depth-weighted (30 points)
     if (entry.tests) {
       const { total, passed } = entry.tests
       const depth = entry.testDepth ?? 1
       if (total > 0) {
-        // Base: 12pts for having tests, scaled by depth
-        score += Math.round(12 * Math.max(0.5, depth))
-        // Bonus: up to 13pts for all passing, scaled by depth
-        if (passed === total) score += Math.round(13 * Math.max(0.5, depth))
-        else if (total > 0) score += Math.round(6 * (passed / total) * depth)
+        // Base: 15pts for having tests, scaled by depth
+        score += Math.round(15 * Math.max(0.5, depth))
+        // Bonus: up to 15pts for all passing, scaled by depth
+        if (passed === total) score += Math.round(15 * Math.max(0.5, depth))
+        else if (total > 0) score += Math.round(7 * (passed / total) * depth)
       }
     }
 
-    // Coverage above thresholds (20 points — was 25, 5pts moved to interaction)
+    // Coverage above thresholds (25 points)
     if (entry.coverage) {
       const avg =
         (entry.coverage.statements +
@@ -535,7 +711,7 @@ function computeScore(entry) {
           entry.coverage.functions +
           entry.coverage.lines) /
         4
-      score += Math.min(20, (avg / 100) * 20)
+      score += Math.min(25, (avg / 100) * 25)
     }
 
     // Accessibility: blended source scan + axe runtime (20 points)
@@ -559,17 +735,19 @@ function computeScore(entry) {
       if (entry.a11y.hasFocusManagement) score += 2
     }
 
-    // Interaction test quality (5 points — new dimension)
+    // Interaction test quality (5 points — discounted by boilerplate)
     if (entry.interactionTests) {
       const it = entry.interactionTests
-      if (it.hasKeyboardTests) score += 2
-      if (it.hasFocusTests) score += 1
-      if (it.hasEmitTests) score += 1
-      if (it.hasReactivityTests) score += 1
+      // Discount interaction points by boilerplate ratio:
+      //   0 boilerplate stubs → full credit
+      //   3+ stubs → zero credit
+      const bpPenalty = Math.min(1, (it.boilerplateCount || 0) / 3)
+      const bpMultiplier = 1 - bpPenalty
+      if (it.hasKeyboardTests) score += Math.round(2 * bpMultiplier)
+      if (it.hasFocusTests) score += Math.round(1 * bpMultiplier)
+      if (it.hasEmitTests) score += Math.round(1 * bpMultiplier)
+      if (it.hasReactivityTests) score += Math.round(1 * bpMultiplier)
     }
-
-    // Story exists (10 points)
-    if (entry.story?.exists) score += 10
 
     // Hex CSS coverage (10 points)
     if (entry.hexCoverage?.hasStyles) score += 10
@@ -588,145 +766,6 @@ function computeScore(entry) {
   else grade = 'F'
 
   return { score, grade }
-}
-
-// -- 9. Discover showcase projects --
-
-// Diagnostic views are measurement/health dashboards, not component showcases.
-// They are kept in the demo app but excluded from showcase metrics.
-const DIAGNOSTIC_IDS = new Set(['ecosystem-health', 'performance'])
-
-function discoverShowcases(allComponents) {
-  const showcasesDir = join(ROOT, 'demo', 'src', 'showcases')
-  if (!existsSync(showcasesDir)) return { showcases: [], diagnostics: [] }
-
-  const storyFiles = findFiles(showcasesDir, /\.story\.vue$/)
-  const e2eDir = join(ROOT, 'demo', 'e2e')
-  const e2eFiles = existsSync(e2eDir) ? findFiles(e2eDir, /\.spec\.ts$/) : []
-
-  // Read e2e files once to check which showcases they cover
-  const e2eContent = e2eFiles.map((f) => readFileSync(f, 'utf-8')).join('\n')
-
-  // Build lookups from the enriched component data
-  const componentNames = new Set(allComponents.map((c) => c.name))
-  const componentByName = new Map(allComponents.map((c) => [c.name, c]))
-
-  const all = []
-
-  for (const sf of storyFiles) {
-    const name = basename(sf, '.story.vue')
-    const content = readFileSync(sf, 'utf-8')
-    const relPath = relative(ROOT, sf)
-
-    // Parse component imports from the file
-    const importedComponents = []
-    const importMatches = content.matchAll(/import\s+(\w+)\s+from\s+['"]@(?:core|layout|nav|editor|lists|menus|extras|shell)\//g)
-    for (const m of importMatches) {
-      if (componentNames.has(m[1])) {
-        importedComponents.push(m[1])
-      }
-    }
-
-    // Also find composable usage
-    const composableMatches = content.matchAll(/import\s+\{\s*([^}]+)\}\s+from\s+['"]@(?:core|layout|nav|editor|lists|menus|extras|shell)\//g)
-    for (const m of composableMatches) {
-      const names = m[1].split(',').map((n) => n.trim())
-      for (const n of names) {
-        if (componentNames.has(n)) {
-          importedComponents.push(n)
-        }
-      }
-    }
-
-    const uniqueImports = [...new Set(importedComponents)].sort()
-
-    // Count lines of code (rough complexity)
-    const loc = content.split('\n').length
-
-    // Kebab-case ID from PascalCase name
-    const id = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
-
-    // Check if covered by e2e tests
-    const hasE2e = e2eContent.includes(`'${id}'`) || e2eContent.includes(`"${id}"`)
-
-    // Count unique Rig packages used
-    const pkgMatches = content.matchAll(/@(core|layout|nav|editor|lists|menus|extras|shell)\//g)
-    const packagesUsed = [...new Set([...pkgMatches].map((m) => m[1]))]
-
-    // ── Computed measurements ──────────────────────────────────────
-    // Average health score of imported components
-    const compScores = uniqueImports
-      .map((n) => componentByName.get(n))
-      .filter(Boolean)
-      .map((c) => c.score)
-    const avgComponentScore = compScores.length > 0
-      ? Math.round(compScores.reduce((a, b) => a + b, 0) / compScores.length)
-      : 0
-
-    // Coverage reach: what % of total library components does this showcase exercise?
-    const coverageReach = allComponents.length > 0
-      ? Math.round((uniqueImports.length / allComponents.length) * 1000) / 10
-      : 0
-
-    // How many of the used components have unit tests?
-    const testedCount = uniqueImports
-      .map((n) => componentByName.get(n))
-      .filter(Boolean)
-      .filter((c) => c.tests.total > 0)
-      .length
-    const testedRatio = uniqueImports.length > 0
-      ? Math.round((testedCount / uniqueImports.length) * 100)
-      : 0
-
-    // Average coverage (statements) of used components
-    const compCoverages = uniqueImports
-      .map((n) => componentByName.get(n))
-      .filter(Boolean)
-      .filter((c) => c.coverage && c.coverage.statements > 0)
-      .map((c) => c.coverage.statements)
-    const avgCoverage = compCoverages.length > 0
-      ? Math.round(compCoverages.reduce((a, b) => a + b, 0) / compCoverages.length * 10) / 10
-      : 0
-
-    // How many have a11y attributes scanned?
-    const a11yCount = uniqueImports
-      .map((n) => componentByName.get(n))
-      .filter(Boolean)
-      .filter((c) => c.a11y?.hasAriaAttributes)
-      .length
-
-    // Package breadth: ratio of packages used vs total available (8 packages)
-    const packageBreadth = Math.round((packagesUsed.length / 8) * 100)
-
-    all.push({
-      name,
-      id,
-      source: relPath,
-      componentsUsed: uniqueImports,
-      componentCount: uniqueImports.length,
-      packagesUsed: packagesUsed.sort(),
-      packageCount: packagesUsed.length,
-      loc,
-      hasE2e,
-      // Measurements
-      avgComponentScore,
-      coverageReach,
-      testedRatio,
-      avgCoverage,
-      a11yCount,
-      packageBreadth,
-    })
-  }
-
-  // Separate showcases from diagnostics
-  const showcases = all
-    .filter((s) => !DIAGNOSTIC_IDS.has(s.id))
-    .sort((a, b) => a.name.localeCompare(b.name))
-  const diagnostics = all
-    .filter((s) => DIAGNOSTIC_IDS.has(s.id))
-    .sort((a, b) => a.name.localeCompare(b.name))
-
-  return { showcases, diagnostics }
 }
 
 // -- Main --
@@ -751,8 +790,8 @@ const testMap = mapTestResults(testsJson)
 const coverageMap = mapCoverage(coverageJson)
 const benchMap = mapBenchmarks(benchJson)
 const hexSelectors = scanHexSelectors()
-const stories = findStories()
 const axeResultsMap = loadAxeResults()
+const treeShakeMap = loadTreeShakeResults()
 
 // Discover and enrich components
 const discovered = discoverComponents()
@@ -787,14 +826,6 @@ for (const comp of discovered) {
   // Accessibility
   const a11y = comp.type === 'component' ? scanA11y(comp.source) : null
 
-  // Story
-  const storyData = stories[comp.name]
-  const story = {
-    exists: !!storyData,
-    path: storyData?.path ?? null,
-    variants: storyData?.variants ?? 0,
-  }
-
   // Hex CSS coverage
   const rigSelector = componentToRigSelector(comp.name)
   const hexMatches = hexSelectors[rigSelector]
@@ -806,14 +837,25 @@ for (const comp of discovered) {
   // Source metrics
   const sourceMetrics = scanSourceMetrics(comp.source, comp.type)
 
-  // Interaction test scan (new: Rec #4)
+  // TypeScript strictness scan
+  const tsStrictness = scanTsStrictness(comp.source)
+
+  // Documentation coverage scan
+  const documentation = scanDocumentation(comp.source, sourceMetrics)
+
+  // Interaction test scan (with boilerplate detection)
   const interactionTests = scanInteractionTests(comp.testFile)
 
-  // Test depth ratio (new: Rec #1)
-  const testDepth = tests ? computeTestDepth(tests.total, sourceMetrics) : 0
+  // Test depth ratio (boilerplate-aware)
+  const testDepth = tests
+    ? computeTestDepth(tests.total, sourceMetrics, interactionTests.boilerplateCount)
+    : 0
 
   // Axe-core runtime results (new: Rec #3)
   const axeRuntime = axeResultsMap[comp.name] ?? null
+
+  // Per-component tree-shaken bundle size
+  const treeShake = treeShakeMap[comp.name] ?? null
 
   // Compute score
   const entry = {
@@ -822,6 +864,8 @@ for (const comp of discovered) {
     type: comp.type,
     source: comp.source,
     sourceMetrics,
+    tsStrictness,
+    documentation,
     tests,
     coverage,
     benchmark,
@@ -829,8 +873,8 @@ for (const comp of discovered) {
     axeRuntime,
     interactionTests,
     testDepth,
-    story,
     hexCoverage,
+    treeShake,
   }
 
   const { score, grade } = computeScore(entry)
@@ -842,27 +886,39 @@ for (const comp of discovered) {
   const isComposable = comp.type === 'composable'
 
   if (!tests || tests.total === 0) {
-    gaps.push({ dimension: 'tests', label: 'Add unit tests', impact: isComposable ? 40 : 25 })
+    gaps.push({ dimension: 'tests', label: 'Add unit tests', impact: isComposable ? 40 : 30 })
   } else if (tests.failed > 0) {
-    gaps.push({ dimension: 'tests', label: `Fix ${tests.failed} failing test(s)`, impact: isComposable ? 16 : 10 })
+    gaps.push({
+      dimension: 'tests',
+      label: `Fix ${tests.failed} failing test(s)`,
+      impact: isComposable ? 16 : 12,
+    })
   } else if (testDepth < 0.6) {
-    const currentPts = isComposable ? 40 : 25
+    const currentPts = isComposable ? 40 : 30
     const potential = Math.round(currentPts * (1 - testDepth) * 0.5)
     if (potential > 0) {
-      gaps.push({ dimension: 'tests', label: `Add more tests (depth ${Math.round(testDepth * 100)}%, need ${Math.round(sourceMetrics.propCount + sourceMetrics.emitCount + Math.floor(sourceMetrics.loc / 50))} tests)`, impact: potential })
+      gaps.push({
+        dimension: 'tests',
+        label: `Add more tests (depth ${Math.round(testDepth * 100)}%, need ${Math.round(sourceMetrics.propCount + sourceMetrics.emitCount + Math.floor(sourceMetrics.loc / 50))} tests)`,
+        impact: potential,
+      })
     }
   }
 
   if (!coverage) {
-    gaps.push({ dimension: 'coverage', label: 'Add coverage data', impact: isComposable ? 40 : 20 })
+    gaps.push({ dimension: 'coverage', label: 'Add coverage data', impact: isComposable ? 40 : 25 })
   } else {
     const avg = (coverage.statements + coverage.branches + coverage.functions + coverage.lines) / 4
     if (avg < 80) {
       const potential = isComposable
         ? Math.round(Math.min(40, (80 / 100) * 40) - Math.min(40, (avg / 100) * 40))
-        : Math.round(Math.min(20, (80 / 100) * 20) - Math.min(20, (avg / 100) * 20))
+        : Math.round(Math.min(25, (80 / 100) * 25) - Math.min(25, (avg / 100) * 25))
       if (potential > 0) {
-        gaps.push({ dimension: 'coverage', label: `Increase coverage from ${Math.round(avg)}% to 80%`, impact: potential })
+        gaps.push({
+          dimension: 'coverage',
+          label: `Increase coverage from ${Math.round(avg)}% to 80%`,
+          impact: potential,
+        })
       }
     }
   }
@@ -880,11 +936,19 @@ for (const comp of discovered) {
     }
     // A11y: axe runtime gaps (10pts portion)
     if (!axeRuntime) {
-      gaps.push({ dimension: 'a11y-runtime', label: 'Add to comparison benchmarks for axe-core scan', impact: 10 })
+      gaps.push({
+        dimension: 'a11y-runtime',
+        label: 'Add to comparison benchmarks for axe-core scan',
+        impact: 10,
+      })
     } else if (axeRuntime.score < 90) {
       const potential = Math.round(((90 - axeRuntime.score) / 100) * 10)
       if (potential > 0) {
-        gaps.push({ dimension: 'a11y-runtime', label: `Fix axe-core violations (score ${axeRuntime.score}, need 90+)`, impact: potential })
+        gaps.push({
+          dimension: 'a11y-runtime',
+          label: `Fix axe-core violations (score ${axeRuntime.score}, need 90+)`,
+          impact: potential,
+        })
       }
     }
     // Interaction test gaps (5pts)
@@ -899,9 +963,6 @@ for (const comp of discovered) {
     }
     if (!interactionTests.hasReactivityTests) {
       gaps.push({ dimension: 'interaction', label: 'Add reactivity/prop-update tests', impact: 1 })
-    }
-    if (!story.exists) {
-      gaps.push({ dimension: 'story', label: 'Create a .story.vue file', impact: 10 })
     }
     if (!hexCoverage.hasStyles) {
       gaps.push({ dimension: 'hex', label: 'Add Hex CSS selectors', impact: 10 })
@@ -977,9 +1038,7 @@ const manifest = {
         count: pkgComponents.length,
         avgScore:
           pkgComponents.length > 0
-            ? Math.round(
-                pkgComponents.reduce((s, c) => s + c.score, 0) / pkgComponents.length,
-              )
+            ? Math.round(pkgComponents.reduce((s, c) => s + c.score, 0) / pkgComponents.length)
             : 0,
       }
     }),
@@ -993,7 +1052,10 @@ const manifest = {
 
     // Dimension fill rates
     dimensionFill: {
-      tests: { filled: components.filter((c) => c.tests && c.tests.total > 0).length, total: components.length },
+      tests: {
+        filled: components.filter((c) => c.tests && c.tests.total > 0).length,
+        total: components.length,
+      },
       coverage: { filled: components.filter((c) => c.coverage).length, total: components.length },
       a11y: {
         filled: components.filter((c) => c.a11y && c.a11y.patterns.length > 0).length,
@@ -1004,31 +1066,66 @@ const manifest = {
         total: components.filter((c) => c.type === 'component').length,
       },
       interaction: {
-        filled: components.filter((c) => c.interactionTests && c.interactionTests.interactionPatterns.length > 0).length,
-        total: components.filter((c) => c.type === 'component').length,
-      },
-      story: {
-        filled: components.filter((c) => c.story.exists).length,
+        filled: components.filter(
+          (c) =>
+            c.type === 'component' &&
+            c.interactionTests &&
+            c.interactionTests.interactionPatterns.length > 0,
+        ).length,
         total: components.filter((c) => c.type === 'component').length,
       },
       hex: {
         filled: components.filter((c) => c.hexCoverage.hasStyles).length,
         total: components.filter((c) => c.type === 'component').length,
       },
-      bench: { filled: components.filter((c) => c.benchmark.available).length, total: components.length },
+      bench: {
+        filled: components.filter((c) => c.benchmark.available).length,
+        total: components.length,
+      },
+      tsStrict: {
+        filled: components.filter((c) => c.tsStrictness.isStrict).length,
+        total: components.length,
+      },
+      documentation: {
+        filled: components.filter((c) => c.documentation.docCoverageRatio >= 0.5).length,
+        total: components.length,
+      },
     },
 
     // Test depth stats
-    avgTestDepth: Math.round(
-      (components.filter((c) => c.tests?.total > 0).reduce((s, c) => s + (c.testDepth ?? 0), 0) /
-        Math.max(1, components.filter((c) => c.tests?.total > 0).length)) * 100,
-    ) / 100,
+    avgTestDepth:
+      Math.round(
+        (components.filter((c) => c.tests?.total > 0).reduce((s, c) => s + (c.testDepth ?? 0), 0) /
+          Math.max(1, components.filter((c) => c.tests?.total > 0).length)) *
+          100,
+      ) / 100,
+
+    // Boilerplate test quality metrics
+    boilerplate: {
+      totalBoilerplateAssertions: components.reduce(
+        (s, c) => s + (c.interactionTests?.boilerplateCount ?? 0),
+        0,
+      ),
+      filesWithBoilerplate: components.filter(
+        (c) => (c.interactionTests?.boilerplateCount ?? 0) > 0,
+      ).length,
+      avgBoilerplateRatio:
+        Math.round(
+          (components
+            .filter((c) => c.interactionTests?.boilerplateRatio != null)
+            .reduce((s, c) => s + c.interactionTests.boilerplateRatio, 0) /
+            Math.max(
+              1,
+              components.filter((c) => c.interactionTests?.boilerplateRatio != null).length,
+            )) *
+            100,
+        ) / 100,
+    },
 
     // Total gaps and actionable items
     totalGaps: components.reduce((s, c) => s + c.gaps.length, 0),
-    avgGapsPerComponent: Math.round(
-      (components.reduce((s, c) => s + c.gaps.length, 0) / components.length) * 10,
-    ) / 10,
+    avgGapsPerComponent:
+      Math.round((components.reduce((s, c) => s + c.gaps.length, 0) / components.length) * 10) / 10,
 
     // Source metrics aggregates
     totalLoc: components.reduce((s, c) => s + c.sourceMetrics.loc, 0),
@@ -1036,8 +1133,6 @@ const manifest = {
   },
 
   components: components.sort((a, b) => a.name.localeCompare(b.name)),
-
-  ...discoverShowcases(components),
 }
 
 writeFileSync(MANIFEST_OUT, JSON.stringify(manifest, null, 2))
@@ -1069,10 +1164,45 @@ const snapshot = {
 }
 
 history.snapshots.push(snapshot)
+
+// ── Cap history: keep ≤90 most recent, downsample older to 1-per-day ──
+if (history.snapshots.length > 90) {
+  const now = Date.now()
+  const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000
+  const cutoff = now - THIRTY_DAYS
+
+  // Split into recent (≤30 days, keep all) and older (>30 days, keep 1 per day)
+  const recent = []
+  const older = []
+  for (const s of history.snapshots) {
+    if (new Date(s.timestamp).getTime() >= cutoff) {
+      recent.push(s)
+    } else {
+      older.push(s)
+    }
+  }
+
+  // Downsample older entries to one per calendar day (keep the last of each day)
+  const byDay = new Map()
+  for (const s of older) {
+    const day = new Date(s.timestamp).toISOString().slice(0, 10)
+    byDay.set(day, s)
+  }
+  const downsampled = [...byDay.values()]
+
+  // Cap total at 90
+  const combined = [...downsampled, ...recent]
+  history.snapshots = combined.slice(-90)
+}
+
 writeFileSync(HISTORY_JSON, JSON.stringify(history, null, 2))
 
 const elapsed = Date.now() - start
 console.log(`  Written to .health/manifest.json (${elapsed}ms)`)
 console.log(`  History: ${history.snapshots.length} snapshot(s) in .health/history.json`)
-console.log(`  ${manifest.summary.totalComponents} components, ${manifest.summary.totalComposables} composables, ${manifest.showcases.length} showcases, ${manifest.diagnostics.length} diagnostics`)
-console.log(`  Average score: ${avgScore} | Grades: A:${gradeDistribution.A} B:${gradeDistribution.B} C:${gradeDistribution.C} D:${gradeDistribution.D} F:${gradeDistribution.F}`)
+console.log(
+  `  ${manifest.summary.totalComponents} components, ${manifest.summary.totalComposables} composables`,
+)
+console.log(
+  `  Average score: ${avgScore} | Grades: A:${gradeDistribution.A} B:${gradeDistribution.B} C:${gradeDistribution.C} D:${gradeDistribution.D} F:${gradeDistribution.F}`,
+)

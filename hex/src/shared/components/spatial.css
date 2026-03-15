@@ -1,0 +1,77 @@
+/* Hex — Shared Spatial Components
+ * Styles for Rig's spatial package: MapCanvas, GlobeView,
+ * ScatterPlot3D, GraphNetwork, PointCloud
+ */
+
+/* ───────── MapCanvas ───────── */
+
+[data-rig-map-canvas] {
+  @apply bg-card border border-border/50;
+  border-radius: var(--radius);
+}
+
+[data-rig-map-canvas-viewport] {
+  @apply bg-card;
+}
+
+[data-rig-map-canvas-marker] {
+  @apply text-primary;
+}
+
+[data-rig-map-canvas-marker][data-active] {
+  @apply text-foreground;
+}
+
+[data-rig-map-canvas-controls] button {
+  @apply bg-card/90 border border-border text-foreground
+         hover:bg-accent;
+  border-radius: var(--radius);
+  width: 2rem;
+  height: 2rem;
+}
+
+/* ───────── GlobeView ───────── */
+
+[data-rig-globe-view] {
+  @apply bg-background;
+}
+
+/* ───────── ScatterPlot3D ───────── */
+
+[data-rig-scatter-plot-3d] {
+  @apply bg-background;
+}
+
+/* ───────── GraphNetwork ───────── */
+
+[data-rig-graph-network] {
+  @apply bg-card border border-border/50;
+  border-radius: var(--radius);
+}
+
+[data-rig-graph-network-node] circle {
+  fill: var(--domain-accent, var(--color-primary));
+  stroke: var(--color-foreground);
+  stroke-width: 1;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-graph-network-node]:hover circle {
+  opacity: 0.8;
+}
+
+[data-rig-graph-network-node] text {
+  fill: var(--color-foreground);
+  @apply font-mono text-xs;
+}
+
+[data-rig-graph-network-edge] line {
+  stroke: var(--color-border);
+  opacity: 0.5;
+}
+
+/* ───────── PointCloud ───────── */
+
+[data-rig-point-cloud] {
+  @apply bg-background;
+}

@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Collapsible from './Collapsible.vue'
-import { nextTick } from 'vue'
 
 describe('Collapsible', () => {
   it('renders with data-rig-collapsible', () => {
@@ -67,16 +66,18 @@ describe('Collapsible', () => {
     expect(wrapper.attributes('data-disabled')).toBeDefined()
   })
 
-  it('handles keyboard events gracefully', async () => {
-    const wrapper = mount(Collapsible)
-    await wrapper.trigger('keydown', { key: 'Escape' })
-    expect(wrapper.exists()).toBe(true)
+  it('toggles on Enter key', async () => {
+    const wrapper = mount(Collapsible, { props: { open: false } })
+    await wrapper.trigger('keydown', { key: 'Enter' })
+    expect(wrapper.emitted('update:open')?.[0]).toEqual([true])
   })
 
-  it('can receive focus', () => {
-    const wrapper = mount(Collapsible, { attachTo: document.body })
-    wrapper.element.focus()
-    expect(document.activeElement).toBeDefined()
+  it('content element has tabindex="-1" for programmatic focus', () => {
+    const wrapper = mount(Collapsible, { props: { open: true }, attachTo: document.body })
+    const content = wrapper.find('[data-rig-collapsible-content]')
+    expect(content.attributes('tabindex')).toBe('-1')
+    ;(content.element as HTMLElement).focus()
+    expect(document.activeElement).toBe(content.element)
     wrapper.unmount()
   })
 })

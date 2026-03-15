@@ -106,22 +106,40 @@ function onScrollbarKeydown(e: KeyboardEvent, axis: 'vertical' | 'horizontal') {
 
   switch (e.key) {
     case 'ArrowDown':
-      if (axis === 'vertical') { e.preventDefault(); el.scrollTop += step }
+      if (axis === 'vertical') {
+        e.preventDefault()
+        el.scrollTop += step
+      }
       break
     case 'ArrowUp':
-      if (axis === 'vertical') { e.preventDefault(); el.scrollTop -= step }
+      if (axis === 'vertical') {
+        e.preventDefault()
+        el.scrollTop -= step
+      }
       break
     case 'ArrowRight':
-      if (axis === 'horizontal') { e.preventDefault(); el.scrollLeft += step }
+      if (axis === 'horizontal') {
+        e.preventDefault()
+        el.scrollLeft += step
+      }
       break
     case 'ArrowLeft':
-      if (axis === 'horizontal') { e.preventDefault(); el.scrollLeft -= step }
+      if (axis === 'horizontal') {
+        e.preventDefault()
+        el.scrollLeft -= step
+      }
       break
     case 'PageDown':
-      if (axis === 'vertical') { e.preventDefault(); el.scrollTop += pageStep }
+      if (axis === 'vertical') {
+        e.preventDefault()
+        el.scrollTop += pageStep
+      }
       break
     case 'PageUp':
-      if (axis === 'vertical') { e.preventDefault(); el.scrollTop -= pageStep }
+      if (axis === 'vertical') {
+        e.preventDefault()
+        el.scrollTop -= pageStep
+      }
       break
     case 'Home':
       e.preventDefault()

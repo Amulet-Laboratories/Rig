@@ -1,0 +1,73 @@
+/* Hex — VSCode Design Tokens
+ * VSCode Dark Modern theme — mapped from microsoft/vscode dark_modern.json.
+ * Token names follow shadcn conventions for cross-ecosystem portability.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #1f1f1f;
+  --color-foreground: #cccccc;
+  --color-card: #181818;
+  --color-card-foreground: #cccccc;
+  --color-popover: #181818;
+  --color-popover-foreground: #cccccc;
+
+  /* Brand */
+  --color-primary: #0078d4;
+  --color-primary-foreground: #ffffff;
+
+  /* Soft accents */
+  --color-secondary: #181818;
+  --color-secondary-foreground: #cccccc;
+  --color-muted: #181818;
+  --color-muted-foreground: #9d9d9d;
+  --color-accent: #181818;
+  --color-accent-foreground: #cccccc;
+
+  /* Semantic status */
+  --color-destructive: #f48771;
+  --color-destructive-foreground: #cccccc;
+  --color-success: #89d185;
+  --color-warning: #cca700;
+  --color-info: #75beff;
+
+  /* Borders and focus */
+  --color-border: rgb(204 204 204 / 0.1);
+  --color-input: rgb(204 204 204 / 0.1);
+  --color-ring: rgb(204 204 204 / 0.3);
+
+  /* Typography */
+  --font-mono: 'SF Mono', Monaco, Menlo, Consolas, 'Ubuntu Mono', 'Liberation Mono', 'DejaVu Sans Mono', 'Courier New', monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+
+  /* Radius */
+  --radius: 4px;
+}
+
+:root {
+  --background: #1f1f1f;
+  --foreground: #cccccc;
+  --card: #181818;
+  --card-foreground: #cccccc;
+  --popover: #181818;
+  --popover-foreground: #cccccc;
+  --primary: #0078d4;
+  --primary-foreground: #ffffff;
+  --secondary: #181818;
+  --secondary-foreground: #cccccc;
+  --muted: #181818;
+  --muted-foreground: #9d9d9d;
+  --accent: #181818;
+  --accent-foreground: #cccccc;
+  --destructive: #f48771;
+  --destructive-foreground: #cccccc;
+  --success: #89d185;
+  --warning: #cca700;
+  --info: #75beff;
+  --border: rgb(204 204 204 / 0.1);
+  --input: rgb(204 204 204 / 0.1);
+  --ring: rgb(204 204 204 / 0.3);
+  --radius: 4px;
+  --font-mono: 'SF Mono', Monaco, Menlo, Consolas, 'Ubuntu Mono', 'Liberation Mono', 'DejaVu Sans Mono', 'Courier New', monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+}

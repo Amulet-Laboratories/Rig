@@ -1,0 +1,95 @@
+/* Hex — Shared Temporal Components
+ * Styles for Rig's temporal package: TimelineScrubber, AnimatedChart,
+ * PlaybackControls, TemporalHeatmap, ParticleField
+ */
+
+/* ───────── TimelineScrubber ───────── */
+
+[data-rig-timeline-scrubber] {
+  @apply text-foreground;
+}
+
+[data-rig-timeline-scrubber-track] {
+  @apply bg-foreground/10;
+  border-radius: 2px;
+}
+
+[data-rig-timeline-scrubber-fill] {
+  background: var(--domain-accent, var(--color-primary));
+  border-radius: 2px;
+}
+
+[data-rig-timeline-scrubber-thumb] {
+  background: var(--domain-accent, var(--color-primary));
+  border: 2px solid var(--color-foreground);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+}
+
+[data-rig-timeline-scrubber-marker] {
+  @apply text-xs text-muted-foreground font-mono;
+}
+
+/* ───────── PlaybackControls ───────── */
+
+[data-rig-playback-controls] {
+  @apply text-foreground;
+}
+
+[data-rig-playback-controls] button {
+  @apply bg-transparent border-none text-foreground
+         hover:text-primary transition-colors;
+  padding: 0.25rem;
+}
+
+[data-rig-playback-controls] button[data-active] {
+  @apply text-primary;
+}
+
+[data-rig-playback-controls] button[data-disabled] {
+  @apply opacity-30 pointer-events-none;
+}
+
+[data-rig-playback-controls-speed] {
+  @apply text-xs text-muted-foreground font-mono;
+}
+
+/* ───────── AnimatedChart ───────── */
+
+[data-rig-animated-chart] {
+  @apply text-foreground;
+}
+
+[data-rig-animated-chart] path,
+[data-rig-animated-chart] rect,
+[data-rig-animated-chart] circle {
+  transition: all 0.3s ease;
+}
+
+/* ───────── TemporalHeatmap ───────── */
+
+[data-rig-temporal-heatmap] {
+  @apply text-foreground;
+}
+
+[data-rig-temporal-heatmap] rect[data-rig-temporal-heatmap-cell] {
+  stroke: var(--color-background);
+  stroke-width: 1;
+  rx: 2;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-temporal-heatmap] rect[data-rig-temporal-heatmap-cell]:hover {
+  opacity: 0.85;
+}
+
+[data-rig-temporal-heatmap] text {
+  fill: var(--color-muted-foreground);
+  @apply font-mono text-xs;
+}
+
+/* ───────── ParticleField ───────── */
+
+[data-rig-particle-field] {
+  @apply bg-background;
+}

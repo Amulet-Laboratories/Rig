@@ -8,3 +8,5 @@ coverage/
 .health/tests.json
 .health/bench.json
 .health/manifest.json
+.health/comparison.json
+.health/static-analysis.json

@@ -86,4 +86,67 @@ describe('Input', () => {
     }
     wrapper.unmount()
   })
+
+  it('forwards type prop to input element', () => {
+    const wrapper = mount(Input, { props: { type: 'email' } })
+    expect(wrapper.find('input').attributes('type')).toBe('email')
+  })
+
+  it('forwards placeholder prop', () => {
+    const wrapper = mount(Input, { props: { placeholder: 'Enter text...' } })
+    expect(wrapper.find('input').attributes('placeholder')).toBe('Enter text...')
+  })
+
+  it('forwards id prop to input element', () => {
+    const wrapper = mount(Input, { props: { id: 'my-input' } })
+    expect(wrapper.find('input').attributes('id')).toBe('my-input')
+  })
+
+  it('forwards ariaLabel prop to input element', () => {
+    const wrapper = mount(Input, { props: { ariaLabel: 'Search' } })
+    expect(wrapper.find('input').attributes('aria-label')).toBe('Search')
+  })
+
+  it('emits focus event', async () => {
+    const wrapper = mount(Input)
+    await wrapper.find('input').trigger('focus')
+    expect(wrapper.emitted('focus')).toHaveLength(1)
+  })
+
+  it('emits blur event', async () => {
+    const wrapper = mount(Input)
+    await wrapper.find('input').trigger('blur')
+    expect(wrapper.emitted('blur')).toHaveLength(1)
+  })
+
+  it('renders leading slot', () => {
+    const wrapper = mount(Input, {
+      slots: { leading: '<span data-test-leading>Icon</span>' },
+    })
+    expect(wrapper.find('[data-test-leading]').exists()).toBe(true)
+  })
+
+  it('renders trailing slot', () => {
+    const wrapper = mount(Input, {
+      slots: { trailing: '<span data-test-trailing>Suffix</span>' },
+    })
+    expect(wrapper.find('[data-test-trailing]').exists()).toBe(true)
+  })
+
+  it('sets data-clearable when clearable', () => {
+    const wrapper = mount(Input, { props: { clearable: true, modelValue: 'x' } })
+    expect(wrapper.attributes('data-clearable')).toBeDefined()
+  })
+
+  it('uses default type of text', () => {
+    const wrapper = mount(Input)
+    expect(wrapper.find('input').attributes('type')).toBe('text')
+  })
+
+  it('exposes focus method', async () => {
+    const wrapper = mount(Input, { attachTo: document.body })
+    ;(wrapper.vm as unknown as { focus: () => void }).focus()
+    expect(document.activeElement).toBe(wrapper.find('input').element)
+    wrapper.unmount()
+  })
 })

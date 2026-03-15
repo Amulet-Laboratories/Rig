@@ -1,0 +1,109 @@
+/* Rig Structural — Temporal Components
+ * TimelineScrubber, AnimatedChart, PlaybackControls, TemporalHeatmap, ParticleField
+ */
+
+/* ── TimelineScrubber ── */
+
+[data-rig-timeline-scrubber] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  position: relative;
+  padding: 0.25rem 0;
+  user-select: none;
+}
+
+[data-rig-timeline-scrubber-track] {
+  position: relative;
+  height: 4px;
+  cursor: pointer;
+}
+
+[data-rig-timeline-scrubber-fill] {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+[data-rig-timeline-scrubber-thumb] {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+}
+
+[data-rig-timeline-scrubber-thumb][data-state='dragging'] {
+  cursor: grabbing;
+}
+
+[data-rig-timeline-scrubber-markers] {
+  position: relative;
+  height: 1rem;
+}
+
+[data-rig-timeline-scrubber-marker] {
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+/* ── PlaybackControls ── */
+
+[data-rig-playback-controls] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+[data-rig-playback-controls-speed] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+/* ── AnimatedChart ── */
+
+[data-rig-animated-chart] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-animated-chart] svg {
+  display: block;
+  width: 100%;
+}
+
+/* ── TemporalHeatmap ── */
+
+[data-rig-temporal-heatmap] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-temporal-heatmap] svg {
+  display: block;
+}
+
+[data-rig-temporal-heatmap-labels] {
+  display: flex;
+  gap: 0.25rem;
+}
+
+/* ── ParticleField ── */
+
+[data-rig-particle-field] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-rig-particle-field] canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

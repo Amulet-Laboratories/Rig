@@ -36,6 +36,16 @@ const emit = defineEmits<{
   rename: [payload: { node: TreeNode<T>; newLabel: string }]
 }>()
 
+defineSlots<{
+  node: (props: {
+    node: TreeNode<T>
+    depth: number
+    expanded: boolean
+    selected: boolean
+    toggle: () => void
+  }) => unknown
+}>()
+
 const focusedIndex = ref(0)
 const itemRefs = ref<HTMLElement[]>([])
 const loadingNodes = ref<Set<ID>>(new Set())
@@ -257,11 +267,7 @@ function onKeydown(e: KeyboardEvent) {
       >
         <!-- Indent guides -->
         <span v-if="flat.depth > 0" data-rig-tree-indent aria-hidden="true">
-          <span
-            v-for="level in flat.depth"
-            :key="level"
-            data-rig-tree-indent-guide
-          />
+          <span v-for="level in flat.depth" :key="level" data-rig-tree-indent-guide />
         </span>
         <button
           v-if="!flat.isLeaf"

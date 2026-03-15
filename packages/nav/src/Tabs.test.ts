@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Tabs from './Tabs.vue'
-import { nextTick } from 'vue'
 
 /** Build a minimal tabs wrapper so we can test slot + keyboard behavior */
 function factory(modelValue = 'a') {
@@ -144,9 +143,10 @@ describe('Tabs', () => {
     wrapper.unmount()
   })
 
-  it('handles prop updates', async () => {
-    const wrapper = mount(Tabs)
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+  it('updates data-orientation when orientation prop changes', async () => {
+    const wrapper = mount(Tabs, { props: { modelValue: 'a' } })
+    expect(wrapper.attributes('data-orientation')).toBe('horizontal')
+    await wrapper.setProps({ orientation: 'vertical' })
+    expect(wrapper.attributes('data-orientation')).toBe('vertical')
   })
 })

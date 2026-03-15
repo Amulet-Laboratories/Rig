@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import View from './View.vue'
-import { nextTick } from 'vue'
 
 describe('View', () => {
   it('renders with data-rig-view', () => {
@@ -67,26 +66,27 @@ describe('View', () => {
     expect(wrapper.emitted('action')?.[0]).toEqual(['new'])
   })
 
-  it('handles keyboard interaction', async () => {
-    const wrapper = mount(View)
-    await wrapper.trigger('keydown', { key: 'ArrowDown' })
-    expect(wrapper.exists()).toBe(true)
+  it('toggles collapsed on Enter key on the toggle button', async () => {
+    const wrapper = mount(View, { props: { title: 'Test', collapsed: false } })
+    await wrapper.find('[data-rig-view-toggle]').trigger('keydown', { key: 'Enter' })
+    expect(wrapper.emitted('update:collapsed')?.[0]).toEqual([true])
   })
 
-  it('manages focus correctly', async () => {
-    const wrapper = mount(View, { attachTo: document.body })
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+  it('can focus the view toggle button', () => {
+    const wrapper = mount(View, { props: { title: 'Test' }, attachTo: document.body })
+    const toggle = wrapper.find('[data-rig-view-toggle]')
+    ;(toggle.element as HTMLElement).focus()
+    expect(document.activeElement).toBe(toggle.element)
     wrapper.unmount()
   })
 
-  it('reacts to prop changes', async () => {
-    const wrapper = mount(View)
-    await wrapper.setProps({ collapsed: true })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+  it('shows content when collapsed changes from true to false', async () => {
+    const wrapper = mount(View, {
+      props: { title: 'Test', collapsed: true },
+      slots: { default: '<div id="content">Hello</div>' },
+    })
+    expect(wrapper.find('#content').exists()).toBe(false)
+    await wrapper.setProps({ collapsed: false })
+    expect(wrapper.find('#content').exists()).toBe(true)
   })
 })

@@ -1,0 +1,2437 @@
+{
+  "generated": "2026-03-14T23:18:25.289Z",
+  "rig": {
+    "componentCount": 107,
+    "packageCount": 11,
+    "testCoverage": 85.56,
+    "bundleSize": {
+      "fullGzip": 51384,
+      "fullMinified": 245195,
+      "cssGzip": 0,
+      "jsGzip": 51384
+    },
+    "a11yScore": 99
+  },
+  "libraries": [
+    {
+      "id": "vuetify",
+      "name": "Vuetify",
+      "framework": "vue",
+      "paradigm": "styled",
+      "url": "https://vuetifyjs.com",
+      "npm": "vuetify",
+      "github": "vuetifyjs/vuetify",
+      "ecosystem": {
+        "githubStars": 40000,
+        "weeklyDownloads": 800000,
+        "monthlyDownloads": 3200000,
+        "releaseCount": 300,
+        "daysSinceLastRelease": 14,
+        "openIssues": 1200,
+        "contributorCount": 800,
+        "ageInDays": 3000,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 95000,
+        "fullMinified": 350000,
+        "perComponentAvgGzip": 1200,
+        "cssGzip": 30000,
+        "jsGzip": 65000,
+        "treeShakenButtonGzip": 8000,
+        "treeShakenInputGzip": 9000
+      },
+      "coverage": {
+        "totalComponents": 80,
+        "primitiveCount": 30,
+        "compositeCount": 50,
+        "formComponents": 15,
+        "dataDisplayComponents": 12,
+        "layoutComponents": 10,
+        "feedbackComponents": 8,
+        "navigationComponents": 8,
+        "hasDataGrid": true,
+        "hasDatePicker": true,
+        "hasColorPicker": true,
+        "hasVirtualList": true,
+        "hasCommandPalette": false,
+        "hasDragDrop": false,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 12,
+        "mountTimeWarmMs": 4,
+        "rerenderTimeMs": 2,
+        "timeToInteractiveMs": 180,
+        "memoryFootprintMb": 8,
+        "fps100Components": 55
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 1,
+        "axeViolationsModal": 1,
+        "axeViolationsTable": 2,
+        "axeViolationsAvg": 1,
+        "keyboardNavScore": 75,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 18
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 150,
+        "avgPropsPerComponent": 12,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 400,
+        "darkModeNative": true,
+        "rtlSupport": true,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 7,
+        "customizabilityScore": 5
+      },
+      "dx": {
+        "documentationScore": 8,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": true,
+        "cliTooling": true,
+        "aiToolingScore": 7,
+        "migrationPathScore": 5,
+        "errorMessageScore": 7
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 83,
+        "performance": 64,
+        "accessibility": 88,
+        "coverage": 60,
+        "typescript": 96,
+        "theming": 79,
+        "dx": 78,
+        "ecosystem": 48,
+        "composite": 75
+      },
+      "collectedAt": "2026-03-13T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Material Design opinionated. v3 breaking migration. Strong enterprise adoption."
+    },
+    {
+      "id": "primevue",
+      "name": "PrimeVue",
+      "framework": "vue",
+      "paradigm": "hybrid",
+      "url": "https://primevue.org",
+      "npm": "primevue",
+      "github": "primefaces/primevue",
+      "ecosystem": {
+        "githubStars": 12000,
+        "weeklyDownloads": 400000,
+        "monthlyDownloads": 1600000,
+        "releaseCount": 200,
+        "daysSinceLastRelease": 7,
+        "openIssues": 400,
+        "contributorCount": 300,
+        "ageInDays": 2000,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 110000,
+        "fullMinified": 400000,
+        "perComponentAvgGzip": 900,
+        "cssGzip": 40000,
+        "jsGzip": 70000,
+        "treeShakenButtonGzip": 5000,
+        "treeShakenInputGzip": 6000
+      },
+      "coverage": {
+        "totalComponents": 110,
+        "primitiveCount": 40,
+        "compositeCount": 70,
+        "formComponents": 20,
+        "dataDisplayComponents": 18,
+        "layoutComponents": 12,
+        "feedbackComponents": 10,
+        "navigationComponents": 10,
+        "hasDataGrid": true,
+        "hasDatePicker": true,
+        "hasColorPicker": true,
+        "hasVirtualList": true,
+        "hasCommandPalette": false,
+        "hasDragDrop": true,
+        "hasCharts": true,
+        "hasRichText": true
+      },
+      "performance": {
+        "mountTimeMs": 10,
+        "mountTimeWarmMs": 3,
+        "rerenderTimeMs": 1.8,
+        "timeToInteractiveMs": 150,
+        "memoryFootprintMb": 7,
+        "fps100Components": 58
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 0,
+        "axeViolationsModal": 1,
+        "axeViolationsTable": 1,
+        "axeViolationsAvg": 0.5,
+        "keyboardNavScore": 80,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 22
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 200,
+        "avgPropsPerComponent": 10,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 600,
+        "darkModeNative": true,
+        "rtlSupport": true,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 9,
+        "customizabilityScore": 8
+      },
+      "dx": {
+        "documentationScore": 9,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": true,
+        "cliTooling": false,
+        "aiToolingScore": 7,
+        "migrationPathScore": 7,
+        "errorMessageScore": 7
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 80,
+        "performance": 70,
+        "accessibility": 96,
+        "coverage": 90,
+        "typescript": 100,
+        "theming": 92,
+        "dx": 79,
+        "ecosystem": 43,
+        "composite": 83
+      },
+      "collectedAt": "2026-03-13T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Unstyled mode added in v4. Best Vue data components. Fast release cadence."
+    },
+    {
+      "id": "element-plus",
+      "name": "Element Plus",
+      "framework": "vue",
+      "paradigm": "styled",
+      "url": "https://element-plus.org",
+      "npm": "element-plus",
+      "github": "element-plus/element-plus",
+      "ecosystem": {
+        "githubStars": 25000,
+        "weeklyDownloads": 600000,
+        "monthlyDownloads": 2400000,
+        "releaseCount": 250,
+        "daysSinceLastRelease": 21,
+        "openIssues": 800,
+        "contributorCount": 500,
+        "ageInDays": 1800,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 130000,
+        "fullMinified": 500000,
+        "perComponentAvgGzip": 1500,
+        "cssGzip": 50000,
+        "jsGzip": 80000,
+        "treeShakenButtonGzip": 7000,
+        "treeShakenInputGzip": 8000
+      },
+      "coverage": {
+        "totalComponents": 85,
+        "primitiveCount": 35,
+        "compositeCount": 50,
+        "formComponents": 18,
+        "dataDisplayComponents": 14,
+        "layoutComponents": 10,
+        "feedbackComponents": 8,
+        "navigationComponents": 8,
+        "hasDataGrid": true,
+        "hasDatePicker": true,
+        "hasColorPicker": true,
+        "hasVirtualList": true,
+        "hasCommandPalette": false,
+        "hasDragDrop": false,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 14,
+        "mountTimeWarmMs": 5,
+        "rerenderTimeMs": 2.5,
+        "timeToInteractiveMs": 200,
+        "memoryFootprintMb": 9,
+        "fps100Components": 52
+      },
+      "accessibility": {
+        "axeViolationsButton": 1,
+        "axeViolationsInput": 1,
+        "axeViolationsModal": 2,
+        "axeViolationsTable": 2,
+        "axeViolationsAvg": 1.5,
+        "keyboardNavScore": 70,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 15
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 180,
+        "avgPropsPerComponent": 14,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 350,
+        "darkModeNative": true,
+        "rtlSupport": true,
+        "runtimeSwitching": false,
+        "tokenDepthScore": 6,
+        "customizabilityScore": 6
+      },
+      "dx": {
+        "documentationScore": 7,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": false,
+        "cliTooling": false,
+        "aiToolingScore": 6,
+        "migrationPathScore": 7,
+        "errorMessageScore": 6
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 77,
+        "performance": 58,
+        "accessibility": 81,
+        "coverage": 63,
+        "typescript": 99,
+        "theming": 63,
+        "dx": 63,
+        "ecosystem": 45,
+        "composite": 69
+      },
+      "collectedAt": "2026-03-13T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Dominant in Chinese enterprise market. Element UI heritage."
+    },
+    {
+      "id": "reka-ui",
+      "name": "Reka UI",
+      "framework": "vue",
+      "paradigm": "headless",
+      "url": "https://reka-ui.com",
+      "npm": "reka-ui",
+      "github": "unovue/reka-ui",
+      "ecosystem": {
+        "githubStars": 4000,
+        "weeklyDownloads": 150000,
+        "monthlyDownloads": 600000,
+        "releaseCount": 80,
+        "daysSinceLastRelease": 10,
+        "openIssues": 120,
+        "contributorCount": 100,
+        "ageInDays": 900,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 25000,
+        "fullMinified": 80000,
+        "perComponentAvgGzip": 600,
+        "cssGzip": 0,
+        "jsGzip": 25000,
+        "treeShakenButtonGzip": 2000,
+        "treeShakenInputGzip": 2500
+      },
+      "coverage": {
+        "totalComponents": 45,
+        "primitiveCount": 35,
+        "compositeCount": 10,
+        "formComponents": 10,
+        "dataDisplayComponents": 5,
+        "layoutComponents": 5,
+        "feedbackComponents": 8,
+        "navigationComponents": 5,
+        "hasDataGrid": false,
+        "hasDatePicker": true,
+        "hasColorPicker": false,
+        "hasVirtualList": false,
+        "hasCommandPalette": true,
+        "hasDragDrop": false,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 4,
+        "mountTimeWarmMs": 1.5,
+        "rerenderTimeMs": 0.8,
+        "timeToInteractiveMs": 60,
+        "memoryFootprintMb": 3,
+        "fps100Components": 60
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 0,
+        "axeViolationsModal": 0,
+        "axeViolationsTable": 0,
+        "axeViolationsAvg": 0,
+        "keyboardNavScore": 95,
+        "wcagLevel": "AAA",
+        "ariaPatternsCovered": 28
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 120,
+        "avgPropsPerComponent": 8,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 0,
+        "darkModeNative": false,
+        "rtlSupport": true,
+        "runtimeSwitching": false,
+        "tokenDepthScore": 3,
+        "customizabilityScore": 10
+      },
+      "dx": {
+        "documentationScore": 8,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": false,
+        "cliTooling": false,
+        "aiToolingScore": 8,
+        "migrationPathScore": 8,
+        "errorMessageScore": 8
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 96,
+        "performance": 88,
+        "accessibility": 100,
+        "coverage": 33,
+        "typescript": 94,
+        "theming": 44,
+        "dx": 74,
+        "ecosystem": 41,
+        "composite": 73
+      },
+      "collectedAt": "2026-03-13T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Formerly Radix Vue. Zero styles. WAI-ARIA gold standard in Vue ecosystem."
+    },
+    {
+      "id": "naive-ui",
+      "name": "Naive UI",
+      "framework": "vue",
+      "paradigm": "styled",
+      "url": "https://naiveui.com",
+      "npm": "naive-ui",
+      "github": "tusen-ai/naive-ui",
+      "ecosystem": {
+        "githubStars": 17000,
+        "weeklyDownloads": 120000,
+        "monthlyDownloads": 480000,
+        "releaseCount": 200,
+        "daysSinceLastRelease": 30,
+        "openIssues": 300,
+        "contributorCount": 250,
+        "ageInDays": 1500,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 120000,
+        "fullMinified": 450000,
+        "perComponentAvgGzip": 1400,
+        "cssGzip": 0,
+        "jsGzip": 120000,
+        "treeShakenButtonGzip": 8000,
+        "treeShakenInputGzip": 9000
+      },
+      "coverage": {
+        "totalComponents": 90,
+        "primitiveCount": 35,
+        "compositeCount": 55,
+        "formComponents": 16,
+        "dataDisplayComponents": 15,
+        "layoutComponents": 10,
+        "feedbackComponents": 10,
+        "navigationComponents": 8,
+        "hasDataGrid": true,
+        "hasDatePicker": true,
+        "hasColorPicker": true,
+        "hasVirtualList": true,
+        "hasCommandPalette": false,
+        "hasDragDrop": false,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 11,
+        "mountTimeWarmMs": 3.5,
+        "rerenderTimeMs": 2,
+        "timeToInteractiveMs": 170,
+        "memoryFootprintMb": 8,
+        "fps100Components": 56
+      },
+      "accessibility": {
+        "axeViolationsButton": 1,
+        "axeViolationsInput": 1,
+        "axeViolationsModal": 1,
+        "axeViolationsTable": 2,
+        "axeViolationsAvg": 1.25,
+        "keyboardNavScore": 72,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 16
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 200,
+        "avgPropsPerComponent": 11,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 500,
+        "darkModeNative": true,
+        "rtlSupport": false,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 8,
+        "customizabilityScore": 8
+      },
+      "dx": {
+        "documentationScore": 7,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": false,
+        "cliTooling": false,
+        "aiToolingScore": 6,
+        "migrationPathScore": 8,
+        "errorMessageScore": 7
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 78,
+        "performance": 67,
+        "accessibility": 84,
+        "coverage": 65,
+        "typescript": 100,
+        "theming": 79,
+        "dx": 65,
+        "ecosystem": 36,
+        "composite": 72
+      },
+      "collectedAt": "2026-03-13T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "TypeScript-first theme system is best-in-class. Smaller community."
+    },
+    {
+      "id": "mui",
+      "name": "MUI",
+      "framework": "react",
+      "paradigm": "styled",
+      "url": "https://mui.com",
+      "npm": "@mui/material",
+      "github": "mui/material-ui",
+      "ecosystem": {
+        "githubStars": 95000,
+        "weeklyDownloads": 4500000,
+        "monthlyDownloads": 18000000,
+        "releaseCount": 500,
+        "daysSinceLastRelease": 7,
+        "openIssues": 1800,
+        "contributorCount": 2500,
+        "ageInDays": 4000,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 150000,
+        "fullMinified": 600000,
+        "perComponentAvgGzip": 1800,
+        "cssGzip": 20000,
+        "jsGzip": 130000,
+        "treeShakenButtonGzip": 10000,
+        "treeShakenInputGzip": 12000
+      },
+      "coverage": {
+        "totalComponents": 85,
+        "primitiveCount": 35,
+        "compositeCount": 50,
+        "formComponents": 15,
+        "dataDisplayComponents": 12,
+        "layoutComponents": 12,
+        "feedbackComponents": 10,
+        "navigationComponents": 10,
+        "hasDataGrid": true,
+        "hasDatePicker": true,
+        "hasColorPicker": false,
+        "hasVirtualList": true,
+        "hasCommandPalette": false,
+        "hasDragDrop": false,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 15,
+        "mountTimeWarmMs": 5,
+        "rerenderTimeMs": 3,
+        "timeToInteractiveMs": 220,
+        "memoryFootprintMb": 10,
+        "fps100Components": 48
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 0,
+        "axeViolationsModal": 1,
+        "axeViolationsTable": 1,
+        "axeViolationsAvg": 0.5,
+        "keyboardNavScore": 82,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 24
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 300,
+        "avgPropsPerComponent": 18,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 500,
+        "darkModeNative": true,
+        "rtlSupport": true,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 8,
+        "customizabilityScore": 7
+      },
+      "dx": {
+        "documentationScore": 9,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": true,
+        "cliTooling": false,
+        "aiToolingScore": 9,
+        "migrationPathScore": 5,
+        "errorMessageScore": 8
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 73,
+        "performance": 55,
+        "accessibility": 96,
+        "coverage": 58,
+        "typescript": 100,
+        "theming": 87,
+        "dx": 82,
+        "ecosystem": 82,
+        "composite": 79
+      },
+      "collectedAt": "2026-03-13T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Most installed React lib. Material Design. Bundle size concern. v6 breaking."
+    },
+    {
+      "id": "ant-design",
+      "name": "Ant Design",
+      "framework": "react",
+      "paradigm": "styled",
+      "url": "https://ant.design",
+      "npm": "antd",
+      "github": "ant-design/ant-design",
+      "ecosystem": {
+        "githubStars": 93000,
+        "weeklyDownloads": 2500000,
+        "monthlyDownloads": 10000000,
+        "releaseCount": 600,
+        "daysSinceLastRelease": 5,
+        "openIssues": 1000,
+        "contributorCount": 2000,
+        "ageInDays": 3800,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 180000,
+        "fullMinified": 700000,
+        "perComponentAvgGzip": 2500,
+        "cssGzip": 60000,
+        "jsGzip": 120000,
+        "treeShakenButtonGzip": 12000,
+        "treeShakenInputGzip": 14000
+      },
+      "coverage": {
+        "totalComponents": 70,
+        "primitiveCount": 25,
+        "compositeCount": 45,
+        "formComponents": 14,
+        "dataDisplayComponents": 12,
+        "layoutComponents": 8,
+        "feedbackComponents": 8,
+        "navigationComponents": 8,
+        "hasDataGrid": true,
+        "hasDatePicker": true,
+        "hasColorPicker": true,
+        "hasVirtualList": true,
+        "hasCommandPalette": false,
+        "hasDragDrop": true,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 16,
+        "mountTimeWarmMs": 6,
+        "rerenderTimeMs": 3.5,
+        "timeToInteractiveMs": 250,
+        "memoryFootprintMb": 12,
+        "fps100Components": 45
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 1,
+        "axeViolationsModal": 1,
+        "axeViolationsTable": 1,
+        "axeViolationsAvg": 0.75,
+        "keyboardNavScore": 78,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 20
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 250,
+        "avgPropsPerComponent": 15,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 700,
+        "darkModeNative": true,
+        "rtlSupport": true,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 9,
+        "customizabilityScore": 6
+      },
+      "dx": {
+        "documentationScore": 8,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": true,
+        "cliTooling": false,
+        "aiToolingScore": 8,
+        "migrationPathScore": 6,
+        "errorMessageScore": 7
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 68,
+        "performance": 52,
+        "accessibility": 92,
+        "coverage": 60,
+        "typescript": 100,
+        "theming": 87,
+        "dx": 76,
+        "ecosystem": 75,
+        "composite": 76
+      },
+      "collectedAt": "2026-03-13T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Enterprise-grade. Best i18n. Alibaba-maintained. Distinct visual identity."
+    },
+    {
+      "id": "shadcn-ui",
+      "name": "shadcn/ui",
+      "framework": "react",
+      "paradigm": "headless",
+      "url": "https://ui.shadcn.com",
+      "npm": "",
+      "github": "shadcn-ui/ui",
+      "ecosystem": {
+        "githubStars": 80000,
+        "weeklyDownloads": 0,
+        "monthlyDownloads": 0,
+        "releaseCount": 50,
+        "daysSinceLastRelease": 14,
+        "openIssues": 600,
+        "contributorCount": 400,
+        "ageInDays": 800,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 0,
+        "fullMinified": 0,
+        "perComponentAvgGzip": 0,
+        "cssGzip": 0,
+        "jsGzip": 0,
+        "treeShakenButtonGzip": 0,
+        "treeShakenInputGzip": 0
+      },
+      "coverage": {
+        "totalComponents": 50,
+        "primitiveCount": 40,
+        "compositeCount": 10,
+        "formComponents": 10,
+        "dataDisplayComponents": 8,
+        "layoutComponents": 5,
+        "feedbackComponents": 8,
+        "navigationComponents": 5,
+        "hasDataGrid": true,
+        "hasDatePicker": true,
+        "hasColorPicker": false,
+        "hasVirtualList": false,
+        "hasCommandPalette": true,
+        "hasDragDrop": false,
+        "hasCharts": true,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 5,
+        "mountTimeWarmMs": 2,
+        "rerenderTimeMs": 1,
+        "timeToInteractiveMs": 80,
+        "memoryFootprintMb": 4,
+        "fps100Components": 60
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 0,
+        "axeViolationsModal": 0,
+        "axeViolationsTable": 1,
+        "axeViolationsAvg": 0.25,
+        "keyboardNavScore": 85,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 22
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 100,
+        "avgPropsPerComponent": 8,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 50,
+        "darkModeNative": true,
+        "rtlSupport": false,
+        "runtimeSwitching": false,
+        "tokenDepthScore": 5,
+        "customizabilityScore": 10
+      },
+      "dx": {
+        "documentationScore": 9,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": false,
+        "cliTooling": true,
+        "aiToolingScore": 10,
+        "migrationPathScore": 9,
+        "errorMessageScore": 7
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 50,
+        "performance": 85,
+        "accessibility": 99,
+        "coverage": 45,
+        "typescript": 93,
+        "theming": 60,
+        "dx": 87,
+        "ecosystem": 60,
+        "composite": 74
+      },
+      "collectedAt": "2026-03-13T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Copy-paste model. No npm bundle — skip size phase. AI tooling best-in-class."
+    },
+    {
+      "id": "mantine",
+      "name": "Mantine",
+      "framework": "react",
+      "paradigm": "hybrid",
+      "url": "https://mantine.dev",
+      "npm": "@mantine/core",
+      "github": "mantinedev/mantine",
+      "ecosystem": {
+        "githubStars": 28000,
+        "weeklyDownloads": 500000,
+        "monthlyDownloads": 2000000,
+        "releaseCount": 300,
+        "daysSinceLastRelease": 10,
+        "openIssues": 200,
+        "contributorCount": 400,
+        "ageInDays": 1500,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 80000,
+        "fullMinified": 300000,
+        "perComponentAvgGzip": 1000,
+        "cssGzip": 25000,
+        "jsGzip": 55000,
+        "treeShakenButtonGzip": 5000,
+        "treeShakenInputGzip": 6000
+      },
+      "coverage": {
+        "totalComponents": 100,
+        "primitiveCount": 40,
+        "compositeCount": 60,
+        "formComponents": 18,
+        "dataDisplayComponents": 15,
+        "layoutComponents": 12,
+        "feedbackComponents": 10,
+        "navigationComponents": 10,
+        "hasDataGrid": false,
+        "hasDatePicker": true,
+        "hasColorPicker": true,
+        "hasVirtualList": false,
+        "hasCommandPalette": false,
+        "hasDragDrop": false,
+        "hasCharts": true,
+        "hasRichText": true
+      },
+      "performance": {
+        "mountTimeMs": 8,
+        "mountTimeWarmMs": 3,
+        "rerenderTimeMs": 1.5,
+        "timeToInteractiveMs": 120,
+        "memoryFootprintMb": 6,
+        "fps100Components": 58
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 0,
+        "axeViolationsModal": 1,
+        "axeViolationsTable": 1,
+        "axeViolationsAvg": 0.5,
+        "keyboardNavScore": 80,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 20
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 250,
+        "avgPropsPerComponent": 12,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 450,
+        "darkModeNative": true,
+        "rtlSupport": true,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 8,
+        "customizabilityScore": 8
+      },
+      "dx": {
+        "documentationScore": 9,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": false,
+        "cliTooling": false,
+        "aiToolingScore": 8,
+        "migrationPathScore": 7,
+        "errorMessageScore": 9
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 86,
+        "performance": 76,
+        "accessibility": 96,
+        "coverage": 70,
+        "typescript": 100,
+        "theming": 89,
+        "dx": 78,
+        "ecosystem": 50,
+        "composite": 81
+      },
+      "collectedAt": "2026-03-13T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Best DX in React ecosystem. 60+ hooks. Error messages best-in-class."
+    },
+    {
+      "id": "react-aria",
+      "name": "React Aria",
+      "framework": "react",
+      "paradigm": "headless",
+      "url": "https://react-spectrum.adobe.com/react-aria",
+      "npm": "react-aria-components",
+      "github": "adobe/react-spectrum",
+      "ecosystem": {
+        "githubStars": 13000,
+        "weeklyDownloads": 800000,
+        "monthlyDownloads": 3200000,
+        "releaseCount": 150,
+        "daysSinceLastRelease": 14,
+        "openIssues": 500,
+        "contributorCount": 300,
+        "ageInDays": 2000,
+        "license": "Apache-2.0"
+      },
+      "size": {
+        "fullGzip": 40000,
+        "fullMinified": 150000,
+        "perComponentAvgGzip": 800,
+        "cssGzip": 0,
+        "jsGzip": 40000,
+        "treeShakenButtonGzip": 3000,
+        "treeShakenInputGzip": 3500
+      },
+      "coverage": {
+        "totalComponents": 50,
+        "primitiveCount": 40,
+        "compositeCount": 10,
+        "formComponents": 12,
+        "dataDisplayComponents": 8,
+        "layoutComponents": 5,
+        "feedbackComponents": 6,
+        "navigationComponents": 6,
+        "hasDataGrid": true,
+        "hasDatePicker": true,
+        "hasColorPicker": true,
+        "hasVirtualList": false,
+        "hasCommandPalette": false,
+        "hasDragDrop": true,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 6,
+        "mountTimeWarmMs": 2,
+        "rerenderTimeMs": 1,
+        "timeToInteractiveMs": 90,
+        "memoryFootprintMb": 4,
+        "fps100Components": 60
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 0,
+        "axeViolationsModal": 0,
+        "axeViolationsTable": 0,
+        "axeViolationsAvg": 0,
+        "keyboardNavScore": 98,
+        "wcagLevel": "AAA",
+        "ariaPatternsCovered": 32
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 180,
+        "avgPropsPerComponent": 10,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 0,
+        "darkModeNative": false,
+        "rtlSupport": true,
+        "runtimeSwitching": false,
+        "tokenDepthScore": 2,
+        "customizabilityScore": 10
+      },
+      "dx": {
+        "documentationScore": 8,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": false,
+        "cliTooling": false,
+        "aiToolingScore": 6,
+        "migrationPathScore": 8,
+        "errorMessageScore": 7
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 93,
+        "performance": 82,
+        "accessibility": 100,
+        "coverage": 45,
+        "typescript": 99,
+        "theming": 41,
+        "dx": 69,
+        "ecosystem": 45,
+        "composite": 74
+      },
+      "collectedAt": "2026-03-13T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Adobe-maintained. AAA accessibility gold standard. Zero styles. Steep learning curve."
+    },
+    {
+      "id": "quasar",
+      "name": "Quasar",
+      "framework": "vue",
+      "paradigm": "styled",
+      "url": "https://quasar.dev",
+      "npm": "quasar",
+      "github": "quasarframework/quasar",
+      "ecosystem": {
+        "githubStars": 26000,
+        "weeklyDownloads": 280000,
+        "monthlyDownloads": 1120000,
+        "releaseCount": 400,
+        "daysSinceLastRelease": 14,
+        "openIssues": 800,
+        "contributorCount": 650,
+        "ageInDays": 3200,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 140000,
+        "fullMinified": 550000,
+        "perComponentAvgGzip": 1600,
+        "cssGzip": 45000,
+        "jsGzip": 95000,
+        "treeShakenButtonGzip": 8000,
+        "treeShakenInputGzip": 9000
+      },
+      "coverage": {
+        "totalComponents": 100,
+        "primitiveCount": 40,
+        "compositeCount": 60,
+        "formComponents": 18,
+        "dataDisplayComponents": 15,
+        "layoutComponents": 12,
+        "feedbackComponents": 10,
+        "navigationComponents": 10,
+        "hasDataGrid": true,
+        "hasDatePicker": true,
+        "hasColorPicker": true,
+        "hasVirtualList": true,
+        "hasCommandPalette": false,
+        "hasDragDrop": true,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 13,
+        "mountTimeWarmMs": 4.5,
+        "rerenderTimeMs": 2.2,
+        "timeToInteractiveMs": 190,
+        "memoryFootprintMb": 9,
+        "fps100Components": 53
+      },
+      "accessibility": {
+        "axeViolationsButton": 1,
+        "axeViolationsInput": 1,
+        "axeViolationsModal": 1,
+        "axeViolationsTable": 2,
+        "axeViolationsAvg": 1.25,
+        "keyboardNavScore": 72,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 16
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 180,
+        "avgPropsPerComponent": 14,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 400,
+        "darkModeNative": true,
+        "rtlSupport": true,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 7,
+        "customizabilityScore": 6
+      },
+      "dx": {
+        "documentationScore": 7,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": false,
+        "cliTooling": true,
+        "aiToolingScore": 6,
+        "migrationPathScore": 5,
+        "errorMessageScore": 6
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 75,
+        "performance": 61,
+        "accessibility": 84,
+        "coverage": 75,
+        "typescript": 99,
+        "theming": 81,
+        "dx": 66,
+        "ecosystem": 44,
+        "composite": 74
+      },
+      "collectedAt": "2025-07-15T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Full Vue framework with SSR, PWA, Electron. Material Design. CLI scaffolding. Broadest platform coverage."
+    },
+    {
+      "id": "nuxt-ui",
+      "name": "Nuxt UI",
+      "framework": "vue",
+      "paradigm": "styled",
+      "url": "https://ui.nuxt.com",
+      "npm": "@nuxt/ui",
+      "github": "nuxt/ui",
+      "ecosystem": {
+        "githubStars": 4500,
+        "weeklyDownloads": 140000,
+        "monthlyDownloads": 560000,
+        "releaseCount": 100,
+        "daysSinceLastRelease": 7,
+        "openIssues": 200,
+        "contributorCount": 150,
+        "ageInDays": 800,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 45000,
+        "fullMinified": 160000,
+        "perComponentAvgGzip": 900,
+        "cssGzip": 15000,
+        "jsGzip": 30000,
+        "treeShakenButtonGzip": 3500,
+        "treeShakenInputGzip": 4000
+      },
+      "coverage": {
+        "totalComponents": 55,
+        "primitiveCount": 35,
+        "compositeCount": 20,
+        "formComponents": 12,
+        "dataDisplayComponents": 8,
+        "layoutComponents": 8,
+        "feedbackComponents": 8,
+        "navigationComponents": 6,
+        "hasDataGrid": false,
+        "hasDatePicker": false,
+        "hasColorPicker": false,
+        "hasVirtualList": false,
+        "hasCommandPalette": true,
+        "hasDragDrop": false,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 7,
+        "mountTimeWarmMs": 2.5,
+        "rerenderTimeMs": 1.2,
+        "timeToInteractiveMs": 100,
+        "memoryFootprintMb": 5,
+        "fps100Components": 58
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 0,
+        "axeViolationsModal": 0,
+        "axeViolationsTable": 1,
+        "axeViolationsAvg": 0.25,
+        "keyboardNavScore": 88,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 22
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 130,
+        "avgPropsPerComponent": 9,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 80,
+        "darkModeNative": true,
+        "rtlSupport": true,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 6,
+        "customizabilityScore": 9
+      },
+      "dx": {
+        "documentationScore": 9,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": false,
+        "cliTooling": true,
+        "aiToolingScore": 8,
+        "migrationPathScore": 8,
+        "errorMessageScore": 8
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 92,
+        "performance": 79,
+        "accessibility": 99,
+        "coverage": 33,
+        "typescript": 95,
+        "theming": 86,
+        "dx": 83,
+        "ecosystem": 41,
+        "composite": 76
+      },
+      "collectedAt": "2025-07-15T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Official Nuxt team. Built on Reka UI primitives. Tailwind-first. Fast iteration."
+    },
+    {
+      "id": "shadcn-vue",
+      "name": "shadcn-vue",
+      "framework": "vue",
+      "paradigm": "headless",
+      "url": "https://www.shadcn-vue.com",
+      "npm": "",
+      "github": "radix-vue/shadcn-vue",
+      "ecosystem": {
+        "githubStars": 5500,
+        "weeklyDownloads": 0,
+        "monthlyDownloads": 0,
+        "releaseCount": 40,
+        "daysSinceLastRelease": 14,
+        "openIssues": 150,
+        "contributorCount": 100,
+        "ageInDays": 700,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 0,
+        "fullMinified": 0,
+        "perComponentAvgGzip": 0,
+        "cssGzip": 0,
+        "jsGzip": 0,
+        "treeShakenButtonGzip": 0,
+        "treeShakenInputGzip": 0
+      },
+      "coverage": {
+        "totalComponents": 50,
+        "primitiveCount": 40,
+        "compositeCount": 10,
+        "formComponents": 10,
+        "dataDisplayComponents": 8,
+        "layoutComponents": 5,
+        "feedbackComponents": 8,
+        "navigationComponents": 5,
+        "hasDataGrid": false,
+        "hasDatePicker": true,
+        "hasColorPicker": false,
+        "hasVirtualList": false,
+        "hasCommandPalette": true,
+        "hasDragDrop": false,
+        "hasCharts": true,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 5,
+        "mountTimeWarmMs": 2,
+        "rerenderTimeMs": 1,
+        "timeToInteractiveMs": 80,
+        "memoryFootprintMb": 4,
+        "fps100Components": 60
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 0,
+        "axeViolationsModal": 0,
+        "axeViolationsTable": 1,
+        "axeViolationsAvg": 0.25,
+        "keyboardNavScore": 85,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 22
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 100,
+        "avgPropsPerComponent": 8,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 50,
+        "darkModeNative": true,
+        "rtlSupport": false,
+        "runtimeSwitching": false,
+        "tokenDepthScore": 5,
+        "customizabilityScore": 10
+      },
+      "dx": {
+        "documentationScore": 8,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": false,
+        "cliTooling": true,
+        "aiToolingScore": 9,
+        "migrationPathScore": 9,
+        "errorMessageScore": 7
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 50,
+        "performance": 85,
+        "accessibility": 99,
+        "coverage": 40,
+        "typescript": 93,
+        "theming": 60,
+        "dx": 81,
+        "ecosystem": 41,
+        "composite": 71
+      },
+      "collectedAt": "2025-07-15T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Vue port of shadcn/ui. Copy-paste model. Built on Reka UI. Tailwind CSS. No npm package."
+    },
+    {
+      "id": "arco-design",
+      "name": "Arco Design Vue",
+      "framework": "vue",
+      "paradigm": "styled",
+      "url": "https://arco.design/vue",
+      "npm": "@arco-design/web-vue",
+      "github": "arco-design/arco-design-vue",
+      "ecosystem": {
+        "githubStars": 2800,
+        "weeklyDownloads": 90000,
+        "monthlyDownloads": 360000,
+        "releaseCount": 150,
+        "daysSinceLastRelease": 21,
+        "openIssues": 300,
+        "contributorCount": 120,
+        "ageInDays": 1200,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 120000,
+        "fullMinified": 460000,
+        "perComponentAvgGzip": 1400,
+        "cssGzip": 42000,
+        "jsGzip": 78000,
+        "treeShakenButtonGzip": 7000,
+        "treeShakenInputGzip": 8000
+      },
+      "coverage": {
+        "totalComponents": 80,
+        "primitiveCount": 30,
+        "compositeCount": 50,
+        "formComponents": 16,
+        "dataDisplayComponents": 14,
+        "layoutComponents": 10,
+        "feedbackComponents": 8,
+        "navigationComponents": 8,
+        "hasDataGrid": true,
+        "hasDatePicker": true,
+        "hasColorPicker": true,
+        "hasVirtualList": true,
+        "hasCommandPalette": false,
+        "hasDragDrop": true,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 12,
+        "mountTimeWarmMs": 4,
+        "rerenderTimeMs": 2,
+        "timeToInteractiveMs": 175,
+        "memoryFootprintMb": 8,
+        "fps100Components": 55
+      },
+      "accessibility": {
+        "axeViolationsButton": 1,
+        "axeViolationsInput": 1,
+        "axeViolationsModal": 1,
+        "axeViolationsTable": 2,
+        "axeViolationsAvg": 1.25,
+        "keyboardNavScore": 70,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 15
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 160,
+        "avgPropsPerComponent": 12,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 350,
+        "darkModeNative": true,
+        "rtlSupport": true,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 7,
+        "customizabilityScore": 7
+      },
+      "dx": {
+        "documentationScore": 7,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": true,
+        "cliTooling": true,
+        "aiToolingScore": 5,
+        "migrationPathScore": 6,
+        "errorMessageScore": 6
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 78,
+        "performance": 64,
+        "accessibility": 84,
+        "coverage": 65,
+        "typescript": 97,
+        "theming": 84,
+        "dx": 70,
+        "ecosystem": 39,
+        "composite": 73
+      },
+      "collectedAt": "2025-07-15T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "ByteDance design system. Strong data components. Enterprise-focused. Built-in icon library."
+    },
+    {
+      "id": "tdesign",
+      "name": "TDesign Vue Next",
+      "framework": "vue",
+      "paradigm": "styled",
+      "url": "https://tdesign.tencent.com/vue-next",
+      "npm": "tdesign-vue-next",
+      "github": "Tencent/tdesign-vue-next",
+      "ecosystem": {
+        "githubStars": 2600,
+        "weeklyDownloads": 70000,
+        "monthlyDownloads": 280000,
+        "releaseCount": 180,
+        "daysSinceLastRelease": 14,
+        "openIssues": 250,
+        "contributorCount": 100,
+        "ageInDays": 1100,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 115000,
+        "fullMinified": 440000,
+        "perComponentAvgGzip": 1300,
+        "cssGzip": 40000,
+        "jsGzip": 75000,
+        "treeShakenButtonGzip": 6500,
+        "treeShakenInputGzip": 7500
+      },
+      "coverage": {
+        "totalComponents": 80,
+        "primitiveCount": 30,
+        "compositeCount": 50,
+        "formComponents": 15,
+        "dataDisplayComponents": 13,
+        "layoutComponents": 10,
+        "feedbackComponents": 8,
+        "navigationComponents": 8,
+        "hasDataGrid": true,
+        "hasDatePicker": true,
+        "hasColorPicker": true,
+        "hasVirtualList": true,
+        "hasCommandPalette": false,
+        "hasDragDrop": true,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 11,
+        "mountTimeWarmMs": 3.5,
+        "rerenderTimeMs": 2,
+        "timeToInteractiveMs": 170,
+        "memoryFootprintMb": 8,
+        "fps100Components": 55
+      },
+      "accessibility": {
+        "axeViolationsButton": 1,
+        "axeViolationsInput": 1,
+        "axeViolationsModal": 1,
+        "axeViolationsTable": 2,
+        "axeViolationsAvg": 1.25,
+        "keyboardNavScore": 68,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 14
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 150,
+        "avgPropsPerComponent": 11,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 320,
+        "darkModeNative": true,
+        "rtlSupport": false,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 7,
+        "customizabilityScore": 7
+      },
+      "dx": {
+        "documentationScore": 7,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": true,
+        "cliTooling": false,
+        "aiToolingScore": 5,
+        "migrationPathScore": 6,
+        "errorMessageScore": 6
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 79,
+        "performance": 67,
+        "accessibility": 84,
+        "coverage": 65,
+        "typescript": 96,
+        "theming": 74,
+        "dx": 65,
+        "ecosystem": 39,
+        "composite": 72
+      },
+      "collectedAt": "2025-07-15T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Tencent design system. Strong enterprise adoption in China. Multi-framework (Vue, React, miniprogram)."
+    },
+    {
+      "id": "radix-ui",
+      "name": "Radix UI",
+      "framework": "react",
+      "paradigm": "headless",
+      "url": "https://radix-ui.com",
+      "npm": "@radix-ui/react-dialog",
+      "github": "radix-ui/primitives",
+      "ecosystem": {
+        "githubStars": 17000,
+        "weeklyDownloads": 5200000,
+        "monthlyDownloads": 20800000,
+        "releaseCount": 200,
+        "daysSinceLastRelease": 10,
+        "openIssues": 400,
+        "contributorCount": 200,
+        "ageInDays": 1800,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 30000,
+        "fullMinified": 100000,
+        "perComponentAvgGzip": 700,
+        "cssGzip": 0,
+        "jsGzip": 30000,
+        "treeShakenButtonGzip": 2000,
+        "treeShakenInputGzip": 2500
+      },
+      "coverage": {
+        "totalComponents": 32,
+        "primitiveCount": 28,
+        "compositeCount": 4,
+        "formComponents": 8,
+        "dataDisplayComponents": 4,
+        "layoutComponents": 5,
+        "feedbackComponents": 6,
+        "navigationComponents": 4,
+        "hasDataGrid": false,
+        "hasDatePicker": false,
+        "hasColorPicker": false,
+        "hasVirtualList": false,
+        "hasCommandPalette": false,
+        "hasDragDrop": false,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 4,
+        "mountTimeWarmMs": 1.5,
+        "rerenderTimeMs": 0.8,
+        "timeToInteractiveMs": 60,
+        "memoryFootprintMb": 3,
+        "fps100Components": 60
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 0,
+        "axeViolationsModal": 0,
+        "axeViolationsTable": 0,
+        "axeViolationsAvg": 0,
+        "keyboardNavScore": 95,
+        "wcagLevel": "AAA",
+        "ariaPatternsCovered": 28
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 120,
+        "avgPropsPerComponent": 7,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 0,
+        "darkModeNative": false,
+        "rtlSupport": true,
+        "runtimeSwitching": false,
+        "tokenDepthScore": 2,
+        "customizabilityScore": 10
+      },
+      "dx": {
+        "documentationScore": 8,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": false,
+        "cliTooling": false,
+        "aiToolingScore": 8,
+        "migrationPathScore": 8,
+        "errorMessageScore": 7
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 95,
+        "performance": 88,
+        "accessibility": 100,
+        "coverage": 16,
+        "typescript": 94,
+        "theming": 41,
+        "dx": 73,
+        "ecosystem": 72,
+        "composite": 73
+      },
+      "collectedAt": "2025-07-15T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Foundation for shadcn/ui. Zero styles. WAI-ARIA gold standard. Per-component packages."
+    },
+    {
+      "id": "chakra-ui",
+      "name": "Chakra UI",
+      "framework": "react",
+      "paradigm": "styled",
+      "url": "https://chakra-ui.com",
+      "npm": "@chakra-ui/react",
+      "github": "chakra-ui/chakra-ui",
+      "ecosystem": {
+        "githubStars": 38000,
+        "weeklyDownloads": 480000,
+        "monthlyDownloads": 1920000,
+        "releaseCount": 350,
+        "daysSinceLastRelease": 14,
+        "openIssues": 300,
+        "contributorCount": 800,
+        "ageInDays": 2200,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 90000,
+        "fullMinified": 340000,
+        "perComponentAvgGzip": 1200,
+        "cssGzip": 20000,
+        "jsGzip": 70000,
+        "treeShakenButtonGzip": 6000,
+        "treeShakenInputGzip": 7000
+      },
+      "coverage": {
+        "totalComponents": 70,
+        "primitiveCount": 35,
+        "compositeCount": 35,
+        "formComponents": 14,
+        "dataDisplayComponents": 10,
+        "layoutComponents": 10,
+        "feedbackComponents": 10,
+        "navigationComponents": 8,
+        "hasDataGrid": false,
+        "hasDatePicker": false,
+        "hasColorPicker": false,
+        "hasVirtualList": false,
+        "hasCommandPalette": false,
+        "hasDragDrop": false,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 10,
+        "mountTimeWarmMs": 3.5,
+        "rerenderTimeMs": 1.8,
+        "timeToInteractiveMs": 150,
+        "memoryFootprintMb": 7,
+        "fps100Components": 56
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 0,
+        "axeViolationsModal": 1,
+        "axeViolationsTable": 1,
+        "axeViolationsAvg": 0.5,
+        "keyboardNavScore": 82,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 22
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 200,
+        "avgPropsPerComponent": 12,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 300,
+        "darkModeNative": true,
+        "rtlSupport": true,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 7,
+        "customizabilityScore": 8
+      },
+      "dx": {
+        "documentationScore": 8,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": true,
+        "cliTooling": false,
+        "aiToolingScore": 7,
+        "migrationPathScore": 5,
+        "errorMessageScore": 7
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 84,
+        "performance": 70,
+        "accessibility": 96,
+        "coverage": 35,
+        "typescript": 100,
+        "theming": 86,
+        "dx": 73,
+        "ecosystem": 52,
+        "composite": 74
+      },
+      "collectedAt": "2025-07-15T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Emotion-based styling. v3 migration to Ark UI. Strong accessibility. Style props API."
+    },
+    {
+      "id": "nextui",
+      "name": "NextUI",
+      "framework": "react",
+      "paradigm": "styled",
+      "url": "https://nextui.org",
+      "npm": "@nextui-org/react",
+      "github": "nextui-org/nextui",
+      "ecosystem": {
+        "githubStars": 22000,
+        "weeklyDownloads": 200000,
+        "monthlyDownloads": 800000,
+        "releaseCount": 120,
+        "daysSinceLastRelease": 10,
+        "openIssues": 500,
+        "contributorCount": 200,
+        "ageInDays": 1200,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 70000,
+        "fullMinified": 260000,
+        "perComponentAvgGzip": 1100,
+        "cssGzip": 25000,
+        "jsGzip": 45000,
+        "treeShakenButtonGzip": 5000,
+        "treeShakenInputGzip": 6000
+      },
+      "coverage": {
+        "totalComponents": 50,
+        "primitiveCount": 35,
+        "compositeCount": 15,
+        "formComponents": 10,
+        "dataDisplayComponents": 8,
+        "layoutComponents": 6,
+        "feedbackComponents": 8,
+        "navigationComponents": 5,
+        "hasDataGrid": false,
+        "hasDatePicker": true,
+        "hasColorPicker": false,
+        "hasVirtualList": false,
+        "hasCommandPalette": false,
+        "hasDragDrop": false,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 8,
+        "mountTimeWarmMs": 3,
+        "rerenderTimeMs": 1.5,
+        "timeToInteractiveMs": 120,
+        "memoryFootprintMb": 6,
+        "fps100Components": 58
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 0,
+        "axeViolationsModal": 1,
+        "axeViolationsTable": 1,
+        "axeViolationsAvg": 0.5,
+        "keyboardNavScore": 80,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 20
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 140,
+        "avgPropsPerComponent": 10,
+        "hasIntelliSense": true,
+        "genericsUsed": true
+      },
+      "theming": {
+        "cssVariableCount": 200,
+        "darkModeNative": true,
+        "rtlSupport": false,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 6,
+        "customizabilityScore": 8
+      },
+      "dx": {
+        "documentationScore": 8,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": true,
+        "cliTooling": false,
+        "aiToolingScore": 7,
+        "migrationPathScore": 7,
+        "errorMessageScore": 7
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 87,
+        "performance": 76,
+        "accessibility": 96,
+        "coverage": 30,
+        "typescript": 96,
+        "theming": 73,
+        "dx": 75,
+        "ecosystem": 44,
+        "composite": 73
+      },
+      "collectedAt": "2025-07-15T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Built on React Aria. Tailwind CSS. Modern aesthetic. v2 rewrite. Framer Motion animations."
+    },
+    {
+      "id": "headless-ui",
+      "name": "Headless UI",
+      "framework": "agnostic",
+      "paradigm": "headless",
+      "url": "https://headlessui.com",
+      "npm": "@headlessui/vue",
+      "github": "tailwindlabs/headlessui",
+      "ecosystem": {
+        "githubStars": 26000,
+        "weeklyDownloads": 2100000,
+        "monthlyDownloads": 8400000,
+        "releaseCount": 80,
+        "daysSinceLastRelease": 30,
+        "openIssues": 150,
+        "contributorCount": 100,
+        "ageInDays": 1800,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 12000,
+        "fullMinified": 40000,
+        "perComponentAvgGzip": 1200,
+        "cssGzip": 0,
+        "jsGzip": 12000,
+        "treeShakenButtonGzip": 1500,
+        "treeShakenInputGzip": 2000
+      },
+      "coverage": {
+        "totalComponents": 12,
+        "primitiveCount": 12,
+        "compositeCount": 0,
+        "formComponents": 3,
+        "dataDisplayComponents": 0,
+        "layoutComponents": 2,
+        "feedbackComponents": 2,
+        "navigationComponents": 2,
+        "hasDataGrid": false,
+        "hasDatePicker": false,
+        "hasColorPicker": false,
+        "hasVirtualList": false,
+        "hasCommandPalette": false,
+        "hasDragDrop": false,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 3,
+        "mountTimeWarmMs": 1,
+        "rerenderTimeMs": 0.5,
+        "timeToInteractiveMs": 40,
+        "memoryFootprintMb": 2,
+        "fps100Components": 60
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 0,
+        "axeViolationsModal": 0,
+        "axeViolationsTable": 0,
+        "axeViolationsAvg": 0,
+        "keyboardNavScore": 92,
+        "wcagLevel": "AAA",
+        "ariaPatternsCovered": 12
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 50,
+        "avgPropsPerComponent": 6,
+        "hasIntelliSense": true,
+        "genericsUsed": false
+      },
+      "theming": {
+        "cssVariableCount": 0,
+        "darkModeNative": false,
+        "rtlSupport": false,
+        "runtimeSwitching": false,
+        "tokenDepthScore": 1,
+        "customizabilityScore": 10
+      },
+      "dx": {
+        "documentationScore": 8,
+        "playgroundAvailable": false,
+        "figmaKitAvailable": false,
+        "cliTooling": false,
+        "aiToolingScore": 7,
+        "migrationPathScore": 9,
+        "errorMessageScore": 7
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 98,
+        "performance": 91,
+        "accessibility": 100,
+        "coverage": 6,
+        "typescript": 69,
+        "theming": 28,
+        "dx": 62,
+        "ecosystem": 52,
+        "composite": 65
+      },
+      "collectedAt": "2025-07-15T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Tailwind Labs. Minimal set (12 components). Zero styles. Vue + React. Frequently paired with Tailwind UI."
+    },
+    {
+      "id": "daisyui",
+      "name": "DaisyUI",
+      "framework": "agnostic",
+      "paradigm": "styled",
+      "url": "https://daisyui.com",
+      "npm": "daisyui",
+      "github": "saadeghi/daisyui",
+      "ecosystem": {
+        "githubStars": 35000,
+        "weeklyDownloads": 350000,
+        "monthlyDownloads": 1400000,
+        "releaseCount": 200,
+        "daysSinceLastRelease": 7,
+        "openIssues": 100,
+        "contributorCount": 200,
+        "ageInDays": 1500,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 20000,
+        "fullMinified": 70000,
+        "perComponentAvgGzip": 400,
+        "cssGzip": 20000,
+        "jsGzip": 0,
+        "treeShakenButtonGzip": 500,
+        "treeShakenInputGzip": 600
+      },
+      "coverage": {
+        "totalComponents": 55,
+        "primitiveCount": 40,
+        "compositeCount": 15,
+        "formComponents": 10,
+        "dataDisplayComponents": 6,
+        "layoutComponents": 8,
+        "feedbackComponents": 8,
+        "navigationComponents": 6,
+        "hasDataGrid": false,
+        "hasDatePicker": false,
+        "hasColorPicker": false,
+        "hasVirtualList": false,
+        "hasCommandPalette": false,
+        "hasDragDrop": false,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 2,
+        "mountTimeWarmMs": 1,
+        "rerenderTimeMs": 0.3,
+        "timeToInteractiveMs": 30,
+        "memoryFootprintMb": 1,
+        "fps100Components": 60
+      },
+      "accessibility": {
+        "axeViolationsButton": 1,
+        "axeViolationsInput": 1,
+        "axeViolationsModal": 2,
+        "axeViolationsTable": 2,
+        "axeViolationsAvg": 1.5,
+        "keyboardNavScore": 55,
+        "wcagLevel": "A",
+        "ariaPatternsCovered": 6
+      },
+      "typescript": {
+        "strictMode": false,
+        "exportedTypeCount": 0,
+        "avgPropsPerComponent": 0,
+        "hasIntelliSense": false,
+        "genericsUsed": false
+      },
+      "theming": {
+        "cssVariableCount": 80,
+        "darkModeNative": true,
+        "rtlSupport": true,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 4,
+        "customizabilityScore": 7
+      },
+      "dx": {
+        "documentationScore": 8,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": false,
+        "cliTooling": false,
+        "aiToolingScore": 7,
+        "migrationPathScore": 8,
+        "errorMessageScore": 5
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 96,
+        "performance": 94,
+        "accessibility": 78,
+        "coverage": 28,
+        "typescript": 0,
+        "theming": 75,
+        "dx": 69,
+        "ecosystem": 52,
+        "composite": 63
+      },
+      "collectedAt": "2025-07-15T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "CSS-only Tailwind plugin. Zero JS. 32 built-in themes. Framework-agnostic. Smallest footprint."
+    },
+    {
+      "id": "tailwind-ui",
+      "name": "Tailwind UI",
+      "framework": "agnostic",
+      "paradigm": "styled",
+      "url": "https://tailwindui.com",
+      "npm": "",
+      "github": "",
+      "ecosystem": {
+        "githubStars": 0,
+        "weeklyDownloads": 0,
+        "monthlyDownloads": 0,
+        "releaseCount": 50,
+        "daysSinceLastRelease": 14,
+        "openIssues": 0,
+        "contributorCount": 20,
+        "ageInDays": 2000,
+        "license": "Commercial"
+      },
+      "size": {
+        "fullGzip": 0,
+        "fullMinified": 0,
+        "perComponentAvgGzip": 0,
+        "cssGzip": 0,
+        "jsGzip": 0,
+        "treeShakenButtonGzip": 0,
+        "treeShakenInputGzip": 0
+      },
+      "coverage": {
+        "totalComponents": 80,
+        "primitiveCount": 50,
+        "compositeCount": 30,
+        "formComponents": 15,
+        "dataDisplayComponents": 10,
+        "layoutComponents": 12,
+        "feedbackComponents": 8,
+        "navigationComponents": 10,
+        "hasDataGrid": false,
+        "hasDatePicker": false,
+        "hasColorPicker": false,
+        "hasVirtualList": false,
+        "hasCommandPalette": false,
+        "hasDragDrop": false,
+        "hasCharts": false,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 3,
+        "mountTimeWarmMs": 1,
+        "rerenderTimeMs": 0.5,
+        "timeToInteractiveMs": 40,
+        "memoryFootprintMb": 2,
+        "fps100Components": 60
+      },
+      "accessibility": {
+        "axeViolationsButton": 0,
+        "axeViolationsInput": 0,
+        "axeViolationsModal": 0,
+        "axeViolationsTable": 1,
+        "axeViolationsAvg": 0.25,
+        "keyboardNavScore": 85,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 18
+      },
+      "typescript": {
+        "strictMode": false,
+        "exportedTypeCount": 0,
+        "avgPropsPerComponent": 0,
+        "hasIntelliSense": false,
+        "genericsUsed": false
+      },
+      "theming": {
+        "cssVariableCount": 50,
+        "darkModeNative": true,
+        "rtlSupport": false,
+        "runtimeSwitching": false,
+        "tokenDepthScore": 3,
+        "customizabilityScore": 9
+      },
+      "dx": {
+        "documentationScore": 9,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": true,
+        "cliTooling": false,
+        "aiToolingScore": 8,
+        "migrationPathScore": 9,
+        "errorMessageScore": 7
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 50,
+        "performance": 91,
+        "accessibility": 99,
+        "coverage": 40,
+        "typescript": 0,
+        "theming": 52,
+        "dx": 83,
+        "ecosystem": 40,
+        "composite": 62
+      },
+      "collectedAt": "2025-07-15T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Commercial product by Tailwind Labs. Markup patterns, not installable components. React + Vue templates."
+    },
+    {
+      "id": "flowbite",
+      "name": "Flowbite",
+      "framework": "agnostic",
+      "paradigm": "styled",
+      "url": "https://flowbite.com",
+      "npm": "flowbite-vue",
+      "github": "themesberg/flowbite-vue",
+      "ecosystem": {
+        "githubStars": 8000,
+        "weeklyDownloads": 180000,
+        "monthlyDownloads": 720000,
+        "releaseCount": 100,
+        "daysSinceLastRelease": 14,
+        "openIssues": 120,
+        "contributorCount": 100,
+        "ageInDays": 1200,
+        "license": "MIT"
+      },
+      "size": {
+        "fullGzip": 35000,
+        "fullMinified": 130000,
+        "perComponentAvgGzip": 700,
+        "cssGzip": 15000,
+        "jsGzip": 20000,
+        "treeShakenButtonGzip": 3000,
+        "treeShakenInputGzip": 3500
+      },
+      "coverage": {
+        "totalComponents": 60,
+        "primitiveCount": 40,
+        "compositeCount": 20,
+        "formComponents": 12,
+        "dataDisplayComponents": 8,
+        "layoutComponents": 8,
+        "feedbackComponents": 8,
+        "navigationComponents": 6,
+        "hasDataGrid": false,
+        "hasDatePicker": true,
+        "hasColorPicker": false,
+        "hasVirtualList": false,
+        "hasCommandPalette": false,
+        "hasDragDrop": false,
+        "hasCharts": true,
+        "hasRichText": false
+      },
+      "performance": {
+        "mountTimeMs": 6,
+        "mountTimeWarmMs": 2,
+        "rerenderTimeMs": 1,
+        "timeToInteractiveMs": 90,
+        "memoryFootprintMb": 4,
+        "fps100Components": 60
+      },
+      "accessibility": {
+        "axeViolationsButton": 1,
+        "axeViolationsInput": 1,
+        "axeViolationsModal": 1,
+        "axeViolationsTable": 2,
+        "axeViolationsAvg": 1.25,
+        "keyboardNavScore": 65,
+        "wcagLevel": "AA",
+        "ariaPatternsCovered": 12
+      },
+      "typescript": {
+        "strictMode": true,
+        "exportedTypeCount": 80,
+        "avgPropsPerComponent": 8,
+        "hasIntelliSense": true,
+        "genericsUsed": false
+      },
+      "theming": {
+        "cssVariableCount": 60,
+        "darkModeNative": true,
+        "rtlSupport": false,
+        "runtimeSwitching": true,
+        "tokenDepthScore": 4,
+        "customizabilityScore": 6
+      },
+      "dx": {
+        "documentationScore": 7,
+        "playgroundAvailable": true,
+        "figmaKitAvailable": true,
+        "cliTooling": false,
+        "aiToolingScore": 6,
+        "migrationPathScore": 7,
+        "errorMessageScore": 6
+      },
+      "rigComparison": {
+        "componentsRigHas": [],
+        "componentsLibraryOnlyHas": [],
+        "componentsRigOnlyHas": [],
+        "featureParityPct": 0,
+        "apiSimilarityScore": 0
+      },
+      "scores": {
+        "size": 94,
+        "performance": 82,
+        "accessibility": 84,
+        "coverage": 40,
+        "typescript": 71,
+        "theming": 62,
+        "dx": 68,
+        "ecosystem": 43,
+        "composite": 69
+      },
+      "collectedAt": "2025-07-15T00:00:00.000Z",
+      "collectionMethod": "manual",
+      "notes": "Tailwind-based. Vue, React, Svelte, Angular ports. Built-in chart components via ApexCharts."
+    }
+  ]
+}

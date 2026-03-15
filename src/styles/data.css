@@ -1,0 +1,175 @@
+/* Rig Structural — Data Components
+ * Sparkline, MiniBar, StatCard, BarChart, LineChart, AreaChart,
+ * ScatterPlot, Heatmap, BubbleChart, RadarChart, Treemap, SankeyDiagram
+ */
+
+/* ── Sparkline ── */
+
+[data-rig-sparkline] {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+[data-rig-sparkline] svg {
+  display: block;
+}
+
+/* ── MiniBar ── */
+
+[data-rig-mini-bar] {
+  display: inline-flex;
+  align-items: flex-end;
+  vertical-align: middle;
+}
+
+[data-rig-mini-bar] svg {
+  display: block;
+}
+
+/* ── StatCard ── */
+
+[data-rig-stat-card] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+}
+
+[data-rig-stat-card-value] {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+[data-rig-stat-card-trend] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+/* ── BarChart ── */
+
+[data-rig-bar-chart] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-bar-chart] svg {
+  display: block;
+  width: 100%;
+}
+
+/* ── LineChart ── */
+
+[data-rig-line-chart] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-line-chart] svg {
+  display: block;
+  width: 100%;
+}
+
+/* ── AreaChart ── */
+
+[data-rig-area-chart] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-area-chart] svg {
+  display: block;
+  width: 100%;
+}
+
+/* ── ScatterPlot ── */
+
+[data-rig-scatter-plot] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-scatter-plot] svg {
+  display: block;
+  width: 100%;
+}
+
+/* ── Heatmap ── */
+
+[data-rig-heatmap] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-heatmap] svg {
+  display: block;
+  width: 100%;
+}
+
+/* ── BubbleChart ── */
+
+[data-rig-bubble-chart] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-bubble-chart] svg {
+  display: block;
+  width: 100%;
+}
+
+/* ── RadarChart ── */
+
+[data-rig-radar-chart] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-radar-chart] svg {
+  display: block;
+  width: 100%;
+}
+
+/* ── Treemap ── */
+
+[data-rig-treemap] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-treemap] svg {
+  display: block;
+  width: 100%;
+}
+
+/* ── SankeyDiagram ── */
+
+[data-rig-sankey-diagram] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-sankey-diagram] svg {
+  display: block;
+  width: 100%;
+}

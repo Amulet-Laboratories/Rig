@@ -1,0 +1,10 @@
+/* Hex — Default Entry
+ * Imports the default theme (hexrig).
+ * Override by importing a specific theme instead:
+ *   import '@amulet-laboratories/hex/vscode'
+ *   import '@amulet-laboratories/hex/spotify'
+ *
+ * Usage: import '@amulet-laboratories/hex/source'
+ */
+
+@import './themes/hexrig/index.css';

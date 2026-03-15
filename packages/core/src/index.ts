@@ -1,6 +1,3 @@
-// Utilities
-export { cn } from './utils'
-
 // Types
 export type {
   ID,
@@ -38,6 +35,7 @@ export type {
 
 // Composables
 export {
+  useFocusTrap,
   useKeyboard,
   usePersistedState,
   useGlobalState,
@@ -47,19 +45,24 @@ export {
   provideDragDrop,
   useDragDrop,
 } from './composables'
-export type { VirtualItem, VirtualState, DragItem, DropResult, DragOptions } from './composables'
+export type {
+  FocusTrapOptions,
+  VirtualItem,
+  VirtualState,
+  DragItem,
+  DropResult,
+  DragOptions,
+} from './composables'
 
 // Primitives
 export {
   Icon,
   Button,
-  IconButton,
   Input,
   Select,
   Textarea,
   Checkbox,
   Switch,
-  Radio,
   RadioGroup,
   Badge,
   Progress,
@@ -71,8 +74,12 @@ export {
   TagInput,
   Combobox,
   Label,
-  Toggle,
   ToggleGroup,
   Slider,
   Avatar,
+  Dot,
+  PulseIndicator,
+  ProgressRing,
+  RangeSlider,
+  AvatarGroup,
 } from './primitives'

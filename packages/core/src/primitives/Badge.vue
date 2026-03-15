@@ -15,7 +15,14 @@ withDefaults(
 </script>
 
 <template>
-  <span data-rig-badge tabindex="-1" role="status" :data-variant="variant" :data-size="size" @keydown.stop>
+  <span
+    data-rig-badge
+    tabindex="-1"
+    role="status"
+    :data-variant="variant"
+    :data-size="size"
+    @keydown.stop
+  >
     <slot />
   </span>
 </template>

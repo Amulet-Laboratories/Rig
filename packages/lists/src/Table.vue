@@ -26,6 +26,12 @@ const emit = defineEmits<{
   cellClick: [payload: { row: T; column: ColumnDef }]
 }>()
 
+defineSlots<{
+  [key: `header-${string}`]: (props: { column: ColumnDef }) => unknown
+  [key: `cell-${string}`]: (props: { row: T; column: ColumnDef; value: T[keyof T] }) => unknown
+  empty?: (props: Record<string, never>) => unknown
+}>()
+
 function getRowId(row: T): string {
   if (typeof props.rowKey === 'function') return props.rowKey(row)
   return String(row[props.rowKey])

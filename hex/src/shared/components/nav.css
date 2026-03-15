@@ -1,0 +1,298 @@
+/* Hex — Shared Nav Components
+ * Theme styles for Rig's nav package: ActivityBar, PanelBar, StatusBar,
+ * Breadcrumbs, Tabs.
+ */
+
+/* ───────── Activity Bar ───────── */
+
+[data-rig-activity-bar] {
+  @apply bg-background border-r border-foreground/10;
+}
+
+[data-rig-activity-bar-item] {
+  @apply transition-colors;
+
+  color: color-mix(in srgb, var(--color-foreground) 40%, transparent);
+}
+
+[data-rig-activity-bar-item]:hover {
+  color: color-mix(in srgb, var(--color-foreground) 70%, transparent);
+}
+
+[data-rig-activity-bar-item][data-state='active'] {
+  color: var(--color-foreground);
+  border-left: 2px solid var(--domain-accent, var(--color-foreground));
+}
+
+[data-rig-activity-bar-badge] {
+  background: var(--domain-accent, var(--color-primary));
+  color: var(--color-background);
+  font-weight: 600;
+}
+
+/* ───────── Panel Bar (tabs) ───────── */
+
+[data-rig-panel-bar-tabs] {
+  @apply border-b border-foreground/10;
+}
+
+[data-rig-panel-bar-tab] {
+  @apply font-mono border-b-2 border-transparent
+         text-foreground/40 transition-colors
+         hover:text-foreground/60;
+
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-rig-panel-bar-tab][data-state='active'] {
+  color: var(--domain-accent, var(--color-foreground));
+  border-color: color-mix(in srgb, var(--domain-accent, var(--color-foreground)) 60%, transparent);
+}
+
+[data-rig-panel-bar-close] {
+  @apply text-muted-foreground hover:text-foreground/60
+         transition-colors;
+
+  border-radius: 6px;
+}
+
+/* ───────── Status Bar ───────── */
+
+[data-rig-status-bar] {
+  @apply bg-muted text-muted-foreground font-mono text-xs
+         border-t border-foreground/10;
+}
+
+[data-rig-status-bar-left] {
+  @apply text-muted-foreground;
+}
+
+[data-rig-status-bar-right] {
+  @apply text-muted-foreground;
+}
+
+[data-rig-status-bar-item] {
+  @apply text-muted-foreground font-mono
+         transition-colors cursor-default;
+
+  font-size: 12px;
+  padding: 0 5px;
+  line-height: 22px;
+}
+
+[data-rig-status-bar-item]:hover {
+  @apply bg-foreground/10 text-foreground/70;
+}
+
+[data-rig-status-bar-item]:disabled {
+  opacity: 0.25;
+}
+
+/* ───────── Breadcrumbs ───────── */
+
+[data-rig-breadcrumbs] {
+  @apply font-mono;
+
+  font-size: 13px;
+}
+
+[data-rig-breadcrumbs-separator] {
+  @apply text-muted-foreground;
+
+  font-size: 13px;
+}
+
+[data-rig-breadcrumbs-link] {
+  @apply text-muted-foreground hover:text-foreground/60
+         transition-colors;
+
+  border-radius: 3px;
+}
+
+[data-rig-breadcrumbs-link]:hover {
+  @apply bg-foreground/5;
+}
+
+[data-rig-breadcrumbs-current] {
+  @apply text-foreground/70;
+}
+
+/* ───────── Tabs ───────── */
+
+[data-rig-tablist] {
+  @apply border-b border-foreground/10;
+}
+
+[data-rig-tabs][data-orientation='vertical'] [data-rig-tablist] {
+  @apply border-b-0 border-r border-foreground/10;
+}
+
+[data-rig-tab] {
+  @apply text-sm font-mono
+         text-foreground/40 hover:text-foreground/60
+         border-b-2 border-transparent transition-colors;
+}
+
+[data-rig-tab][data-state='active'],
+[data-rig-tab][aria-selected='true'] {
+  @apply text-foreground;
+
+  border-color: var(--domain-accent, var(--color-foreground));
+}
+
+/* ───────── Timeline ───────── */
+
+[data-rig-timeline-item] {
+  @apply transition-colors;
+}
+
+[data-rig-timeline-item]:hover {
+  @apply bg-foreground/5;
+}
+
+[data-rig-timeline-dot] {
+  background: color-mix(in srgb, var(--color-foreground) 25%, transparent);
+}
+
+[data-rig-timeline-item][data-status='active'] [data-rig-timeline-dot] {
+  background: var(--domain-accent, var(--color-primary));
+}
+
+[data-rig-timeline-item][data-status='completed'] [data-rig-timeline-dot] {
+  background: var(--color-success, #22c55e);
+}
+
+[data-rig-timeline-line] {
+  background: color-mix(in srgb, var(--color-foreground) 10%, transparent);
+}
+
+[data-rig-timeline-label] {
+  @apply text-foreground font-medium text-sm;
+}
+
+[data-rig-timeline-description] {
+  @apply text-foreground/50 text-xs;
+}
+
+[data-rig-timeline-time] {
+  @apply text-foreground/30 text-xs font-mono;
+}
+
+/* ───────── DatePicker ───────── */
+
+[data-rig-date-picker] {
+  @apply bg-background border border-foreground/10 rounded p-3;
+}
+
+[data-rig-date-picker-title] {
+  @apply text-foreground text-sm font-medium;
+}
+
+[data-rig-date-picker-nav] {
+  @apply text-foreground/40 hover:text-foreground/60 transition-colors;
+}
+
+[data-rig-date-picker-weekday] {
+  @apply text-foreground/30 text-xs font-mono text-center;
+}
+
+[data-rig-date-picker-day] {
+  @apply text-sm text-foreground/60 rounded transition-colors;
+}
+
+[data-rig-date-picker-day]:hover {
+  @apply bg-foreground/5;
+}
+
+[data-rig-date-picker-day][data-selected] {
+  background: var(--domain-accent, var(--color-primary));
+  color: var(--color-background);
+}
+
+[data-rig-date-picker-day][data-today] {
+  @apply ring-1 ring-foreground/20;
+}
+
+[data-rig-date-picker-day][data-disabled] {
+  @apply text-foreground/15;
+}
+
+[data-rig-date-picker-day]:not([data-current-month]) {
+  @apply text-foreground/20;
+}
+
+/* ───────── DateRangePicker ───────── */
+
+[data-rig-date-range-picker] {
+  @apply bg-background border border-foreground/10 rounded p-3;
+}
+
+[data-rig-date-range-picker-title] {
+  @apply text-foreground text-sm font-medium;
+}
+
+[data-rig-date-range-picker-nav] {
+  @apply text-foreground/40 hover:text-foreground/60 transition-colors;
+}
+
+[data-rig-date-range-picker-weekday] {
+  @apply text-foreground/30 text-xs font-mono text-center;
+}
+
+[data-rig-date-range-picker-day] {
+  @apply text-sm text-foreground/60 rounded transition-colors;
+}
+
+[data-rig-date-range-picker-day]:hover {
+  @apply bg-foreground/5;
+}
+
+[data-rig-date-range-picker-day][data-selected] {
+  background: var(--domain-accent, var(--color-primary));
+  color: var(--color-background);
+}
+
+[data-rig-date-range-picker-day][data-in-range] {
+  background: color-mix(in srgb, var(--domain-accent, var(--color-primary)) 15%, transparent);
+}
+
+[data-rig-date-range-picker-day]:not([data-current-month]) {
+  @apply text-foreground/20;
+}
+
+/* ───────── Stepper ───────── */
+
+[data-rig-stepper-step] {
+  @apply text-sm;
+}
+
+[data-rig-stepper-indicator] {
+  @apply text-xs font-mono font-medium;
+
+  background: color-mix(in srgb, var(--color-foreground) 10%, transparent);
+  color: var(--color-foreground);
+}
+
+[data-rig-stepper-step][data-state='completed'] [data-rig-stepper-indicator] {
+  background: var(--color-success, #22c55e);
+  color: var(--color-background);
+}
+
+[data-rig-stepper-step][data-state='active'] [data-rig-stepper-indicator] {
+  background: var(--domain-accent, var(--color-primary));
+  color: var(--color-background);
+}
+
+[data-rig-stepper-label] {
+  @apply text-foreground/60;
+}
+
+[data-rig-stepper-step][data-state='active'] [data-rig-stepper-label] {
+  @apply text-foreground;
+}
+
+[data-rig-stepper-connector] {
+  background: color-mix(in srgb, var(--color-foreground) 10%, transparent);
+}

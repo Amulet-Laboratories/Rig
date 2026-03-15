@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import StatusBar from './StatusBar.vue'
 import type { StatusBarItem } from '@core/types'
-import { nextTick } from 'vue'
 
 describe('StatusBar', () => {
   it('renders with data-rig-status-bar and contentinfo role', () => {
@@ -28,31 +27,56 @@ describe('StatusBar', () => {
     expect(rightItems[0]!.text()).toBe('C')
   })
 
-  it('handles keyboard interaction', async () => {
-    const wrapper = mount(StatusBar)
-    await wrapper.trigger('keydown', { key: 'ArrowDown' })
-    expect(wrapper.exists()).toBe(true)
-  })
-
-  it('manages focus correctly', async () => {
-    const wrapper = mount(StatusBar, { attachTo: document.body })
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+  it('moves focus on ArrowRight between status bar item buttons', async () => {
+    const clickItems: StatusBarItem[] = [
+      { id: 'a', content: 'A', priority: 1, align: 'left', command: () => {} },
+      { id: 'b', content: 'B', priority: 2, align: 'left', command: () => {} },
+    ]
+    const wrapper = mount(StatusBar, { props: { items: clickItems }, attachTo: document.body })
+    const buttons = wrapper.findAll('button')
+    ;(buttons[0]!.element as HTMLElement).focus()
+    await buttons[0]!.trigger('keydown', { key: 'ArrowRight' })
+    expect(document.activeElement).toBe(buttons[1]!.element)
     wrapper.unmount()
   })
 
-  it('supports event emission', async () => {
-    const wrapper = mount(StatusBar)
-    // Verify component has emitted() interface
-    expect(wrapper.emitted()).toBeDefined()
+  it('can focus the status bar container', () => {
+    const wrapper = mount(StatusBar, { attachTo: document.body })
+    const statusBar = wrapper.find('[data-rig-status-bar]')
+    ;(statusBar.element as HTMLElement).focus()
+    expect(document.activeElement).toBe(statusBar.element)
+    wrapper.unmount()
   })
 
-  it('handles prop updates', async () => {
-    const wrapper = mount(StatusBar)
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+  it('emits item-click when a clickable item is clicked', async () => {
+    const clickItems: StatusBarItem[] = [
+      { id: 'a', content: 'A', priority: 1, align: 'left', command: () => {} },
+    ]
+    const wrapper = mount(StatusBar, { props: { items: clickItems } })
+    await wrapper.find('button').trigger('click')
+    expect(wrapper.emitted('item-click')?.[0]?.[0]).toMatchObject({ id: 'a', content: 'A' })
+  })
+
+  it('renders new items when items prop changes', async () => {
+    const wrapper = mount(StatusBar, { props: { items: [] } })
+    expect(wrapper.findAll('[data-rig-status-bar-item]')).toHaveLength(0)
+    await wrapper.setProps({
+      items: [{ id: 'x', content: 'X', priority: 1, align: 'left' }],
+    })
+    expect(wrapper.findAll('[data-rig-status-bar-item]')).toHaveLength(1)
+    expect(wrapper.find('[data-rig-status-bar-item]').text()).toBe('X')
+  })
+
+  it('moves focus on ArrowLeft between status bar item buttons', async () => {
+    const clickItems: StatusBarItem[] = [
+      { id: 'a', content: 'A', priority: 1, align: 'left', command: () => {} },
+      { id: 'b', content: 'B', priority: 2, align: 'left', command: () => {} },
+    ]
+    const wrapper = mount(StatusBar, { props: { items: clickItems }, attachTo: document.body })
+    const buttons = wrapper.findAll('button')
+    ;(buttons[1]!.element as HTMLElement).focus()
+    await buttons[1]!.trigger('keydown', { key: 'ArrowLeft' })
+    expect(document.activeElement).toBe(buttons[0]!.element)
+    wrapper.unmount()
   })
 })

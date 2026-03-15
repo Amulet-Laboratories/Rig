@@ -73,3 +73,102 @@
   height: 100%;
   gap: 1rem;
 }
+
+/* ── CodeBlock ── */
+
+[data-rig-code-block] {
+  position: relative;
+  overflow: auto;
+}
+
+[data-rig-code-block-pre] {
+  margin: 0;
+  overflow-x: auto;
+}
+
+[data-rig-code-block-line] {
+  display: flex;
+  gap: 0;
+}
+
+[data-rig-code-block-line-number] {
+  flex-shrink: 0;
+  text-align: right;
+  user-select: none;
+  width: 3em;
+  padding-right: 1em;
+}
+
+[data-rig-code-block-line-content] {
+  flex: 1;
+  white-space: pre;
+}
+
+[data-rig-code-block-copy] {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0.25rem 0.5rem;
+}
+
+/* ── DiffViewer ── */
+
+[data-rig-diff-viewer] {
+  overflow: auto;
+}
+
+[data-rig-diff-viewer-line] {
+  display: flex;
+  gap: 0;
+}
+
+[data-rig-diff-viewer-line-number] {
+  flex-shrink: 0;
+  text-align: right;
+  user-select: none;
+  width: 3em;
+  padding-right: 0.5em;
+}
+
+[data-rig-diff-viewer-line-content] {
+  flex: 1;
+  white-space: pre;
+}
+
+/* ── ColorPicker ── */
+
+[data-rig-color-picker] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+[data-rig-color-picker-preview] {
+  width: 100%;
+  height: 48px;
+  border-radius: 4px;
+}
+
+[data-rig-color-picker-slider] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+[data-rig-color-picker-slider] input[type='range'] {
+  width: 100%;
+}
+
+[data-rig-color-picker-hex] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+[data-rig-color-picker-hex] input {
+  flex: 1;
+  padding: 0.25rem 0.5rem;
+}

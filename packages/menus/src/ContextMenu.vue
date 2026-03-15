@@ -24,6 +24,10 @@ const emit = defineEmits<{
   select: [action: Action]
 }>()
 
+defineSlots<{
+  item: (props: { item: Action }) => unknown
+}>()
+
 const menuRef = ref<HTMLElement | null>(null)
 const focusedIndex = ref(0)
 

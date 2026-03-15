@@ -31,6 +31,10 @@ const emit = defineEmits<{
   'update:modelValue': [value: number]
 }>()
 
+defineSlots<{
+  thumb: (props: { percent: number }) => unknown
+}>()
+
 const percent = computed(() => {
   const range = props.max - props.min
   const val = (props.modelValue ?? props.min) - props.min
@@ -44,13 +48,15 @@ function onInput(e: Event) {
 
 <template>
   <div
-    data-rig-slider @keydown.stop
+    data-rig-slider
     :data-orientation="orientation"
     :data-disabled="disabled || undefined"
     :style="{ '--rig-slider-percent': `${percent}%` }"
+    @keydown.stop
   >
     <input
-      data-rig-slider-input tabindex="0"
+      data-rig-slider-input
+      tabindex="0"
       type="range"
       :min="min"
       :max="max"

@@ -6,6 +6,6 @@ const el = ref<HTMLElement | null>(null)
 
 describe('useFocusTrap', () => {
   bench('invoke useFocusTrap', () => {
-    useFocusTrap({ containerRef: el })
+    useFocusTrap({ containerRef: el, active: ref(false) })
   })
 })

@@ -1,0 +1,65 @@
+/* Hex — Gmail Design Tokens (light default)
+ * Google Material Design — Gmail palette.
+ */
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #202124;
+  --color-card: #f6f8fc;
+  --color-card-foreground: #202124;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #202124;
+
+  --color-primary: #1a73e8;
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #f6f8fc;
+  --color-secondary-foreground: #202124;
+  --color-muted: #f6f8fc;
+  --color-muted-foreground: #5f6368;
+  --color-accent: #e8eaed;
+  --color-accent-foreground: #202124;
+
+  --color-destructive: #d93025;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #188038;
+  --color-warning: #f9ab00;
+  --color-info: #1a73e8;
+
+  --color-border: rgb(32 33 36 / 0.12);
+  --color-input: rgb(32 33 36 / 0.12);
+  --color-ring: rgb(26 115 232 / 0.3);
+
+  --font-mono: 'Roboto Mono', 'Consolas', monospace;
+  --font-sans: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius: 8px;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #202124;
+  --card: #f6f8fc;
+  --card-foreground: #202124;
+  --popover: #ffffff;
+  --popover-foreground: #202124;
+  --primary: #1a73e8;
+  --primary-foreground: #ffffff;
+  --secondary: #f6f8fc;
+  --secondary-foreground: #202124;
+  --muted: #f6f8fc;
+  --muted-foreground: #5f6368;
+  --accent: #e8eaed;
+  --accent-foreground: #202124;
+  --destructive: #d93025;
+  --destructive-foreground: #ffffff;
+  --success: #188038;
+  --warning: #f9ab00;
+  --info: #1a73e8;
+  --border: rgb(32 33 36 / 0.12);
+  --input: rgb(32 33 36 / 0.12);
+  --ring: rgb(26 115 232 / 0.3);
+  --radius: 8px;
+  --font-mono: 'Roboto Mono', 'Consolas', monospace;
+  --font-sans: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}

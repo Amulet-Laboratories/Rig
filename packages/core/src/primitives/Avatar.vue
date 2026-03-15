@@ -46,13 +46,14 @@ const backgroundColor = props.color ?? hashColor(props.name)
 
 <template>
   <span
-    data-rig-avatar tabindex="-1"
-    @keydown.stop
+    data-rig-avatar
+    tabindex="-1"
     :data-size="size"
     :data-status="status"
     :style="{ '--avatar-bg': backgroundColor }"
     :aria-label="name"
     role="img"
+    @keydown.stop
   >
     <img v-if="src" :src="src" :alt="name" data-rig-avatar-img />
     <slot v-else>

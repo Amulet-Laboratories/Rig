@@ -27,6 +27,12 @@ const emit = defineEmits<{
   select: [option: ComboboxOption]
 }>()
 
+defineSlots<{
+  default: (props: Record<string, never>) => unknown
+  option: (props: { option: ComboboxOption; highlighted: boolean }) => unknown
+  empty: (props: Record<string, never>) => unknown
+}>()
+
 const listboxId = useId()
 const optionIdPrefix = useId()
 
@@ -43,7 +49,8 @@ const open = ref(false)
 const highlightedIndex = ref(-1)
 
 const activeDescendant = computed(() => {
-  if (highlightedIndex.value < 0 || highlightedIndex.value >= filtered.value.length) return undefined
+  if (highlightedIndex.value < 0 || highlightedIndex.value >= filtered.value.length)
+    return undefined
   return `${optionIdPrefix}-${filtered.value[highlightedIndex.value]!.id}`
 })
 
@@ -198,7 +205,7 @@ defineExpose({ focus: () => inputRef.value?.focus() })
       </li>
     </ul>
 
-    <div v-else-if="open && query.trim() && filtered.length === 0" data-rig-combobox-empty>
+    <div v-else-if="open && filtered.length === 0" data-rig-combobox-empty>
       <slot name="empty">No results</slot>
     </div>
   </div>

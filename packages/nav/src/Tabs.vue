@@ -24,6 +24,11 @@ const emit = defineEmits<{
   'update:modelValue': [value: ID]
 }>()
 
+defineSlots<{
+  tabs?: (props: { isActive: (id: ID) => boolean; activate: (id: ID) => void }) => unknown
+  default?: (props: { activeId: ID | undefined; isActive: (id: ID) => boolean }) => unknown
+}>()
+
 const tablistRef = ref<HTMLElement | null>(null)
 
 function activate(id: ID) {

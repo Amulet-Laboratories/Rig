@@ -1,0 +1,12 @@
+/* Hex — VSCode Full Bundle
+ * Import this single file to get everything:
+ * Tailwind + tokens + base styles + all component styles + domains.
+ *
+ * Usage: import '@amulet-laboratories/hex/vscode/source'
+ */
+
+@import 'tailwindcss';
+@import './tokens.css';
+@import './base.css';
+@import './components.css';
+@import './domains.css';

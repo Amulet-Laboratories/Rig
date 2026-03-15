@@ -16,6 +16,10 @@ withDefaults(
 const emit = defineEmits<{
   select: [id: ID]
 }>()
+
+defineSlots<{
+  item: (props: { item: { id: ID; label: string }; isLast: boolean }) => unknown
+}>()
 </script>
 
 <template>

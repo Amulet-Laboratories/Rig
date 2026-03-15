@@ -226,9 +226,7 @@ function createShellState(config: ShellConfig = {}): ShellState {
  * With `{ provide: true }`: creates state and provides it via injection.
  * Without: injects from parent, falling back to a standalone instance.
  */
-export function useShellState(
-  options?: { provide?: boolean } & ShellConfig,
-): ShellState {
+export function useShellState(options?: { provide?: boolean } & ShellConfig): ShellState {
   if (options?.provide) {
     const state = createShellState(options)
     provide(ShellKey, state)

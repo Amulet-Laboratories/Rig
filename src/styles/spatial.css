@@ -1,0 +1,96 @@
+/* Rig Structural — Spatial Components
+ * MapCanvas, GlobeView, ScatterPlot3D, GraphNetwork, PointCloud
+ */
+
+/* ── MapCanvas ── */
+
+[data-rig-map-canvas] {
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+}
+
+[data-rig-map-canvas-viewport] {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+[data-rig-map-canvas-viewport][data-state='panning'] {
+  cursor: grabbing;
+}
+
+[data-rig-map-canvas-marker] {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  cursor: pointer;
+}
+
+[data-rig-map-canvas-controls] {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* ── GlobeView ── */
+
+[data-rig-globe-view] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-rig-globe-view] canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── ScatterPlot3D ── */
+
+[data-rig-scatter-plot-3d] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-rig-scatter-plot-3d] canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── GraphNetwork ── */
+
+[data-rig-graph-network] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-rig-graph-network] svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+[data-rig-graph-network-node] {
+  cursor: pointer;
+}
+
+[data-rig-graph-network-edge] {
+  pointer-events: none;
+}
+
+/* ── PointCloud ── */
+
+[data-rig-point-cloud] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-rig-point-cloud] canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

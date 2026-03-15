@@ -47,7 +47,10 @@ export function provideDragDrop(options: DragOptions = {}): DragDropController &
   dropTargetId: Ref<string | null>
   dropTargetIndex: Ref<number>
   dragAttributes: (sourceId: string, index: number, data: unknown) => Record<string, unknown>
-  dropZoneHandlers: (targetId: string, getIndex: (e: DragEvent) => number) => Record<string, unknown>
+  dropZoneHandlers: (
+    targetId: string,
+    getIndex: (e: DragEvent) => number,
+  ) => Record<string, unknown>
   handleDrop: (targetId: string, targetIndex: number) => void
 } {
   const isDragging = ref(false)
@@ -73,11 +76,7 @@ export function provideDragDrop(options: DragOptions = {}): DragDropController &
   /**
    * Returns HTML attributes + event handlers to make an element draggable.
    */
-  function dragAttributes(
-    sourceId: string,
-    index: number,
-    data: unknown,
-  ): Record<string, unknown> {
+  function dragAttributes(sourceId: string, index: number, data: unknown): Record<string, unknown> {
     return {
       draggable: true,
       onDragstart: (e: DragEvent) => {

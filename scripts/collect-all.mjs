@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* global process */
 
 /**
  * Unified data-collection pipeline.
@@ -7,11 +8,9 @@
  *
  *   1. vitest run --coverage --reporter=json   →  .health/tests.json + coverage/
  *   2. generate-health-manifest.mjs             →  .health/manifest.json + history.json
- *   3. compare:bench  (vitest bench harness)     →  .health/comparison.json
- *   4. analyze-competitors.mjs                   →  .health/static-analysis.json
  *
  * Flags:
- *   --quick   Skip comparison benchmarks + static analysis (tests + manifest only)
+ *   --quick   Same as default (kept for backwards compat)
  *   --skip-tests   Skip tests (re-generate from existing data)
  *
  * Usage:
@@ -77,17 +76,6 @@ if (!skipTests) {
 
 // Step 2: Health manifest
 run('Health manifest', 'node scripts/generate-health-manifest.mjs')
-
-if (!quick) {
-  // Step 3: Comparison benchmarks
-  run(
-    'Comparison benchmarks',
-    'pnpm vitest run --config lab/bench/vitest.config.ts',
-  )
-
-  // Step 4: Static analysis
-  run('Static analysis', 'node scripts/analyze-competitors.mjs')
-}
 
 const total = ((performance.now() - t0) / 1000).toFixed(1)
 console.log(`\n  ${'─'.repeat(40)}`)

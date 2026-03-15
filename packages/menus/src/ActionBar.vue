@@ -18,6 +18,11 @@ const emit = defineEmits<{
   select: [action: Action]
 }>()
 
+defineSlots<{
+  action: (props: { action: Action }) => unknown
+  'overflow-trigger': (props: Record<string, never>) => unknown
+}>()
+
 const visibleActions = computed(() =>
   props.maxVisible < props.actions.length
     ? props.actions.slice(0, props.maxVisible)

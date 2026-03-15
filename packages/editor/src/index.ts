@@ -1,2 +1,5 @@
 export { default as EditorWorkbench } from './EditorWorkbench.vue'
 export { default as EditorTab } from './EditorTab.vue'
+export { default as CodeBlock } from './CodeBlock.vue'
+export { default as DiffViewer } from './DiffViewer.vue'
+export { default as ColorPicker } from './ColorPicker.vue'

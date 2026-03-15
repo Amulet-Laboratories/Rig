@@ -39,10 +39,7 @@ function onChange(e: Event) {
 </script>
 
 <template>
-  <div
-    data-rig-select @keydown.stop
-    :data-disabled="disabled || undefined"
-  >
+  <div data-rig-select :data-disabled="disabled || undefined" @keydown.stop>
     <slot name="leading" />
     <select
       :id="id"
@@ -53,20 +50,10 @@ function onChange(e: Event) {
       tabindex="0"
       @change="onChange"
     >
-      <option
-        v-if="placeholder"
-        value=""
-        disabled
-        :selected="!modelValue"
-      >
+      <option v-if="placeholder" value="" disabled :selected="!modelValue">
         {{ placeholder }}
       </option>
-      <option
-        v-for="opt in options"
-        :key="opt.id"
-        :value="opt.id"
-        :disabled="opt.disabled"
-      >
+      <option v-for="opt in options" :key="opt.id" :value="opt.id" :disabled="opt.disabled">
         {{ opt.label }}
       </option>
     </select>

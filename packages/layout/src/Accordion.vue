@@ -23,6 +23,16 @@ const emit = defineEmits<{
   'update:modelValue': [value: string | string[]]
 }>()
 
+defineSlots<{
+  default: (props: {
+    isOpen: (value: string) => boolean
+    toggle: (value: string) => void
+    disabled: boolean
+    headerId: (value: string) => string
+    panelId: (value: string) => string
+  }) => unknown
+}>()
+
 const instanceId = useId()
 
 function isOpen(value: string): boolean {
@@ -57,9 +67,7 @@ function toggle(value: string) {
 
 function onKeydown(e: KeyboardEvent) {
   const headers = Array.from(
-    (e.currentTarget as HTMLElement).querySelectorAll<HTMLElement>(
-      '[data-rig-accordion-trigger]',
-    ),
+    (e.currentTarget as HTMLElement).querySelectorAll<HTMLElement>('[data-rig-accordion-trigger]'),
   )
   const currentIndex = headers.indexOf(e.target as HTMLElement)
   if (currentIndex < 0) return

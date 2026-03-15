@@ -19,7 +19,7 @@ import { ActivityBar, SideBar, StatusBar, PanelBar } from '@nav/index'
 import { EditorWorkbench } from '@editor/index'
 import type { Action, TabItem } from '@core/types'
 import { useShellState } from './useShellState'
-import type { ShellConfig } from './types'
+import type { ShellConfig, ShellState } from './types'
 
 const props = withDefaults(
   defineProps<{
@@ -36,6 +36,19 @@ const props = withDefaults(
     config: () => ({}),
   },
 )
+
+defineSlots<{
+  titlebar?: (props: { shell: ShellState }) => unknown
+  activity?: (props: { shell: ShellState }) => unknown
+  sidebar?: (props: { shell: ShellState; activity: string }) => unknown
+  editor?: (props: { activeTab: TabItem | undefined; shell: ShellState }) => unknown
+  'editor-empty'?: (props: { shell: ShellState }) => unknown
+  welcome?: (props: { shell: ShellState }) => unknown
+  settings?: (props: { shell: ShellState }) => unknown
+  panel?: (props: { shell: ShellState; activePanelTab: string }) => unknown
+  statusbar?: (props: { shell: ShellState }) => unknown
+  aux?: (props: { shell: ShellState }) => unknown
+}>()
 
 const shell = useShellState({ ...props.config, provide: true })
 
@@ -60,6 +73,7 @@ defineExpose({ shell })
 
 <template>
   <ShellGrid
+    data-rig-ide-shell
     aria-label="IDE workspace"
     tabindex="-1"
     :sizes="shell.shellSizes.value"
@@ -131,6 +145,7 @@ defineExpose({ shell })
     :open="shell.auxOpen.value"
     position="right"
     :size="shell.auxWidth.value"
+    aria-label="Auxiliary panel"
     @update:open="shell.auxOpen.value = $event"
     @update:size="shell.auxWidth.value = $event"
   >

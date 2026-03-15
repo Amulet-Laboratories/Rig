@@ -1,0 +1,32 @@
+{
+  "name": "@amulet-laboratories/config",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Shared ESLint 9 flat config and Prettier config for Amulet Laboratories repos",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10"
+  },
+  "exports": {
+    "./eslint/vue": "./eslint.vue.js",
+    "./eslint/base": "./eslint.base.js",
+    "./prettier": "./prettier.js"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-vue": "^9.32.0",
+    "typescript-eslint": "^8.26.0",
+    "vue-eslint-parser": "^9.4.3"
+  },
+  "peerDependencies": {
+    "eslint": "^9.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  }
+}

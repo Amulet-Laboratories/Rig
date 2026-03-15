@@ -16,6 +16,11 @@ const emit = defineEmits<{
   'update:open': [value: boolean]
 }>()
 
+defineSlots<{
+  trigger?: (props: { open: boolean; toggle: () => void }) => unknown
+  default?: (props: Record<string, never>) => unknown
+}>()
+
 function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Enter' || e.key === ' ') {
     e.preventDefault()
@@ -33,13 +38,19 @@ function toggle() {
 <template>
   <div
     data-rig-collapsible
+    role="group"
     :aria-expanded="open"
-    @keydown="onKeydown"
     :data-state="open ? 'open' : 'closed'"
     :data-disabled="disabled || undefined"
+    @keydown="onKeydown"
   >
     <slot name="trigger" :open="open" :toggle="toggle" />
-    <div v-show="open" data-rig-collapsible-content tabindex="-1" :data-state="open ? 'open' : 'closed'">
+    <div
+      v-show="open"
+      data-rig-collapsible-content
+      tabindex="-1"
+      :data-state="open ? 'open' : 'closed'"
+    >
       <slot />
     </div>
   </div>

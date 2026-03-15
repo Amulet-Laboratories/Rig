@@ -23,6 +23,11 @@ const emit = defineEmits<{
   select: [item: ListItem]
 }>()
 
+defineSlots<{
+  item?: (props: { item: ListItem; highlighted: boolean; query: string }) => unknown
+  empty?: (props: Record<string, never>) => unknown
+}>()
+
 const listboxId = useId()
 
 const query = ref('')
@@ -43,7 +48,7 @@ useFocusTrap({
   containerRef: paletteRef,
   active: toRef(props, 'open'),
   onEscape: close,
-  autoFocus: false,  // We handle initial focus ourselves (input)
+  autoFocus: false, // We handle initial focus ourselves (input)
   restoreFocus: true,
 })
 
@@ -103,6 +108,14 @@ function onKeydown(e: KeyboardEvent) {
     case 'ArrowUp':
       e.preventDefault()
       focusedIndex.value = Math.max(focusedIndex.value - 1, 0)
+      break
+    case 'Home':
+      e.preventDefault()
+      focusedIndex.value = 0
+      break
+    case 'End':
+      e.preventDefault()
+      focusedIndex.value = Math.max(resolvedItems.value.length - 1, 0)
       break
     case 'Enter':
       e.preventDefault()

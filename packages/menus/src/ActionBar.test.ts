@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import ActionBar from './ActionBar.vue'
 import type { Action } from '@core/types'
-import { nextTick } from 'vue'
 
 const actions: Action[] = [
   { id: 'save', label: 'Save' },
@@ -77,26 +76,28 @@ describe('ActionBar', () => {
     expect(wrapper.findAll('[data-rig-action-bar-item]').length).toBe(5)
   })
 
-  it('handles keyboard interaction', async () => {
-    const wrapper = mount(ActionBar, { props: { actions: [] } })
-    await wrapper.trigger('keydown', { key: 'ArrowDown' })
-    expect(wrapper.exists()).toBe(true)
-  })
-
-  it('manages focus correctly', async () => {
-    const wrapper = mount(ActionBar, { props: { actions: [] } }, { attachTo: document.body })
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+  it('moves focus with ArrowRight', async () => {
+    const wrapper = mount(ActionBar, { props: { actions }, attachTo: document.body })
+    const buttons = wrapper.findAll('[data-rig-action-bar-item]')
+    ;(buttons[0]!.element as HTMLButtonElement).focus()
+    await buttons[0]!.trigger('keydown', { key: 'ArrowRight' })
+    expect(document.activeElement).toBe(buttons[1]!.element)
     wrapper.unmount()
   })
 
-  it('reacts to prop changes', async () => {
-    const wrapper = mount(ActionBar, { props: { actions: [] } })
-    await wrapper.setProps({ maxVisible: 42 })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+  it('action buttons are focusable', async () => {
+    const wrapper = mount(ActionBar, { props: { actions }, attachTo: document.body })
+    const firstButton = wrapper.find('[data-rig-action-bar-item]')
+    ;(firstButton.element as HTMLButtonElement).focus()
+    expect(document.activeElement).toBe(firstButton.element)
+    wrapper.unmount()
+  })
+
+  it('updates visible items when maxVisible changes', async () => {
+    const wrapper = mount(ActionBar, { props: { actions } })
+    expect(wrapper.findAll('[data-rig-action-bar-item]').length).toBe(5)
+    await wrapper.setProps({ maxVisible: 2 })
+    expect(wrapper.findAll('[data-rig-action-bar-item]').length).toBe(2)
+    expect(wrapper.find('[data-rig-action-bar-overflow]').exists()).toBe(true)
   })
 })

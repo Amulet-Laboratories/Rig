@@ -1,0 +1,65 @@
+/* Hex — Spotify Design Tokens
+ * Spotify Dark — music streaming aesthetic.
+ */
+
+@theme {
+  --color-background: #121212;
+  --color-foreground: #ffffff;
+  --color-card: #181818;
+  --color-card-foreground: #ffffff;
+  --color-popover: #282828;
+  --color-popover-foreground: #ffffff;
+
+  --color-primary: #1db954;
+  --color-primary-foreground: #000000;
+
+  --color-secondary: #181818;
+  --color-secondary-foreground: #ffffff;
+  --color-muted: #282828;
+  --color-muted-foreground: #b3b3b3;
+  --color-accent: #282828;
+  --color-accent-foreground: #ffffff;
+
+  --color-destructive: #e22134;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #1db954;
+  --color-warning: #ffa42b;
+  --color-info: #2d46b9;
+
+  --color-border: rgb(255 255 255 / 0.1);
+  --color-input: rgb(255 255 255 / 0.1);
+  --color-ring: rgb(29 185 84 / 0.4);
+
+  --font-mono: 'Fira Code', 'SF Mono', monospace;
+  --font-sans: 'Circular', 'Helvetica Neue', Helvetica, -apple-system, sans-serif;
+
+  --radius: 8px;
+}
+
+:root {
+  --background: #121212;
+  --foreground: #ffffff;
+  --card: #181818;
+  --card-foreground: #ffffff;
+  --popover: #282828;
+  --popover-foreground: #ffffff;
+  --primary: #1db954;
+  --primary-foreground: #000000;
+  --secondary: #181818;
+  --secondary-foreground: #ffffff;
+  --muted: #282828;
+  --muted-foreground: #b3b3b3;
+  --accent: #282828;
+  --accent-foreground: #ffffff;
+  --destructive: #e22134;
+  --destructive-foreground: #ffffff;
+  --success: #1db954;
+  --warning: #ffa42b;
+  --info: #2d46b9;
+  --border: rgb(255 255 255 / 0.1);
+  --input: rgb(255 255 255 / 0.1);
+  --ring: rgb(29 185 84 / 0.4);
+  --radius: 8px;
+  --font-mono: 'Fira Code', 'SF Mono', monospace;
+  --font-sans: 'Circular', 'Helvetica Neue', Helvetica, -apple-system, sans-serif;
+}

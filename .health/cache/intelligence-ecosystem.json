@@ -1,0 +1,115 @@
+{
+  "timestamp": "2026-03-14T22:28:05.099Z",
+  "data": {
+    "vuetify": {
+      "githubStars": 40988,
+      "weeklyDownloads": 793906,
+      "monthlyDownloads": 3797376,
+      "releaseCount": 100,
+      "daysSinceLastRelease": 3,
+      "openIssues": 636,
+      "contributorCount": 1,
+      "ageInDays": 3528,
+      "license": "NOASSERTION"
+    },
+    "primevue": {
+      "githubStars": 14154,
+      "weeklyDownloads": 464313,
+      "monthlyDownloads": 2245565,
+      "releaseCount": 100,
+      "daysSinceLastRelease": 86,
+      "openIssues": 958,
+      "contributorCount": 1,
+      "ageInDays": 2658,
+      "license": "MIT"
+    },
+    "element-plus": {
+      "githubStars": 27224,
+      "weeklyDownloads": 430020,
+      "monthlyDownloads": 2063245,
+      "releaseCount": 100,
+      "daysSinceLastRelease": 7,
+      "openIssues": 1281,
+      "contributorCount": 1,
+      "ageInDays": 2468,
+      "license": "MIT"
+    },
+    "reka-ui": {
+      "githubStars": 6294,
+      "weeklyDownloads": 672754,
+      "monthlyDownloads": 3095507,
+      "releaseCount": 100,
+      "daysSinceLastRelease": 2,
+      "openIssues": 229,
+      "contributorCount": 1,
+      "ageInDays": 597,
+      "license": "MIT"
+    },
+    "naive-ui": {
+      "githubStars": 18184,
+      "weeklyDownloads": 92663,
+      "monthlyDownloads": 467377,
+      "releaseCount": 0,
+      "daysSinceLastRelease": 999,
+      "openIssues": 649,
+      "contributorCount": 1,
+      "ageInDays": 2209,
+      "license": "MIT"
+    },
+    "mui": {
+      "githubStars": 98014,
+      "weeklyDownloads": 6805972,
+      "monthlyDownloads": 32029755,
+      "releaseCount": 100,
+      "daysSinceLastRelease": 3,
+      "openIssues": 1720,
+      "contributorCount": 1,
+      "ageInDays": 1655,
+      "license": "MIT"
+    },
+    "ant-design": {
+      "githubStars": 97702,
+      "weeklyDownloads": 2487458,
+      "monthlyDownloads": 11052970,
+      "releaseCount": 100,
+      "daysSinceLastRelease": 6,
+      "openIssues": 1363,
+      "contributorCount": 1,
+      "ageInDays": 3918,
+      "license": "MIT"
+    },
+    "shadcn-ui": {
+      "githubStars": 109515,
+      "weeklyDownloads": 0,
+      "monthlyDownloads": 0,
+      "releaseCount": 83,
+      "daysSinceLastRelease": 0,
+      "openIssues": 1789,
+      "contributorCount": 1,
+      "ageInDays": 1165,
+      "license": "MIT"
+    },
+    "mantine": {
+      "githubStars": 30787,
+      "weeklyDownloads": 1205798,
+      "monthlyDownloads": 5954226,
+      "releaseCount": 100,
+      "daysSinceLastRelease": 0,
+      "openIssues": 55,
+      "contributorCount": 1,
+      "ageInDays": 1892,
+      "license": "MIT"
+    },
+    "react-aria": {
+      "githubStars": 14893,
+      "weeklyDownloads": 1791754,
+      "monthlyDownloads": 8136961,
+      "releaseCount": 27,
+      "daysSinceLastRelease": 10,
+      "openIssues": 645,
+      "contributorCount": 1,
+      "ageInDays": 3541,
+      "license": "Apache-2.0"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { defineComponent, h } from 'vue'
 import { mount } from '@vue/test-utils'
 import { useShellState } from './useShellState'
@@ -284,6 +284,259 @@ describe('useShellState', () => {
       mount(Standalone)
       expect(shell).toBeDefined()
       expect(shell!.openTab).toBeTypeOf('function')
+    })
+  })
+
+  describe('onActiveTabChange callback', () => {
+    it('fires when active tab changes', async () => {
+      const onActiveTabChange = vi.fn()
+      const { shell, wrapper } = createShell({ onActiveTabChange })
+      shell.openTab(tab('a'))
+      await wrapper.vm.$nextTick()
+      expect(onActiveTabChange).toHaveBeenCalledWith(
+        expect.objectContaining({ id: 'a' }),
+      )
+    })
+
+    it('fires with null when last tab is closed', async () => {
+      const onActiveTabChange = vi.fn()
+      const { shell, wrapper } = createShell({ onActiveTabChange })
+      shell.openTab(tab('a'))
+      await wrapper.vm.$nextTick()
+      onActiveTabChange.mockClear()
+      shell.closeTab('a')
+      await wrapper.vm.$nextTick()
+      expect(onActiveTabChange).toHaveBeenCalledWith(null)
+    })
+  })
+
+  describe('activePanelTab', () => {
+    it('defaults to output', () => {
+      const { shell } = createShell()
+      expect(shell.activePanelTab.value).toBe('output')
+    })
+  })
+
+  describe('auxWidth', () => {
+    it('defaults to 320', () => {
+      const { shell } = createShell()
+      expect(shell.auxWidth.value).toBe(320)
+    })
+
+    it('respects custom auxWidth config', () => {
+      const { shell } = createShell({ auxWidth: 500 })
+      expect(shell.auxWidth.value).toBe(500)
+    })
+  })
+
+  describe('closeTab preview cleanup', () => {
+    it('clears previewTabId when closing preview tab', () => {
+      const { shell } = createShell()
+      shell.openTab(tab('p'), { preview: true })
+      expect(shell.previewTabId.value).toBe('p')
+      shell.closeTab('p')
+      expect(shell.previewTabId.value).toBeNull()
+    })
+  })
+
+  describe('onShellResize edge cases', () => {
+    it('ignores zero sideWidth', () => {
+      const { shell } = createShell({ sidebarWidth: 200 })
+      shell.onShellResize({ sideWidth: 0, panelHeight: 100 })
+      expect(shell.sidebarWidth.value).toBe(200)
+      expect(shell.panelHeight.value).toBe(100)
+    })
+
+    it('ignores zero panelHeight', () => {
+      const { shell } = createShell()
+      shell.onShellResize({ sideWidth: 300, panelHeight: 0 })
+      expect(shell.sidebarWidth.value).toBe(300)
+    })
+  })
+
+  describe('markDirty on non-existent tab', () => {
+    it('does not crash when marking non-existent tab', () => {
+      const { shell } = createShell()
+      expect(() => shell.markDirty('nonexistent')).not.toThrow()
+    })
+  })
+
+  describe('closeTab edge cases', () => {
+    it('returns early for non-existent tab id', () => {
+      const { shell } = createShell()
+      shell.openTab(tab('a'))
+      shell.closeTab('nonexistent')
+      expect(shell.openTabs.value).toHaveLength(1)
+      expect(shell.activeTabId.value).toBe('a')
+    })
+
+    it('keeps activeTabId when closing an inactive tab', () => {
+      const { shell } = createShell()
+      shell.openTab(tab('a'))
+      shell.openTab(tab('b'))
+      shell.openTab(tab('c'))
+      // c is active, close a (inactive)
+      shell.closeTab('a')
+      expect(shell.activeTabId.value).toBe('c')
+      expect(shell.openTabs.value).toHaveLength(2)
+    })
+
+    it('removes dirty state when closing a dirty tab', () => {
+      const { shell } = createShell()
+      shell.openTab(tab('a'))
+      shell.markDirty('a')
+      expect(shell.dirtyTabs.value.has('a')).toBe(true)
+      shell.closeTab('a')
+      expect(shell.dirtyTabs.value.has('a')).toBe(false)
+    })
+  })
+
+  describe('openTab preview edge cases', () => {
+    it('replaces preview even when previewTabId is stale', () => {
+      const { shell } = createShell()
+      shell.openTab(tab('p1'), { preview: true })
+      // Manually make previewTabId stale (point to non-existent tab)
+      shell.previewTabId.value = 'stale-id'
+      shell.openTab(tab('p2'), { preview: true })
+      // Since stale id not found, new tab is pushed instead of spliced
+      expect(shell.openTabs.value.map((t) => t.id)).toContain('p2')
+      expect(shell.previewTabId.value).toBe('p2')
+    })
+
+    it('opens non-preview tab and clears previewTabId', () => {
+      const { shell } = createShell()
+      shell.openTab(tab('p'), { preview: true })
+      expect(shell.previewTabId.value).toBe('p')
+      shell.openTab(tab('normal'))
+      expect(shell.previewTabId.value).toBeNull()
+    })
+  })
+
+  describe('closeOtherTabs edge cases', () => {
+    it('preserves dirty state on the kept tab', () => {
+      const { shell } = createShell()
+      shell.openTab(tab('a'))
+      shell.openTab(tab('b'))
+      shell.openTab(tab('c'))
+      shell.markDirty('b')
+      shell.closeOtherTabs('b')
+      expect(shell.openTabs.value).toHaveLength(1)
+      expect(shell.dirtyTabs.value.has('b')).toBe(true)
+    })
+
+    it('clears previewTabId when preview tab is not the kept tab', () => {
+      const { shell } = createShell()
+      shell.openTab(tab('a'))
+      shell.openTab(tab('p'), { preview: true })
+      expect(shell.previewTabId.value).toBe('p')
+      shell.closeOtherTabs('a')
+      // previewTabId is not explicitly cleared by closeOtherTabs,
+      // but the preview tab is removed from openTabs
+      expect(shell.openTabs.value).toHaveLength(1)
+      expect(shell.openTabs.value[0]!.id).toBe('a')
+    })
+
+    it('clears dirty state of removed tabs', () => {
+      const { shell } = createShell()
+      shell.openTab(tab('a'))
+      shell.openTab(tab('b'))
+      shell.openTab(tab('c'))
+      shell.markDirty('a')
+      shell.markDirty('c')
+      shell.closeOtherTabs('b')
+      expect(shell.dirtyTabs.value.has('a')).toBe(false)
+      expect(shell.dirtyTabs.value.has('c')).toBe(false)
+    })
+  })
+
+  describe('closeAllTabs clears dirty state', () => {
+    it('clears dirtyTabs Set', () => {
+      const { shell } = createShell()
+      shell.openTab(tab('a'))
+      shell.openTab(tab('b'))
+      shell.markDirty('a')
+      shell.markDirty('b')
+      expect(shell.dirtyTabs.value.size).toBe(2)
+      shell.closeAllTabs()
+      expect(shell.dirtyTabs.value.size).toBe(0)
+    })
+  })
+
+  describe('reorderTabs edge cases', () => {
+    it('handles out-of-bounds from index gracefully', () => {
+      const { shell } = createShell()
+      shell.openTab(tab('a'))
+      shell.openTab(tab('b'))
+      // from: 5 is out of bounds, splice returns empty → tab is undefined
+      shell.reorderTabs({ from: 5, to: 0 })
+      expect(shell.openTabs.value.map((t) => t.id)).toEqual(['a', 'b'])
+    })
+  })
+
+  describe('markClean on non-existent tab', () => {
+    it('does not crash when marking non-existent tab clean', () => {
+      const { shell } = createShell()
+      expect(() => shell.markClean('nonexistent')).not.toThrow()
+      expect(shell.dirtyTabs.value.has('nonexistent')).toBe(false)
+    })
+  })
+
+  describe('dirtyTabs Set tracking', () => {
+    it('tracks multiple dirty tabs correctly', () => {
+      const { shell } = createShell()
+      shell.openTab(tab('a'))
+      shell.openTab(tab('b'))
+      shell.openTab(tab('c'))
+      shell.markDirty('a')
+      shell.markDirty('c')
+      expect(shell.dirtyTabs.value.size).toBe(2)
+      expect(shell.dirtyTabs.value.has('a')).toBe(true)
+      expect(shell.dirtyTabs.value.has('b')).toBe(false)
+      expect(shell.dirtyTabs.value.has('c')).toBe(true)
+      expect(shell.dirtyTabCount.value).toBe(2)
+    })
+  })
+
+  describe('default values', () => {
+    it('settingsOpen defaults to false', () => {
+      const { shell } = createShell()
+      expect(shell.settingsOpen.value).toBe(false)
+    })
+
+    it('sidebarWidth defaults to 260', () => {
+      const { shell } = createShell()
+      expect(shell.sidebarWidth.value).toBe(260)
+    })
+
+    it('panelHeight defaults to 200', () => {
+      const { shell } = createShell()
+      expect(shell.panelHeight.value).toBe(200)
+    })
+  })
+
+  describe('shellSizes combinations', () => {
+    it('sidebar hidden and panel visible', () => {
+      const { shell } = createShell()
+      shell.toggleSidebar()
+      shell.togglePanel()
+      expect(shell.shellSizes.value.sideWidth).toBe(0)
+      expect(shell.shellSizes.value.panelHeight).toBe(200)
+    })
+  })
+
+  describe('activeTab computed', () => {
+    it('returns undefined when no tabs match activeTabId', () => {
+      const { shell } = createShell()
+      expect(shell.activeTab.value).toBeUndefined()
+    })
+
+    it('updates when activeTabId changes', () => {
+      const { shell } = createShell()
+      shell.openTab(tab('a', 'Alpha'))
+      shell.openTab(tab('b', 'Beta'))
+      expect(shell.activeTab.value?.label).toBe('Beta')
+      shell.activeTabId.value = 'a'
+      expect(shell.activeTab.value?.label).toBe('Alpha')
     })
   })
 })

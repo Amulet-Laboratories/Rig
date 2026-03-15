@@ -21,6 +21,9 @@ export default defineConfig({
       '@menus': resolve(__dirname, 'packages/menus/src'),
       '@extras': resolve(__dirname, 'packages/extras/src'),
       '@shell': resolve(__dirname, 'packages/shell/src'),
+      '@data': resolve(__dirname, 'packages/data/src'),
+      '@spatial': resolve(__dirname, 'packages/spatial/src'),
+      '@temporal': resolve(__dirname, 'packages/temporal/src'),
     },
   },
   build: {

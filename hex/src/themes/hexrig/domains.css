@@ -1,0 +1,133 @@
+/* Hex — Hexrig Domains
+ * Domain accent colors, focus accent utility, responsive breakpoints,
+ * and unstyled theme escape hatch.
+ */
+
+@reference 'tailwindcss';
+@reference './tokens.css';
+
+/* ───────── Domain accent colors ───────── */
+
+[data-domain='legal'] {
+  --domain-accent: #f59e0b;
+}
+
+[data-domain='life'] {
+  --domain-accent: #14b8a6;
+}
+
+[data-domain='software'] {
+  --domain-accent: #3b82f6;
+}
+
+[data-domain='business'] {
+  --domain-accent: #10b981;
+}
+
+[data-domain='history'] {
+  --domain-accent: #a8a29e;
+}
+
+[data-domain='world'] {
+  --domain-accent: #8b5cf6;
+}
+
+/* ───────── Focus accent utility ───────── */
+
+.focus-accent:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px
+    color-mix(in srgb, var(--domain-accent, var(--color-foreground)) 30%, transparent);
+}
+
+/* ───────── Responsive: Mobile-first ───────── */
+
+/* Below 640px: collapse activity bar and sidebar, single-column layout */
+
+@media (width <= 639px) {
+  [data-rig-shell-grid] {
+    grid-template-areas:
+      'editor'
+      'panel'
+      'statusbar';
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto auto;
+  }
+
+  [data-rig-shell-activity] {
+    display: none;
+  }
+
+  [data-rig-shell-sidebar] {
+    display: none;
+  }
+
+  [data-rig-shell-statusbar] {
+    @apply px-2;
+  }
+
+  [data-rig-editor-workbench-tabs] {
+    @apply overflow-x-auto;
+  }
+
+  [data-rig-editor-tab-label] {
+    max-width: 100px;
+  }
+
+  /* Command palette needs more room on mobile */
+  [data-rig-command-palette-overlay] {
+    @apply pt-[8vh];
+  }
+
+  [data-rig-command-palette] {
+    @apply mx-3 max-w-none;
+  }
+
+  /* Panel takes more height on small screens */
+  [data-rig-panel] [data-rig-panel-content] {
+    max-height: 40vh;
+  }
+}
+
+/* 640px–1023px: narrow sidebar, activity bar still visible */
+@media (width >= 640px) and (width <= 1023px) {
+  [data-rig-shell-sidebar] {
+    max-width: 200px;
+  }
+
+  [data-rig-editor-tab-label] {
+    max-width: 120px;
+  }
+}
+
+/* ───────── Unstyled theme overrides ───────── */
+
+/* Strips visual styling (colors, borders, backgrounds, shadows)
+   while preserving layout (flex, grid, sizing, positioning, overflow). */
+
+[data-theme='unstyled'] *,
+[data-theme='unstyled'] *::before,
+[data-theme='unstyled'] *::after {
+  color: revert !important;
+  background-color: revert !important;
+  background: revert !important;
+  border-color: revert !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+
+  --domain-accent: initial !important;
+}
+
+[data-theme='unstyled'] [data-rig-shell-statusbar],
+[data-theme='unstyled'] [data-rig-shell-sidebar],
+[data-theme='unstyled'] [data-rig-shell-panel],
+[data-theme='unstyled'] [data-rig-sidebar-header],
+[data-theme='unstyled'] [data-rig-editor-workbench-tabs],
+[data-theme='unstyled'] [data-rig-panel-header],
+[data-theme='unstyled'] [data-rig-activity-bar],
+[data-theme='unstyled'] [data-rig-activity-bar-item][data-active] {
+  border-color: #ccc !important;
+  border-left-color: #ccc !important;
+}

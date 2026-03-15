@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Switch from './Switch.vue'
-import { nextTick } from 'vue'
 
 describe('Switch', () => {
   it('renders with data-rig-switch and role=switch', () => {
@@ -42,20 +41,16 @@ describe('Switch', () => {
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([false])
   })
 
-  it('manages focus correctly', async () => {
+  it('focuses the switch button element', () => {
     const wrapper = mount(Switch, { attachTo: document.body })
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+    ;(wrapper.element as HTMLElement).focus()
+    expect(document.activeElement).toBe(wrapper.element)
     wrapper.unmount()
   })
 
-  it('reacts to prop changes', async () => {
+  it('updates aria-checked when modelValue changes', async () => {
     const wrapper = mount(Switch)
     await wrapper.setProps({ modelValue: true })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.attributes('aria-checked')).toBe('true')
   })
 })

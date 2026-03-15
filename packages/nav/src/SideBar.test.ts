@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import SideBar from './SideBar.vue'
-import { nextTick } from 'vue'
 
 describe('SideBar', () => {
   it('renders with data-rig-sidebar when open', () => {
@@ -57,32 +56,30 @@ describe('SideBar', () => {
     expect(wrapper.find('[data-rig-sidebar]').attributes('data-state')).toBe('open')
   })
 
-  it('handles keyboard events gracefully', async () => {
-    const wrapper = mount(SideBar)
-    await wrapper.trigger('keydown', { key: 'Escape' })
-    expect(wrapper.exists()).toBe(true)
+  it('emits update:open with false on Escape keydown', async () => {
+    const wrapper = mount(SideBar, { props: { open: true } })
+    await wrapper.find('[data-rig-sidebar]').trigger('keydown', { key: 'Escape' })
+    expect(wrapper.emitted('update:open')?.[0]).toEqual([false])
   })
 
-  it('manages focus correctly', async () => {
-    const wrapper = mount(SideBar, { attachTo: document.body })
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+  it('can focus the sidebar container', () => {
+    const wrapper = mount(SideBar, { props: { open: true }, attachTo: document.body })
+    const sidebar = wrapper.find('[data-rig-sidebar]')
+    ;(sidebar.element as HTMLElement).focus()
+    expect(document.activeElement).toBe(sidebar.element)
     wrapper.unmount()
   })
 
-  it('supports event emission', async () => {
-    const wrapper = mount(SideBar)
-    // Verify component has emitted() interface
-    expect(wrapper.emitted()).toBeDefined()
+  it('does not emit update:open on non-Escape keydown', async () => {
+    const wrapper = mount(SideBar, { props: { open: true } })
+    await wrapper.find('[data-rig-sidebar]').trigger('keydown', { key: 'ArrowDown' })
+    expect(wrapper.emitted('update:open')).toBeUndefined()
   })
 
-  it('reacts to prop changes', async () => {
-    const wrapper = mount(SideBar)
-    await wrapper.setProps({ open: true })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+  it('hides sidebar when open prop changes to false', async () => {
+    const wrapper = mount(SideBar, { props: { open: true } })
+    expect(wrapper.find('[data-rig-sidebar]').exists()).toBe(true)
+    await wrapper.setProps({ open: false })
+    expect(wrapper.find('[data-rig-sidebar]').exists()).toBe(false)
   })
 })

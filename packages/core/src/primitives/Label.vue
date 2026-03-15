@@ -8,7 +8,14 @@ defineProps<{
 </script>
 
 <template>
-  <label data-rig-label tabindex="-1" @keydown.stop :data-disabled="disabled || undefined" :aria-disabled="disabled || undefined" :for="$props.for">
+  <label
+    data-rig-label
+    tabindex="-1"
+    :data-disabled="disabled || undefined"
+    :aria-disabled="disabled || undefined"
+    :for="$props.for"
+    @keydown.stop
+  >
     <slot />
   </label>
 </template>

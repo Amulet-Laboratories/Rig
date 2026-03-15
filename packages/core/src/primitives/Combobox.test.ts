@@ -101,4 +101,62 @@ describe('Combobox', () => {
     await input.setValue('zzzzz')
     expect(wrapper.find('[data-rig-combobox-empty]').exists()).toBe(true)
   })
+
+  it('closes on Escape', async () => {
+    const wrapper = mount(Combobox, { props: { options } })
+    const input = wrapper.find('input')
+    await input.trigger('focus')
+    expect(wrapper.find('[data-rig-combobox-list]').exists()).toBe(true)
+    await input.trigger('keydown', { key: 'Escape' })
+    expect(wrapper.find('[data-rig-combobox-list]').exists()).toBe(false)
+  })
+
+  it('has role combobox on input', () => {
+    const wrapper = mount(Combobox, { props: { options } })
+    expect(wrapper.find('input').attributes('role')).toBe('combobox')
+  })
+
+  it('sets aria-expanded on input', async () => {
+    const wrapper = mount(Combobox, { props: { options } })
+    expect(wrapper.find('input').attributes('aria-expanded')).toBe('false')
+    await wrapper.find('input').trigger('focus')
+    expect(wrapper.find('input').attributes('aria-expanded')).toBe('true')
+  })
+
+  it('has aria-haspopup listbox on input', () => {
+    const wrapper = mount(Combobox, { props: { options } })
+    expect(wrapper.find('input').attributes('aria-haspopup')).toBe('listbox')
+  })
+
+  it('emits select event with option object', async () => {
+    const wrapper = mount(Combobox, { props: { options } })
+    const input = wrapper.find('input')
+    await input.trigger('focus')
+    await input.trigger('keydown', { key: 'ArrowDown' })
+    await input.trigger('keydown', { key: 'Enter' })
+    expect(wrapper.emitted('select')?.[0]?.[0]).toMatchObject({ id: '1', label: 'Apple' })
+  })
+
+  it('forwards id prop to input', () => {
+    const wrapper = mount(Combobox, { props: { options, id: 'my-combo' } })
+    expect(wrapper.find('input').attributes('id')).toBe('my-combo')
+  })
+
+  it('navigates up with ArrowUp', async () => {
+    const wrapper = mount(Combobox, { props: { options } })
+    const input = wrapper.find('input')
+    await input.trigger('focus')
+    await input.trigger('keydown', { key: 'ArrowDown' })
+    await input.trigger('keydown', { key: 'ArrowDown' })
+    await input.trigger('keydown', { key: 'ArrowUp' })
+    const highlighted = wrapper.findAll('[data-highlighted]')
+    expect(highlighted).toHaveLength(1)
+  })
+
+  it('sets data-state open/closed', async () => {
+    const wrapper = mount(Combobox, { props: { options } })
+    expect(wrapper.attributes('data-state')).toBe('closed')
+    await wrapper.find('input').trigger('focus')
+    expect(wrapper.attributes('data-state')).toBe('open')
+  })
 })

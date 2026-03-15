@@ -1,25 +1,52 @@
 <script setup lang="ts">
-import type { Orientation } from '@core/types'
+import type { Orientation, Size } from '@core/types'
+
+export interface ToggleItem {
+  /** Unique value for this toggle */
+  value: string
+  /** Display label */
+  label?: string
+  /** Accessible label (falls back to label, then value) */
+  ariaLabel?: string
+  /** Whether this item is disabled */
+  disabled?: boolean
+}
 
 const props = withDefaults(
   defineProps<{
     /** Bound selected value(s) */
     modelValue: string | string[]
+    /** Toggle items — when provided, ToggleGroup renders buttons internally */
+    items?: ToggleItem[]
     /** Whether only one item can be active at a time */
     type?: 'single' | 'multiple'
     /** Whether the group is disabled */
     disabled?: boolean
     /** Orientation for ARIA and keyboard helpers */
     orientation?: Orientation
+    /** Visual variant applied to rendered buttons */
+    variant?: string
+    /** Size scale applied to rendered buttons */
+    size?: Size
   }>(),
   {
     type: 'single',
+    disabled: false,
     orientation: 'horizontal',
   },
 )
 
 const emit = defineEmits<{
   'update:modelValue': [value: string | string[]]
+}>()
+
+defineSlots<{
+  default: (props: {
+    isPressed: (value: string) => boolean
+    toggle: (value: string) => void
+    disabled: boolean
+  }) => unknown
+  item: (props: { item: ToggleItem; pressed: boolean; disabled: boolean }) => unknown
 }>()
 
 function isPressed(value: string): boolean {
@@ -73,6 +100,31 @@ function onKeydown(e: KeyboardEvent) {
     :data-disabled="disabled || undefined"
     @keydown="onKeydown"
   >
-    <slot :isPressed="isPressed" :toggle="toggle" :disabled="disabled" />
+    <!-- Items mode: ToggleGroup renders buttons internally -->
+    <template v-if="items && items.length">
+      <button
+        v-for="item in items"
+        :key="item.value"
+        data-rig-toggle
+        type="button"
+        :aria-pressed="isPressed(item.value)"
+        :data-state="isPressed(item.value) ? 'on' : 'off'"
+        :data-variant="variant"
+        :data-size="size"
+        :data-disabled="disabled || item.disabled || undefined"
+        :disabled="disabled || item.disabled"
+        :aria-label="item.ariaLabel ?? item.label ?? item.value"
+        tabindex="0"
+        @click="toggle(item.value)"
+        @keydown.enter.prevent="toggle(item.value)"
+      >
+        <slot name="item" :item="item" :pressed="isPressed(item.value)" :disabled="disabled || !!item.disabled">
+          {{ item.label ?? item.value }}
+        </slot>
+      </button>
+    </template>
+
+    <!-- Slot mode: consumer provides custom content -->
+    <slot v-else :isPressed="isPressed" :toggle="toggle" :disabled="disabled" />
   </div>
 </template>

@@ -4,7 +4,7 @@ import TagInput from './TagInput.vue'
 
 describe('TagInput mount', () => {
   bench('default mount', () => {
-    const w = mount(TagInput, { props: { modelValue: '' } })
+    const w = mount(TagInput, { props: { modelValue: [] as string[] } })
     w.unmount()
   })
 })

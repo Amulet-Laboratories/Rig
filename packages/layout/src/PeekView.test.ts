@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import PeekView from './PeekView.vue'
-import { nextTick } from 'vue'
 
 describe('PeekView', () => {
   it('renders with data-rig-peek-view', () => {
@@ -62,26 +61,25 @@ describe('PeekView', () => {
     expect(wrapper.find('[data-rig-peek-view-content]').exists()).toBe(true)
   })
 
-  it('handles keyboard interaction', async () => {
-    const wrapper = mount(PeekView)
+  it('does not emit on non-Escape keys', async () => {
+    const wrapper = mount(PeekView, { props: { open: true } })
     await wrapper.trigger('keydown', { key: 'ArrowDown' })
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.emitted('update:open')).toBeUndefined()
   })
 
-  it('manages focus correctly', async () => {
-    const wrapper = mount(PeekView, { attachTo: document.body })
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+  it('close button can receive focus', () => {
+    const wrapper = mount(PeekView, { props: { open: true }, attachTo: document.body })
+    const closeBtn = wrapper.find('[data-rig-peek-view-close]')
+    ;(closeBtn.element as HTMLElement).focus()
+    expect(document.activeElement).toBe(closeBtn.element)
     wrapper.unmount()
   })
 
-  it('reacts to prop changes', async () => {
-    const wrapper = mount(PeekView)
-    await wrapper.setProps({ open: true })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+  it('updates data-state and aria-label when props change', async () => {
+    const wrapper = mount(PeekView, { props: { open: false } })
+    expect(wrapper.attributes('data-state')).toBe('closed')
+    await wrapper.setProps({ open: true, title: 'References' })
+    expect(wrapper.attributes('data-state')).toBe('open')
+    expect(wrapper.attributes('aria-label')).toBe('References')
   })
 })

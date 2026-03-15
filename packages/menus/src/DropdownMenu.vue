@@ -24,6 +24,15 @@ const emit = defineEmits<{
   select: [action: Action]
 }>()
 
+defineSlots<{
+  trigger?: (props: {
+    open: boolean
+    toggle: () => void
+    triggerProps: { 'aria-haspopup': 'menu'; 'aria-expanded': boolean }
+  }) => unknown
+  item?: (props: { item: Action }) => unknown
+}>()
+
 const triggerRef = ref<HTMLElement | null>(null)
 const menuRef = ref<HTMLElement | null>(null)
 const focusedIndex = ref(0)
@@ -129,12 +138,7 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
 
 <template>
   <div data-rig-dropdown :data-state="open ? 'open' : 'closed'">
-    <div
-      ref="triggerRef"
-      data-rig-dropdown-trigger
-      @click="toggle"
-      @keydown="onTriggerKeydown"
-    >
+    <div ref="triggerRef" data-rig-dropdown-trigger @click="toggle" @keydown="onTriggerKeydown">
       <slot
         name="trigger"
         :open="open"

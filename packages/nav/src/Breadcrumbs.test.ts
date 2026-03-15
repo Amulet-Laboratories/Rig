@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Breadcrumbs from './Breadcrumbs.vue'
-import { nextTick } from 'vue'
 
 const items = [
   { id: 'root', label: 'Home' },
@@ -54,26 +53,24 @@ describe('Breadcrumbs', () => {
     expect(seps[0]!.text()).toBe('>')
   })
 
-  it('handles keyboard events gracefully', async () => {
-    const wrapper = mount(Breadcrumbs)
+  it('does not emit select on Escape keydown', async () => {
+    const wrapper = mount(Breadcrumbs, { props: { items } })
     await wrapper.trigger('keydown', { key: 'Escape' })
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.emitted('select')).toBeUndefined()
   })
 
-  it('manages focus correctly', async () => {
-    const wrapper = mount(Breadcrumbs, { attachTo: document.body })
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+  it('can focus a breadcrumb link button', () => {
+    const wrapper = mount(Breadcrumbs, { props: { items }, attachTo: document.body })
+    const link = wrapper.find('[data-rig-breadcrumbs-link]')
+    ;(link.element as HTMLElement).focus()
+    expect(document.activeElement).toBe(link.element)
     wrapper.unmount()
   })
 
-  it('reacts to prop changes', async () => {
-    const wrapper = mount(Breadcrumbs)
-    await wrapper.setProps({ separator: 'test' })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+  it('updates separator text when separator prop changes', async () => {
+    const wrapper = mount(Breadcrumbs, { props: { items, separator: '/' } })
+    expect(wrapper.find('[data-rig-breadcrumbs-separator]').text()).toBe('/')
+    await wrapper.setProps({ separator: '>' })
+    expect(wrapper.find('[data-rig-breadcrumbs-separator]').text()).toBe('>')
   })
 })

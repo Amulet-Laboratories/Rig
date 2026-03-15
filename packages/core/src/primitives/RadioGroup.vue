@@ -1,12 +1,25 @@
 <script setup lang="ts">
+export interface RadioOption {
+  /** Value emitted when this radio is selected */
+  value: string
+  /** Display label — falls back to value */
+  label?: string
+  /** Disable this specific option */
+  disabled?: boolean
+}
+
 withDefaults(
   defineProps<{
     /** Currently selected radio value */
     modelValue?: string
+    /** Radio options — when provided, RadioGroup renders inputs internally */
+    options?: RadioOption[]
     /** Accessible label for the group */
     label?: string
     /** ID of an external element that labels this group */
     labelledBy?: string
+    /** Radio group name attribute */
+    name?: string
     /** Layout axis */
     orientation?: 'horizontal' | 'vertical'
     /** Disable all radios in the group */
@@ -18,8 +31,13 @@ withDefaults(
   },
 )
 
-defineEmits<{
+const emit = defineEmits<{
   'update:modelValue': [value: string]
+}>()
+
+defineSlots<{
+  default: (props: { modelValue?: string; disabled: boolean }) => unknown
+  option: (props: { option: RadioOption; checked: boolean; disabled: boolean }) => unknown
 }>()
 
 function onKeydown(e: KeyboardEvent) {
@@ -43,6 +61,14 @@ function onKeydown(e: KeyboardEvent) {
       e.preventDefault()
       next = (idx - 1 + radios.length) % radios.length
       break
+    case 'Home':
+      e.preventDefault()
+      next = 0
+      break
+    case 'End':
+      e.preventDefault()
+      next = radios.length - 1
+      break
   }
   if (next !== null) {
     radios[next]?.focus()
@@ -63,10 +89,31 @@ function onKeydown(e: KeyboardEvent) {
     :data-disabled="disabled || undefined"
     @keydown="onKeydown"
   >
-    <!--
-      Slot receives the bound modelValue so consumers can pass it down to
-      each Radio via `v-bind` or explicit props.
-    -->
-    <slot :modelValue="modelValue" :disabled="disabled" />
+    <!-- Options mode: RadioGroup renders radios internally -->
+    <template v-if="options && options.length">
+      <label
+        v-for="opt in options"
+        :key="opt.value"
+        data-rig-radio
+        :data-state="modelValue === opt.value ? 'checked' : 'unchecked'"
+        :data-disabled="disabled || opt.disabled || undefined"
+      >
+        <input
+          type="radio"
+          tabindex="0"
+          :name="name"
+          :value="opt.value"
+          :checked="modelValue === opt.value"
+          :disabled="disabled || opt.disabled"
+          @change="emit('update:modelValue', opt.value)"
+        />
+        <slot name="option" :option="opt" :checked="modelValue === opt.value" :disabled="disabled || !!opt.disabled">
+          {{ opt.label ?? opt.value }}
+        </slot>
+      </label>
+    </template>
+
+    <!-- Slot mode: consumer provides custom content -->
+    <slot v-else :modelValue="modelValue" :disabled="disabled" />
   </div>
 </template>

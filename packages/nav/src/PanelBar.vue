@@ -17,6 +17,12 @@ const emit = defineEmits<{
   close: [id: ID]
 }>()
 
+defineSlots<{
+  tab?: (props: { tab: TabItem; active: boolean }) => unknown
+  default?: (props: { activeId: ID | undefined; activeTab: TabItem | undefined }) => unknown
+  actions?: (props: Record<string, never>) => unknown
+}>()
+
 const focusedIndex = ref(0)
 const tabRefs = ref<HTMLElement[]>([])
 

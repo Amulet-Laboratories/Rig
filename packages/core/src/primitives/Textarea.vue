@@ -49,7 +49,12 @@ defineExpose({ focus })
 </script>
 
 <template>
-  <div data-rig-textarea role="group" aria-label="Text input" :data-disabled="disabled || undefined">
+  <div
+    data-rig-textarea
+    role="group"
+    aria-label="Text input"
+    :data-disabled="disabled || undefined"
+  >
     <textarea
       :id="id"
       ref="textareaRef"

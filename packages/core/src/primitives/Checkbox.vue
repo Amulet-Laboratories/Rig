@@ -28,13 +28,15 @@ function onChange(e: Event) {
 
 <template>
   <label
-    data-rig-checkbox @keydown.stop
+    data-rig-checkbox
     :data-disabled="disabled || undefined"
     :data-state="modelValue ? 'checked' : 'unchecked'"
     :data-indeterminate="indeterminate || undefined"
+    @keydown.stop
   >
     <input
-      type="checkbox" tabindex="0"
+      type="checkbox"
+      tabindex="0"
       :checked="modelValue"
       :disabled="disabled"
       :indeterminate="indeterminate"

@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import EditorTab from './EditorTab.vue'
 import type { TabItem } from '@core/types'
-import { nextTick } from 'vue'
 
 describe('EditorTab', () => {
   const tab: TabItem = { id: 'test', label: 'test.ts' }
@@ -73,26 +72,27 @@ describe('EditorTab', () => {
     expect(wrapper.emitted('dragend')).toHaveLength(1)
   })
 
-  it('handles keyboard events gracefully', async () => {
+  it('emits close on Delete key', async () => {
     const wrapper = mount(EditorTab, { props: { tab: { id: 't1', label: 'Tab' } } })
-    await wrapper.trigger('keydown', { key: 'Escape' })
-    expect(wrapper.exists()).toBe(true)
+    await wrapper.trigger('keydown', { key: 'Delete' })
+    expect(wrapper.emitted('close')).toHaveLength(1)
   })
 
   it('manages focus correctly', async () => {
-    const wrapper = mount(EditorTab, { props: { tab: { id: 't1', label: 'Tab' } } }, { attachTo: document.body })
-    const focusable = wrapper.find('button, input, [tabindex]')
-    if (focusable.exists()) {
-      await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
-    }
+    const wrapper = mount(EditorTab, {
+      props: { tab: { id: 't1', label: 'Tab' } },
+      attachTo: document.body,
+    })
+    ;(wrapper.element as HTMLElement).focus()
+    expect(document.activeElement).toBe(wrapper.element)
     wrapper.unmount()
   })
 
   it('reacts to prop changes', async () => {
     const wrapper = mount(EditorTab, { props: { tab: { id: 't1', label: 'Tab' } } })
+    expect(wrapper.attributes('data-state')).toBe('inactive')
     await wrapper.setProps({ active: true })
-    await nextTick()
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.attributes('data-state')).toBe('active')
+    expect(wrapper.attributes('aria-selected')).toBe('true')
   })
 })

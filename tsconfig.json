@@ -24,10 +24,13 @@
       "@lists/*": ["./packages/lists/src/*"],
       "@menus/*": ["./packages/menus/src/*"],
       "@extras/*": ["./packages/extras/src/*"],
-      "@shell/*": ["./packages/shell/src/*"]
+      "@shell/*": ["./packages/shell/src/*"],
+      "@data/*": ["./packages/data/src/*"],
+      "@spatial/*": ["./packages/spatial/src/*"],
+      "@temporal/*": ["./packages/temporal/src/*"]
     },
     "types": ["vitest/globals"]
   },
-  "include": ["packages/*/src/**/*.ts", "packages/*/src/**/*.vue", "src/**/*.ts", "stories/**/*.vue"],
+  "include": ["packages/*/src/**/*.ts", "packages/*/src/**/*.vue", "src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

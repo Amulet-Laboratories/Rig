@@ -4,12 +4,24 @@
 
 Headless, accessible Vue 3 component library. VSCode-style layout, completely unstyled. Consumers supply all styling via CSS custom properties, Tailwind, and slot content.
 
+## Monorepo Structure
+
+pnpm workspace with three packages:
+
+| Package | Path | Purpose |
+|---------|------|---------|
+| `@amulet-laboratories/rig` | `.` (root) | Headless Vue 3 component library |
+| `@amulet-laboratories/hex` | `hex/` | Multi-theme CSS layer targeting `data-rig-*` selectors |
+| `@amulet-laboratories/config` | `config/` | Shared ESLint 9 flat config + Prettier |
+
+Internal dependencies use `workspace:*` protocol. Config is consumed by both Rig and Hex.
+
 ## Tech Stack
 
 - Vue 3 + TypeScript strict — `<script setup lang="ts">` only
 - Vite 7 library mode (ESM + CJS)
 - Vitest + @vue/test-utils for testing
-- pnpm (never npm or yarn)
+- pnpm workspace (never npm or yarn)
 - Vue peer dependency: ^3.5.0
 
 ## Code Style
@@ -21,7 +33,7 @@ Headless, accessible Vue 3 component library. VSCode-style layout, completely un
 
 ## Architecture
 
-- `packages/` — 7 sub-packages (core, layout, nav, editor, lists, menus, extras)
+- `packages/` — 11 sub-packages (core, layout, nav, editor, lists, menus, extras, shell, data, spatial, temporal)
 - `src/index.ts` — umbrella entry point re-exporting all packages
 - Components are completely unstyled — semantic HTML + data attributes
 - Root element: `data-rig-{component-name}`, state: `data-{state}`
@@ -31,13 +43,14 @@ Headless, accessible Vue 3 component library. VSCode-style layout, completely un
 ## Commands
 
 ```bash
-pnpm install          # Install dependencies
-pnpm build            # Vite library build
-pnpm test             # Run all tests
+pnpm install          # Install all workspace dependencies
+pnpm dev              # Watch mode (tests + health)
+pnpm build            # Vite library build (Rig)
+pnpm test             # Run all Rig tests
 pnpm test:watch       # Watch mode
-pnpm typecheck        # vue-tsc --noEmit
-pnpm lint             # ESLint
-pnpm format           # Prettier
+pnpm check            # Lint + format + vue-tsc --noEmit
+pnpm health           # Full CI pipeline (check + build + test + bench + manifest + audit)
+cd hex && pnpm build  # Build all Hex CSS themes
 ```
 
 ## Testing

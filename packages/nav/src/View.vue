@@ -22,6 +22,13 @@ const emit = defineEmits<{
   action: [id: ID]
 }>()
 
+defineSlots<{
+  header?: (props: Record<string, never>) => unknown
+  actions?: (props: Record<string, never>) => unknown
+  'action-icon'?: (props: { action: Action }) => unknown
+  default?: (props: Record<string, never>) => unknown
+}>()
+
 const tooltip = useTooltip()
 
 function toggle() {
@@ -49,7 +56,11 @@ function onActionMouseLeave() {
         @keydown.enter.prevent="toggle"
         @keydown.space.prevent="toggle"
       >
-        <span data-rig-view-chevron :data-state="collapsed ? 'closed' : 'open'" aria-hidden="true" />
+        <span
+          data-rig-view-chevron
+          :data-state="collapsed ? 'closed' : 'open'"
+          aria-hidden="true"
+        />
         <slot name="header">
           <span data-rig-view-title>{{ title }}</span>
         </slot>

@@ -65,12 +65,18 @@ export function useFocusTrap(options: FocusTrapOptions) {
     const last = focusable[focusable.length - 1]!
 
     if (e.shiftKey) {
-      if (document.activeElement === first || !containerRef.value?.contains(document.activeElement)) {
+      if (
+        document.activeElement === first ||
+        !containerRef.value?.contains(document.activeElement)
+      ) {
         e.preventDefault()
         last.focus()
       }
     } else {
-      if (document.activeElement === last || !containerRef.value?.contains(document.activeElement)) {
+      if (
+        document.activeElement === last ||
+        !containerRef.value?.contains(document.activeElement)
+      ) {
         e.preventDefault()
         first.focus()
       }

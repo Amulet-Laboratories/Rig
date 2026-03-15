@@ -25,13 +25,15 @@ defineEmits<{
 <template>
   <component
     :is="interactive ? 'button' : 'div'"
-    data-rig-card tabindex="-1" @keydown.enter="$emit('click', $event)"
+    data-rig-card
+    tabindex="-1"
     :role="interactive ? undefined : 'article'"
     :data-variant="variant"
     :data-size="size"
     :data-interactive="interactive || undefined"
     :style="accent ? { '--rig-card-accent': accent } : undefined"
     :type="interactive ? 'button' : undefined"
+    @keydown.enter="$emit('click', $event)"
     @click="interactive ? $emit('click', $event) : undefined"
   >
     <slot name="header" />

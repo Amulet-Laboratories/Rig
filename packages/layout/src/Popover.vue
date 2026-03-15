@@ -23,16 +23,28 @@ const emit = defineEmits<{
   'update:open': [value: boolean]
 }>()
 
+defineSlots<{
+  trigger: (props: { open: boolean; toggle: () => void }) => unknown
+  default: (props: Record<string, never>) => unknown
+}>()
+
 const triggerRef = ref<HTMLElement | null>(null)
 const contentRef = ref<HTMLElement | null>(null)
 
 const placementComputed = computed(() => props.placement)
 
+// Lazy middleware — only allocate the array once, on first access
+let _middleware: ReturnType<typeof offset | typeof flip | typeof shift>[] | undefined
+function getMiddleware() {
+  if (!_middleware) _middleware = [offset(8), flip(), shift({ padding: 8 })]
+  return _middleware
+}
+
 const { floatingStyles, placement: computedPlacement } = useFloating(triggerRef, contentRef, {
   placement: placementComputed,
   strategy: 'fixed',
   whileElementsMounted: autoUpdate,
-  middleware: [offset(8), flip(), shift({ padding: 8 })],
+  middleware: computed(getMiddleware),
 })
 
 function close() {
@@ -76,16 +88,17 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
 
 <template>
   <div data-rig-popover :data-state="open ? 'open' : 'closed'">
-    <div ref="triggerRef" data-rig-popover-trigger :aria-expanded="open">
+    <div ref="triggerRef" data-rig-popover-trigger>
       <slot name="trigger" :open="open" :toggle="toggle" />
     </div>
 
     <Teleport to="body">
       <div
-        v-show="open"
+        v-if="open"
         ref="contentRef"
-        data-rig-popover-content role="dialog"
-        :data-state="open ? 'open' : 'closed'"
+        data-rig-popover-content
+        role="dialog"
+        data-state="open"
         :data-side="computedPlacement"
         tabindex="-1"
         :style="{ ...floatingStyles, zIndex: 'var(--rig-popover-z, 9000)' }"

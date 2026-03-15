@@ -16,6 +16,12 @@ const emit = defineEmits<{
   'item-click': [item: StatusBarItem]
 }>()
 
+defineSlots<{
+  item?: (props: { item: StatusBarItem }) => unknown
+  left?: (props: Record<string, never>) => unknown
+  right?: (props: Record<string, never>) => unknown
+}>()
+
 const leftItems = computed(() =>
   props.items.filter((i) => i.align === 'left').sort((a, b) => a.priority - b.priority),
 )
@@ -54,7 +60,13 @@ function onKeydown(e: KeyboardEvent) {
 </script>
 
 <template>
-  <footer data-rig-status-bar role="contentinfo" aria-label="Status bar" tabindex="-1" @keydown="onKeydown">
+  <footer
+    data-rig-status-bar
+    role="contentinfo"
+    aria-label="Status bar"
+    tabindex="-1"
+    @keydown="onKeydown"
+  >
     <div data-rig-status-bar-left>
       <slot name="left">
         <component

@@ -26,6 +26,10 @@ const emit = defineEmits<{
   'update:modelValue': [tags: string[]]
 }>()
 
+defineSlots<{
+  tag: (props: { tag: string; index: number; remove: () => void }) => unknown
+}>()
+
 const inputRef = ref<HTMLInputElement | null>(null)
 const inputValue = ref('')
 const showSuggestions = ref(false)

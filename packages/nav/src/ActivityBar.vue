@@ -22,6 +22,11 @@ const emit = defineEmits<{
   select: [action: Action]
 }>()
 
+defineSlots<{
+  item?: (props: { item: Action; active: boolean }) => unknown
+  bottom?: (props: Record<string, never>) => unknown
+}>()
+
 const tooltip = useTooltip()
 const focusedIndex = ref(0)
 const itemRefs = ref<HTMLElement[]>([])
@@ -75,11 +80,12 @@ function onKeydown(e: KeyboardEvent) {
 </script>
 
 <template>
-  <nav
+  <div
     data-rig-activity-bar
     :data-orientation="orientation"
     role="toolbar"
     :aria-orientation="orientation"
+    aria-label="Activity bar"
     @keydown="onKeydown"
   >
     <div data-rig-activity-bar-top>
@@ -112,5 +118,5 @@ function onKeydown(e: KeyboardEvent) {
     <div v-if="$slots.bottom" data-rig-activity-bar-bottom>
       <slot name="bottom" />
     </div>
-  </nav>
+  </div>
 </template>
