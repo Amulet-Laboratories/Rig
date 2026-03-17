@@ -1,5 +1,5 @@
 [build]
-  command = "pnpm install && pnpm build && cd hex && pnpm build && cd .. && pnpm story:build && node scripts/build-deploy.mjs"
+  command = "pnpm install && pnpm build && cd hex && pnpm build && cd ../landing && pnpm build && cd .. && pnpm story:build && node scripts/build-deploy.mjs"
   publish = "deploy"
 
 [build.environment]

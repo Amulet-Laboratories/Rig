@@ -34,10 +34,9 @@ defineSlots<{
     aria-label="Sidebar"
     tabindex="-1"
     :data-state="open ? 'open' : 'closed'"
-    :style="{ width: width + 'px' }"
     @keydown.escape="$emit('update:open', false)"
   >
-    <div data-rig-sidebar-header>
+    <div v-if="$slots.header" data-rig-sidebar-header>
       <slot name="header" />
     </div>
     <div data-rig-sidebar-content>

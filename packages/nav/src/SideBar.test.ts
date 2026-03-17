@@ -18,14 +18,14 @@ describe('SideBar', () => {
     expect(wrapper.find('[data-rig-sidebar]').exists()).toBe(true)
   })
 
-  it('applies width style', () => {
+  it('does not apply inline width style', () => {
     const wrapper = mount(SideBar, { props: { open: true, width: 300 } })
-    expect(wrapper.find('[data-rig-sidebar]').attributes('style')).toContain('width: 300px')
+    expect(wrapper.find('[data-rig-sidebar]').attributes('style')).toBeUndefined()
   })
 
-  it('defaults to 260px width', () => {
+  it('fills its container without inline width', () => {
     const wrapper = mount(SideBar, { props: { open: true } })
-    expect(wrapper.find('[data-rig-sidebar]').attributes('style')).toContain('width: 260px')
+    expect(wrapper.find('[data-rig-sidebar]').attributes('style')).toBeUndefined()
   })
 
   it('renders header slot', () => {
@@ -45,10 +45,16 @@ describe('SideBar', () => {
     expect(wrapper.find('[data-test-content]').exists()).toBe(true)
   })
 
-  it('has header and content sections', () => {
+  it('has content section and header only with slot', () => {
     const wrapper = mount(SideBar, { props: { open: true } })
-    expect(wrapper.find('[data-rig-sidebar-header]').exists()).toBe(true)
+    expect(wrapper.find('[data-rig-sidebar-header]').exists()).toBe(false)
     expect(wrapper.find('[data-rig-sidebar-content]').exists()).toBe(true)
+
+    const withHeader = mount(SideBar, {
+      props: { open: true },
+      slots: { header: '<span>Title</span>' },
+    })
+    expect(withHeader.find('[data-rig-sidebar-header]').exists()).toBe(true)
   })
 
   it('sets data-state attribute', () => {

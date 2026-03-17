@@ -98,6 +98,7 @@
 
 [data-rig-tree] {
   font-size: 13px;
+  outline: none;
 }
 
 [data-rig-tree-node] {
@@ -108,7 +109,6 @@
   padding: 0 8px;
   min-width: 100%;
   cursor: pointer;
-  transition: background-color 0.15s ease;
   white-space: nowrap;
 }
 
@@ -121,8 +121,9 @@
 }
 
 [data-rig-tree-node]:focus {
-  outline: 1px solid var(--color-ring);
-  outline-offset: -1px;
+  background: var(--rig-list-active-bg);
+  color: var(--rig-list-active-fg);
+  outline: none;
 }
 
 [data-rig-tree-node][data-selected]:focus-within {
@@ -140,17 +141,19 @@
   align-items: stretch;
 }
 
-/* Indent guides — transparent by default, visible on hover/select */
+/* Indent guides — always visible at low opacity, brighter on hover/focus */
 [data-rig-tree-indent-guide] {
   width: 8px;
   flex-shrink: 0;
-  border-left: 1px solid transparent;
+  border-left: 1px solid var(--color-border);
   align-self: stretch;
+  opacity: 0.4;
 }
 
 [data-rig-tree-node]:hover [data-rig-tree-indent-guide],
+[data-rig-tree-node]:focus [data-rig-tree-indent-guide],
 [data-rig-tree-node][data-selected] [data-rig-tree-indent-guide] {
-  border-left-color: var(--color-border);
+  opacity: 1;
 }
 
 /* Toggle chevron */

@@ -20,12 +20,15 @@ const props = withDefaults(
     virtual?: boolean
     /** Row height per node in px — used for virtual scroll calculations */
     itemHeight?: number
+    /** VSCode-style click behavior: click folder toggles, click leaf activates */
+    selectFollowsFocus?: boolean
   }>(),
   {
     multiSelect: false,
     expanded: () => [],
     virtual: false,
     itemHeight: 22,
+    selectFollowsFocus: false,
   },
 )
 
@@ -33,6 +36,7 @@ const props = withDefaults(
  * @emits update:selected
  * @emits update:expanded
  * @emits activate
+ * @emits pin — double-click on leaf (permanent open, not preview)
  * @emits contextmenu
  * @emits rename
  */
@@ -40,6 +44,7 @@ const emit = defineEmits<{
   'update:selected': [value: ID | ID[]]
   'update:expanded': [value: ID[]]
   activate: [node: TreeNode<T>]
+  pin: [node: TreeNode<T>]
   contextmenu: [payload: { node: TreeNode<T>; event: MouseEvent }]
   rename: [payload: { node: TreeNode<T>; newLabel: string }]
   error: [err: unknown]
@@ -148,6 +153,23 @@ function select(node: TreeNode<T>) {
   }
 }
 
+/** VSCode-style click: folder → toggle + select, leaf → select + activate */
+function onNodeClick(flat: FlatNode) {
+  select(flat.node)
+  if (!flat.isLeaf) {
+    toggleExpand(flat.node)
+  } else if (props.selectFollowsFocus) {
+    emit('activate', flat.node)
+  }
+}
+
+/** Double-click: leaf → pin (permanent open), folder → no-op (already toggled on click) */
+function onNodeDblClick(flat: FlatNode) {
+  if (flat.isLeaf) {
+    emit('pin', flat.node)
+  }
+}
+
 async function toggleExpand(node: TreeNode<T>) {
   const current = [...(props.expanded ?? [])]
 
@@ -191,11 +213,13 @@ function onKeydown(e: KeyboardEvent) {
       e.preventDefault()
       focusedIndex.value = Math.min(focusedIndex.value + 1, flat.length - 1)
       itemRefs.value[focusedIndex.value]?.focus()
+      if (props.selectFollowsFocus) select(flat[focusedIndex.value]!.node)
       break
     case 'ArrowUp':
       e.preventDefault()
       focusedIndex.value = Math.max(focusedIndex.value - 1, 0)
       itemRefs.value[focusedIndex.value]?.focus()
+      if (props.selectFollowsFocus) select(flat[focusedIndex.value]!.node)
       break
     case 'ArrowRight':
       e.preventDefault()
@@ -206,6 +230,7 @@ function onKeydown(e: KeyboardEvent) {
         if (focusedIndex.value + 1 < flat.length) {
           focusedIndex.value++
           itemRefs.value[focusedIndex.value]?.focus()
+          if (props.selectFollowsFocus) select(flat[focusedIndex.value]!.node)
         }
       }
       break
@@ -219,6 +244,7 @@ function onKeydown(e: KeyboardEvent) {
           if (flat[i]!.depth < current.depth) {
             focusedIndex.value = i
             itemRefs.value[i]?.focus()
+            if (props.selectFollowsFocus) select(flat[i]!.node)
             break
           }
         }
@@ -228,11 +254,13 @@ function onKeydown(e: KeyboardEvent) {
       e.preventDefault()
       focusedIndex.value = 0
       itemRefs.value[0]?.focus()
+      if (props.selectFollowsFocus) select(flat[0]!.node)
       break
     case 'End':
       e.preventDefault()
       focusedIndex.value = flat.length - 1
       itemRefs.value[focusedIndex.value]?.focus()
+      if (props.selectFollowsFocus) select(flat[focusedIndex.value]!.node)
       break
     case 'Enter':
       e.preventDefault()
@@ -240,7 +268,11 @@ function onKeydown(e: KeyboardEvent) {
       break
     case ' ':
       e.preventDefault()
-      select(current.node)
+      if (!current.isLeaf) {
+        toggleExpand(current.node)
+      } else {
+        select(current.node)
+      }
       break
     default:
       if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
@@ -253,6 +285,7 @@ function onKeydown(e: KeyboardEvent) {
           if (label.toLowerCase().startsWith(char)) {
             focusedIndex.value = idx
             itemRefs.value[idx]?.focus()
+            if (props.selectFollowsFocus) select(flat[idx]!.node)
             break
           }
         }
@@ -288,8 +321,8 @@ function onKeydown(e: KeyboardEvent) {
         :data-leaf="flat.isLeaf || undefined"
         :data-loading="loadingNodes.has(flat.node.id) || undefined"
         :tabindex="index === focusedIndex ? 0 : -1"
-        @click.stop="select(flat.node)"
-        @dblclick.stop="!flat.isLeaf ? toggleExpand(flat.node) : emit('activate', flat.node)"
+        @click.stop="onNodeClick(flat)"
+        @dblclick.stop="onNodeDblClick(flat)"
         @contextmenu.prevent="emit('contextmenu', { node: flat.node, event: $event })"
       >
         <!-- Indent guides -->
@@ -308,6 +341,7 @@ function onKeydown(e: KeyboardEvent) {
           name="node"
           :node="flat.node"
           :depth="flat.depth"
+          :is-leaf="flat.isLeaf"
           :expanded="isExpanded(flat.node.id)"
           :selected="isSelected(flat.node.id)"
           :toggle="() => toggleExpand(flat.node)"

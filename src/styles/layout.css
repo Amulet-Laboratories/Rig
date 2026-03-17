@@ -32,10 +32,11 @@
 
 [data-rig-shell-sidebar] {
   grid-area: sidebar;
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 [data-rig-shell-editor] {
@@ -59,13 +60,14 @@
   padding: 0;
 }
 
-/* Position resizers on grid lines so they don't create implicit rows */
-[data-rig-shell-grid] > [data-rig-resizer][data-orientation='horizontal'] {
-  grid-row: 2 / 4;
-  grid-column: 3;
-  width: 4px;
-  justify-self: start;
-  margin-left: -2px;
+/* Position resizers — sidebar resizer is absolutely positioned inside sidebar */
+[data-rig-shell-sidebar] > [data-rig-resizer][data-orientation='horizontal'] {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  bottom: 0;
+  width: 6px;
+  z-index: 35;
 }
 
 [data-rig-shell-grid] > [data-rig-resizer][data-orientation='vertical'] {

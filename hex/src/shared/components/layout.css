@@ -72,6 +72,7 @@
 [data-rig-titlebar-leading] {
   display: flex;
   align-items: center;
+  height: 100%;
   gap: 2px;
   padding-left: 8px;
   flex-shrink: 0;
@@ -154,14 +155,18 @@
 [data-rig-shell-grid] {
   display: grid;
   grid-template-areas:
-    'activity sidebar h-res editor'
-    'activity sidebar h-res v-res'
-    'activity sidebar h-res panel'
-    'statusbar statusbar statusbar statusbar';
-  grid-template-columns: auto auto 5px 1fr;
+    'activity sidebar editor'
+    'activity sidebar v-res'
+    'activity sidebar panel'
+    'statusbar statusbar statusbar';
+  grid-template-columns: auto auto 1fr;
   grid-template-rows: 1fr 0 auto 22px;
   height: 100%;
   overflow: hidden;
+}
+
+[data-rig-shell-grid]:has([data-rig-shell-sidebar][data-collapsed]) {
+  grid-template-columns: auto 0 1fr;
 }
 
 [data-rig-shell-activity] {
@@ -174,12 +179,17 @@
 
 [data-rig-shell-sidebar] {
   grid-area: sidebar;
+  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
-  overflow: hidden;
+  overflow: visible;
   border-right: 1px solid var(--rig-sidebar-border);
   user-select: none;
+}
+
+[data-rig-shell-sidebar][data-collapsed] {
+  border-right: none;
 }
 
 [data-rig-shell-editor] {
@@ -204,10 +214,14 @@
   user-select: none;
 }
 
-[data-rig-resizer][data-orientation='horizontal'] {
-  grid-area: h-res;
+[data-rig-shell-sidebar] > [data-rig-resizer][data-orientation='horizontal'] {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  bottom: 0;
+  width: 6px;
+  z-index: 35;
   cursor: col-resize;
-  width: 5px;
 }
 
 [data-rig-resizer][data-orientation='vertical'] {
@@ -220,18 +234,6 @@
 [data-rig-shell-grid]:has([data-rig-shell-panel][style='height: 0px'])
   [data-rig-resizer][data-orientation='vertical'] {
   height: 0;
-}
-
-/* Sidebar collapse via v-show */
-[data-rig-shell-grid]:has([data-rig-sidebar][style*='display: none']) [data-rig-shell-sidebar] {
-  width: 0 !important;
-  overflow: hidden;
-}
-
-[data-rig-shell-grid]:has([data-rig-sidebar][style*='display: none'])
-  [data-rig-resizer][data-orientation='horizontal'] {
-  width: 0;
-  pointer-events: none;
 }
 
 [data-rig-shell-panel] {

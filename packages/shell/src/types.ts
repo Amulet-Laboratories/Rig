@@ -52,6 +52,7 @@ export interface ShellState {
   openTab: (tab: TabItem, opts?: { preview?: boolean }) => void
   closeTab: (id: ID) => void
   closeOtherTabs: (id: ID) => void
+  closeTabsToRight: (id: ID) => void
   closeAllTabs: () => void
   reorderTabs: (payload: { from: number; to: number }) => void
   markDirty: (id: ID) => void

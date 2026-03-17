@@ -6,3 +6,10 @@ coverage/
 
 # Histoire build output
 .histoire/
+
+# Build artifacts
+deploy/
+test-results/
+
+# Claude
+.claude/

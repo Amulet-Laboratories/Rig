@@ -37,6 +37,10 @@ const props = withDefaults(
   },
 )
 
+const emit = defineEmits<{
+  'tab-contextmenu': [payload: { tab: TabItem; event: MouseEvent }]
+}>()
+
 defineSlots<{
   titlebar?: (props: { shell: ShellState }) => unknown
   activity?: (props: { shell: ShellState }) => unknown
@@ -81,6 +85,7 @@ defineExpose({ shell })
     aria-label="IDE workspace"
     tabindex="-1"
     :sizes="shell.shellSizes.value"
+    :sidebar-visible="shell.sidebarVisible.value"
     @update:sizes="shell.onShellResize"
     @keydown="onShellKeydown"
   >
@@ -99,7 +104,7 @@ defineExpose({ shell })
     </template>
 
     <template #sidebar>
-      <SideBar v-show="shell.sidebarVisible.value">
+      <SideBar>
         <slot name="sidebar" :shell="shell" :activity="shell.activeActivity.value" />
       </SideBar>
     </template>
@@ -114,6 +119,7 @@ defineExpose({ shell })
         @update:active-id="shell.activeTabId.value = $event"
         @close="shell.closeTab($event)"
         @reorder="shell.reorderTabs($event)"
+        @contextmenu="emit('tab-contextmenu', $event)"
       >
         <template #default="{ activeTab }">
           <slot name="editor" :active-tab="activeTab" :shell="shell" />

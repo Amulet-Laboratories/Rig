@@ -5,10 +5,10 @@
  *
  * Structure:
  *   deploy/
- *     index.html          ← landing page
- *     histoire/            ← Histoire static build
+ *     index.html + assets/  ← Vue landing site (built from landing/)
+ *     histoire/              ← Histoire static build
  *
- * Prerequisite: run `pnpm story:build` first (outputs to .histoire/dist/).
+ * Prerequisite: run `cd landing && pnpm build` and `pnpm story:build` first.
  */
 
 import { cpSync, mkdirSync, existsSync, rmSync } from 'node:fs'
@@ -16,16 +16,21 @@ import { resolve } from 'node:path'
 
 const ROOT = resolve(import.meta.dirname, '..')
 const DEPLOY = resolve(ROOT, 'deploy')
-const LANDING = resolve(ROOT, 'landing')
+const LANDING_DIST = resolve(ROOT, 'landing/dist')
 const HISTOIRE = resolve(ROOT, '.histoire/dist')
 
 // Clean
 if (existsSync(DEPLOY)) rmSync(DEPLOY, { recursive: true })
 mkdirSync(DEPLOY, { recursive: true })
 
-// Copy landing page
-console.log('Copying landing page...')
-cpSync(LANDING, DEPLOY, { recursive: true })
+// Copy landing site build
+if (existsSync(LANDING_DIST)) {
+  console.log('Copying landing site build...')
+  cpSync(LANDING_DIST, DEPLOY, { recursive: true })
+} else {
+  console.error('ERROR: landing/dist not found — run `cd landing && pnpm build` first')
+  process.exit(1)
+}
 
 // Copy Histoire build
 if (existsSync(HISTOIRE)) {

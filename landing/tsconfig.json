@@ -1,0 +1,10 @@
+{
+  "extends": "@amulet-laboratories/config/tsconfig/vue",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

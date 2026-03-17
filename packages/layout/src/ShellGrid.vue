@@ -11,11 +11,14 @@ const props = withDefaults(
     resizable?: boolean
     /** Current sizes for sidebar width and panel height */
     sizes?: { sideWidth: number; panelHeight: number }
+    /** Whether the sidebar is visible */
+    sidebarVisible?: boolean
   }>(),
   {
     direction: 'ltr',
     resizable: true,
     sizes: () => ({ sideWidth: 260, panelHeight: 200 }),
+    sidebarVisible: true,
   },
 )
 
@@ -59,7 +62,8 @@ function onPanelResize(payload: { delta: number }) {
 }
 
 const sideStyle = computed(() => ({
-  width: `${props.sizes.sideWidth}px`,
+  width: props.sidebarVisible ? `${props.sizes.sideWidth}px` : '0px',
+  overflow: props.sidebarVisible ? undefined : 'hidden',
 }))
 
 const panelStyle = computed(() => ({
@@ -81,15 +85,15 @@ const panelStyle = computed(() => ({
     <div data-rig-shell-activity>
       <slot name="activity" />
     </div>
-    <div data-rig-shell-sidebar :style="sideStyle">
+    <div data-rig-shell-sidebar :style="sideStyle" :data-collapsed="!sidebarVisible || undefined">
       <slot name="sidebar" />
+      <Resizer
+        v-if="resizable && sidebarVisible"
+        orientation="horizontal"
+        @dragstart="onSideDragStart"
+        @drag="onSideResize"
+      />
     </div>
-    <Resizer
-      v-if="resizable"
-      orientation="horizontal"
-      @dragstart="onSideDragStart"
-      @drag="onSideResize"
-    />
     <div data-rig-shell-editor role="main" aria-label="Editor">
       <slot name="editor" />
     </div>

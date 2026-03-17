@@ -34,12 +34,17 @@ const activeTab = computed(() => props.tabs.find((t) => t.id === props.activeId)
 const dragFrom = ref(-1)
 const dragTo = ref(-1)
 
-function onDragStart(index: number) {
+function onDragStart(index: number, e: DragEvent) {
   dragFrom.value = index
+  if (e.dataTransfer) {
+    e.dataTransfer.effectAllowed = 'move'
+    e.dataTransfer.setData('text/plain', String(index))
+  }
 }
 
 function onDragOver(index: number, e: DragEvent) {
   e.preventDefault()
+  if (e.dataTransfer) e.dataTransfer.dropEffect = 'move'
   dragTo.value = index
 }
 
@@ -78,7 +83,7 @@ function onDragEnd() {
           @mousedown.middle.prevent="tab.closable !== false && emit('close', tab.id)"
           @keydown.enter="emit('update:activeId', tab.id)"
           @keydown.space.prevent="emit('update:activeId', tab.id)"
-          @dragstart="onDragStart(index)"
+          @dragstart="onDragStart(index, $event)"
           @dragover="onDragOver(index, $event)"
           @drop="onDrop(index)"
           @dragend="onDragEnd()"

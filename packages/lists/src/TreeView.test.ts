@@ -254,7 +254,7 @@ describe('TreeView', () => {
     wrapper.unmount()
   })
 
-  it('selects node on Space', async () => {
+  it('toggles expand on Space for folder nodes', async () => {
     const wrapper = mount(TreeView, {
       props: { nodes, expanded: ['src'] },
       attachTo: document.body,
@@ -262,7 +262,21 @@ describe('TreeView', () => {
     const tree = wrapper.find('[data-rig-tree]')
 
     await tree.trigger('keydown', { key: ' ' })
-    expect(wrapper.emitted('update:selected')?.[0]).toEqual(['src'])
+    expect(wrapper.emitted('update:expanded')?.[0]).toEqual([expect.not.arrayContaining(['src'])])
+    wrapper.unmount()
+  })
+
+  it('selects on Space for leaf nodes', async () => {
+    const wrapper = mount(TreeView, {
+      props: { nodes, expanded: ['src'] },
+      attachTo: document.body,
+    })
+    const tree = wrapper.find('[data-rig-tree]')
+
+    // Move focus to a leaf node (index.ts is at index 1 after src is expanded: src, App.vue, main.ts, index.ts)
+    await tree.trigger('keydown', { key: 'ArrowDown' }) // App.vue
+    await tree.trigger('keydown', { key: ' ' })
+    expect(wrapper.emitted('update:selected')).toBeTruthy()
     wrapper.unmount()
   })
 

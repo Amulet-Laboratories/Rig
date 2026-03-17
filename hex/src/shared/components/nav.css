@@ -28,6 +28,53 @@
   padding-top: 2px;
 }
 
+/* ── Domain grid (2-wide button lockup) ── */
+
+[data-rig-domain-grid] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0px;
+  padding: 4px 12px;
+}
+
+[data-rig-domain-btn] {
+  @apply transition-all;
+
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  opacity: 0.45;
+}
+
+[data-rig-domain-dot] {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dot-color);
+}
+
+[data-rig-domain-btn]:hover {
+  opacity: 0.8;
+  background: var(--color-muted);
+}
+
+[data-rig-domain-btn][data-active] {
+  opacity: 1;
+  background: var(--color-muted);
+}
+
+[data-rig-activity-bar-divider] {
+  height: 1px;
+  margin: 2px 10px;
+  background: var(--rig-activitybar-border);
+}
+
 [data-rig-activity-bar-item] {
   @apply transition-colors;
 
@@ -257,8 +304,11 @@
   transition: background-color 0.15s ease;
   cursor: default;
   font-size: 12px;
-  padding: 0 5px;
-  line-height: 22px;
+  padding: 0 4px 2px;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 [data-rig-status-bar-item]:hover {

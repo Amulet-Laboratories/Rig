@@ -132,6 +132,20 @@ function createShellState(config: ShellConfig = {}): ShellState {
     if (tab?.dirty) dirtyTabs.value.add(tab.id)
   }
 
+  function closeTabsToRight(id: ID) {
+    const idx = openTabs.value.findIndex((t) => t.id === id)
+    if (idx === -1) return
+    const removed = openTabs.value.splice(idx + 1)
+    for (const t of removed) {
+      dirtyTabs.value.delete(t.id)
+      editingTabs.value.delete(t.id)
+      if (previewTabId.value === t.id) previewTabId.value = null
+    }
+    if (activeTabId.value && !openTabs.value.find((t) => t.id === activeTabId.value)) {
+      activeTabId.value = id
+    }
+  }
+
   function closeAllTabs() {
     openTabs.value = []
     activeTabId.value = null
@@ -248,6 +262,7 @@ function createShellState(config: ShellConfig = {}): ShellState {
     openTab,
     closeTab,
     closeOtherTabs,
+    closeTabsToRight,
     closeAllTabs,
     reorderTabs,
     markDirty,

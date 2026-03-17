@@ -2,3 +2,4 @@ packages:
   - '.'
   - 'hex'
   - 'config'
+  - 'landing'
