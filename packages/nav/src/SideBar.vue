@@ -7,7 +7,7 @@ withDefaults(
     open?: boolean
     /** ID of the currently active view */
     activeViewId?: ID
-    /** Sidebar width in pixels */
+    /** Sidebar width in pixels — when omitted the sidebar fills its container */
     width?: number
   }>(),
   {
@@ -20,6 +20,11 @@ defineEmits<{
   'update:open': [value: boolean]
   'update:activeViewId': [id: ID]
 }>()
+
+defineSlots<{
+  'header'?(props: Record<string, never>): unknown
+  default?(props: { activeViewId: ID | undefined }): unknown
+}>()
 </script>
 
 <template>
@@ -29,8 +34,8 @@ defineEmits<{
     aria-label="Sidebar"
     tabindex="-1"
     :data-state="open ? 'open' : 'closed'"
-    @keydown.escape="$emit('update:open', false)"
     :style="{ width: width + 'px' }"
+    @keydown.escape="$emit('update:open', false)"
   >
     <div data-rig-sidebar-header>
       <slot name="header" />

@@ -19,6 +19,8 @@ const props = withDefaults(
     height?: number
     /** Fill opacity */
     fillOpacity?: number
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     series: () => [],
@@ -26,6 +28,7 @@ const props = withDefaults(
     width: 400,
     height: 300,
     fillOpacity: 0.2,
+    responsive: false,
   },
 )
 
@@ -58,8 +61,8 @@ const paths = computed(() =>
 <template>
   <svg
     data-rig-area-chart
-    :width="width"
-    :height="height"
+    :width="responsive ? undefined : width"
+    :height="responsive ? undefined : height"
     :viewBox="`0 0 ${width} ${height}`"
     role="img"
     aria-label="Area chart"

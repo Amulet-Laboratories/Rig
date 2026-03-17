@@ -21,6 +21,10 @@ const emit = defineEmits<{
   cancel: []
 }>()
 
+defineSlots<{
+  default(props: Record<string, never>): unknown
+}>()
+
 const inputRef = ref<HTMLInputElement | null>(null)
 const localValue = ref(props.modelValue)
 

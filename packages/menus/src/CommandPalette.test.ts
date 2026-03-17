@@ -21,8 +21,14 @@ function factory(props: Partial<InstanceType<typeof CommandPalette>['$props']> =
   })
 }
 
+/** Remove any stale teleported command palette elements from the DOM */
+function cleanupTeleported() {
+  document.querySelectorAll('[data-rig-command-palette-overlay]').forEach((el) => el.remove())
+}
+
 describe('CommandPalette', () => {
   beforeEach(() => {
+    cleanupTeleported()
     vi.useFakeTimers()
   })
 
@@ -30,9 +36,12 @@ describe('CommandPalette', () => {
     vi.useRealTimers()
   })
 
-  it('renders nothing when closed', () => {
+  it('hides palette when closed', () => {
     const wrapper = factory({ open: false })
-    expect(document.querySelector('[data-rig-command-palette]')).toBeNull()
+    const overlay = document.querySelector('[data-rig-command-palette-overlay]') as HTMLElement
+    expect(overlay).not.toBeNull()
+    expect(overlay.style.display).toBe('none')
+    expect(overlay.hasAttribute('inert')).toBe(true)
     wrapper.unmount()
   })
 

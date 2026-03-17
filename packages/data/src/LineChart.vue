@@ -19,6 +19,8 @@ const props = withDefaults(
     height?: number
     /** Whether to show dots at data points */
     showDots?: boolean
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     series: () => [],
@@ -26,9 +28,13 @@ const props = withDefaults(
     width: 400,
     height: 300,
     showDots: false,
+    responsive: false,
   },
 )
 
+/**
+ * @emits point-click
+ */
 const emit = defineEmits<{
   'point-click': [series: LineChartSeries, index: number]
 }>()
@@ -58,8 +64,8 @@ const paths = computed(() =>
 <template>
   <svg
     data-rig-line-chart
-    :width="width"
-    :height="height"
+    :width="responsive ? undefined : width"
+    :height="responsive ? undefined : height"
     :viewBox="`0 0 ${width} ${height}`"
     role="img"
     aria-label="Line chart"

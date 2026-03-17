@@ -17,6 +17,10 @@ const emit = defineEmits<{
   'update:modelValue': [value: boolean]
 }>()
 
+defineSlots<{
+  default(props: Record<string, never>): unknown
+}>()
+
 function toggle() {
   if (!props.disabled) {
     emit('update:modelValue', !props.modelValue)

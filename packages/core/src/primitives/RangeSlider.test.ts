@@ -20,7 +20,7 @@ describe('RangeSlider', () => {
 
   it('renders with data-rig-range-slider', () => {
     const wrapper = mount(RangeSlider)
-    expect(wrapper.attributes('data-rig-range-slider')).toBeDefined()
+    expect(wrapper.attributes('data-rig-range-slider')).toBe('')
   })
 
   it('renders track and two thumb elements', () => {
@@ -45,7 +45,7 @@ describe('RangeSlider', () => {
 
   it('sets disabled attribute when disabled', () => {
     const wrapper = mount(RangeSlider, { props: { disabled: true } })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
   })
 
   it('does not set data-disabled when enabled', () => {
@@ -323,14 +323,13 @@ describe('RangeSlider', () => {
     expect(wrapper.emitted('update:modelValue')).toBeUndefined()
   })
 
-  // ── Mouse drag: start thumb ────────────────────────────────
+  // ── Pointer drag: start thumb ──────────────────────────────
 
-  it('mousedown on start thumb begins drag and mousemove updates value', async () => {
+  it('pointerdown on start thumb begins drag and pointermove updates value', async () => {
     const wrapper = mount(RangeSlider, {
       props: { modelValue: [25, 75] as [number, number], min: 0, max: 100, step: 1 },
     })
     const track = wrapper.find('[data-rig-range-slider-track]')
-    // Mock getBoundingClientRect on the track element
     vi.spyOn(track.element, 'getBoundingClientRect').mockReturnValue({
       left: 0,
       width: 200,
@@ -342,14 +341,11 @@ describe('RangeSlider', () => {
       y: 0,
       toJSON: () => ({}),
     })
+    const startThumb = getThumb(wrapper, 0)
+    ;(startThumb.element as any).setPointerCapture = vi.fn()
 
-    // Mousedown on start thumb
-    await getThumb(wrapper, 0).trigger('mousedown', { clientX: 50 })
-
-    // Simulate mousemove via document
-    const moveEvent = new MouseEvent('mousemove', { clientX: 100 })
-    document.dispatchEvent(moveEvent)
-    await nextTick()
+    await startThumb.trigger('pointerdown', { clientX: 50, pointerId: 1 })
+    await startThumb.trigger('pointermove', { clientX: 100, pointerId: 1 })
 
     const emitted = wrapper.emitted('update:modelValue')!
     expect(emitted.length).toBeGreaterThanOrEqual(1)
@@ -358,12 +354,10 @@ describe('RangeSlider', () => {
     expect(last[0]).toBe(50)
     expect(last[1]).toBe(75)
 
-    // Mouseup cleans up
-    document.dispatchEvent(new MouseEvent('mouseup'))
-    await nextTick()
+    await startThumb.trigger('pointerup', { pointerId: 1 })
   })
 
-  it('mousedown on end thumb begins drag and mousemove updates end value', async () => {
+  it('pointerdown on end thumb begins drag and pointermove updates end value', async () => {
     const wrapper = mount(RangeSlider, {
       props: { modelValue: [25, 75] as [number, number], min: 0, max: 100, step: 1 },
     })
@@ -379,12 +373,11 @@ describe('RangeSlider', () => {
       y: 0,
       toJSON: () => ({}),
     })
+    const endThumb = getThumb(wrapper, 1)
+    ;(endThumb.element as any).setPointerCapture = vi.fn()
 
-    await getThumb(wrapper, 1).trigger('mousedown', { clientX: 150 })
-
-    const moveEvent = new MouseEvent('mousemove', { clientX: 180 })
-    document.dispatchEvent(moveEvent)
-    await nextTick()
+    await endThumb.trigger('pointerdown', { clientX: 150, pointerId: 1 })
+    await endThumb.trigger('pointermove', { clientX: 180, pointerId: 1 })
 
     const emitted = wrapper.emitted('update:modelValue')!
     expect(emitted.length).toBeGreaterThanOrEqual(1)
@@ -393,35 +386,32 @@ describe('RangeSlider', () => {
     expect(last[0]).toBe(25)
     expect(last[1]).toBe(90)
 
-    document.dispatchEvent(new MouseEvent('mouseup'))
-    await nextTick()
+    await endThumb.trigger('pointerup', { pointerId: 1 })
   })
 
-  it('mouseup removes document listeners and stops drag', async () => {
-    const removeSpy = vi.spyOn(document, 'removeEventListener')
+  it('pointerup ends drag and resets drag state', async () => {
     const wrapper = mount(RangeSlider, {
       props: { modelValue: [25, 75] as [number, number] },
     })
+    const startThumb = getThumb(wrapper, 0)
+    ;(startThumb.element as any).setPointerCapture = vi.fn()
 
-    await getThumb(wrapper, 0).trigger('mousedown', { clientX: 50 })
-    document.dispatchEvent(new MouseEvent('mouseup'))
-    await nextTick()
+    await startThumb.trigger('pointerdown', { clientX: 50, pointerId: 1 })
+    expect(startThumb.attributes('data-state')).toBe('dragging')
 
-    expect(removeSpy).toHaveBeenCalledWith('mousemove', expect.any(Function))
-    expect(removeSpy).toHaveBeenCalledWith('mouseup', expect.any(Function))
+    await startThumb.trigger('pointerup', { pointerId: 1 })
+    expect(startThumb.attributes('data-state')).toBeUndefined()
   })
 
-  it('mousedown when disabled does not start drag', async () => {
-    const addSpy = vi.spyOn(document, 'addEventListener')
+  it('pointerdown when disabled does not start drag', async () => {
     const wrapper = mount(RangeSlider, {
       props: { modelValue: [25, 75] as [number, number], disabled: true },
     })
+    const startThumb = getThumb(wrapper, 0)
+    ;(startThumb.element as any).setPointerCapture = vi.fn()
 
-    await getThumb(wrapper, 0).trigger('mousedown', { clientX: 50 })
-
-    // Should not add document listeners
-    const moveCalls = addSpy.mock.calls.filter((c) => c[0] === 'mousemove')
-    expect(moveCalls).toHaveLength(0)
+    await startThumb.trigger('pointerdown', { clientX: 50, pointerId: 1 })
+    expect(startThumb.attributes('data-state')).toBeUndefined()
   })
 
   // ── Drag state attribute ────────────────────────────────────
@@ -430,15 +420,17 @@ describe('RangeSlider', () => {
     const wrapper = mount(RangeSlider, {
       props: { modelValue: [25, 75] as [number, number] },
     })
+    const startThumb = getThumb(wrapper, 0)
+    ;(startThumb.element as any).setPointerCapture = vi.fn()
 
-    await getThumb(wrapper, 0).trigger('mousedown', { clientX: 50 })
+    await startThumb.trigger('pointerdown', { clientX: 50, pointerId: 1 })
     await nextTick()
-    expect(getThumb(wrapper, 0).attributes('data-state')).toBe('dragging')
+    expect(startThumb.attributes('data-state')).toBe('dragging')
     expect(getThumb(wrapper, 1).attributes('data-state')).toBeUndefined()
 
-    document.dispatchEvent(new MouseEvent('mouseup'))
+    await startThumb.trigger('pointerup', { pointerId: 1 })
     await nextTick()
-    expect(getThumb(wrapper, 0).attributes('data-state')).toBeUndefined()
+    expect(startThumb.attributes('data-state')).toBeUndefined()
   })
 
   // ── Step snapping ──────────────────────────────────────────
@@ -459,17 +451,18 @@ describe('RangeSlider', () => {
       y: 0,
       toJSON: () => ({}),
     })
+    const startThumb = getThumb(wrapper, 0)
+    ;(startThumb.element as any).setPointerCapture = vi.fn()
 
-    await getThumb(wrapper, 0).trigger('mousedown', { clientX: 0 })
+    await startThumb.trigger('pointerdown', { clientX: 0, pointerId: 1 })
     // clientX 47 / width 200 = 0.235 → 23.5 → snap(23.5, 10) = 20
-    document.dispatchEvent(new MouseEvent('mousemove', { clientX: 47 }))
-    await nextTick()
+    await startThumb.trigger('pointermove', { clientX: 47, pointerId: 1 })
 
     const emitted = wrapper.emitted('update:modelValue')!
     const val = emitted[emitted.length - 1]![0] as [number, number]
     expect(val[0] % 10).toBe(0) // Must be a multiple of step
 
-    document.dispatchEvent(new MouseEvent('mouseup'))
+    await startThumb.trigger('pointerup', { pointerId: 1 })
   })
 
   // ── Clamping ───────────────────────────────────────────────
@@ -490,44 +483,44 @@ describe('RangeSlider', () => {
       y: 0,
       toJSON: () => ({}),
     })
+    const startThumb = getThumb(wrapper, 0)
+    ;(startThumb.element as any).setPointerCapture = vi.fn()
 
     // Drag start thumb far left (negative position)
-    await getThumb(wrapper, 0).trigger('mousedown', { clientX: 0 })
-    document.dispatchEvent(new MouseEvent('mousemove', { clientX: -50 }))
-    await nextTick()
+    await startThumb.trigger('pointerdown', { clientX: 0, pointerId: 1 })
+    await startThumb.trigger('pointermove', { clientX: -50, pointerId: 1 })
 
     const emitted = wrapper.emitted('update:modelValue')!
     const val = emitted[emitted.length - 1]![0] as [number, number]
     expect(val[0]).toBe(0) // Clamped to min
 
-    document.dispatchEvent(new MouseEvent('mouseup'))
+    await startThumb.trigger('pointerup', { pointerId: 1 })
   })
 
   // ── Unmount cleanup ────────────────────────────────────────
 
-  it('removes document event listeners on unmount', async () => {
-    const removeSpy = vi.spyOn(document, 'removeEventListener')
+  it('unmounts cleanly during an active drag', async () => {
     const wrapper = mount(RangeSlider, {
       props: { modelValue: [25, 75] as [number, number] },
     })
+    const startThumb = getThumb(wrapper, 0)
+    ;(startThumb.element as any).setPointerCapture = vi.fn()
 
-    // Start a drag to register listeners
-    await getThumb(wrapper, 0).trigger('mousedown', { clientX: 50 })
+    // Start a drag
+    await startThumb.trigger('pointerdown', { clientX: 50, pointerId: 1 })
+    expect(startThumb.attributes('data-state')).toBe('dragging')
 
-    wrapper.unmount()
-
-    expect(removeSpy).toHaveBeenCalledWith('mousemove', expect.any(Function))
-    expect(removeSpy).toHaveBeenCalledWith('mouseup', expect.any(Function))
+    // Should not throw on unmount
+    expect(() => wrapper.unmount()).not.toThrow()
   })
 
-  // ── mousemove without active drag does nothing ─────────────
+  // ── pointermove without active drag does nothing ────────────
 
-  it('mousemove without prior mousedown does not emit', async () => {
+  it('pointermove without prior pointerdown does not emit', async () => {
     const wrapper = mount(RangeSlider, {
       props: { modelValue: [25, 75] as [number, number] },
     })
-    document.dispatchEvent(new MouseEvent('mousemove', { clientX: 100 }))
-    await nextTick()
+    await getThumb(wrapper, 0).trigger('pointermove', { clientX: 100 })
     expect(wrapper.emitted('update:modelValue')).toBeUndefined()
   })
 

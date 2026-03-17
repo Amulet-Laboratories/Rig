@@ -11,7 +11,7 @@ describe('Stepper', () => {
 
   it('renders with data-rig-stepper', () => {
     const wrapper = mount(Stepper, { props: { steps } })
-    expect(wrapper.attributes('data-rig-stepper')).toBeDefined()
+    expect(wrapper.attributes('data-rig-stepper')).toBe('')
   })
 
   it('renders all steps', () => {

@@ -1,7 +1,7 @@
 /* Hex — Shared Data Components
  * Styles for Rig's data package: Sparkline, MiniBar, StatCard,
  * BarChart, LineChart, AreaChart, ScatterPlot, Heatmap,
- * BubbleChart, RadarChart, Treemap, SankeyDiagram
+ * RadarChart, Treemap, SankeyDiagram
  */
 
 /* ───────── Sparkline ───────── */
@@ -10,12 +10,17 @@
   @apply inline-flex items-center;
 }
 
-[data-rig-sparkline] path {
+[data-rig-sparkline-line] {
   fill: none;
   stroke: var(--domain-accent, var(--color-primary));
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+[data-rig-sparkline-area] {
+  fill: var(--domain-accent, var(--color-primary));
+  opacity: 0.1;
 }
 
 /* ───────── MiniBar ───────── */
@@ -24,13 +29,13 @@
   @apply inline-flex items-end gap-px;
 }
 
-[data-rig-mini-bar] rect {
+[data-rig-mini-bar-rect] {
   fill: var(--domain-accent, var(--color-primary));
   opacity: 0.7;
   transition: opacity 0.15s ease;
 }
 
-[data-rig-mini-bar] rect:hover {
+[data-rig-mini-bar-rect]:hover {
   opacity: 1;
 }
 
@@ -41,12 +46,20 @@
   border-radius: var(--radius);
 }
 
+[data-rig-stat-card-header] {
+  @apply flex items-center justify-between;
+}
+
 [data-rig-stat-card-label] {
   @apply text-xs text-muted-foreground font-mono uppercase tracking-wider;
 }
 
 [data-rig-stat-card-value] {
   @apply text-2xl font-mono font-bold;
+}
+
+[data-rig-stat-card-footer] {
+  @apply flex items-center gap-2;
 }
 
 [data-rig-stat-card-trend] {
@@ -61,29 +74,42 @@
   @apply text-destructive;
 }
 
+[data-rig-stat-card-description] {
+  @apply text-xs text-muted-foreground;
+}
+
 /* ───────── BarChart ───────── */
 
 [data-rig-bar-chart] {
   @apply text-foreground;
 }
 
-[data-rig-bar-chart] rect[data-rig-bar-chart-bar] {
+[data-rig-bar-chart-bars] {
+  /* Container group — no direct styling needed */
+}
+
+[data-rig-bar-chart-bar-group] {
+  cursor: pointer;
+}
+
+[data-rig-bar-chart-bar] {
   fill: var(--domain-accent, var(--color-primary));
   opacity: 0.8;
   transition: opacity 0.15s ease;
 }
 
-[data-rig-bar-chart] rect[data-rig-bar-chart-bar]:hover {
+[data-rig-bar-chart-bar-group]:hover [data-rig-bar-chart-bar] {
   opacity: 1;
 }
 
-[data-rig-bar-chart] text {
+[data-rig-bar-chart-label] {
   fill: var(--color-muted-foreground);
   @apply font-mono text-xs;
 }
 
-[data-rig-bar-chart] line[data-rig-bar-chart-axis] {
-  stroke: var(--color-border);
+[data-rig-bar-chart-value] {
+  fill: var(--color-muted-foreground);
+  @apply font-mono text-xs;
 }
 
 /* ───────── LineChart ───────── */
@@ -92,7 +118,11 @@
   @apply text-foreground;
 }
 
-[data-rig-line-chart] path[data-rig-line-chart-line] {
+[data-rig-line-chart-series] {
+  /* Series group — no direct styling needed */
+}
+
+[data-rig-line-chart-line] {
   fill: none;
   stroke: var(--domain-accent, var(--color-primary));
   stroke-width: 2;
@@ -100,45 +130,53 @@
   stroke-linejoin: round;
 }
 
-[data-rig-line-chart] path[data-rig-line-chart-area] {
-  fill: var(--domain-accent, var(--color-primary));
-  opacity: 0.1;
-}
-
-[data-rig-line-chart] circle[data-rig-line-chart-point] {
+[data-rig-line-chart-dot] {
   fill: var(--domain-accent, var(--color-primary));
   transition: r 0.15s ease;
+  cursor: pointer;
 }
 
-[data-rig-line-chart] circle[data-rig-line-chart-point]:hover {
+[data-rig-line-chart-dot]:hover {
   r: 5;
 }
 
-[data-rig-line-chart] text {
+[data-rig-line-chart-labels] {
+  /* Label group — no direct styling needed */
+}
+
+[data-rig-line-chart-label] {
   fill: var(--color-muted-foreground);
   @apply font-mono text-xs;
 }
 
-[data-rig-line-chart] line[data-rig-line-chart-grid] {
-  stroke: var(--color-border);
-  opacity: 0.3;
-}
-
-/* ───────── AreaChart — inherits LineChart styles ───────── */
+/* ───────── AreaChart ───────── */
 
 [data-rig-area-chart] {
   @apply text-foreground;
 }
 
-[data-rig-area-chart] path[data-rig-area-chart-line] {
+[data-rig-area-chart-series] {
+  /* Series group — no direct styling needed */
+}
+
+[data-rig-area-chart-fill] {
+  fill: var(--domain-accent, var(--color-primary));
+  opacity: 0.15;
+}
+
+[data-rig-area-chart-line] {
   fill: none;
   stroke: var(--domain-accent, var(--color-primary));
   stroke-width: 2;
 }
 
-[data-rig-area-chart] path[data-rig-area-chart-fill] {
-  fill: var(--domain-accent, var(--color-primary));
-  opacity: 0.15;
+[data-rig-area-chart-labels] {
+  /* Label group — no direct styling needed */
+}
+
+[data-rig-area-chart-label] {
+  fill: var(--color-muted-foreground);
+  @apply font-mono text-xs;
 }
 
 /* ───────── ScatterPlot ───────── */
@@ -147,13 +185,16 @@
   @apply text-foreground;
 }
 
-[data-rig-scatter-plot] circle[data-rig-scatter-plot-point] {
+[data-rig-scatter-plot-point] {
   fill: var(--domain-accent, var(--color-primary));
   opacity: 0.7;
-  transition: opacity 0.15s ease, r 0.15s ease;
+  transition:
+    opacity 0.15s ease,
+    r 0.15s ease;
+  cursor: pointer;
 }
 
-[data-rig-scatter-plot] circle[data-rig-scatter-plot-point]:hover {
+[data-rig-scatter-plot-point]:hover {
   opacity: 1;
 }
 
@@ -168,37 +209,33 @@
   @apply text-foreground;
 }
 
-[data-rig-heatmap] rect[data-rig-heatmap-cell] {
-  stroke: var(--color-background);
-  stroke-width: 1;
-  transition: opacity 0.15s ease;
+[data-rig-heatmap-col-labels] {
+  /* Column label group — no direct styling needed */
 }
 
-[data-rig-heatmap] rect[data-rig-heatmap-cell]:hover {
-  opacity: 0.85;
+[data-rig-heatmap-row-labels] {
+  /* Row label group — no direct styling needed */
 }
 
-[data-rig-heatmap] text {
+[data-rig-heatmap-col-labels] text,
+[data-rig-heatmap-row-labels] text {
   fill: var(--color-muted-foreground);
   @apply font-mono text-xs;
 }
 
-/* ───────── BubbleChart ───────── */
-
-[data-rig-bubble-chart] {
-  @apply text-foreground;
+[data-rig-heatmap-cells] {
+  /* Cells container group — no direct styling needed */
 }
 
-[data-rig-bubble-chart] circle[data-rig-bubble-chart-bubble] {
-  fill: var(--domain-accent, var(--color-primary));
-  opacity: 0.5;
-  stroke: var(--domain-accent, var(--color-primary));
+[data-rig-heatmap-cell] {
+  stroke: var(--color-background);
   stroke-width: 1;
   transition: opacity 0.15s ease;
+  cursor: pointer;
 }
 
-[data-rig-bubble-chart] circle[data-rig-bubble-chart-bubble]:hover {
-  opacity: 0.8;
+[data-rig-heatmap-cell]:hover {
+  opacity: 0.85;
 }
 
 /* ───────── RadarChart ───────── */
@@ -207,24 +244,33 @@
   @apply text-foreground;
 }
 
-[data-rig-radar-chart] polygon[data-rig-radar-chart-grid] {
+[data-rig-radar-chart-ring] {
   fill: none;
   stroke: var(--color-border);
   opacity: 0.3;
 }
 
-[data-rig-radar-chart] polygon[data-rig-radar-chart-area] {
+[data-rig-radar-chart-axis] {
+  stroke: var(--color-border);
+  opacity: 0.2;
+}
+
+[data-rig-radar-chart-series] {
+  /* Series group — no direct styling needed */
+}
+
+[data-rig-radar-chart-area] {
   fill: var(--domain-accent, var(--color-primary));
   opacity: 0.2;
+}
+
+[data-rig-radar-chart-line] {
+  fill: none;
   stroke: var(--domain-accent, var(--color-primary));
   stroke-width: 2;
 }
 
-[data-rig-radar-chart] circle[data-rig-radar-chart-point] {
-  fill: var(--domain-accent, var(--color-primary));
-}
-
-[data-rig-radar-chart] text {
+[data-rig-radar-chart-label] {
   fill: var(--color-muted-foreground);
   @apply font-mono text-xs;
 }
@@ -235,17 +281,21 @@
   @apply text-foreground;
 }
 
-[data-rig-treemap] rect[data-rig-treemap-cell] {
+[data-rig-treemap-node] {
+  cursor: pointer;
+}
+
+[data-rig-treemap-rect] {
   stroke: var(--color-background);
   stroke-width: 2;
   transition: opacity 0.15s ease;
 }
 
-[data-rig-treemap] rect[data-rig-treemap-cell]:hover {
+[data-rig-treemap-node]:hover [data-rig-treemap-rect] {
   opacity: 0.85;
 }
 
-[data-rig-treemap] text[data-rig-treemap-label] {
+[data-rig-treemap-label] {
   fill: var(--color-foreground);
   @apply font-mono text-xs;
   pointer-events: none;
@@ -257,22 +307,26 @@
   @apply text-foreground;
 }
 
-[data-rig-sankey-diagram] rect[data-rig-sankey-diagram-node] {
+[data-rig-sankey-diagram-node] {
+  cursor: pointer;
+}
+
+[data-rig-sankey-diagram-rect] {
   fill: var(--domain-accent, var(--color-primary));
 }
 
-[data-rig-sankey-diagram] path[data-rig-sankey-diagram-link] {
+[data-rig-sankey-diagram-label] {
+  fill: var(--color-muted-foreground);
+  @apply font-mono text-xs;
+}
+
+[data-rig-sankey-diagram-link] {
   fill: none;
   stroke: var(--color-muted-foreground);
   opacity: 0.3;
   transition: opacity 0.15s ease;
 }
 
-[data-rig-sankey-diagram] path[data-rig-sankey-diagram-link]:hover {
+[data-rig-sankey-diagram-link]:hover {
   opacity: 0.6;
-}
-
-[data-rig-sankey-diagram] text {
-  fill: var(--color-muted-foreground);
-  @apply font-mono text-xs;
 }

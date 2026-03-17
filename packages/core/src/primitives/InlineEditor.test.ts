@@ -5,7 +5,7 @@ import InlineEditor from './InlineEditor.vue'
 describe('InlineEditor', () => {
   it('renders with data-rig-inline-editor', () => {
     const wrapper = mount(InlineEditor)
-    expect(wrapper.attributes('data-rig-inline-editor')).toBeDefined()
+    expect(wrapper.attributes('data-rig-inline-editor')).toBe('')
   })
 
   it('shows display text when not editing', () => {
@@ -63,7 +63,7 @@ describe('InlineEditor', () => {
     await input.setValue('Changed')
     await input.trigger('keydown', { key: 'Escape' })
     expect(wrapper.emitted('cancel')).toHaveLength(1)
-    expect(wrapper.emitted('update:editing')).toBeDefined()
+    expect(wrapper.emitted('update:editing')).toBeTruthy()
   })
 
   it('submits on blur', async () => {
@@ -81,7 +81,7 @@ describe('InlineEditor', () => {
     const wrapper = mount(InlineEditor, {
       props: { modelValue: 'Hello', editing: true },
     })
-    expect(wrapper.attributes('data-editing')).toBeDefined()
+    expect(wrapper.attributes('data-editing')).not.toBeUndefined()
   })
 
   it('display element is focusable via tabindex', () => {
@@ -96,7 +96,7 @@ describe('InlineEditor', () => {
     const focusable = wrapper.find('button, input, [tabindex]')
     if (focusable.exists()) {
       await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
+      expect(document.activeElement).not.toBeNull()
     }
     wrapper.unmount()
   })

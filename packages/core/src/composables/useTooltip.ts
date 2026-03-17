@@ -1,7 +1,8 @@
-import { ref, inject, provide } from 'vue'
+import { ref, inject, provide, type Ref } from 'vue'
 import { TooltipKey, type TooltipState } from '../injection-keys'
+import { useReducedMotion } from './useReducedMotion'
 
-function createTooltipState(): TooltipState {
+function createTooltipState(prefersReducedMotion?: Readonly<Ref<boolean>>): TooltipState {
   const visible = ref(false)
   const content = ref('')
   const referenceEl = ref<HTMLElement | null>(null)
@@ -16,12 +17,13 @@ function createTooltipState(): TooltipState {
   ) {
     if (showTimer) clearTimeout(showTimer)
 
+    const delay = prefersReducedMotion?.value ? 0 : 500
     showTimer = setTimeout(() => {
       referenceEl.value = target
       placement.value = p
       content.value = text
       visible.value = true
-    }, 500)
+    }, delay)
   }
 
   function hide() {
@@ -43,8 +45,10 @@ function createTooltipState(): TooltipState {
  * Otherwise injects existing or creates standalone.
  */
 export function useTooltip(options?: { provide?: boolean }): TooltipState {
+  const reducedMotion = useReducedMotion()
+
   if (options?.provide) {
-    const state = createTooltipState()
+    const state = createTooltipState(reducedMotion)
     provide(TooltipKey, state)
     return state
   }
@@ -52,5 +56,13 @@ export function useTooltip(options?: { provide?: boolean }): TooltipState {
   const injected = inject(TooltipKey, null)
   if (injected) return injected
 
-  return createTooltipState()
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn(
+      '[Rig] useTooltip: No TooltipProvider found in ancestor tree. ' +
+        'Tooltip state will be created standalone and may not render. ' +
+        'Wrap your app (or the relevant subtree) with useTooltip({ provide: true }).',
+    )
+  }
+
+  return createTooltipState(reducedMotion)
 }

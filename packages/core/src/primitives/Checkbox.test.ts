@@ -5,7 +5,7 @@ import Checkbox from './Checkbox.vue'
 describe('Checkbox', () => {
   it('renders with data-rig-checkbox', () => {
     const wrapper = mount(Checkbox)
-    expect(wrapper.attributes('data-rig-checkbox')).toBeDefined()
+    expect(wrapper.attributes('data-rig-checkbox')).toBe('')
   })
 
   it('reflects checked state via data attribute', () => {
@@ -21,13 +21,13 @@ describe('Checkbox', () => {
 
   it('handles disabled state', () => {
     const wrapper = mount(Checkbox, { props: { disabled: true } })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
-    expect(wrapper.find('input').attributes('disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
+    expect(wrapper.find('input').attributes('disabled')).toBe('')
   })
 
   it('supports indeterminate state', () => {
     const wrapper = mount(Checkbox, { props: { indeterminate: true } })
-    expect(wrapper.attributes('data-indeterminate')).toBeDefined()
+    expect(wrapper.attributes('data-indeterminate')).not.toBeUndefined()
   })
 
   it('toggles value on Space key via native input', async () => {
@@ -53,7 +53,8 @@ describe('Checkbox', () => {
 describe('Checkbox interactions', () => {
   it('responds to keyboard events', async () => {
     const wrapper = mount(Checkbox, {
-      props: { modelValue: false }, attachTo: document.body,
+      props: { modelValue: false },
+      attachTo: document.body,
     })
     const el = wrapper.find('[tabindex], input, button, [role]')
     const target = el.exists() ? el : wrapper
@@ -65,4 +66,3 @@ describe('Checkbox interactions', () => {
     wrapper.unmount()
   })
 })
-

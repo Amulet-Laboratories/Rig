@@ -5,7 +5,7 @@ import PeekView from './PeekView.vue'
 describe('PeekView', () => {
   it('renders with data-rig-peek-view', () => {
     const wrapper = mount(PeekView)
-    expect(wrapper.attributes('data-rig-peek-view')).toBeDefined()
+    expect(wrapper.attributes('data-rig-peek-view')).toBe('')
   })
 
   it('has data-state="closed" when not open', () => {

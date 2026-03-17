@@ -73,7 +73,7 @@ describe('SplitView', () => {
     const wrapper = mount(SplitView, {
       props: { sizes: [200, 400], resizable: true },
     })
-    await wrapper.find('[data-rig-split-view]').trigger('keydown', { key: 'ArrowRight' })
+    await wrapper.find('[data-rig-resizer]').trigger('keydown', { key: 'ArrowRight' })
     expect(wrapper.emitted('update:sizes')?.[0]).toEqual([[210, 390]])
   })
 

@@ -11,6 +11,10 @@ const props = withDefaults(
     placement?: Placement
     /** Prevent closing on click-outside */
     persistent?: boolean
+    /** Accessible label for the popover content (required when role="dialog") */
+    ariaLabel?: string
+    /** ID of the element that labels the popover content */
+    ariaLabelledBy?: string
   }>(),
   {
     open: false,
@@ -74,6 +78,7 @@ function onKeydown(e: KeyboardEvent) {
 watch(
   () => props.open,
   async (isOpen) => {
+    if (typeof document === 'undefined') return
     if (isOpen) {
       document.addEventListener('click', onClickOutside, true)
       await nextTick()
@@ -83,7 +88,10 @@ watch(
     }
   },
 )
-onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
+onUnmounted(() => {
+  if (typeof document === 'undefined') return
+  document.removeEventListener('click', onClickOutside, true)
+})
 </script>
 
 <template>
@@ -94,12 +102,16 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
 
     <Teleport to="body">
       <div
-        v-if="open"
+        v-show="open"
         ref="contentRef"
         data-rig-popover-content
-        role="dialog"
-        data-state="open"
+        :role="ariaLabel || ariaLabelledBy ? 'dialog' : undefined"
+        :data-state="open ? 'open' : 'closed'"
         :data-side="computedPlacement"
+        :aria-label="ariaLabel || undefined"
+        :aria-labelledby="ariaLabelledBy || undefined"
+        :aria-hidden="!open || undefined"
+        :inert="!open || undefined"
         tabindex="-1"
         :style="{ ...floatingStyles, zIndex: 'var(--rig-popover-z, 9000)' }"
         @keydown="onKeydown"

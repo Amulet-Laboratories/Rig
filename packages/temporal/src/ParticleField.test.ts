@@ -29,7 +29,7 @@ describe('ParticleField', () => {
 
   it('sets data-active when active', () => {
     const wrapper = mount(ParticleField, { props: { active: true } })
-    expect(wrapper.find('[data-rig-particle-field]').attributes('data-active')).toBeDefined()
+    expect(wrapper.find('[data-rig-particle-field]').attributes('data-active')).not.toBeUndefined()
   })
 
   it('does not set data-active when inactive', () => {
@@ -132,9 +132,7 @@ describe('ParticleField interactions', () => {
     } else {
       await wrapper.trigger('click')
     }
-    const events = wrapper.emitted()
-    expect(events).toBeDefined()
+    expect(wrapper.html()).toBeTruthy()
     wrapper.unmount()
   })
 })
-

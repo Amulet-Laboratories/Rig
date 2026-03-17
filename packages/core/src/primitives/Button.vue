@@ -38,6 +38,12 @@ defineEmits<{
   click: [event: MouseEvent]
 }>()
 
+defineSlots<{
+  default?(props: Record<string, never>): unknown
+  'leading-icon'?(props: Record<string, never>): unknown
+  'trailing-icon'?(props: Record<string, never>): unknown
+}>()
+
 const isNativeButton = !props.as || props.as === 'button'
 
 const tip = useTooltip()

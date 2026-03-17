@@ -63,7 +63,9 @@ describe('ResizablePanel', () => {
 
   it('sets disabled attribute when disabled', () => {
     const wrapper = mount(ResizablePanel, { props: { disabled: true } })
-    expect(wrapper.find('[data-rig-resizable-panel]').attributes('data-disabled')).toBeDefined()
+    expect(
+      wrapper.find('[data-rig-resizable-panel]').attributes('data-disabled'),
+    ).not.toBeUndefined()
   })
 
   it('does not set disabled attribute when not disabled', () => {
@@ -105,7 +107,9 @@ describe('ResizablePanel', () => {
     const wrapper = mount(ResizablePanel, { props: { disabled: false } })
     expect(wrapper.find('[data-rig-resizable-panel]').attributes('data-disabled')).toBeUndefined()
     await wrapper.setProps({ disabled: true })
-    expect(wrapper.find('[data-rig-resizable-panel]').attributes('data-disabled')).toBeDefined()
+    expect(
+      wrapper.find('[data-rig-resizable-panel]').attributes('data-disabled'),
+    ).not.toBeUndefined()
   })
 
   it('omits aria-valuemax when maxSize is Infinity', () => {
@@ -264,7 +268,9 @@ describe('ResizablePanel', () => {
         new PointerEvent('pointerdown', { clientX: 100, pointerId: 1, bubbles: true }),
       )
       await nextTick()
-      expect(wrapper.find('[data-rig-resizable-panel]').attributes('data-dragging')).toBeDefined()
+      expect(
+        wrapper.find('[data-rig-resizable-panel]').attributes('data-dragging'),
+      ).not.toBeUndefined()
       wrapper.unmount()
     })
 
@@ -318,7 +324,9 @@ describe('ResizablePanel', () => {
         new PointerEvent('pointerdown', { clientX: 100, pointerId: 1, bubbles: true }),
       )
       await nextTick()
-      expect(wrapper.find('[data-rig-resizable-panel]').attributes('data-dragging')).toBeDefined()
+      expect(
+        wrapper.find('[data-rig-resizable-panel]').attributes('data-dragging'),
+      ).not.toBeUndefined()
 
       document.dispatchEvent(new PointerEvent('pointerup'))
       await nextTick()

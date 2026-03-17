@@ -12,7 +12,7 @@ const options = [
 describe('RadioGroup', () => {
   it('renders with data-rig-radio-group', () => {
     const wrapper = mount(RadioGroup)
-    expect(wrapper.attributes('data-rig-radio-group')).toBeDefined()
+    expect(wrapper.attributes('data-rig-radio-group')).toBe('')
   })
 
   it('has role="radiogroup"', () => {
@@ -43,7 +43,7 @@ describe('RadioGroup', () => {
 
   it('sets disabled state', () => {
     const wrapper = mount(RadioGroup, { props: { disabled: true } })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
     expect(wrapper.attributes('aria-disabled')).toBe('true')
   })
 
@@ -253,7 +253,7 @@ describe('RadioGroup options mode', () => {
     })
     const radios = wrapper.findAll('input[type="radio"]')
     radios.forEach((r) => {
-      expect(r.attributes('disabled')).toBeDefined()
+      expect(r.attributes('disabled')).toBe('')
     })
   })
 
@@ -267,7 +267,7 @@ describe('RadioGroup options mode', () => {
     })
     const radios = wrapper.findAll('input[type="radio"]')
     expect(radios[0]!.attributes('disabled')).toBeUndefined()
-    expect(radios[1]!.attributes('disabled')).toBeDefined()
+    expect(radios[1]!.attributes('disabled')).toBe('')
   })
 
   it('falls back to value as label', () => {
@@ -294,15 +294,14 @@ describe('RadioGroup options mode', () => {
 describe('RadioGroup interactions', () => {
   it('emits events on interaction', async () => {
     const wrapper = mount(RadioGroup, {
-      props: { modelValue: 'a' }, attachTo: document.body,
+      props: { modelValue: 'a' },
+      attachTo: document.body,
     })
     const interactive = wrapper.find('input, button, [role="button"], [role="option"], [tabindex]')
     if (interactive.exists()) {
       await interactive.trigger('click')
     }
-    const events = wrapper.emitted()
-    expect(events).toBeDefined()
+    expect(wrapper.html()).toBeTruthy()
     wrapper.unmount()
   })
 })
-

@@ -11,7 +11,7 @@ const options = [
 describe('Combobox', () => {
   it('renders with data-rig-combobox', () => {
     const wrapper = mount(Combobox, { props: { options } })
-    expect(wrapper.attributes('data-rig-combobox')).toBeDefined()
+    expect(wrapper.attributes('data-rig-combobox')).toBe('')
   })
 
   it('shows all options when focused with empty query', async () => {
@@ -90,7 +90,7 @@ describe('Combobox', () => {
 
   it('sets disabled state', () => {
     const wrapper = mount(Combobox, { props: { options, disabled: true } })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
     expect((wrapper.find('input').element as HTMLInputElement).disabled).toBe(true)
   })
 

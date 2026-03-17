@@ -96,9 +96,8 @@ describe('LineChart interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

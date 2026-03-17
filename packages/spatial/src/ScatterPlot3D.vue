@@ -22,6 +22,8 @@ const props = withDefaults(
     rotationY?: number
     /** Tilt angle in degrees */
     tilt?: number
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     data: () => [],
@@ -29,9 +31,13 @@ const props = withDefaults(
     height: 400,
     rotationY: 30,
     tilt: 20,
+    responsive: false,
   },
 )
 
+/**
+ * @emits point-click
+ */
 const emit = defineEmits<{
   'point-click': [point: ScatterPlot3DPoint, index: number]
 }>()
@@ -112,8 +118,8 @@ const axes = computed(() => {
 <template>
   <svg
     data-rig-scatter-plot-3d
-    :width="width"
-    :height="height"
+    :width="responsive ? undefined : width"
+    :height="responsive ? undefined : height"
     :viewBox="`0 0 ${width} ${height}`"
     role="img"
     aria-label="3D scatter plot"

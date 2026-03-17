@@ -5,7 +5,7 @@ import ColorPicker from './ColorPicker.vue'
 describe('ColorPicker', () => {
   it('renders with data-rig-color-picker', () => {
     const wrapper = mount(ColorPicker)
-    expect(wrapper.attributes('data-rig-color-picker')).toBeDefined()
+    expect(wrapper.attributes('data-rig-color-picker')).toBe('')
   })
 
   it('shows color preview', () => {
@@ -67,7 +67,8 @@ describe('ColorPicker', () => {
 describe('ColorPicker interactions', () => {
   it('responds to keyboard events', async () => {
     const wrapper = mount(ColorPicker, {
-      props: { modelValue: '#ff0000' }, attachTo: document.body,
+      props: { modelValue: '#ff0000' },
+      attachTo: document.body,
     })
     const el = wrapper.find('[tabindex], input, button, [role]')
     const target = el.exists() ? el : wrapper
@@ -79,4 +80,3 @@ describe('ColorPicker interactions', () => {
     wrapper.unmount()
   })
 })
-

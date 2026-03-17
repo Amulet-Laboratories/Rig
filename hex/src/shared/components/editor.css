@@ -1,122 +1,357 @@
 /* Hex — Shared Editor Components
- * Theme styles for Rig's editor package: EditorWorkbench, EditorTab.
+ * Theme styles for Rig's editor package: EditorWorkbench, EditorTab,
+ * CodeBlock, DiffViewer, ColorPicker.
  */
 
 /* ───────── Editor Workbench ───────── */
 
+[data-rig-editor-workbench] {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background);
+}
+
 [data-rig-editor-workbench-tabs] {
-  @apply bg-background border-b border-foreground/10;
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  background: var(--rig-editor-group-header-bg);
+  border-bottom: 1px solid var(--rig-tab-border);
+  font-family: var(--font-sans);
+  scrollbar-width: none;
+  user-select: none;
+  height: 35px;
 }
 
-[data-rig-editor-tab] {
-  @apply font-mono transition-colors
-         text-foreground/40 hover:text-foreground/60
-         border-t-2 border-t-transparent
-         border-b-2 border-b-transparent;
-
-  font-size: 13px;
+[data-rig-editor-workbench-tabs]::-webkit-scrollbar {
+  display: none;
 }
 
-[data-rig-editor-tab][data-state='active'] {
-  @apply text-foreground bg-muted;
-
-  border-top: 1px solid var(--domain-accent, var(--color-foreground));
-  border-bottom-color: transparent;
-}
-
-[data-rig-editor-tab-dirty] {
-  border-radius: 50%;
-  background: var(--color-primary);
-}
-
-[data-rig-editor-tab-close] {
-  @apply text-muted-foreground hover:text-foreground/50 text-xs;
+[data-rig-editor-workbench-content] {
+  flex: 1;
+  overflow: auto;
 }
 
 [data-rig-editor-workbench-empty] {
-  @apply text-muted-foreground text-sm;
+  color: var(--rig-description-fg);
+  font-size: 13px;
+}
+
+/* ───────── Editor Tab ───────── */
+
+[data-rig-editor-tab] {
+  @apply transition-colors;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  height: 35px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--rig-tab-inactive-fg);
+  background: var(--rig-tab-inactive-bg);
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-right: 1px solid var(--rig-tab-border);
+  border-left: none;
+}
+
+[data-rig-editor-tab]:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-editor-tab][data-state='active'] {
+  color: var(--rig-tab-active-fg);
+  background: var(--rig-tab-active-bg);
+  border-top-color: var(--rig-tab-active-border-top);
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+}
+
+[data-rig-editor-tab-label] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tab dirty/close CSS toggle — dirty shows dot, close shows on hover;
+   on dirty+hover: dot hides, close shows */
+[data-rig-editor-tab-dirty] {
+  border-radius: 50%;
+  background: var(--color-foreground);
+  width: 8px;
+  height: 8px;
+  display: none;
+  flex-shrink: 0;
+}
+
+[data-rig-editor-tab][data-dirty] [data-rig-editor-tab-dirty] {
+  display: block;
+}
+
+[data-rig-editor-tab-close] {
+  color: var(--rig-description-fg);
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.1s;
+  flex-shrink: 0;
+}
+
+[data-rig-editor-tab][data-state='active'] [data-rig-editor-tab-close],
+[data-rig-editor-tab]:hover [data-rig-editor-tab-close] {
+  opacity: 1;
+}
+
+/* Dirty tab: dot visible, close hidden — swap on hover */
+[data-rig-editor-tab][data-dirty] [data-rig-editor-tab-close] {
+  opacity: 0;
+}
+
+[data-rig-editor-tab][data-dirty]:hover [data-rig-editor-tab-dirty] {
+  display: none;
+}
+
+[data-rig-editor-tab][data-dirty]:hover [data-rig-editor-tab-close] {
+  opacity: 1;
+}
+
+[data-rig-editor-tab-close]:hover {
+  color: var(--color-foreground);
+  background: color-mix(in srgb, var(--color-foreground) 10%, transparent);
+  border-radius: 3px;
+}
+
+/* Drag-over indicator */
+[data-rig-editor-tab][data-drag-over] {
+  border-left: 2px solid var(--color-primary);
+}
+
+/* Pinned tab indicator */
+[data-rig-editor-tab][data-pinned] {
+  font-style: italic;
 }
 
 /* ───────── CodeBlock ───────── */
 
 [data-rig-code-block] {
-  @apply bg-foreground/5 border border-foreground/10 rounded font-mono text-sm;
+  background: var(--rig-editor-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 13px;
 }
 
 [data-rig-code-block-header] {
-  @apply bg-foreground/[0.03] border-b border-foreground/10 px-3 py-1.5 text-xs text-foreground/50;
+  background: var(--color-card);
+  border-bottom: 1px solid var(--color-border);
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--rig-description-fg);
+}
+
+[data-rig-code-block-language] {
+  color: var(--color-muted-foreground);
+  font-size: 12px;
+}
+
+[data-rig-code-block-pre] {
+  margin: 0;
+  overflow-x: auto;
+}
+
+[data-rig-code-block-code] {
+  display: block;
+  font-family: inherit;
 }
 
 [data-rig-code-block-line-number] {
-  @apply text-foreground/20 select-none text-right pr-3;
+  color: var(--rig-editor-line-number-fg);
+  user-select: none;
+  text-align: right;
+  padding-right: 12px;
 }
 
 [data-rig-code-block-line] {
-  @apply text-foreground/80;
+  color: var(--rig-editor-fg);
 }
 
 [data-rig-code-block-copy] {
-  @apply text-foreground/30 hover:text-foreground/60 transition-colors text-xs rounded px-1.5 py-0.5;
+  color: var(--rig-description-fg);
+  font-size: 12px;
+  border-radius: var(--radius);
+  padding: 2px 6px;
+  transition: color 0.15s ease;
 }
 
 [data-rig-code-block-copy]:hover {
-  @apply bg-foreground/5;
+  color: var(--color-foreground);
+  background: var(--rig-list-hover-bg);
 }
 
 /* ───────── DiffViewer ───────── */
 
 [data-rig-diff-viewer] {
-  @apply bg-foreground/5 border border-foreground/10 rounded font-mono text-sm;
+  background: var(--rig-editor-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 13px;
 }
 
 [data-rig-diff-viewer-header] {
-  @apply bg-foreground/[0.03] border-b border-foreground/10 px-3 py-1.5 text-xs text-foreground/50;
+  background: var(--color-card);
+  border-bottom: 1px solid var(--color-border);
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--rig-description-fg);
 }
 
-[data-rig-diff-viewer-line-number] {
-  @apply text-foreground/20 select-none text-right pr-3;
+[data-rig-diff-viewer-language] {
+  color: var(--color-muted-foreground);
+  font-size: 12px;
 }
 
-[data-rig-diff-viewer-line][data-diff='added'] {
+[data-rig-diff-viewer-stats] {
+  font-size: 12px;
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-diff-viewer-added] {
+  color: var(--color-success, #22c55e);
+}
+
+[data-rig-diff-viewer-removed] {
+  color: var(--color-destructive, #ef4444);
+}
+
+[data-rig-diff-viewer-unified] {
+  overflow-x: auto;
+}
+
+[data-rig-diff-viewer-split] {
+  display: flex;
+  overflow-x: auto;
+}
+
+[data-rig-diff-viewer-pane] {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+[data-rig-diff-viewer-pane] + [data-rig-diff-viewer-pane] {
+  border-left: 1px solid var(--color-border);
+}
+
+[data-rig-diff-viewer-line] {
+  color: var(--rig-editor-fg);
+}
+
+[data-rig-diff-viewer-line][data-type='added'] {
   background: color-mix(in srgb, var(--color-success, #22c55e) 10%, transparent);
   color: var(--color-success, #22c55e);
 }
 
-[data-rig-diff-viewer-line][data-diff='removed'] {
+[data-rig-diff-viewer-line][data-type='removed'] {
   background: color-mix(in srgb, var(--color-destructive, #ef4444) 10%, transparent);
   color: var(--color-destructive, #ef4444);
 }
 
-[data-rig-diff-viewer-line][data-diff='unchanged'] {
-  @apply text-foreground/50;
+[data-rig-diff-viewer-line][data-type='unchanged'] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-diff-viewer-gutter] {
+  color: var(--rig-editor-line-number-fg);
+  user-select: none;
+  text-align: right;
+}
+
+[data-rig-diff-viewer-old-num],
+[data-rig-diff-viewer-new-num] {
+  color: var(--rig-editor-line-number-fg);
+  user-select: none;
+  text-align: right;
+  padding-right: 4px;
+  min-width: 2em;
+  display: inline-block;
+}
+
+[data-rig-diff-viewer-prefix] {
+  color: var(--color-muted-foreground);
+  user-select: none;
+  padding: 0 4px;
+}
+
+[data-rig-diff-viewer-content] {
+  color: inherit;
 }
 
 /* ───────── ColorPicker ───────── */
 
 [data-rig-color-picker] {
-  @apply bg-background border border-foreground/10 rounded p-3;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 12px;
 }
 
 [data-rig-color-picker-preview] {
-  @apply rounded ring-1 ring-foreground/10;
+  border-radius: var(--radius);
+  outline: 1px solid var(--color-border);
 }
 
-[data-rig-color-picker-slider] {
+[data-rig-color-picker-sliders] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+[data-rig-color-picker-field] {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--rig-description-fg);
+  font-size: 12px;
+}
+
+[data-rig-color-picker-hue] {
   @apply appearance-none h-2 rounded cursor-pointer;
 
   background: linear-gradient(to right, red, yellow, lime, aqua, blue, fuchsia, red);
 }
 
+[data-rig-color-picker-saturation] {
+  @apply appearance-none h-2 rounded cursor-pointer;
+
+  background: linear-gradient(to right, hsl(0 0% 50%), hsl(0 100% 50%));
+}
+
+[data-rig-color-picker-lightness] {
+  @apply appearance-none h-2 rounded cursor-pointer;
+
+  background: linear-gradient(to right, #000, hsl(0 100% 50%), #fff);
+}
+
+[data-rig-color-picker-hex] {
+  font-size: 12px;
+  color: var(--rig-description-fg);
+}
+
 [data-rig-color-picker-input] {
-  @apply bg-foreground/5 border border-foreground/10 rounded px-2 py-1 text-foreground text-xs font-mono;
+  background: var(--rig-input-bg);
+  border: 1px solid var(--rig-input-border);
+  border-radius: var(--radius);
+  padding: 4px 6px;
+  color: var(--color-foreground);
+  font-size: 12px;
+  font-family: var(--font-mono);
 }
 
 [data-rig-color-picker-input]:focus {
-  @apply outline-none ring-1;
-
-  ring-color: var(--domain-accent, var(--color-primary));
-}
-
-[data-rig-color-picker-label] {
-  @apply text-foreground/50 text-xs;
+  outline: none;
+  border-color: var(--color-ring);
 }

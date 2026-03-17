@@ -5,7 +5,7 @@ import Skeleton from './Skeleton.vue'
 describe('Skeleton', () => {
   it('renders with data-rig-skeleton', () => {
     const wrapper = mount(Skeleton)
-    expect(wrapper.attributes('data-rig-skeleton')).toBeDefined()
+    expect(wrapper.attributes('data-rig-skeleton')).toBe('')
   })
 
   it('renders 1 line by default', () => {
@@ -20,7 +20,7 @@ describe('Skeleton', () => {
 
   it('sets animate data attribute', () => {
     const wrapper = mount(Skeleton)
-    expect(wrapper.attributes('data-animate')).toBeDefined()
+    expect(wrapper.attributes('data-animate')).not.toBeUndefined()
   })
 
   it('disables animation', () => {
@@ -141,4 +141,3 @@ describe('Skeleton interactions', () => {
     wrapper.unmount()
   })
 })
-

@@ -10,6 +10,12 @@ withDefaults(
   }>(),
   {},
 )
+
+defineSlots<{
+  'icon'?(props: Record<string, never>): unknown
+  default?(props: Record<string, never>): unknown
+  'action'?(props: Record<string, never>): unknown
+}>()
 </script>
 
 <template>

@@ -1,0 +1,116 @@
+/* Hex — Semantic Component Tokens
+ * Defines --rig-* tokens used by all shared component CSS.
+ * Themes override these by defining their own --rig-* values.
+ * Default values fall back to base shadcn/Tailwind tokens so components
+ * render reasonably even without a specific theme loaded.
+ */
+
+:root {
+  /* ── Activity Bar ── */
+  --rig-activitybar-bg: var(--color-muted);
+  --rig-activitybar-border: var(--color-border);
+  --rig-activitybar-fg: var(--color-foreground);
+  --rig-activitybar-inactive-fg: var(--color-muted-foreground);
+  --rig-activitybar-active-border: var(--color-primary);
+
+  /* ── Badge ── */
+  --rig-badge-bg: var(--color-primary);
+  --rig-badge-fg: var(--color-primary-foreground);
+  --rig-activitybar-badge-bg: var(--color-primary);
+  --rig-activitybar-badge-fg: var(--color-primary-foreground);
+
+  /* ── Button ── */
+  --rig-button-bg: var(--color-primary);
+  --rig-button-fg: var(--color-primary-foreground);
+  --rig-button-hover-bg: color-mix(in srgb, var(--color-primary) 85%, black);
+  --rig-button-border: var(--color-border);
+  --rig-button-secondary-bg: transparent;
+  --rig-button-secondary-fg: var(--color-foreground);
+  --rig-button-secondary-hover-bg: var(--color-accent);
+
+  /* ── Checkbox ── */
+  --rig-checkbox-bg: var(--color-input);
+  --rig-checkbox-border: var(--color-border);
+
+  /* ── Muted / Description text ── */
+  --rig-description-fg: var(--color-muted-foreground);
+
+  /* ── Dropdown ── */
+  --rig-dropdown-bg: var(--color-popover);
+  --rig-dropdown-border: var(--color-border);
+  --rig-dropdown-fg: var(--color-foreground);
+  --rig-dropdown-list-bg: var(--color-background);
+
+  /* ── Editor ── */
+  --rig-editor-bg: var(--color-background);
+  --rig-editor-fg: var(--color-foreground);
+  --rig-editor-group-header-bg: var(--color-muted);
+  --rig-editor-line-number-fg: var(--color-muted-foreground);
+
+  /* ── Input ── */
+  --rig-input-bg: var(--color-input);
+  --rig-input-border: var(--color-border);
+  --rig-input-fg: var(--color-foreground);
+  --rig-input-placeholder: var(--color-muted-foreground);
+
+  /* ── Keybinding ── */
+  --rig-keybinding-fg: var(--color-foreground);
+
+  /* ── List ── */
+  --rig-list-active-bg: var(--color-primary);
+  --rig-list-active-fg: var(--color-primary-foreground);
+  --rig-list-hover-bg: color-mix(in srgb, var(--color-foreground) 4%, transparent);
+  --rig-list-inactive-bg: color-mix(in srgb, var(--color-foreground) 6%, transparent);
+
+  /* ── Menu ── */
+  --rig-menu-bg: var(--color-popover);
+  --rig-menu-selection-bg: var(--color-primary);
+
+  /* ── Notification / Overlay ── */
+  --rig-notification-bg: var(--color-popover);
+  --rig-notification-fg: var(--color-foreground);
+  --rig-notification-border: var(--color-border);
+
+  /* ── Panel ── */
+  --rig-panel-border: var(--color-border);
+  --rig-panel-title-active-border: var(--color-primary);
+  --rig-panel-title-active-fg: var(--color-foreground);
+  --rig-panel-title-inactive-fg: var(--color-muted-foreground);
+
+  /* ── Progress ── */
+  --rig-progress-bg: var(--color-primary);
+
+  /* ── Quick Input ── */
+  --rig-quickinput-bg: var(--color-popover);
+
+  /* ── Sash ── */
+  --rig-sash-hover: var(--color-primary);
+
+  /* ── Scrollbar ── */
+  --rig-scrollbar-thumb: color-mix(in srgb, var(--color-foreground) 15%, transparent);
+  --rig-scrollbar-thumb-hover: color-mix(in srgb, var(--color-foreground) 28%, transparent);
+
+  /* ── Sidebar ── */
+  --rig-sidebar-bg: var(--color-muted);
+  --rig-sidebar-border: var(--color-border);
+  --rig-sidebar-fg: var(--color-foreground);
+  --rig-sidebar-section-header-border: var(--color-border);
+
+  /* ── Status Bar ── */
+  --rig-statusbar-bg: var(--color-muted);
+  --rig-statusbar-border: var(--color-border);
+  --rig-statusbar-fg: var(--color-foreground);
+  --rig-statusbar-hover-bg: color-mix(in srgb, var(--color-foreground) 10%, transparent);
+
+  /* ── Tabs ── */
+  --rig-tab-active-bg: var(--color-background);
+  --rig-tab-active-border-top: var(--color-primary);
+  --rig-tab-active-fg: var(--color-foreground);
+  --rig-tab-border: var(--color-border);
+  --rig-tab-inactive-bg: var(--color-muted);
+  --rig-tab-inactive-fg: var(--color-muted-foreground);
+
+  /* ── Widget ── */
+  --rig-widget-bg: var(--color-popover);
+  --rig-widget-border: var(--color-border);
+}

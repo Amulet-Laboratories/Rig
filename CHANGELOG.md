@@ -5,7 +5,7 @@ All notable changes to `@amulet-laboratories/rig` will be documented in this fil
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.2.0] — 2026-03-15
 
 ### Added
 
@@ -24,11 +24,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Playwright E2E tests for demo
 - Comparison and cross-comparison benchmark suites
 
+### Breaking Changes
+
+- `@floating-ui/vue` is now a **required** peer dependency (was optional). Install it before upgrading: `pnpm add @floating-ui/vue@^1.0.0`. See [MIGRATION.md](MIGRATION.md) for details.
+
 ### Changed
 
 - Demo replaced Histoire stories with custom Hexrig Lab three-section SPA
 - Grew from 57 components across 8 packages to 92 components across 11 packages
-- Test count grew from 515 to 1,651
+- Test count grew from 515 to 1,776
+- Standardized overlay mount strategy to `v-show` across all overlay components
 
 ## [0.1.0] — 2025-06-30
 

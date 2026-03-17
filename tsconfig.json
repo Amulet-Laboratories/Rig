@@ -31,6 +31,14 @@
     },
     "types": ["vitest/globals"]
   },
-  "include": ["packages/*/src/**/*.ts", "packages/*/src/**/*.vue", "src/**/*.ts"],
+  "include": [
+    "packages/*/src/**/*.ts",
+    "packages/*/src/**/*.vue",
+    "src/**/*.ts",
+    "stories/**/*.vue",
+    "stories/**/*.ts",
+    "histoire.config.ts",
+    "histoire.setup.ts"
+  ],
   "exclude": ["node_modules", "dist"]
 }

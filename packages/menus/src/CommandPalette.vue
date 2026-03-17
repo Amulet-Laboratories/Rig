@@ -21,6 +21,7 @@ const props = withDefaults(
 const emit = defineEmits<{
   'update:open': [value: boolean]
   select: [item: ListItem]
+  error: [err: unknown]
 }>()
 
 defineSlots<{
@@ -29,9 +30,11 @@ defineSlots<{
 }>()
 
 const listboxId = useId()
+const optionIdPrefix = useId()
 
 const query = ref('')
 const resolvedItems = ref<ListItem[]>([])
+const loadingItems = ref(false)
 const focusedIndex = ref(0)
 const inputRef = ref<HTMLInputElement | null>(null)
 const paletteRef = ref<HTMLElement | null>(null)
@@ -58,7 +61,14 @@ onUnmounted(() => {
 
 async function fetchItems(q: string) {
   if (typeof props.items === 'function') {
-    resolvedItems.value = await props.items(q)
+    loadingItems.value = true
+    try {
+      resolvedItems.value = await props.items(q)
+    } catch (err) {
+      emit('error', err)
+    } finally {
+      loadingItems.value = false
+    }
   } else {
     const lower = q.toLowerCase()
     resolvedItems.value = q
@@ -97,7 +107,10 @@ function selectItem(item: ListItem) {
   }
 }
 
-const focusedId = computed(() => resolvedItems.value[focusedIndex.value]?.id)
+const focusedId = computed(() => {
+  const item = resolvedItems.value[focusedIndex.value]
+  return item ? `${optionIdPrefix}-${item.id}` : undefined
+})
 
 function onKeydown(e: KeyboardEvent) {
   switch (e.key) {
@@ -135,7 +148,15 @@ function onOverlayClick(e: MouseEvent) {
 
 <template>
   <Teleport to="body">
-    <div v-if="open" data-rig-command-palette-overlay @click="onOverlayClick">
+    <div
+      v-show="open"
+      data-rig-command-palette-overlay
+      :data-state="open ? 'open' : 'closed'"
+      :data-loading="loadingItems || undefined"
+      :aria-hidden="!open || undefined"
+      :inert="!open || undefined"
+      @click="onOverlayClick"
+    >
       <div
         ref="paletteRef"
         data-rig-command-palette
@@ -158,7 +179,7 @@ function onOverlayClick(e: MouseEvent) {
         <div :id="listboxId" data-rig-command-palette-results role="listbox">
           <div
             v-for="(item, index) in resolvedItems"
-            :id="item.id"
+            :id="`${optionIdPrefix}-${item.id}`"
             :key="item.id"
             data-rig-command-palette-item
             role="option"

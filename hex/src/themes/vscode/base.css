@@ -1,6 +1,6 @@
 /* Hex — VSCode Base Styles
  * html/body defaults, scrollbar, focus, selection, transitions.
- * Matched to VSCode Dark Modern's visual behavior.
+ * Matched 1:1 to VSCode Dark Modern.
  */
 
 @reference 'tailwindcss';
@@ -18,7 +18,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar — VSCode uses rgba(121,121,121,0.4) thumb on transparent track */
+/* Scrollbar — VSCode: scrollbarSlider.background / hover / active */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -29,27 +29,27 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(121, 121, 121, 0.4);
+  background: var(--vsc-scrollbar-thumb);
   border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 100, 100, 0.7);
+  background: var(--vsc-scrollbar-thumb-hover);
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: rgba(191, 191, 191, 0.4);
+  background: var(--vsc-scrollbar-thumb-active);
 }
 
-/* Focus styles — VSCode uses #0078D4 focus border */
+/* Focus styles — VSCode focusBorder: #0078D4 */
 *:focus-visible {
-  outline: 1px solid var(--domain-accent, var(--color-primary));
+  outline: 1px solid var(--color-ring);
   outline-offset: -1px;
 }
 
-/* Selection */
+/* Selection — editor.selectionBackground */
 ::selection {
-  background: rgba(38, 79, 120, 0.6);
+  background: var(--vsc-selection-bg);
   color: var(--color-foreground);
 }
 
@@ -100,5 +100,5 @@ body {
 /* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(121, 121, 121, 0.4) transparent;
+  scrollbar-color: var(--vsc-scrollbar-thumb) transparent;
 }

@@ -39,6 +39,12 @@ const emit = defineEmits<{
   clear: []
 }>()
 
+defineSlots<{
+  'leading'?(props: Record<string, never>): unknown
+  'clear-icon'?(props: Record<string, never>): unknown
+  'trailing'?(props: Record<string, never>): unknown
+}>()
+
 const inputRef = ref<HTMLInputElement | null>(null)
 let debounceTimer: ReturnType<typeof setTimeout> | null = null
 

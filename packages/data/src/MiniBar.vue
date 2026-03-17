@@ -11,12 +11,15 @@ const props = withDefaults(
     height?: number
     /** Gap between bars in pixels */
     gap?: number
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     data: () => [],
     width: 120,
     height: 32,
     gap: 2,
+    responsive: false,
   },
 )
 
@@ -41,8 +44,8 @@ const bars = computed(() => {
 <template>
   <svg
     data-rig-mini-bar
-    :width="width"
-    :height="height"
+    :width="responsive ? undefined : width"
+    :height="responsive ? undefined : height"
     :viewBox="`0 0 ${width} ${height}`"
     role="img"
     aria-label="Bar chart"

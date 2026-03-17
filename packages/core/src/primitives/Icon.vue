@@ -16,6 +16,10 @@ const props = withDefaults(
   },
 )
 
+defineSlots<{
+  default(props: Record<string, never>): unknown
+}>()
+
 const IconifyIcon = defineAsyncComponent({
   loader: () => import('@iconify/vue').then((m) => m.Icon as Component),
 })

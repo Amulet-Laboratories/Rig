@@ -5,7 +5,7 @@ import View from './View.vue'
 describe('View', () => {
   it('renders with data-rig-view', () => {
     const wrapper = mount(View, { props: { title: 'Explorer' } })
-    expect(wrapper.attributes('data-rig-view')).toBeDefined()
+    expect(wrapper.attributes('data-rig-view')).toBe('')
   })
 
   it('displays title', () => {

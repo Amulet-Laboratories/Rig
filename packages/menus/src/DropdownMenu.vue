@@ -149,12 +149,14 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
 
     <Teleport to="body">
       <div
-        v-if="open"
+        v-show="open"
         ref="menuRef"
         data-rig-dropdown-menu
         role="menu"
         tabindex="-1"
         :data-state="open ? 'open' : 'closed'"
+        :aria-hidden="!open || undefined"
+        :inert="!open || undefined"
         :style="{ ...floatingStyles, zIndex: 'var(--rig-dropdown-z, 9000)' }"
         @keydown="onKeydown"
       >

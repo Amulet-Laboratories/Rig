@@ -26,6 +26,12 @@ const props = withDefaults(
   },
 )
 
+/**
+ * @emits play
+ * @emits pause
+ * @emits seek
+ * @emits speed-change
+ */
 const emit = defineEmits<{
   play: []
   pause: []

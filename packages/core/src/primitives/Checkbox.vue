@@ -21,6 +21,10 @@ const emit = defineEmits<{
   'update:modelValue': [value: boolean]
 }>()
 
+defineSlots<{
+  default(props: Record<string, never>): unknown
+}>()
+
 function onChange(e: Event) {
   emit('update:modelValue', (e.target as HTMLInputElement).checked)
 }

@@ -92,7 +92,8 @@ describe('KeyboardHint', () => {
 describe('KeyboardHint interactions', () => {
   it('supports focus management', async () => {
     const wrapper = mount(KeyboardHint, {
-      props: { shortcut: 'Ctrl+S' }, attachTo: document.body,
+      props: { shortcut: 'Ctrl+S' },
+      attachTo: document.body,
     })
     const focusable = wrapper.find('[tabindex], input, button, [role], a')
     if (focusable.exists()) {
@@ -100,14 +101,15 @@ describe('KeyboardHint interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 
   it('can emit events', async () => {
     const wrapper = mount(KeyboardHint, {
-      props: { shortcut: 'Ctrl+S' }, attachTo: document.body,
+      props: { shortcut: 'Ctrl+S' },
+      attachTo: document.body,
     })
     const clickable = wrapper.find('button, [role="button"], [tabindex], a')
     if (clickable.exists()) {
@@ -115,8 +117,7 @@ describe('KeyboardHint interactions', () => {
     } else {
       await wrapper.trigger('click')
     }
-    const events = wrapper.emitted()
-    expect(events).toBeDefined()
+    expect(wrapper.html()).toBeTruthy()
     wrapper.unmount()
   })
 
@@ -139,3 +140,99 @@ describe('KeyboardHint interactions', () => {
   })
 })
 
+// ── Mac key symbol mapping ───────────────────────────────────────────────────
+
+describe('KeyboardHint Mac key mapping', () => {
+  const origUserAgent = navigator.userAgent
+
+  function mockMac() {
+    Object.defineProperty(navigator, 'userAgent', {
+      value: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+      configurable: true,
+    })
+  }
+
+  function restoreUA() {
+    Object.defineProperty(navigator, 'userAgent', {
+      value: origUserAgent,
+      configurable: true,
+    })
+  }
+
+  afterEach(() => restoreUA())
+
+  it('maps Ctrl to ⌃ on Mac', () => {
+    mockMac()
+    const wrapper = factory('Ctrl+S')
+    const keys = wrapper.findAll('[data-rig-keyboard-hint-key]')
+    expect(keys[0]!.text()).toBe('⌃')
+    expect(keys[1]!.text()).toBe('S')
+  })
+
+  it('maps Control to ⌃ on Mac', () => {
+    mockMac()
+    const wrapper = factory('Control+C')
+    const keys = wrapper.findAll('[data-rig-keyboard-hint-key]')
+    expect(keys[0]!.text()).toBe('⌃')
+  })
+
+  it('maps Cmd to ⌘ on Mac', () => {
+    mockMac()
+    const wrapper = factory('Cmd+V')
+    const keys = wrapper.findAll('[data-rig-keyboard-hint-key]')
+    expect(keys[0]!.text()).toBe('⌘')
+  })
+
+  it('maps Meta to ⌘ on Mac', () => {
+    mockMac()
+    const wrapper = factory('Meta+Z')
+    const keys = wrapper.findAll('[data-rig-keyboard-hint-key]')
+    expect(keys[0]!.text()).toBe('⌘')
+  })
+
+  it('maps Mod to ⌘ on Mac', () => {
+    mockMac()
+    const wrapper = factory('Mod+A')
+    const keys = wrapper.findAll('[data-rig-keyboard-hint-key]')
+    expect(keys[0]!.text()).toBe('⌘')
+  })
+
+  it('maps Alt to ⌥ on Mac', () => {
+    mockMac()
+    const wrapper = factory('Alt+F4')
+    const keys = wrapper.findAll('[data-rig-keyboard-hint-key]')
+    expect(keys[0]!.text()).toBe('⌥')
+  })
+
+  it('maps Option to ⌥ on Mac', () => {
+    mockMac()
+    const wrapper = factory('Option+F4')
+    const keys = wrapper.findAll('[data-rig-keyboard-hint-key]')
+    expect(keys[0]!.text()).toBe('⌥')
+  })
+
+  it('maps Shift to ⇧ on Mac', () => {
+    mockMac()
+    const wrapper = factory('Shift+P')
+    const keys = wrapper.findAll('[data-rig-keyboard-hint-key]')
+    expect(keys[0]!.text()).toBe('⇧')
+  })
+
+  it('maps a full Mac combo correctly', () => {
+    mockMac()
+    const wrapper = factory('Cmd+Shift+P')
+    const keys = wrapper.findAll('[data-rig-keyboard-hint-key]')
+    expect(keys[0]!.text()).toBe('⌘')
+    expect(keys[1]!.text()).toBe('⇧')
+    expect(keys[2]!.text()).toBe('P')
+  })
+
+  it('does not map keys on non-Mac', () => {
+    restoreUA()
+    const wrapper = factory('Ctrl+Shift+P')
+    const keys = wrapper.findAll('[data-rig-keyboard-hint-key]')
+    expect(keys[0]!.text()).toBe('Ctrl')
+    expect(keys[1]!.text()).toBe('Shift')
+    expect(keys[2]!.text()).toBe('P')
+  })
+})

@@ -28,6 +28,8 @@ const props = withDefaults(
     nodeWidth?: number
     /** Node padding */
     nodePadding?: number
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     nodes: () => [],
@@ -36,9 +38,14 @@ const props = withDefaults(
     height: 400,
     nodeWidth: 20,
     nodePadding: 10,
+    responsive: false,
   },
 )
 
+/**
+ * @emits node-click
+ * @emits link-click
+ */
 const emit = defineEmits<{
   'node-click': [node: SankeyNode]
   'link-click': [link: SankeyLink]
@@ -117,8 +124,8 @@ const layout = computed(() => {
 <template>
   <svg
     data-rig-sankey-diagram
-    :width="width"
-    :height="height"
+    :width="responsive ? undefined : width"
+    :height="responsive ? undefined : height"
     :viewBox="`0 0 ${width} ${height}`"
     role="img"
     aria-label="Sankey diagram"

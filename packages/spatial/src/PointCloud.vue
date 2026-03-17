@@ -22,6 +22,8 @@ const props = withDefaults(
     pointSize?: number
     /** Density rendering — reduce opacity for overlapping points */
     density?: boolean
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     data: () => [],
@@ -29,9 +31,13 @@ const props = withDefaults(
     height: 400,
     pointSize: 2,
     density: false,
+    responsive: false,
   },
 )
 
+/**
+ * @emits point-click
+ */
 const emit = defineEmits<{
   'point-click': [point: PointCloudPoint, index: number]
 }>()
@@ -69,13 +75,11 @@ const points = computed(() =>
 <template>
   <svg
     data-rig-point-cloud
-    :width="width"
-    :height="height"
+    :width="responsive ? undefined : width"
+    :height="responsive ? undefined : height"
     :viewBox="`0 0 ${width} ${height}`"
-    role="img"
+    role="group"
     aria-label="Point cloud"
-    tabindex="0"
-    @keydown.stop
   >
     <circle
       v-for="(pt, i) in points"
@@ -88,7 +92,12 @@ const points = computed(() =>
       :opacity="
         density ? 'var(--rig-chart-density-opacity, 0.3)' : 'var(--rig-chart-point-opacity, 0.8)'
       "
+      :role="pt.label ? 'graphics-symbol' : undefined"
+      :aria-label="pt.label ?? undefined"
+      :tabindex="pt.label ? 0 : undefined"
       @click="emit('point-click', pt.raw, i)"
+      @keydown.enter.prevent="pt.label ? emit('point-click', pt.raw, i) : undefined"
+      @keydown.space.prevent="pt.label ? emit('point-click', pt.raw, i) : undefined"
     />
   </svg>
 </template>

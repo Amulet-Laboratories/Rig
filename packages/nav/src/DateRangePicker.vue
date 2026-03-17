@@ -21,13 +21,23 @@ const props = withDefaults(
   },
 )
 
+/**
+ * @emits update:modelValue
+ * @emits value
+ */
 const emit = defineEmits<{
   'update:modelValue': [value: [string | null, string | null]]
 }>()
 
 const open = ref(false)
 const selecting = ref<'start' | 'end'>('start')
-const viewDate = ref(props.modelValue[0] ? new Date(props.modelValue[0]) : new Date())
+function parseDateSafe(iso: string | null | undefined): Date {
+  if (!iso) return new Date()
+  const d = new Date(iso)
+  return isNaN(d.getTime()) ? new Date() : d
+}
+
+const viewDate = ref(parseDateSafe(props.modelValue[0]))
 
 const year = computed(() => viewDate.value.getFullYear())
 const month = computed(() => viewDate.value.getMonth())
@@ -36,6 +46,7 @@ const monthName = computed(() =>
 )
 
 const dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+const fullDayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 const days = computed(() => {
   const first = new Date(year.value, month.value, 1)
@@ -104,6 +115,14 @@ function dayNumber(date: string): number {
   return parseInt(date.split('-')[2] ?? '', 10)
 }
 
+const weeks = computed(() => {
+  const result: (string | null)[][] = []
+  for (let i = 0; i < days.value.length; i += 7) {
+    result.push(days.value.slice(i, i + 7))
+  }
+  return result
+})
+
 function toggle() {
   open.value = !open.value
 }
@@ -148,25 +167,34 @@ function onKeydown(e: KeyboardEvent) {
         <button type="button" aria-label="Next month" @click="nextMonth">&gt;</button>
       </div>
 
-      <div data-rig-date-range-picker-grid role="grid">
-        <div data-rig-date-range-picker-weekdays>
-          <span v-for="d in dayNames" :key="d">{{ d }}</span>
-        </div>
-        <div data-rig-date-range-picker-days>
-          <button
-            v-for="(day, i) in days"
-            :key="i"
-            type="button"
-            data-rig-date-range-picker-day
-            :data-disabled="day ? isDisabled(day) || undefined : undefined"
-            :data-in-range="day ? isInRange(day) || undefined : undefined"
-            :data-range-start="day ? isRangeStart(day) || undefined : undefined"
-            :data-range-end="day ? isRangeEnd(day) || undefined : undefined"
-            :disabled="!day || isDisabled(day)"
-            @click="selectDate(day)"
+      <div data-rig-date-range-picker-grid role="grid" :aria-label="monthName">
+        <div data-rig-date-range-picker-weekdays role="row">
+          <span
+            v-for="(d, di) in dayNames"
+            :key="d"
+            role="columnheader"
+            :aria-label="fullDayNames[di]"
+            >{{ d }}</span
           >
-            {{ day ? dayNumber(day) : '' }}
-          </button>
+        </div>
+        <div v-for="(week, wi) in weeks" :key="wi" data-rig-date-range-picker-week role="row">
+          <div v-for="(day, di) in week" :key="di" role="gridcell">
+            <button
+              v-if="day"
+              type="button"
+              data-rig-date-range-picker-day
+              :aria-label="day"
+              :data-disabled="isDisabled(day) || undefined"
+              :data-in-range="isInRange(day) || undefined"
+              :data-range-start="isRangeStart(day) || undefined"
+              :data-range-end="isRangeEnd(day) || undefined"
+              :disabled="isDisabled(day)"
+              @click="selectDate(day)"
+            >
+              {{ dayNumber(day) }}
+            </button>
+            <span v-else aria-hidden="true" />
+          </div>
         </div>
       </div>
 

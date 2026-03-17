@@ -5,7 +5,7 @@ import ShellGrid from './ShellGrid.vue'
 describe('ShellGrid', () => {
   it('renders with data-rig-shell-grid', () => {
     const wrapper = mount(ShellGrid)
-    expect(wrapper.attributes('data-rig-shell-grid')).toBeDefined()
+    expect(wrapper.attributes('data-rig-shell-grid')).toBe('')
   })
 
   it('renders all named areas', () => {
@@ -109,8 +109,7 @@ describe('ShellGrid interactions', () => {
     } else {
       await wrapper.trigger('click')
     }
-    const events = wrapper.emitted()
-    expect(events).toBeDefined()
+    expect(wrapper.html()).toBeTruthy()
     wrapper.unmount()
   })
 
@@ -124,9 +123,7 @@ describe('ShellGrid interactions', () => {
     sideResizer.vm.$emit('dragstart')
     sideResizer.vm.$emit('drag', { delta: 40 })
     await wrapper.vm.$nextTick()
-    expect(wrapper.emitted('update:sizes')?.[0]).toEqual([
-      { sideWidth: 300, panelHeight: 200 },
-    ])
+    expect(wrapper.emitted('update:sizes')?.[0]).toEqual([{ sideWidth: 300, panelHeight: 200 }])
     wrapper.unmount()
   })
 
@@ -139,9 +136,7 @@ describe('ShellGrid interactions', () => {
     sideResizer.vm.$emit('dragstart')
     sideResizer.vm.$emit('drag', { delta: -100 })
     await wrapper.vm.$nextTick()
-    expect(wrapper.emitted('update:sizes')?.[0]).toEqual([
-      { sideWidth: 120, panelHeight: 200 },
-    ])
+    expect(wrapper.emitted('update:sizes')?.[0]).toEqual([{ sideWidth: 120, panelHeight: 200 }])
     wrapper.unmount()
   })
 
@@ -156,9 +151,7 @@ describe('ShellGrid interactions', () => {
     // Dragging up = negative delta = larger panel
     panelResizer.vm.$emit('drag', { delta: -50 })
     await wrapper.vm.$nextTick()
-    expect(wrapper.emitted('update:sizes')?.[0]).toEqual([
-      { sideWidth: 260, panelHeight: 250 },
-    ])
+    expect(wrapper.emitted('update:sizes')?.[0]).toEqual([{ sideWidth: 260, panelHeight: 250 }])
     wrapper.unmount()
   })
 
@@ -171,9 +164,7 @@ describe('ShellGrid interactions', () => {
     panelResizer.vm.$emit('dragstart')
     panelResizer.vm.$emit('drag', { delta: 200 })
     await wrapper.vm.$nextTick()
-    expect(wrapper.emitted('update:sizes')?.[0]).toEqual([
-      { sideWidth: 260, panelHeight: 100 },
-    ])
+    expect(wrapper.emitted('update:sizes')?.[0]).toEqual([{ sideWidth: 260, panelHeight: 100 }])
     wrapper.unmount()
   })
 
@@ -199,4 +190,3 @@ describe('ShellGrid interactions', () => {
     expect(editor.attributes('aria-label')).toBe('Editor')
   })
 })
-

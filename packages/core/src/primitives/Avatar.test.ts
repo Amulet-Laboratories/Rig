@@ -129,7 +129,8 @@ describe('Avatar', () => {
 describe('Avatar interactions', () => {
   it('supports focus management', async () => {
     const wrapper = mount(Avatar, {
-      props: { name: 'Test User' }, attachTo: document.body,
+      props: { name: 'Test User' },
+      attachTo: document.body,
     })
     const focusable = wrapper.find('[tabindex], input, button, [role], a')
     if (focusable.exists()) {
@@ -137,9 +138,8 @@ describe('Avatar interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

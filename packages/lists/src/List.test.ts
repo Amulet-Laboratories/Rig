@@ -13,7 +13,7 @@ const items: ListItem[] = [
 describe('List', () => {
   it('renders with data-rig-list and listbox role', () => {
     const wrapper = mount(List, { props: { items } })
-    expect(wrapper.attributes('data-rig-list')).toBeDefined()
+    expect(wrapper.attributes('data-rig-list')).toBe('')
     expect(wrapper.attributes('role')).toBe('listbox')
   })
 
@@ -25,7 +25,7 @@ describe('List', () => {
   it('marks selected item', () => {
     const wrapper = mount(List, { props: { items, selected: 'b' } })
     const selected = wrapper.findAll('[data-rig-list-item]')[1]!
-    expect(selected.attributes('data-selected')).toBeDefined()
+    expect(selected.attributes('data-selected')).not.toBeUndefined()
     expect(selected.attributes('aria-selected')).toBe('true')
   })
 
@@ -58,7 +58,7 @@ describe('List', () => {
     const wrapper = mount(List, { props: { items } })
     await wrapper.trigger('keydown', { key: 'ArrowDown' })
     const listItems = wrapper.findAll('[data-rig-list-item]')
-    expect(listItems[1]!.attributes('data-highlighted')).toBeDefined()
+    expect(listItems[1]!.attributes('data-highlighted')).not.toBeUndefined()
   })
 
   it('renders description when provided', () => {
@@ -69,12 +69,12 @@ describe('List', () => {
   it('marks disabled items', () => {
     const wrapper = mount(List, { props: { items } })
     const disabled = wrapper.findAll('[data-rig-list-item]')[2]!
-    expect(disabled.attributes('data-disabled')).toBeDefined()
+    expect(disabled.attributes('data-disabled')).not.toBeUndefined()
   })
 
   it('sets data-virtual attribute when virtual=true', () => {
     const wrapper = mount(List, { props: { items, virtual: true } })
-    expect(wrapper.attributes('data-virtual')).toBeDefined()
+    expect(wrapper.attributes('data-virtual')).not.toBeUndefined()
   })
 
   it('does not set data-virtual when virtual=false', () => {
@@ -145,7 +145,7 @@ describe('List', () => {
     await wrapper.trigger('keydown', { key: 'ArrowDown' })
     await wrapper.trigger('keydown', { key: 'ArrowUp' })
     const listItems = wrapper.findAll('[data-rig-list-item]')
-    expect(listItems[0]!.attributes('data-highlighted')).toBeDefined()
+    expect(listItems[0]!.attributes('data-highlighted')).not.toBeUndefined()
     wrapper.unmount()
   })
 
@@ -153,7 +153,7 @@ describe('List', () => {
     const wrapper = mount(List, { props: { items } })
     await wrapper.trigger('keydown', { key: 'ArrowUp' })
     const listItems = wrapper.findAll('[data-rig-list-item]')
-    expect(listItems[0]!.attributes('data-highlighted')).toBeDefined()
+    expect(listItems[0]!.attributes('data-highlighted')).not.toBeUndefined()
   })
 
   it('ArrowDown does not go past last item', async () => {
@@ -163,7 +163,7 @@ describe('List', () => {
       await wrapper.trigger('keydown', { key: 'ArrowDown' })
     }
     const listItems = wrapper.findAll('[data-rig-list-item]')
-    expect(listItems[3]!.attributes('data-highlighted')).toBeDefined()
+    expect(listItems[3]!.attributes('data-highlighted')).not.toBeUndefined()
     expect(listItems[3]!.attributes('tabindex')).toBe('0')
   })
 
@@ -173,7 +173,7 @@ describe('List', () => {
     await wrapper.trigger('keydown', { key: 'ArrowDown' })
     await wrapper.trigger('keydown', { key: 'Home' })
     const listItems = wrapper.findAll('[data-rig-list-item]')
-    expect(listItems[0]!.attributes('data-highlighted')).toBeDefined()
+    expect(listItems[0]!.attributes('data-highlighted')).not.toBeUndefined()
     expect(listItems[0]!.attributes('tabindex')).toBe('0')
     wrapper.unmount()
   })
@@ -182,7 +182,7 @@ describe('List', () => {
     const wrapper = mount(List, { props: { items }, attachTo: document.body })
     await wrapper.trigger('keydown', { key: 'End' })
     const listItems = wrapper.findAll('[data-rig-list-item]')
-    expect(listItems[3]!.attributes('data-highlighted')).toBeDefined()
+    expect(listItems[3]!.attributes('data-highlighted')).not.toBeUndefined()
     expect(listItems[3]!.attributes('tabindex')).toBe('0')
     wrapper.unmount()
   })

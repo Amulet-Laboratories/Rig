@@ -20,6 +20,9 @@ const props = withDefaults(
   },
 )
 
+/**
+ * @emits update:modelValue
+ */
 const emit = defineEmits<{
   'update:modelValue': [value: ID]
 }>()
@@ -44,7 +47,7 @@ function onKeydown(e: KeyboardEvent) {
   const tabs = Array.from(tablistRef.value?.querySelectorAll<HTMLElement>('[role="tab"]') ?? [])
   if (!tabs.length) return
 
-  const ci = tabs.indexOf(document.activeElement as HTMLElement)
+  const ci = tabs.indexOf(tablistRef.value?.querySelector<HTMLElement>(':focus') as HTMLElement)
   const isHoriz = props.orientation !== 'vertical'
   const prevKey = isHoriz ? 'ArrowLeft' : 'ArrowUp'
   const nextKey = isHoriz ? 'ArrowRight' : 'ArrowDown'

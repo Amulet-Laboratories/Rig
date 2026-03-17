@@ -9,6 +9,12 @@ const props = defineProps<{
   activeId?: ID
 }>()
 
+/**
+ * @emits update:activeId
+ * @emits close
+ * @emits reorder
+ * @emits contextmenu
+ */
 const emit = defineEmits<{
   'update:activeId': [id: ID]
   close: [id: ID]

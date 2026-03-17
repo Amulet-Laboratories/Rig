@@ -12,7 +12,7 @@ const items: Action[] = [
 describe('ActivityBar', () => {
   it('renders with data-rig-activity-bar and toolbar role', () => {
     const wrapper = mount(ActivityBar, { props: { items } })
-    expect(wrapper.attributes('data-rig-activity-bar')).toBeDefined()
+    expect(wrapper.attributes('data-rig-activity-bar')).toBe('')
     expect(wrapper.attributes('role')).toBe('toolbar')
   })
 

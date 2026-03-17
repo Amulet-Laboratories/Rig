@@ -1,9 +1,16 @@
 <script setup lang="ts">
-defineProps<{
-  /** Whether the divider stretches horizontally (default) or vertically */
-  vertical?: boolean
-  /** Optional label placed in the center of the divider */
-  label?: string
+withDefaults(
+  defineProps<{
+    /** Whether the divider stretches horizontally (default) or vertically */
+    vertical?: boolean
+    /** Optional label placed in the center of the divider */
+    label?: string
+  }>(),
+  { vertical: false },
+)
+
+defineSlots<{
+  default(props: Record<string, never>): unknown
 }>()
 </script>
 

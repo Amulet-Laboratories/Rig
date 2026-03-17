@@ -1,0 +1,29 @@
+{
+  "name": "@amulet-laboratories/rig-nuxt",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "Nuxt module for @amulet-laboratories/rig — auto-imports, tree-shaking, SSR-safe",
+  "license": "MIT",
+  "author": "Amulet Laboratories",
+  "exports": {
+    ".": {
+      "import": "./src/module.ts"
+    }
+  },
+  "main": "./src/module.ts",
+  "files": [
+    "src"
+  ],
+  "peerDependencies": {
+    "@amulet-laboratories/rig": ">=0.2.0",
+    "nuxt": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@amulet-laboratories/hex": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@nuxt/kit": "^3.0.0"
+  }
+}

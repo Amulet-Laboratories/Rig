@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { isMacPlatform } from '@core/composables/usePlatform'
 
-const props = defineProps<{
-  /** Keyboard shortcut string (e.g. 'Ctrl+Shift+P') */
-  shortcut: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    /** Keyboard shortcut string (e.g. 'Ctrl+Shift+P') */
+    shortcut?: string
+  }>(),
+  {
+    shortcut: '',
+  },
+)
 
-const isMac = typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.userAgent)
+const isMac = isMacPlatform()
 
 const keys = computed(() =>
   props.shortcut.split('+').map((k) => {

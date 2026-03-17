@@ -5,7 +5,7 @@ import CodeBlock from './CodeBlock.vue'
 describe('CodeBlock', () => {
   it('renders with data-rig-code-block', () => {
     const wrapper = mount(CodeBlock, { props: { code: 'hello' } })
-    expect(wrapper.attributes('data-rig-code-block')).toBeDefined()
+    expect(wrapper.attributes('data-rig-code-block')).toBe('')
   })
 
   it('displays code content', () => {
@@ -82,8 +82,7 @@ describe('CodeBlock interactions', () => {
     } else {
       await wrapper.trigger('click')
     }
-    const events = wrapper.emitted()
-    expect(events).toBeDefined()
+    expect(wrapper.html()).toBeTruthy()
     wrapper.unmount()
   })
 
@@ -158,4 +157,3 @@ describe('CodeBlock interactions', () => {
     expect(wrapper.attributes('tabindex')).toBe('0')
   })
 })
-

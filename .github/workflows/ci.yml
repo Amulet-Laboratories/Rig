@@ -11,8 +11,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint-test:
-    name: Lint, Typecheck & Test
+  # ── Blocking checks ──────────────────────────────────────────────────────────
+  lint:
+    name: Lint & Format
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,7 +24,52 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Format check
+        run: pnpm prettier --check .
+
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm typecheck
+
+  test:
+    name: Unit Tests & Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
           cache: pnpm
 
       - name: Install dependencies
@@ -32,39 +78,101 @@ jobs:
       - name: Audit dependencies
         run: pnpm audit --prod
 
+      - name: Unit tests with coverage
+        run: vitest run --coverage
+
+  build:
+    name: Build & Exports
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Build Hex themes
         working-directory: hex
         run: pnpm build
 
-      - name: Lint
-        run: pnpm lint
+      - name: Build library
+        run: pnpm build
 
-      - name: Type check
-        run: pnpm typecheck
+      - name: Check exports
+        run: node scripts/check-exports.mjs
 
-      - name: Unit tests with coverage
-        run: vitest run --reporter=default --reporter=json --outputFile=.health/tests.json --coverage
+      - name: Upload dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
+
+  # ── Advisory checks (non-blocking) ───────────────────────────────────────────
+  bench:
+    name: Benchmarks (advisory)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    needs: [test]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run benchmarks
+        run: vitest bench --run
+
+  bundle-size:
+    name: Bundle Size (advisory)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    needs: [build]
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build library
         run: pnpm build
 
-      - name: Run benchmarks
-        run: vitest bench --run --outputJson=.health/bench.json
-
-      - name: Run comparison benchmarks
-        run: pnpm comparison && pnpm cross-comparison
-
-      - name: Generate health manifest
-        run: node scripts/generate-health-manifest.mjs && tsx scripts/collect-intelligence.ts
-
-      - name: Upload health artifacts
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v4
-        with:
-          name: health-manifest
-          path: |
-            .health/manifest.json
-            .health/comparison.json
-            .health/intelligence.json
-            .health/perf.json
-          retention-days: 30
+      - name: Report bundle size
+        run: |
+          echo "## Bundle Size" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| File | Size | Gzipped |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|------|---------|" >> $GITHUB_STEP_SUMMARY
+          for f in dist/*.mjs dist/*.cjs; do
+            [ -f "$f" ] || continue
+            size=$(du -sh "$f" | cut -f1)
+            gz=$(gzip -c "$f" | wc -c | awk '{printf "%.1fK", $1/1024}')
+            echo "| \`$(basename $f)\` | $size | $gz |" >> $GITHUB_STEP_SUMMARY
+          done

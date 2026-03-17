@@ -23,6 +23,8 @@ const props = withDefaults(
     height?: number
     /** Markers to display */
     markers?: MapMarker[]
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     centerLat: 0,
@@ -31,13 +33,23 @@ const props = withDefaults(
     width: 600,
     height: 400,
     markers: () => [],
+    responsive: false,
   },
 )
 
+/**
+ * @emits marker-click
+ * @emits pan
+ * @emits zoom-change
+ */
 const emit = defineEmits<{
   'marker-click': [marker: MapMarker]
   pan: [payload: { lat: number; lng: number }]
   'zoom-change': [zoom: number]
+}>()
+
+defineSlots<{
+  default(props: Record<string, never>): unknown
 }>()
 
 const isDragging = ref(false)
@@ -95,8 +107,8 @@ function onWheel(e: WheelEvent) {
   >
     <svg
       data-rig-map-canvas-viewport
-      :width="width"
-      :height="height"
+      :width="responsive ? undefined : width"
+      :height="responsive ? undefined : height"
       :viewBox="`0 0 ${width} ${height}`"
     >
       <!-- Grid lines for visual reference -->
@@ -130,7 +142,10 @@ function onWheel(e: WheelEvent) {
         :transform="`translate(${latLngToXY(marker.lat, marker.lng).x}, ${latLngToXY(marker.lat, marker.lng).y})`"
         role="button"
         :aria-label="marker.label ?? `Marker at ${marker.lat}, ${marker.lng}`"
+        tabindex="0"
         @click="emit('marker-click', marker)"
+        @keydown.enter.prevent="emit('marker-click', marker)"
+        @keydown.space.prevent="emit('marker-click', marker)"
       >
         <circle :r="'var(--rig-chart-marker-radius, 6)'" :fill="marker.color ?? 'currentColor'" />
         <text

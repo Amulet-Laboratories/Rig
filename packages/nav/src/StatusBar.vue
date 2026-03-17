@@ -20,6 +20,7 @@ defineSlots<{
   item?: (props: { item: StatusBarItem }) => unknown
   left?: (props: Record<string, never>) => unknown
   right?: (props: Record<string, never>) => unknown
+  default?: (props: Record<string, never>) => unknown
 }>()
 
 const leftItems = computed(() =>
@@ -67,37 +68,39 @@ function onKeydown(e: KeyboardEvent) {
     tabindex="-1"
     @keydown="onKeydown"
   >
-    <div data-rig-status-bar-left>
-      <slot name="left">
-        <component
-          :is="item.command ? 'button' : 'span'"
-          v-for="item in leftItems"
-          :key="item.id"
-          data-rig-status-bar-item
-          :title="item.tooltip"
-          @click="item.command ? onItemClick(item) : undefined"
-        >
-          <slot name="item" :item="item">
-            {{ item.content }}
-          </slot>
-        </component>
-      </slot>
-    </div>
-    <div data-rig-status-bar-right>
-      <slot name="right">
-        <component
-          :is="item.command ? 'button' : 'span'"
-          v-for="item in rightItems"
-          :key="item.id"
-          data-rig-status-bar-item
-          :title="item.tooltip"
-          @click="item.command ? onItemClick(item) : undefined"
-        >
-          <slot name="item" :item="item">
-            {{ item.content }}
-          </slot>
-        </component>
-      </slot>
-    </div>
+    <slot>
+      <div data-rig-status-bar-left>
+        <slot name="left">
+          <component
+            :is="item.command ? 'button' : 'span'"
+            v-for="item in leftItems"
+            :key="item.id"
+            data-rig-status-bar-item
+            :title="item.tooltip"
+            @click="item.command ? onItemClick(item) : undefined"
+          >
+            <slot name="item" :item="item">
+              {{ item.content }}
+            </slot>
+          </component>
+        </slot>
+      </div>
+      <div data-rig-status-bar-right>
+        <slot name="right">
+          <component
+            :is="item.command ? 'button' : 'span'"
+            v-for="item in rightItems"
+            :key="item.id"
+            data-rig-status-bar-item
+            :title="item.tooltip"
+            @click="item.command ? onItemClick(item) : undefined"
+          >
+            <slot name="item" :item="item">
+              {{ item.content }}
+            </slot>
+          </component>
+        </slot>
+      </div>
+    </slot>
   </footer>
 </template>

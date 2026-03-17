@@ -6,7 +6,7 @@ import { h } from 'vue'
 describe('ToggleGroup', () => {
   it('renders with data-rig-toggle-group', () => {
     const wrapper = mount(ToggleGroup, { props: { modelValue: '' } })
-    expect(wrapper.attributes('data-rig-toggle-group')).toBeDefined()
+    expect(wrapper.attributes('data-rig-toggle-group')).toBe('')
   })
 
   it('has role="group"', () => {
@@ -28,7 +28,7 @@ describe('ToggleGroup', () => {
 
   it('sets data-disabled when disabled', () => {
     const wrapper = mount(ToggleGroup, { props: { modelValue: '', disabled: true } })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
   })
 
   it('exposes isPressed returning true for matching single value', () => {
@@ -119,7 +119,7 @@ describe('ToggleGroup', () => {
   it('sets data-disabled when disabled', async () => {
     const wrapper = mount(ToggleGroup, { props: { modelValue: '' } })
     await wrapper.setProps({ disabled: true })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
   })
 
   it('sets aria-label with type', () => {
@@ -333,7 +333,7 @@ describe('ToggleGroup items mode', () => {
     })
     const buttons = wrapper.findAll('[data-rig-toggle]')
     buttons.forEach((b) => {
-      expect(b.attributes('disabled')).toBeDefined()
+      expect(b.attributes('disabled')).toBe('')
     })
   })
 
@@ -347,7 +347,7 @@ describe('ToggleGroup items mode', () => {
     })
     const buttons = wrapper.findAll('[data-rig-toggle]')
     expect(buttons[0]!.attributes('disabled')).toBeUndefined()
-    expect(buttons[1]!.attributes('disabled')).toBeDefined()
+    expect(buttons[1]!.attributes('disabled')).toBe('')
   })
 
   it('falls back to value as label', () => {

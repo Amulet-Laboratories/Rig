@@ -12,6 +12,10 @@ withDefaults(
     size: 'md',
   },
 )
+
+defineSlots<{
+  default(props: Record<string, never>): unknown
+}>()
 </script>
 
 <template>

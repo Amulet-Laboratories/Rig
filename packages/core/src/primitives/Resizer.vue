@@ -10,9 +10,18 @@ const props = withDefaults(
     minPosition?: number
     /** Maximum position constraint */
     maxPosition?: number
+    /** Current split position (0–100) for aria-valuenow — pass from parent */
+    valuenow?: number
+    /** Minimum split position for aria-valuemin */
+    valuemin?: number
+    /** Maximum split position for aria-valuemax */
+    valuemax?: number
   }>(),
   {
     orientation: 'horizontal',
+    valuenow: 50,
+    valuemin: 0,
+    valuemax: 100,
   },
 )
 
@@ -22,6 +31,10 @@ const emit = defineEmits<{
   dragend: []
   /** Emitted on double-click — consumers can reset to default size */
   reset: []
+}>()
+
+defineSlots<{
+  default(props: Record<string, never>): unknown
 }>()
 
 const KEYBOARD_STEP = 10
@@ -96,9 +109,9 @@ function onPointerDown(e: PointerEvent) {
     data-rig-resizer
     role="separator"
     :aria-orientation="orientation"
-    aria-valuemin="0"
-    aria-valuemax="100"
-    aria-valuenow="50"
+    :aria-valuemin="valuemin"
+    :aria-valuemax="valuemax"
+    :aria-valuenow="valuenow"
     :data-orientation="orientation"
     :data-dragging="dragging || undefined"
     tabindex="0"

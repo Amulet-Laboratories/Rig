@@ -23,6 +23,8 @@ const props = withDefaults(
     cellSize?: number
     /** Gap between cells */
     gap?: number
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     data: () => [],
@@ -32,9 +34,13 @@ const props = withDefaults(
     colLabels: () => [],
     cellSize: 32,
     gap: 2,
+    responsive: false,
   },
 )
 
+/**
+ * @emits cell-click
+ */
 const emit = defineEmits<{
   'cell-click': [cell: HeatmapCell]
 }>()
@@ -59,8 +65,8 @@ function getIntensity(value: number): number {
 <template>
   <svg
     data-rig-heatmap
-    :width="svgWidth"
-    :height="svgHeight"
+    :width="responsive ? undefined : svgWidth"
+    :height="responsive ? undefined : svgHeight"
     :viewBox="`0 0 ${svgWidth} ${svgHeight}`"
     role="img"
     aria-label="Heatmap"

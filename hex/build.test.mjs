@@ -10,7 +10,7 @@ import { execSync } from 'node:child_process'
 const ROOT = resolve(import.meta.dirname)
 const DIST = resolve(ROOT, 'dist')
 
-const themes = ['hexrig', 'vscode', 'spotify', 'gmail']
+const themes = ['vscode', 'garden']
 
 describe('Hex build', () => {
   before(() => {
@@ -49,10 +49,10 @@ describe('Hex build', () => {
         `${theme}.css full bundle is ${fullSize} bytes, expected >5000`,
       )
     }
-    // Root bundle should match hexrig (default theme)
+    // Root bundle should match vscode (default theme)
     const hexSize = readFileSync(resolve(DIST, 'hex.css')).length
-    const hexrigSize = readFileSync(resolve(DIST, 'hexrig.css')).length
-    assert.equal(hexSize, hexrigSize, 'hex.css should match hexrig.css size')
+    const vscodeSize = readFileSync(resolve(DIST, 'vscode.css')).length
+    assert.equal(hexSize, vscodeSize, 'hex.css should match vscode.css size')
   })
 
   // ─── CSS size budget (prevents unbounded growth) ────────────────────────
@@ -101,7 +101,7 @@ describe('Hex build', () => {
         '--color-background', '--color-foreground', '--color-primary',
         '--color-muted', '--color-muted-foreground',
         '--color-success', '--color-warning', '--color-info',
-        '--color-destructive', '--color-black',
+        '--color-destructive',
       ]
       for (const token of semanticTokens) {
         assert.ok(css.includes(token), `${theme}.css should declare ${token}`)
@@ -159,15 +159,11 @@ describe('Hex build', () => {
   })
 
   it('each theme has distinct primary colors', () => {
-    const hexrig = readFileSync(resolve(DIST, 'hexrig.css'), 'utf-8')
     const vscode = readFileSync(resolve(DIST, 'vscode.css'), 'utf-8')
-    const spotify = readFileSync(resolve(DIST, 'spotify.css'), 'utf-8')
-    const gmail = readFileSync(resolve(DIST, 'gmail.css'), 'utf-8')
+    const garden = readFileSync(resolve(DIST, 'garden.css'), 'utf-8')
 
-    assert.ok(hexrig.includes('#5ea9a2'), 'hexrig should use teal primary')
     assert.ok(vscode.includes('#0078d4'), 'vscode should use VS Code blue primary')
-    assert.ok(spotify.includes('#1db954'), 'spotify should use green primary')
-    assert.ok(gmail.includes('#1a73e8'), 'gmail should use Google blue primary')
+    assert.ok(garden.includes('#d94362'), 'garden should use rose primary')
   })
 
   it('theme bundles include unstyled reset selector', () => {

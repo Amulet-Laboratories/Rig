@@ -129,9 +129,7 @@ describe('EmptyState interactions', () => {
     } else {
       await wrapper.trigger('click')
     }
-    const events = wrapper.emitted()
-    expect(events).toBeDefined()
+    expect(wrapper.html()).toBeTruthy()
     wrapper.unmount()
   })
 })
-

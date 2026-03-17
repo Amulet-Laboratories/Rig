@@ -22,15 +22,15 @@ const DIST = resolve(ROOT, 'dist')
 
 // Define themes (directory-based, shadcn token contract)
 // One CSS per theme — no light/dark variants
-const themes = ['hexrig', 'vscode', 'spotify', 'gmail']
+const themes = ['vscode', 'garden']
 
 const getThemeEntrypoints = (theme) => [
   { input: `src/themes/${theme}/index.css`, output: `dist/${theme}.css` },
 ]
 
-// Default theme entry (builds hexrig as the root bundle)
+// Default theme entry (builds vscode as the root bundle)
 const rootEntrypoints = [
-  { input: 'src/themes/hexrig/index.css', output: 'dist/hex.css' },
+  { input: 'src/themes/vscode/index.css', output: 'dist/hex.css' },
 ]
 
 async function buildEntry(entry) {
@@ -48,13 +48,10 @@ async function buildEntry(entry) {
     const result = await postcss([postcssImport(), tailwindcss(), cssnano({ preset: 'default' })]).process(css, {
       from: inputPath,
       to: outputPath,
+      map: false,
     })
 
     writeFileSync(outputPath, result.css, 'utf-8')
-
-    if (result.map) {
-      writeFileSync(`${outputPath}.map`, result.map.toString(), 'utf-8')
-    }
 
     console.log(`  ✓ ${entry.input} → ${entry.output}`)
   } catch (err) {

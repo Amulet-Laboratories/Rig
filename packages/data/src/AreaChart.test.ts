@@ -87,7 +87,7 @@ describe('AreaChart interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
@@ -102,9 +102,7 @@ describe('AreaChart interactions', () => {
     } else {
       await wrapper.trigger('click')
     }
-    const events = wrapper.emitted()
-    expect(events).toBeDefined()
+    expect(wrapper.html()).toBeTruthy()
     wrapper.unmount()
   })
 })
-

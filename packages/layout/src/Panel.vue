@@ -31,6 +31,11 @@ const emit = defineEmits<{
   'update:size': [value: number]
 }>()
 
+defineSlots<{
+  'header'?(props: Record<string, never>): unknown
+  default?(props: Record<string, never>): unknown
+}>()
+
 function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Escape') {
     emit('update:open', false)

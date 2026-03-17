@@ -176,7 +176,8 @@ describe('Toast', () => {
 describe('Toast interactions', () => {
   it('can emit events', async () => {
     const wrapper = mount(Toast, {
-      props: { message: 'Hello' }, attachTo: document.body,
+      props: { message: 'Hello' },
+      attachTo: document.body,
     })
     const clickable = wrapper.find('button, [role="button"], [tabindex], a')
     if (clickable.exists()) {
@@ -184,9 +185,7 @@ describe('Toast interactions', () => {
     } else {
       await wrapper.trigger('click')
     }
-    const events = wrapper.emitted()
-    expect(events).toBeDefined()
+    expect(wrapper.html()).toBeTruthy()
     wrapper.unmount()
   })
 })
-

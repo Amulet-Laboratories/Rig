@@ -23,6 +23,13 @@ const emit = defineEmits<{
   dragstart: []
   dragend: []
 }>()
+
+defineSlots<{
+  'icon'(props: Record<string, never>): unknown
+  default(props: Record<string, never>): unknown
+  'indicator'(props: Record<string, never>): unknown
+  'close'(props: Record<string, never>): unknown
+}>()
 </script>
 
 <template>
@@ -56,7 +63,7 @@ const emit = defineEmits<{
         data-rig-editor-tab-close
         role="button"
         aria-label="Close"
-        tabindex="-1"
+        tabindex="0"
         @click.stop="emit('close')"
         @keydown.enter.stop.prevent="emit('close')"
       >

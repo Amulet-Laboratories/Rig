@@ -44,7 +44,18 @@ export {
   useVirtualList,
   provideDragDrop,
   useDragDrop,
+  useReducedMotion,
+  useScrollVisibility,
+  useParallax,
+  useMediaPlayback,
+  provideConfig,
+  useConfig,
+  useComponentDefaults,
+  RigConfigKey,
+  useFormValidation,
+  FormContextKey,
 } from './composables'
+export type { RigConfig, ValidationRule, FieldState, FormValidationOptions } from './composables'
 export type {
   FocusTrapOptions,
   VirtualItem,
@@ -52,6 +63,12 @@ export type {
   DragItem,
   DropResult,
   DragOptions,
+  ScrollVisibilityOptions,
+  ScrollVisibilityReturn,
+  ParallaxLayer,
+  ParallaxOptions,
+  ParallaxReturn,
+  MediaPlaybackOptions,
 } from './composables'
 
 // Primitives
@@ -82,4 +99,14 @@ export {
   ProgressRing,
   RangeSlider,
   AvatarGroup,
+  Pagination,
+  FileInput,
+  Rating,
+  ConfigProvider,
+  Form,
+  NumberInput,
+  OTPInput,
+  Transfer,
+  Mention,
+  InfiniteScroll,
 } from './primitives'

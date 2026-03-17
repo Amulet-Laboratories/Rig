@@ -6,7 +6,7 @@ describe('Kbd', () => {
   it('renders with data-rig-kbd', () => {
     const wrapper = mount(Kbd)
     expect(wrapper.element.tagName).toBe('KBD')
-    expect(wrapper.attributes('data-rig-kbd')).toBeDefined()
+    expect(wrapper.attributes('data-rig-kbd')).toBe('')
   })
 
   it('renders keys prop', () => {
@@ -59,9 +59,8 @@ describe('Kbd interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

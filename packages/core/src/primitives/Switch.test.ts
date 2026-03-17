@@ -5,7 +5,7 @@ import Switch from './Switch.vue'
 describe('Switch', () => {
   it('renders with data-rig-switch and role=switch', () => {
     const wrapper = mount(Switch)
-    expect(wrapper.attributes('data-rig-switch')).toBeDefined()
+    expect(wrapper.attributes('data-rig-switch')).toBe('')
     expect(wrapper.attributes('role')).toBe('switch')
   })
 

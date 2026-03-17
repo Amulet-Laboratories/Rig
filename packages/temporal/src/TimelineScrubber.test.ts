@@ -50,7 +50,9 @@ describe('TimelineScrubber', () => {
 
   it('sets disabled attribute', () => {
     const wrapper = mount(TimelineScrubber, { props: { disabled: true } })
-    expect(wrapper.find('[data-rig-timeline-scrubber]').attributes('data-disabled')).toBeDefined()
+    expect(
+      wrapper.find('[data-rig-timeline-scrubber]').attributes('data-disabled'),
+    ).not.toBeUndefined()
   })
 
   it('applies dimensions', () => {
@@ -261,7 +263,9 @@ describe('TimelineScrubber', () => {
         new PointerEvent('pointerdown', { clientX: 100, pointerId: 1, bubbles: true }),
       )
       await nextTick()
-      expect(wrapper.find('[data-rig-timeline-scrubber]').attributes('data-dragging')).toBeDefined()
+      expect(
+        wrapper.find('[data-rig-timeline-scrubber]').attributes('data-dragging'),
+      ).not.toBeUndefined()
       wrapper.unmount()
     })
 

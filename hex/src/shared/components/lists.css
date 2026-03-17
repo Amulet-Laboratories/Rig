@@ -1,33 +1,46 @@
 /* Hex — Shared Lists Components
- * Theme styles for Rig's lists package: List, TreeView, Table.
+ * Theme styles for Rig's lists package: List, TreeView, Table, DataGrid.
  */
 
 /* ───────── Table ───────── */
 
 [data-rig-table] {
-  @apply text-sm;
+  font-size: 13px;
 }
 
 [data-rig-table-head] {
-  @apply bg-background;
+  background: var(--color-background);
 }
 
 [data-rig-table-header] {
-  @apply text-foreground/40 font-mono text-xs uppercase tracking-wider
-         hover:text-foreground/60 transition-colors;
+  color: var(--rig-description-fg);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.15s ease;
+}
+
+[data-rig-table-header]:hover {
+  color: var(--color-foreground);
 }
 
 [data-rig-table-body] [data-rig-table-row] {
-  @apply border-b border-foreground/5
-         hover:bg-foreground/3 transition-colors;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  transition: background-color 0.15s ease;
+}
+
+[data-rig-table-body] [data-rig-table-row]:hover {
+  background: var(--rig-list-hover-bg);
 }
 
 [data-rig-table-cell] {
-  @apply text-sm;
+  font-size: 13px;
 }
 
 [data-rig-table-empty] {
-  @apply text-muted-foreground text-sm;
+  color: var(--rig-description-fg);
+  font-size: 13px;
 }
 
 /* ───────── List ───────── */
@@ -37,27 +50,48 @@
 }
 
 [data-rig-list-item] {
-  @apply font-mono transition-colors
-         text-foreground/50 hover:text-foreground/70 hover:bg-foreground/3;
-
   font-size: 13px;
+  color: var(--color-foreground);
+  transition: background-color 0.15s ease;
+}
+
+[data-rig-list-item]:hover {
+  background: var(--rig-list-hover-bg);
 }
 
 [data-rig-list-item][data-selected] {
-  @apply text-foreground bg-foreground/15;
+  background: var(--rig-list-inactive-bg);
+  color: var(--color-foreground);
+}
+
+[data-rig-list-item][data-highlighted] {
+  background: var(--rig-list-active-bg);
+  color: var(--rig-list-active-fg);
 }
 
 [data-rig-list-item]:focus {
-  outline: 1px solid var(--domain-accent, var(--color-primary));
+  outline: 1px solid var(--color-ring);
   outline-offset: -1px;
 }
 
 [data-rig-list-item][data-selected]:focus-within {
-  background: color-mix(in srgb, var(--domain-accent, var(--color-primary)) 20%, transparent);
+  background: var(--rig-list-active-bg);
+  color: var(--rig-list-active-fg);
+}
+
+[data-rig-list-item][data-disabled] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+[data-rig-list-item-label] {
+  color: var(--color-foreground);
+  font-size: 13px;
 }
 
 [data-rig-list-item-description] {
-  @apply text-muted-foreground text-xs;
+  color: var(--rig-description-fg);
+  font-size: 12px;
 }
 
 /* ───────── Tree ───────── */
@@ -67,35 +101,82 @@
 }
 
 [data-rig-tree-node] {
-  @apply hover:bg-foreground/5;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 22px;
+  padding: 0 8px;
+  min-width: 100%;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+[data-rig-tree-node]:hover {
+  background: var(--rig-list-hover-bg);
 }
 
 [data-rig-tree-node][data-selected] {
-  @apply bg-foreground/15;
+  background: var(--rig-list-inactive-bg);
 }
 
 [data-rig-tree-node]:focus {
-  outline: 1px solid var(--domain-accent, var(--color-primary));
+  outline: 1px solid var(--color-ring);
   outline-offset: -1px;
 }
 
 [data-rig-tree-node][data-selected]:focus-within {
-  background: color-mix(in srgb, var(--domain-accent, var(--color-primary)) 20%, transparent);
+  background: var(--rig-list-active-bg);
+  color: var(--rig-list-active-fg);
 }
 
-/* Indent guides */
+[data-rig-tree-node][data-loading] {
+  opacity: 0.6;
+}
+
+/* Indent container */
+[data-rig-tree-indent] {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+/* Indent guides — transparent by default, visible on hover/select */
 [data-rig-tree-indent-guide] {
-  border-left-color: color-mix(in srgb, var(--color-foreground) 8%, transparent);
+  width: 8px;
+  flex-shrink: 0;
+  border-left: 1px solid transparent;
+  align-self: stretch;
 }
 
 [data-rig-tree-node]:hover [data-rig-tree-indent-guide],
 [data-rig-tree-node][data-selected] [data-rig-tree-indent-guide] {
-  border-left-color: color-mix(in srgb, var(--color-foreground) 20%, transparent);
+  border-left-color: var(--color-border);
 }
 
 /* Toggle chevron */
 [data-rig-tree-toggle] {
-  @apply text-muted-foreground;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--rig-description-fg);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Leaf spacer — maintains alignment when no toggle */
+[data-rig-tree-node][data-leaf] {
+  padding-left: calc(8px + 16px);
+}
+
+/* Node icon */
+[data-rig-tree-node-icon] {
+  flex-shrink: 0;
+  margin-right: 2px;
 }
 
 [data-rig-tree-toggle]::before {
@@ -113,97 +194,75 @@
 }
 
 [data-rig-tree-node-label] {
-  @apply text-foreground/70;
-}
-
-/* ───────── FileTree ───────── */
-
-[data-rig-file-tree] {
-  @apply text-sm;
-}
-
-[data-rig-file-tree-item] {
-  @apply transition-colors text-foreground/60 rounded;
-}
-
-[data-rig-file-tree-item]:hover {
-  @apply bg-foreground/5;
-}
-
-[data-rig-file-tree-item][data-selected] {
-  @apply bg-foreground/10 text-foreground;
-}
-
-[data-rig-file-tree-toggle] {
-  @apply text-foreground/30;
-}
-
-[data-rig-file-tree-icon] {
-  @apply text-foreground/40;
-}
-
-[data-rig-file-tree-label] {
-  @apply text-foreground/70;
-}
-
-[data-rig-file-tree-children] {
-  border-left: 1px solid color-mix(in srgb, var(--color-foreground) 8%, transparent);
+  color: var(--color-foreground);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ───────── DataGrid ───────── */
 
 [data-rig-data-grid] {
-  @apply border border-foreground/10 rounded text-sm;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 13px;
 }
 
 [data-rig-data-grid-header] {
-  @apply bg-foreground/[0.03] border-b border-foreground/10;
+  background: var(--color-card);
+  border-bottom: 1px solid var(--color-border);
 }
 
 [data-rig-data-grid-header-cell] {
-  @apply text-foreground/50 text-xs font-medium;
-
-  border-right: 1px solid color-mix(in srgb, var(--color-foreground) 5%, transparent);
+  color: var(--rig-description-fg);
+  font-size: 12px;
+  font-weight: 500;
+  border-right: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
 }
 
 [data-rig-data-grid-header-cell][data-sortable]:hover {
-  @apply bg-foreground/5 cursor-pointer;
-}
-
-[data-rig-data-grid-sort-indicator] {
-  @apply text-foreground/30;
-}
-
-[data-rig-data-grid-row] {
-  @apply border-b border-foreground/5 transition-colors;
-}
-
-[data-rig-data-grid-row]:hover {
-  @apply bg-foreground/[0.03];
-}
-
-[data-rig-data-grid-row]:focus-visible {
-  @apply bg-foreground/[0.06] outline-none;
-
-  box-shadow: inset 0 0 0 1px var(--color-primary);
+  background: var(--rig-list-hover-bg);
+  cursor: pointer;
 }
 
 [data-rig-data-grid-header-cell]:focus-visible {
-  @apply outline-none;
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--color-ring);
+}
 
-  box-shadow: inset 0 0 0 1px var(--color-primary);
+[data-rig-data-grid-sort-indicator] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-data-grid-body] {
+  display: contents;
+}
+
+[data-rig-data-grid-row] {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  transition: background-color 0.15s ease;
+}
+
+[data-rig-data-grid-row]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+[data-rig-data-grid-row]:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--color-ring);
 }
 
 [data-rig-data-grid-row]:nth-child(even) {
-  @apply bg-foreground/[0.015];
+  background: color-mix(in srgb, var(--color-foreground) 2%, transparent);
 }
 
 [data-rig-data-grid-cell] {
-  @apply text-foreground/70;
-
-  border-right: 1px solid color-mix(in srgb, var(--color-foreground) 3%, transparent);
+  color: var(--color-foreground);
+  border-right: 1px solid color-mix(in srgb, var(--color-border) 30%, transparent);
 }
 
 [data-rig-data-grid-empty] {
-  @apply text-foreground/30 text-center py-6;
+  color: var(--rig-description-fg);
+  text-align: center;
+  padding: 24px 0;
 }

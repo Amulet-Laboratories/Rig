@@ -5,6 +5,7 @@
  * @import rules must precede @reference so postcss-import can inline them.
  */
 
+@import '../../shared/rig-defaults.css';
 @import '../../shared/components/core.css';
 @import '../../shared/components/layout.css';
 @import '../../shared/components/nav.css';

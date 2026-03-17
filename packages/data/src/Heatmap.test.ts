@@ -82,7 +82,11 @@ describe('Heatmap', () => {
       props: { data: [{ row: 0, col: 0, value: 5 }], rows: 1, cols: 1 },
     })
     await wrapper.find('[data-rig-heatmap-cell]').trigger('click')
-    const emitted = wrapper.emitted('cell-click')![0]![0] as { row: number; col: number; value: number }
+    const emitted = wrapper.emitted('cell-click')![0]![0] as {
+      row: number
+      col: number
+      value: number
+    }
     expect(emitted).toMatchObject({ row: 0, col: 0 })
   })
 
@@ -152,9 +156,8 @@ describe('Heatmap interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

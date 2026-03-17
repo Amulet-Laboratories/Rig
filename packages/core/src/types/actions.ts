@@ -3,24 +3,27 @@ import type { ID } from './common'
 /** An executable action (menu item, command, toolbar button) */
 export interface Action {
   id: ID
-  label: string
+  /** Display label. Optional when `separator` is true. */
+  label?: string
   icon?: string
   keybinding?: string
   disabled?: boolean
+  /** Render this item as a visual separator rule (omits label, renders as <hr>) */
+  separator?: boolean
   /** Badge text or count to display on the action (e.g. notification count) */
   badge?: string | number
   handler?: () => void
 }
 
 /** An editor tab or panel tab */
-export interface TabItem {
+export interface TabItem<T = unknown> {
   id: ID
   label: string
   icon?: string
   dirty?: boolean
   pinned?: boolean
   closable?: boolean
-  data?: unknown
+  data?: T
 }
 
 /** A status bar entry */

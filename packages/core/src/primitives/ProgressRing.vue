@@ -21,6 +21,10 @@ const props = withDefaults(
   },
 )
 
+defineSlots<{
+  default(props: Record<string, never>): unknown
+}>()
+
 const sizeMap: Record<string, number> = {
   xs: 20,
   sm: 28,

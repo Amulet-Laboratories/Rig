@@ -31,7 +31,7 @@ function factory() {
 describe('Menubar', () => {
   it('renders with data-rig-menubar and role="menubar"', () => {
     const wrapper = factory()
-    expect(wrapper.attributes('data-rig-menubar')).toBeDefined()
+    expect(wrapper.attributes('data-rig-menubar')).toBe('')
     expect(wrapper.attributes('role')).toBe('menubar')
     wrapper.unmount()
   })
@@ -96,7 +96,7 @@ describe('Menubar', () => {
     const wrapper = factory()
     await wrapper.findAll('[data-rig-menubar-trigger]')[0]!.trigger('click')
     const items = wrapper.findAll('[data-rig-menubar-item]')
-    expect(items[2]!.attributes('data-disabled')).toBeDefined()
+    expect(items[2]!.attributes('data-disabled')).not.toBeUndefined()
     wrapper.unmount()
   })
 

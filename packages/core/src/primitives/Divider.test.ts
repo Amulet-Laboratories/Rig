@@ -5,7 +5,7 @@ import Divider from './Divider.vue'
 describe('Divider', () => {
   it('renders with data-rig-divider and role separator', () => {
     const wrapper = mount(Divider)
-    expect(wrapper.attributes('data-rig-divider')).toBeDefined()
+    expect(wrapper.attributes('data-rig-divider')).toBe('')
     expect(wrapper.attributes('role')).toBe('separator')
   })
 
@@ -18,7 +18,7 @@ describe('Divider', () => {
   it('supports vertical orientation', () => {
     const wrapper = mount(Divider, { props: { vertical: true } })
     expect(wrapper.attributes('aria-orientation')).toBe('vertical')
-    expect(wrapper.attributes('data-vertical')).toBeDefined()
+    expect(wrapper.attributes('data-vertical')).not.toBeUndefined()
   })
 
   it('renders label text', () => {
@@ -75,4 +75,3 @@ describe('Divider interactions', () => {
     wrapper.unmount()
   })
 })
-

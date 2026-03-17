@@ -20,6 +20,11 @@ withDefaults(
     description: '',
   },
 )
+
+defineSlots<{
+  'actions'?(props: Record<string, never>): unknown
+  default?(props: Record<string, never>): unknown
+}>()
 </script>
 
 <template>

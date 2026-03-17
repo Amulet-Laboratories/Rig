@@ -6,7 +6,7 @@ import { nextTick } from 'vue'
 describe('ScrollArea', () => {
   it('renders with data-rig-scroll-area', () => {
     const wrapper = mount(ScrollArea)
-    expect(wrapper.attributes('data-rig-scroll-area')).toBeDefined()
+    expect(wrapper.attributes('data-rig-scroll-area')).toBe('')
   })
 
   it('contains a scroll viewport', () => {
@@ -559,9 +559,8 @@ describe('ScrollArea interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

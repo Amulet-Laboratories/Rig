@@ -93,11 +93,14 @@ function selectSuggestion(suggestion: string) {
   nextTick(() => inputRef.value?.focus())
 }
 
-function onBlur() {
-  // Delay to allow suggestion clicks to fire
-  setTimeout(() => {
-    showSuggestions.value = false
-  }, 150)
+function onBlur(e: FocusEvent) {
+  // If focus is moving to an element within the tag input (e.g. a suggestion),
+  // keep suggestions open — @mousedown.prevent on suggestions handles click registration.
+  const container = (e.currentTarget as HTMLElement)?.closest('[data-rig-tag-input]')
+  if (container && e.relatedTarget instanceof Node && container.contains(e.relatedTarget)) {
+    return
+  }
+  showSuggestions.value = false
 }
 
 function focusInput() {

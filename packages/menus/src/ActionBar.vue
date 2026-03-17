@@ -5,11 +5,12 @@ import type { Action } from '@core/types'
 const props = withDefaults(
   defineProps<{
     /** Action items */
-    actions: Action[]
+    actions?: Action[]
     /** Maximum visible items before overflow to menu */
     maxVisible?: number
   }>(),
   {
+    actions: () => [],
     maxVisible: Infinity,
   },
 )

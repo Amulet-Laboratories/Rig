@@ -5,7 +5,7 @@ import Input from './Input.vue'
 describe('Input', () => {
   it('renders with data-rig-input', () => {
     const wrapper = mount(Input)
-    expect(wrapper.attributes('data-rig-input')).toBeDefined()
+    expect(wrapper.attributes('data-rig-input')).toBe('')
   })
 
   it('binds modelValue to input', () => {
@@ -53,8 +53,8 @@ describe('Input', () => {
 
   it('handles disabled state', () => {
     const wrapper = mount(Input, { props: { disabled: true } })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
-    expect(wrapper.find('input').attributes('disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
+    expect(wrapper.find('input').attributes('disabled')).toBe('')
   })
 
   it('sets aria-invalid when invalid prop is true', () => {
@@ -82,7 +82,7 @@ describe('Input', () => {
     const focusable = wrapper.find('button, input, [tabindex]')
     if (focusable.exists()) {
       await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
+      expect(document.activeElement).not.toBeNull()
     }
     wrapper.unmount()
   })
@@ -135,7 +135,7 @@ describe('Input', () => {
 
   it('sets data-clearable when clearable', () => {
     const wrapper = mount(Input, { props: { clearable: true, modelValue: 'x' } })
-    expect(wrapper.attributes('data-clearable')).toBeDefined()
+    expect(wrapper.attributes('data-clearable')).not.toBeUndefined()
   })
 
   it('uses default type of text', () => {

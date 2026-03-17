@@ -9,14 +9,20 @@
   @apply text-foreground;
 }
 
+[data-rig-timeline-scrubber][data-disabled] {
+  @apply opacity-40 pointer-events-none;
+}
+
 [data-rig-timeline-scrubber-track] {
   @apply bg-foreground/10;
   border-radius: 2px;
+  cursor: pointer;
 }
 
 [data-rig-timeline-scrubber-fill] {
   background: var(--domain-accent, var(--color-primary));
   border-radius: 2px;
+  transition: width 0.1s ease;
 }
 
 [data-rig-timeline-scrubber-thumb] {
@@ -24,9 +30,17 @@
   border: 2px solid var(--color-foreground);
   border-radius: 50%;
   box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+  transition:
+    left 0.1s ease,
+    transform 0.15s ease;
 }
 
-[data-rig-timeline-scrubber-marker] {
+[data-rig-timeline-scrubber-thumb]:hover,
+[data-rig-timeline-scrubber][data-dragging] [data-rig-timeline-scrubber-thumb] {
+  transform: scale(1.2);
+}
+
+[data-rig-timeline-scrubber-value] {
   @apply text-xs text-muted-foreground font-mono;
 }
 
@@ -36,22 +50,56 @@
   @apply text-foreground;
 }
 
-[data-rig-playback-controls] button {
+[data-rig-playback-controls-buttons] {
+  @apply inline-flex items-center;
+  gap: 0.25rem;
+}
+
+[data-rig-playback-controls-skip-back],
+[data-rig-playback-controls-play],
+[data-rig-playback-controls-skip-forward] {
   @apply bg-transparent border-none text-foreground
          hover:text-primary transition-colors;
   padding: 0.25rem;
-}
-
-[data-rig-playback-controls] button[data-active] {
-  @apply text-primary;
-}
-
-[data-rig-playback-controls] button[data-disabled] {
-  @apply opacity-30 pointer-events-none;
+  cursor: pointer;
 }
 
 [data-rig-playback-controls-speed] {
+  @apply text-xs text-muted-foreground font-mono
+         bg-transparent border-none hover:text-primary transition-colors;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+[data-rig-playback-controls-track] {
+  @apply bg-foreground/10;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+[data-rig-playback-controls-track]:hover {
+  @apply bg-foreground/15;
+}
+
+[data-rig-playback-controls-progress] {
+  background: var(--domain-accent, var(--color-primary));
+  border-radius: 2px;
+  transition: width 0.1s ease;
+}
+
+[data-rig-playback-controls-time] {
   @apply text-xs text-muted-foreground font-mono;
+}
+
+[data-rig-playback-controls-current],
+[data-rig-playback-controls-duration] {
+  @apply text-xs font-mono;
+}
+
+[data-rig-playback-controls-separator] {
+  @apply text-xs text-muted-foreground font-mono;
+  opacity: 0.5;
 }
 
 /* ───────── AnimatedChart ───────── */
@@ -60,10 +108,47 @@
   @apply text-foreground;
 }
 
-[data-rig-animated-chart] path,
-[data-rig-animated-chart] rect,
-[data-rig-animated-chart] circle {
-  transition: all 0.3s ease;
+[data-rig-animated-chart-canvas] {
+  display: block;
+}
+
+[data-rig-animated-chart-bar] {
+  fill: var(--domain-accent, var(--color-primary));
+  transition:
+    height 0.3s ease,
+    y 0.3s ease;
+}
+
+[data-rig-animated-chart-bar]:hover {
+  opacity: 0.85;
+}
+
+[data-rig-animated-chart-line] {
+  stroke: var(--domain-accent, var(--color-primary));
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: d 0.3s ease;
+}
+
+[data-rig-animated-chart-controls] {
+  @apply flex items-center gap-2;
+}
+
+[data-rig-animated-chart-play] {
+  @apply bg-transparent border-none text-foreground
+         hover:text-primary transition-colors;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+[data-rig-animated-chart-label] {
+  @apply text-xs text-muted-foreground font-mono;
+}
+
+[data-rig-animated-chart-counter] {
+  @apply text-xs text-muted-foreground font-mono;
 }
 
 /* ───────── TemporalHeatmap ───────── */
@@ -72,24 +157,35 @@
   @apply text-foreground;
 }
 
-[data-rig-temporal-heatmap] rect[data-rig-temporal-heatmap-cell] {
+[data-rig-temporal-heatmap-time-labels] text,
+[data-rig-temporal-heatmap-category-labels] text {
+  fill: var(--color-muted-foreground);
+  @apply font-mono text-xs;
+}
+
+[data-rig-temporal-heatmap-cells] {
+  /* group wrapper — no visual styles needed */
+}
+
+[data-rig-temporal-heatmap-cell] {
   stroke: var(--color-background);
   stroke-width: 1;
   rx: 2;
   transition: opacity 0.15s ease;
 }
 
-[data-rig-temporal-heatmap] rect[data-rig-temporal-heatmap-cell]:hover {
+[data-rig-temporal-heatmap-cell]:hover {
   opacity: 0.85;
-}
-
-[data-rig-temporal-heatmap] text {
-  fill: var(--color-muted-foreground);
-  @apply font-mono text-xs;
+  cursor: pointer;
 }
 
 /* ───────── ParticleField ───────── */
 
 [data-rig-particle-field] {
   @apply bg-background;
+  overflow: hidden;
+}
+
+[data-rig-particle-field-canvas] {
+  display: block;
 }

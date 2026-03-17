@@ -13,6 +13,9 @@ const props = defineProps<{
   items: MenubarEntry[]
 }>()
 
+/**
+ * @emits select
+ */
 const emit = defineEmits<{
   select: [action: Action]
 }>()
@@ -244,22 +247,24 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
         :data-state="openIndex === index ? 'open' : 'closed'"
         @keydown="onMenuKeydown($event, index)"
       >
-        <button
-          v-for="item in entry.items"
-          :key="item.id"
-          data-rig-menubar-item
-          role="menuitem"
-          :data-disabled="item.disabled || undefined"
-          :disabled="item.disabled"
-          @click="selectItem(item, index)"
-        >
-          <slot name="item" :item="item">
-            <span data-rig-menubar-item-label>{{ item.label }}</span>
-            <span v-if="item.keybinding" data-rig-menubar-item-keybinding>
-              {{ item.keybinding }}
-            </span>
-          </slot>
-        </button>
+        <template v-for="item in entry.items" :key="item.id">
+          <hr v-if="item.separator" data-rig-menubar-separator role="separator" />
+          <button
+            v-else
+            data-rig-menubar-item
+            role="menuitem"
+            :data-disabled="item.disabled || undefined"
+            :disabled="item.disabled"
+            @click="selectItem(item, index)"
+          >
+            <slot name="item" :item="item">
+              <span data-rig-menubar-item-label>{{ item.label }}</span>
+              <span v-if="item.keybinding" data-rig-menubar-item-keybinding>
+                {{ item.keybinding }}
+              </span>
+            </slot>
+          </button>
+        </template>
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@ import ProgressRing from './ProgressRing.vue'
 describe('ProgressRing', () => {
   it('renders with data-rig-progress-ring', () => {
     const wrapper = mount(ProgressRing)
-    expect(wrapper.attributes('data-rig-progress-ring')).toBeDefined()
+    expect(wrapper.attributes('data-rig-progress-ring')).toBe('')
   })
 
   it('has progressbar role', () => {
@@ -88,9 +88,8 @@ describe('ProgressRing interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

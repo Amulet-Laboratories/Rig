@@ -1,33 +1,38 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const {
-  id,
-  modelValue = '',
-  placeholder,
-  disabled,
-  rows = 4,
-  resize = 'vertical' as const,
-  maxlength = 0,
-} = defineProps<{
-  /** DOM id for the textarea element (enables external <label for=""> linkage) */
-  id?: string
-  /** Bound value */
-  modelValue?: string
-  /** Placeholder text */
-  placeholder?: string
-  /** Whether the textarea is disabled */
-  disabled?: boolean
-  /** Number of visible text rows */
-  rows?: number
-  /** Whether the user can resize */
-  resize?: 'none' | 'vertical' | 'horizontal' | 'both'
-  /** Maximum character count (0 = unlimited) */
-  maxlength?: number
-  /** Accessible label for the textarea (when no visible <label> is provided) */
-  ariaLabel?: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    /** DOM id for the textarea element (enables external <label for=""> linkage) */
+    id?: string
+    /** Bound value */
+    modelValue?: string
+    /** Placeholder text */
+    placeholder?: string
+    /** Whether the textarea is disabled */
+    disabled?: boolean
+    /** Number of visible text rows */
+    rows?: number
+    /** Whether the user can resize */
+    resize?: 'none' | 'vertical' | 'horizontal' | 'both'
+    /** Maximum character count (0 = unlimited) */
+    maxlength?: number
+    /** Accessible label for the textarea (when no visible <label> is provided) */
+    ariaLabel?: string
+  }>(),
+  {
+    modelValue: '',
+    rows: 4,
+    resize: 'vertical',
+    maxlength: 0,
+  },
+)
 
+/**
+ * @emits update:modelValue
+ * @emits focus
+ * @emits blur
+ */
 const emit = defineEmits<{
   'update:modelValue': [value: string]
   focus: [event: FocusEvent]
@@ -53,25 +58,25 @@ defineExpose({ focus })
     data-rig-textarea
     role="group"
     aria-label="Text input"
-    :data-disabled="disabled || undefined"
+    :data-disabled="props.disabled || undefined"
   >
     <textarea
-      :id="id"
+      :id="props.id"
       ref="textareaRef"
-      :value="modelValue"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :rows="rows"
-      :aria-label="ariaLabel"
-      :maxlength="maxlength || undefined"
-      :style="{ resize }"
+      :value="props.modelValue"
+      :placeholder="props.placeholder"
+      :disabled="props.disabled"
+      :rows="props.rows"
+      :aria-label="props.ariaLabel"
+      :maxlength="props.maxlength || undefined"
+      :style="{ resize: props.resize }"
       @input="onInput"
       @focus="$emit('focus', $event)"
       @blur="$emit('blur', $event)"
       @keydown.escape="textareaRef?.blur()"
     />
-    <div v-if="maxlength > 0" data-rig-textarea-count>
-      {{ modelValue.length }} / {{ maxlength }}
+    <div v-if="props.maxlength > 0" data-rig-textarea-count>
+      {{ props.modelValue.length }} / {{ props.maxlength }}
     </div>
   </div>
 </template>

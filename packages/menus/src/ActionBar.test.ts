@@ -60,7 +60,7 @@ describe('ActionBar', () => {
   it('marks disabled actions', () => {
     const wrapper = factory()
     const items = wrapper.findAll('[data-rig-action-bar-item]')
-    expect(items[4]!.attributes('disabled')).toBeDefined()
+    expect(items[4]!.attributes('disabled')).toBe('')
     expect(items[4]!.attributes('data-disabled')).toBe('true')
   })
 

@@ -21,7 +21,7 @@ function factory(modelValue = 'a') {
 describe('Tabs', () => {
   it('renders with data-rig-tabs', () => {
     const wrapper = factory()
-    expect(wrapper.attributes('data-rig-tabs')).toBeDefined()
+    expect(wrapper.attributes('data-rig-tabs')).toBe('')
   })
 
   it('has a tablist with correct role and orientation', () => {

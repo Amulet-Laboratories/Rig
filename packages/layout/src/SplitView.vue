@@ -25,18 +25,13 @@ const emit = defineEmits<{
   'update:sizes': [sizes: number[]]
 }>()
 
-function onKeydown(e: KeyboardEvent) {
-  if (!props.resizable) return
-  const delta =
-    e.key === 'ArrowRight' || e.key === 'ArrowDown'
-      ? 10
-      : e.key === 'ArrowLeft' || e.key === 'ArrowUp'
-        ? -10
-        : 0
-  if (delta) {
-    e.preventDefault()
-    onResize(0, { delta })
-  }
+defineSlots<Record<string, (props: Record<string, unknown>) => unknown>>()
+
+function getResizerValueNow(index: number): number {
+  const total = props.sizes.reduce((a, b) => a + b, 0)
+  if (!total) return 50
+  const before = props.sizes.slice(0, index + 1).reduce((a, b) => a + b, 0)
+  return Math.round((before / total) * 100)
 }
 
 function onResize(index: number, payload: { delta: number }) {
@@ -62,7 +57,6 @@ function onResize(index: number, payload: { delta: number }) {
     role="group"
     aria-label="Split view"
     :data-orientation="orientation"
-    @keydown="onKeydown"
   >
     <template v-for="(size, i) in sizes" :key="i">
       <div
@@ -78,6 +72,7 @@ function onResize(index: number, payload: { delta: number }) {
       <Resizer
         v-if="resizable && i < sizes.length - 1"
         :orientation="orientation"
+        :valuenow="getResizerValueNow(i)"
         @drag="(payload) => onResize(i, payload)"
       />
     </template>

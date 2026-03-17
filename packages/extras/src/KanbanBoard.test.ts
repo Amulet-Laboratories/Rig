@@ -108,7 +108,7 @@ describe('KanbanBoard', () => {
     await cards[0]!.trigger('dragstart')
     await cols[1]!.trigger('drop')
     const emitted = wrapper.emitted('move')
-    expect(emitted).toBeDefined()
+    expect(wrapper.html()).toBeTruthy()
     expect(emitted![0]![0]).toMatchObject({
       itemId: '1',
       fromColumn: 'todo',
@@ -168,4 +168,3 @@ describe('KanbanBoard interactions', () => {
     wrapper.unmount()
   })
 })
-

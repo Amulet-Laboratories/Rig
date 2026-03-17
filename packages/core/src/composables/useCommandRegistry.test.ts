@@ -112,7 +112,6 @@ describe('useCommandRegistry', () => {
   it('does not throw when executing command without handler', () => {
     const wrapper = createProvider()
     const r = wrapper.vm.registry
-    // @ts-expect-error — handler intentionally omitted
     r.register({ id: 'cmd-no-handler', label: 'No Handler' })
     expect(() => r.execute('cmd-no-handler')).not.toThrow()
   })

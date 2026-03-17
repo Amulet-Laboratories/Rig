@@ -1,8 +1,7 @@
-import { onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { isMacPlatform } from './usePlatform'
 
-const isMac = typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.userAgent)
-
-function normalizeKey(key: string): string {
+function normalizeKey(key: string, isMac: boolean): string {
   return key
     .split('+')
     .map((k) => {
@@ -44,29 +43,36 @@ function isTextInput(el: EventTarget | null): boolean {
  *
  * Keys use combo format: 'Ctrl+K', 'Cmd+Shift+P', 'Mod+S' (Mod = Cmd on Mac, Ctrl elsewhere).
  * Shortcuts are suppressed when focus is in text inputs, except for Escape and Mod+S.
+ *
+ * Platform detection is deferred to `onMounted` so SSR-rendered pages always resolve the
+ * correct platform on the client rather than using the server's navigator-less `false`.
  */
 export function useKeyboard(shortcuts: Record<string, () => void>) {
   const normalizedMap = new Map<string, () => void>()
-
-  for (const [combo, handler] of Object.entries(shortcuts)) {
-    normalizedMap.set(normalizeKey(combo), handler)
-  }
-
-  const allowedInInput = new Set(['escape', normalizeKey('Mod+S')])
+  const allowedInInput = new Set<string>(['escape'])
+  const activeShortcutsRef = ref<string[]>([])
 
   function onKeyDown(e: KeyboardEvent) {
     const combo = eventToCombo(e)
     const handler = normalizedMap.get(combo)
-
     if (!handler) return
-
     if (isTextInput(e.target) && !allowedInInput.has(combo)) return
-
     e.preventDefault()
-    handler()
+    try {
+      handler()
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(`[useKeyboard] handler for "${combo}" threw:`, err)
+    }
   }
 
   onMounted(() => {
+    const isMac = isMacPlatform()
+    for (const [combo, handler] of Object.entries(shortcuts)) {
+      normalizedMap.set(normalizeKey(combo, isMac), handler)
+    }
+    allowedInInput.add(normalizeKey('Mod+S', isMac))
+    activeShortcutsRef.value = Array.from(normalizedMap.keys())
     window.addEventListener('keydown', onKeyDown)
   })
 
@@ -75,6 +81,6 @@ export function useKeyboard(shortcuts: Record<string, () => void>) {
   })
 
   return {
-    activeShortcuts: computed(() => Array.from(normalizedMap.keys())),
+    activeShortcuts: computed(() => activeShortcutsRef.value),
   }
 }

@@ -5,7 +5,7 @@ import Card from './Card.vue'
 describe('Card', () => {
   it('renders with data-rig-card', () => {
     const wrapper = mount(Card, { slots: { default: 'Hello' } })
-    expect(wrapper.attributes('data-rig-card')).toBeDefined()
+    expect(wrapper.attributes('data-rig-card')).toBe('')
     expect(wrapper.text()).toBe('Hello')
   })
 
@@ -17,7 +17,7 @@ describe('Card', () => {
   it('renders as button when interactive', () => {
     const wrapper = mount(Card, { props: { interactive: true } })
     expect(wrapper.element.tagName).toBe('BUTTON')
-    expect(wrapper.attributes('data-interactive')).toBeDefined()
+    expect(wrapper.attributes('data-interactive')).not.toBeUndefined()
     expect(wrapper.attributes('type')).toBe('button')
   })
 
@@ -83,9 +83,8 @@ describe('Card interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

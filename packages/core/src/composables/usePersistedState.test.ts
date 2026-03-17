@@ -69,4 +69,52 @@ describe('usePersistedState', () => {
     const state = usePersistedState('bad-key', 'fallback', storage)
     expect(state.value).toBe('fallback')
   })
+
+  it('survives storage quota exceeded on write', async () => {
+    const storage = createMockStorage()
+    const original = storage.setItem.bind(storage)
+    let shouldThrow = false
+    storage.setItem = (key: string, value: string) => {
+      if (shouldThrow) throw new DOMException('QuotaExceededError')
+      original(key, value)
+    }
+
+    const state = usePersistedState('quota-key', 'hello', storage)
+    shouldThrow = true
+    state.value = 'too-large'
+    await nextTick()
+    vi.advanceTimersByTime(150)
+
+    // State still reflects the in-memory value even though storage write failed
+    expect(state.value).toBe('too-large')
+    // Storage still has no persisted value for this key
+    expect(storage.getItem('quota-key')).toBeNull()
+  })
+
+  it('ignores malformed cross-tab storage events', async () => {
+    const storage = createMockStorage()
+    const state = usePersistedState('cross-key', { x: 1 }, storage)
+
+    // Dispatch a storage event with invalid JSON
+    window.dispatchEvent(
+      new StorageEvent('storage', {
+        key: 'cross-key',
+        newValue: '{not valid json!!!',
+      }),
+    )
+    await nextTick()
+
+    // Value should remain unchanged
+    expect(state.value).toEqual({ x: 1 })
+  })
+
+  it('uses initial value when no storage is available (SSR)', () => {
+    // Pass undefined explicitly to simulate SSR (no localStorage)
+    const state = usePersistedState('ssr-key', 'default', undefined as unknown as Storage)
+    expect(state.value).toBe('default')
+
+    // Mutations still work in-memory
+    state.value = 'updated'
+    expect(state.value).toBe('updated')
+  })
 })

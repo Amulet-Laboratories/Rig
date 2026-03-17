@@ -13,6 +13,8 @@ const props = withDefaults(
     strokeWidth?: number
     /** Whether to show area fill */
     fill?: boolean
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     data: () => [],
@@ -20,6 +22,7 @@ const props = withDefaults(
     height: 32,
     strokeWidth: 2,
     fill: false,
+    responsive: false,
   },
 )
 
@@ -51,8 +54,8 @@ const areaD = computed(() => {
 <template>
   <svg
     data-rig-sparkline
-    :width="width"
-    :height="height"
+    :width="responsive ? undefined : width"
+    :height="responsive ? undefined : height"
     :viewBox="`0 0 ${width} ${height}`"
     role="img"
     aria-label="Sparkline chart"

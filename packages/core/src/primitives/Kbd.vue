@@ -1,7 +1,14 @@
 <script setup lang="ts">
-defineProps<{
-  /** Keyboard key or shortcut text to display */
-  keys?: string
+withDefaults(
+  defineProps<{
+    /** Keyboard key or shortcut text to display */
+    keys?: string
+  }>(),
+  {},
+)
+
+defineSlots<{
+  default(props: Record<string, never>): unknown
 }>()
 </script>
 

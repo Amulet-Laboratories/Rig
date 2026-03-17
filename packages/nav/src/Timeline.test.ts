@@ -11,7 +11,7 @@ describe('Timeline', () => {
 
   it('renders with data-rig-timeline', () => {
     const wrapper = mount(Timeline, { props: { items } })
-    expect(wrapper.attributes('data-rig-timeline')).toBeDefined()
+    expect(wrapper.attributes('data-rig-timeline')).toBe('')
   })
 
   it('renders all items', () => {

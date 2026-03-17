@@ -14,11 +14,17 @@ export interface KanbanColumn {
   items: KanbanItem[]
 }
 
-defineProps<{
-  /** Column definitions with items */
-  columns?: KanbanColumn[]
-}>()
+withDefaults(
+  defineProps<{
+    /** Column definitions with items */
+    columns?: KanbanColumn[]
+  }>(),
+  { columns: () => [] },
+)
 
+/**
+ * @emits move
+ */
 const emit = defineEmits<{
   move: [payload: { itemId: string; fromColumn: string; toColumn: string; index: number }]
 }>()

@@ -1,5 +1,13 @@
 import { ref } from 'vue'
 
+/**
+ * @remarks **SSR warning:** `toasts` is module-level singleton state.
+ * In Node.js SSR environments (Nuxt, Quasar SSR), modules are cached across
+ * requests in the same process — toast state will bleed between users.
+ * Do not call `toast.add()` on the server. Gate all calls with
+ * `if (typeof window !== 'undefined')` or restrict usage to client-only components.
+ */
+
 export interface ToastOptions {
   id?: string
   message: string

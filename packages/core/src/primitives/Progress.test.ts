@@ -6,7 +6,7 @@ describe('Progress', () => {
   it('renders with progressbar role', () => {
     const wrapper = mount(Progress, { props: { value: 50 } })
     expect(wrapper.attributes('role')).toBe('progressbar')
-    expect(wrapper.attributes('data-rig-progress')).toBeDefined()
+    expect(wrapper.attributes('data-rig-progress')).toBe('')
   })
 
   it('sets aria-valuenow', () => {
@@ -37,7 +37,7 @@ describe('Progress', () => {
 
   it('handles indeterminate state', () => {
     const wrapper = mount(Progress, { props: { indeterminate: true } })
-    expect(wrapper.attributes('data-indeterminate')).toBeDefined()
+    expect(wrapper.attributes('data-indeterminate')).not.toBeUndefined()
     expect(wrapper.attributes('aria-valuenow')).toBeUndefined()
   })
 
@@ -78,9 +78,8 @@ describe('Progress interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

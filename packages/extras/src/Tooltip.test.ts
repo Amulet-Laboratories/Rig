@@ -96,7 +96,8 @@ describe('Tooltip', () => {
 describe('Tooltip interactions', () => {
   it('responds to keyboard events', async () => {
     const wrapper = mount(Tooltip, {
-      props: { content: 'Tip' }, attachTo: document.body,
+      props: { content: 'Tip' },
+      attachTo: document.body,
     })
     const el = wrapper.find('[tabindex], input, button, [role]')
     const target = el.exists() ? el : wrapper
@@ -110,7 +111,8 @@ describe('Tooltip interactions', () => {
 
   it('can emit events', async () => {
     const wrapper = mount(Tooltip, {
-      props: { content: 'Tip' }, attachTo: document.body,
+      props: { content: 'Tip' },
+      attachTo: document.body,
     })
     const clickable = wrapper.find('button, [role="button"], [tabindex], a')
     if (clickable.exists()) {
@@ -118,9 +120,7 @@ describe('Tooltip interactions', () => {
     } else {
       await wrapper.trigger('click')
     }
-    const events = wrapper.emitted()
-    expect(events).toBeDefined()
+    expect(wrapper.html()).toBeTruthy()
     wrapper.unmount()
   })
 })
-

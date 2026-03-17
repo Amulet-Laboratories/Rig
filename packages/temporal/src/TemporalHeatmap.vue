@@ -35,6 +35,9 @@ const props = withDefaults(
   },
 )
 
+/**
+ * @emits cell-click
+ */
 const emit = defineEmits<{
   'cell-click': [cell: TemporalHeatmapCell]
 }>()

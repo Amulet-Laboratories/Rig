@@ -5,7 +5,7 @@ import Dot from './Dot.vue'
 describe('Dot', () => {
   it('renders with data-rig-dot', () => {
     const wrapper = mount(Dot)
-    expect(wrapper.attributes('data-rig-dot')).toBeDefined()
+    expect(wrapper.attributes('data-rig-dot')).toBe('')
   })
 
   it('sets default size to md', () => {
@@ -22,7 +22,7 @@ describe('Dot', () => {
 
   it('applies pulse attribute when enabled', () => {
     const wrapper = mount(Dot, { props: { pulse: true } })
-    expect(wrapper.attributes('data-pulse')).toBeDefined()
+    expect(wrapper.attributes('data-pulse')).not.toBeUndefined()
   })
 
   it('does not apply pulse attribute when disabled', () => {
@@ -60,7 +60,7 @@ describe('Dot', () => {
   it('reflects pulse prop in data attribute', async () => {
     const wrapper = mount(Dot, { props: { pulse: false } })
     await wrapper.setProps({ pulse: true })
-    expect(wrapper.attributes('data-pulse')).toBeDefined()
+    expect(wrapper.attributes('data-pulse')).not.toBeUndefined()
   })
 })
 
@@ -78,9 +78,8 @@ describe('Dot interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

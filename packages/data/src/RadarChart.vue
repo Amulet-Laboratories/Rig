@@ -22,12 +22,15 @@ const props = withDefaults(
     size?: number
     /** Number of concentric rings */
     rings?: number
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     axes: () => [],
     series: () => [],
     size: 300,
     rings: 5,
+    responsive: false,
   },
 )
 
@@ -98,8 +101,8 @@ const seriesPaths = computed(() =>
 <template>
   <svg
     data-rig-radar-chart
-    :width="size"
-    :height="size"
+    :width="responsive ? undefined : size"
+    :height="responsive ? undefined : size"
     :viewBox="`0 0 ${size} ${size}`"
     role="img"
     aria-label="Radar chart"
@@ -133,14 +136,14 @@ const seriesPaths = computed(() =>
       <path
         data-rig-radar-chart-area
         :d="p.d"
-        :fill="p.series.color ?? 'currentColor'"
+        :style="p.series.color ? { fill: p.series.color } : undefined"
         :opacity="'var(--rig-chart-fill-opacity, 0.15)'"
       />
       <path
         data-rig-radar-chart-line
         :d="p.d"
         fill="none"
-        :stroke="p.series.color ?? 'currentColor'"
+        :style="p.series.color ? { stroke: p.series.color } : undefined"
         :stroke-width="'var(--rig-chart-stroke-width, 2)'"
       />
     </g>

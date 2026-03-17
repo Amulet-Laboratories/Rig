@@ -134,9 +134,8 @@ describe('ScatterPlot interactions', () => {
       ;(focusable.element as HTMLElement).focus()
       expect(document.activeElement).toBe(focusable.element)
     } else {
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

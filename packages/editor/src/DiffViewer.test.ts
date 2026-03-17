@@ -5,7 +5,7 @@ import DiffViewer from './DiffViewer.vue'
 describe('DiffViewer', () => {
   it('renders with data-rig-diff-viewer', () => {
     const wrapper = mount(DiffViewer)
-    expect(wrapper.attributes('data-rig-diff-viewer')).toBeDefined()
+    expect(wrapper.attributes('data-rig-diff-viewer')).toBe('')
   })
 
   it('defaults to unified mode', () => {
@@ -88,9 +88,7 @@ describe('DiffViewer interactions', () => {
     } else {
       await wrapper.trigger('click')
     }
-    const events = wrapper.emitted()
-    expect(events).toBeDefined()
+    expect(wrapper.html()).toBeTruthy()
     wrapper.unmount()
   })
 })
-

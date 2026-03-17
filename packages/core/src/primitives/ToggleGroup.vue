@@ -46,7 +46,7 @@ defineSlots<{
     toggle: (value: string) => void
     disabled: boolean
   }) => unknown
-  item: (props: { item: ToggleItem; pressed: boolean; disabled: boolean }) => unknown
+  item?: (props: { item: ToggleItem; pressed: boolean; disabled: boolean }) => unknown
 }>()
 
 function isPressed(value: string): boolean {
@@ -118,7 +118,12 @@ function onKeydown(e: KeyboardEvent) {
         @click="toggle(item.value)"
         @keydown.enter.prevent="toggle(item.value)"
       >
-        <slot name="item" :item="item" :pressed="isPressed(item.value)" :disabled="disabled || !!item.disabled">
+        <slot
+          name="item"
+          :item="item"
+          :pressed="isPressed(item.value)"
+          :disabled="disabled || !!item.disabled"
+        >
           {{ item.label ?? item.value }}
         </slot>
       </button>

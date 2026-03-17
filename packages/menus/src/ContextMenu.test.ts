@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import ContextMenu from './ContextMenu.vue'
 import type { Action } from '@core/types'
@@ -24,9 +24,15 @@ function factory(props: Partial<InstanceType<typeof ContextMenu>['$props']> = {}
 }
 
 describe('ContextMenu', () => {
-  it('renders nothing when closed', () => {
+  afterEach(() => {
+    document.querySelectorAll('[data-rig-context-menu]').forEach((el) => el.remove())
+  })
+
+  it('hides menu when closed', () => {
     const wrapper = factory({ open: false })
-    expect(wrapper.find('[data-rig-context-menu]').exists()).toBe(false)
+    const menu = document.querySelector('[data-rig-context-menu]') as HTMLElement
+    expect(menu).not.toBeNull()
+    expect(menu.style.display).toBe('none')
     wrapper.unmount()
   })
 
@@ -129,11 +135,71 @@ describe('ContextMenu', () => {
     wrapper.unmount()
   })
 
-  it('renders menu when open prop changes to true', async () => {
+  it('shows menu when open prop changes to true', async () => {
     const wrapper = factory({ open: false })
-    expect(document.querySelector('[data-rig-context-menu]')).toBeNull()
+    const menu = document.querySelector('[data-rig-context-menu]') as HTMLElement
+    expect(menu.style.display).toBe('none')
     await wrapper.setProps({ open: true })
-    expect(document.querySelector('[data-rig-context-menu]')).not.toBeNull()
+    expect(menu.style.display).not.toBe('none')
+    wrapper.unmount()
+  })
+
+  it('sets inert and aria-hidden when closed', () => {
+    const wrapper = factory({ open: false })
+    const menu = document.querySelector('[data-rig-context-menu]') as HTMLElement
+    expect(menu.getAttribute('aria-hidden')).toBe('true')
+    expect(menu.hasAttribute('inert')).toBe(true)
+    wrapper.unmount()
+  })
+
+  it('removes inert and aria-hidden when open', () => {
+    const wrapper = factory({ open: true })
+    const menu = document.querySelector('[data-rig-context-menu]') as HTMLElement
+    expect(menu.hasAttribute('aria-hidden')).toBe(false)
+    expect(menu.hasAttribute('inert')).toBe(false)
+    wrapper.unmount()
+  })
+
+  it('sets data-state to reflect open/closed', async () => {
+    const wrapper = factory({ open: false })
+    const menu = document.querySelector('[data-rig-context-menu]') as HTMLElement
+    expect(menu.getAttribute('data-state')).toBe('closed')
+    await wrapper.setProps({ open: true })
+    expect(menu.getAttribute('data-state')).toBe('open')
+    wrapper.unmount()
+  })
+
+  it('closes on click outside the menu', async () => {
+    const wrapper = factory({ open: false })
+    await wrapper.setProps({ open: true })
+    const outside = document.createElement('div')
+    document.body.appendChild(outside)
+    outside.click()
+    await new Promise((r) => setTimeout(r, 0))
+    expect(wrapper.emitted('update:open')?.[0]).toEqual([false])
+    outside.remove()
+    wrapper.unmount()
+  })
+
+  it('selects item on Enter key', async () => {
+    const wrapper = factory()
+    const menu = document.querySelector('[data-rig-context-menu]')!
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
+    await new Promise((r) => setTimeout(r, 0))
+    expect(wrapper.emitted('select')?.[0]).toEqual([actions[0]])
+    wrapper.unmount()
+  })
+
+  it('navigates up with ArrowUp key', async () => {
+    const wrapper = factory()
+    const menu = document.querySelector('[data-rig-context-menu]')!
+    // Start at 0, go down then up
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }))
+    menu.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }))
+    await new Promise((r) => setTimeout(r, 0))
+    // Should be back at index 0
+    const items = menu.querySelectorAll('[role="menuitem"]')
+    expect(items[0]!.getAttribute('data-highlighted')).toBe('true')
     wrapper.unmount()
   })
 })

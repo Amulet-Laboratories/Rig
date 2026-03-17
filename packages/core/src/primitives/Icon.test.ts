@@ -5,7 +5,7 @@ import Icon from './Icon.vue'
 describe('Icon', () => {
   it('renders with data-rig-icon', () => {
     const wrapper = mount(Icon)
-    expect(wrapper.attributes('data-rig-icon')).toBeDefined()
+    expect(wrapper.attributes('data-rig-icon')).toBe('')
   })
 
   it('defaults to md size', () => {
@@ -58,7 +58,7 @@ describe('Icon', () => {
   it('updates data-rig-icon attribute on prop change', async () => {
     const wrapper = mount(Icon, { props: { icon: 'home' } })
     await wrapper.setProps({ icon: 'close' })
-    expect(wrapper.attributes('data-rig-icon')).toBeDefined()
+    expect(wrapper.attributes('data-rig-icon')).toBe('')
   })
 })
 
@@ -76,9 +76,8 @@ describe('Icon interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

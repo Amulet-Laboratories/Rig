@@ -5,7 +5,7 @@ import Label from './Label.vue'
 describe('Label', () => {
   it('renders with data-rig-label', () => {
     const wrapper = mount(Label)
-    expect(wrapper.attributes('data-rig-label')).toBeDefined()
+    expect(wrapper.attributes('data-rig-label')).toBe('')
   })
 
   it('renders as a <label> element', () => {
@@ -20,7 +20,7 @@ describe('Label', () => {
 
   it('sets data-disabled when disabled', () => {
     const wrapper = mount(Label, { props: { disabled: true } })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
   })
 
   it('does not set data-disabled when not disabled', () => {
@@ -70,9 +70,8 @@ describe('Label interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

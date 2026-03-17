@@ -19,8 +19,20 @@ const props = withDefaults(
   },
 )
 
+/**
+ * @emits update:sizes
+ */
 const emit = defineEmits<{
   'update:sizes': [sizes: { sideWidth: number; panelHeight: number }]
+}>()
+
+defineSlots<{
+  'titlebar'?(props: Record<string, never>): unknown
+  'activity'?(props: Record<string, never>): unknown
+  'sidebar'?(props: Record<string, never>): unknown
+  'editor'?(props: Record<string, never>): unknown
+  'panel'?(props: Record<string, never>): unknown
+  'statusbar'?(props: Record<string, never>): unknown
 }>()
 
 // Snapshot sizes at drag start — apply absolute delta against these

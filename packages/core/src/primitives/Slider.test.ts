@@ -5,7 +5,7 @@ import Slider from './Slider.vue'
 describe('Slider', () => {
   it('renders with data-rig-slider', () => {
     const wrapper = mount(Slider, { props: { modelValue: 0 } })
-    expect(wrapper.attributes('data-rig-slider')).toBeDefined()
+    expect(wrapper.attributes('data-rig-slider')).toBe('')
   })
 
   it('contains a range input', () => {
@@ -45,8 +45,8 @@ describe('Slider', () => {
 
   it('sets data-disabled when disabled', () => {
     const wrapper = mount(Slider, { props: { modelValue: 0, disabled: true } })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
-    expect(wrapper.find('input').attributes('disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
+    expect(wrapper.find('input').attributes('disabled')).toBe('')
   })
 
   it('emits update:modelValue when input changes', async () => {
@@ -72,7 +72,8 @@ describe('Slider', () => {
 describe('Slider interactions', () => {
   it('responds to keyboard events', async () => {
     const wrapper = mount(Slider, {
-      props: { modelValue: 50 }, attachTo: document.body,
+      props: { modelValue: 50 },
+      attachTo: document.body,
     })
     const el = wrapper.find('[tabindex], input, button, [role]')
     const target = el.exists() ? el : wrapper
@@ -84,4 +85,3 @@ describe('Slider interactions', () => {
     wrapper.unmount()
   })
 })
-

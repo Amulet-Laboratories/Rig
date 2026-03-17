@@ -28,6 +28,15 @@ export interface ShellConfig {
   defaultActivity?: string
   /** Called when active tab changes — use for URL sync */
   onActiveTabChange?: (tab: TabItem | null) => void
+
+  /** Seed the open tabs on first render (not persisted) */
+  initialTabs?: TabItem[]
+  /** Seed the active tab ID on first render (not persisted) */
+  initialActiveTabId?: ID | null
+  /** Override the persisted panel-visible default */
+  initialPanelVisible?: boolean
+  /** Override the persisted panel-tab default */
+  initialPanelTab?: string
 }
 
 // ── Shell state interface ──

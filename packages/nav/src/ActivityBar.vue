@@ -45,7 +45,7 @@ function onItemClick(action: Action) {
 function onItemMouseEnter(e: MouseEvent, action: Action) {
   tooltip.show(
     e.currentTarget as HTMLElement,
-    action.label,
+    action.label ?? '',
     props.orientation === 'vertical' ? 'right' : 'bottom',
   )
 }

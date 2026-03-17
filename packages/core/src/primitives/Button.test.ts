@@ -5,7 +5,7 @@ import Button from './Button.vue'
 describe('Button', () => {
   it('renders with data-rig-button', () => {
     const wrapper = mount(Button, { slots: { default: 'Click me' } })
-    expect(wrapper.attributes('data-rig-button')).toBeDefined()
+    expect(wrapper.attributes('data-rig-button')).toBe('')
     expect(wrapper.text()).toBe('Click me')
   })
 
@@ -19,15 +19,15 @@ describe('Button', () => {
 
   it('handles disabled state', () => {
     const wrapper = mount(Button, { props: { disabled: true } })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
-    expect(wrapper.attributes('disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
+    expect(wrapper.attributes('disabled')).toBe('')
   })
 
   it('handles loading state', () => {
     const wrapper = mount(Button, { props: { loading: true } })
-    expect(wrapper.attributes('data-loading')).toBeDefined()
+    expect(wrapper.attributes('data-loading')).not.toBeUndefined()
     expect(wrapper.attributes('aria-busy')).toBe('true')
-    expect(wrapper.attributes('disabled')).toBeDefined()
+    expect(wrapper.attributes('disabled')).toBe('')
   })
 
   it('emits click event', async () => {
@@ -95,7 +95,7 @@ describe('Button icon-only mode', () => {
     const wrapper = mount(Button, {
       props: { ariaLabel: 'Close', icon: 'X' },
     })
-    expect(wrapper.attributes('data-icon-only')).toBeDefined()
+    expect(wrapper.attributes('data-icon-only')).not.toBeUndefined()
   })
 
   it('does not set data-icon-only when default slot is provided', () => {
@@ -143,14 +143,14 @@ describe('Button icon-only mode', () => {
     const wrapper = mount(Button, {
       props: { ariaLabel: 'Close', icon: 'X', disabled: true },
     })
-    expect(wrapper.find('button').attributes('disabled')).toBeDefined()
+    expect(wrapper.find('button').attributes('disabled')).toBe('')
   })
 
   it('handles loading state', () => {
     const wrapper = mount(Button, {
       props: { ariaLabel: 'Close', icon: 'X', loading: true },
     })
-    expect(wrapper.find('button').attributes('disabled')).toBeDefined()
+    expect(wrapper.find('button').attributes('disabled')).toBe('')
   })
 
   it('does not emit click when disabled', async () => {

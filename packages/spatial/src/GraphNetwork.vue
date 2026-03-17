@@ -29,6 +29,8 @@ const props = withDefaults(
     height?: number
     /** Whether to show labels */
     showLabels?: boolean
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     nodes: () => [],
@@ -36,9 +38,14 @@ const props = withDefaults(
     width: 500,
     height: 400,
     showLabels: true,
+    responsive: false,
   },
 )
 
+/**
+ * @emits node-click
+ * @emits edge-click
+ */
 const emit = defineEmits<{
   'node-click': [node: GraphNode]
   'edge-click': [edge: GraphEdge]
@@ -93,13 +100,11 @@ const edgeLines = computed(
 <template>
   <svg
     data-rig-graph-network
-    :width="width"
-    :height="height"
+    :width="responsive ? undefined : width"
+    :height="responsive ? undefined : height"
     :viewBox="`0 0 ${width} ${height}`"
-    role="img"
+    role="group"
     aria-label="Network graph"
-    tabindex="0"
-    @keydown.stop
   >
     <!-- Edges -->
     <line
@@ -122,7 +127,10 @@ const edgeLines = computed(
       data-rig-graph-network-node
       role="button"
       :aria-label="node.label ?? node.id"
+      tabindex="0"
       @click="emit('node-click', node)"
+      @keydown.enter.prevent="emit('node-click', node)"
+      @keydown.space.prevent="emit('node-click', node)"
     >
       <circle
         data-rig-graph-network-node-circle

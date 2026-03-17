@@ -11,7 +11,7 @@ const items = [
 describe('PropertyGrid', () => {
   it('renders with data-rig-property-grid', () => {
     const wrapper = mount(PropertyGrid, { props: { items } })
-    expect(wrapper.attributes('data-rig-property-grid')).toBeDefined()
+    expect(wrapper.attributes('data-rig-property-grid')).toBe('')
   })
 
   it('renders a row per item', () => {
@@ -27,7 +27,7 @@ describe('PropertyGrid', () => {
 
   it('sets mono data attribute', () => {
     const wrapper = mount(PropertyGrid, { props: { items: [items[1]!] } })
-    expect(wrapper.find('[data-rig-property-value]').attributes('data-mono')).toBeDefined()
+    expect(wrapper.find('[data-rig-property-value]').attributes('data-mono')).not.toBeUndefined()
   })
 
   it('applies keyWidth style', () => {
@@ -81,7 +81,8 @@ describe('PropertyGrid', () => {
 describe('PropertyGrid interactions', () => {
   it('responds to keyboard events', async () => {
     const wrapper = mount(PropertyGrid, {
-      props: { items: [{ key: 'Name', value: 'Test' }] }, attachTo: document.body,
+      props: { items: [{ key: 'Name', value: 'Test' }] },
+      attachTo: document.body,
     })
     const el = wrapper.find('[tabindex], input, button, [role]')
     const target = el.exists() ? el : wrapper
@@ -95,7 +96,8 @@ describe('PropertyGrid interactions', () => {
 
   it('can emit events', async () => {
     const wrapper = mount(PropertyGrid, {
-      props: { items: [{ key: 'Name', value: 'Test' }] }, attachTo: document.body,
+      props: { items: [{ key: 'Name', value: 'Test' }] },
+      attachTo: document.body,
     })
     const clickable = wrapper.find('button, [role="button"], [tabindex], a')
     if (clickable.exists()) {
@@ -103,9 +105,7 @@ describe('PropertyGrid interactions', () => {
     } else {
       await wrapper.trigger('click')
     }
-    const events = wrapper.emitted()
-    expect(events).toBeDefined()
+    expect(wrapper.html()).toBeTruthy()
     wrapper.unmount()
   })
 })
-

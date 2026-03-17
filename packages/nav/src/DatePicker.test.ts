@@ -5,7 +5,7 @@ import DatePicker from './DatePicker.vue'
 describe('DatePicker', () => {
   it('renders with data-rig-date-picker', () => {
     const wrapper = mount(DatePicker)
-    expect(wrapper.attributes('data-rig-date-picker')).toBeDefined()
+    expect(wrapper.attributes('data-rig-date-picker')).toBe('')
   })
 
   it('shows placeholder when no value', () => {
@@ -55,7 +55,7 @@ describe('DatePicker', () => {
       .findAll('[data-rig-date-picker-day]')
       .filter((d) => !d.attributes('disabled'))
     await enabledDays[0]!.trigger('click')
-    expect(wrapper.emitted('update:modelValue')).toBeDefined()
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
     expect(typeof wrapper.emitted('update:modelValue')![0]![0]).toBe('string')
   })
 
@@ -108,9 +108,9 @@ describe('DatePicker', () => {
   it('marks selected date with data-selected', async () => {
     const wrapper = mount(DatePicker, { props: { modelValue: '2025-01-15' } })
     await wrapper.find('[data-rig-date-picker-trigger]').trigger('click')
-    const selected = wrapper.findAll('[data-rig-date-picker-day]').filter(
-      (d) => d.attributes('data-selected') !== undefined,
-    )
+    const selected = wrapper
+      .findAll('[data-rig-date-picker-day]')
+      .filter((d) => d.attributes('data-selected') !== undefined)
     expect(selected.length).toBeGreaterThan(0)
   })
 
@@ -126,9 +126,9 @@ describe('DatePicker', () => {
       props: { modelValue: '2025-01-15', disabledDates: ['2025-01-10'] },
     })
     await wrapper.find('[data-rig-date-picker-trigger]').trigger('click')
-    const disabled = wrapper.findAll('[data-rig-date-picker-day]').filter(
-      (d) => d.attributes('data-disabled') !== undefined,
-    )
+    const disabled = wrapper
+      .findAll('[data-rig-date-picker-day]')
+      .filter((d) => d.attributes('data-disabled') !== undefined)
     expect(disabled.length).toBeGreaterThan(0)
   })
 })

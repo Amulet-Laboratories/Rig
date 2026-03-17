@@ -5,12 +5,15 @@ export interface PropertyItem {
   mono?: boolean
 }
 
-defineProps<{
-  /** Array of key/value items to display */
-  items: PropertyItem[]
-  /** Width of the key column (CSS value) */
-  keyWidth?: string
-}>()
+withDefaults(
+  defineProps<{
+    /** Array of key/value items to display */
+    items: PropertyItem[]
+    /** Width of the key column (CSS value) */
+    keyWidth?: string
+  }>(),
+  {},
+)
 
 defineSlots<{
   [key: string]: (props: { item: PropertyItem }) => unknown

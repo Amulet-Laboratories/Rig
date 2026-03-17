@@ -1,0 +1,97 @@
+/* Hex — Garden Design Tokens
+ * Warm illustrative palette inspired by Garden Estudio's brand identity.
+ * Deep purple background, warm cream text, rose accents.
+ * Dark mode marketing theme — suited for portfolio and showcase sites.
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #372d3b;
+  --color-foreground: #ffffde;
+  --color-card: #c4415d;
+  --color-card-foreground: #ffffde;
+  --color-popover: #372d3b;
+  --color-popover-foreground: #ffffde;
+
+  /* Brand */
+  --color-primary: #d94362;
+  --color-primary-foreground: #ffffde;
+
+  /* Soft accents */
+  --color-secondary: #4f3043;
+  --color-secondary-foreground: #ffffde;
+  --color-muted: #4f3043;
+  --color-muted-foreground: #c9b8a8;
+  --color-accent: #c4415d;
+  --color-accent-foreground: #ffffde;
+
+  /* Semantic status */
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffde;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+
+  /* Borders and focus */
+  --color-border: #4f3043;
+  --color-input: #4f3043;
+  --color-ring: #d94362;
+
+  /* Typography */
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+  --font-sans: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
+  --font-serif: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
+
+  /* Radius */
+  --radius: 7px;
+}
+
+:root {
+  --background: #372d3b;
+  --foreground: #ffffde;
+  --card: #c4415d;
+  --card-foreground: #ffffde;
+  --popover: #372d3b;
+  --popover-foreground: #ffffde;
+  --primary: #d94362;
+  --primary-foreground: #ffffde;
+  --secondary: #4f3043;
+  --secondary-foreground: #ffffde;
+  --muted: #4f3043;
+  --muted-foreground: #c9b8a8;
+  --accent: #c4415d;
+  --accent-foreground: #ffffde;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffde;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+  --border: #4f3043;
+  --input: #4f3043;
+  --ring: #d94362;
+  --radius: 7px;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+  --font-sans: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
+  --font-serif: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
+
+  /* Named palette aliases for direct template use */
+  --garden-purple: #372d3b;
+  --garden-cream: #ffffde;
+  --garden-rose: #d94362;
+  --garden-border: #4f3043;
+
+  /* ── Rig component token bridge ─────────────────────────────────────────
+   * Overrides shared/tokens.css defaults where the Garden palette needs
+   * values that can't be derived directly from --color-* semantics.
+   */
+
+  /* Button — rose primary darkened ~15% for hover feedback */
+  --rig-button-hover-bg: #b93953;
+
+  /* Scrollbar — warm cream tint instead of neutral gray */
+  --rig-scrollbar-thumb: rgba(255, 255, 222, 0.18);
+  --rig-scrollbar-thumb-hover: rgba(255, 255, 222, 0.35);
+}

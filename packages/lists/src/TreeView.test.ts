@@ -18,7 +18,7 @@ const nodes: TreeNode[] = [
 describe('TreeView', () => {
   it('renders with data-rig-tree and tree role', () => {
     const wrapper = mount(TreeView, { props: { nodes } })
-    expect(wrapper.attributes('data-rig-tree')).toBeDefined()
+    expect(wrapper.attributes('data-rig-tree')).toBe('')
     expect(wrapper.attributes('role')).toBe('tree')
   })
 
@@ -51,7 +51,7 @@ describe('TreeView', () => {
     })
     const items = wrapper.findAll('[data-rig-tree-node]')
     expect(items[0]!.attributes('data-leaf')).toBeUndefined() // src is not leaf
-    expect(items[1]!.attributes('data-leaf')).toBeDefined() // App.vue is leaf
+    expect(items[1]!.attributes('data-leaf')).not.toBeUndefined() // App.vue is leaf
   })
 
   it('sets aria-level', () => {
@@ -101,7 +101,7 @@ describe('TreeView', () => {
 
   it('sets data-virtual attribute when virtual=true', () => {
     const wrapper = mount(TreeView, { props: { nodes, virtual: true } })
-    expect(wrapper.attributes('data-virtual')).toBeDefined()
+    expect(wrapper.attributes('data-virtual')).not.toBeUndefined()
   })
 
   it('does not set data-virtual when virtual=false', () => {

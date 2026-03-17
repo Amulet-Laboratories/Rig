@@ -79,7 +79,7 @@ describe('SankeyDiagram', () => {
     const linkEls = wrapper.findAll('[data-rig-sankey-diagram-link]')
     if (linkEls.length > 0) {
       await linkEls[0]!.trigger('click')
-      expect(wrapper.emitted('link-click')).toBeDefined()
+      expect(wrapper.emitted('link-click')).toBeTruthy()
     }
   })
 
@@ -95,14 +95,18 @@ describe('SankeyDiagram', () => {
     const wrapper = mount(SankeyDiagram, {
       props: { nodes, links, width: 800, height: 600 },
     })
-    const viewBox = wrapper.find('svg').attributes('viewBox') ?? wrapper.find('svg').attributes('viewbox')
+    const viewBox =
+      wrapper.find('svg').attributes('viewBox') ?? wrapper.find('svg').attributes('viewbox')
     expect(viewBox).toBe('0 0 800 600')
   })
 
   it('applies node color to rect fill', () => {
     const wrapper = mount(SankeyDiagram, {
       props: {
-        nodes: [{ id: 'a', label: 'A', color: '#ff0000' }, { id: 'b', label: 'B' }],
+        nodes: [
+          { id: 'a', label: 'A', color: '#ff0000' },
+          { id: 'b', label: 'B' },
+        ],
         links: [{ source: 'a', target: 'b', value: 10 }],
       },
     })
@@ -143,9 +147,8 @@ describe('SankeyDiagram interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

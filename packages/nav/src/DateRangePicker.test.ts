@@ -5,7 +5,7 @@ import DateRangePicker from './DateRangePicker.vue'
 describe('DateRangePicker', () => {
   it('renders with data-rig-date-range-picker', () => {
     const wrapper = mount(DateRangePicker)
-    expect(wrapper.attributes('data-rig-date-range-picker')).toBeDefined()
+    expect(wrapper.attributes('data-rig-date-range-picker')).toBe('')
   })
 
   it('shows placeholders when no value', () => {
@@ -49,7 +49,7 @@ describe('DateRangePicker', () => {
       .findAll('[data-rig-date-range-picker-day]')
       .filter((d) => !d.attributes('disabled'))
     await enabledDays[0]!.trigger('click')
-    expect(wrapper.emitted('update:modelValue')).toBeDefined()
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
     expect(wrapper.emitted('update:modelValue')![0]![0]).toBeInstanceOf(Array)
   })
 

@@ -6,7 +6,7 @@ import { h } from 'vue'
 describe('Accordion', () => {
   it('renders with data-rig-accordion', () => {
     const wrapper = mount(Accordion, { props: { modelValue: '' } })
-    expect(wrapper.attributes('data-rig-accordion')).toBeDefined()
+    expect(wrapper.attributes('data-rig-accordion')).toBe('')
   })
 
   it('sets data-type attribute', () => {
@@ -16,7 +16,7 @@ describe('Accordion', () => {
 
   it('sets data-disabled when disabled', () => {
     const wrapper = mount(Accordion, { props: { modelValue: '', disabled: true } })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
   })
 
   it('exposes isOpen returning true for open item in single mode', () => {

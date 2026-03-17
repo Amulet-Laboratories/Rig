@@ -8,7 +8,7 @@ describe('EditorTab', () => {
 
   it('renders with data-rig-editor-tab and tab role', () => {
     const wrapper = mount(EditorTab, { props: { tab } })
-    expect(wrapper.attributes('data-rig-editor-tab')).toBeDefined()
+    expect(wrapper.attributes('data-rig-editor-tab')).toBe('')
     expect(wrapper.attributes('role')).toBe('tab')
   })
 
@@ -27,7 +27,7 @@ describe('EditorTab', () => {
     const wrapper = mount(EditorTab, {
       props: { tab: { ...tab, dirty: true } },
     })
-    expect(wrapper.attributes('data-dirty')).toBeDefined()
+    expect(wrapper.attributes('data-dirty')).not.toBeUndefined()
     expect(wrapper.find('[data-rig-editor-tab-dirty]').exists()).toBe(true)
   })
 

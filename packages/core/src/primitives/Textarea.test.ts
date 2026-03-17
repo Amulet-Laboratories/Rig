@@ -5,7 +5,7 @@ import Textarea from './Textarea.vue'
 describe('Textarea', () => {
   it('renders with data-rig-textarea', () => {
     const wrapper = mount(Textarea)
-    expect(wrapper.attributes('data-rig-textarea')).toBeDefined()
+    expect(wrapper.attributes('data-rig-textarea')).toBe('')
   })
 
   it('binds modelValue to textarea', () => {
@@ -28,8 +28,8 @@ describe('Textarea', () => {
 
   it('handles disabled state', () => {
     const wrapper = mount(Textarea, { props: { disabled: true } })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
-    expect(wrapper.find('textarea').attributes('disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
+    expect(wrapper.find('textarea').attributes('disabled')).toBe('')
   })
 
   it('sets rows attribute', () => {
@@ -115,7 +115,7 @@ describe('Textarea', () => {
 
   it('sets data-disabled when disabled', () => {
     const wrapper = mount(Textarea, { props: { disabled: true } })
-    expect(wrapper.find('[data-rig-textarea]').attributes('data-disabled')).toBeDefined()
+    expect(wrapper.find('[data-rig-textarea]').attributes('data-disabled')).not.toBeUndefined()
   })
 })
 
@@ -125,7 +125,8 @@ describe('Textarea', () => {
 describe('Textarea interactions', () => {
   it('responds to keyboard events', async () => {
     const wrapper = mount(Textarea, {
-      props: { modelValue: 'hello' }, attachTo: document.body,
+      props: { modelValue: 'hello' },
+      attachTo: document.body,
     })
     const el = wrapper.find('[tabindex], input, button, [role]')
     const target = el.exists() ? el : wrapper
@@ -137,4 +138,3 @@ describe('Textarea interactions', () => {
     wrapper.unmount()
   })
 })
-

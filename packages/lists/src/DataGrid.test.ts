@@ -14,7 +14,7 @@ describe('DataGrid', () => {
 
   it('renders with data-rig-data-grid', () => {
     const wrapper = mount(DataGrid, { props: { columns, rows } })
-    expect(wrapper.attributes('data-rig-data-grid')).toBeDefined()
+    expect(wrapper.attributes('data-rig-data-grid')).toBe('')
   })
 
   it('renders header cells', () => {
@@ -114,7 +114,8 @@ describe('DataGrid', () => {
 describe('DataGrid interactions', () => {
   it('supports focus management', async () => {
     const wrapper = mount(DataGrid, {
-      props: { columns: [{ key: 'name', label: 'Name' }], rows: [{ name: 'Test' }] }, attachTo: document.body,
+      props: { columns: [{ key: 'name', label: 'Name' }], rows: [{ name: 'Test' }] },
+      attachTo: document.body,
     })
     const focusable = wrapper.find('[tabindex], input, button, a')
     if (focusable.exists()) {
@@ -132,13 +133,16 @@ describe('DataGrid interactions', () => {
       { key: 'name', label: 'Name', sortable: true },
       { key: 'type', label: 'Type' },
     ]
-    const rows = [{ name: 'B', type: 'x' }, { name: 'A', type: 'y' }]
+    const rows = [
+      { name: 'B', type: 'x' },
+      { name: 'A', type: 'y' },
+    ]
     const wrapper = mount(DataGrid, { props: { columns, rows } })
     await wrapper.findAll('[data-rig-data-grid-header-cell]')[0]!.trigger('click')
     // data-sorted should be set
-    expect(
-      wrapper.findAll('[data-rig-data-grid-header-cell]')[0]!.attributes('data-sorted'),
-    ).toBe('asc')
+    expect(wrapper.findAll('[data-rig-data-grid-header-cell]')[0]!.attributes('data-sorted')).toBe(
+      'asc',
+    )
     wrapper.unmount()
   })
 
@@ -158,9 +162,9 @@ describe('DataGrid interactions', () => {
     const rows = [{ name: 'B' }, { name: 'A' }]
     const wrapper = mount(DataGrid, { props: { columns, rows } })
     await wrapper.findAll('[data-rig-data-grid-header-cell]')[0]!.trigger('keydown.enter')
-    expect(
-      wrapper.findAll('[data-rig-data-grid-header-cell]')[0]!.attributes('aria-sort'),
-    ).toBe('ascending')
+    expect(wrapper.findAll('[data-rig-data-grid-header-cell]')[0]!.attributes('aria-sort')).toBe(
+      'ascending',
+    )
     wrapper.unmount()
   })
 
@@ -169,9 +173,9 @@ describe('DataGrid interactions', () => {
     const rows = [{ name: 'B' }, { name: 'A' }]
     const wrapper = mount(DataGrid, { props: { columns, rows } })
     await wrapper.findAll('[data-rig-data-grid-header-cell]')[0]!.trigger('keydown.space')
-    expect(
-      wrapper.findAll('[data-rig-data-grid-header-cell]')[0]!.attributes('aria-sort'),
-    ).toBe('ascending')
+    expect(wrapper.findAll('[data-rig-data-grid-header-cell]')[0]!.attributes('aria-sort')).toBe(
+      'ascending',
+    )
     wrapper.unmount()
   })
 
@@ -279,4 +283,3 @@ describe('DataGrid interactions', () => {
     wrapper.unmount()
   })
 })
-

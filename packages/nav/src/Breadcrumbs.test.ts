@@ -11,7 +11,7 @@ const items = [
 describe('Breadcrumbs', () => {
   it('renders with data-rig-breadcrumbs and breadcrumb aria-label', () => {
     const wrapper = mount(Breadcrumbs, { props: { items } })
-    expect(wrapper.attributes('data-rig-breadcrumbs')).toBeDefined()
+    expect(wrapper.attributes('data-rig-breadcrumbs')).toBe('')
     expect(wrapper.attributes('aria-label')).toBe('Breadcrumb')
   })
 

@@ -8,38 +8,115 @@
 [data-rig-map-canvas] {
   @apply bg-card border border-border/50;
   border-radius: var(--radius);
+  cursor: grab;
+  user-select: none;
+}
+
+[data-rig-map-canvas][data-dragging] {
+  cursor: grabbing;
 }
 
 [data-rig-map-canvas-viewport] {
   @apply bg-card;
 }
 
+[data-rig-map-canvas-grid] {
+  stroke: var(--color-border);
+  opacity: 0.1;
+}
+
 [data-rig-map-canvas-marker] {
-  @apply text-primary;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
 }
 
-[data-rig-map-canvas-marker][data-active] {
-  @apply text-foreground;
+[data-rig-map-canvas-marker] circle {
+  fill: var(--domain-accent, var(--color-primary));
 }
 
-[data-rig-map-canvas-controls] button {
-  @apply bg-card/90 border border-border text-foreground
-         hover:bg-accent;
-  border-radius: var(--radius);
-  width: 2rem;
-  height: 2rem;
+[data-rig-map-canvas-marker]:hover {
+  opacity: 0.8;
+}
+
+[data-rig-map-canvas-marker]:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+[data-rig-map-canvas-marker-label] {
+  fill: var(--color-foreground);
+  @apply font-mono text-xs;
 }
 
 /* ───────── GlobeView ───────── */
 
 [data-rig-globe-view] {
   @apply bg-background;
+  cursor: grab;
+  user-select: none;
+}
+
+[data-rig-globe-view-sphere] {
+  stroke: var(--color-border);
+  opacity: 0.3;
+}
+
+[data-rig-globe-view-grid] {
+  stroke: var(--color-border);
+  opacity: 0.1;
+}
+
+[data-rig-globe-view-marker] {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-globe-view-marker] circle {
+  fill: var(--domain-accent, var(--color-primary));
+}
+
+[data-rig-globe-view-marker]:hover {
+  opacity: 0.8;
+}
+
+[data-rig-globe-view-marker]:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+[data-rig-globe-view-marker-label] {
+  fill: var(--color-foreground);
+  @apply font-mono text-xs;
 }
 
 /* ───────── ScatterPlot3D ───────── */
 
 [data-rig-scatter-plot-3d] {
   @apply bg-background;
+}
+
+[data-rig-scatter-plot-3d-axes] {
+  opacity: 0.6;
+}
+
+[data-rig-scatter-plot-3d-axis] {
+  stroke: var(--color-muted-foreground);
+  opacity: 0.3;
+}
+
+[data-rig-scatter-plot-3d-axis-label] {
+  fill: var(--color-muted-foreground);
+  @apply font-mono text-xs;
+}
+
+[data-rig-scatter-plot-3d-point] {
+  fill: var(--domain-accent, var(--color-primary));
+  transition: opacity 0.15s ease;
+  cursor: pointer;
+}
+
+[data-rig-scatter-plot-3d-point]:hover {
+  opacity: 1;
 }
 
 /* ───────── GraphNetwork ───────── */
@@ -49,29 +126,59 @@
   border-radius: var(--radius);
 }
 
-[data-rig-graph-network-node] circle {
-  fill: var(--domain-accent, var(--color-primary));
-  stroke: var(--color-foreground);
-  stroke-width: 1;
+[data-rig-graph-network-edge] {
+  stroke: var(--color-border);
+  opacity: 0.3;
+  transition: opacity 0.15s ease;
+  cursor: pointer;
+}
+
+[data-rig-graph-network-edge]:hover {
+  opacity: 0.6;
+}
+
+[data-rig-graph-network-node] {
+  cursor: pointer;
   transition: opacity 0.15s ease;
 }
 
-[data-rig-graph-network-node]:hover circle {
+[data-rig-graph-network-node]:hover {
   opacity: 0.8;
 }
 
-[data-rig-graph-network-node] text {
-  fill: var(--color-foreground);
-  @apply font-mono text-xs;
+[data-rig-graph-network-node]:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
 }
 
-[data-rig-graph-network-edge] line {
-  stroke: var(--color-border);
-  opacity: 0.5;
+[data-rig-graph-network-node-circle] {
+  fill: var(--domain-accent, var(--color-primary));
+  stroke: var(--color-foreground);
+  stroke-width: 1;
+}
+
+[data-rig-graph-network-node-label] {
+  fill: var(--color-foreground);
+  @apply font-mono text-xs;
 }
 
 /* ───────── PointCloud ───────── */
 
 [data-rig-point-cloud] {
   @apply bg-background;
+}
+
+[data-rig-point-cloud-point] {
+  fill: var(--domain-accent, var(--color-primary));
+  transition: opacity 0.15s ease;
+  cursor: pointer;
+}
+
+[data-rig-point-cloud-point]:hover {
+  opacity: 1;
+}
+
+[data-rig-point-cloud-point]:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
 }

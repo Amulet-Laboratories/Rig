@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/hex",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "Multi-theme layer for Rig — curated palettes targeting data-rig-* selectors",
   "license": "MIT",
@@ -9,26 +9,30 @@
     "node": ">=22",
     "pnpm": ">=10"
   },
-  "keywords": ["css", "themes", "design-tokens", "tailwindcss", "vue", "design-system"],
-  "homepage": "https://github.com/Amulet-Laboratories/hex#readme",
+  "keywords": [
+    "css",
+    "themes",
+    "design-tokens",
+    "tailwindcss",
+    "vue",
+    "design-system"
+  ],
+  "homepage": "https://github.com/Amulet-Laboratories/rig/tree/main/hex#readme",
   "bugs": {
-    "url": "https://github.com/Amulet-Laboratories/hex/issues"
+    "url": "https://github.com/Amulet-Laboratories/rig/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Amulet-Laboratories/hex"
+    "url": "https://github.com/Amulet-Laboratories/rig",
+    "directory": "hex"
   },
   "exports": {
     ".": "./dist/hex.css",
     "./source": "./src/index.css",
-    "./hexrig": "./dist/hexrig.css",
-    "./hexrig/source": "./src/themes/hexrig/index.css",
     "./vscode": "./dist/vscode.css",
     "./vscode/source": "./src/themes/vscode/index.css",
-    "./spotify": "./dist/spotify.css",
-    "./spotify/source": "./src/themes/spotify/index.css",
-    "./gmail": "./dist/gmail.css",
-    "./gmail/source": "./src/themes/gmail/index.css"
+    "./garden": "./dist/garden.css",
+    "./garden/source": "./src/themes/garden/index.css"
   },
   "files": [
     "dist",
@@ -37,6 +41,9 @@
   "sideEffects": [
     "*.css"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "node build.mjs",
     "dev": "node build.mjs --watch",
@@ -46,7 +53,7 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
-    "@amulet-laboratories/config": "workspace:*",
+    "@amulet-laboratories/rig-config": "workspace:*",
     "@tailwindcss/postcss": "^4.2.1",
     "cssnano": "^7.1.3",
     "eslint": "^9.20.0",

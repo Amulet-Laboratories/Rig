@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onBeforeUnmount } from 'vue'
+import { ref, computed } from 'vue'
 
 const props = withDefaults(
   defineProps<{
@@ -47,25 +47,23 @@ function snap(val: number): number {
   return Math.round(val / props.step) * props.step
 }
 
-function getValueFromEvent(e: MouseEvent | TouchEvent): number {
+function getValueFromPointerEvent(e: PointerEvent): number {
   if (!trackRef.value) return props.min
   const rect = trackRef.value.getBoundingClientRect()
-  const clientX = 'touches' in e ? e.touches[0]!.clientX : e.clientX
-  const ratio = (clientX - rect.left) / rect.width
+  const ratio = (e.clientX - rect.left) / rect.width
   return snap(clamp(props.min + ratio * (props.max - props.min)))
 }
 
-function onPointerDown(e: MouseEvent, handle: 'start' | 'end') {
+function onPointerDown(e: PointerEvent, handle: 'start' | 'end') {
   if (props.disabled) return
   e.preventDefault()
   dragging.value = handle
-  document.addEventListener('mousemove', onPointerMove)
-  document.addEventListener('mouseup', onPointerUp)
+  ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
 }
 
-function onPointerMove(e: MouseEvent) {
+function onPointerMove(e: PointerEvent) {
   if (!dragging.value) return
-  const val = getValueFromEvent(e)
+  const val = getValueFromPointerEvent(e)
   const [start, end] = props.modelValue
   if (dragging.value === 'start') {
     emit('update:modelValue', [Math.min(val, end), end])
@@ -76,8 +74,6 @@ function onPointerMove(e: MouseEvent) {
 
 function onPointerUp() {
   dragging.value = null
-  document.removeEventListener('mousemove', onPointerMove)
-  document.removeEventListener('mouseup', onPointerUp)
 }
 
 function onKeydown(e: KeyboardEvent, handle: 'start' | 'end') {
@@ -118,11 +114,6 @@ function onKeydown(e: KeyboardEvent, handle: 'start' | 'end') {
       break
   }
 }
-
-onBeforeUnmount(() => {
-  document.removeEventListener('mousemove', onPointerMove)
-  document.removeEventListener('mouseup', onPointerUp)
-})
 </script>
 
 <template>
@@ -151,7 +142,9 @@ onBeforeUnmount(() => {
         :style="{ left: `${percentage.start}%` }"
         :data-state="dragging === 'start' ? 'dragging' : undefined"
         @keydown="onKeydown($event, 'start')"
-        @mousedown="onPointerDown($event, 'start')"
+        @pointerdown="onPointerDown($event, 'start')"
+        @pointermove="onPointerMove"
+        @pointerup="onPointerUp"
       />
       <div
         data-rig-range-slider-thumb
@@ -164,7 +157,9 @@ onBeforeUnmount(() => {
         :style="{ left: `${percentage.end}%` }"
         :data-state="dragging === 'end' ? 'dragging' : undefined"
         @keydown="onKeydown($event, 'end')"
-        @mousedown="onPointerDown($event, 'end')"
+        @pointerdown="onPointerDown($event, 'end')"
+        @pointermove="onPointerMove"
+        @pointerup="onPointerUp"
       />
     </div>
   </div>

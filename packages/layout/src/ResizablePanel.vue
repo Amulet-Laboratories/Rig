@@ -23,8 +23,15 @@ const props = withDefaults(
   },
 )
 
+/**
+ * @emits resize
+ */
 const emit = defineEmits<{
   resize: [size: number]
+}>()
+
+defineSlots<{
+  default(props: Record<string, never>): unknown
 }>()
 
 const panelRef = ref<HTMLElement | null>(null)

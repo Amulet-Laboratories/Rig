@@ -21,7 +21,7 @@ describe('PointCloud', () => {
 
   it('has correct ARIA attributes', () => {
     const wrapper = mount(PointCloud, { props: { data } })
-    expect(wrapper.find('svg').attributes('role')).toBe('img')
+    expect(wrapper.find('svg').attributes('role')).toBe('group')
   })
 
   it('emits point-click on click', async () => {
@@ -43,7 +43,11 @@ describe('PointCloud', () => {
 
   it('handles keyboard navigation', () => {
     const wrapper = mount(PointCloud, { props: { data } })
-    expect(wrapper.find('svg').attributes('tabindex')).toBe('0')
+    // Labeled points are focusable; test data includes one point with label 'A'
+    const labeledPoint = wrapper
+      .findAll('[data-rig-point-cloud-point]')
+      .find((p) => p.attributes('aria-label') === 'A')
+    expect(labeledPoint?.attributes('tabindex')).toBe('0')
   })
 
   it('supports focus management', () => {
@@ -81,15 +85,14 @@ describe('PointCloud interactions', () => {
     const wrapper = mount(PointCloud, {
       attachTo: document.body,
     })
-    const focusable = wrapper.find('[tabindex], input, button, [role], a')
+    const focusable = wrapper.find('[tabindex="0"], input, button, a[href]')
     if (focusable.exists()) {
       ;(focusable.element as HTMLElement).focus()
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

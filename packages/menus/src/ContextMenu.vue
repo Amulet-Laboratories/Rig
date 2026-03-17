@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, watch, nextTick, onUnmounted } from 'vue'
-import { useFloating, flip, shift, offset } from '@floating-ui/vue'
+import { useFloating, shift, offset, autoUpdate } from '@floating-ui/vue'
 import type { Action } from '@core/types'
 
 const props = withDefaults(
@@ -28,6 +28,12 @@ defineSlots<{
   item: (props: { item: Action }) => unknown
 }>()
 
+// Singleton: only one context menu can be open at a time.
+// Each instance broadcasts its id when it opens; others close themselves.
+let _nextId = 0
+const instanceId = ++_nextId
+const OPEN_EVENT = 'rig:context-menu-open'
+
 const menuRef = ref<HTMLElement | null>(null)
 const focusedIndex = ref(0)
 
@@ -39,7 +45,8 @@ const virtualEl = computed(() => ({
 const { floatingStyles } = useFloating(virtualEl, menuRef, {
   strategy: 'fixed',
   placement: 'bottom-start',
-  middleware: [offset(2), flip(), shift({ padding: 8 })],
+  whileElementsMounted: autoUpdate,
+  middleware: [offset(4), shift({ padding: 8, crossAxis: true })],
 })
 
 function close() {
@@ -56,7 +63,7 @@ function selectItem(action: Action) {
 function findNextEnabled(from: number, direction: 1 | -1): number {
   let idx = from + direction
   while (idx >= 0 && idx < props.items.length) {
-    if (!props.items[idx]!.disabled) return idx
+    if (!props.items[idx]!.disabled && !props.items[idx]!.separator) return idx
     idx += direction
   }
   return from
@@ -95,56 +102,74 @@ function onContextMenuOutside(e: MouseEvent) {
   }
 }
 
+function onOtherMenuOpened(e: Event) {
+  if ((e as CustomEvent<{ id?: number }>).detail?.id !== instanceId) {
+    close()
+  }
+}
+
 watch(
   () => props.open,
   (isOpen) => {
+    if (typeof document === 'undefined') return
     if (isOpen) {
+      // Tell every other open instance to close
+      document.dispatchEvent(new CustomEvent(OPEN_EVENT, { detail: { id: instanceId } }))
       focusedIndex.value = 0
       nextTick(() => menuRef.value?.focus())
       document.addEventListener('click', onClickOutside, true)
       document.addEventListener('contextmenu', onContextMenuOutside, true)
+      document.addEventListener(OPEN_EVENT, onOtherMenuOpened)
     } else {
       document.removeEventListener('click', onClickOutside, true)
       document.removeEventListener('contextmenu', onContextMenuOutside, true)
+      document.removeEventListener(OPEN_EVENT, onOtherMenuOpened)
     }
   },
 )
 
 onUnmounted(() => {
+  if (typeof document === 'undefined') return
   document.removeEventListener('click', onClickOutside, true)
   document.removeEventListener('contextmenu', onContextMenuOutside, true)
+  document.removeEventListener(OPEN_EVENT, onOtherMenuOpened)
 })
 </script>
 
 <template>
   <Teleport to="body">
     <div
-      v-if="open"
+      v-show="open"
       ref="menuRef"
       data-rig-context-menu
       role="menu"
       tabindex="-1"
+      :data-state="open ? 'open' : 'closed'"
+      :aria-hidden="!open || undefined"
+      :inert="!open || undefined"
       :style="{ ...floatingStyles, zIndex: 'var(--rig-context-menu-z, 9999)' }"
       @keydown="onKeydown"
     >
-      <button
-        v-for="(item, index) in items"
-        :key="item.id"
-        data-rig-context-menu-item
-        role="menuitem"
-        :data-disabled="item.disabled || undefined"
-        :data-highlighted="focusedIndex === index || undefined"
-        :disabled="item.disabled"
-        :tabindex="index === focusedIndex ? 0 : -1"
-        @click="selectItem(item)"
-      >
-        <slot name="item" :item="item">
-          <span data-rig-context-menu-label>{{ item.label }}</span>
-          <span v-if="item.keybinding" data-rig-context-menu-keybinding>
-            {{ item.keybinding }}
-          </span>
-        </slot>
-      </button>
+      <template v-for="(item, index) in items" :key="item.id">
+        <hr v-if="item.separator" data-rig-context-menu-separator role="separator" />
+        <button
+          v-else
+          data-rig-context-menu-item
+          role="menuitem"
+          :data-disabled="item.disabled || undefined"
+          :data-highlighted="focusedIndex === index || undefined"
+          :disabled="item.disabled"
+          :tabindex="index === focusedIndex ? 0 : -1"
+          @click="selectItem(item)"
+        >
+          <slot name="item" :item="item">
+            <span data-rig-context-menu-label>{{ item.label }}</span>
+            <span v-if="item.keybinding" data-rig-context-menu-keybinding>
+              {{ item.keybinding }}
+            </span>
+          </slot>
+        </button>
+      </template>
     </div>
   </Teleport>
 </template>

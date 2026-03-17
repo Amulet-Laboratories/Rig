@@ -5,11 +5,13 @@ import type { TabItem, ID } from '@core/types'
 const props = withDefaults(
   defineProps<{
     /** Available tabs */
-    tabs: TabItem[]
+    tabs?: TabItem[]
     /** Currently active tab ID */
     activeId?: ID
   }>(),
-  {},
+  {
+    tabs: () => [],
+  },
 )
 
 const emit = defineEmits<{

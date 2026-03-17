@@ -160,7 +160,10 @@ function onPointerUp() {
       :transform="`translate(${marker.x}, ${marker.y})`"
       role="button"
       :aria-label="marker.label ?? `${marker.lat}, ${marker.lng}`"
+      tabindex="0"
       @click="emit('marker-click', marker)"
+      @keydown.enter.prevent="emit('marker-click', marker)"
+      @keydown.space.prevent="emit('marker-click', marker)"
     >
       <circle :r="'var(--rig-chart-marker-radius, 4)'" :fill="marker.color ?? 'currentColor'" />
       <text

@@ -6,7 +6,7 @@ import { nextTick } from 'vue'
 describe('Resizer', () => {
   it('renders with data-rig-resizer and separator role', () => {
     const wrapper = mount(Resizer)
-    expect(wrapper.attributes('data-rig-resizer')).toBeDefined()
+    expect(wrapper.attributes('data-rig-resizer')).toBe('')
     expect(wrapper.attributes('role')).toBe('separator')
   })
 
@@ -163,7 +163,7 @@ describe('Resizer', () => {
       el.dispatchEvent(new MouseEvent('pointermove', { clientX: 130, clientY: 50 }))
 
       const dragEvents = wrapper.emitted('drag')
-      expect(dragEvents).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
       expect(dragEvents![0]![0]).toEqual(
         expect.objectContaining({ delta: expect.any(Number), position: expect.any(Number) }),
       )

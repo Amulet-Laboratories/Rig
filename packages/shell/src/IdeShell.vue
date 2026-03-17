@@ -41,10 +41,14 @@ defineSlots<{
   titlebar?: (props: { shell: ShellState }) => unknown
   activity?: (props: { shell: ShellState }) => unknown
   sidebar?: (props: { shell: ShellState; activity: string }) => unknown
+  /** Full editor area, bypasses EditorWorkbench entirely */
+  'editor-area'?: (props: { shell: ShellState }) => unknown
   editor?: (props: { activeTab: TabItem | undefined; shell: ShellState }) => unknown
   'editor-empty'?: (props: { shell: ShellState }) => unknown
   welcome?: (props: { shell: ShellState }) => unknown
   settings?: (props: { shell: ShellState }) => unknown
+  /** Full panel area, bypasses PanelBar entirely */
+  'panel-area'?: (props: { shell: ShellState }) => unknown
   panel?: (props: { shell: ShellState; activePanelTab: string }) => unknown
   statusbar?: (props: { shell: ShellState }) => unknown
   aux?: (props: { shell: ShellState }) => unknown
@@ -101,7 +105,8 @@ defineExpose({ shell })
     </template>
 
     <template #editor>
-      <slot v-if="shell.settingsOpen.value" name="settings" :shell="shell" />
+      <slot v-if="$slots['editor-area']" name="editor-area" :shell="shell" />
+      <slot v-else-if="shell.settingsOpen.value" name="settings" :shell="shell" />
       <EditorWorkbench
         v-else
         :tabs="shell.openTabs.value"
@@ -122,7 +127,8 @@ defineExpose({ shell })
     </template>
 
     <template #panel>
-      <slot name="panel" :shell="shell" :active-panel-tab="shell.activePanelTab.value">
+      <slot v-if="$slots['panel-area']" name="panel-area" :shell="shell" />
+      <slot v-else name="panel" :shell="shell" :active-panel-tab="shell.activePanelTab.value">
         <PanelBar
           v-if="shell.panelVisible.value"
           :tabs="panelTabs"

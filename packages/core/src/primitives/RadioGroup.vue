@@ -37,7 +37,7 @@ const emit = defineEmits<{
 
 defineSlots<{
   default: (props: { modelValue?: string; disabled: boolean }) => unknown
-  option: (props: { option: RadioOption; checked: boolean; disabled: boolean }) => unknown
+  option?: (props: { option: RadioOption; checked: boolean; disabled: boolean }) => unknown
 }>()
 
 function onKeydown(e: KeyboardEvent) {
@@ -107,7 +107,12 @@ function onKeydown(e: KeyboardEvent) {
           :disabled="disabled || opt.disabled"
           @change="emit('update:modelValue', opt.value)"
         />
-        <slot name="option" :option="opt" :checked="modelValue === opt.value" :disabled="disabled || !!opt.disabled">
+        <slot
+          name="option"
+          :option="opt"
+          :checked="modelValue === opt.value"
+          :disabled="disabled || !!opt.disabled"
+        >
           {{ opt.label ?? opt.value }}
         </slot>
       </label>

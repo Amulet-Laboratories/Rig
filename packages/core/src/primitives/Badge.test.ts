@@ -5,7 +5,7 @@ import Badge from './Badge.vue'
 describe('Badge', () => {
   it('renders with data-rig-badge', () => {
     const wrapper = mount(Badge, { slots: { default: '3' } })
-    expect(wrapper.attributes('data-rig-badge')).toBeDefined()
+    expect(wrapper.attributes('data-rig-badge')).toBe('')
     expect(wrapper.text()).toBe('3')
   })
 
@@ -30,7 +30,7 @@ describe('Badge', () => {
 
   it('renders with data-rig-badge attribute', () => {
     const wrapper = mount(Badge)
-    expect(wrapper.attributes('data-rig-badge')).toBeDefined()
+    expect(wrapper.attributes('data-rig-badge')).toBe('')
   })
 
   it('updates variant attribute on prop change', async () => {
@@ -54,9 +54,8 @@ describe('Badge interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

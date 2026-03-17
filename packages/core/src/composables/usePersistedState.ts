@@ -39,8 +39,10 @@ export function usePersistedState<T>(key: string, initial: T, storage?: Storage)
     { deep: true },
   )
 
-  // Cross-tab sync
-  if (typeof window !== 'undefined') {
+  // Cross-tab sync — only registered within a component/effect scope so the
+  // listener is always cleaned up. Outside a scope (e.g. a Pinia store) the
+  // listener would leak permanently, so we skip it there intentionally.
+  if (typeof window !== 'undefined' && getCurrentScope()) {
     const onStorage = (e: StorageEvent) => {
       if (e.key !== key || !e.newValue) return
       try {
@@ -50,9 +52,7 @@ export function usePersistedState<T>(key: string, initial: T, storage?: Storage)
       }
     }
     window.addEventListener('storage', onStorage)
-    if (getCurrentScope()) {
-      onScopeDispose(() => window.removeEventListener('storage', onStorage))
-    }
+    onScopeDispose(() => window.removeEventListener('storage', onStorage))
   }
 
   return state

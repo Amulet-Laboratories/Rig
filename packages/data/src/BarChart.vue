@@ -21,6 +21,8 @@ const props = withDefaults(
     showLabels?: boolean
     /** Whether to show values */
     showValues?: boolean
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     data: () => [],
@@ -29,9 +31,13 @@ const props = withDefaults(
     orientation: 'vertical',
     showLabels: true,
     showValues: false,
+    responsive: false,
   },
 )
 
+/**
+ * @emits bar-click
+ */
 const emit = defineEmits<{
   'bar-click': [item: BarChartDataPoint, index: number]
 }>()
@@ -82,8 +88,8 @@ const bars = computed(() => {
 <template>
   <svg
     data-rig-bar-chart
-    :width="width"
-    :height="height"
+    :width="responsive ? undefined : width"
+    :height="responsive ? undefined : height"
     :viewBox="`0 0 ${width} ${height}`"
     role="img"
     aria-label="Bar chart"
@@ -103,7 +109,7 @@ const bars = computed(() => {
           :y="bar.y"
           :width="bar.width"
           :height="bar.height"
-          :fill="bar.color ?? 'currentColor'"
+          :style="bar.color ? { fill: bar.color } : undefined"
           role="graphics-symbol"
           :aria-label="`${bar.label}: ${bar.value}`"
         />

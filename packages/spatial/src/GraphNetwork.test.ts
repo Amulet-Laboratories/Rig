@@ -48,7 +48,7 @@ describe('GraphNetwork', () => {
 
   it('has correct ARIA attributes', () => {
     const wrapper = mount(GraphNetwork, { props: { nodes, edges } })
-    expect(wrapper.find('svg').attributes('role')).toBe('img')
+    expect(wrapper.find('svg').attributes('role')).toBe('group')
   })
 
   it('handles keyboard navigation', () => {
@@ -58,7 +58,7 @@ describe('GraphNetwork', () => {
 
   it('supports focus management', () => {
     const wrapper = mount(GraphNetwork, { props: { nodes, edges } })
-    expect(wrapper.find('svg').attributes('tabindex')).toBe('0')
+    expect(wrapper.findAll('[data-rig-graph-network-node]')[0]!.attributes('tabindex')).toBe('0')
   })
 
   it('reacts to prop updates', async () => {
@@ -91,15 +91,14 @@ describe('GraphNetwork interactions', () => {
     const wrapper = mount(GraphNetwork, {
       attachTo: document.body,
     })
-    const focusable = wrapper.find('[tabindex], input, button, [role], a')
+    const focusable = wrapper.find('[tabindex="0"], input, button, a[href]')
     if (focusable.exists()) {
       ;(focusable.element as HTMLElement).focus()
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

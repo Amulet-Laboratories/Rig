@@ -1,0 +1,119 @@
+/* Hex — Default Rig Component Token Bridge
+ *
+ * Maps every --rig-* semantic token to a sensible --color-* default.
+ * Themes inherit these automatically — they only need to override values
+ * where the theme's visual identity diverges from the generic mapping.
+ *
+ * VSCode overrides nearly all of these for 1:1 IDE fidelity.
+ * Hexrig and Garden override only a handful (hover-bg, scrollbar).
+ */
+
+:root {
+  /* ── Button ──────────────────────────────────────────────────── */
+  --rig-button-bg: var(--color-primary);
+  --rig-button-fg: var(--color-primary-foreground);
+  --rig-button-hover-bg: var(--color-primary);
+  --rig-button-border: transparent;
+  --rig-button-secondary-bg: transparent;
+  --rig-button-secondary-fg: var(--color-foreground);
+  --rig-button-secondary-hover-bg: var(--color-accent);
+
+  /* ── Input / Textarea ────────────────────────────────────────── */
+  --rig-input-bg: var(--color-secondary);
+  --rig-input-border: var(--color-input);
+  --rig-input-fg: var(--color-foreground);
+  --rig-input-placeholder: var(--color-muted-foreground);
+
+  /* ── Dropdown / Select ───────────────────────────────────────── */
+  --rig-dropdown-bg: var(--color-secondary);
+  --rig-dropdown-border: var(--color-input);
+  --rig-dropdown-fg: var(--color-foreground);
+  --rig-dropdown-list-bg: var(--color-background);
+
+  /* ── Checkbox / Radio ────────────────────────────────────────── */
+  --rig-checkbox-bg: var(--color-secondary);
+  --rig-checkbox-border: var(--color-input);
+
+  /* ── Badge ───────────────────────────────────────────────────── */
+  --rig-badge-bg: var(--color-secondary);
+  --rig-badge-fg: var(--color-foreground);
+
+  /* ── Description / Muted text ────────────────────────────────── */
+  --rig-description-fg: var(--color-muted-foreground);
+
+  /* ── Keybinding ──────────────────────────────────────────────── */
+  --rig-keybinding-fg: var(--color-foreground);
+
+  /* ── Progress ────────────────────────────────────────────────── */
+  --rig-progress-bg: var(--color-primary);
+
+  /* ── List / Tree ─────────────────────────────────────────────── */
+  --rig-list-hover-bg: var(--color-accent);
+  --rig-list-active-bg: var(--color-primary);
+  --rig-list-active-fg: var(--color-primary-foreground);
+  --rig-list-inactive-bg: var(--color-accent);
+
+  /* ── Activity Bar ────────────────────────────────────────────── */
+  --rig-activitybar-bg: var(--color-muted);
+  --rig-activitybar-border: var(--color-border);
+  --rig-activitybar-fg: var(--color-foreground);
+  --rig-activitybar-inactive-fg: var(--color-muted-foreground);
+  --rig-activitybar-active-border: var(--color-primary);
+  --rig-activitybar-badge-bg: var(--color-primary);
+  --rig-activitybar-badge-fg: var(--color-primary-foreground);
+
+  /* ── Sidebar ─────────────────────────────────────────────────── */
+  --rig-sidebar-bg: var(--color-muted);
+  --rig-sidebar-fg: var(--color-foreground);
+  --rig-sidebar-border: var(--color-border);
+  --rig-sidebar-section-header-border: var(--color-border);
+
+  /* ── Panel ───────────────────────────────────────────────────── */
+  --rig-panel-border: var(--color-border);
+  --rig-panel-title-active-border: var(--color-primary);
+  --rig-panel-title-active-fg: var(--color-foreground);
+  --rig-panel-title-inactive-fg: var(--color-muted-foreground);
+
+  /* ── Editor Tabs ─────────────────────────────────────────────── */
+  --rig-tab-active-bg: var(--color-background);
+  --rig-tab-active-fg: var(--color-foreground);
+  --rig-tab-active-border-top: var(--color-primary);
+  --rig-tab-inactive-bg: var(--color-muted);
+  --rig-tab-inactive-fg: var(--color-muted-foreground);
+  --rig-tab-border: var(--color-border);
+  --rig-editor-group-header-bg: var(--color-muted);
+
+  /* ── Editor ──────────────────────────────────────────────────── */
+  --rig-editor-bg: var(--color-background);
+  --rig-editor-fg: var(--color-foreground);
+  --rig-editor-line-number-fg: var(--color-muted-foreground);
+
+  /* ── Status Bar ──────────────────────────────────────────────── */
+  --rig-statusbar-bg: var(--color-muted);
+  --rig-statusbar-fg: var(--color-foreground);
+  --rig-statusbar-border: var(--color-border);
+  --rig-statusbar-hover-bg: var(--color-accent);
+
+  /* ── Quick Input / Command Palette ───────────────────────────── */
+  --rig-quickinput-bg: var(--color-popover);
+
+  /* ── Menu ────────────────────────────────────────────────────── */
+  --rig-menu-bg: var(--color-background);
+  --rig-menu-selection-bg: var(--color-primary);
+
+  /* ── Notification ────────────────────────────────────────────── */
+  --rig-notification-bg: var(--color-background);
+  --rig-notification-fg: var(--color-foreground);
+  --rig-notification-border: var(--color-border);
+
+  /* ── Widget (popover, tooltip, dropdown panels) ──────────────── */
+  --rig-widget-bg: var(--color-popover);
+  --rig-widget-border: var(--color-border);
+
+  /* ── Scrollbar ───────────────────────────────────────────────── */
+  --rig-scrollbar-thumb: rgba(128, 128, 128, 0.3);
+  --rig-scrollbar-thumb-hover: rgba(128, 128, 128, 0.5);
+
+  /* ── Sash / Resizer ──────────────────────────────────────────── */
+  --rig-sash-hover: var(--color-primary);
+}

@@ -6,7 +6,7 @@ import type { StatusBarItem } from '@core/types'
 describe('StatusBar', () => {
   it('renders with data-rig-status-bar and contentinfo role', () => {
     const wrapper = mount(StatusBar)
-    expect(wrapper.attributes('data-rig-status-bar')).toBeDefined()
+    expect(wrapper.attributes('data-rig-status-bar')).toBe('')
     expect(wrapper.attributes('role')).toBe('contentinfo')
   })
 

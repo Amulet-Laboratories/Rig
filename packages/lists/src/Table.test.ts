@@ -25,7 +25,7 @@ describe('Table', () => {
     const wrapper = mount(Table, {
       props: { columns, rows, rowKey: 'id' },
     })
-    expect(wrapper.find('table').attributes('data-rig-table')).toBeDefined()
+    expect(wrapper.find('table').attributes('data-rig-table')).toBe('')
   })
 
   it('renders column headers', () => {
@@ -151,7 +151,8 @@ describe('Table', () => {
 describe('Table interactions', () => {
   it('responds to keyboard events', async () => {
     const wrapper = mount(Table, {
-      props: { columns, rows, rowKey: 'id' }, attachTo: document.body,
+      props: { columns, rows, rowKey: 'id' },
+      attachTo: document.body,
     })
     const el = wrapper.find('[tabindex], input, button, [role]')
     const target = el.exists() ? el : wrapper
@@ -165,7 +166,8 @@ describe('Table interactions', () => {
 
   it('supports focus management', async () => {
     const wrapper = mount(Table, {
-      props: { columns, rows, rowKey: 'id' }, attachTo: document.body,
+      props: { columns, rows, rowKey: 'id' },
+      attachTo: document.body,
     })
     const focusable = wrapper.find('[tabindex], input, button, [role], a')
     if (focusable.exists()) {
@@ -173,9 +175,8 @@ describe('Table interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

@@ -21,6 +21,8 @@ const props = withDefaults(
     dotRadius?: number
     /** Maximum rendered radius when size values are present (bubble mode) */
     maxRadius?: number
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     data: () => [],
@@ -28,9 +30,13 @@ const props = withDefaults(
     height: 300,
     dotRadius: 4,
     maxRadius: 30,
+    responsive: false,
   },
 )
 
+/**
+ * @emits point-click
+ */
 const emit = defineEmits<{
   'point-click': [point: ScatterPlotPoint, index: number]
 }>()
@@ -76,8 +82,8 @@ const points = computed(() =>
 <template>
   <svg
     data-rig-scatter-plot
-    :width="width"
-    :height="height"
+    :width="responsive ? undefined : width"
+    :height="responsive ? undefined : height"
     :viewBox="`0 0 ${width} ${height}`"
     role="img"
     aria-label="Scatter plot"

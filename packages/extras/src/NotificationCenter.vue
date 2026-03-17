@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, useId, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, useId, watch, onUnmounted, nextTick } from 'vue'
 import { useNotifications } from './useNotifications'
 
 defineSlots<{
@@ -38,7 +38,15 @@ function onKeydown(e: KeyboardEvent) {
   }
 }
 
-onMounted(() => document.addEventListener('keydown', onKeydown))
+// Register the Escape listener only while the panel is open so multiple
+// mounted instances don't stack document listeners unnecessarily.
+watch(open, (isOpen) => {
+  if (isOpen) {
+    document.addEventListener('keydown', onKeydown)
+  } else {
+    document.removeEventListener('keydown', onKeydown)
+  }
+})
 onUnmounted(() => document.removeEventListener('keydown', onKeydown))
 
 function onDismiss(id: string) {

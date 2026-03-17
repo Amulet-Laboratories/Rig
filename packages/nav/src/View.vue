@@ -36,7 +36,7 @@ function toggle() {
 }
 
 function onActionMouseEnter(e: MouseEvent, action: Action) {
-  tooltip.show(e.currentTarget as HTMLElement, action.label, 'bottom')
+  tooltip.show(e.currentTarget as HTMLElement, action.label ?? '', 'bottom')
 }
 
 function onActionMouseLeave() {

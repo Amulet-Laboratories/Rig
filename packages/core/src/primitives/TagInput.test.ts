@@ -5,7 +5,7 @@ import TagInput from './TagInput.vue'
 describe('TagInput', () => {
   it('renders with data-rig-tag-input', () => {
     const wrapper = mount(TagInput, { props: { modelValue: [] } })
-    expect(wrapper.attributes('data-rig-tag-input')).toBeDefined()
+    expect(wrapper.attributes('data-rig-tag-input')).toBe('')
   })
 
   it('renders existing tags', () => {
@@ -48,7 +48,7 @@ describe('TagInput', () => {
 
   it('sets disabled state', () => {
     const wrapper = mount(TagInput, { props: { modelValue: [], disabled: true } })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
     expect(wrapper.find('input').element.disabled).toBe(true)
   })
 
@@ -91,7 +91,7 @@ describe('TagInput', () => {
     const focusable = wrapper.find('button, input, [tabindex]')
     if (focusable.exists()) {
       await focusable.trigger('focus')
-      expect(document.activeElement).toBeDefined()
+      expect(document.activeElement).not.toBeNull()
     }
     wrapper.unmount()
   })

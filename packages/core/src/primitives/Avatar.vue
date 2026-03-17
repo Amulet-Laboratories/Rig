@@ -4,7 +4,7 @@ import type { Size } from '../types'
 const props = withDefaults(
   defineProps<{
     /** Display name — used to derive initials and default color */
-    name: string
+    name?: string
     /** Size scale */
     size?: Size
     /** Explicit background color — derived from name hash if omitted */
@@ -17,10 +17,15 @@ const props = withDefaults(
     src?: string
   }>(),
   {
+    name: '',
     size: 'md',
     status: null,
   },
 )
+
+defineSlots<{
+  default(props: Record<string, never>): unknown
+}>()
 
 /** Extract first letter of first and last word. */
 function getInitials(name: string): string {

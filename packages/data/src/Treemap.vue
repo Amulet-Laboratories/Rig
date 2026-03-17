@@ -16,14 +16,20 @@ const props = withDefaults(
     width?: number
     /** Height of the chart */
     height?: number
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     data: () => [],
     width: 400,
     height: 300,
+    responsive: false,
   },
 )
 
+/**
+ * @emits node-click
+ */
 const emit = defineEmits<{
   'node-click': [node: TreemapNode]
 }>()
@@ -63,8 +69,8 @@ const rects = computed(() => layout(props.data, 0, 0, props.width, props.height)
 <template>
   <svg
     data-rig-treemap
-    :width="width"
-    :height="height"
+    :width="responsive ? undefined : width"
+    :height="responsive ? undefined : height"
     :viewBox="`0 0 ${width} ${height}`"
     role="img"
     aria-label="Treemap"

@@ -5,7 +5,7 @@ import Collapsible from './Collapsible.vue'
 describe('Collapsible', () => {
   it('renders with data-rig-collapsible', () => {
     const wrapper = mount(Collapsible)
-    expect(wrapper.attributes('data-rig-collapsible')).toBeDefined()
+    expect(wrapper.attributes('data-rig-collapsible')).toBe('')
   })
 
   it('reflects closed state by default', () => {
@@ -63,7 +63,7 @@ describe('Collapsible', () => {
 
   it('sets data-disabled when disabled', () => {
     const wrapper = mount(Collapsible, { props: { disabled: true } })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
   })
 
   it('toggles on Enter key', async () => {

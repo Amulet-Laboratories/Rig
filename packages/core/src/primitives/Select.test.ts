@@ -12,7 +12,7 @@ const options: SelectOption[] = [
 describe('Select', () => {
   it('renders with data-rig-select', () => {
     const wrapper = mount(Select, { props: { options } })
-    expect(wrapper.attributes('data-rig-select')).toBeDefined()
+    expect(wrapper.attributes('data-rig-select')).toBe('')
   })
 
   it('renders all options', () => {
@@ -53,14 +53,14 @@ describe('Select', () => {
     const wrapper = mount(Select, {
       props: { options, disabled: true },
     })
-    expect(wrapper.attributes('data-disabled')).toBeDefined()
-    expect(wrapper.find('select').attributes('disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).not.toBeUndefined()
+    expect(wrapper.find('select').attributes('disabled')).toBe('')
   })
 
   it('disables individual options', () => {
     const wrapper = mount(Select, { props: { options } })
     const opts = wrapper.findAll('option')
-    expect(opts[2]!.attributes('disabled')).toBeDefined()
+    expect(opts[2]!.attributes('disabled')).toBe('')
   })
 
   it('sets id on select element', () => {
@@ -113,7 +113,8 @@ describe('Select', () => {
 describe('Select interactions', () => {
   it('responds to keyboard events', async () => {
     const wrapper = mount(Select, {
-      props: { options: [{ value: 'a', label: 'A' }] }, attachTo: document.body,
+      props: { options: [{ id: 'a', label: 'A' }] },
+      attachTo: document.body,
     })
     const el = wrapper.find('[tabindex], input, button, [role]')
     const target = el.exists() ? el : wrapper
@@ -125,4 +126,3 @@ describe('Select interactions', () => {
     wrapper.unmount()
   })
 })
-

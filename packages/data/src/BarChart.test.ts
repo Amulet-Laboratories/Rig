@@ -98,7 +98,7 @@ describe('BarChart', () => {
     const wrapper = mount(BarChart, {
       props: { data: [{ label: 'A', value: 10, color: '#ff0000' }] },
     })
-    expect(wrapper.find('[data-rig-bar-chart-bar]').attributes('fill')).toBe('#ff0000')
+    expect(wrapper.find('[data-rig-bar-chart-bar]').attributes('style')).toContain('fill: #ff0000')
   })
 
   it('renders empty data gracefully', () => {
@@ -122,9 +122,8 @@ describe('BarChart interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

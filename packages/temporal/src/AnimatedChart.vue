@@ -21,6 +21,8 @@ const props = withDefaults(
     autoPlay?: boolean
     /** Chart type */
     type?: 'bar' | 'line'
+    /** Scale to fill container width/height via CSS instead of fixed dimensions */
+    responsive?: boolean
   }>(),
   {
     frames: () => [],
@@ -29,9 +31,13 @@ const props = withDefaults(
     speed: 500,
     autoPlay: false,
     type: 'bar',
+    responsive: false,
   },
 )
 
+/**
+ * @emits frame-change
+ */
 const emit = defineEmits<{
   'frame-change': [index: number]
 }>()
@@ -133,8 +139,8 @@ onBeforeUnmount(() => stopTimer())
   >
     <svg
       data-rig-animated-chart-canvas
-      :width="width"
-      :height="height"
+      :width="responsive ? undefined : width"
+      :height="responsive ? undefined : height"
       :viewBox="`0 0 ${width} ${height}`"
     >
       <template v-if="type === 'bar'">

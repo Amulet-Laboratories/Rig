@@ -32,6 +32,10 @@ const props = withDefaults(
   },
 )
 
+/**
+ * @emits update:modelValue
+ * @emits scrub
+ */
 const emit = defineEmits<{
   'update:modelValue': [value: number]
   scrub: [value: number]

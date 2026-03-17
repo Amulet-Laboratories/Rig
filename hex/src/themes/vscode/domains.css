@@ -36,8 +36,7 @@
 
 .focus-accent:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 1px
-    color-mix(in srgb, var(--domain-accent, var(--color-primary)) 60%, transparent);
+  box-shadow: 0 0 0 1px var(--color-ring);
 }
 
 /* ───────── Responsive: Mobile-first ───────── */

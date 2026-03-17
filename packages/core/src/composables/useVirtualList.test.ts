@@ -85,7 +85,7 @@ describe('useVirtualList', () => {
   it('paddingBottom is computed for initial state', () => {
     const H = makeHarness(() => ITEMS, 20, 0)
     const wrapper = mount(H)
-    const { paddingBottom, items, totalHeight } = wrapper.vm.virtualState
+    const { paddingBottom, items: _items, totalHeight } = wrapper.vm.virtualState
     // paddingBottom = totalHeight - (lastVisibleItem.offsetTop + itemHeight)
     expect(paddingBottom).toBeGreaterThanOrEqual(0)
     expect(paddingBottom).toBeLessThanOrEqual(totalHeight)
@@ -104,7 +104,12 @@ describe('useVirtualList', () => {
   it('items have correct data for single-item list', () => {
     const H = makeHarness(() => [42], 30, 0)
     const wrapper = mount(H)
-    const { items, totalHeight, paddingTop, paddingBottom } = wrapper.vm.virtualState
+    const {
+      items,
+      totalHeight,
+      paddingTop,
+      paddingBottom: _paddingBottom,
+    } = wrapper.vm.virtualState
     expect(totalHeight).toBe(30)
     expect(items).toHaveLength(1)
     expect(items[0]!.item).toBe(42)

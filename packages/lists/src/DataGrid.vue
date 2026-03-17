@@ -15,10 +15,13 @@ const props = withDefaults(
     columns?: DataGridColumn[]
     /** Row data */
     rows?: Record<string, unknown>[]
+    /** Accessible label for the grid — use to distinguish multiple grids on the same page */
+    ariaLabel?: string
   }>(),
   {
     columns: () => [],
     rows: () => [],
+    ariaLabel: 'Data grid',
   },
 )
 
@@ -27,10 +30,9 @@ const emit = defineEmits<{
   'row-click': [row: Record<string, unknown>, index: number]
 }>()
 
-// Dynamic column slots (`:name="col.key"`) + an `empty` slot with different
-// prop shapes make defineSlots impractical here — column slot names are only
-// known at runtime.  Consumers get per-slot typing via template `#col-key` etc.
+defineSlots<Record<string, (props: Record<string, unknown>) => unknown>>()
 
+const gridRef = ref<HTMLElement | null>(null)
 const sortColumn = ref<string | null>(null)
 const sortDirection = ref<'asc' | 'desc'>('asc')
 const focusedRow = ref(0)
@@ -69,8 +71,7 @@ function focusCell(row: number, col: number) {
   focusedRow.value = row
   focusedCol.value = col
   nextTick(() => {
-    const grid = document.querySelector('[data-rig-data-grid]')
-    const target = grid?.querySelector<HTMLElement>(
+    const target = gridRef.value?.querySelector<HTMLElement>(
       `[data-rig-grid-row="${row}"] [data-rig-grid-col="${col}"], [data-rig-grid-header-row] [data-rig-grid-col="${col}"]`,
     )
     target?.focus()
@@ -121,9 +122,10 @@ function onGridKeydown(e: KeyboardEvent) {
 
 <template>
   <div
+    ref="gridRef"
     data-rig-data-grid
     role="grid"
-    aria-label="Data grid"
+    :aria-label="ariaLabel"
     :aria-rowcount="sortedRows.length + 1"
     :aria-colcount="columns.length"
     @keydown="onGridKeydown"
@@ -135,6 +137,7 @@ function onGridKeydown(e: KeyboardEvent) {
         data-rig-data-grid-header-cell
         :data-rig-grid-col="ci"
         role="columnheader"
+        :aria-colindex="ci + 1"
         :aria-sort="
           sortColumn === col.key
             ? sortDirection === 'asc'
@@ -180,6 +183,7 @@ function onGridKeydown(e: KeyboardEvent) {
           data-rig-data-grid-cell
           :data-rig-grid-col="ci"
           role="gridcell"
+          :aria-colindex="ci + 1"
           :style="col.width ? { width: `${col.width}px` } : undefined"
         >
           <slot :name="col.key" :value="row[col.key]" :row="row">

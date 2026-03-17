@@ -1,6 +1,7 @@
 <script setup lang="ts" generic="T">
 import { ref, computed, shallowRef, watch, nextTick } from 'vue'
 import type { TreeNode, ID } from '@core/types'
+import { Icon } from '@core/primitives'
 import { useVirtualList } from '@core/composables'
 
 const props = withDefaults(
@@ -28,12 +29,20 @@ const props = withDefaults(
   },
 )
 
+/**
+ * @emits update:selected
+ * @emits update:expanded
+ * @emits activate
+ * @emits contextmenu
+ * @emits rename
+ */
 const emit = defineEmits<{
   'update:selected': [value: ID | ID[]]
   'update:expanded': [value: ID[]]
   activate: [node: TreeNode<T>]
   contextmenu: [payload: { node: TreeNode<T>; event: MouseEvent }]
   rename: [payload: { node: TreeNode<T>; newLabel: string }]
+  error: [err: unknown]
 }>()
 
 defineSlots<{
@@ -160,6 +169,9 @@ async function toggleExpand(node: TreeNode<T>) {
         const next = new Map(loadedChildren.value)
         next.set(node.id, children)
         loadedChildren.value = next
+      } catch (err) {
+        emit('error', err)
+        return
       } finally {
         loadingNodes.value.delete(node.id)
       }
@@ -230,6 +242,21 @@ function onKeydown(e: KeyboardEvent) {
       e.preventDefault()
       select(current.node)
       break
+    default:
+      if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        e.preventDefault()
+        const char = e.key.toLowerCase()
+        const start = (focusedIndex.value + 1) % flat.length
+        for (let i = 0; i < flat.length; i++) {
+          const idx = (start + i) % flat.length
+          const label = flat[idx]!.node.label ?? ''
+          if (label.toLowerCase().startsWith(char)) {
+            focusedIndex.value = idx
+            itemRefs.value[idx]?.focus()
+            break
+          }
+        }
+      }
   }
 }
 </script>
@@ -285,6 +312,7 @@ function onKeydown(e: KeyboardEvent) {
           :selected="isSelected(flat.node.id)"
           :toggle="() => toggleExpand(flat.node)"
         >
+          <Icon v-if="flat.node.icon" :icon="flat.node.icon" data-rig-tree-node-icon size="sm" />
           <span data-rig-tree-node-label>{{ flat.node.label }}</span>
         </slot>
       </div>

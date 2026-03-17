@@ -7,7 +7,7 @@ describe('AvatarGroup', () => {
 
   it('renders with data-rig-avatar-group', () => {
     const wrapper = mount(AvatarGroup, { props: { avatars } })
-    expect(wrapper.attributes('data-rig-avatar-group')).toBeDefined()
+    expect(wrapper.attributes('data-rig-avatar-group')).toBe('')
   })
 
   it('renders all avatars when under max', () => {
@@ -90,9 +90,8 @@ describe('AvatarGroup interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-

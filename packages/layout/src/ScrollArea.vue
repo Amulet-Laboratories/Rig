@@ -7,12 +7,18 @@ withDefaults(
     horizontal?: boolean
     /** Show vertical scrollbar (default true) */
     vertical?: boolean
+    /** Accessible label — when provided, sets role="region" on the outer container */
+    ariaLabel?: string
   }>(),
   {
     horizontal: false,
     vertical: true,
   },
 )
+
+defineSlots<{
+  default(props: Record<string, never>): unknown
+}>()
 
 const viewportId = `rig-scroll-viewport-${useId()}`
 const viewportRef = ref<HTMLElement | null>(null)
@@ -156,7 +162,11 @@ function onScrollbarKeydown(e: KeyboardEvent, axis: 'vertical' | 'horizontal') {
 </script>
 
 <template>
-  <div data-rig-scroll-area>
+  <div
+    data-rig-scroll-area
+    :role="ariaLabel ? 'region' : undefined"
+    :aria-label="ariaLabel || undefined"
+  >
     <div :id="viewportId" ref="viewportRef" data-rig-scroll-viewport @scroll="onScroll">
       <slot />
     </div>

@@ -113,6 +113,7 @@ describe('Modal', () => {
       props: { open: true },
       attachTo: document.body,
     })
+    await nextTick() // Allow useFocusTrap watcher to activate
     const overlay = document.querySelector('[data-rig-modal-overlay]') as HTMLElement
     overlay.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))
     await nextTick()

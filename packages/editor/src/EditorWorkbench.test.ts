@@ -12,7 +12,7 @@ const tabs: TabItem[] = [
 describe('EditorWorkbench', () => {
   it('renders with data-rig-editor-workbench', () => {
     const wrapper = mount(EditorWorkbench, { props: { tabs } })
-    expect(wrapper.attributes('data-rig-editor-workbench')).toBeDefined()
+    expect(wrapper.attributes('data-rig-editor-workbench')).toBe('')
   })
 
   it('renders all tabs', () => {
@@ -44,7 +44,7 @@ describe('EditorWorkbench', () => {
   it('shows dirty indicator', () => {
     const wrapper = mount(EditorWorkbench, { props: { tabs, activeId: 'b' } })
     const dirtyTab = wrapper.findAll('[data-rig-editor-tab]')[1]!
-    expect(dirtyTab.attributes('data-dirty')).toBeDefined()
+    expect(dirtyTab.attributes('data-dirty')).not.toBeUndefined()
   })
 
   it('shows empty slot when no tabs', () => {
@@ -81,7 +81,7 @@ describe('EditorWorkbench', () => {
     const tabEls = wrapper.findAll('[data-rig-editor-tab]')
     await tabEls[0]!.trigger('dragstart')
     await tabEls[1]!.trigger('dragover')
-    expect(tabEls[1]!.attributes('data-drag-over')).toBeDefined()
+    expect(tabEls[1]!.attributes('data-drag-over')).not.toBeUndefined()
   })
 
   it('activates tab on Enter key', async () => {

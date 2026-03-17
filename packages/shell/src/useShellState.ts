@@ -26,8 +26,8 @@ function createShellState(config: ShellConfig = {}): ShellState {
   const ns = config.namespace ?? 'rig-shell'
 
   // ─── Tab state ───
-  const openTabs = ref<TabItem[]>([])
-  const activeTabId = ref<ID | null>(null)
+  const openTabs = ref<TabItem[]>(config.initialTabs ?? [])
+  const activeTabId = ref<ID | null>(config.initialActiveTabId ?? null)
   const previewTabId = ref<ID | null>(null)
   const dirtyTabs = ref<Set<ID>>(new Set())
 
@@ -42,9 +42,12 @@ function createShellState(config: ShellConfig = {}): ShellState {
   const sidebarWidth = usePersistedState(`${ns}:sidebar-width`, config.sidebarWidth ?? 260)
 
   // ─── Bottom panel ───
-  const panelVisible = usePersistedState(`${ns}:panel-visible`, false)
+  const panelVisible = usePersistedState(`${ns}:panel-visible`, config.initialPanelVisible ?? false)
   const panelHeight = usePersistedState(`${ns}:panel-height`, config.panelHeight ?? 200)
-  const activePanelTab = usePersistedState<string>(`${ns}:panel-tab`, 'output')
+  const activePanelTab = usePersistedState<string>(
+    `${ns}:panel-tab`,
+    config.initialPanelTab ?? 'output',
+  )
 
   // ─── Auxiliary panel (chat, AI, etc.) ───
   const auxOpen = usePersistedState(`${ns}:aux-open`, false)
@@ -223,12 +226,16 @@ function createShellState(config: ShellConfig = {}): ShellState {
 /**
  * Access the IDE shell state.
  *
- * With `{ provide: true }`: creates state and provides it via injection.
+ * With `{ provide: true }`: injects existing shell if available, otherwise
+ * creates state from config and provides it. This lets a parent component
+ * own the shell while still allowing IdeShell to re-provide it downward.
+ *
  * Without: injects from parent, falling back to a standalone instance.
  */
 export function useShellState(options?: { provide?: boolean } & ShellConfig): ShellState {
   if (options?.provide) {
-    const state = createShellState(options)
+    const existing = inject(ShellKey, null)
+    const state = existing ?? createShellState(options)
     provide(ShellKey, state)
     return state
   }

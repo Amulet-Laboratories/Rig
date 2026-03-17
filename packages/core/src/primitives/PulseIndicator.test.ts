@@ -5,12 +5,12 @@ import PulseIndicator from './PulseIndicator.vue'
 describe('PulseIndicator', () => {
   it('renders with data-rig-pulse-indicator', () => {
     const wrapper = mount(PulseIndicator)
-    expect(wrapper.attributes('data-rig-pulse-indicator')).toBeDefined()
+    expect(wrapper.attributes('data-rig-pulse-indicator')).toBe('')
   })
 
   it('is active by default', () => {
     const wrapper = mount(PulseIndicator)
-    expect(wrapper.attributes('data-active')).toBeDefined()
+    expect(wrapper.attributes('data-active')).not.toBeUndefined()
   })
 
   it('removes active attribute when inactive', () => {
@@ -79,9 +79,8 @@ describe('PulseIndicator interactions', () => {
       expect(document.activeElement).toBe(focusable.element)
     } else {
       // Non-interactive component — verify it renders without needing focus
-      expect(wrapper.element).toBeDefined()
+      expect(wrapper.html()).toBeTruthy()
     }
     wrapper.unmount()
   })
 })
-
