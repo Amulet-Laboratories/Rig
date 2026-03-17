@@ -1,0 +1,21 @@
+[build]
+  command = "pnpm install && pnpm build && cd hex && pnpm build && cd .. && pnpm story:build && node scripts/build-deploy.mjs"
+  publish = "deploy"
+
+[build.environment]
+  NODE_VERSION = "22"
+  PNPM_VERSION = "10.30.2"
+
+# SPA fallback for Histoire (uses client-side routing)
+[[redirects]]
+  from = "/histoire/*"
+  to = "/histoire/index.html"
+  status = 200
+
+# Clean URLs for landing page
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
