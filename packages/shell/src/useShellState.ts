@@ -112,6 +112,7 @@ function createShellState(config: ShellConfig = {}): ShellState {
 
     openTabs.value.splice(idx, 1)
     dirtyTabs.value.delete(id)
+    editingTabs.value.delete(id)
     if (previewTabId.value === id) previewTabId.value = null
 
     if (activeTabId.value === id) {
@@ -124,6 +125,9 @@ function createShellState(config: ShellConfig = {}): ShellState {
     openTabs.value = openTabs.value.filter((t) => t.id === id)
     activeTabId.value = id
     dirtyTabs.value.clear()
+    const wasEditing = editingTabs.value.has(id)
+    editingTabs.value.clear()
+    if (wasEditing) editingTabs.value.add(id)
     const tab = openTabs.value[0]
     if (tab?.dirty) dirtyTabs.value.add(tab.id)
   }
@@ -133,6 +137,7 @@ function createShellState(config: ShellConfig = {}): ShellState {
     activeTabId.value = null
     previewTabId.value = null
     dirtyTabs.value.clear()
+    editingTabs.value.clear()
   }
 
   function reorderTabs(payload: { from: number; to: number }) {
@@ -151,6 +156,60 @@ function createShellState(config: ShellConfig = {}): ShellState {
     const tab = openTabs.value.find((t) => t.id === id)
     if (tab) tab.dirty = false
   }
+
+  // ─── Item operations (convenience layer) ───
+
+  function openItem(
+    id: ID,
+    label: string,
+    data?: unknown,
+    opts?: { preview?: boolean; edit?: boolean },
+  ) {
+    const existing = openTabs.value.find((t) => t.id === id)
+    if (existing) {
+      activeTabId.value = id
+      if (opts?.edit) {
+        editingTabs.value.add(id)
+        markDirty(id)
+      }
+      return
+    }
+
+    const tab: TabItem = {
+      id,
+      label,
+      dirty: opts?.edit ?? false,
+      closable: true,
+      data,
+    }
+
+    openTab(tab, { preview: opts?.preview })
+    if (opts?.edit) {
+      editingTabs.value.add(id)
+      markDirty(id)
+    }
+  }
+
+  // ─── Editing state ───
+
+  const editingTabs = ref<Set<ID>>(new Set())
+
+  function setEditing(id: ID, editing: boolean) {
+    if (editing) {
+      editingTabs.value.add(id)
+      markDirty(id)
+    } else {
+      editingTabs.value.delete(id)
+    }
+  }
+
+  function isEditing(id: ID): boolean {
+    return editingTabs.value.has(id)
+  }
+
+  // ─── Active tab data ───
+
+  const activeTabData = computed<unknown>(() => activeTab.value?.data ?? null)
 
   // ─── Toggles ───
 
@@ -193,6 +252,17 @@ function createShellState(config: ShellConfig = {}): ShellState {
     reorderTabs,
     markDirty,
     markClean,
+
+    // Item operations
+    openItem,
+
+    // Editing
+    editingTabs,
+    setEditing,
+    isEditing,
+
+    // Active tab data
+    activeTabData,
 
     // Activity bar
     activeActivity,

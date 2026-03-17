@@ -1,9 +1,147 @@
 /* Hex — Shared Shell Components
- * Theme styles for Rig's shell package: IdeShell.
+ * Theme styles for Rig's shell package: IdeShell, ChatPanel, SearchPanel,
+ * FileBrowser, ContentViewer, FormView, WelcomeView, SettingsView.
  */
 
 /* ───────── IdeShell ───────── */
 
 [data-rig-ide-shell] {
   @apply bg-background text-foreground font-mono text-sm;
+}
+
+/* ───────── ChatPanel ───────── */
+
+[data-rig-chat-panel] {
+  background: var(--color-background);
+}
+
+[data-rig-chat-panel-header] {
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+  color: var(--color-foreground);
+}
+
+[data-rig-chat-panel-empty] {
+  color: var(--color-muted-foreground);
+  font-size: 12px;
+  text-align: center;
+  padding: 2rem 0;
+  font-family: var(--font-mono);
+}
+
+[data-rig-chat-panel-message-meta] {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  margin-bottom: 0.25rem;
+}
+
+[data-rig-chat-panel-message-meta] [data-role='user'] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-chat-panel-message-meta] [data-role='assistant'] {
+  color: var(--color-info, #3b82f6);
+}
+
+[data-rig-chat-panel-message-content] {
+  font-size: 13px;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--color-foreground) 70%, transparent);
+}
+
+[data-rig-chat-panel-pending] {
+  color: var(--color-muted-foreground);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+[data-rig-chat-panel-input] {
+  border-top: 1px solid var(--color-border);
+}
+
+/* ───────── SearchPanel ───────── */
+
+[data-rig-search-panel] {
+  background: var(--color-background);
+}
+
+/* ───────── FileBrowser ───────── */
+
+[data-rig-file-browser] {
+  background: var(--color-background);
+}
+
+/* ───────── ContentViewer ───────── */
+
+[data-rig-content-viewer] {
+  background: var(--color-background);
+}
+
+[data-rig-content-viewer-breadcrumbs] {
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-rig-content-viewer-header] {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-rig-content-viewer-body] {
+  padding: 1rem 1.5rem;
+}
+
+[data-rig-content-viewer-empty] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8rem;
+  color: var(--color-muted-foreground);
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+
+/* ───────── FormView ───────── */
+
+[data-rig-form-view] {
+  background: var(--color-background);
+}
+
+[data-rig-form-view-header] {
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-rig-form-view-actions] {
+  border-top: 1px solid var(--color-border);
+}
+
+/* ───────── WelcomeView ───────── */
+
+[data-rig-welcome-view] {
+  background: var(--color-background);
+}
+
+[data-rig-welcome-view-title] {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--color-foreground);
+}
+
+[data-rig-welcome-view-description] {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-muted-foreground);
+  margin-top: 0.25rem;
+}
+
+/* ───────── SettingsView ───────── */
+
+[data-rig-settings-view] {
+  background: var(--color-background);
+}
+
+[data-rig-settings-view-title] {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--color-foreground);
 }

@@ -109,6 +109,31 @@
   -webkit-app-region: no-drag;
 }
 
+[data-rig-titlebar-action] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  background: transparent;
+  border: none;
+  color: var(--color-foreground);
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+[data-rig-titlebar-action]:hover {
+  background: var(
+    --rig-titlebar-hover-bg,
+    color-mix(in srgb, var(--color-foreground) 10%, transparent)
+  );
+  opacity: 1;
+}
+
+[data-rig-titlebar-action][data-state='active'] {
+  opacity: 1;
+  color: var(--color-primary, var(--color-foreground));
+}
+
 /* ───────── Shell Grid ───────── */
 
 [data-rig-ide-shell],
@@ -351,6 +376,14 @@
   background: var(--color-background);
 }
 
+[data-rig-panel][data-position='right'] {
+  border-left: 1px solid var(--rig-panel-border);
+}
+
+[data-rig-panel][data-position='left'] {
+  border-right: 1px solid var(--rig-panel-border);
+}
+
 [data-rig-panel-header] {
   border-bottom: 1px solid var(--rig-panel-border);
   font-size: 13px;
@@ -367,11 +400,11 @@
 /* ───────── Modal ───────── */
 
 [data-rig-modal-overlay] {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 [data-rig-modal] {
-  background: var(--rig-notification-bg);
+  background: var(--rig-widget-bg);
   border: 1px solid var(--rig-widget-border);
   box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
   border-radius: 8px;

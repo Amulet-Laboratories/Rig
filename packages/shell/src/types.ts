@@ -57,6 +57,22 @@ export interface ShellState {
   markDirty: (id: ID) => void
   markClean: (id: ID) => void
 
+  // Item operations — convenience layer over openTab/markDirty
+  openItem: (
+    id: ID,
+    label: string,
+    data?: unknown,
+    opts?: { preview?: boolean; edit?: boolean },
+  ) => void
+
+  // Editing state
+  editingTabs: Ref<Set<ID>>
+  setEditing: (id: ID, editing: boolean) => void
+  isEditing: (id: ID) => boolean
+
+  // Active tab data accessor
+  activeTabData: ComputedRef<unknown>
+
   // Activity bar
   activeActivity: Ref<string>
 

@@ -1,7 +1,22 @@
 /* Hex — Garden Design Tokens
- * Warm illustrative palette inspired by Garden Estudio's brand identity.
- * Deep purple background, warm cream text, rose accents.
+ * Warm botanical palette derived from Garden Estudio's brand identity.
+ * Deep purple background, warm cream text, rose accents, botanical greens.
  * Dark mode marketing theme — suited for portfolio and showcase sites.
+ *
+ * Full palette (13 swatch colors):
+ *   #331F3C  deep purple     — background
+ *   #AC3954  dark rose       — secondary, borders
+ *   #EB4963  amulet rose     — primary brand
+ *   #F16874  warm pink       — accent
+ *   #F58384  coral pink      — destructive
+ *   #F99C94  warm salmon     — status
+ *   #F9B0A2  light salmon    — muted foreground
+ *   #F8C7B3  apricot         — soft accent
+ *   #F7D7B9  peach           — warning
+ *   #F5E3BC  warm cream      — foreground text
+ *   #EDECC0  pale chartreuse — subtle highlights
+ *   #D8E8C3  sage green      — info
+ *   #CBE6C5  mint green      — success
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
@@ -9,36 +24,36 @@
 
 @theme {
   /* Surface colors */
-  --color-background: #372d3b;
-  --color-foreground: #ffffde;
-  --color-card: #c4415d;
-  --color-card-foreground: #ffffde;
-  --color-popover: #372d3b;
-  --color-popover-foreground: #ffffde;
+  --color-background: #331f3c;
+  --color-foreground: #f5e3bc;
+  --color-card: #eb4963;
+  --color-card-foreground: #f5e3bc;
+  --color-popover: #331f3c;
+  --color-popover-foreground: #f5e3bc;
 
   /* Brand */
-  --color-primary: #d94362;
-  --color-primary-foreground: #ffffde;
+  --color-primary: #eb4963;
+  --color-primary-foreground: #f5e3bc;
 
   /* Soft accents */
-  --color-secondary: #4f3043;
-  --color-secondary-foreground: #ffffde;
-  --color-muted: #4f3043;
-  --color-muted-foreground: #c9b8a8;
-  --color-accent: #c4415d;
-  --color-accent-foreground: #ffffde;
+  --color-secondary: #ac3954;
+  --color-secondary-foreground: #f5e3bc;
+  --color-muted: #ac3954;
+  --color-muted-foreground: #f9b0a2;
+  --color-accent: #f16874;
+  --color-accent-foreground: #331f3c;
 
   /* Semantic status */
-  --color-destructive: #ef4444;
-  --color-destructive-foreground: #ffffde;
-  --color-success: #22c55e;
-  --color-warning: #f59e0b;
-  --color-info: #3b82f6;
+  --color-destructive: #f58384;
+  --color-destructive-foreground: #331f3c;
+  --color-success: #cbe6c5;
+  --color-warning: #f7d7b9;
+  --color-info: #d8e8c3;
 
   /* Borders and focus */
-  --color-border: #4f3043;
-  --color-input: #4f3043;
-  --color-ring: #d94362;
+  --color-border: #ac3954;
+  --color-input: #ac3954;
+  --color-ring: #eb4963;
 
   /* Typography */
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
@@ -50,48 +65,59 @@
 }
 
 :root {
-  --background: #372d3b;
-  --foreground: #ffffde;
-  --card: #c4415d;
-  --card-foreground: #ffffde;
-  --popover: #372d3b;
-  --popover-foreground: #ffffde;
-  --primary: #d94362;
-  --primary-foreground: #ffffde;
-  --secondary: #4f3043;
-  --secondary-foreground: #ffffde;
-  --muted: #4f3043;
-  --muted-foreground: #c9b8a8;
-  --accent: #c4415d;
-  --accent-foreground: #ffffde;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffde;
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --info: #3b82f6;
-  --border: #4f3043;
-  --input: #4f3043;
-  --ring: #d94362;
+  --background: #331f3c;
+  --foreground: #f5e3bc;
+  --card: #eb4963;
+  --card-foreground: #f5e3bc;
+  --popover: #331f3c;
+  --popover-foreground: #f5e3bc;
+  --primary: #eb4963;
+  --primary-foreground: #f5e3bc;
+  --secondary: #ac3954;
+  --secondary-foreground: #f5e3bc;
+  --muted: #ac3954;
+  --muted-foreground: #f9b0a2;
+  --accent: #f16874;
+  --accent-foreground: #331f3c;
+  --destructive: #f58384;
+  --destructive-foreground: #331f3c;
+  --success: #cbe6c5;
+  --warning: #f7d7b9;
+  --info: #d8e8c3;
+  --border: #ac3954;
+  --input: #ac3954;
+  --ring: #eb4963;
   --radius: 7px;
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
   --font-sans: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
   --font-serif: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
 
-  /* Named palette aliases for direct template use */
-  --garden-purple: #372d3b;
-  --garden-cream: #ffffde;
-  --garden-rose: #d94362;
-  --garden-border: #4f3043;
+  /* ── Named palette aliases ──────────────────────────────────────────────
+   * All 13 swatch colors available for direct template use.
+   */
+  --garden-deep-purple: #331f3c;
+  --garden-dark-rose: #ac3954;
+  --garden-rose: #eb4963;
+  --garden-warm-pink: #f16874;
+  --garden-coral: #f58384;
+  --garden-warm-salmon: #f99c94;
+  --garden-light-salmon: #f9b0a2;
+  --garden-apricot: #f8c7b3;
+  --garden-peach: #f7d7b9;
+  --garden-cream: #f5e3bc;
+  --garden-chartreuse: #edecc0;
+  --garden-sage: #d8e8c3;
+  --garden-mint: #cbe6c5;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
    * Overrides shared/tokens.css defaults where the Garden palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 
-  /* Button — rose primary darkened ~15% for hover feedback */
-  --rig-button-hover-bg: #b93953;
+  /* Button — dark rose for hover feedback */
+  --rig-button-hover-bg: #ac3954;
 
   /* Scrollbar — warm cream tint instead of neutral gray */
-  --rig-scrollbar-thumb: rgba(255, 255, 222, 0.18);
-  --rig-scrollbar-thumb-hover: rgba(255, 255, 222, 0.35);
+  --rig-scrollbar-thumb: rgba(245, 227, 188, 0.18);
+  --rig-scrollbar-thumb-hover: rgba(245, 227, 188, 0.35);
 }
