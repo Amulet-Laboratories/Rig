@@ -1,5 +1,5 @@
 {
-  "name": "@amulet-laboratories/rig-config",
+  "name": "@amulet-laboratories/config",
   "version": "0.1.0",
   "type": "module",
   "description": "Shared ESLint 9 flat config and Prettier config for Amulet Laboratories repos",

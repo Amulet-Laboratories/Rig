@@ -84,7 +84,7 @@
     }
   },
   "devDependencies": {
-    "@amulet-laboratories/rig-config": "workspace:*",
+    "@amulet-laboratories/config": "workspace:*",
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
     "@floating-ui/vue": "^1.1.11",

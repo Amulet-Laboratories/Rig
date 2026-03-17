@@ -1,1 +1,1 @@
-export { default } from '@amulet-laboratories/rig-config/prettier'
+export { default } from '@amulet-laboratories/config/prettier'

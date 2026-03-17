@@ -11,7 +11,7 @@ importers:
 
   .:
     devDependencies:
-      '@amulet-laboratories/rig-config':
+      '@amulet-laboratories/config':
         specifier: workspace:*
         version: link:config
       '@commitlint/cli':
@@ -112,7 +112,7 @@ importers:
 
   hex:
     devDependencies:
-      '@amulet-laboratories/rig-config':
+      '@amulet-laboratories/config':
         specifier: workspace:*
         version: link:../config
       '@tailwindcss/postcss':
@@ -147,7 +147,7 @@ importers:
     dependencies:
       '@amulet-laboratories/rig':
         specifier: '>=0.2.0'
-        version: 2.2.0(@amulet-laboratories/hex@2.2.0)(@iconify/vue@4.3.0(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))
+        version: 2.2.0(@amulet-laboratories/hex@2.2.0)(@iconify/vue@4.3.0(vue@3.5.29(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))
       nuxt:
         specifier: ^3.0.0
         version: 3.21.2(@parcel/watcher@2.5.6)(@types/node@22.19.15)(@vue/compiler-sfc@3.5.30)(cac@6.7.14)(commander@13.1.0)(db0@0.3.4)(eslint@9.39.4(jiti@2.6.1))(ioredis@5.10.0)(lightningcss@1.31.1)(magicast@0.5.2)(optionator@0.9.4)(rollup-plugin-visualizer@6.0.11(rollup@4.59.0))(rollup@4.59.0)(stylelint@17.4.0(typescript@5.9.3))(terser@5.46.1)(tsx@4.21.0)(typescript@5.9.3)(vite@7.3.1(@types/node@22.19.15)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2)
@@ -180,6 +180,9 @@ packages:
       '@amulet-laboratories/hex': '>=2.0.0'
       '@iconify/vue': ^5.0.0
       vue: ^3.5.0
+    peerDependenciesMeta:
+      '@iconify/vue':
+        optional: true
 
   '@asamuzakjp/css-color@3.2.0':
     resolution: {integrity: sha512-K1A6z8tS3XsmCMM86xoWdn7Fkdn9m6RSVtocUrJYIwZnFVkng/PvkEoWtOWmP+Scc6saYWHWZYbndEEXxl24jw==}
@@ -5580,11 +5583,12 @@ snapshots:
 
   '@amulet-laboratories/hex@2.2.0': {}
 
-  '@amulet-laboratories/rig@2.2.0(@amulet-laboratories/hex@2.2.0)(@iconify/vue@4.3.0(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))':
+  '@amulet-laboratories/rig@2.2.0(@amulet-laboratories/hex@2.2.0)(@iconify/vue@4.3.0(vue@3.5.29(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))':
     dependencies:
       '@amulet-laboratories/hex': 2.2.0
-      '@iconify/vue': 4.3.0(vue@3.5.30(typescript@5.9.3))
       vue: 3.5.30(typescript@5.9.3)
+    optionalDependencies:
+      '@iconify/vue': 4.3.0(vue@3.5.29(typescript@5.9.3))
 
   '@asamuzakjp/css-color@3.2.0':
     dependencies:
@@ -6264,11 +6268,6 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
       vue: 3.5.29(typescript@5.9.3)
-
-  '@iconify/vue@4.3.0(vue@3.5.30(typescript@5.9.3))':
-    dependencies:
-      '@iconify/types': 2.0.0
-      vue: 3.5.30(typescript@5.9.3)
 
   '@ioredis/commands@1.5.1': {}
 

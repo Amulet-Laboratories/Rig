@@ -1,4 +1,4 @@
-import vue from '@amulet-laboratories/rig-config/eslint/vue'
+import vue from '@amulet-laboratories/config/eslint/vue'
 
 export default [
   ...vue,

@@ -1,4 +1,4 @@
-import base from '@amulet-laboratories/rig-config/eslint/base'
+import base from '@amulet-laboratories/config/eslint/base'
 
 export default [
   ...base,
