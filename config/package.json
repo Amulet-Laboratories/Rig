@@ -1,8 +1,8 @@
 {
   "name": "@amulet-laboratories/config",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
-  "description": "Shared ESLint 9 flat config and Prettier config for Amulet Laboratories repos",
+  "description": "Shared build, lint, and code quality configs for all Amulet Laboratories repos",
   "license": "MIT",
   "engines": {
     "node": ">=22",
@@ -11,21 +11,42 @@
   "exports": {
     "./eslint/vue": "./eslint.vue.js",
     "./eslint/base": "./eslint.base.js",
-    "./prettier": "./prettier.js"
+    "./prettier": "./prettier.js",
+    "./stylelint/base": "./stylelint/base.js",
+    "./commitlint/base": "./commitlint/base.js",
+    "./tsconfig/base": "./tsconfig/base.json",
+    "./tsconfig/vue": "./tsconfig/vue.json",
+    "./tsconfig/node": "./tsconfig/node.json",
+    "./vite/base": "./vite/base.ts",
+    "./vite/compression": "./vite/compression.ts",
+    "./vite/obfuscation": "./vite/obfuscation.ts",
+    "./vite/security-headers": "./vite/security-headers.ts"
   },
   "dependencies": {
+    "@commitlint/config-conventional": "^20.5.0",
     "@eslint/js": "^9.22.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-vue": "^9.32.0",
+    "postcss-html": "^1.8.1",
+    "stylelint-config-standard": "^40.0.0",
     "typescript-eslint": "^8.26.0",
+    "vite-plugin-compression2": "^2.5.2",
     "vue-eslint-parser": "^9.4.3"
   },
   "peerDependencies": {
-    "eslint": "^9.0.0",
-    "typescript": "^5.0.0"
+    "eslint": "^9.0.0 || ^10.0.0",
+    "stylelint": "^17.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^7.0.0"
   },
   "peerDependenciesMeta": {
     "typescript": {
+      "optional": true
+    },
+    "stylelint": {
+      "optional": true
+    },
+    "vite": {
       "optional": true
     }
   }
