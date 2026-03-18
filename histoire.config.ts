@@ -89,16 +89,19 @@ export default defineConfig({
 
   routerMode: 'history',
 
+  outDir: '.histoire/dist',
+
   // ── Vite ──────────────────────────────────────────────────────────────
   // Mirror path aliases from vite.config.ts so stories resolve correctly.
   vite: {
+    base: '/hexrig/story/',
     plugins: [
       {
         name: 'histoire-auto-select-default',
         // Dev: redirect bare `/` to the Introduction story via middleware.
         configureServer(server) {
           server.middlewares.use((req, _res, next) => {
-            if (req.url === '/') {
+            if (req.url === '/' || req.url === '/hexrig/story/') {
               req.url = '/story/stories-introduction-story-vue'
             }
             next()

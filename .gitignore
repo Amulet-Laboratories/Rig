@@ -13,3 +13,6 @@ test-results/
 
 # Claude
 .claude/
+
+# Netlify
+.netlify/

@@ -8,8 +8,14 @@
 
 # SPA fallback for Histoire (uses client-side routing)
 [[redirects]]
-  from = "/histoire/*"
-  to = "/histoire/index.html"
+  from = "/hexrig/story/*"
+  to = "/hexrig/story/index.html"
+  status = 200
+
+# SPA fallback for landing page
+[[redirects]]
+  from = "/hexrig/*"
+  to = "/hexrig/index.html"
   status = 200
 
 # Clean URLs for landing page

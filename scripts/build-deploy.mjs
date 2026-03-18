@@ -5,8 +5,9 @@
  *
  * Structure:
  *   deploy/
- *     index.html + assets/  ← Vue landing site (built from landing/)
- *     histoire/              ← Histoire static build
+ *     hexrig/
+ *       index.html + assets/  ← Vue landing site (AmuletLabs.org/hexrig)
+ *       story/                ← Histoire static build (AmuletLabs.org/hexrig/story)
  *
  * Prerequisite: run `cd landing && pnpm build` and `pnpm story:build` first.
  */
@@ -23,20 +24,21 @@ const HISTOIRE = resolve(ROOT, '.histoire/dist')
 if (existsSync(DEPLOY)) rmSync(DEPLOY, { recursive: true })
 mkdirSync(DEPLOY, { recursive: true })
 
-// Copy landing site build
+// Copy landing site build into hexrig/
 if (existsSync(LANDING_DIST)) {
   console.log('Copying landing site build...')
-  cpSync(LANDING_DIST, DEPLOY, { recursive: true })
+  mkdirSync(resolve(DEPLOY, 'hexrig'), { recursive: true })
+  cpSync(LANDING_DIST, resolve(DEPLOY, 'hexrig'), { recursive: true })
 } else {
   console.error('ERROR: landing/dist not found — run `cd landing && pnpm build` first')
   process.exit(1)
 }
 
-// Copy Histoire build
+// Copy Histoire build into hexrig/story/
 if (existsSync(HISTOIRE)) {
   console.log('Copying Histoire build...')
-  mkdirSync(resolve(DEPLOY, 'histoire'), { recursive: true })
-  cpSync(HISTOIRE, resolve(DEPLOY, 'histoire'), { recursive: true })
+  mkdirSync(resolve(DEPLOY, 'hexrig', 'story'), { recursive: true })
+  cpSync(HISTOIRE, resolve(DEPLOY, 'hexrig', 'story'), { recursive: true })
 } else {
   console.warn('Warning: Histoire build not found at .histoire/dist/ — skipping')
 }
