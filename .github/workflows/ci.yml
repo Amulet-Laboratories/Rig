@@ -128,7 +128,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run benchmarks
-        run: vitest bench --run
+        run: pnpm vitest bench --run
 
   bundle-size:
     name: Bundle Size (advisory)
