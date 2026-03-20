@@ -24,15 +24,15 @@ describe('Carousel', () => {
   it('marks active slide', () => {
     const wrapper = mount(Carousel, { props: { items, modelValue: 1 } })
     const slides = wrapper.findAll('[data-rig-carousel-slide]')
-    expect(slides[1].attributes('data-active')).toBeDefined()
-    expect(slides[0].attributes('data-active')).toBeUndefined()
+    expect(slides[1]!.attributes('data-active')).toBeDefined()
+    expect(slides[0]!.attributes('data-active')).toBeUndefined()
   })
 
   it('sets aria-hidden on inactive slides', () => {
     const wrapper = mount(Carousel, { props: { items, modelValue: 0 } })
     const slides = wrapper.findAll('[data-rig-carousel-slide]')
-    expect(slides[0].attributes('aria-hidden')).toBe('false')
-    expect(slides[1].attributes('aria-hidden')).toBe('true')
+    expect(slides[0]!.attributes('aria-hidden')).toBe('false')
+    expect(slides[1]!.attributes('aria-hidden')).toBe('true')
   })
 
   it('emits update:modelValue on next click', async () => {
@@ -72,7 +72,7 @@ describe('Carousel', () => {
   it('navigates with indicator click', async () => {
     const wrapper = mount(Carousel, { props: { items, modelValue: 0 } })
     const indicators = wrapper.findAll('[data-rig-carousel-indicator]')
-    await indicators[2].trigger('click')
+    await indicators[2]!.trigger('click')
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([2])
   })
 
@@ -84,8 +84,8 @@ describe('Carousel', () => {
   it('marks active indicator', () => {
     const wrapper = mount(Carousel, { props: { items, modelValue: 1 } })
     const indicators = wrapper.findAll('[data-rig-carousel-indicator]')
-    expect(indicators[1].attributes('aria-selected')).toBe('true')
-    expect(indicators[0].attributes('aria-selected')).toBe('false')
+    expect(indicators[1]!.attributes('aria-selected')).toBe('true')
+    expect(indicators[0]!.attributes('aria-selected')).toBe('false')
   })
 
   it('navigates with ArrowRight', async () => {
@@ -141,7 +141,7 @@ describe('Carousel', () => {
   it('does not emit when already at same index', async () => {
     const wrapper = mount(Carousel, { props: { items, modelValue: 0 } })
     const indicators = wrapper.findAll('[data-rig-carousel-indicator]')
-    await indicators[0].trigger('click')
+    await indicators[0]!.trigger('click')
     expect(wrapper.emitted('update:modelValue')).toBeUndefined()
   })
 })

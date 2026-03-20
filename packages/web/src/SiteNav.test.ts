@@ -33,27 +33,27 @@ describe('SiteNav', () => {
     const wrapper = mount(SiteNav, { props: { pages } })
     const links = wrapper.findAll('[data-rig-site-nav-link]')
     expect(links).toHaveLength(3)
-    expect(links[0].element.tagName).toBe('A')
-    expect(links[0].attributes('href')).toBe('/')
+    expect(links[0]!.element.tagName).toBe('A')
+    expect(links[0]!.attributes('href')).toBe('/')
   })
 
   it('renders buttons for pages without href', () => {
     const wrapper = mount(SiteNav, { props: { pages } })
     const links = wrapper.findAll('[data-rig-site-nav-link]')
-    expect(links[2].element.tagName).toBe('BUTTON')
+    expect(links[2]!.element.tagName).toBe('BUTTON')
   })
 
   it('marks active page', () => {
     const wrapper = mount(SiteNav, { props: { pages, currentPage: 'about' } })
     const links = wrapper.findAll('[data-rig-site-nav-link]')
-    expect(links[1].attributes('data-active')).toBeDefined()
-    expect(links[0].attributes('data-active')).toBeUndefined()
+    expect(links[1]!.attributes('data-active')).toBeDefined()
+    expect(links[0]!.attributes('data-active')).toBeUndefined()
   })
 
   it('emits navigate on link click', async () => {
     const wrapper = mount(SiteNav, { props: { pages } })
     const links = wrapper.findAll('[data-rig-site-nav-link]')
-    await links[0].trigger('click')
+    await links[0]!.trigger('click')
     expect(wrapper.emitted('navigate')?.[0]).toEqual(['home'])
   })
 
@@ -79,7 +79,7 @@ describe('SiteNav', () => {
     await wrapper.find('[data-rig-site-nav-toggle]').trigger('click')
     expect(wrapper.find('[data-rig-site-nav-mobile]').exists()).toBe(true)
     const mobileLinks = wrapper.findAll('[data-rig-site-nav-mobile-link]')
-    await mobileLinks[0].trigger('click')
+    await mobileLinks[0]!.trigger('click')
     expect(wrapper.find('[data-rig-site-nav-mobile]').exists()).toBe(false)
   })
 
@@ -124,15 +124,15 @@ describe('SiteNav', () => {
     const wrapper = mount(SiteNav, { props: { pages } })
     await wrapper.find('[data-rig-site-nav-toggle]').trigger('click')
     const mobileLinks = wrapper.findAll('[data-rig-site-nav-mobile-link]')
-    expect(mobileLinks[0].element.tagName).toBe('A')
-    expect(mobileLinks[2].element.tagName).toBe('BUTTON')
+    expect(mobileLinks[0]!.element.tagName).toBe('A')
+    expect(mobileLinks[2]!.element.tagName).toBe('BUTTON')
   })
 
   it('marks active mobile link', async () => {
     const wrapper = mount(SiteNav, { props: { pages, currentPage: 'home' } })
     await wrapper.find('[data-rig-site-nav-toggle]').trigger('click')
     const mobileLinks = wrapper.findAll('[data-rig-site-nav-mobile-link]')
-    expect(mobileLinks[0].attributes('data-active')).toBeDefined()
-    expect(mobileLinks[1].attributes('data-active')).toBeUndefined()
+    expect(mobileLinks[0]!.attributes('data-active')).toBeDefined()
+    expect(mobileLinks[1]!.attributes('data-active')).toBeUndefined()
   })
 })

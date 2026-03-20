@@ -46,14 +46,14 @@ describe('FormView', () => {
   it('emits save on save button click', async () => {
     const wrapper = mount(FormView, { props: { showActions: true } })
     const buttons = wrapper.findAll('[data-rig-form-view-actions] button')
-    await buttons[0].trigger('click')
+    await buttons[0]!.trigger('click')
     expect(wrapper.emitted('save')).toHaveLength(1)
   })
 
   it('emits cancel on cancel button click', async () => {
     const wrapper = mount(FormView, { props: { showActions: true } })
     const buttons = wrapper.findAll('[data-rig-form-view-actions] button')
-    await buttons[1].trigger('click')
+    await buttons[1]!.trigger('click')
     expect(wrapper.emitted('cancel')).toHaveLength(1)
   })
 
@@ -65,13 +65,13 @@ describe('FormView', () => {
   it('uses custom saveLabel', () => {
     const wrapper = mount(FormView, { props: { showActions: true, saveLabel: 'Submit' } })
     const buttons = wrapper.findAll('[data-rig-form-view-actions] button')
-    expect(buttons[0].text()).toBe('Submit')
+    expect(buttons[0]!.text()).toBe('Submit')
   })
 
   it('uses custom cancelLabel', () => {
     const wrapper = mount(FormView, { props: { showActions: true, cancelLabel: 'Discard' } })
     const buttons = wrapper.findAll('[data-rig-form-view-actions] button')
-    expect(buttons[1].text()).toBe('Discard')
+    expect(buttons[1]!.text()).toBe('Discard')
   })
 
   it('renders header slot', () => {

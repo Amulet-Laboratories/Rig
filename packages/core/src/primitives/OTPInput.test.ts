@@ -31,24 +31,24 @@ describe('OTPInput', () => {
   it('fills cells from modelValue', () => {
     const wrapper = mount(OTPInput, { props: { modelValue: '123', length: 4 } })
     const cells = wrapper.findAll('[data-rig-otp-input-cell]')
-    expect((cells[0].element as HTMLInputElement).value).toBe('1')
-    expect((cells[1].element as HTMLInputElement).value).toBe('2')
-    expect((cells[2].element as HTMLInputElement).value).toBe('3')
-    expect((cells[3].element as HTMLInputElement).value).toBe('')
+    expect((cells[0]!.element as HTMLInputElement).value).toBe('1')
+    expect((cells[1]!.element as HTMLInputElement).value).toBe('2')
+    expect((cells[2]!.element as HTMLInputElement).value).toBe('3')
+    expect((cells[3]!.element as HTMLInputElement).value).toBe('')
   })
 
   it('sets data-filled on filled cells', () => {
     const wrapper = mount(OTPInput, { props: { modelValue: '12', length: 4 } })
     const cells = wrapper.findAll('[data-rig-otp-input-cell]')
-    expect(cells[0].attributes('data-filled')).toBeDefined()
-    expect(cells[2].attributes('data-filled')).toBeUndefined()
+    expect(cells[0]!.attributes('data-filled')).toBeDefined()
+    expect(cells[2]!.attributes('data-filled')).toBeUndefined()
   })
 
   it('emits update:modelValue on input', async () => {
     const wrapper = mount(OTPInput, { props: { modelValue: '', length: 4 } })
     const cells = wrapper.findAll('[data-rig-otp-input-cell]')
-    Object.defineProperty(cells[0].element, 'value', { value: '5', writable: true })
-    await cells[0].trigger('input')
+    Object.defineProperty(cells[0]!.element, 'value', { value: '5', writable: true })
+    await cells[0]!.trigger('input')
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['5'])
   })
 
@@ -67,7 +67,7 @@ describe('OTPInput', () => {
   it('sets disabled on cells when disabled', () => {
     const wrapper = mount(OTPInput, { props: { disabled: true } })
     const cells = wrapper.findAll('[data-rig-otp-input-cell]')
-    expect(cells[0].attributes('disabled')).toBeDefined()
+    expect(cells[0]!.attributes('disabled')).toBeDefined()
   })
 
   it('sets data-disabled when disabled', () => {
@@ -78,34 +78,34 @@ describe('OTPInput', () => {
   it('uses password type when mask is true', () => {
     const wrapper = mount(OTPInput, { props: { mask: true } })
     const cells = wrapper.findAll('[data-rig-otp-input-cell]')
-    expect(cells[0].attributes('type')).toBe('password')
+    expect(cells[0]!.attributes('type')).toBe('password')
   })
 
   it('uses text type by default', () => {
     const wrapper = mount(OTPInput)
     const cells = wrapper.findAll('[data-rig-otp-input-cell]')
-    expect(cells[0].attributes('type')).toBe('text')
+    expect(cells[0]!.attributes('type')).toBe('text')
   })
 
   it('clears cell on Backspace', async () => {
     const wrapper = mount(OTPInput, { props: { modelValue: '12', length: 4 } })
     const cells = wrapper.findAll('[data-rig-otp-input-cell]')
-    await cells[1].trigger('keydown', { key: 'Backspace' })
+    await cells[1]!.trigger('keydown', { key: 'Backspace' })
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['1'])
   })
 
   it('clears cell on Delete', async () => {
     const wrapper = mount(OTPInput, { props: { modelValue: '12', length: 4 } })
     const cells = wrapper.findAll('[data-rig-otp-input-cell]')
-    await cells[0].trigger('keydown', { key: 'Delete' })
+    await cells[0]!.trigger('keydown', { key: 'Delete' })
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['2'])
   })
 
   it('sets aria-label on each cell', () => {
     const wrapper = mount(OTPInput, { props: { length: 4 } })
     const cells = wrapper.findAll('[data-rig-otp-input-cell]')
-    expect(cells[0].attributes('aria-label')).toBe('Digit 1 of 4')
-    expect(cells[3].attributes('aria-label')).toBe('Digit 4 of 4')
+    expect(cells[0]!.attributes('aria-label')).toBe('Digit 1 of 4')
+    expect(cells[3]!.attributes('aria-label')).toBe('Digit 4 of 4')
   })
 
   it('handles paste event', async () => {

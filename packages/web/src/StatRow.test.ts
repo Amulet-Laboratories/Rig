@@ -37,20 +37,20 @@ describe('StatRow', () => {
   it('renders stat value and label', () => {
     const wrapper = mount(StatRow, { props: { stats } })
     const items = wrapper.findAll('[data-rig-stat-row-item]')
-    expect(items[0].find('[data-rig-stat-row-value]').text()).toBe('128')
-    expect(items[0].find('[data-rig-stat-row-label]').text()).toBe('Components')
+    expect(items[0]!.find('[data-rig-stat-row-value]').text()).toBe('128')
+    expect(items[0]!.find('[data-rig-stat-row-label]').text()).toBe('Components')
   })
 
   it('renders change when present', () => {
     const wrapper = mount(StatRow, { props: { stats } })
     const items = wrapper.findAll('[data-rig-stat-row-item]')
-    expect(items[2].find('[data-rig-stat-row-change]').text()).toBe('+4')
+    expect(items[2]!.find('[data-rig-stat-row-change]').text()).toBe('+4')
   })
 
   it('hides change when not present', () => {
     const wrapper = mount(StatRow, { props: { stats } })
     const items = wrapper.findAll('[data-rig-stat-row-item]')
-    expect(items[0].find('[data-rig-stat-row-change]').exists()).toBe(false)
+    expect(items[0]!.find('[data-rig-stat-row-change]').exists()).toBe(false)
   })
 
   it('renders section element', () => {

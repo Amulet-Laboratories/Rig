@@ -55,7 +55,7 @@ describe('FileBrowser', () => {
     const wrapper = mount(FileBrowser, { props: { groups } })
     const treeItems = wrapper.findAll('[data-rig-tree-node]')
     if (treeItems.length > 0) {
-      await treeItems[0].trigger('click')
+      await treeItems[0]!.trigger('click')
       expect(wrapper.emitted('select')).toBeDefined()
     }
   })

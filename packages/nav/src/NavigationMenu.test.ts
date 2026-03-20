@@ -93,7 +93,7 @@ describe('NavigationMenu', () => {
     const trigger = wrapper.find('[data-rig-nav-menu-trigger]')
     await trigger.trigger('click')
     const childItems = wrapper.findAll('[data-rig-nav-menu-content] [role="menuitem"]')
-    await childItems[1].trigger('click')
+    await childItems[1]!.trigger('click')
     expect(wrapper.emitted('select')?.[0]).toEqual([{ id: 'gadget', label: 'Gadget' }])
   })
 
@@ -110,7 +110,7 @@ describe('NavigationMenu', () => {
     await menubar.trigger('keydown', { key: 'ArrowRight' })
     // Focus should move from 0 to 1 — trigger should gain data-active
     const triggers = wrapper.findAll('[data-rig-nav-menu-trigger]')
-    expect(triggers[0].attributes('data-active')).toBeDefined()
+    expect(triggers[0]!.attributes('data-active')).toBeDefined()
   })
 
   it('navigates focus with ArrowLeft', async () => {
@@ -119,7 +119,7 @@ describe('NavigationMenu', () => {
     // ArrowLeft from index 0 wraps to last
     await menubar.trigger('keydown', { key: 'ArrowLeft' })
     const allItems = wrapper.findAll('[data-rig-nav-menu-item]')
-    const lastButton = allItems[2].find('[role="menuitem"]')
+    const lastButton = allItems[2]!.find('[role="menuitem"]')
     expect(lastButton?.attributes('data-active')).toBeDefined()
   })
 
@@ -168,7 +168,7 @@ describe('NavigationMenu', () => {
     const submenu = wrapper.find('[data-rig-nav-menu-content]')
     await submenu.trigger('keydown', { key: 'ArrowDown' })
     const childItems = submenu.findAll('[role="menuitem"]')
-    expect(childItems[1].attributes('data-active')).toBeDefined()
+    expect(childItems[1]!.attributes('data-active')).toBeDefined()
   })
 
   it('wraps submenu navigation with ArrowUp', async () => {
@@ -178,7 +178,7 @@ describe('NavigationMenu', () => {
     const submenu = wrapper.find('[data-rig-nav-menu-content]')
     await submenu.trigger('keydown', { key: 'ArrowUp' })
     const childItems = submenu.findAll('[role="menuitem"]')
-    expect(childItems[1].attributes('data-active')).toBeDefined()
+    expect(childItems[1]!.attributes('data-active')).toBeDefined()
   })
 
   it('closes submenu with Escape from submenu', async () => {
@@ -205,13 +205,13 @@ describe('NavigationMenu', () => {
     const wrapper = mount(NavigationMenu, { props: { items } })
     const trigger = wrapper.find('[data-rig-nav-menu-trigger]')
     await trigger.trigger('click')
-    const menuItem = wrapper.findAll('[data-rig-nav-menu-item]')[1]
+    const menuItem = wrapper.findAll('[data-rig-nav-menu-item]')[1]!
     expect(menuItem.attributes('data-state')).toBe('open')
   })
 
   it('sets data-state closed on inactive menu items', () => {
     const wrapper = mount(NavigationMenu, { props: { items } })
     const menuItems = wrapper.findAll('[data-rig-nav-menu-item]')
-    expect(menuItems[0].attributes('data-state')).toBe('closed')
+    expect(menuItems[0]!.attributes('data-state')).toBe('closed')
   })
 })

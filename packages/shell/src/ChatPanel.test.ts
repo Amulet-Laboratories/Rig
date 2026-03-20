@@ -37,15 +37,15 @@ describe('ChatPanel', () => {
   it('sets data-role on messages', () => {
     const wrapper = mount(ChatPanel, { props: { messages } })
     const msgElements = wrapper.findAll('[data-rig-chat-panel-message]')
-    expect(msgElements[0].attributes('data-role')).toBe('user')
-    expect(msgElements[1].attributes('data-role')).toBe('assistant')
+    expect(msgElements[0]!.attributes('data-role')).toBe('user')
+    expect(msgElements[1]!.attributes('data-role')).toBe('assistant')
   })
 
   it('renders message content', () => {
     const wrapper = mount(ChatPanel, { props: { messages } })
     const contents = wrapper.findAll('[data-rig-chat-panel-message-content]')
-    expect(contents[0].text()).toBe('Hello')
-    expect(contents[1].text()).toBe('Hi there')
+    expect(contents[0]!.text()).toBe('Hello')
+    expect(contents[1]!.text()).toBe('Hi there')
   })
 
   it('shows clear button when messages exist', () => {
