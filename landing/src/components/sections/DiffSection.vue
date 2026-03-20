@@ -8,7 +8,7 @@ const diffs = [
   {
     vs: 'vs shadcn/ui',
     title: 'A real library, not copy-paste',
-    desc: 'shadcn copies source files into your project. Rig is an installable, versioned package with 117 components. Updates come from npm, not re-generating files.',
+    desc: 'shadcn copies source files into your project. Rig is an installable, versioned package with 128 components. Updates come from npm, not re-generating files.',
   },
   {
     vs: 'vs Radix Vue',

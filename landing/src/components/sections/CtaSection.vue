@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <section id="get-started" class="reveal px-6 py-24 text-center" aria-labelledby="cta-title">
     <div class="mx-auto max-w-[1200px]">
@@ -32,7 +30,7 @@
           href="https://github.com/Amulet-Laboratories/Rig"
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-[15px] font-medium text-bg no-underline transition hover:-translate-y-px hover:bg-[#7ec4be] hover:shadow-[0_4px_20px_var(--color-primary-dim)]"
+          class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-[15px] font-medium text-bg no-underline transition hover:-translate-y-px hover:bg-primary-hover hover:shadow-[0_4px_20px_var(--color-primary-dim)]"
         >
           View on GitHub
         </a>

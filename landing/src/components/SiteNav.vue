@@ -1,20 +1,51 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useScrollTo } from '@/composables/useScrollTo'
 
 const scrolled = ref(false)
 const mobileOpen = ref(false)
+const activeSection = ref<string | null>(null)
+const scrollTo = useScrollTo()
+
+let observer: IntersectionObserver | null = null
 
 function onScroll() {
   scrolled.value = window.scrollY > 40
 }
 
-function scrollTo(id: string) {
+function navigateTo(id: string) {
   mobileOpen.value = false
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  scrollTo(id)
 }
 
-onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
-onUnmounted(() => window.removeEventListener('scroll', onScroll))
+function isActive(id: string) {
+  return activeSection.value === id
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          activeSection.value = entry.target.id
+        }
+      }
+    },
+    { rootMargin: '-40% 0px -55% 0px' },
+  )
+
+  for (const id of ['packages', 'themes']) {
+    const el = document.getElementById(id)
+    if (el) observer.observe(el)
+  }
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+  observer?.disconnect()
+})
 </script>
 
 <template>
@@ -35,10 +66,18 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
       </div>
 
       <div class="hidden items-center gap-7 text-sm sm:flex">
-        <button class="text-text-muted transition hover:text-text" @click="scrollTo('packages')">
+        <button
+          class="transition hover:text-text"
+          :class="isActive('packages') ? 'text-primary' : 'text-text-muted'"
+          @click="navigateTo('packages')"
+        >
           Components
         </button>
-        <button class="text-text-muted transition hover:text-text" @click="scrollTo('themes')">
+        <button
+          class="transition hover:text-text"
+          :class="isActive('themes') ? 'text-primary' : 'text-text-muted'"
+          @click="navigateTo('themes')"
+        >
           Themes
         </button>
         <a
@@ -50,8 +89,8 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
           GitHub
         </a>
         <button
-          class="rounded-[5px] bg-primary px-4 py-[7px] text-[13px] font-medium text-bg transition hover:bg-[#7ec4be]"
-          @click="scrollTo('get-started')"
+          class="rounded-[5px] bg-primary px-4 py-[7px] text-[13px] font-medium text-bg transition hover:bg-primary-hover"
+          @click="navigateTo('get-started')"
         >
           Get Started
         </button>
@@ -82,8 +121,20 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
       v-if="mobileOpen"
       class="flex flex-col gap-4 border-t border-border-subtle bg-bg/95 px-6 py-6 backdrop-blur-xl sm:hidden"
     >
-      <button class="text-left text-text-muted" @click="scrollTo('packages')">Components</button>
-      <button class="text-left text-text-muted" @click="scrollTo('themes')">Themes</button>
+      <button
+        class="text-left"
+        :class="isActive('packages') ? 'text-primary' : 'text-text-muted'"
+        @click="navigateTo('packages')"
+      >
+        Components
+      </button>
+      <button
+        class="text-left"
+        :class="isActive('themes') ? 'text-primary' : 'text-text-muted'"
+        @click="navigateTo('themes')"
+      >
+        Themes
+      </button>
       <a
         href="https://github.com/Amulet-Laboratories/Rig"
         target="_blank"
@@ -93,7 +144,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
       >
       <button
         class="mt-2 rounded-[5px] bg-primary px-4 py-2 text-sm font-medium text-bg"
-        @click="scrollTo('get-started')"
+        @click="navigateTo('get-started')"
       >
         Get Started
       </button>

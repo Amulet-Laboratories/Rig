@@ -28,13 +28,13 @@ const packages = [
   },
   {
     name: 'Extras',
-    count: 13,
-    desc: 'Alert, Toast, Tooltip, Carousel, Popconfirm, KanbanBoard, NotificationCenter, CalendarGrid',
+    count: 16,
+    desc: 'Alert, Toast, Tooltip, Carousel, Popconfirm, KanbanBoard, NotificationCenter, CalendarGrid, ConfirmDialog, LiveRegion, ErrorBoundary',
   },
   {
     name: 'Shell',
     count: 8,
-    desc: 'IdeShell -- pre-composed VSCode-style IDE layout with 8 named slots',
+    desc: 'IdeShell, ChatPanel, SearchPanel, FileBrowser, ContentViewer, FormView, WelcomeView, SettingsView',
   },
   {
     name: 'Data',
@@ -51,6 +51,11 @@ const packages = [
     count: 5,
     desc: 'AnimatedChart, ParticleField, PlaybackControls, TimelineScrubber, TemporalHeatmap',
   },
+  {
+    name: 'Web',
+    count: 8,
+    desc: 'SiteShell, SiteNav, Hero, Section, StatRow, CTABanner, Testimonial, SiteFooter',
+  },
 ]
 </script>
 
@@ -65,11 +70,11 @@ const packages = [
           id="pkg-title"
           class="mb-4 text-[clamp(28px,3.5vw,40px)] font-bold leading-tight tracking-tight"
         >
-          117 components across 11 packages
+          128 components across 12 packages
         </h2>
         <p class="mx-auto max-w-[520px] text-[17px] leading-relaxed text-text-muted">
-          From primitive form controls to data visualization, spatial rendering, and temporal
-          animation. Every component is headless, accessible, and slot-driven.
+          From primitive form controls to data visualization, spatial rendering, temporal animation,
+          and marketing page scaffolds. Every component is headless, accessible, and slot-driven.
         </p>
       </div>
 

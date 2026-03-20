@@ -18,6 +18,7 @@
   --color-accent-green: #1db954;
   --color-accent-red: #e8483f;
   --color-accent-amber: #d4a017;
+  --color-primary-hover: #7ec4be;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
 }
@@ -43,7 +44,7 @@ a {
 }
 
 a:hover {
-  color: #7ec4be;
+  color: var(--color-primary-hover);
 }
 
 ::selection {
@@ -130,6 +131,15 @@ a:hover {
   }
 }
 
+@supports not (animation-timeline: view()) {
+  .reveal,
+  .stagger-children > * {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
 /* ── Code syntax ── */
 .code-kw {
   color: #c586c0;
@@ -161,7 +171,7 @@ body::after {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 100;
   pointer-events: none;
   opacity: 0.015;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");

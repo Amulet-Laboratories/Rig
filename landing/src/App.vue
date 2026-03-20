@@ -13,15 +13,23 @@ import SiteFooter from '@/components/sections/SiteFooter.vue'
 </script>
 
 <template>
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-bg focus:outline-none"
+  >
+    Skip to content
+  </a>
   <SiteNav />
-  <HeroSection />
-  <ArchSection />
-  <CodeSection />
-  <PackagesSection />
-  <ThemesSection />
-  <ComposablesSection />
-  <DiffSection />
-  <PrinciplesSection />
-  <CtaSection />
+  <main id="main-content">
+    <HeroSection />
+    <ArchSection />
+    <CodeSection />
+    <PackagesSection />
+    <ThemesSection />
+    <ComposablesSection />
+    <DiffSection />
+    <PrinciplesSection />
+    <CtaSection />
+  </main>
   <SiteFooter />
 </template>

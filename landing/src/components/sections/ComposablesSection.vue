@@ -13,11 +13,15 @@ const composables = [
   { name: 'useMediaPlayback', desc: 'Reactive media controls' },
   { name: 'useReducedMotion', desc: 'Motion preference detection' },
   { name: 'usePlatform', desc: 'Platform detection' },
-  { name: 'useFormValidation', desc: 'Field-level validation + Zod' },
-  { name: 'useConfigProvider', desc: 'Global config + RTL + defaults' },
+  { name: 'useFormValidation', desc: 'Field-level validation + schema support' },
+  { name: 'useConfig', desc: 'Global config + RTL + defaults' },
   { name: 'useShellState', desc: 'IDE shell state management' },
   { name: 'useToast', desc: 'Toast queue management' },
   { name: 'useNotifications', desc: 'Notification center state' },
+  { name: 'useConfirm', desc: 'Imperative confirm dialogs' },
+  { name: 'useAnnounce', desc: 'Live region announcements' },
+  { name: 'useComponentDefaults', desc: 'Per-component prop defaults' },
+  { name: 'useHashRouter', desc: 'Hash-based SPA routing' },
 ]
 </script>
 
@@ -37,7 +41,7 @@ const composables = [
           Batteries included.
         </h2>
         <p class="mx-auto max-w-[520px] text-[17px] leading-relaxed text-text-muted">
-          18 composables for the patterns you build again and again. Keyboard shortcuts, focus
+          22 composables for the patterns you build again and again. Keyboard shortcuts, focus
           traps, virtual lists, form validation -- handled.
         </p>
       </div>

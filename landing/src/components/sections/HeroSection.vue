@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useScrollTo } from '@/composables/useScrollTo'
 
 const copied = ref(false)
+const scrollTo = useScrollTo()
 
 async function copyInstall() {
   try {
@@ -13,10 +15,6 @@ async function copyInstall() {
   } catch {
     /* clipboard requires HTTPS */
   }
-}
-
-function scrollTo(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
 
@@ -42,7 +40,7 @@ function scrollTo(id: string) {
         class="h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_var(--color-primary)]"
         aria-hidden="true"
       />
-      <span>v0.2.0 -- 117 components across 11 packages</span>
+      <span>v0.2.0 -- 128 components across 12 packages</span>
     </div>
 
     <h1
@@ -61,7 +59,7 @@ function scrollTo(id: string) {
 
     <div class="fade-in delay-3 mb-12 flex flex-wrap items-center justify-center gap-3">
       <button
-        class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-[15px] font-medium text-bg transition hover:-translate-y-px hover:bg-[#7ec4be] hover:shadow-[0_4px_20px_var(--color-primary-dim)]"
+        class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-[15px] font-medium text-bg transition hover:-translate-y-px hover:bg-primary-hover hover:shadow-[0_4px_20px_var(--color-primary-dim)]"
         @click="scrollTo('get-started')"
       >
         Get Started
@@ -95,10 +93,10 @@ function scrollTo(id: string) {
     >
       <div
         v-for="stat in [
-          { value: '117', label: 'Components' },
-          { value: '11', label: 'Packages' },
-          { value: '2', label: 'Themes' },
-          { value: '18', label: 'Composables' },
+          { value: '128', label: 'Components' },
+          { value: '12', label: 'Packages' },
+          { value: '16', label: 'Themes' },
+          { value: '22', label: 'Composables' },
         ]"
         :key="stat.label"
         class="bg-bg-elevated px-5 py-7 text-center"

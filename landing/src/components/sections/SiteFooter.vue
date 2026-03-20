@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <footer class="border-t border-border-subtle px-6 py-10">
     <div
