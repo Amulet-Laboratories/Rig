@@ -45,31 +45,51 @@ function extractExports(content) {
   return names
 }
 
+/** Extract all source file stems referenced by export-from statements. */
+function extractExportSources(content) {
+  const sources = new Set()
+  for (const m of content.matchAll(/from\s+['"]\.\/([\w-]+)['"]/g)) {
+    sources.add(m[1])
+  }
+  return sources
+}
+
 // 1. Build a map of what each package actually exports
 const exportMap = {}
+const sourceMap = {}
 for (const pkg of packages) {
   const indexPath = join(ROOT, 'packages', pkg, 'src', 'index.ts')
   if (existsSync(indexPath)) {
     const content = readFileSync(indexPath, 'utf-8')
     const allExports = extractExports(content)
+    const allSources = extractExportSources(content)
 
     // For core, also scan primitives/index.ts
     if (pkg === 'core') {
       const primPath = join(ROOT, 'packages/core/src/primitives/index.ts')
       if (existsSync(primPath)) {
-        for (const name of extractExports(readFileSync(primPath, 'utf-8'))) {
+        const primContent = readFileSync(primPath, 'utf-8')
+        for (const name of extractExports(primContent)) {
           allExports.add(name)
+        }
+        for (const src of extractExportSources(primContent)) {
+          allSources.add(src)
         }
       }
       // Also scan composables/index.ts
       const composPath = join(ROOT, 'packages/core/src/composables/index.ts')
       if (existsSync(composPath)) {
-        for (const name of extractExports(readFileSync(composPath, 'utf-8'))) {
+        const composContent = readFileSync(composPath, 'utf-8')
+        for (const name of extractExports(composContent)) {
           allExports.add(name)
+        }
+        for (const src of extractExportSources(composContent)) {
+          allSources.add(src)
         }
       }
     }
     exportMap[pkg] = allExports
+    sourceMap[pkg] = allSources
   }
 }
 
@@ -79,6 +99,7 @@ const unexported = []
 for (const pkg of packages) {
   const srcDir = join(ROOT, 'packages', pkg, 'src')
   const exports = exportMap[pkg] || new Set()
+  const sources = sourceMap[pkg] || new Set()
 
   if (!existsSync(srcDir)) continue
 
@@ -88,7 +109,7 @@ for (const pkg of packages) {
   )
   for (const f of vueFiles) {
     const name = basename(f, '.vue')
-    if (!exports.has(name)) {
+    if (!exports.has(name) && !sources.has(name)) {
       unexported.push({ name, pkg, file: `packages/${pkg}/src/${f}` })
     }
   }
@@ -102,7 +123,7 @@ for (const pkg of packages) {
       )
       for (const f of files) {
         const name = basename(f, '.vue')
-        if (!exports.has(name)) {
+        if (!exports.has(name) && !sources.has(name)) {
           unexported.push({ name, pkg, file: `packages/core/src/primitives/${f}` })
         }
       }
@@ -120,7 +141,7 @@ for (const pkg of packages) {
       )
       for (const f of files) {
         const name = basename(f, '.ts') // e.g. "useKeyboard"
-        if (!exports.has(name)) {
+        if (!exports.has(name) && !sources.has(name)) {
           unexported.push({ name, pkg, file: `packages/core/src/composables/${f}` })
         }
       }
@@ -138,7 +159,7 @@ for (const pkg of packages) {
     )
     for (const f of tsFiles) {
       const name = basename(f, '.ts')
-      if (!exports.has(name)) {
+      if (!exports.has(name) && !sources.has(name)) {
         unexported.push({ name, pkg, file: `packages/${pkg}/src/${f}` })
       }
     }
