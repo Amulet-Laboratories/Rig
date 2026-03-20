@@ -59,6 +59,8 @@
     "./compass/source": "./src/themes/compass/index.css",
     "./briarcovelib": "./dist/briarcovelib.css",
     "./briarcovelib/source": "./src/themes/briarcovelib/index.css",
+    "./forge": "./dist/forge.css",
+    "./forge/source": "./src/themes/forge/index.css",
     "./scoped": "./dist/scoped.css",
     "./scoped/source": "./src/scoped/index.css"
   },

@@ -1,0 +1,178 @@
+/* Hex — Forge Design Tokens
+ * 1980s spacecraft cockpit hardware — CRT phosphor displays, beige ABS plastic
+ * housings, brushed aluminum channels, dark rubber gaskets.
+ * Dark mode industrial theme — deep carbon hull, amber phosphor accents,
+ * IBM Plex instrument typography, machined 2px radii.
+ *
+ * Key palette:
+ *   #0E0D0C  deep carbon hull     — background
+ *   #1E1C1A  dark composite panel  — card / muted / sidebar
+ *   #2A2826  elevated panel        — popover / overlay
+ *   #3A3530  dark panel seam       — border
+ *   #D4CCBA  warm off-white        — foreground (12.8:1 on base)
+ *   #8A8478  mid warm gray         — muted foreground (5.8:1 on base)
+ *   #FFB000  CRT amber phosphor    — primary accent (9.5:1 on base)
+ *   #33DD33  phosphor green        — success (9.6:1 on base)
+ *   #FFBB22  bright amber          — warning (10.1:1 on base)
+ *   #FF4444  phosphor red          — destructive (5.4:1 on base)
+ *   #4488FF  phosphor blue         — info (5.6:1 on base)
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #0e0d0c;
+  --color-foreground: #d4ccba;
+  --color-card: #1e1c1a;
+  --color-card-foreground: #d4ccba;
+  --color-popover: #2a2826;
+  --color-popover-foreground: #d4ccba;
+
+  /* Brand — amber phosphor */
+  --color-primary: #ffb000;
+  --color-primary-foreground: #0e0d0c;
+
+  /* Soft accents */
+  --color-secondary: #1e1c1a;
+  --color-secondary-foreground: #d4ccba;
+  --color-muted: #1e1c1a;
+  --color-muted-foreground: #8a8478;
+  --color-accent: #ffb000;
+  --color-accent-foreground: #0e0d0c;
+
+  /* Semantic status */
+  --color-destructive: #ff4444;
+  --color-destructive-foreground: #0e0d0c;
+  --color-success: #33dd33;
+  --color-warning: #ffbb22;
+  --color-info: #4488ff;
+
+  /* Borders and focus */
+  --color-border: #3a3530;
+  --color-input: #3a3530;
+  --color-ring: #ffb000;
+
+  /* Typography — IBM Plex instrument family */
+  --font-mono: 'IBM Plex Mono', 'Courier New', ui-monospace, monospace;
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-serif: 'IBM Plex Serif', Georgia, serif;
+
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-sans);
+
+  /* Radius — machined, not rounded */
+  --radius: 2px;
+}
+
+:root {
+  --background: #0e0d0c;
+  --foreground: #d4ccba;
+  --card: #1e1c1a;
+  --card-foreground: #d4ccba;
+  --popover: #2a2826;
+  --popover-foreground: #d4ccba;
+  --primary: #ffb000;
+  --primary-foreground: #0e0d0c;
+  --secondary: #1e1c1a;
+  --secondary-foreground: #d4ccba;
+  --muted: #1e1c1a;
+  --muted-foreground: #8a8478;
+  --accent: #ffb000;
+  --accent-foreground: #0e0d0c;
+  --destructive: #ff4444;
+  --destructive-foreground: #0e0d0c;
+  --success: #33dd33;
+  --warning: #ffbb22;
+  --info: #4488ff;
+  --border: #3a3530;
+  --input: #3a3530;
+  --ring: #ffb000;
+
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-sans);
+
+  --radius: 2px;
+
+  /* Typography — IDE-density type scale (shorthand aliases) */
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --font-display: var(--font-sans);
+  --font-mono: 'IBM Plex Mono', 'Courier New', ui-monospace, monospace;
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-serif: 'IBM Plex Serif', Georgia, serif;
+
+  /* ── Named palette aliases ──────────────────────────────────────────────
+   * Forge spacecraft palette available for direct template use.
+   */
+  --forge-hull: #0e0d0c;
+  --forge-panel: #1e1c1a;
+  --forge-overlay: #2a2826;
+  --forge-well: #060605;
+  --forge-seam: #3a3530;
+  --forge-seam-subtle: #1e1c1a;
+  --forge-text: #d4ccba;
+  --forge-text-mid: #8a8478;
+  --forge-text-dim: #5a5548;
+  --forge-amber: #ffb000;
+  --forge-amber-bright: #ffcc44;
+  --forge-green: #33dd33;
+  --forge-red: #ff4444;
+  --forge-blue: #4488ff;
+
+  /* ── Rig component token bridge ─────────────────────────────────────────
+   * Overrides shared/tokens.css defaults where Forge needs specific values.
+   */
+
+  /* Scrollbar — warm tint matching hull color */
+  --rig-scrollbar-thumb: rgba(212, 204, 186, 0.15);
+  --rig-scrollbar-thumb-hover: rgba(212, 204, 186, 0.28);
+
+  /* Button — slightly dimmed amber for hover */
+  --rig-button-hover-bg: #cc8c00;
+}

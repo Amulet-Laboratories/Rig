@@ -15,9 +15,7 @@ import { resolve } from 'node:path'
 
 const args = process.argv.slice(2)
 const name = args.find((a) => !a.startsWith('--')) ?? 'my-rig-app'
-const theme = args.includes('--theme')
-  ? args[args.indexOf('--theme') + 1] ?? 'vscode'
-  : 'vscode'
+const theme = args.includes('--theme') ? (args[args.indexOf('--theme') + 1] ?? 'vscode') : 'vscode'
 const useNuxt = args.includes('--nuxt')
 
 const dest = resolve(process.cwd(), name)
@@ -61,7 +59,7 @@ const pkg = {
   },
 }
 
-writeFileSync(resolve(dest, 'package.json'), `${JSON.stringify(pkg, null, 2)  }\n`)
+writeFileSync(resolve(dest, 'package.json'), `${JSON.stringify(pkg, null, 2)}\n`)
 
 // ── tsconfig.json ───────────────────────────────────────────────────────────
 
@@ -82,7 +80,7 @@ if (!useNuxt) {
     },
     include: ['src/**/*.ts', 'src/**/*.vue'],
   }
-  writeFileSync(resolve(dest, 'tsconfig.json'), `${JSON.stringify(tsconfig, null, 2)  }\n`)
+  writeFileSync(resolve(dest, 'tsconfig.json'), `${JSON.stringify(tsconfig, null, 2)}\n`)
 }
 
 // ── vite.config.ts (Vite only) ─────────────────────────────────────────────

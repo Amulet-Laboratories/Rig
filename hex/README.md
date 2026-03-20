@@ -6,12 +6,12 @@ Hex ships pure CSS — no JavaScript, no runtime. It styles Rig's headless compo
 
 ## Themes
 
-| Theme | Mode | Background | Primary | Feel |
-|-------|------|-----------|---------|------|
-| **Hexrig** | Dark | `#121417` slate | `#5ea9a2` teal | Lab default, neutral developer |
-| **VSCode** | Dark | `#1f1f1f` gray | `#0078d4` blue | IDE faithful |
-| **Spotify** | Dark | `#121212` near-black | `#1db954` green | Music streaming |
-| **Gmail** | Light | `#ffffff` white | `#1a73e8` blue | Material |
+| Theme       | Mode  | Background           | Primary         | Feel                           |
+| ----------- | ----- | -------------------- | --------------- | ------------------------------ |
+| **Hexrig**  | Dark  | `#121417` slate      | `#5ea9a2` teal  | Lab default, neutral developer |
+| **VSCode**  | Dark  | `#1f1f1f` gray       | `#0078d4` blue  | IDE faithful                   |
+| **Spotify** | Dark  | `#121212` near-black | `#1db954` green | Music streaming                |
+| **Gmail**   | Light | `#ffffff` white      | `#1a73e8` blue  | Material                       |
 
 ## Install
 
@@ -24,10 +24,10 @@ pnpm add @amulet-laboratories/hex
 Import a single theme bundle (tokens + base + component styles):
 
 ```ts
-import '@amulet-laboratories/hex'             // default (hexrig)
-import '@amulet-laboratories/hex/vscode'       // vscode dark
-import '@amulet-laboratories/hex/spotify'      // spotify dark
-import '@amulet-laboratories/hex/gmail'        // gmail light
+import '@amulet-laboratories/hex' // default (hexrig)
+import '@amulet-laboratories/hex/vscode' // vscode dark
+import '@amulet-laboratories/hex/spotify' // spotify dark
+import '@amulet-laboratories/hex/gmail' // gmail light
 ```
 
 Or import source files for custom PostCSS builds:
@@ -75,11 +75,11 @@ src/
 
 Hex targets Rig's data-attribute API:
 
-| Selector pattern | Example |
-|---|---|
-| `[data-rig-{component}]` | `[data-rig-button]` |
-| `[data-rig-{component}-{part}]` | `[data-rig-toast-dismiss]` |
-| `[data-{state}]` | `[data-variant="primary"]`, `[data-disabled]` |
+| Selector pattern                | Example                                       |
+| ------------------------------- | --------------------------------------------- |
+| `[data-rig-{component}]`        | `[data-rig-button]`                           |
+| `[data-rig-{component}-{part}]` | `[data-rig-toast-dismiss]`                    |
+| `[data-{state}]`                | `[data-variant="primary"]`, `[data-disabled]` |
 
 No class names are assumed or generated. Consumers can layer additional styles on top.
 

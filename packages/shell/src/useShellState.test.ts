@@ -293,9 +293,7 @@ describe('useShellState', () => {
       const { shell, wrapper } = createShell({ onActiveTabChange })
       shell.openTab(tab('a'))
       await wrapper.vm.$nextTick()
-      expect(onActiveTabChange).toHaveBeenCalledWith(
-        expect.objectContaining({ id: 'a' }),
-      )
+      expect(onActiveTabChange).toHaveBeenCalledWith(expect.objectContaining({ id: 'a' }))
     })
 
     it('fires with null when last tab is closed', async () => {

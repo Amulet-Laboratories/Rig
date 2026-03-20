@@ -27,10 +27,7 @@ Create `eslint.config.js`:
 ```js
 import vue from '@amulet-laboratories/config/eslint/vue'
 
-export default [
-  ...vue,
-  { ignores: ['dist/', 'coverage/'] },
-]
+export default [...vue, { ignores: ['dist/', 'coverage/'] }]
 ```
 
 ### Base / JS-only (Hex)
@@ -40,10 +37,7 @@ Create `eslint.config.js`:
 ```js
 import base from '@amulet-laboratories/config/eslint/base'
 
-export default [
-  ...base,
-  { ignores: ['dist/'] },
-]
+export default [...base, { ignores: ['dist/'] }]
 ```
 
 ## Prettier

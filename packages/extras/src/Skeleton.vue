@@ -44,7 +44,11 @@ function lineWidth(index: number, width?: string | string[]): string | undefined
     :aria-busy="mode !== 'shimmer' ? true : undefined"
     :aria-label="mode !== 'shimmer' ? 'Loading' : undefined"
     :data-animate="mode !== 'shimmer' && animate && !prefersReducedMotion ? '' : undefined"
-    :style="mode === 'shimmer' ? { width: typeof width === 'string' ? width : '100%', height, borderRadius } : undefined"
+    :style="
+      mode === 'shimmer'
+        ? { width: typeof width === 'string' ? width : '100%', height, borderRadius }
+        : undefined
+    "
     @keydown.stop
   >
     <!-- Shimmer mode -->

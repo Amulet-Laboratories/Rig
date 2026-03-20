@@ -2,14 +2,7 @@
 // Processes each theme + entrypoint through PostCSS (Tailwind v4 + postcss-import)
 // and writes the output to dist/
 
-import {
-  readFileSync,
-  writeFileSync,
-  mkdirSync,
-  existsSync,
-  rmSync,
-  watch,
-} from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, watch } from 'node:fs'
 import { resolve } from 'node:path'
 import postcss from 'postcss'
 import postcssImport from 'postcss-import'
@@ -22,7 +15,24 @@ const DIST = resolve(ROOT, 'dist')
 
 // Define themes (directory-based, shadcn token contract)
 // One CSS per theme — no light/dark variants
-const themes = ['vscode', 'garden', 'spacewizard', 'greyline', 'tidemark', 'briarcove', 'duskline', 'saltsignal', 'marenlys', 'lanternhouse', 'aldricpace', 'undertow', 'kbcv', 'compass', 'briarcovelib']
+const themes = [
+  'vscode',
+  'garden',
+  'spacewizard',
+  'greyline',
+  'tidemark',
+  'briarcove',
+  'duskline',
+  'saltsignal',
+  'marenlys',
+  'lanternhouse',
+  'aldricpace',
+  'undertow',
+  'kbcv',
+  'compass',
+  'briarcovelib',
+  'forge',
+]
 
 const getThemeEntrypoints = (theme) => [
   { input: `src/themes/${theme}/index.css`, output: `dist/${theme}.css` },
@@ -46,7 +56,11 @@ async function buildEntry(entry) {
   const css = readFileSync(inputPath, 'utf-8')
 
   try {
-    const result = await postcss([postcssImport(), tailwindcss(), cssnano({ preset: 'default' })]).process(css, {
+    const result = await postcss([
+      postcssImport(),
+      tailwindcss(),
+      cssnano({ preset: 'default' }),
+    ]).process(css, {
       from: inputPath,
       to: outputPath,
       map: false,
@@ -72,10 +86,7 @@ async function build() {
   const start = Date.now()
 
   // Collect all entries
-  const allEntries = [
-    ...rootEntrypoints,
-    ...themes.flatMap(getThemeEntrypoints),
-  ]
+  const allEntries = [...rootEntrypoints, ...themes.flatMap(getThemeEntrypoints)]
 
   // Build all entries in parallel
   await Promise.all(allEntries.map(buildEntry))

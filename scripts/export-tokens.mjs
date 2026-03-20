@@ -74,7 +74,7 @@ for (const theme of themes) {
   }
 
   const outPath = resolve(OUT_DIR, `${theme}.json`)
-  writeFileSync(outPath, `${JSON.stringify(grouped, null, 2)  }\n`)
+  writeFileSync(outPath, `${JSON.stringify(grouped, null, 2)}\n`)
   console.log(`  Exported ${Object.keys(tokens).length} tokens → ${outPath}`)
 }
 

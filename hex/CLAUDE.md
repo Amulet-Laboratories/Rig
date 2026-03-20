@@ -48,19 +48,19 @@ src/
 
 ## Themes
 
-| Theme | Mode | Background | Primary | Feel | Sans | Mono |
-|-------|------|-----------|---------|------|------|------|
-| **Hexrig** | Dark | `#121417` slate | `#5ea9a2` teal | Lab default, neutral developer | Inter | JetBrains Mono |
-| **VSCode** | Dark | `#1f1f1f` dark gray | `#0078d4` VS Code blue | IDE faithful | System | SF Mono |
-| **Spotify** | Dark | `#121212` near-black | `#1db954` green | Music streaming | Circular | Fira Code |
-| **Gmail** | Light | `#ffffff` white | `#1a73e8` Google blue | Material | Google Sans | Roboto Mono |
+| Theme       | Mode  | Background           | Primary                | Feel                           | Sans        | Mono           |
+| ----------- | ----- | -------------------- | ---------------------- | ------------------------------ | ----------- | -------------- |
+| **Hexrig**  | Dark  | `#121417` slate      | `#5ea9a2` teal         | Lab default, neutral developer | Inter       | JetBrains Mono |
+| **VSCode**  | Dark  | `#1f1f1f` dark gray  | `#0078d4` VS Code blue | IDE faithful                   | System      | SF Mono        |
+| **Spotify** | Dark  | `#121212` near-black | `#1db954` green        | Music streaming                | Circular    | Fira Code      |
+| **Gmail**   | Light | `#ffffff` white      | `#1a73e8` Google blue  | Material                       | Google Sans | Roboto Mono    |
 
 ```js
 // Import themes
-import '@amulet-laboratories/hex'           // default (hexrig dark)
-import '@amulet-laboratories/hex/vscode'    // vscode dark
-import '@amulet-laboratories/hex/spotify'   // spotify dark
-import '@amulet-laboratories/hex/gmail'     // gmail light
+import '@amulet-laboratories/hex' // default (hexrig dark)
+import '@amulet-laboratories/hex/vscode' // vscode dark
+import '@amulet-laboratories/hex/spotify' // spotify dark
+import '@amulet-laboratories/hex/gmail' // gmail light
 ```
 
 ## Token API
@@ -134,6 +134,7 @@ pnpm format       # Prettier
 ```
 
 Outputs:
+
 - `dist/hex.css` — default bundle (hexrig)
 - `dist/hexrig.css` — hexrig dark
 - `dist/vscode.css` — vscode dark

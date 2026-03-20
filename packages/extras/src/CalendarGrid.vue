@@ -134,22 +134,12 @@ function nextMonth() {
 
     <div role="grid" :aria-label="monthName">
       <div data-rig-calendar-grid-weekdays role="row">
-        <span
-          v-for="d in dayNames"
-          :key="d"
-          data-rig-calendar-grid-weekday
-          role="columnheader"
-        >
+        <span v-for="d in dayNames" :key="d" data-rig-calendar-grid-weekday role="columnheader">
           {{ d }}
         </span>
       </div>
 
-      <div
-        v-for="(week, wi) in weeks"
-        :key="wi"
-        data-rig-calendar-grid-week
-        role="row"
-      >
+      <div v-for="(week, wi) in weeks" :key="wi" data-rig-calendar-grid-week role="row">
         <div
           v-for="(day, di) in week"
           :key="di"

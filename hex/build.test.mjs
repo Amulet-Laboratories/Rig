@@ -44,10 +44,7 @@ describe('Hex build', () => {
   it('all dist files exceed minimum size threshold', () => {
     for (const theme of themes) {
       const fullSize = readFileSync(resolve(DIST, `${theme}.css`)).length
-      assert.ok(
-        fullSize > 5000,
-        `${theme}.css full bundle is ${fullSize} bytes, expected >5000`,
-      )
+      assert.ok(fullSize > 5000, `${theme}.css full bundle is ${fullSize} bytes, expected >5000`)
     }
     // Root bundle should match vscode (default theme)
     const hexSize = readFileSync(resolve(DIST, 'hex.css')).length
@@ -58,11 +55,8 @@ describe('Hex build', () => {
   // ─── CSS size budget (prevents unbounded growth) ────────────────────────
 
   it('no CSS file exceeds 150 KB budget', () => {
-    const MAX_BYTES = 175 * 1024  // 175 KB (minified)
-    const allFiles = [
-      'hex.css',
-      ...themes.map((t) => `${t}.css`),
-    ]
+    const MAX_BYTES = 175 * 1024 // 175 KB (minified)
+    const allFiles = ['hex.css', ...themes.map((t) => `${t}.css`)]
     for (const file of allFiles) {
       const size = readFileSync(resolve(DIST, file)).length
       assert.ok(
@@ -78,15 +72,26 @@ describe('Hex build', () => {
     for (const theme of themes) {
       const css = readFileSync(resolve(DIST, `${theme}.css`), 'utf-8')
       const requiredTokens = [
-        '--background', '--foreground',
-        '--primary', '--primary-foreground',
-        '--muted', '--muted-foreground',
-        '--destructive', '--destructive-foreground',
-        '--card', '--card-foreground',
-        '--popover', '--popover-foreground',
-        '--secondary', '--secondary-foreground',
-        '--accent', '--accent-foreground',
-        '--border', '--input', '--ring', '--radius',
+        '--background',
+        '--foreground',
+        '--primary',
+        '--primary-foreground',
+        '--muted',
+        '--muted-foreground',
+        '--destructive',
+        '--destructive-foreground',
+        '--card',
+        '--card-foreground',
+        '--popover',
+        '--popover-foreground',
+        '--secondary',
+        '--secondary-foreground',
+        '--accent',
+        '--accent-foreground',
+        '--border',
+        '--input',
+        '--ring',
+        '--radius',
       ]
       for (const token of requiredTokens) {
         assert.ok(css.includes(token), `${theme}.css should declare ${token}`)
@@ -98,9 +103,14 @@ describe('Hex build', () => {
     for (const theme of themes) {
       const css = readFileSync(resolve(DIST, `${theme}.css`), 'utf-8')
       const semanticTokens = [
-        '--color-background', '--color-foreground', '--color-primary',
-        '--color-muted', '--color-muted-foreground',
-        '--color-success', '--color-warning', '--color-info',
+        '--color-background',
+        '--color-foreground',
+        '--color-primary',
+        '--color-muted',
+        '--color-muted-foreground',
+        '--color-success',
+        '--color-warning',
+        '--color-info',
         '--color-destructive',
       ]
       for (const token of semanticTokens) {
@@ -111,10 +121,18 @@ describe('Hex build', () => {
 
   it('theme bundles contain data-rig-* component selectors', () => {
     const expectedSelectors = [
-      'data-rig-button', 'data-rig-badge', 'data-rig-toast',
-      'data-rig-input', 'data-rig-card', 'data-rig-modal',
-      'data-rig-accordion', 'data-rig-tree', 'data-rig-tabs',
-      'data-rig-checkbox', 'data-rig-switch', 'data-rig-select',
+      'data-rig-button',
+      'data-rig-badge',
+      'data-rig-toast',
+      'data-rig-input',
+      'data-rig-card',
+      'data-rig-modal',
+      'data-rig-accordion',
+      'data-rig-tree',
+      'data-rig-tabs',
+      'data-rig-checkbox',
+      'data-rig-switch',
+      'data-rig-select',
     ]
     for (const theme of themes) {
       const css = readFileSync(resolve(DIST, `${theme}.css`), 'utf-8')
@@ -154,7 +172,10 @@ describe('Hex build', () => {
   it('theme bundles include reduced motion support', () => {
     for (const theme of themes) {
       const css = readFileSync(resolve(DIST, `${theme}.css`), 'utf-8')
-      assert.ok(css.includes('prefers-reduced-motion'), `${theme}.css should include reduced motion`)
+      assert.ok(
+        css.includes('prefers-reduced-motion'),
+        `${theme}.css should include reduced motion`,
+      )
     }
   })
 

@@ -2,12 +2,29 @@
   "extends": "stylelint-config-standard",
   "rules": {
     "import-notation": null,
-    "at-rule-no-unknown": [true, {
-      "ignoreAtRules": ["theme", "layer", "custom-variant", "utility", "plugin", "source", "tailwind", "apply", "config", "reference"]
-    }],
-    "function-no-unknown": [true, {
-      "ignoreFunctions": ["theme", "color-mix"]
-    }],
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "theme",
+          "layer",
+          "custom-variant",
+          "utility",
+          "plugin",
+          "source",
+          "tailwind",
+          "apply",
+          "config",
+          "reference"
+        ]
+      }
+    ],
+    "function-no-unknown": [
+      true,
+      {
+        "ignoreFunctions": ["theme", "color-mix"]
+      }
+    ],
     "no-descending-specificity": null,
     "no-invalid-position-at-import-rule": null,
     "custom-property-pattern": null,
