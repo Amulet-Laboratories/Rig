@@ -1,0 +1,82 @@
+/* Hex — saltsignal (scoped) */
+
+/* Hex — Saltsignal Design Tokens
+ * Warm indie retail. Handmade feeling, earthy palette with burnt orange
+ * and forest green accents. Light mode storefront theme — suited for
+ * small business sites, coffee shops, and indie retail.
+ *
+ * Full palette (8 swatch colors):
+ *   #F5F0E8  cream       — background
+ *   #EDE6DA  parchment   — secondary, muted
+ *   #FFFDF8  warm white  — card, popover
+ *   #2E2218  dark roast  — foreground text
+ *   #6B5744  leather     — muted foreground
+ *   #C2571A  orange      — primary, ring
+ *   #3D6B4F  green       — accent, success
+ *   #B84233  red         — destructive
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+[data-hex-theme='saltsignal'] {
+  --color-background: #f5f0e8;
+  --color-foreground: #2e2218;
+  --color-card: #fffdf8;
+  --color-card-foreground: #2e2218;
+  --color-popover: #fffdf8;
+  --color-popover-foreground: #2e2218;
+  --color-primary: #c2571a;
+  --color-primary-foreground: #fffdf8;
+  --color-secondary: #ede6da;
+  --color-secondary-foreground: #2e2218;
+  --color-muted: #ede6da;
+  --color-muted-foreground: #6b5744;
+  --color-accent: #3d6b4f;
+  --color-accent-foreground: #fffdf8;
+  --color-destructive: #b84233;
+  --color-destructive-foreground: #fffdf8;
+  --color-success: #3d6b4f;
+  --color-warning: #d4a843;
+  --color-info: #5a7aaa;
+  --color-border: #d4c9b8;
+  --color-input: #d4c9b8;
+  --color-ring: #c2571a;
+  --font-sans: 'Nunito Sans', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Anybody', 'DM Mono', ui-monospace, monospace;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --radius: 10px;
+  --background: #f5f0e8;
+  --foreground: #2e2218;
+  --card: #fffdf8;
+  --card-foreground: #2e2218;
+  --popover: #fffdf8;
+  --popover-foreground: #2e2218;
+  --primary: #c2571a;
+  --primary-foreground: #fffdf8;
+  --secondary: #ede6da;
+  --secondary-foreground: #2e2218;
+  --muted: #ede6da;
+  --muted-foreground: #6b5744;
+  --accent: #3d6b4f;
+  --accent-foreground: #fffdf8;
+  --destructive: #b84233;
+  --destructive-foreground: #fffdf8;
+  --success: #3d6b4f;
+  --warning: #d4a843;
+  --info: #5a7aaa;
+  --border: #d4c9b8;
+  --input: #d4c9b8;
+  --ring: #c2571a;
+  --ss-cream: #f5f0e8;
+  --ss-parchment: #ede6da;
+  --ss-warm-white: #fffdf8;
+  --ss-dark-roast: #2e2218;
+  --ss-leather: #6b5744;
+  --ss-orange: #c2571a;
+  --ss-green: #3d6b4f;
+  --ss-red: #b84233;
+  --rig-button-hover-bg: #ede6da;
+  --rig-scrollbar-thumb: rgba(46, 34, 24, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(46, 34, 24, 0.25);
+}

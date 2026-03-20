@@ -54,6 +54,7 @@ defineSlots<{
   node: (props: {
     node: TreeNode<T>
     depth: number
+    isLeaf: boolean
     expanded: boolean
     selected: boolean
     toggle: () => void

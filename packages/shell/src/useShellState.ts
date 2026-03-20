@@ -53,6 +53,11 @@ function createShellState(config: ShellConfig = {}): ShellState {
   const auxOpen = usePersistedState(`${ns}:aux-open`, false)
   const auxWidth = usePersistedState(`${ns}:aux-width`, config.auxWidth ?? 320)
 
+  // Clamp persisted aux width to sane range
+  if (auxWidth.value < 200 || auxWidth.value > 800) {
+    auxWidth.value = config.auxWidth ?? 320
+  }
+
   // ─── Settings ───
   const settingsOpen = ref(false)
 

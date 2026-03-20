@@ -35,6 +35,10 @@
   /* ── Muted / Description text ── */
   --rig-description-fg: var(--color-muted-foreground);
 
+  /* ── Search highlight ── */
+  --rig-highlight-bg: var(--color-warning);
+  --rig-highlight-fg: var(--color-background);
+
   /* ── Dropdown ── */
   --rig-dropdown-bg: var(--color-popover);
   --rig-dropdown-border: var(--color-border);

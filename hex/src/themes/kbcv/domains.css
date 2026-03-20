@@ -1,0 +1,19 @@
+/* Hex — KBCV Domains */
+@reference 'tailwindcss';
+@reference './tokens.css';
+
+[data-domain='legal'] {
+  --domain-accent: #b83232;
+}
+[data-domain='life'] {
+  --domain-accent: #2d6a4f;
+}
+[data-domain='software'] {
+  --domain-accent: #4a6a8a;
+}
+[data-domain='business'] {
+  --domain-accent: #b83232;
+}
+[data-domain='history'] {
+  --domain-accent: #706459;
+}

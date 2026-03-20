@@ -1,0 +1,167 @@
+/* Hex — Briarcovelib Design Tokens
+ * Public library. Warm light mode with brick red and slate blue.
+ * Civic warmth — welcoming, literary, community-focused.
+ *
+ * Full palette (7 swatch colors):
+ *   #FAF8F4  vellum          — background
+ *   #F0ECE3  linen           — card
+ *   #E2DCD0  sandstone       — secondary, muted
+ *   #2B2622  umber           — foreground text
+ *   #6B6054  driftwood       — muted foreground
+ *   #9E4A2F  brick           — primary, ring
+ *   #3A6B8C  slate blue      — accent
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #faf8f4;
+  --color-foreground: #2b2622;
+  --color-card: #f0ece3;
+  --color-card-foreground: #2b2622;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #2b2622;
+
+  /* Brand */
+  --color-primary: #9e4a2f;
+  --color-primary-foreground: #faf8f4;
+
+  /* Soft accents */
+  --color-secondary: #e2dcd0;
+  --color-secondary-foreground: #2b2622;
+  --color-muted: #e2dcd0;
+  --color-muted-foreground: #6b6054;
+  --color-accent: #3a6b8c;
+  --color-accent-foreground: #faf8f4;
+
+  /* Semantic status */
+  --color-destructive: #b83232;
+  --color-destructive-foreground: #faf8f4;
+  --color-success: #3b7a57;
+  --color-warning: #c49030;
+  --color-info: #3a6b8c;
+
+  /* Borders and focus */
+  --color-border: #d0c8ba;
+  --color-input: #d0c8ba;
+  --color-ring: #9e4a2f;
+
+  /* Typography */
+  --font-sans: 'Cabin', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Cabin', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Bitter', Georgia, serif;
+  --font-heading: 'Bitter', Georgia, serif;
+
+  /* Radius */
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-sans);
+
+  --radius: 6px;
+}
+
+:root {
+  --background: #faf8f4;
+  --foreground: #2b2622;
+  --card: #f0ece3;
+  --card-foreground: #2b2622;
+  --popover: #ffffff;
+  --popover-foreground: #2b2622;
+  --primary: #9e4a2f;
+  --primary-foreground: #faf8f4;
+  --secondary: #e2dcd0;
+  --secondary-foreground: #2b2622;
+  --muted: #e2dcd0;
+  --muted-foreground: #6b6054;
+  --accent: #3a6b8c;
+  --accent-foreground: #faf8f4;
+  --destructive: #b83232;
+  --destructive-foreground: #faf8f4;
+  --success: #3b7a57;
+  --warning: #c49030;
+  --info: #3a6b8c;
+  --border: #d0c8ba;
+  --input: #d0c8ba;
+  --ring: #9e4a2f;
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-sans);
+
+  --radius: 6px;
+
+  /* Typography — IDE-density type scale (shorthand aliases) */
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --font-display: var(--font-sans);
+  --font-sans: 'Cabin', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Cabin', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Bitter', Georgia, serif;
+  --font-heading: 'Bitter', Georgia, serif;
+
+  /* ── Named palette aliases ──────────────────────────────────────────────
+   * All 7 swatch colors available for direct template use.
+   */
+  --bl-vellum: #faf8f4;
+  --bl-linen: #f0ece3;
+  --bl-sandstone: #e2dcd0;
+  --bl-umber: #2b2622;
+  --bl-driftwood: #6b6054;
+  --bl-brick: #9e4a2f;
+  --bl-slate: #3a6b8c;
+
+  /* ── Rig component token bridge ─────────────────────────────────────────
+   * Overrides shared/tokens.css defaults where the Briarcovelib palette needs
+   * values that can't be derived directly from --color-* semantics.
+   */
+
+  /* Button — sandstone for hover feedback */
+  --rig-button-hover-bg: #e2dcd0;
+
+  /* Scrollbar — umber tint for warm literary feel */
+  --rig-scrollbar-thumb: rgba(43, 38, 34, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(43, 38, 34, 0.25);
+}

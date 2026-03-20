@@ -47,12 +47,11 @@
 
 [data-rig-list-item] {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 12px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2px 12px;
   cursor: pointer;
-  height: 22px;
-  line-height: 22px;
+  min-height: 22px;
 }
 
 [data-rig-list-item-label] {
@@ -62,9 +61,8 @@
 }
 
 [data-rig-list-item-description] {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
 }
 
 /* ── Tree ── */

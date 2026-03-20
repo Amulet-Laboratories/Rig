@@ -1,0 +1,13 @@
+// Web — Marketing site components and composables
+export { default as SiteShell } from './SiteShell.vue'
+export { default as SiteNav } from './SiteNav.vue'
+export type { NavItem } from './SiteNav.vue'
+export { default as Hero } from './Hero.vue'
+export { default as Section } from './Section.vue'
+export { default as StatRow } from './StatRow.vue'
+export type { WebStatItem } from './StatRow.vue'
+export { default as CTABanner } from './CTABanner.vue'
+export { default as Testimonial } from './Testimonial.vue'
+export { default as SiteFooter } from './SiteFooter.vue'
+export { useHashRouter } from './useHashRouter'
+export type { UseHashRouterOptions } from './useHashRouter'

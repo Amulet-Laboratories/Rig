@@ -1,0 +1,167 @@
+/* Hex — Lanternhouse Design Tokens
+ * Boutique coastal hospitality. Rich dark mode with copper/rose gold accent.
+ * Evening ambiance hotel theme with deep navy canvas.
+ *
+ * Full palette (7 swatch colors):
+ *   #0F1923  deep navy       — background
+ *   #162232  midnight blue   — card, popover
+ *   #1E2530  warm charcoal   — secondary, muted
+ *   #F0E8D8  warm cream      — foreground text
+ *   #C4B599  gold            — subtle warm accent
+ *   #7A8EA6  steel blue      — muted foreground, info
+ *   #C48B6C  copper          — primary, accent
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #0f1923;
+  --color-foreground: #f0e8d8;
+  --color-card: #162232;
+  --color-card-foreground: #f0e8d8;
+  --color-popover: #162232;
+  --color-popover-foreground: #f0e8d8;
+
+  /* Brand */
+  --color-primary: #c48b6c;
+  --color-primary-foreground: #0f1923;
+
+  /* Soft accents */
+  --color-secondary: #1e2530;
+  --color-secondary-foreground: #f0e8d8;
+  --color-muted: #1e2530;
+  --color-muted-foreground: #7a8ea6;
+  --color-accent: #c48b6c;
+  --color-accent-foreground: #0f1923;
+
+  /* Semantic status */
+  --color-destructive: #b85c4a;
+  --color-destructive-foreground: #f0e8d8;
+  --color-success: #6b9e7a;
+  --color-warning: #d4a843;
+  --color-info: #7a8ea6;
+
+  /* Borders and focus */
+  --color-border: #2a3545;
+  --color-input: #2a3545;
+  --color-ring: #c48b6c;
+
+  /* Typography */
+  --font-sans: 'Josefin Sans', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Josefin Sans', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Bodoni Moda', 'Lora', Georgia, serif;
+  --font-heading: 'Bodoni Moda', 'Lora', Georgia, serif;
+
+  /* Radius */
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-sans);
+
+  --radius: 5px;
+}
+
+:root {
+  --background: #0f1923;
+  --foreground: #f0e8d8;
+  --card: #162232;
+  --card-foreground: #f0e8d8;
+  --popover: #162232;
+  --popover-foreground: #f0e8d8;
+  --primary: #c48b6c;
+  --primary-foreground: #0f1923;
+  --secondary: #1e2530;
+  --secondary-foreground: #f0e8d8;
+  --muted: #1e2530;
+  --muted-foreground: #7a8ea6;
+  --accent: #c48b6c;
+  --accent-foreground: #0f1923;
+  --destructive: #b85c4a;
+  --destructive-foreground: #f0e8d8;
+  --success: #6b9e7a;
+  --warning: #d4a843;
+  --info: #7a8ea6;
+  --border: #2a3545;
+  --input: #2a3545;
+  --ring: #c48b6c;
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-sans);
+
+  --radius: 5px;
+
+  /* Typography — IDE-density type scale (shorthand aliases) */
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --font-display: var(--font-sans);
+  --font-sans: 'Josefin Sans', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Josefin Sans', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Bodoni Moda', 'Lora', Georgia, serif;
+  --font-heading: 'Bodoni Moda', 'Lora', Georgia, serif;
+
+  /* ── Named palette aliases ──────────────────────────────────────────────
+   * All 7 swatch colors available for direct template use.
+   */
+  --lh-navy: #0f1923;
+  --lh-midnight: #162232;
+  --lh-charcoal: #1e2530;
+  --lh-cream: #f0e8d8;
+  --lh-gold: #c4b599;
+  --lh-steel: #7a8ea6;
+  --lh-copper: #c48b6c;
+
+  /* ── Rig component token bridge ─────────────────────────────────────────
+   * Overrides shared/tokens.css defaults where the Lanternhouse palette needs
+   * values that can't be derived directly from --color-* semantics.
+   */
+
+  /* Button — warm charcoal for hover feedback */
+  --rig-button-hover-bg: #1e2530;
+
+  /* Scrollbar — warm cream tint for evening ambiance */
+  --rig-scrollbar-thumb: rgba(240, 232, 216, 0.15);
+  --rig-scrollbar-thumb-hover: rgba(240, 232, 216, 0.3);
+}

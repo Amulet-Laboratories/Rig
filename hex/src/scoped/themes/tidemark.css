@@ -1,0 +1,82 @@
+/* Hex — tidemark (scoped) */
+
+/* Hex — Tidemark Design Tokens
+ * Coastal luxury real estate. Warm light mode with teal accents.
+ * Linen white background, charcoal brown text, deep teal primary, terracotta accent.
+ * Light mode real estate theme — suited for property listings and luxury brand sites.
+ *
+ * Full palette (8 swatch colors):
+ *   #FAF7F2  linen white     — background
+ *   #E8E0D4  warm sand       — secondary, muted
+ *   #B5A898  driftwood       — soft neutral
+ *   #8C7A6B  muted clay      — muted foreground
+ *   #2C2420  charcoal brown  — foreground text
+ *   #1A6B5A  deep teal       — primary brand
+ *   #C4634F  terracotta      — accent, destructive
+ *   #7A9E7E  sage            — success
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+[data-hex-theme='tidemark'] {
+  --color-background: #faf7f2;
+  --color-foreground: #2c2420;
+  --color-card: #fffdf8;
+  --color-card-foreground: #2c2420;
+  --color-popover: #fffdf8;
+  --color-popover-foreground: #2c2420;
+  --color-primary: #1a6b5a;
+  --color-primary-foreground: #fffdf8;
+  --color-secondary: #e8e0d4;
+  --color-secondary-foreground: #2c2420;
+  --color-muted: #e8e0d4;
+  --color-muted-foreground: #8c7a6b;
+  --color-accent: #c4634f;
+  --color-accent-foreground: #fffdf8;
+  --color-destructive: #c4634f;
+  --color-destructive-foreground: #fffdf8;
+  --color-success: #7a9e7e;
+  --color-warning: #d4a843;
+  --color-info: #1a6b5a;
+  --color-border: #d4c9b8;
+  --color-input: #d4c9b8;
+  --color-ring: #1a6b5a;
+  --font-sans: 'Source Sans 3', 'Inter', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --radius: 7px;
+  --background: #faf7f2;
+  --foreground: #2c2420;
+  --card: #fffdf8;
+  --card-foreground: #2c2420;
+  --popover: #fffdf8;
+  --popover-foreground: #2c2420;
+  --primary: #1a6b5a;
+  --primary-foreground: #fffdf8;
+  --secondary: #e8e0d4;
+  --secondary-foreground: #2c2420;
+  --muted: #e8e0d4;
+  --muted-foreground: #8c7a6b;
+  --accent: #c4634f;
+  --accent-foreground: #fffdf8;
+  --destructive: #c4634f;
+  --destructive-foreground: #fffdf8;
+  --success: #7a9e7e;
+  --warning: #d4a843;
+  --info: #1a6b5a;
+  --border: #d4c9b8;
+  --input: #d4c9b8;
+  --ring: #1a6b5a;
+  --tm-linen: #faf7f2;
+  --tm-sand: #e8e0d4;
+  --tm-driftwood: #b5a898;
+  --tm-charcoal: #2c2420;
+  --tm-clay: #8c7a6b;
+  --tm-teal: #1a6b5a;
+  --tm-terracotta: #c4634f;
+  --tm-sage: #7a9e7e;
+  --rig-button-hover-bg: #e8e0d4;
+  --rig-scrollbar-thumb: rgba(44, 36, 32, 0.15);
+  --rig-scrollbar-thumb-hover: rgba(44, 36, 32, 0.3);
+}

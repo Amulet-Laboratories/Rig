@@ -157,9 +157,11 @@ defineExpose({ shell })
     :open="shell.auxOpen.value"
     position="right"
     :size="shell.auxWidth.value"
+    :min-size="200"
+    :max-size="800"
     aria-label="Auxiliary panel"
     @update:open="shell.auxOpen.value = $event"
-    @update:size="shell.auxWidth.value = $event"
+    @update:size="shell.auxWidth.value = Math.min(Math.max($event, 200), 800)"
   >
     <slot name="aux" :shell="shell" />
   </Panel>

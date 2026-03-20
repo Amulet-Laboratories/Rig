@@ -18,6 +18,7 @@
 @import '../../shared/components/spatial.css';
 @import '../../shared/components/temporal.css';
 @import '../../shared/a11y.css';
+@import '../../shared/components/prose.css';
 
 @reference 'tailwindcss';
 @reference './tokens.css';

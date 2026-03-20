@@ -21,3 +21,6 @@ export { provideConfig, useConfig, useComponentDefaults, RigConfigKey } from './
 export type { RigConfig } from './useConfigProvider'
 export { useFormValidation, FormContextKey } from './useFormValidation'
 export type { ValidationRule, FieldState, FormValidationOptions } from './useFormValidation'
+export { useConfirm, requestConfirm } from './useConfirm'
+export type { ConfirmOptions, ConfirmRequest } from './useConfirm'
+export { useAnnounce, announce } from './useAnnounce'

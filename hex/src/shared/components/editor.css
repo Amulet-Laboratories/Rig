@@ -16,7 +16,7 @@
   align-items: stretch;
   overflow-x: auto;
   background: var(--rig-editor-group-header-bg);
-  border-bottom: 1px solid var(--rig-tab-border);
+  border-bottom: none;
   font-family: var(--font-sans);
   scrollbar-width: none;
   user-select: none;
@@ -98,6 +98,7 @@
   opacity: 0;
   transition: opacity 0.1s;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 [data-rig-editor-tab][data-state='active'] [data-rig-editor-tab-close],

@@ -1,0 +1,169 @@
+/* Hex — Aldricpace Design Tokens
+ * Conservative law firm. Cold light mode with navy and brass accents.
+ * Institutional restraint — suited for professional services, legal, finance.
+ *
+ * Full palette (8 swatch colors):
+ *   #FAFBFC  cold white    — background
+ *   #F2F4F7  fog           — card
+ *   #E6E9EF  slate wash    — secondary, muted
+ *   #1B2033  ink           — foreground text
+ *   #555E73  graphite      — muted foreground
+ *   #2B4C7E  navy          — primary, ring
+ *   #8B6F4E  brass         — accent
+ *   #9E3B3B  merlot        — destructive
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #fafbfc;
+  --color-foreground: #1b2033;
+  --color-card: #f2f4f7;
+  --color-card-foreground: #1b2033;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1b2033;
+
+  /* Brand */
+  --color-primary: #2b4c7e;
+  --color-primary-foreground: #fafbfc;
+
+  /* Soft accents */
+  --color-secondary: #e6e9ef;
+  --color-secondary-foreground: #1b2033;
+  --color-muted: #e6e9ef;
+  --color-muted-foreground: #555e73;
+  --color-accent: #8b6f4e;
+  --color-accent-foreground: #fafbfc;
+
+  /* Semantic status */
+  --color-destructive: #9e3b3b;
+  --color-destructive-foreground: #fafbfc;
+  --color-success: #3b7a57;
+  --color-warning: #b8952a;
+  --color-info: #2b4c7e;
+
+  /* Borders and focus */
+  --color-border: #d1d5de;
+  --color-input: #d1d5de;
+  --color-ring: #2b4c7e;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Inter', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'EB Garamond', Georgia, serif;
+  --font-heading: 'EB Garamond', Georgia, serif;
+
+  /* Radius */
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-sans);
+
+  --radius: 3px;
+}
+
+:root {
+  --background: #fafbfc;
+  --foreground: #1b2033;
+  --card: #f2f4f7;
+  --card-foreground: #1b2033;
+  --popover: #ffffff;
+  --popover-foreground: #1b2033;
+  --primary: #2b4c7e;
+  --primary-foreground: #fafbfc;
+  --secondary: #e6e9ef;
+  --secondary-foreground: #1b2033;
+  --muted: #e6e9ef;
+  --muted-foreground: #555e73;
+  --accent: #8b6f4e;
+  --accent-foreground: #fafbfc;
+  --destructive: #9e3b3b;
+  --destructive-foreground: #fafbfc;
+  --success: #3b7a57;
+  --warning: #b8952a;
+  --info: #2b4c7e;
+  --border: #d1d5de;
+  --input: #d1d5de;
+  --ring: #2b4c7e;
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-sans);
+
+  --radius: 3px;
+
+  /* Typography — IDE-density type scale (shorthand aliases) */
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --font-display: var(--font-sans);
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Inter', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'EB Garamond', Georgia, serif;
+  --font-heading: 'EB Garamond', Georgia, serif;
+
+  /* ── Named palette aliases ──────────────────────────────────────────────
+   * All 8 swatch colors available for direct template use.
+   */
+  --ap-cold-white: #fafbfc;
+  --ap-fog: #f2f4f7;
+  --ap-slate: #e6e9ef;
+  --ap-ink: #1b2033;
+  --ap-graphite: #555e73;
+  --ap-navy: #2b4c7e;
+  --ap-brass: #8b6f4e;
+  --ap-merlot: #9e3b3b;
+
+  /* ── Rig component token bridge ─────────────────────────────────────────
+   * Overrides shared/tokens.css defaults where the Aldricpace palette needs
+   * values that can't be derived directly from --color-* semantics.
+   */
+
+  /* Button — slate wash for hover feedback */
+  --rig-button-hover-bg: #e6e9ef;
+
+  /* Scrollbar — ink tint for light mode */
+  --rig-scrollbar-thumb: rgba(27, 32, 51, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(27, 32, 51, 0.25);
+}

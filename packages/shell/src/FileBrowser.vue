@@ -14,6 +14,8 @@ defineProps<{
   selected?: ID
   /** Currently expanded node IDs */
   expanded?: ID[]
+  /** Group IDs that are currently collapsed */
+  collapsedGroups?: string[]
   /** Title shown in the sidebar header */
   title?: string
   /** Optional accent color for header */
@@ -24,6 +26,7 @@ const emit = defineEmits<{
   select: [id: ID]
   activate: [node: TreeNode]
   'update:expanded': [ids: ID[]]
+  'update:collapsedGroups': [ids: string[]]
   contextmenu: [payload: { node: TreeNode; event: MouseEvent }]
 }>()
 
@@ -38,6 +41,22 @@ function onSelect(id: ID | ID[]) {
   const selected = Array.isArray(id) ? id[0] : id
   if (selected != null) emit('select', selected)
 }
+
+function isCollapsed(groupId: string, collapsedGroups?: string[]): boolean {
+  return collapsedGroups?.includes(groupId) ?? false
+}
+
+function toggleGroup(groupId: string, collapsedGroups?: string[]) {
+  const current = collapsedGroups ?? []
+  if (current.includes(groupId)) {
+    emit(
+      'update:collapsedGroups',
+      current.filter((id) => id !== groupId),
+    )
+  } else {
+    emit('update:collapsedGroups', [...current, groupId])
+  }
+}
 </script>
 
 <template>
@@ -49,7 +68,13 @@ function onSelect(id: ID | ID[]) {
     </div>
 
     <div data-rig-file-browser-content>
-      <View v-for="group in groups" :key="group.id" :title="group.label">
+      <View
+        v-for="group in groups"
+        :key="group.id"
+        :title="group.label"
+        :collapsed="isCollapsed(group.id, collapsedGroups)"
+        @update:collapsed="toggleGroup(group.id, collapsedGroups)"
+      >
         <TreeView
           :nodes="group.nodes"
           :selected="selected"

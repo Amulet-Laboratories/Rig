@@ -1,0 +1,583 @@
+/* Hex — Shared Web Components
+ * Styles for Rig's web package: SiteShell, SiteNav, Hero, Section,
+ * StatRow, CTABanner, Testimonial, SiteFooter.
+ *
+ * Typography & color conventions
+ * ──────────────────────────────
+ * Each scoped theme provides:
+ *   --font-sans       body copy
+ *   --font-serif      display / heading font (if the brand uses a serif)
+ *   --font-mono       code / monospace accents
+ *   --font-heading    resolved heading font (set by each scoped theme)
+ *
+ * All heading elements (h1-h6) inside web components inherit
+ * --font-heading and --color-primary automatically. Body text
+ * inherits --color-muted-foreground. SVG icons inherit --color-primary.
+ * Consumers should never need inline style= for these properties.
+ */
+
+/* ───────── Global Typography Defaults ───────── */
+
+[data-rig-site-shell] h1,
+[data-rig-site-shell] h2,
+[data-rig-site-shell] h3,
+[data-rig-site-shell] h4,
+[data-rig-site-shell] h5,
+[data-rig-site-shell] h6 {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-primary);
+}
+
+[data-rig-hero-description],
+[data-rig-section-header] p,
+[data-rig-section] p,
+[data-rig-cta-banner-content] p,
+[data-rig-testimonial-attribution] p {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-hero-eyebrow] {
+  color: var(--color-accent);
+}
+
+[data-rig-testimonial-attribution] p:first-child {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+[data-rig-stat-row-value] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+}
+
+/* SVG icons inside web components inherit primary color */
+[data-rig-site-shell] svg[aria-hidden] {
+  color: var(--color-primary);
+}
+
+/* Brand slot in nav inherits heading font */
+[data-rig-site-nav-brand] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+}
+
+/* Border elements inside web components inherit theme border color */
+[data-rig-site-shell] [class*='border'] {
+  border-color: var(--color-border);
+}
+
+/* Decorative accent bars — theme-colored dividers */
+[data-rig-accent] {
+  background: var(--color-primary);
+}
+
+/* Footer text hierarchy — body text dimmed, headings/brands full opacity */
+[data-rig-site-footer] {
+  color: var(--color-primary-foreground);
+}
+
+[data-rig-site-footer-grid] p,
+[data-rig-site-footer-grid] ul,
+[data-rig-site-footer-grid] li,
+[data-rig-site-footer-post] {
+  opacity: 0.7;
+}
+
+[data-rig-site-footer-grid] h3,
+[data-rig-site-footer-grid] h4,
+[data-rig-site-footer-grid] p:first-child {
+  opacity: 0.65;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+}
+
+/* ───────── Skip Link ───────── */
+
+[data-rig-skip-link] {
+  position: absolute;
+  left: -9999px;
+  z-index: 50;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+[data-rig-skip-link]:focus {
+  position: fixed;
+  left: 16px;
+  top: 16px;
+  padding: 8px 16px;
+  border-radius: var(--radius, 4px);
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  outline: none;
+}
+
+/* ───────── Site Shell ───────── */
+
+[data-rig-site-shell] {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans, system-ui, sans-serif);
+}
+
+[data-rig-site-shell-main] {
+  flex: 1;
+}
+
+/* ───────── Site Nav ───────── */
+
+[data-rig-site-nav][data-sticky] {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+[data-rig-site-nav-bar] {
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-background);
+  padding: 12px 24px;
+}
+
+[data-rig-site-nav-container] {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+[data-rig-site-nav-links] {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+@media (min-width: 640px) {
+  [data-rig-site-nav-links] {
+    display: flex;
+  }
+
+  [data-rig-site-nav-toggle] {
+    display: none !important;
+  }
+}
+
+[data-rig-site-nav-link] {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: var(--radius, 4px);
+  color: var(--color-muted-foreground);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    background 0.15s;
+}
+
+[data-rig-site-nav-link]:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-site-nav-link][data-active] {
+  color: var(--color-primary);
+  background: var(--color-secondary);
+  font-weight: 500;
+}
+
+[data-rig-site-nav-actions] {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+[data-rig-site-nav-toggle] {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  padding: 4px;
+}
+
+[data-rig-site-nav-mobile] {
+  padding: 16px 24px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--color-background);
+}
+
+[data-rig-site-nav-mobile-link] {
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 14px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius, 4px);
+  color: var(--color-muted-foreground);
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    background 0.15s;
+}
+
+[data-rig-site-nav-mobile-link]:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-site-nav-mobile-link][data-active] {
+  color: var(--color-primary);
+  background: var(--color-secondary);
+  font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  [data-rig-site-nav-mobile] {
+    display: none;
+  }
+}
+
+[data-rig-site-nav-utility] {
+  font-size: 12px;
+  padding: 6px 24px;
+}
+
+/* ───────── Hero ───────── */
+
+[data-rig-hero] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-rig-hero][data-layout='split'] {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 50vh;
+}
+
+@media (min-width: 640px) {
+  [data-rig-hero][data-layout='split'] {
+    grid-template-columns: 1fr 1fr;
+    min-height: 65vh;
+  }
+}
+
+[data-rig-hero][data-layout='centered'] {
+  text-align: center;
+}
+
+[data-rig-hero][data-layout='immersive'] {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+[data-rig-hero-content] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 24px;
+}
+
+@media (min-width: 640px) {
+  [data-rig-hero-content] {
+    padding: 64px 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  [data-rig-hero-content] {
+    padding: 64px;
+  }
+}
+
+[data-rig-hero][data-layout='centered'] [data-rig-hero-content] {
+  align-items: center;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+[data-rig-hero-eyebrow] {
+  margin-bottom: 12px;
+}
+
+[data-rig-hero-description] {
+  margin-top: 20px;
+  max-width: 32rem;
+}
+
+[data-rig-hero][data-layout='centered'] [data-rig-hero-description] {
+  max-width: 28rem;
+}
+
+[data-rig-hero-actions] {
+  margin-top: 32px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+[data-rig-hero][data-layout='centered'] [data-rig-hero-actions] {
+  justify-content: center;
+}
+
+[data-rig-hero-media] {
+  display: none;
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  [data-rig-hero-media] {
+    display: block;
+  }
+}
+
+[data-rig-hero][data-layout='immersive'] [data-rig-hero-media] {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+[data-rig-hero][data-layout='immersive'] [data-rig-hero-content] {
+  position: relative;
+  z-index: 1;
+}
+
+[data-rig-hero-overlay] {
+  position: relative;
+  z-index: 1;
+}
+
+/* ───────── Section ───────── */
+
+[data-rig-section] {
+  padding: 64px 24px;
+}
+
+[data-rig-section][data-variant='alternate'] {
+  background: var(--color-card);
+}
+
+[data-rig-section][data-variant='bordered'] {
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-card);
+}
+
+[data-rig-section-container] {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+[data-rig-section-header] {
+  margin-bottom: 40px;
+}
+
+[data-rig-section-header][data-centered] {
+  text-align: center;
+}
+
+[data-rig-section-title] {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+[data-rig-section-accent] {
+  display: block;
+  width: 3rem;
+  height: 2px;
+  margin-top: 0.75rem;
+  background: var(--color-primary);
+}
+
+[data-rig-section-header][data-centered] [data-rig-section-accent] {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+[data-rig-section-subtitle] {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Stat Row ───────── */
+
+[data-rig-stat-row] {
+  padding: 32px 24px;
+}
+
+[data-rig-stat-row][data-variant='bordered'] {
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-card);
+}
+
+[data-rig-stat-row][data-variant='card'] {
+  background: var(--color-card);
+}
+
+[data-rig-stat-row][data-variant='filled'] {
+  background: var(--color-primary);
+}
+
+[data-rig-stat-row-container] {
+  max-width: 64rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  [data-rig-stat-row-container] {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+[data-rig-stat-row-value] {
+  display: block;
+  font-size: 24px;
+  color: var(--color-primary);
+}
+
+[data-rig-stat-row][data-variant='filled'] [data-rig-stat-row-value] {
+  color: var(--color-primary-foreground);
+}
+
+[data-rig-stat-row-label] {
+  display: block;
+  font-size: 12px;
+  color: var(--color-muted-foreground);
+  margin-top: 4px;
+}
+
+[data-rig-stat-row][data-variant='filled'] [data-rig-stat-row-label] {
+  color: var(--color-primary-foreground);
+  opacity: 0.85;
+}
+
+[data-rig-stat-row-change] {
+  display: block;
+  font-size: 11px;
+  color: var(--color-muted-foreground);
+  margin-top: 2px;
+}
+
+/* ───────── CTA Banner ───────── */
+
+[data-rig-cta-banner] {
+  padding: 48px 24px;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+[data-rig-cta-banner-container] {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+[data-rig-cta-banner][data-layout='row'] [data-rig-cta-banner-container] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  [data-rig-cta-banner][data-layout='row'] [data-rig-cta-banner-container] {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+[data-rig-cta-banner][data-layout='centered'] [data-rig-cta-banner-container] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+/* ───────── Testimonial ───────── */
+
+[data-rig-testimonial] {
+  margin: 0;
+  padding: 0;
+}
+
+[data-rig-testimonial-quote] {
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-testimonial][data-layout='border'] {
+  border-left: 2px solid var(--color-primary);
+  padding-left: 16px;
+}
+
+[data-rig-testimonial-attribution] {
+  margin-top: 12px;
+  font-style: normal;
+}
+
+/* ───────── Site Footer ───────── */
+
+[data-rig-site-footer] {
+  background: var(--site-footer-bg, var(--color-primary));
+  color: var(--site-footer-color, var(--color-primary-foreground));
+}
+
+[data-rig-site-footer-container] {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+[data-rig-site-footer-grid] {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 640px) {
+  [data-rig-site-footer][data-columns='2'] [data-rig-site-footer-grid] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  [data-rig-site-footer][data-columns='3'] [data-rig-site-footer-grid] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  [data-rig-site-footer][data-columns='4'] [data-rig-site-footer-grid] {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+[data-rig-site-footer-pre] {
+  /* Consumer styles — accent stripe, emergency banner, etc. */
+}
+
+[data-rig-site-footer-post] {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 24px 24px;
+  font-size: 12px;
+  color: var(--color-muted-foreground);
+}

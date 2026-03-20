@@ -22,7 +22,7 @@ const DIST = resolve(ROOT, 'dist')
 
 // Define themes (directory-based, shadcn token contract)
 // One CSS per theme — no light/dark variants
-const themes = ['vscode', 'garden']
+const themes = ['vscode', 'garden', 'spacewizard', 'greyline', 'tidemark', 'briarcove', 'duskline', 'saltsignal', 'marenlys', 'lanternhouse', 'aldricpace', 'undertow', 'kbcv', 'compass', 'briarcovelib']
 
 const getThemeEntrypoints = (theme) => [
   { input: `src/themes/${theme}/index.css`, output: `dist/${theme}.css` },
@@ -31,6 +31,7 @@ const getThemeEntrypoints = (theme) => [
 // Default theme entry (builds vscode as the root bundle)
 const rootEntrypoints = [
   { input: 'src/themes/vscode/index.css', output: 'dist/hex.css' },
+  { input: 'src/scoped/index.css', output: 'dist/scoped.css' },
 ]
 
 async function buildEntry(entry) {

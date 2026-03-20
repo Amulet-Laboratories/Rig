@@ -1,0 +1,86 @@
+/* Hex — briarcove (scoped) */
+
+/* Hex — Briarcove Design Tokens
+ * Institutional clarity. Neutral light mode with civic blue accent.
+ * WCAG 2.1 AA compliant. Clean white background, dark ink foreground.
+ * Light mode institutional theme — suited for town hall and civic platforms.
+ *
+ * Full palette (10 swatch colors):
+ *   #FFFFFF  white           — background
+ *   #F0F2F5  cool gray       — card
+ *   #E2E6EB  slate           — secondary, muted
+ *   #CBD5E1  border slate    — borders
+ *   #4A5568  gray            — muted foreground
+ *   #1A1D23  dark            — foreground text
+ *   #1D4ED8  civic blue      — primary, accent, info
+ *   #DC2626  red             — destructive
+ *   #D97706  amber           — warning
+ *   #16A34A  green           — success
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+[data-hex-theme='briarcove'] {
+  --color-background: #ffffff;
+  --color-foreground: #1a1d23;
+  --color-card: #f0f2f5;
+  --color-card-foreground: #1a1d23;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1a1d23;
+  --color-primary: #1d4ed8;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #e2e6eb;
+  --color-secondary-foreground: #1a1d23;
+  --color-muted: #e2e6eb;
+  --color-muted-foreground: #4a5568;
+  --color-accent: #1d4ed8;
+  --color-accent-foreground: #ffffff;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-info: #1d4ed8;
+  --color-border: #cbd5e1;
+  --color-input: #cbd5e1;
+  --color-ring: #1d4ed8;
+  --font-sans: 'Libre Franklin', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Libre Franklin', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Merriweather', Georgia, serif;
+  --radius: 3px;
+  --background: #ffffff;
+  --foreground: #1a1d23;
+  --card: #f0f2f5;
+  --card-foreground: #1a1d23;
+  --popover: #ffffff;
+  --popover-foreground: #1a1d23;
+  --primary: #1d4ed8;
+  --primary-foreground: #ffffff;
+  --secondary: #e2e6eb;
+  --secondary-foreground: #1a1d23;
+  --muted: #e2e6eb;
+  --muted-foreground: #4a5568;
+  --accent: #1d4ed8;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --success: #16a34a;
+  --warning: #d97706;
+  --info: #1d4ed8;
+  --border: #cbd5e1;
+  --input: #cbd5e1;
+  --ring: #1d4ed8;
+  --bc-white: #ffffff;
+  --bc-cool-gray: #f0f2f5;
+  --bc-slate: #e2e6eb;
+  --bc-dark: #1a1d23;
+  --bc-gray: #4a5568;
+  --bc-blue: #1d4ed8;
+  --bc-red: #dc2626;
+  --bc-amber: #d97706;
+  --bc-green: #16a34a;
+  --bc-gold: #b8952a;
+  --rig-button-hover-bg: #e2e6eb;
+  --rig-scrollbar-thumb: rgba(26, 29, 35, 0.15);
+  --rig-scrollbar-thumb-hover: rgba(26, 29, 35, 0.3);
+}

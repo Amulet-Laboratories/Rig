@@ -56,7 +56,7 @@ export function useTooltip(options?: { provide?: boolean }): TooltipState {
   const injected = inject(TooltipKey, null)
   if (injected) return injected
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (import.meta.env?.DEV) {
     console.warn(
       '[Rig] useTooltip: No TooltipProvider found in ancestor tree. ' +
         'Tooltip state will be created standalone and may not render. ' +

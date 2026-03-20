@@ -42,6 +42,12 @@ function onKeydown(e: KeyboardEvent) {
   }
 }
 
+let sizeAtDragStart = 0
+
+function onDragStart() {
+  sizeAtDragStart = props.size
+}
+
 function onResize(payload: { delta: number }) {
   const isVertical = props.position === 'bottom'
   // For bottom panel: drag up = negative delta = bigger panel
@@ -49,7 +55,7 @@ function onResize(payload: { delta: number }) {
   // For right panel: drag left = negative delta = bigger panel
   const multiplier = props.position === 'left' ? 1 : -1
   const factor = isVertical ? -1 : multiplier
-  let newSize = props.size + payload.delta * factor
+  let newSize = sizeAtDragStart + payload.delta * factor
   newSize = Math.max(props.minSize, newSize)
   if (props.maxSize) newSize = Math.min(props.maxSize, newSize)
   emit('update:size', newSize)
@@ -72,7 +78,12 @@ const sizeProperty = computed(() => (props.position === 'bottom' ? 'height' : 'w
     :style="{ [sizeProperty]: `${size}px` }"
     @keydown="onKeydown"
   >
-    <Resizer v-if="resizable" :orientation="resizerOrientation" @drag="onResize" />
+    <Resizer
+      v-if="resizable"
+      :orientation="resizerOrientation"
+      @dragstart="onDragStart"
+      @drag="onResize"
+    />
     <div data-rig-panel-header>
       <slot name="header" />
     </div>

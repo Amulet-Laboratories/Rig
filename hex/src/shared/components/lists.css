@@ -50,8 +50,15 @@
 }
 
 [data-rig-list-item] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2px 8px;
+  min-height: 22px;
   font-size: 13px;
   color: var(--color-foreground);
+  cursor: default;
+  text-align: left;
   transition: background-color 0.15s ease;
 }
 

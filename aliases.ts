@@ -12,6 +12,7 @@ const PACKAGES = [
   'data',
   'spatial',
   'temporal',
+  'web',
 ] as const
 
 /**

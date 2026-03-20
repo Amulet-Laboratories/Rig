@@ -27,7 +27,8 @@
       "@shell/*": ["./packages/shell/src/*"],
       "@data/*": ["./packages/data/src/*"],
       "@spatial/*": ["./packages/spatial/src/*"],
-      "@temporal/*": ["./packages/temporal/src/*"]
+      "@temporal/*": ["./packages/temporal/src/*"],
+      "@web/*": ["./packages/web/src/*"]
     },
     "types": ["vitest/globals"]
   },

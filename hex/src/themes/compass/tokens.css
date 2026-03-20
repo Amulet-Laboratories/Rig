@@ -1,0 +1,167 @@
+/* Hex — Compass Design Tokens
+ * Veterinary clinic. Soft light mode with sage green and warm coral.
+ * Clinical warmth — reassuring, accessible, nature-forward.
+ *
+ * Full palette (7 swatch colors):
+ *   #FAFDF9  mint white       — background
+ *   #F0F5EE  soft sage        — card
+ *   #E4ECE1  pale eucalyptus  — secondary, muted
+ *   #1D2B1E  deep moss        — foreground text
+ *   #4E6650  fern             — muted foreground
+ *   #2A7D5F  teal green       — primary, ring
+ *   #D16B3F  warm coral       — accent, action
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #fafdf9;
+  --color-foreground: #1d2b1e;
+  --color-card: #f0f5ee;
+  --color-card-foreground: #1d2b1e;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1d2b1e;
+
+  /* Brand */
+  --color-primary: #2a7d5f;
+  --color-primary-foreground: #fafdf9;
+
+  /* Soft accents */
+  --color-secondary: #e4ece1;
+  --color-secondary-foreground: #1d2b1e;
+  --color-muted: #e4ece1;
+  --color-muted-foreground: #4e6650;
+  --color-accent: #d16b3f;
+  --color-accent-foreground: #fafdf9;
+
+  /* Semantic status */
+  --color-destructive: #cc3b3b;
+  --color-destructive-foreground: #fafdf9;
+  --color-success: #2a7d5f;
+  --color-warning: #d4a030;
+  --color-info: #4a7a9e;
+
+  /* Borders and focus */
+  --color-border: #c8d5c5;
+  --color-input: #c8d5c5;
+  --color-ring: #2a7d5f;
+
+  /* Typography */
+  --font-sans: 'Outfit', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Outfit', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Atkinson Hyperlegible', 'Inter', system-ui, sans-serif;
+  --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
+
+  /* Radius */
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-sans);
+
+  --radius: 8px;
+}
+
+:root {
+  --background: #fafdf9;
+  --foreground: #1d2b1e;
+  --card: #f0f5ee;
+  --card-foreground: #1d2b1e;
+  --popover: #ffffff;
+  --popover-foreground: #1d2b1e;
+  --primary: #2a7d5f;
+  --primary-foreground: #fafdf9;
+  --secondary: #e4ece1;
+  --secondary-foreground: #1d2b1e;
+  --muted: #e4ece1;
+  --muted-foreground: #4e6650;
+  --accent: #d16b3f;
+  --accent-foreground: #fafdf9;
+  --destructive: #cc3b3b;
+  --destructive-foreground: #fafdf9;
+  --success: #2a7d5f;
+  --warning: #d4a030;
+  --info: #4a7a9e;
+  --border: #c8d5c5;
+  --input: #c8d5c5;
+  --ring: #2a7d5f;
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-sans);
+
+  --radius: 8px;
+
+  /* Typography — IDE-density type scale (shorthand aliases) */
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --font-display: var(--font-sans);
+  --font-sans: 'Outfit', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Outfit', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Atkinson Hyperlegible', 'Inter', system-ui, sans-serif;
+  --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
+
+  /* ── Named palette aliases ──────────────────────────────────────────────
+   * All 7 swatch colors available for direct template use.
+   */
+  --ca-mint-white: #fafdf9;
+  --ca-sage: #f0f5ee;
+  --ca-eucalyptus: #e4ece1;
+  --ca-moss: #1d2b1e;
+  --ca-fern: #4e6650;
+  --ca-teal: #2a7d5f;
+  --ca-coral: #d16b3f;
+
+  /* ── Rig component token bridge ─────────────────────────────────────────
+   * Overrides shared/tokens.css defaults where the Compass palette needs
+   * values that can't be derived directly from --color-* semantics.
+   */
+
+  /* Button — pale eucalyptus for hover feedback */
+  --rig-button-hover-bg: #e4ece1;
+
+  /* Scrollbar — deep moss tint for light mode */
+  --rig-scrollbar-thumb: rgba(29, 43, 30, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(29, 43, 30, 0.25);
+}

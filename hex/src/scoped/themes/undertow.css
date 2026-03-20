@@ -1,0 +1,79 @@
+/* Hex — undertow (scoped) */
+
+/* Hex — Undertow Design Tokens
+ * Industrial craft brewery. Gritty dark mode with blaze orange and grain gold.
+ * Warehouse taproom energy — loud, unpretentious, industrial warm.
+ *
+ * Full palette (7 swatch colors):
+ *   #1C1917  tar             — background
+ *   #292524  soot            — card, popover
+ *   #3B3633  worn iron       — secondary, muted
+ *   #F5F0EB  bone            — foreground text
+ *   #A8A09A  ash             — muted foreground
+ *   #D95F2A  blaze orange    — primary, ring
+ *   #C9B458  grain gold      — accent
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+[data-hex-theme='undertow'] {
+  --color-background: #1c1917;
+  --color-foreground: #f5f0eb;
+  --color-card: #292524;
+  --color-card-foreground: #f5f0eb;
+  --color-popover: #292524;
+  --color-popover-foreground: #f5f0eb;
+  --color-primary: #d95f2a;
+  --color-primary-foreground: #1c1917;
+  --color-secondary: #3b3633;
+  --color-secondary-foreground: #f5f0eb;
+  --color-muted: #3b3633;
+  --color-muted-foreground: #a8a09a;
+  --color-accent: #c9b458;
+  --color-accent-foreground: #1c1917;
+  --color-destructive: #cc3333;
+  --color-destructive-foreground: #f5f0eb;
+  --color-success: #5a8a5a;
+  --color-warning: #c9b458;
+  --color-info: #6b8faa;
+  --color-border: #4a4440;
+  --color-input: #4a4440;
+  --color-ring: #d95f2a;
+  --font-sans: 'Work Sans', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Archivo Black', 'Archivo', Impact, sans-serif;
+  --radius: 4px;
+  --background: #1c1917;
+  --foreground: #f5f0eb;
+  --card: #292524;
+  --card-foreground: #f5f0eb;
+  --popover: #292524;
+  --popover-foreground: #f5f0eb;
+  --primary: #d95f2a;
+  --primary-foreground: #1c1917;
+  --secondary: #3b3633;
+  --secondary-foreground: #f5f0eb;
+  --muted: #3b3633;
+  --muted-foreground: #a8a09a;
+  --accent: #c9b458;
+  --accent-foreground: #1c1917;
+  --destructive: #cc3333;
+  --destructive-foreground: #f5f0eb;
+  --success: #5a8a5a;
+  --warning: #c9b458;
+  --info: #6b8faa;
+  --border: #4a4440;
+  --input: #4a4440;
+  --ring: #d95f2a;
+  --uw-tar: #1c1917;
+  --uw-soot: #292524;
+  --uw-iron: #3b3633;
+  --uw-bone: #f5f0eb;
+  --uw-ash: #a8a09a;
+  --uw-blaze: #d95f2a;
+  --uw-gold: #c9b458;
+  --rig-button-hover-bg: #3b3633;
+  --rig-scrollbar-thumb: rgba(245, 240, 235, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(245, 240, 235, 0.25);
+}

@@ -1,0 +1,79 @@
+/* Hex — kbcv (scoped) */
+
+/* Hex — KBCV Design Tokens
+ * Community radio station. Warm neutral with analog character.
+ * Parchment background, broadcast red, dial green accents.
+ *
+ * Full palette (7 swatch colors):
+ *   #F7F3EE  parchment       — background
+ *   #EDEAE4  oatmeal         — card
+ *   #DDD7CE  kraft           — secondary, muted
+ *   #2A2521  espresso        — foreground text
+ *   #706459  walnut          — muted foreground
+ *   #B83232  broadcast red   — primary, ring
+ *   #2D6A4F  dial green      — accent
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+[data-hex-theme='kbcv'] {
+  --color-background: #f7f3ee;
+  --color-foreground: #2a2521;
+  --color-card: #edeae4;
+  --color-card-foreground: #2a2521;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #2a2521;
+  --color-primary: #b83232;
+  --color-primary-foreground: #fffdf8;
+  --color-secondary: #ddd7ce;
+  --color-secondary-foreground: #2a2521;
+  --color-muted: #ddd7ce;
+  --color-muted-foreground: #706459;
+  --color-accent: #2d6a4f;
+  --color-accent-foreground: #fffdf8;
+  --color-destructive: #b83232;
+  --color-destructive-foreground: #fffdf8;
+  --color-success: #2d6a4f;
+  --color-warning: #d4a030;
+  --color-info: #4a6a8a;
+  --color-border: #cbc4ba;
+  --color-input: #cbc4ba;
+  --color-ring: #b83232;
+  --font-sans: 'Chivo', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --radius: 6px;
+  --background: #f7f3ee;
+  --foreground: #2a2521;
+  --card: #edeae4;
+  --card-foreground: #2a2521;
+  --popover: #ffffff;
+  --popover-foreground: #2a2521;
+  --primary: #b83232;
+  --primary-foreground: #fffdf8;
+  --secondary: #ddd7ce;
+  --secondary-foreground: #2a2521;
+  --muted: #ddd7ce;
+  --muted-foreground: #706459;
+  --accent: #2d6a4f;
+  --accent-foreground: #fffdf8;
+  --destructive: #b83232;
+  --destructive-foreground: #fffdf8;
+  --success: #2d6a4f;
+  --warning: #d4a030;
+  --info: #4a6a8a;
+  --border: #cbc4ba;
+  --input: #cbc4ba;
+  --ring: #b83232;
+  --kbcv-parchment: #f7f3ee;
+  --kbcv-oatmeal: #edeae4;
+  --kbcv-kraft: #ddd7ce;
+  --kbcv-espresso: #2a2521;
+  --kbcv-walnut: #706459;
+  --kbcv-red: #b83232;
+  --kbcv-green: #2d6a4f;
+  --rig-button-hover-bg: #ddd7ce;
+  --rig-scrollbar-thumb: rgba(42, 37, 33, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(42, 37, 33, 0.25);
+}

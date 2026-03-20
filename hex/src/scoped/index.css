@@ -1,0 +1,45 @@
+@import 'tailwindcss';
+
+/* Hex — Scoped Theme Bundle
+ * All demo site themes scoped to [data-hex-theme="name"] containers.
+ * For standalone use (Hex build). Vite projects should import individual
+ * scoped theme files instead.
+ */
+
+/* Universal token bridge — maps Tailwind utilities to CSS custom properties */
+@import './bridge.css';
+
+/* References for @apply resolution */
+@reference 'tailwindcss';
+@reference './bridge.css';
+
+/* Rig component token defaults */
+@import '../shared/rig-defaults.css';
+
+/* Component styles (shared across all themes) */
+@import '../shared/components/core.css';
+@import '../shared/components/layout.css';
+@import '../shared/components/nav.css';
+@import '../shared/components/editor.css';
+@import '../shared/components/lists.css';
+@import '../shared/components/menus.css';
+@import '../shared/components/extras.css';
+@import '../shared/components/shell.css';
+@import '../shared/components/data.css';
+@import '../shared/components/spatial.css';
+@import '../shared/components/temporal.css';
+@import '../shared/components/web.css';
+@import '../shared/a11y.css';
+
+/* Scoped theme tokens */
+@import './themes/aldricpace.css';
+@import './themes/briarcove.css';
+@import './themes/briarcovelib.css';
+@import './themes/compass.css';
+@import './themes/duskline.css';
+@import './themes/kbcv.css';
+@import './themes/lanternhouse.css';
+@import './themes/marenlys.css';
+@import './themes/saltsignal.css';
+@import './themes/tidemark.css';
+@import './themes/undertow.css';

@@ -9,11 +9,11 @@
 /* ───────── Domain accent colors ───────── */
 
 [data-domain='legal'] {
-  --domain-accent: #cca700;
+  --domain-accent: #d16969;
 }
 
 [data-domain='life'] {
-  --domain-accent: #4ec9b0;
+  --domain-accent: #ce9178;
 }
 
 [data-domain='software'] {
@@ -25,7 +25,7 @@
 }
 
 [data-domain='history'] {
-  --domain-accent: #9d9d9d;
+  --domain-accent: #d7ba7d;
 }
 
 [data-domain='world'] {

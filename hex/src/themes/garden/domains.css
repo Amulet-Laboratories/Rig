@@ -10,27 +10,27 @@
 /* ───────── Domain accent colors ───────── */
 
 [data-domain='legal'] {
-  --domain-accent: #f59e0b;
-}
-
-[data-domain='life'] {
-  --domain-accent: #14b8a6;
-}
-
-[data-domain='software'] {
   --domain-accent: #3b82f6;
 }
 
+[data-domain='life'] {
+  --domain-accent: #eab308;
+}
+
+[data-domain='software'] {
+  --domain-accent: #ef4444;
+}
+
 [data-domain='business'] {
-  --domain-accent: #10b981;
+  --domain-accent: #f97316;
 }
 
 [data-domain='history'] {
-  --domain-accent: #a8a29e;
+  --domain-accent: #22c55e;
 }
 
 [data-domain='world'] {
-  --domain-accent: #8b5cf6;
+  --domain-accent: #a855f7;
 }
 
 /* ───────── Responsive: Marketing site ───────── */

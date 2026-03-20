@@ -64,7 +64,7 @@ function onDragEnd() {
 
 <template>
   <div data-rig-editor-workbench>
-    <div data-rig-editor-workbench-tabs role="tablist">
+    <div v-if="tabs.length > 0" data-rig-editor-workbench-tabs role="tablist">
       <slot name="tabs" :tabs="tabs" :activeId="activeId">
         <div
           v-for="(tab, index) in tabs"

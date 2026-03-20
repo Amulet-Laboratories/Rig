@@ -30,3 +30,6 @@ export * from '@spatial/index'
 
 // Temporal — TimelineScrubber, AnimatedChart, PlaybackControls, TemporalHeatmap, ParticleField
 export * from '@temporal/index'
+
+// Web — SiteShell, SiteNav, Hero, Section, StatRow, CTABanner, Testimonial, SiteFooter
+export * from '@web/index'

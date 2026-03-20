@@ -1,0 +1,167 @@
+/* Hex — KBCV Design Tokens
+ * Community radio station. Warm neutral with analog character.
+ * Parchment background, broadcast red, dial green accents.
+ *
+ * Full palette (7 swatch colors):
+ *   #F7F3EE  parchment       — background
+ *   #EDEAE4  oatmeal         — card
+ *   #DDD7CE  kraft           — secondary, muted
+ *   #2A2521  espresso        — foreground text
+ *   #706459  walnut          — muted foreground
+ *   #B83232  broadcast red   — primary, ring
+ *   #2D6A4F  dial green      — accent
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #f7f3ee;
+  --color-foreground: #2a2521;
+  --color-card: #edeae4;
+  --color-card-foreground: #2a2521;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #2a2521;
+
+  /* Brand */
+  --color-primary: #b83232;
+  --color-primary-foreground: #fffdf8;
+
+  /* Soft accents */
+  --color-secondary: #ddd7ce;
+  --color-secondary-foreground: #2a2521;
+  --color-muted: #ddd7ce;
+  --color-muted-foreground: #706459;
+  --color-accent: #2d6a4f;
+  --color-accent-foreground: #fffdf8;
+
+  /* Semantic status */
+  --color-destructive: #b83232;
+  --color-destructive-foreground: #fffdf8;
+  --color-success: #2d6a4f;
+  --color-warning: #d4a030;
+  --color-info: #4a6a8a;
+
+  /* Borders and focus */
+  --color-border: #cbc4ba;
+  --color-input: #cbc4ba;
+  --color-ring: #b83232;
+
+  /* Typography */
+  --font-sans: 'Chivo', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-heading: 'Chivo', 'Inter', system-ui, sans-serif;
+
+  /* Radius */
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-sans);
+
+  --radius: 6px;
+}
+
+:root {
+  --background: #f7f3ee;
+  --foreground: #2a2521;
+  --card: #edeae4;
+  --card-foreground: #2a2521;
+  --popover: #ffffff;
+  --popover-foreground: #2a2521;
+  --primary: #b83232;
+  --primary-foreground: #fffdf8;
+  --secondary: #ddd7ce;
+  --secondary-foreground: #2a2521;
+  --muted: #ddd7ce;
+  --muted-foreground: #706459;
+  --accent: #2d6a4f;
+  --accent-foreground: #fffdf8;
+  --destructive: #b83232;
+  --destructive-foreground: #fffdf8;
+  --success: #2d6a4f;
+  --warning: #d4a030;
+  --info: #4a6a8a;
+  --border: #cbc4ba;
+  --input: #cbc4ba;
+  --ring: #b83232;
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-sans);
+
+  --radius: 6px;
+
+  /* Typography — IDE-density type scale (shorthand aliases) */
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --font-display: var(--font-sans);
+  --font-sans: 'Chivo', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-heading: 'Chivo', 'Inter', system-ui, sans-serif;
+
+  /* ── Named palette aliases ──────────────────────────────────────────────
+   * All 7 swatch colors available for direct template use.
+   */
+  --kbcv-parchment: #f7f3ee;
+  --kbcv-oatmeal: #edeae4;
+  --kbcv-kraft: #ddd7ce;
+  --kbcv-espresso: #2a2521;
+  --kbcv-walnut: #706459;
+  --kbcv-red: #b83232;
+  --kbcv-green: #2d6a4f;
+
+  /* ── Rig component token bridge ─────────────────────────────────────────
+   * Overrides shared/tokens.css defaults where the KBCV palette needs
+   * values that can't be derived directly from --color-* semantics.
+   */
+
+  /* Button — kraft for hover feedback */
+  --rig-button-hover-bg: #ddd7ce;
+
+  /* Scrollbar — espresso tint for warm analog feel */
+  --rig-scrollbar-thumb: rgba(42, 37, 33, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(42, 37, 33, 0.25);
+}

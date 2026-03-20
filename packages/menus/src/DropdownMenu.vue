@@ -12,10 +12,13 @@ const props = withDefaults(
     items: Action[]
     /** Preferred placement relative to the trigger */
     placement?: Placement
+    /** Disable flip middleware (prevent jumping between top/bottom) */
+    noFlip?: boolean
   }>(),
   {
     open: false,
     placement: 'bottom-start',
+    noFlip: false,
   },
 )
 
@@ -39,11 +42,11 @@ const focusedIndex = ref(0)
 
 const placementComputed = computed(() => props.placement)
 
-const { floatingStyles } = useFloating(triggerRef, menuRef, {
+const { floatingStyles, isPositioned } = useFloating(triggerRef, menuRef, {
   placement: placementComputed,
   strategy: 'fixed',
-  whileElementsMounted: autoUpdate,
-  middleware: [offset(4), flip(), shift({ padding: 8 })],
+  whileElementsMounted: props.noFlip ? undefined : autoUpdate,
+  middleware: [offset(4), ...(props.noFlip ? [] : [flip()]), shift({ padding: 8 })],
 })
 
 function close() {
@@ -149,7 +152,7 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
 
     <Teleport to="body">
       <div
-        v-show="open"
+        v-show="open && isPositioned"
         ref="menuRef"
         data-rig-dropdown-menu
         role="menu"
