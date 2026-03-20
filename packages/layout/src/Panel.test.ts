@@ -117,6 +117,7 @@ describe('Panel', () => {
       props: { open: true, position: 'bottom', size: 200, minSize: 100 },
     })
     const resizer = wrapper.findComponent({ name: 'Resizer' })
+    resizer.vm.$emit('dragstart')
     resizer.vm.$emit('drag', { delta: -50 })
     await wrapper.vm.$nextTick()
     // bottom: factor = -1, so newSize = 200 + (-50)*(-1) = 250
@@ -128,6 +129,7 @@ describe('Panel', () => {
       props: { open: true, position: 'right', size: 200, minSize: 100 },
     })
     const resizer = wrapper.findComponent({ name: 'Resizer' })
+    resizer.vm.$emit('dragstart')
     resizer.vm.$emit('drag', { delta: -50 })
     await wrapper.vm.$nextTick()
     // right: multiplier = -1, factor = -1, newSize = 200 + (-50)*(-1) = 250
@@ -139,6 +141,7 @@ describe('Panel', () => {
       props: { open: true, position: 'left', size: 200, minSize: 100 },
     })
     const resizer = wrapper.findComponent({ name: 'Resizer' })
+    resizer.vm.$emit('dragstart')
     resizer.vm.$emit('drag', { delta: 50 })
     await wrapper.vm.$nextTick()
     // left: multiplier = 1, factor = 1, newSize = 200 + 50*1 = 250
@@ -151,6 +154,7 @@ describe('Panel', () => {
     })
     const resizer = wrapper.findComponent({ name: 'Resizer' })
     // delta 200 with factor -1 => newSize = 150 + 200*(-1) = -50 => clamped to 100
+    resizer.vm.$emit('dragstart')
     resizer.vm.$emit('drag', { delta: 200 })
     await wrapper.vm.$nextTick()
     expect(wrapper.emitted('update:size')?.[0]).toEqual([100])
@@ -162,6 +166,7 @@ describe('Panel', () => {
     })
     const resizer = wrapper.findComponent({ name: 'Resizer' })
     // delta -200 with factor -1 => newSize = 200 + (-200)*(-1) = 400 => clamped to 300
+    resizer.vm.$emit('dragstart')
     resizer.vm.$emit('drag', { delta: -200 })
     await wrapper.vm.$nextTick()
     expect(wrapper.emitted('update:size')?.[0]).toEqual([300])
