@@ -73,7 +73,7 @@ jobs:
         run: pnpm audit --prod
 
       - name: Unit tests with coverage
-        run: vitest run --coverage
+        run: pnpm vitest run --coverage
 
   build:
     name: Build & Exports
