@@ -51,6 +51,21 @@ describe('SiteFooter', () => {
     expect(wrapper.find('[data-rig-site-footer-post]').exists()).toBe(false)
   })
 
+  it('defaults variant to default', () => {
+    const wrapper = mount(SiteFooter)
+    expect(wrapper.find('[data-rig-site-footer]').attributes('data-variant')).toBe('default')
+  })
+
+  it('accepts card variant', () => {
+    const wrapper = mount(SiteFooter, { props: { variant: 'card' } })
+    expect(wrapper.find('[data-rig-site-footer]').attributes('data-variant')).toBe('card')
+  })
+
+  it('accepts inverted variant', () => {
+    const wrapper = mount(SiteFooter, { props: { variant: 'inverted' } })
+    expect(wrapper.find('[data-rig-site-footer]').attributes('data-variant')).toBe('inverted')
+  })
+
   it('renders footer element', () => {
     const wrapper = mount(SiteFooter)
     expect(wrapper.element.tagName).toBe('FOOTER')

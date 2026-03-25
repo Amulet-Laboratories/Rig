@@ -2,7 +2,18 @@
 
 ## What is Hex?
 
-Hex is a multi-theme CSS layer for Rig. It ships pure CSS that styles Rig's headless `data-rig-*` selectors with four curated themes — Hexrig, VSCode, Spotify, and Gmail. Each theme is a single CSS bundle. Consumers hot-swap themes by loading a different CSS file.
+Hex is the visual layer for Rig. It ships pure CSS that styles Rig's headless `data-rig-*` selectors across multiple curated themes. Each theme is a single CSS bundle. Consumers hot-swap themes by loading a different CSS file.
+
+## Composition Boundary
+
+Hex is the ONLY place visual styling decisions are made. Consumer sites should never need `style=` attributes or arbitrary Tailwind values to use Rig components correctly.
+
+**If a consumer site needs an inline style to make a component look right, the fix belongs in Hex — not in the site.** This means:
+
+- Every background, color, border, and font decision lives in Hex token definitions or component CSS
+- Component sub-parts (utility bars, footer columns, accent bars) get their visual treatment from `[data-rig-*]` selectors in Hex, not from consumer-side `style=`
+- Theme-specific overrides (e.g., undertow's footer using card bg instead of primary) are expressed as CSS custom property overrides in the theme's `tokens.css`, not in consumer markup
+- Scoped theme tokens (`[data-hex-theme="name"]`) live in Hex and are imported once at the site level — never per-page or per-component
 
 ## Architecture
 

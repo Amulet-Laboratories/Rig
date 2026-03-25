@@ -18,6 +18,8 @@
 defineProps<{
   /** Layout variant. */
   layout?: 'split' | 'centered' | 'immersive'
+  /** Render a gradient scrim over media for immersive layouts. */
+  scrim?: boolean
 }>()
 </script>
 
@@ -43,6 +45,7 @@ defineProps<{
 
     <div v-if="$slots.media" data-rig-hero-media>
       <slot name="media" />
+      <div v-if="scrim" data-rig-hero-scrim aria-hidden="true" />
     </div>
 
     <div v-if="$slots.overlay" data-rig-hero-overlay>

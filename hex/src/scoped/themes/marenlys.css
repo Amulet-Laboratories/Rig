@@ -1,17 +1,17 @@
 /* Hex — marenlys (scoped) */
 
 /* Hex — Marenlys Design Tokens
- * Gallery-white, museum-quiet. Maximum restraint so the art dominates.
- * Ultra-light mode artist portfolio theme with muted indigo accent.
+ * Editorial polish. Crisp white with magenta-pink signature.
+ * Ultra-light mode artist portfolio theme with magenta-pink accent.
  *
  * Full palette (7 swatch colors):
  *   #FAFAFA  gallery white   — background
- *   #FFFFFF  pure white      — card, image mat
- *   #F2F2F2  whisper gray    — secondary, muted
- *   #111111  pure black      — foreground text
- *   #777777  mid gray        — muted foreground
- *   #AAAAAA  light gray      — subtle elements
- *   #4A4A8A  muted indigo    — primary, accent
+ *   #FAF5F8  pink tint       — card
+ *   #F2E8F0  blush           — secondary, muted
+ *   #1A0A18  dark magenta    — foreground text
+ *   #846578  mauve           — muted foreground
+ *   #E5D5E0  rose border     — borders
+ *   #C43A8A  magenta-pink    — primary, accent
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
@@ -19,61 +19,94 @@
 
 [data-hex-theme='marenlys'] {
   --color-background: #fafafa;
-  --color-foreground: #111111;
-  --color-card: #ffffff;
-  --color-card-foreground: #111111;
+  --color-foreground: #1a0a18;
+  --color-card: #faf5f8;
+  --color-card-foreground: #1a0a18;
   --color-popover: #ffffff;
-  --color-popover-foreground: #111111;
-  --color-primary: #4a4a8a;
+  --color-popover-foreground: #1a0a18;
+  --color-primary: #c43a8a;
   --color-primary-foreground: #ffffff;
-  --color-secondary: #f2f2f2;
-  --color-secondary-foreground: #111111;
-  --color-muted: #f2f2f2;
-  --color-muted-foreground: #777777;
-  --color-accent: #4a4a8a;
+  --color-secondary: #f2e8f0;
+  --color-secondary-foreground: #1a0a18;
+  --color-muted: #f2e8f0;
+  --color-muted-foreground: #846578;
+  --color-accent: #c43a8a;
   --color-accent-foreground: #ffffff;
   --color-destructive: #cc4444;
   --color-destructive-foreground: #ffffff;
   --color-success: #44884a;
   --color-warning: #b8952a;
-  --color-info: #4a4a8a;
-  --color-border: #e0e0e0;
-  --color-input: #e0e0e0;
-  --color-ring: #4a4a8a;
+  --color-info: #7a5a9a;
+  --color-border: #e5d5e0;
+  --color-input: #e5d5e0;
+  --color-ring: #c43a8a;
   --font-sans: 'Instrument Sans', 'Inter', system-ui, sans-serif;
   --font-mono: 'Instrument Sans', 'SF Mono', ui-monospace, monospace;
   --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-heading: 'Instrument Serif', Georgia, serif;
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+  --font-display: var(--font-sans);
   --radius: 0px;
   --background: #fafafa;
-  --foreground: #111111;
-  --card: #ffffff;
-  --card-foreground: #111111;
+  --foreground: #1a0a18;
+  --card: #faf5f8;
+  --card-foreground: #1a0a18;
   --popover: #ffffff;
-  --popover-foreground: #111111;
-  --primary: #4a4a8a;
+  --popover-foreground: #1a0a18;
+  --primary: #c43a8a;
   --primary-foreground: #ffffff;
-  --secondary: #f2f2f2;
-  --secondary-foreground: #111111;
-  --muted: #f2f2f2;
-  --muted-foreground: #777777;
-  --accent: #4a4a8a;
+  --secondary: #f2e8f0;
+  --secondary-foreground: #1a0a18;
+  --muted: #f2e8f0;
+  --muted-foreground: #846578;
+  --accent: #c43a8a;
   --accent-foreground: #ffffff;
   --destructive: #cc4444;
   --destructive-foreground: #ffffff;
   --success: #44884a;
   --warning: #b8952a;
-  --info: #4a4a8a;
-  --border: #e0e0e0;
-  --input: #e0e0e0;
-  --ring: #4a4a8a;
+  --info: #7a5a9a;
+  --border: #e5d5e0;
+  --input: #e5d5e0;
+  --ring: #c43a8a;
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
   --ml-gallery: #fafafa;
-  --ml-white: #ffffff;
-  --ml-whisper: #f2f2f2;
-  --ml-black: #111111;
-  --ml-gray: #777777;
-  --ml-light: #aaaaaa;
-  --ml-indigo: #4a4a8a;
-  --rig-button-hover-bg: #f2f2f2;
-  --rig-scrollbar-thumb: rgba(17, 17, 17, 0.08);
-  --rig-scrollbar-thumb-hover: rgba(17, 17, 17, 0.18);
+  --ml-pink-tint: #faf5f8;
+  --ml-blush: #f2e8f0;
+  --ml-dark-magenta: #1a0a18;
+  --ml-mauve: #846578;
+  --ml-rose-border: #e5d5e0;
+  --ml-magenta: #c43a8a;
+  --rig-button-hover-bg: #f2e8f0;
+  --rig-scrollbar-thumb: rgba(26, 10, 24, 0.08);
+  --rig-scrollbar-thumb-hover: rgba(26, 10, 24, 0.18);
+  --site-max-width: 64rem;
 }

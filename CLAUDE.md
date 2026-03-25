@@ -2,7 +2,27 @@
 
 ## Overview
 
-Headless, accessible Vue 3 component library. VSCode-style layout, completely unstyled. Consumers supply all styling via CSS custom properties, Tailwind, and slot content.
+Headless, accessible Vue 3 component library. Completely unstyled — Hex provides all visual styling. Consumers compose sites from Rig components using props, slots, and content. They do not write CSS.
+
+## Composition Boundary
+
+Rig and Hex together form the library. Consumer sites are the composition layer.
+
+**Library (Rig + Hex) owns:**
+
+- All visual styling — colors, typography, spacing, borders, backgrounds, hover states
+- Component structure — semantic HTML, data attributes, ARIA
+- Theme tokens — every color, font, radius decision
+- Layout behavior — responsive breakpoints, grid/flex patterns within components
+
+**Consumer sites own:**
+
+- Content — text, images, data arrays
+- Composition — which components to use, in what order
+- Configuration — props, variants, slot content
+- Navigation — page structure, routing
+
+**When adding or modifying a Rig component, ask:** "If a site needs `style=` or arbitrary Tailwind values to use this component correctly, the component is missing a prop, variant, or slot." Every visual need a consumer might have should be expressible through the component API. If you find yourself writing inline styles in a consumer site, that's a signal to go back and add the missing capability to Rig or Hex.
 
 ## Monorepo Structure
 
@@ -33,12 +53,13 @@ Internal dependencies use `workspace:*` protocol. Config is consumed by both Rig
 
 ## Architecture
 
-- `packages/` — 11 sub-packages (core, layout, nav, editor, lists, menus, extras, shell, data, spatial, temporal)
+- `packages/` — 12 sub-packages (core, layout, nav, editor, lists, menus, extras, shell, data, spatial, temporal, web)
 - `src/index.ts` — umbrella entry point re-exporting all packages
 - Components are completely unstyled — semantic HTML + data attributes
 - Root element: `data-rig-{component-name}`, state: `data-{state}`
 - CSS custom properties with fallback values for behavioral dimensions
 - Accessibility built in — ARIA, keyboard nav, focus management
+- Slot content renders directly — avoid wrapper divs around slots unless structurally required
 
 ## Commands
 

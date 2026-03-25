@@ -1,0 +1,115 @@
+/* Hex — spacewizard (scoped) */
+
+/* Hex — Spacewizard Design Tokens
+ * Deep space blue background with acid green accents.
+ * Dark mode personal/portfolio theme — suited for developer portfolios.
+ *
+ * Palette:
+ *   #060d2b  space navy      — background
+ *   #0a1440  deep navy       — card, popover
+ *   #111d52  surface         — secondary, borders
+ *   #1e2a6b  border          — input borders
+ *   #7b88b8  muted text      — muted foreground
+ *   #aef66d  acid green      — primary brand
+ *   #c4f99a  light green     — accent hover
+ *   #cad3f7  ice blue        — foreground text
+ *   #f87171  red             — destructive
+ *   #fbbf24  amber           — warning
+ *   #34d399  emerald         — success
+ *   #60a5fa  blue            — info
+ *
+ * @theme feeds Tailwind v4 utility generation.
+ * :root provides standalone CSS custom property access.
+ */
+
+[data-hex-theme='spacewizard'] {
+  --color-background: #060d2b;
+  --color-foreground: #cad3f7;
+  --color-card: #0a1440;
+  --color-card-foreground: #cad3f7;
+  --color-popover: #0a1440;
+  --color-popover-foreground: #cad3f7;
+  --color-primary: #aef66d;
+  --color-primary-foreground: #060d2b;
+  --color-secondary: #111d52;
+  --color-secondary-foreground: #cad3f7;
+  --color-muted: #111d52;
+  --color-muted-foreground: #7b88b8;
+  --color-accent: #c4f99a;
+  --color-accent-foreground: #060d2b;
+  --color-destructive: #f87171;
+  --color-destructive-foreground: #060d2b;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-info: #60a5fa;
+  --color-border: #1e2a6b;
+  --color-input: #1e2a6b;
+  --color-ring: #aef66d;
+  --font-mono: 'Fira Code', 'SF Mono', 'JetBrains Mono', 'Cascadia Code', ui-monospace, monospace;
+  --font-sans: 'Open Sans', 'Inter', system-ui, sans-serif;
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+  --font-display: var(--font-sans);
+  --radius: 6px;
+  --background: #060d2b;
+  --foreground: #cad3f7;
+  --card: #0a1440;
+  --card-foreground: #cad3f7;
+  --popover: #0a1440;
+  --popover-foreground: #cad3f7;
+  --primary: #aef66d;
+  --primary-foreground: #060d2b;
+  --secondary: #111d52;
+  --secondary-foreground: #cad3f7;
+  --muted: #111d52;
+  --muted-foreground: #7b88b8;
+  --accent: #c4f99a;
+  --accent-foreground: #060d2b;
+  --destructive: #f87171;
+  --destructive-foreground: #060d2b;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --info: #60a5fa;
+  --border: #1e2a6b;
+  --input: #1e2a6b;
+  --ring: #aef66d;
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --sw-space: #060d2b;
+  --sw-deep: #0a1440;
+  --sw-surface: #111d52;
+  --sw-border: #1e2a6b;
+  --sw-muted: #7b88b8;
+  --sw-green: #aef66d;
+  --sw-green-light: #c4f99a;
+  --sw-ice: #cad3f7;
+  --rig-button-hover-bg: #111d52;
+  --rig-scrollbar-thumb: rgba(202, 211, 247, 0.18);
+  --rig-scrollbar-thumb-hover: rgba(202, 211, 247, 0.35);
+}

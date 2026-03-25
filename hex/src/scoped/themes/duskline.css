@@ -1,79 +1,117 @@
 /* Hex — duskline (scoped) */
 
 /* Hex — Duskline Design Tokens
- * Quiet competence. True dark mode with a single amber accent used sparingly.
- * Investigative noir palette — deep graphite background, cool steel text,
- * amber highlights that cut through the darkness like streetlight.
+ * Digital frost. Cold-running terminal with teal-cyan glow.
+ * Dark mode investigative palette — cold blue-black background, cool white text,
+ * teal-cyan highlights that pulse like frozen circuitry.
  *
  * Full palette (7 swatch colors):
- *   #0D0F12  black       — background
- *   #1A1D24  graphite    — card, popover
- *   #252A33  charcoal    — secondary, muted
- *   #5A6477  dim         — subtle text
- *   #8A94A6  steel       — muted foreground
- *   #D4A843  amber       — primary, accent, ring
- *   #E2E6EC  white       — foreground text
+ *   #0A0F14  cold black     — background
+ *   #121A22  cold graphite  — card, popover
+ *   #1A2430  cold charcoal  — secondary, muted
+ *   #4A6478  dim            — subtle text
+ *   #7090A2  steel          — muted foreground
+ *   #3CC8B4  teal-cyan      — primary, accent, ring (h≈170)
+ *   #D8E4EC  cool white     — foreground text
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
 [data-hex-theme='duskline'] {
-  --color-background: #0d0f12;
-  --color-foreground: #e2e6ec;
-  --color-card: #1a1d24;
-  --color-card-foreground: #e2e6ec;
-  --color-popover: #1a1d24;
-  --color-popover-foreground: #e2e6ec;
-  --color-primary: #d4a843;
-  --color-primary-foreground: #0d0f12;
-  --color-secondary: #252a33;
-  --color-secondary-foreground: #e2e6ec;
-  --color-muted: #252a33;
-  --color-muted-foreground: #8a94a6;
-  --color-accent: #d4a843;
-  --color-accent-foreground: #0d0f12;
-  --color-destructive: #a04040;
-  --color-destructive-foreground: #e2e6ec;
-  --color-success: #5a7a5a;
-  --color-warning: #b8952a;
-  --color-info: #5a7aaa;
-  --color-border: #2a3040;
-  --color-input: #2a3040;
-  --color-ring: #d4a843;
+  --color-background: #0a0f14;
+  --color-foreground: #d8e4ec;
+  --color-card: #121a22;
+  --color-card-foreground: #d8e4ec;
+  --color-popover: #121a22;
+  --color-popover-foreground: #d8e4ec;
+  --color-primary: #3cc8b4;
+  --color-primary-foreground: #0a0f14;
+  --color-secondary: #1a2430;
+  --color-secondary-foreground: #d8e4ec;
+  --color-muted: #1a2430;
+  --color-muted-foreground: #7090a2;
+  --color-accent: #d4a040;
+  --color-accent-foreground: #0a0f14;
+  --color-destructive: #c94545;
+  --color-destructive-foreground: #d8e4ec;
+  --color-success: #2db87a;
+  --color-warning: #d4a040;
+  --color-info: #5a8ab8;
+  --color-border: #1e3040;
+  --color-input: #1e3040;
+  --color-ring: #3cc8b4;
   --font-sans: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', 'SF Mono', ui-monospace, monospace;
+  --font-heading: 'IBM Plex Sans Condensed', 'IBM Plex Sans', system-ui, sans-serif;
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+  --font-display: var(--font-sans);
   --radius: 2px;
-  --background: #0d0f12;
-  --foreground: #e2e6ec;
-  --card: #1a1d24;
-  --card-foreground: #e2e6ec;
-  --popover: #1a1d24;
-  --popover-foreground: #e2e6ec;
-  --primary: #d4a843;
-  --primary-foreground: #0d0f12;
-  --secondary: #252a33;
-  --secondary-foreground: #e2e6ec;
-  --muted: #252a33;
-  --muted-foreground: #8a94a6;
-  --accent: #d4a843;
-  --accent-foreground: #0d0f12;
-  --destructive: #a04040;
-  --destructive-foreground: #e2e6ec;
-  --success: #5a7a5a;
-  --warning: #b8952a;
-  --info: #5a7aaa;
-  --border: #2a3040;
-  --input: #2a3040;
-  --ring: #d4a843;
-  --dk-black: #0d0f12;
-  --dk-graphite: #1a1d24;
-  --dk-charcoal: #252a33;
-  --dk-steel: #8a94a6;
-  --dk-dim: #5a6477;
-  --dk-amber: #d4a843;
-  --dk-white: #e2e6ec;
-  --rig-button-hover-bg: #252a33;
-  --rig-scrollbar-thumb: rgba(226, 230, 236, 0.1);
-  --rig-scrollbar-thumb-hover: rgba(226, 230, 236, 0.22);
+  --background: #0a0f14;
+  --foreground: #d8e4ec;
+  --card: #121a22;
+  --card-foreground: #d8e4ec;
+  --popover: #121a22;
+  --popover-foreground: #d8e4ec;
+  --primary: #3cc8b4;
+  --primary-foreground: #0a0f14;
+  --secondary: #1a2430;
+  --secondary-foreground: #d8e4ec;
+  --muted: #1a2430;
+  --muted-foreground: #7090a2;
+  --accent: #d4a040;
+  --accent-foreground: #0a0f14;
+  --destructive: #c94545;
+  --destructive-foreground: #d8e4ec;
+  --success: #2db87a;
+  --warning: #d4a040;
+  --info: #5a8ab8;
+  --border: #1e3040;
+  --input: #1e3040;
+  --ring: #3cc8b4;
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --dk-black: #0a0f14;
+  --dk-graphite: #121a22;
+  --dk-charcoal: #1a2430;
+  --dk-steel: #7090a2;
+  --dk-dim: #4a6478;
+  --dk-cyan: #3cc8b4;
+  --dk-white: #d8e4ec;
+  --rig-button-hover-bg: #2ea89a;
+  --rig-button-hover-fg: #0a0f14;
+  --rig-button-secondary-bg: transparent;
+  --rig-button-secondary-fg: var(--color-foreground);
+  --rig-button-secondary-hover-bg: #1a2430;
+  --rig-button-secondary-hover-fg: var(--color-foreground);
+  --rig-scrollbar-thumb: rgba(216, 228, 236, 0.1);
+  --rig-scrollbar-thumb-hover: rgba(216, 228, 236, 0.22);
+  --site-footer-color: var(--color-background);
 }

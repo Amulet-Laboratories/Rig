@@ -29,6 +29,11 @@ describe('StatRow', () => {
     expect(wrapper.find('[data-rig-stat-row]').attributes('data-variant')).toBe('filled')
   })
 
+  it('accepts filled-secondary variant', () => {
+    const wrapper = mount(StatRow, { props: { stats, variant: 'filled-secondary' } })
+    expect(wrapper.find('[data-rig-stat-row]').attributes('data-variant')).toBe('filled-secondary')
+  })
+
   it('renders all stat items', () => {
     const wrapper = mount(StatRow, { props: { stats } })
     expect(wrapper.findAll('[data-rig-stat-row-item]')).toHaveLength(3)

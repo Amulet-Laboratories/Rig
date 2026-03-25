@@ -14,11 +14,13 @@
 defineProps<{
   /** Layout variant. */
   layout?: 'row' | 'centered'
+  /** Color variant: default (primary bg), card, background, inverted, destructive. */
+  variant?: 'default' | 'card' | 'background' | 'inverted' | 'destructive'
 }>()
 </script>
 
 <template>
-  <section data-rig-cta-banner :data-layout="layout ?? 'row'">
+  <section data-rig-cta-banner :data-layout="layout ?? 'row'" :data-variant="variant ?? 'default'">
     <div data-rig-cta-banner-container>
       <div v-if="$slots.icon" data-rig-cta-banner-icon>
         <slot name="icon" />

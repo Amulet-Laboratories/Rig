@@ -84,6 +84,29 @@ describe('Hero', () => {
     expect(wrapper.find('[data-rig-hero-overlay]').exists()).toBe(false)
   })
 
+  it('renders scrim when scrim prop is true and media is provided', () => {
+    const wrapper = mount(Hero, {
+      props: { scrim: true },
+      slots: { title: 'Hello', media: '<img src="bg.jpg" />' },
+    })
+    expect(wrapper.find('[data-rig-hero-scrim]').exists()).toBe(true)
+  })
+
+  it('hides scrim when scrim prop is false', () => {
+    const wrapper = mount(Hero, {
+      slots: { title: 'Hello', media: '<img src="bg.jpg" />' },
+    })
+    expect(wrapper.find('[data-rig-hero-scrim]').exists()).toBe(false)
+  })
+
+  it('hides scrim when no media is provided', () => {
+    const wrapper = mount(Hero, {
+      props: { scrim: true },
+      slots: { title: 'Hello' },
+    })
+    expect(wrapper.find('[data-rig-hero-scrim]').exists()).toBe(false)
+  })
+
   it('renders section element', () => {
     const wrapper = mount(Hero, { slots: { title: 'Hello' } })
     expect(wrapper.element.tagName).toBe('SECTION')

@@ -107,17 +107,13 @@ describe('SiteNav', () => {
     expect(wrapper.find('[data-rig-site-nav-actions]').text()).toContain('Cart')
   })
 
-  it('renders utility-bar slot when provided', () => {
+  it('renders utility-bar slot content directly', () => {
     const wrapper = mount(SiteNav, {
       props: { pages },
-      slots: { 'utility-bar': '<div>Call us</div>' },
+      slots: { 'utility-bar': '<div class="call-banner">Call us</div>' },
     })
-    expect(wrapper.find('[data-rig-site-nav-utility]').exists()).toBe(true)
-  })
-
-  it('hides utility-bar when not provided', () => {
-    const wrapper = mount(SiteNav, { props: { pages } })
-    expect(wrapper.find('[data-rig-site-nav-utility]').exists()).toBe(false)
+    expect(wrapper.find('.call-banner').exists()).toBe(true)
+    expect(wrapper.find('.call-banner').text()).toBe('Call us')
   })
 
   it('renders mobile links with correct elements', async () => {

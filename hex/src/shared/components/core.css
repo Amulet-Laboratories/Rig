@@ -8,7 +8,7 @@
 
 [data-rig-button] {
   @apply inline-flex items-center justify-center gap-1.5
-         font-medium transition-colors
+         font-medium cursor-pointer transition-colors
          focus:outline-none;
 
   padding: 4px 8px;
@@ -31,6 +31,7 @@
 
 [data-rig-button][data-variant='primary']:hover {
   background: var(--rig-button-hover-bg);
+  color: var(--rig-button-hover-fg, var(--color-foreground));
 }
 
 [data-rig-button][data-variant='ghost'] {
@@ -40,6 +41,29 @@
 
 [data-rig-button][data-variant='ghost']:hover {
   background: var(--rig-button-secondary-hover-bg);
+  color: var(--rig-button-secondary-hover-fg, var(--color-accent-foreground));
+}
+
+[data-rig-button][data-variant='secondary'] {
+  background: var(--rig-button-secondary-bg);
+  color: var(--rig-button-secondary-fg);
+  border-color: var(--color-border);
+}
+
+[data-rig-button][data-variant='secondary']:hover {
+  background: var(--rig-button-secondary-hover-bg);
+  color: var(--rig-button-secondary-hover-fg, var(--color-accent-foreground));
+}
+
+[data-rig-button][data-variant='cta'] {
+  background: var(--rig-button-bg);
+  color: var(--rig-button-fg);
+  border-color: var(--rig-button-border);
+}
+
+[data-rig-button][data-variant='cta']:hover {
+  background: var(--rig-button-hover-bg);
+  color: var(--rig-button-hover-fg, var(--color-foreground));
 }
 
 [data-rig-button][data-variant='danger'] {
@@ -49,6 +73,16 @@
 
 [data-rig-button][data-variant='danger']:hover {
   background: color-mix(in srgb, var(--color-destructive) 12%, transparent);
+}
+
+[data-rig-button][data-variant='outline'] {
+  background: transparent;
+  color: var(--color-foreground);
+  border-color: var(--rig-button-outline-border, var(--color-foreground));
+}
+
+[data-rig-button][data-variant='outline']:hover {
+  background: var(--rig-button-hover-bg, var(--color-secondary));
 }
 
 [data-rig-button][data-disabled] {
@@ -363,11 +397,28 @@
 
 [data-rig-card][data-interactive] {
   cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.15s,
+    background 0.15s;
 }
 
 [data-rig-card][data-interactive]:hover {
   border-color: var(--rig-input-border);
-  background: var(--color-accent);
+  background: var(--rig-card-hover-bg, var(--color-card));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-rig-card][data-interactive] {
+    transition: none;
+  }
+
+  [data-rig-card][data-interactive]:hover {
+    transform: none;
+  }
 }
 
 [data-rig-card][data-interactive]:focus-visible {
@@ -825,6 +876,47 @@
   cursor: default;
 }
 
+/* Label — field variant (form labels in sidebars / quick-add panels) */
+[data-rig-label][data-variant='field'] {
+  @apply text-xs font-mono text-muted-foreground block;
+
+  margin-bottom: 4px;
+  cursor: default;
+}
+
+/* ───────── SectionHeader ───────── */
+
+[data-rig-section-header] {
+  @apply font-mono font-bold uppercase tracking-wider;
+
+  margin: 0;
+  line-height: 1.4;
+}
+
+[data-rig-section-header][data-size='xs'] {
+  font-size: 11px;
+}
+
+[data-rig-section-header][data-size='sm'] {
+  font-size: 13px;
+}
+
+[data-rig-section-header][data-size='md'] {
+  font-size: 14px;
+}
+
+[data-rig-section-header][data-size='lg'] {
+  font-size: 16px;
+}
+
+[data-rig-section-header][data-size='xl'] {
+  font-size: 20px;
+}
+
+[data-rig-section-header][data-muted] {
+  color: var(--color-muted-foreground);
+}
+
 /* ───────── Combobox (additions) ───────── */
 
 [data-rig-combobox-option-label] {
@@ -933,9 +1025,14 @@
 /* ───────── Dot ───────── */
 
 [data-rig-dot] {
-  @apply rounded-full;
+  @apply rounded-full shrink-0;
 
-  background: var(--color-foreground);
+  background: var(--dot-color, var(--color-foreground));
+}
+
+[data-rig-dot][data-size='xs'] {
+  width: 4px;
+  height: 4px;
 }
 
 [data-rig-dot][data-size='sm'] {

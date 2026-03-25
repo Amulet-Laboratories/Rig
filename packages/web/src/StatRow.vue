@@ -19,7 +19,7 @@ defineProps<{
   /** Array of stat items to display. */
   stats: WebStatItem[]
   /** Visual variant. */
-  variant?: 'bordered' | 'card' | 'filled'
+  variant?: 'bordered' | 'card' | 'filled' | 'filled-secondary'
 }>()
 </script>
 

@@ -48,6 +48,21 @@ describe('CTABanner', () => {
     expect(wrapper.find('[data-rig-cta-banner-action]').exists()).toBe(false)
   })
 
+  it('defaults variant to default', () => {
+    const wrapper = mount(CTABanner)
+    expect(wrapper.find('[data-rig-cta-banner]').attributes('data-variant')).toBe('default')
+  })
+
+  it('accepts card variant', () => {
+    const wrapper = mount(CTABanner, { props: { variant: 'card' } })
+    expect(wrapper.find('[data-rig-cta-banner]').attributes('data-variant')).toBe('card')
+  })
+
+  it('accepts destructive variant', () => {
+    const wrapper = mount(CTABanner, { props: { variant: 'destructive' } })
+    expect(wrapper.find('[data-rig-cta-banner]').attributes('data-variant')).toBe('destructive')
+  })
+
   it('renders section element', () => {
     const wrapper = mount(CTABanner)
     expect(wrapper.element.tagName).toBe('SECTION')
