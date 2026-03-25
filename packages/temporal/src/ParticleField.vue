@@ -87,7 +87,7 @@ function draw() {
   for (const p of particles.value) {
     const alpha = Math.max(0, 1 - p.life / p.maxLife)
     ctx.globalAlpha = alpha * 0.8
-    ctx.fillStyle = p.color ?? 'currentColor'
+    ctx.fillStyle = p.color ?? (getComputedStyle(canvas).color || '#888')
     ctx.beginPath()
     ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
     ctx.fill()

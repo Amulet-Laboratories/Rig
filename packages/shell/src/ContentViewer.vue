@@ -4,12 +4,7 @@
 -->
 <script setup lang="ts">
 import { Button } from '@core/primitives'
-import { Breadcrumbs } from '@nav/index'
-
-export interface BreadcrumbItem {
-  id: string
-  label: string
-}
+import { Breadcrumbs, type BreadcrumbItem } from '@nav/index'
 
 defineProps<{
   /** Breadcrumb path segments */

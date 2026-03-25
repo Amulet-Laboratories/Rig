@@ -9,7 +9,7 @@ const rigTags = [
 ]
 const hexTags = [
   'CSS-only',
-  '16 themes',
+  '18 themes',
   'Tailwind v4',
   'Custom properties',
   '22 token groups',
@@ -65,6 +65,9 @@ const hexTags = [
               {{ tag }}
             </span>
           </div>
+          <pre
+            class="mt-4 rounded-lg bg-bg/50 p-3 font-mono text-[12px] text-text-dim"
+          ><code><span class="text-primary">import</span> { Button, Modal } <span class="text-primary">from</span> <span class="text-text-muted">'@amulet-laboratories/rig'</span></code></pre>
         </div>
 
         <div
@@ -92,6 +95,9 @@ const hexTags = [
               {{ tag }}
             </span>
           </div>
+          <pre
+            class="mt-4 rounded-lg bg-bg/50 p-3 font-mono text-[12px] text-text-dim"
+          ><code><span class="text-primary">@import</span> <span class="text-text-muted">'@amulet-laboratories/hex/vscode'</span></code></pre>
         </div>
       </div>
     </div>

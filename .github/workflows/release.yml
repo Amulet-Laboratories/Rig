@@ -38,7 +38,7 @@ jobs:
         run: pnpm typecheck
 
       - name: Tests
-        run: vitest run
+        run: pnpm vitest run
 
       - name: Build Hex themes
         working-directory: hex

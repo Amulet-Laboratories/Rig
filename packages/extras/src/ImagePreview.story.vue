@@ -6,7 +6,7 @@ const zoomSrc = ref('')
 </script>
 
 <template>
-  <Story title="Extras/ImagePreview" icon="lucide:image" group="extras">
+  <Story title="ImagePreview" icon="lucide:image" group="extras">
     <Variant title="Default">
       <ImagePreview src="https://picsum.photos/400/300" alt="Random landscape" />
     </Variant>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onUnmounted } from 'vue'
 
 const props = withDefaults(
   defineProps<{
@@ -23,6 +23,14 @@ const props = withDefaults(
     describedBy?: string
     /** Accessible label for the input (when no visible <label> is provided) */
     ariaLabel?: string
+    /** HTML name attribute (for form submission) */
+    name?: string
+    /** Whether the input is required */
+    required?: boolean
+    /** Maximum character length */
+    maxlength?: number
+    /** Browser autocomplete hint */
+    autocomplete?: string
   }>(),
   {
     modelValue: '',
@@ -47,6 +55,10 @@ defineSlots<{
 
 const inputRef = ref<HTMLInputElement | null>(null)
 let debounceTimer: ReturnType<typeof setTimeout> | null = null
+
+onUnmounted(() => {
+  if (debounceTimer) clearTimeout(debounceTimer)
+})
 
 function onInput(e: Event) {
   const value = (e.target as HTMLInputElement).value
@@ -95,6 +107,10 @@ defineExpose({ focus })
       :placeholder="placeholder"
       :disabled="disabled"
       :type="type"
+      :name="name"
+      :required="required || undefined"
+      :maxlength="maxlength || undefined"
+      :autocomplete="autocomplete"
       :aria-invalid="invalid || undefined"
       :aria-describedby="describedBy || undefined"
       :aria-label="ariaLabel"

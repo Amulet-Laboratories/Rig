@@ -28,8 +28,8 @@ const props = withDefaults(
 
 const pathD = computed(() => {
   if (props.data.length < 2) return ''
-  const max = Math.max(...props.data)
-  const min = Math.min(...props.data)
+  const max = Math.max(...props.data, 0)
+  const min = Math.min(...props.data, 0)
   const range = max - min || 1
   const step = props.width / (props.data.length - 1)
   const padding = props.strokeWidth

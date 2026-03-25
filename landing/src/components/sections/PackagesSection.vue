@@ -2,59 +2,70 @@
 const packages = [
   {
     name: 'Core',
-    count: 36,
+    icon: 'C',
+    count: 37,
     desc: 'Button, Input, Select, Switch, Checkbox, Slider, Badge, Card, Form, Rating, Pagination, and more',
   },
   {
     name: 'Layout',
+    icon: 'L',
     count: 12,
     desc: 'Modal, Drawer, TitleBar, Panel, Accordion, SplitView, ScrollArea, ResizablePanel',
   },
   {
     name: 'Navigation',
-    count: 12,
+    icon: 'N',
+    count: 13,
     desc: 'ActivityBar, Breadcrumbs, Tabs, Stepper, StatusBar, Timeline, NavigationMenu',
   },
   {
     name: 'Editor',
+    icon: 'E',
     count: 5,
     desc: 'CodeBlock, ColorPicker, DiffViewer, EditorTab, EditorWorkbench',
   },
-  { name: 'Lists', count: 4, desc: 'DataGrid, List, Table, TreeView' },
+  { name: 'Lists', icon: 'Li', count: 4, desc: 'DataGrid, List, Table, TreeView' },
   {
     name: 'Menus',
+    icon: 'M',
     count: 6,
     desc: 'CommandPalette, ContextMenu, DropdownMenu, Menubar, ActionBar',
   },
   {
     name: 'Extras',
+    icon: 'Ex',
     count: 16,
     desc: 'Alert, Toast, Tooltip, Carousel, Popconfirm, KanbanBoard, NotificationCenter, CalendarGrid, ConfirmDialog, LiveRegion, ErrorBoundary',
   },
   {
     name: 'Shell',
+    icon: 'Sh',
     count: 8,
     desc: 'IdeShell, ChatPanel, SearchPanel, FileBrowser, ContentViewer, FormView, WelcomeView, SettingsView',
   },
   {
     name: 'Data',
-    count: 11,
-    desc: 'BarChart, LineChart, Heatmap, RadarChart, SankeyDiagram, Treemap, Sparkline',
+    icon: 'D',
+    count: 14,
+    desc: 'BarChart, LineChart, AreaChart, Heatmap, RadarChart, SankeyDiagram, Treemap, Sparkline, StatCard',
   },
   {
     name: 'Spatial',
+    icon: 'Sp',
     count: 5,
     desc: 'GlobeView, GraphNetwork, MapCanvas, PointCloud, ScatterPlot3D',
   },
   {
     name: 'Temporal',
+    icon: 'T',
     count: 5,
     desc: 'AnimatedChart, ParticleField, PlaybackControls, TimelineScrubber, TemporalHeatmap',
   },
   {
     name: 'Web',
-    count: 8,
-    desc: 'SiteShell, SiteNav, Hero, Section, StatRow, CTABanner, Testimonial, SiteFooter',
+    icon: 'W',
+    count: 19,
+    desc: 'SiteShell, SiteNav, Hero, Section, StatRow, CTABanner, Testimonial, SiteFooter, MenuList, Gallery, ContactForm, ServiceGrid, TeamGrid, FeatureList, and more',
   },
 ]
 </script>
@@ -70,7 +81,7 @@ const packages = [
           id="pkg-title"
           class="mb-4 text-[clamp(28px,3.5vw,40px)] font-bold leading-tight tracking-tight"
         >
-          128 components across 12 packages
+          144 components across 12 packages
         </h2>
         <p class="mx-auto max-w-[520px] text-[17px] leading-relaxed text-text-muted">
           From primitive form controls to data visualization, spatial rendering, temporal animation,
@@ -87,7 +98,14 @@ const packages = [
           class="rounded-lg border border-border-subtle bg-bg-elevated p-5 transition hover:-translate-y-0.5 hover:border-border hover:bg-bg-surface"
         >
           <div class="mb-2 flex items-center justify-between">
-            <h4 class="text-[15px] font-semibold tracking-tight">{{ pkg.name }}</h4>
+            <div class="flex items-center gap-2">
+              <span
+                class="flex h-6 w-6 items-center justify-center rounded bg-primary-dim text-[10px] font-bold text-primary"
+              >
+                {{ pkg.icon }}
+              </span>
+              <h4 class="text-[15px] font-semibold tracking-tight">{{ pkg.name }}</h4>
+            </div>
             <span
               class="rounded-full bg-primary-dim px-2 py-0.5 text-xs font-semibold tabular-nums text-primary"
             >

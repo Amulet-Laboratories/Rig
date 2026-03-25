@@ -47,6 +47,7 @@ watch(
     v-show="open"
     data-rig-peek-view
     role="dialog"
+    aria-modal="true"
     :aria-label="title || 'Peek view'"
     :data-state="open ? 'open' : 'closed'"
     @keydown.escape="close"

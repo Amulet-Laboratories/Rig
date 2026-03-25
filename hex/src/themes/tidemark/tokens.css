@@ -1,15 +1,15 @@
 /* Hex — Tidemark Design Tokens
- * Coastal luxury real estate. Warm light mode with teal accents.
- * Linen white background, charcoal brown text, deep teal primary, terracotta accent.
+ * Coastal luxury real estate. Warm light mode with cyan accents.
+ * Linen white background, charcoal brown text, true cyan primary, terracotta accent.
  * Light mode real estate theme — suited for property listings and luxury brand sites.
  *
  * Full palette (8 swatch colors):
  *   #FAF7F2  linen white     — background
  *   #E8E0D4  warm sand       — secondary, muted
  *   #B5A898  driftwood       — soft neutral
- *   #8C7A6B  muted clay      — muted foreground
+ *   #6A8888  muted cyan      — muted foreground
  *   #2C2420  charcoal brown  — foreground text
- *   #1A6B5A  deep teal       — primary brand
+ *   #1A7A7A  true cyan       — primary brand
  *   #C4634F  terracotta      — accent, destructive
  *   #7A9E7E  sage            — success
  *
@@ -27,14 +27,14 @@
   --color-popover-foreground: #2c2420;
 
   /* Brand */
-  --color-primary: #1a6b5a;
+  --color-primary: #1a7a7a;
   --color-primary-foreground: #fffdf8;
 
   /* Soft accents */
   --color-secondary: #e8e0d4;
   --color-secondary-foreground: #2c2420;
   --color-muted: #e8e0d4;
-  --color-muted-foreground: #8c7a6b;
+  --color-muted-foreground: #6a8888;
   --color-accent: #c4634f;
   --color-accent-foreground: #fffdf8;
 
@@ -43,17 +43,17 @@
   --color-destructive-foreground: #fffdf8;
   --color-success: #7a9e7e;
   --color-warning: #d4a843;
-  --color-info: #1a6b5a;
+  --color-info: #1a7a7a;
 
   /* Borders and focus */
   --color-border: #d4c9b8;
   --color-input: #d4c9b8;
-  --color-ring: #1a6b5a;
+  --color-ring: #1a7a7a;
 
   /* Typography */
   --font-sans: 'Source Sans 3', 'Inter', system-ui, sans-serif;
   --font-mono: 'DM Mono', 'SF Mono', ui-monospace, monospace;
-  --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-heading: 'Cormorant Garamond', Georgia, serif;
 
   /* Radius */
@@ -84,22 +84,22 @@
   --card-foreground: #2c2420;
   --popover: #fffdf8;
   --popover-foreground: #2c2420;
-  --primary: #1a6b5a;
+  --primary: #1a7a7a;
   --primary-foreground: #fffdf8;
   --secondary: #e8e0d4;
   --secondary-foreground: #2c2420;
   --muted: #e8e0d4;
-  --muted-foreground: #8c7a6b;
+  --muted-foreground: #6a8888;
   --accent: #c4634f;
   --accent-foreground: #fffdf8;
   --destructive: #c4634f;
   --destructive-foreground: #fffdf8;
   --success: #7a9e7e;
   --warning: #d4a843;
-  --info: #1a6b5a;
+  --info: #1a7a7a;
   --border: #d4c9b8;
   --input: #d4c9b8;
-  --ring: #1a6b5a;
+  --ring: #1a7a7a;
   /* Typography — IDE-density type scale */
   --font-size-2xs: 0.625rem;
   --font-size-2xs--line-height: 1.25;
@@ -141,7 +141,7 @@
   --font-display: var(--font-sans);
   --font-sans: 'Source Sans 3', 'Inter', system-ui, sans-serif;
   --font-mono: 'DM Mono', 'SF Mono', ui-monospace, monospace;
-  --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-heading: 'Cormorant Garamond', Georgia, serif;
 
   /* ── Named palette aliases ──────────────────────────────────────────────
@@ -151,8 +151,8 @@
   --tm-sand: #e8e0d4;
   --tm-driftwood: #b5a898;
   --tm-charcoal: #2c2420;
-  --tm-clay: #8c7a6b;
-  --tm-teal: #1a6b5a;
+  --tm-clay: #6a8888;
+  --tm-cyan: #1a7a7a;
   --tm-terracotta: #c4634f;
   --tm-sage: #7a9e7e;
 
@@ -162,7 +162,12 @@
    */
 
   /* Button — warm sand for hover feedback */
-  --rig-button-hover-bg: #e8e0d4;
+  --rig-button-hover-bg: #156a6a;
+  --rig-button-hover-fg: #fffdf8;
+  --rig-button-secondary-bg: transparent;
+  --rig-button-secondary-fg: var(--color-foreground);
+  --rig-button-secondary-hover-bg: #e8e0d4;
+  --rig-button-secondary-hover-fg: var(--color-foreground);
 
   /* Scrollbar — charcoal brown tint for light mode */
   --rig-scrollbar-thumb: rgba(44, 36, 32, 0.15);

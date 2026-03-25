@@ -1,16 +1,16 @@
 /* Hex — Briarcove Design Tokens
- * Institutional clarity. Neutral light mode with civic blue accent.
- * WCAG 2.1 AA compliant. Clean white background, dark ink foreground.
- * Light mode institutional theme — suited for town hall and civic platforms.
+ * Studio clarity. Clean white canvas with violet accents.
+ * WCAG 2.1 AA compliant. Pure white background, dark purple-tinted foreground.
+ * Light mode studio theme — suited for creative platforms and portfolios.
  *
  * Full palette (10 swatch colors):
  *   #FFFFFF  white           — background
- *   #F0F2F5  cool gray       — card
- *   #E2E6EB  slate           — secondary, muted
- *   #CBD5E1  border slate    — borders
- *   #4A5568  gray            — muted foreground
- *   #1A1D23  dark            — foreground text
- *   #1D4ED8  civic blue      — primary, accent, info
+ *   #F5F2FA  violet tint     — card
+ *   #EDE8F5  lavender        — secondary, muted
+ *   #D8D0E5  violet border   — borders
+ *   #6A5A80  purple gray     — muted foreground
+ *   #1A1428  dark violet     — foreground text
+ *   #6D42C4  violet          — primary, accent, info
  *   #DC2626  red             — destructive
  *   #D97706  amber           — warning
  *   #16A34A  green           — success
@@ -22,22 +22,22 @@
 @theme {
   /* Surface colors */
   --color-background: #ffffff;
-  --color-foreground: #1a1d23;
-  --color-card: #f0f2f5;
-  --color-card-foreground: #1a1d23;
+  --color-foreground: #1a1428;
+  --color-card: #f5f2fa;
+  --color-card-foreground: #1a1428;
   --color-popover: #ffffff;
-  --color-popover-foreground: #1a1d23;
+  --color-popover-foreground: #1a1428;
 
   /* Brand */
-  --color-primary: #1d4ed8;
+  --color-primary: #6d42c4;
   --color-primary-foreground: #ffffff;
 
   /* Soft accents */
-  --color-secondary: #e2e6eb;
-  --color-secondary-foreground: #1a1d23;
-  --color-muted: #e2e6eb;
-  --color-muted-foreground: #4a5568;
-  --color-accent: #1d4ed8;
+  --color-secondary: #ede8f5;
+  --color-secondary-foreground: #1a1428;
+  --color-muted: #ede8f5;
+  --color-muted-foreground: #6a5a80;
+  --color-accent: #d97706;
   --color-accent-foreground: #ffffff;
 
   /* Semantic status */
@@ -45,16 +45,16 @@
   --color-destructive-foreground: #ffffff;
   --color-success: #16a34a;
   --color-warning: #d97706;
-  --color-info: #1d4ed8;
+  --color-info: #6d42c4;
 
   /* Borders and focus */
-  --color-border: #cbd5e1;
-  --color-input: #cbd5e1;
-  --color-ring: #1d4ed8;
+  --color-border: #d8d0e5;
+  --color-input: #d8d0e5;
+  --color-ring: #6d42c4;
 
   /* Typography */
   --font-sans: 'Libre Franklin', 'Inter', system-ui, sans-serif;
-  --font-mono: 'Libre Franklin', 'SF Mono', ui-monospace, monospace;
+  --font-mono: 'SF Mono', ui-monospace, monospace;
   --font-serif: 'Merriweather', Georgia, serif;
   --font-heading: 'Merriweather', Georgia, serif;
 
@@ -81,27 +81,27 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #1a1d23;
-  --card: #f0f2f5;
-  --card-foreground: #1a1d23;
+  --foreground: #1a1428;
+  --card: #f5f2fa;
+  --card-foreground: #1a1428;
   --popover: #ffffff;
-  --popover-foreground: #1a1d23;
-  --primary: #1d4ed8;
+  --popover-foreground: #1a1428;
+  --primary: #6d42c4;
   --primary-foreground: #ffffff;
-  --secondary: #e2e6eb;
-  --secondary-foreground: #1a1d23;
-  --muted: #e2e6eb;
-  --muted-foreground: #4a5568;
-  --accent: #1d4ed8;
+  --secondary: #ede8f5;
+  --secondary-foreground: #1a1428;
+  --muted: #ede8f5;
+  --muted-foreground: #6a5a80;
+  --accent: #6d42c4;
   --accent-foreground: #ffffff;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
   --success: #16a34a;
   --warning: #d97706;
-  --info: #1d4ed8;
-  --border: #cbd5e1;
-  --input: #cbd5e1;
-  --ring: #1d4ed8;
+  --info: #6d42c4;
+  --border: #d8d0e5;
+  --input: #d8d0e5;
+  --ring: #6d42c4;
   /* Typography — IDE-density type scale */
   --font-size-2xs: 0.625rem;
   --font-size-2xs--line-height: 1.25;
@@ -142,7 +142,7 @@
   --tracking-wider: 0.08em;
   --font-display: var(--font-sans);
   --font-sans: 'Libre Franklin', 'Inter', system-ui, sans-serif;
-  --font-mono: 'Libre Franklin', 'SF Mono', ui-monospace, monospace;
+  --font-mono: 'SF Mono', ui-monospace, monospace;
   --font-serif: 'Merriweather', Georgia, serif;
   --font-heading: 'Merriweather', Georgia, serif;
 
@@ -150,25 +150,30 @@
    * All 10 swatch colors available for direct template use.
    */
   --bc-white: #ffffff;
-  --bc-cool-gray: #f0f2f5;
-  --bc-slate: #e2e6eb;
-  --bc-dark: #1a1d23;
-  --bc-gray: #4a5568;
-  --bc-blue: #1d4ed8;
+  --bc-violet-tint: #f5f2fa;
+  --bc-lavender: #ede8f5;
+  --bc-dark: #1a1428;
+  --bc-purple-gray: #6a5a80;
+  --bc-violet: #6d42c4;
   --bc-red: #dc2626;
   --bc-amber: #d97706;
   --bc-green: #16a34a;
-  --bc-gold: #b8952a;
+  --bc-violet-border: #d8d0e5;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
    * Overrides shared/tokens.css defaults where the Briarcove palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 
-  /* Button — slate panel for hover feedback */
-  --rig-button-hover-bg: #e2e6eb;
+  /* Button */
+  --rig-button-hover-bg: #5c37a6;
+  --rig-button-hover-fg: #ffffff;
+  --rig-button-secondary-bg: transparent;
+  --rig-button-secondary-fg: var(--color-foreground);
+  --rig-button-secondary-hover-bg: #ede8f5;
+  --rig-button-secondary-hover-fg: var(--color-foreground);
 
-  /* Scrollbar — dark ink tint for light mode */
-  --rig-scrollbar-thumb: rgba(26, 29, 35, 0.15);
-  --rig-scrollbar-thumb-hover: rgba(26, 29, 35, 0.3);
+  /* Scrollbar — dark violet tint for light mode */
+  --rig-scrollbar-thumb: rgba(26, 20, 40, 0.15);
+  --rig-scrollbar-thumb-hover: rgba(26, 20, 40, 0.3);
 }

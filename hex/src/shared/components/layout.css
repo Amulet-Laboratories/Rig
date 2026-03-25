@@ -449,6 +449,34 @@
   background: var(--rig-list-hover-bg);
 }
 
+/* Accordion panel reveal transition (used with Vue <Transition name="accordion">) */
+.accordion-enter-active,
+.accordion-leave-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  transform-origin: top;
+}
+
+.accordion-enter-from {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.accordion-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+/* Chevron rotation transition */
+[data-rig-accordion-chevron] {
+  transition: transform 0.2s ease;
+}
+
+[data-rig-accordion-item][data-open] [data-rig-accordion-chevron] {
+  transform: rotate(180deg);
+}
+
 /* ───────── Collapsible ───────── */
 
 [data-rig-collapsible][data-disabled] {

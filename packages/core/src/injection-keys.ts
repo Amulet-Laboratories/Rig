@@ -57,13 +57,25 @@ export const DragDropKey: InjectionKey<DragDropController> = Symbol('rig-drag-dr
 
 // --- Tooltip ---
 
+/** Structurally compatible with Floating UI's VirtualElement. */
+export interface TooltipVirtualEl {
+  getBoundingClientRect(): DOMRect
+}
+
 export interface TooltipState {
   visible: Ref<boolean>
   content: Ref<string>
-  referenceEl: Ref<HTMLElement | null>
+  referenceEl: Ref<HTMLElement | TooltipVirtualEl | null>
   placement: Ref<'top' | 'bottom' | 'left' | 'right'>
   show: (
     target: HTMLElement,
+    content: string,
+    placement?: 'top' | 'bottom' | 'left' | 'right',
+  ) => void
+  /** Show tooltip at a fixed viewport point (e.g. cursor position). */
+  showAtPoint: (
+    x: number,
+    y: number,
     content: string,
     placement?: 'top' | 'bottom' | 'left' | 'right',
   ) => void
@@ -71,3 +83,12 @@ export interface TooltipState {
 }
 
 export const TooltipKey: InjectionKey<TooltipState> = Symbol('rig-tooltip')
+
+// --- Announce ---
+
+export interface AnnounceState {
+  message: Ref<string>
+  announce: (text: string) => void
+}
+
+export const AnnounceKey: InjectionKey<AnnounceState> = Symbol('rig-announce')

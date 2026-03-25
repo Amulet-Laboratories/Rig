@@ -31,6 +31,7 @@ export type {
   ThemeController,
   DragDropController,
   TooltipState,
+  TooltipVirtualEl,
 } from './injection-keys'
 
 // Composables
@@ -54,8 +55,30 @@ export {
   RigConfigKey,
   useFormValidation,
   FormContextKey,
+  useConfirm,
+  requestConfirm,
+  useAnnounce,
+  announce,
+  useContainerSize,
+  useThrottledRender,
+  withAlpha,
+  resolveToken,
+  resolveTokenWithAlpha,
+  EventBus,
+  renderMarkdown,
+  setMarkdownCacheSize,
+  clearMarkdownCache,
+  timeAgo,
+  todayStr,
+  useZoom,
+  useGlobalTooltip,
+  extractSnippet,
+  highlightParts,
+  useSortableOrder,
 } from './composables'
 export type { RigConfig, ValidationRule, FieldState, FormValidationOptions } from './composables'
+export type { ConfirmOptions, ConfirmRequest } from './composables'
+export type { ZoomOptions, SortableOrderOptions } from './composables'
 export type {
   FocusTrapOptions,
   VirtualItem,
@@ -109,4 +132,5 @@ export {
   Transfer,
   Mention,
   InfiniteScroll,
+  SectionHeader,
 } from './primitives'

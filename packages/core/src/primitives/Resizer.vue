@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onUnmounted } from 'vue'
 import type { Orientation } from '../types'
 
 const props = withDefaults(
@@ -41,6 +41,11 @@ const KEYBOARD_STEP = 10
 
 const dragging = ref(false)
 let startPos = 0
+let activeCleanup: (() => void) | null = null
+
+onUnmounted(() => {
+  activeCleanup?.()
+})
 
 function onKeydown(e: KeyboardEvent) {
   const isHorizontal = props.orientation === 'horizontal'
@@ -92,15 +97,21 @@ function onPointerDown(e: PointerEvent) {
     emit('drag', { delta, position })
   }
 
-  function onPointerUp() {
+  function cleanup() {
     dragging.value = false
     el.removeEventListener('pointermove', onPointerMove)
     el.removeEventListener('pointerup', onPointerUp)
+    activeCleanup = null
+  }
+
+  function onPointerUp() {
+    cleanup()
     emit('dragend')
   }
 
   el.addEventListener('pointermove', onPointerMove)
   el.addEventListener('pointerup', onPointerUp)
+  activeCleanup = cleanup
 }
 </script>
 

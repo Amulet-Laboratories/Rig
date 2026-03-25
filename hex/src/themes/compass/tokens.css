@@ -1,14 +1,14 @@
 /* Hex — Compass Design Tokens
- * Veterinary clinic. Soft light mode with sage green and warm coral.
+ * Veterinary clinic. Soft light mode with true green and warm coral.
  * Clinical warmth — reassuring, accessible, nature-forward.
  *
  * Full palette (7 swatch colors):
- *   #FAFDF9  mint white       — background
+ *   #F8FDF6  mint green       — background
  *   #F0F5EE  soft sage        — card
- *   #E4ECE1  pale eucalyptus  — secondary, muted
- *   #1D2B1E  deep moss        — foreground text
- *   #4E6650  fern             — muted foreground
- *   #2A7D5F  teal green       — primary, ring
+ *   #E0ECE0  pale eucalyptus  — secondary, muted
+ *   #1A2A1A  deep moss        — foreground text
+ *   #4A6A4A  fern             — muted foreground
+ *   #2D7A3E  true green       — primary, ring
  *   #D16B3F  warm coral       — accent, action
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
@@ -17,36 +17,36 @@
 
 @theme {
   /* Surface colors */
-  --color-background: #fafdf9;
-  --color-foreground: #1d2b1e;
+  --color-background: #f8fdf6;
+  --color-foreground: #1a2a1a;
   --color-card: #f0f5ee;
-  --color-card-foreground: #1d2b1e;
+  --color-card-foreground: #1a2a1a;
   --color-popover: #ffffff;
-  --color-popover-foreground: #1d2b1e;
+  --color-popover-foreground: #1a2a1a;
 
   /* Brand */
-  --color-primary: #2a7d5f;
-  --color-primary-foreground: #fafdf9;
+  --color-primary: #2d7a3e;
+  --color-primary-foreground: #f8fdf6;
 
   /* Soft accents */
-  --color-secondary: #e4ece1;
-  --color-secondary-foreground: #1d2b1e;
-  --color-muted: #e4ece1;
-  --color-muted-foreground: #4e6650;
+  --color-secondary: #e0ece0;
+  --color-secondary-foreground: #1a2a1a;
+  --color-muted: #e0ece0;
+  --color-muted-foreground: #4a6a4a;
   --color-accent: #d16b3f;
-  --color-accent-foreground: #fafdf9;
+  --color-accent-foreground: #f8fdf6;
 
   /* Semantic status */
   --color-destructive: #cc3b3b;
-  --color-destructive-foreground: #fafdf9;
-  --color-success: #2a7d5f;
+  --color-destructive-foreground: #f8fdf6;
+  --color-success: #2d7a3e;
   --color-warning: #d4a030;
   --color-info: #4a7a9e;
 
   /* Borders and focus */
-  --color-border: #c8d5c5;
-  --color-input: #c8d5c5;
-  --color-ring: #2a7d5f;
+  --color-border: #c0d8c0;
+  --color-input: #c0d8c0;
+  --color-ring: #2d7a3e;
 
   /* Typography */
   --font-sans: 'Outfit', 'Inter', system-ui, sans-serif;
@@ -76,28 +76,28 @@
 }
 
 :root {
-  --background: #fafdf9;
-  --foreground: #1d2b1e;
+  --background: #f8fdf6;
+  --foreground: #1a2a1a;
   --card: #f0f5ee;
-  --card-foreground: #1d2b1e;
+  --card-foreground: #1a2a1a;
   --popover: #ffffff;
-  --popover-foreground: #1d2b1e;
-  --primary: #2a7d5f;
-  --primary-foreground: #fafdf9;
-  --secondary: #e4ece1;
-  --secondary-foreground: #1d2b1e;
-  --muted: #e4ece1;
-  --muted-foreground: #4e6650;
+  --popover-foreground: #1a2a1a;
+  --primary: #2d7a3e;
+  --primary-foreground: #f8fdf6;
+  --secondary: #e0ece0;
+  --secondary-foreground: #1a2a1a;
+  --muted: #e0ece0;
+  --muted-foreground: #4a6a4a;
   --accent: #d16b3f;
-  --accent-foreground: #fafdf9;
+  --accent-foreground: #f8fdf6;
   --destructive: #cc3b3b;
-  --destructive-foreground: #fafdf9;
-  --success: #2a7d5f;
+  --destructive-foreground: #f8fdf6;
+  --success: #2d7a3e;
   --warning: #d4a030;
   --info: #4a7a9e;
-  --border: #c8d5c5;
-  --input: #c8d5c5;
-  --ring: #2a7d5f;
+  --border: #c0d8c0;
+  --input: #c0d8c0;
+  --ring: #2d7a3e;
   /* Typography — IDE-density type scale */
   --font-size-2xs: 0.625rem;
   --font-size-2xs--line-height: 1.25;
@@ -145,12 +145,12 @@
   /* ── Named palette aliases ──────────────────────────────────────────────
    * All 7 swatch colors available for direct template use.
    */
-  --ca-mint-white: #fafdf9;
+  --ca-mint-green: #f8fdf6;
   --ca-sage: #f0f5ee;
-  --ca-eucalyptus: #e4ece1;
-  --ca-moss: #1d2b1e;
-  --ca-fern: #4e6650;
-  --ca-teal: #2a7d5f;
+  --ca-eucalyptus: #e0ece0;
+  --ca-moss: #1a2a1a;
+  --ca-fern: #4a6a4a;
+  --ca-green: #2d7a3e;
   --ca-coral: #d16b3f;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
@@ -159,9 +159,9 @@
    */
 
   /* Button — pale eucalyptus for hover feedback */
-  --rig-button-hover-bg: #e4ece1;
+  --rig-button-hover-bg: #e0ece0;
 
   /* Scrollbar — deep moss tint for light mode */
-  --rig-scrollbar-thumb: rgba(29, 43, 30, 0.12);
-  --rig-scrollbar-thumb-hover: rgba(29, 43, 30, 0.25);
+  --rig-scrollbar-thumb: rgba(26, 42, 26, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(26, 42, 26, 0.25);
 }

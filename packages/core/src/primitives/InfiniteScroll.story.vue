@@ -22,7 +22,7 @@ function loadMore() {
 </script>
 
 <template>
-  <Story title="Core/InfiniteScroll" icon="lucide:arrow-down-to-line" group="core">
+  <Story title="InfiniteScroll" icon="lucide:arrow-down-to-line" group="core">
     <Variant title="Default">
       <div style="height: 400px; overflow: auto; border: 1px solid var(--border, #333)">
         <InfiniteScroll :loading="loading" :disabled="allLoaded" @load-more="loadMore">

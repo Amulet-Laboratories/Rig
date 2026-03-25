@@ -32,7 +32,7 @@ const linksOnly = [
 </script>
 
 <template>
-  <Story title="Nav/NavigationMenu" icon="lucide:navigation" group="nav">
+  <Story title="NavigationMenu" icon="lucide:navigation" group="nav">
     <Variant title="Default">
       <NavigationMenu :items="itemsWithChildren" @select="() => {}" />
     </Variant>

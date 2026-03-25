@@ -144,6 +144,16 @@ const COMPONENTS = [
   'PlaybackControls',
   'TemporalHeatmap',
   'ParticleField',
+  // Web
+  'SiteShell',
+  'SiteNav',
+  'Hero',
+  'Section',
+  'StatRow',
+  'CTABanner',
+  'Testimonial',
+  'SiteFooter',
+  'PricingCard',
 ] as const
 
 const COMPOSABLES = [
@@ -203,6 +213,10 @@ export default defineNuxtModule<NuxtRigOptions>({
       // Toast and notification singletons
       addImports({ name: 'toast', from: '@amulet-laboratories/rig' })
       addImports({ name: 'notification', from: '@amulet-laboratories/rig' })
+
+      // Web composables
+      addImports({ name: 'useHashRouter', from: '@amulet-laboratories/rig' })
+      addImports({ name: 'useScrollNav', from: '@amulet-laboratories/rig' })
     }
   },
 })

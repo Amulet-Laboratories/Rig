@@ -13,10 +13,12 @@
   --rig-button-bg: var(--color-primary);
   --rig-button-fg: var(--color-primary-foreground);
   --rig-button-hover-bg: var(--color-primary);
+  --rig-button-hover-fg: var(--color-foreground);
   --rig-button-border: transparent;
   --rig-button-secondary-bg: transparent;
   --rig-button-secondary-fg: var(--color-foreground);
   --rig-button-secondary-hover-bg: var(--color-accent);
+  --rig-button-secondary-hover-fg: var(--color-accent-foreground);
 
   /* ── Input / Textarea ────────────────────────────────────────── */
   --rig-input-bg: var(--color-secondary);

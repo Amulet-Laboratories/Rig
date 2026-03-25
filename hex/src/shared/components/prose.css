@@ -223,3 +223,80 @@
   overflow: auto;
   max-height: 8rem;
 }
+
+/* ───────── CrashScreen ───────── */
+
+[data-rig-crash-screen] {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background, #0f0d0a);
+}
+
+[data-rig-crash-screen-content] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 28rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+[data-rig-crash-screen-icon] {
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--color-destructive, #e54d2e);
+  opacity: 0.8;
+}
+
+[data-rig-crash-screen-title] {
+  font-size: var(--text-lg, 1.125rem);
+  font-weight: var(--weight-semibold, 600);
+  color: var(--color-foreground);
+  margin: 0;
+}
+
+[data-rig-crash-screen-message] {
+  font-size: var(--text-sm, 0.8125rem);
+  color: var(--color-muted-foreground);
+  margin: 0;
+  line-height: 1.5;
+}
+
+[data-rig-crash-screen-details] {
+  text-align: left;
+  width: 100%;
+}
+
+[data-rig-crash-screen-details] > summary {
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--color-muted-foreground);
+  cursor: pointer;
+}
+
+[data-rig-crash-screen-details] > summary:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-crash-screen-details] > pre {
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--color-muted-foreground);
+  margin-top: 0.25rem;
+  padding: 0.75rem;
+  background: var(--color-accent);
+  border-radius: var(--radius, 4px);
+  overflow: auto;
+  max-height: 10rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+[data-rig-crash-screen-actions] {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}

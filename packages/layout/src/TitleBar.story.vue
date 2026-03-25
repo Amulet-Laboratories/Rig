@@ -8,7 +8,7 @@ const draggable = ref(false)
 </script>
 
 <template>
-  <Story title="Layout/TitleBar" icon="lucide:panel-top" group="layout">
+  <Story title="TitleBar" icon="lucide:panel-top" group="layout">
     <Variant title="Default">
       <TitleBar title="My Application" subtitle="Untitled Document" />
     </Variant>

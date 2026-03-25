@@ -24,12 +24,23 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'mjs' : 'cjs'}`,
     },
     rollupOptions: {
-      external: ['vue', '@iconify/vue', '@floating-ui/vue'],
+      external: [
+        'vue',
+        '@iconify/vue',
+        '@floating-ui/vue',
+        'd3',
+        /^d3-/,
+        'dompurify',
+        'markdown-it',
+      ],
       output: {
         globals: {
           vue: 'Vue',
           '@iconify/vue': 'IconifyVue',
           '@floating-ui/vue': 'FloatingUIVue',
+          d3: 'd3',
+          dompurify: 'DOMPurify',
+          'markdown-it': 'markdownit',
         },
       },
     },

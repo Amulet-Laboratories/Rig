@@ -17,12 +17,18 @@ const SCOPED_THEMES = [
   'briarcovelib',
   'compass',
   'duskline',
+  'forge',
+  'garden',
+  'greyline',
   'kbcv',
   'lanternhouse',
   'marenlys',
+  'quizbit',
   'saltsignal',
+  'spacewizard',
   'tidemark',
   'undertow',
+  'vscode',
 ]
 
 function extractProperties(block) {

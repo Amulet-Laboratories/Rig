@@ -5,7 +5,7 @@ import Input from './Input.vue'
 </script>
 
 <template>
-  <Story title="Core/ConfigProvider" icon="lucide:settings" group="core">
+  <Story title="ConfigProvider" icon="lucide:settings" group="core">
     <Variant title="RTL">
       <ConfigProvider dir="rtl">
         <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start">

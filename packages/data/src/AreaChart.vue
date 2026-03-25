@@ -37,8 +37,8 @@ const innerWidth = computed(() => props.width - padding.left - padding.right)
 const innerHeight = computed(() => props.height - padding.top - padding.bottom)
 
 const allValues = computed(() => props.series.flatMap((s) => s.data))
-const maxVal = computed(() => Math.max(...allValues.value, 1))
-const minVal = computed(() => Math.min(...allValues.value, 0))
+const maxVal = computed(() => (allValues.value.length ? Math.max(...allValues.value, 0) : 1))
+const minVal = computed(() => (allValues.value.length ? Math.min(...allValues.value, 0) : 0))
 const range = computed(() => maxVal.value - minVal.value || 1)
 const baseY = computed(() => padding.top + innerHeight.value)
 

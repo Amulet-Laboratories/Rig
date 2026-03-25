@@ -1,0 +1,192 @@
+/* Hex — Andrew Passanisi Base Styles
+ * html/body defaults, element resets, scrollbar, focus, selection,
+ * transitions, and utility classes from the original site.
+ */
+
+@reference 'tailwindcss';
+@reference './tokens.css';
+
+/* ───────── Reset ───────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* ───────── Root ───────── */
+
+html,
+body,
+#app,
+.my-app {
+  @apply w-full bg-blue-darkest font-body;
+  font-size: 18px;
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 768px) {
+  html,
+  body,
+  #app,
+  .my-app {
+    font-size: 16px;
+  }
+}
+
+/* ───────── Typography resets ───────── */
+
+p,
+span,
+b,
+a,
+li,
+h1,
+h2 {
+  @apply text-blue-lighter;
+}
+
+p,
+span,
+div,
+a {
+  @apply font-body font-light leading-6;
+}
+
+h2 {
+  @apply mb-8 mt-4 font-bold text-blue-lightest;
+}
+
+/* ───────── Links ───────── */
+
+a {
+  @apply transition-all;
+
+  &:hover {
+    @apply text-accent transition-all;
+  }
+}
+
+/* ───────── Buttons ───────── */
+
+button {
+  @apply max-w-fit rounded border border-accent px-4 py-2 font-accent text-sm text-green transition-all;
+
+  &:hover {
+    @apply bg-green text-blue-darkest drop-shadow-green;
+
+    > * {
+      @apply text-blue-darkest;
+    }
+  }
+}
+
+/* ───────── List markers ───────── */
+
+li {
+  &::before {
+    @apply mb-[0.1rem] mr-2 inline-block h-1 w-1 bg-accent;
+    content: '';
+  }
+}
+
+/* ───────── Utility classes ───────── */
+
+.hero-heading {
+  font-size: clamp(36px, 6vw, 72px);
+}
+
+.section-heading {
+  font-size: clamp(22px, 5vw, 30px);
+  @apply relative overflow-hidden;
+
+  &::after {
+    @apply absolute top-[13px] ml-4 h-px w-1/4 bg-blue-lighter;
+    content: '';
+  }
+}
+
+/* ───────── Scrollbar ───────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(160, 178, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(160, 178, 255, 0.4);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(160, 178, 255, 0.2) transparent;
+}
+
+/* ───────── Focus ───────── */
+
+*:focus-visible {
+  outline: 1px solid var(--color-ring);
+  outline-offset: -1px;
+}
+
+/* ───────── Selection ───────── */
+
+::selection {
+  background: rgba(45, 79, 224, 0.4);
+  color: var(--color-blue-lightest);
+}
+
+/* ───────── Transitions ───────── */
+
+.job-slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.job-slide-fade-leave-active {
+  transition: all 0s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.job-slide-fade-enter-from,
+.job-slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.header-slide-fade-enter-active {
+  transition: all 0.2s ease-out;
+}
+
+.header-slide-fade-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+.header-slide-fade-enter-from,
+.header-slide-fade-leave-to {
+  transform: translateY(-40px);
+  opacity: 0;
+}
+
+/* ───────── Reduced motion ───────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

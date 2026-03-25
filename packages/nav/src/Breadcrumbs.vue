@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import type { ID } from '@core/types'
 
+export interface BreadcrumbItem {
+  id: ID
+  label: string
+  /** When set, renders an <a> instead of a <button> — better for SSR/SEO. */
+  href?: string
+}
+
 withDefaults(
   defineProps<{
     /** Breadcrumb segments */
-    items: { id: ID; label: string }[]
+    items: BreadcrumbItem[]
     /** Separator character between segments */
     separator?: string
   }>(),
@@ -18,7 +25,7 @@ const emit = defineEmits<{
 }>()
 
 defineSlots<{
-  item: (props: { item: { id: ID; label: string }; isLast: boolean }) => unknown
+  item: (props: { item: BreadcrumbItem; isLast: boolean }) => unknown
 }>()
 </script>
 
@@ -39,6 +46,16 @@ defineSlots<{
             {{ item.label }}
           </slot>
         </span>
+        <a
+          v-else-if="item.href"
+          :href="item.href"
+          data-rig-breadcrumbs-link
+          @click.prevent="emit('select', item.id)"
+        >
+          <slot name="item" :item="item" :isLast="false">
+            {{ item.label }}
+          </slot>
+        </a>
         <button v-else data-rig-breadcrumbs-link @click="emit('select', item.id)">
           <slot name="item" :item="item" :isLast="false">
             {{ item.label }}

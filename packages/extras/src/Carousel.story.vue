@@ -19,7 +19,7 @@ const interval = ref(3000)
 </script>
 
 <template>
-  <Story title="Extras/Carousel" icon="lucide:gallery-horizontal" group="extras">
+  <Story title="Carousel" icon="lucide:gallery-horizontal" group="extras">
     <Variant title="Default">
       <Carousel v-model="defaultIndex" :items="slides">
         <template #slide="{ item, active }">

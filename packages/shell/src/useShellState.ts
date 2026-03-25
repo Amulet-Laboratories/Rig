@@ -97,14 +97,14 @@ function createShellState(config: ShellConfig = {}): ShellState {
       if (previewIdx >= 0) {
         openTabs.value.splice(previewIdx, 1, tab)
       } else {
-        openTabs.value.push(tab)
+        openTabs.value.unshift(tab)
       }
       previewTabId.value = tab.id
     } else if (opts?.preview) {
-      openTabs.value.push(tab)
+      openTabs.value.unshift(tab)
       previewTabId.value = tab.id
     } else {
-      openTabs.value.push(tab)
+      openTabs.value.unshift(tab)
       previewTabId.value = null
     }
 
@@ -160,8 +160,13 @@ function createShellState(config: ShellConfig = {}): ShellState {
   }
 
   function reorderTabs(payload: { from: number; to: number }) {
+    if (payload.from < 0 || payload.from >= openTabs.value.length) return
+    const adjustedTo = Math.min(
+      payload.from < payload.to ? payload.to - 1 : payload.to,
+      openTabs.value.length - 1,
+    )
     const tab = openTabs.value.splice(payload.from, 1)[0]
-    if (tab) openTabs.value.splice(payload.to, 0, tab)
+    if (tab) openTabs.value.splice(adjustedTo, 0, tab)
   }
 
   function markDirty(id: ID) {

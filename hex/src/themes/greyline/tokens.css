@@ -1,16 +1,17 @@
 /* Hex — Greyline Design Tokens
- * Monochrome, sleek corporate palette.
+ * True achromatic monochrome. Grayscale newspaper / monochrome monitor.
  * Dark mode corporate/consultancy theme — suited for professional services.
+ * Every color is pure gray (h=0, s=0) — no blue, no warm tint.
  *
  * Palette:
- *   #0c0d0f  near-black      — background
- *   #121316  charcoal        — card, popover
- *   #1a1b1f  dark gray       — secondary, muted
- *   #2a2b30  border gray     — borders
- *   #5a5c61  medium gray     — muted foreground
- *   #8b8d92  silver          — primary brand
- *   #b0b2b7  light silver    — accent hover
- *   #e8e9eb  near-white      — foreground text
+ *   #0c0c0c  near-black      — background
+ *   #141414  charcoal        — card, popover
+ *   #1c1c1c  dark gray       — secondary, muted
+ *   #2a2a2a  border gray     — borders
+ *   #606060  medium gray     — muted foreground
+ *   #9a9a9a  silver          — primary brand
+ *   #b5b5b5  light silver    — accent
+ *   #e8e8e8  near-white      — foreground text
  *   #f87171  red             — destructive
  *   #fbbf24  amber           — warning
  *   #34d399  emerald         — success
@@ -22,36 +23,36 @@
 
 @theme {
   /* Surface colors */
-  --color-background: #0c0d0f;
-  --color-foreground: #e8e9eb;
-  --color-card: #121316;
-  --color-card-foreground: #e8e9eb;
-  --color-popover: #121316;
-  --color-popover-foreground: #e8e9eb;
+  --color-background: #0c0c0c;
+  --color-foreground: #e8e8e8;
+  --color-card: #141414;
+  --color-card-foreground: #e8e8e8;
+  --color-popover: #141414;
+  --color-popover-foreground: #e8e8e8;
 
   /* Brand */
-  --color-primary: #8b8d92;
-  --color-primary-foreground: #0c0d0f;
+  --color-primary: #9a9a9a;
+  --color-primary-foreground: #0c0c0c;
 
   /* Soft accents */
-  --color-secondary: #1a1b1f;
-  --color-secondary-foreground: #e8e9eb;
-  --color-muted: #1a1b1f;
-  --color-muted-foreground: #5a5c61;
-  --color-accent: #b0b2b7;
-  --color-accent-foreground: #0c0d0f;
+  --color-secondary: #1c1c1c;
+  --color-secondary-foreground: #e8e8e8;
+  --color-muted: #1c1c1c;
+  --color-muted-foreground: #606060;
+  --color-accent: #b5b5b5;
+  --color-accent-foreground: #0c0c0c;
 
   /* Semantic status */
   --color-destructive: #f87171;
-  --color-destructive-foreground: #0c0d0f;
+  --color-destructive-foreground: #0c0c0c;
   --color-success: #34d399;
   --color-warning: #fbbf24;
   --color-info: #60a5fa;
 
   /* Borders and focus */
-  --color-border: #2a2b30;
-  --color-input: #2a2b30;
-  --color-ring: #8b8d92;
+  --color-border: #2a2a2a;
+  --color-input: #2a2a2a;
+  --color-ring: #9a9a9a;
 
   /* Typography */
   --font-mono: 'IBM Plex Mono', 'SF Mono', 'JetBrains Mono', ui-monospace, monospace;
@@ -79,28 +80,28 @@
 }
 
 :root {
-  --background: #0c0d0f;
-  --foreground: #e8e9eb;
-  --card: #121316;
-  --card-foreground: #e8e9eb;
-  --popover: #121316;
-  --popover-foreground: #e8e9eb;
-  --primary: #8b8d92;
-  --primary-foreground: #0c0d0f;
-  --secondary: #1a1b1f;
-  --secondary-foreground: #e8e9eb;
-  --muted: #1a1b1f;
-  --muted-foreground: #5a5c61;
-  --accent: #b0b2b7;
-  --accent-foreground: #0c0d0f;
+  --background: #0c0c0c;
+  --foreground: #e8e8e8;
+  --card: #141414;
+  --card-foreground: #e8e8e8;
+  --popover: #141414;
+  --popover-foreground: #e8e8e8;
+  --primary: #9a9a9a;
+  --primary-foreground: #0c0c0c;
+  --secondary: #1c1c1c;
+  --secondary-foreground: #e8e8e8;
+  --muted: #1c1c1c;
+  --muted-foreground: #606060;
+  --accent: #b5b5b5;
+  --accent-foreground: #0c0c0c;
   --destructive: #f87171;
-  --destructive-foreground: #0c0d0f;
+  --destructive-foreground: #0c0c0c;
   --success: #34d399;
   --warning: #fbbf24;
   --info: #60a5fa;
-  --border: #2a2b30;
-  --input: #2a2b30;
-  --ring: #8b8d92;
+  --border: #2a2a2a;
+  --input: #2a2a2a;
+  --ring: #9a9a9a;
   /* Typography — IDE-density type scale */
   --font-size-2xs: 0.625rem;
   --font-size-2xs--line-height: 1.25;
@@ -144,17 +145,17 @@
   --font-sans: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
 
   /* ── Named palette aliases ── */
-  --gl-black: #0c0d0f;
-  --gl-charcoal: #121316;
-  --gl-surface: #1a1b1f;
-  --gl-border: #2a2b30;
-  --gl-muted: #5a5c61;
-  --gl-silver: #8b8d92;
-  --gl-silver-light: #b0b2b7;
-  --gl-white: #e8e9eb;
+  --gl-black: #0c0c0c;
+  --gl-charcoal: #141414;
+  --gl-surface: #1c1c1c;
+  --gl-border: #2a2a2a;
+  --gl-muted: #606060;
+  --gl-silver: #9a9a9a;
+  --gl-silver-light: #b5b5b5;
+  --gl-white: #e8e8e8;
 
   /* ── Rig component token bridge ── */
-  --rig-button-hover-bg: #1a1b1f;
-  --rig-scrollbar-thumb: rgba(232, 233, 235, 0.12);
-  --rig-scrollbar-thumb-hover: rgba(232, 233, 235, 0.25);
+  --rig-button-hover-bg: #1c1c1c;
+  --rig-scrollbar-thumb: rgba(232, 232, 232, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(232, 232, 232, 0.25);
 }

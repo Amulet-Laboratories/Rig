@@ -1,0 +1,136 @@
+/* Hex — Andrew Passanisi Design Tokens
+ * Dark portfolio theme — deep navy (#060d2b) & neon green (#AEF66D).
+ * Preserves the original site's exact Tailwind utility names so all
+ * template classes (text-blue-lighter, bg-blue-darkest, etc.) resolve
+ * without any component changes.
+ */
+
+@theme {
+  /* ── Reset namespaces ── */
+  --color-*: initial;
+  --font-size-*: initial;
+  --font-*: initial;
+  --radius-*: initial;
+  --breakpoint-*: initial;
+  --drop-shadow-*: initial;
+
+  /* ── Site palette — maps to Tailwind utilities ── */
+  --color-blue-lightest: #cad3f7;
+  --color-blue-lighter: #a0b2ff;
+  --color-blue-light: #2d4fe0;
+  --color-blue: #132881;
+  --color-blue-dark: #0d1b56;
+  --color-blue-darker: #091441;
+  --color-blue-darkest: #060d2b;
+  --color-green: #aef66d;
+  --color-yellow: #dff081;
+  --color-accent: #aef66d;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: rgb(0 0 0 / 0);
+
+  /* ── Hex semantic contract ── */
+  --color-background: #060d2b;
+  --color-foreground: #a0b2ff;
+  --color-card: #091441;
+  --color-card-foreground: #a0b2ff;
+  --color-popover: #0d1b56;
+  --color-popover-foreground: #cad3f7;
+  --color-primary: #aef66d;
+  --color-primary-foreground: #060d2b;
+  --color-secondary: #091441;
+  --color-secondary-foreground: #a0b2ff;
+  --color-muted: #0d1b56;
+  --color-muted-foreground: #a0b2ff;
+  --color-accent-foreground: #060d2b;
+  --color-destructive: #f85149;
+  --color-destructive-foreground: #cad3f7;
+  --color-success: #aef66d;
+  --color-warning: #dff081;
+  --color-info: #2d4fe0;
+  --color-border: #132881;
+  --color-input: #0d1b56;
+  --color-ring: #aef66d;
+
+  /* ── Typography ── */
+  --font-body: 'Open Sans', sans-serif;
+  --font-accent: 'Fira Code', monospace;
+
+  /* ── Type scale ── */
+  --font-size-xxs: 0.625rem;
+  --font-size-xxs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.875rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 1rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-md: 1.125rem;
+  --font-size-md--line-height: 1.5;
+  --font-size-lg: 1.25rem;
+  --font-size-lg--line-height: 1.4;
+  --font-size-xl: 1.5625rem;
+  --font-size-xl--line-height: 1.3;
+  --font-size-2xl: 1.75rem;
+  --font-size-2xl--line-height: 1.25;
+  --font-size-3xl: 2rem;
+  --font-size-3xl--line-height: 1.25;
+  --font-size-4xl: 2.375rem;
+  --font-size-4xl--line-height: 1.2;
+
+  /* ── Border radius ── */
+  --radius-none: 0;
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.375rem;
+  --radius: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* ── Breakpoints ── */
+  --breakpoint-xs: 360px;
+  --breakpoint-sm: 768px;
+  --breakpoint-md: 1024px;
+  --breakpoint-lg: 1366px;
+  --breakpoint-xl: 1920px;
+
+  /* ── Drop shadows ── */
+  --drop-shadow-green: 0 0 4px #aef66da1;
+  --drop-shadow-blue: 0 0 4px #cad3f7aa;
+}
+
+:root {
+  /* ── Shorthand aliases ── */
+  --background: #060d2b;
+  --foreground: #a0b2ff;
+  --primary: #aef66d;
+  --primary-foreground: #060d2b;
+  --border: #132881;
+  --input: #0d1b56;
+  --ring: #aef66d;
+  --radius: 0.25rem;
+
+  /* ── Rig semantic token bridge ── */
+  --rig-button-bg: var(--color-accent);
+  --rig-button-fg: var(--color-blue-darkest);
+  --rig-button-hover-bg: var(--color-green);
+  --rig-button-border: var(--color-accent);
+  --rig-button-secondary-bg: transparent;
+  --rig-button-secondary-fg: var(--color-accent);
+  --rig-button-secondary-hover-bg: var(--color-blue-darker);
+  --rig-input-bg: var(--color-blue-darker);
+  --rig-input-border: var(--color-blue);
+  --rig-input-fg: var(--color-blue-lightest);
+  --rig-input-placeholder: var(--color-blue-lighter);
+  --rig-badge-bg: var(--color-accent);
+  --rig-badge-fg: var(--color-blue-darkest);
+  --rig-sidebar-bg: var(--color-blue-darker);
+  --rig-sidebar-border: var(--color-blue);
+  --rig-sidebar-fg: var(--color-blue-lighter);
+  --rig-scrollbar-thumb: rgba(160, 178, 255, 0.15);
+  --rig-scrollbar-thumb-hover: rgba(160, 178, 255, 0.28);
+  --rig-list-hover-bg: rgba(174, 246, 109, 0.06);
+  --rig-list-active-bg: var(--color-accent);
+  --rig-list-active-fg: var(--color-blue-darkest);
+  --rig-description-fg: var(--color-blue-lighter);
+}

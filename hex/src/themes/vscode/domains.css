@@ -9,27 +9,27 @@
 /* ───────── Domain accent colors ───────── */
 
 [data-domain='legal'] {
-  --domain-accent: #d16969;
+  --domain-accent: #3b82f6;
 }
 
 [data-domain='life'] {
-  --domain-accent: #ce9178;
+  --domain-accent: #eab308;
 }
 
 [data-domain='software'] {
-  --domain-accent: #569cd6;
+  --domain-accent: #ef4444;
 }
 
 [data-domain='business'] {
-  --domain-accent: #6a9955;
+  --domain-accent: #f97316;
 }
 
 [data-domain='history'] {
-  --domain-accent: #d7ba7d;
+  --domain-accent: #22c55e;
 }
 
 [data-domain='world'] {
-  --domain-accent: #c586c0;
+  --domain-accent: #a855f7;
 }
 
 /* ───────── Focus accent utility ───────── */

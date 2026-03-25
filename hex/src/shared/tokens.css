@@ -12,6 +12,11 @@
   --rig-activitybar-fg: var(--color-foreground);
   --rig-activitybar-inactive-fg: var(--color-muted-foreground);
   --rig-activitybar-active-border: var(--color-primary);
+  --rig-activitybar-active-border-width: 2px;
+  --rig-activitybar-active-fg: var(--color-foreground);
+
+  /* ── Sidebar ── */
+  --rig-sidebar-active-bg: color-mix(in srgb, var(--color-foreground) 8%, transparent);
 
   /* ── Badge ── */
   --rig-badge-bg: var(--color-primary);

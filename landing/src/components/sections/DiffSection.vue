@@ -7,8 +7,8 @@ const diffs = [
   },
   {
     vs: 'vs shadcn/ui',
-    title: 'A real library, not copy-paste',
-    desc: 'shadcn copies source files into your project. Rig is an installable, versioned package with 128 components. Updates come from npm, not re-generating files.',
+    title: 'Versioned, not vendored',
+    desc: 'shadcn copies source into your project for full control. Rig takes a different path: an installable, versioned package with 144 components. Updates arrive via npm with semver guarantees.',
   },
   {
     vs: 'vs Radix Vue',
@@ -33,6 +33,9 @@ const diffs = [
         >
           Built for a different tradeoff.
         </h2>
+        <p class="mx-auto max-w-[520px] text-[17px] leading-relaxed text-text-muted">
+          Every library makes choices. Here's where Rig lands.
+        </p>
       </div>
 
       <div class="stagger-children grid grid-cols-1 gap-6 md:grid-cols-3">

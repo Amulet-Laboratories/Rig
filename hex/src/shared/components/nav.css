@@ -111,8 +111,8 @@
 }
 
 [data-rig-activity-bar-item][data-state='active'] {
-  color: var(--color-foreground);
-  border-left: 2px solid var(--rig-activitybar-active-border);
+  color: var(--rig-activitybar-active-fg);
+  border-left: var(--rig-activitybar-active-border-width) solid var(--rig-activitybar-active-border);
 }
 
 [data-rig-activity-bar-badge] {
@@ -131,6 +131,30 @@
   justify-content: center;
   padding: 0 4px;
   pointer-events: none;
+}
+
+/* ── Activity Bar drag-and-drop ── */
+
+[data-rig-activity-bar-item][data-dragging] {
+  opacity: 0.35;
+}
+
+[data-rig-activity-bar-item][data-drop-edge='before'] {
+  box-shadow: inset 0 2px 0 0 var(--rig-activitybar-active-border, var(--color-accent));
+}
+
+[data-rig-activity-bar-item][data-drop-edge='after'] {
+  box-shadow: inset 0 -2px 0 0 var(--rig-activitybar-active-border, var(--color-accent));
+}
+
+[data-rig-activity-bar][data-orientation='horizontal']
+  [data-rig-activity-bar-item][data-drop-edge='before'] {
+  box-shadow: inset 2px 0 0 0 var(--rig-activitybar-active-border, var(--color-accent));
+}
+
+[data-rig-activity-bar][data-orientation='horizontal']
+  [data-rig-activity-bar-item][data-drop-edge='after'] {
+  box-shadow: inset -2px 0 0 0 var(--rig-activitybar-active-border, var(--color-accent));
 }
 
 /* ───────── SideBar ───────── */
@@ -158,6 +182,54 @@
 [data-rig-sidebar-content] {
   flex: 1;
   overflow-y: auto;
+}
+
+[data-rig-sidebar-content] [data-state='active'] {
+  background: var(--rig-sidebar-active-bg);
+}
+
+/* ───────── SidebarNavList ───────── */
+
+[data-rig-sidebar-nav-list] {
+  @apply flex flex-col;
+
+  padding: 8px;
+  gap: 2px;
+}
+
+[data-rig-sidebar-nav-item] {
+  @apply flex items-center gap-2 w-full text-left text-xs font-mono
+    text-muted-foreground transition-colors;
+
+  padding: 6px 8px;
+  border-radius: var(--radius, 4px);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+[data-rig-sidebar-nav-item]:hover {
+  color: var(--color-foreground);
+  background: color-mix(in srgb, var(--color-muted) 30%, transparent);
+}
+
+[data-rig-sidebar-nav-item][data-state='active'] {
+  color: var(--color-foreground);
+  background: var(--rig-sidebar-active-bg, color-mix(in srgb, var(--color-muted) 50%, transparent));
+}
+
+[data-rig-sidebar-nav-icon] {
+  @apply shrink-0;
+
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-rig-sidebar-nav-label] {
+  @apply truncate;
 }
 
 /* ───────── View ───────── */

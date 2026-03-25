@@ -355,6 +355,21 @@
   color: var(--rig-description-fg);
 }
 
+[data-rig-badge][data-variant='primary'] {
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  color: var(--color-primary);
+}
+
+[data-rig-badge][data-variant='accent'] {
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+  color: var(--color-accent);
+}
+
+[data-rig-badge][data-variant='success'] {
+  background: color-mix(in srgb, var(--color-success) 15%, transparent);
+  color: var(--color-success);
+}
+
 /* ───────── Progress ───────── */
 
 [data-rig-progress] {

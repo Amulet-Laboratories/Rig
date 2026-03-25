@@ -14,6 +14,8 @@ export interface FocusTrapOptions {
   autoFocus?: boolean
   /** Whether to restore focus to the previously focused element on deactivation (default: true) */
   restoreFocus?: boolean
+  /** Whether to prevent body scroll while the trap is active (default: false) */
+  scrollLock?: boolean
 }
 
 /**
@@ -37,9 +39,17 @@ export interface FocusTrapOptions {
  * ```
  */
 export function useFocusTrap(options: FocusTrapOptions) {
-  const { containerRef, active, onEscape, autoFocus = true, restoreFocus = true } = options
+  const {
+    containerRef,
+    active,
+    onEscape,
+    autoFocus = true,
+    restoreFocus = true,
+    scrollLock = false,
+  } = options
 
   let previousFocus: HTMLElement | null = null
+  let previousOverflow: string | null = null
 
   function getFocusableElements(): HTMLElement[] {
     if (!containerRef.value) return []
@@ -86,6 +96,11 @@ export function useFocusTrap(options: FocusTrapOptions) {
   function activate() {
     previousFocus = document.activeElement as HTMLElement
 
+    if (scrollLock && typeof document !== 'undefined') {
+      previousOverflow = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+    }
+
     if (autoFocus) {
       nextTick(() => {
         const first = getFocusableElements()[0]
@@ -98,6 +113,11 @@ export function useFocusTrap(options: FocusTrapOptions) {
 
   function deactivate() {
     document.removeEventListener('keydown', onKeydown, true)
+
+    if (scrollLock && typeof document !== 'undefined') {
+      document.body.style.overflow = previousOverflow ?? ''
+      previousOverflow = null
+    }
 
     if (restoreFocus && previousFocus) {
       previousFocus.focus()
@@ -119,6 +139,10 @@ export function useFocusTrap(options: FocusTrapOptions) {
   )
 
   onUnmounted(() => {
-    document.removeEventListener('keydown', onKeydown, true)
+    if (active.value) {
+      deactivate()
+    } else {
+      document.removeEventListener('keydown', onKeydown, true)
+    }
   })
 }

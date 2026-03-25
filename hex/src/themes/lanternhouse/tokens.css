@@ -1,15 +1,15 @@
 /* Hex — Lanternhouse Design Tokens
- * Boutique coastal hospitality. Rich dark mode with copper/rose gold accent.
- * Evening ambiance hotel theme with deep navy canvas.
+ * Evening observatory. Soft violet glow on deep plum.
+ * Boutique hospitality theme with lavender accent on dark plum canvas.
  *
  * Full palette (7 swatch colors):
- *   #0F1923  deep navy       — background
- *   #162232  midnight blue   — card, popover
- *   #1E2530  warm charcoal   — secondary, muted
- *   #F0E8D8  warm cream      — foreground text
- *   #C4B599  gold            — subtle warm accent
- *   #7A8EA6  steel blue      — muted foreground, info
- *   #C48B6C  copper          — primary, accent
+ *   #110E18  dark plum       — background
+ *   #1A1624  deep violet     — card, popover
+ *   #221E30  muted plum      — secondary, muted
+ *   #E4DFF0  lavender white  — foreground text
+ *   #8A80A0  dusty violet    — muted foreground
+ *   #7A8EB8  cool blue       — info
+ *   #A87BD4  soft lavender   — primary, accent (h≈280)
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
@@ -17,36 +17,36 @@
 
 @theme {
   /* Surface colors */
-  --color-background: #0f1923;
-  --color-foreground: #f0e8d8;
-  --color-card: #162232;
-  --color-card-foreground: #f0e8d8;
-  --color-popover: #162232;
-  --color-popover-foreground: #f0e8d8;
+  --color-background: #110e18;
+  --color-foreground: #e4dff0;
+  --color-card: #1a1624;
+  --color-card-foreground: #e4dff0;
+  --color-popover: #1a1624;
+  --color-popover-foreground: #e4dff0;
 
   /* Brand */
-  --color-primary: #c48b6c;
-  --color-primary-foreground: #0f1923;
+  --color-primary: #a87bd4;
+  --color-primary-foreground: #110e18;
 
   /* Soft accents */
-  --color-secondary: #1e2530;
-  --color-secondary-foreground: #f0e8d8;
-  --color-muted: #1e2530;
-  --color-muted-foreground: #7a8ea6;
-  --color-accent: #c48b6c;
-  --color-accent-foreground: #0f1923;
+  --color-secondary: #221e30;
+  --color-secondary-foreground: #e4dff0;
+  --color-muted: #221e30;
+  --color-muted-foreground: #8a80a0;
+  --color-accent: #a87bd4;
+  --color-accent-foreground: #110e18;
 
   /* Semantic status */
-  --color-destructive: #b85c4a;
-  --color-destructive-foreground: #f0e8d8;
-  --color-success: #6b9e7a;
+  --color-destructive: #d45a5a;
+  --color-destructive-foreground: #e4dff0;
+  --color-success: #5aaa70;
   --color-warning: #d4a843;
-  --color-info: #7a8ea6;
+  --color-info: #7a8eb8;
 
   /* Borders and focus */
-  --color-border: #2a3545;
-  --color-input: #2a3545;
-  --color-ring: #c48b6c;
+  --color-border: #2e2840;
+  --color-input: #2e2840;
+  --color-ring: #a87bd4;
 
   /* Typography */
   --font-sans: 'Josefin Sans', 'Inter', system-ui, sans-serif;
@@ -76,28 +76,28 @@
 }
 
 :root {
-  --background: #0f1923;
-  --foreground: #f0e8d8;
-  --card: #162232;
-  --card-foreground: #f0e8d8;
-  --popover: #162232;
-  --popover-foreground: #f0e8d8;
-  --primary: #c48b6c;
-  --primary-foreground: #0f1923;
-  --secondary: #1e2530;
-  --secondary-foreground: #f0e8d8;
-  --muted: #1e2530;
-  --muted-foreground: #7a8ea6;
-  --accent: #c48b6c;
-  --accent-foreground: #0f1923;
-  --destructive: #b85c4a;
-  --destructive-foreground: #f0e8d8;
-  --success: #6b9e7a;
+  --background: #110e18;
+  --foreground: #e4dff0;
+  --card: #1a1624;
+  --card-foreground: #e4dff0;
+  --popover: #1a1624;
+  --popover-foreground: #e4dff0;
+  --primary: #a87bd4;
+  --primary-foreground: #110e18;
+  --secondary: #221e30;
+  --secondary-foreground: #e4dff0;
+  --muted: #221e30;
+  --muted-foreground: #8a80a0;
+  --accent: #a87bd4;
+  --accent-foreground: #110e18;
+  --destructive: #d45a5a;
+  --destructive-foreground: #e4dff0;
+  --success: #5aaa70;
   --warning: #d4a843;
-  --info: #7a8ea6;
-  --border: #2a3545;
-  --input: #2a3545;
-  --ring: #c48b6c;
+  --info: #7a8eb8;
+  --border: #2e2840;
+  --input: #2e2840;
+  --ring: #a87bd4;
   /* Typography — IDE-density type scale */
   --font-size-2xs: 0.625rem;
   --font-size-2xs--line-height: 1.25;
@@ -145,23 +145,23 @@
   /* ── Named palette aliases ──────────────────────────────────────────────
    * All 7 swatch colors available for direct template use.
    */
-  --lh-navy: #0f1923;
-  --lh-midnight: #162232;
-  --lh-charcoal: #1e2530;
-  --lh-cream: #f0e8d8;
-  --lh-gold: #c4b599;
-  --lh-steel: #7a8ea6;
-  --lh-copper: #c48b6c;
+  --lh-plum: #110e18;
+  --lh-deep: #1a1624;
+  --lh-charcoal: #221e30;
+  --lh-cream: #e4dff0;
+  --lh-dusty: #8a80a0;
+  --lh-steel: #7a8eb8;
+  --lh-lavender: #a87bd4;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
    * Overrides shared/tokens.css defaults where the Lanternhouse palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 
-  /* Button — warm charcoal for hover feedback */
-  --rig-button-hover-bg: #1e2530;
+  /* Button — plum charcoal for hover feedback */
+  --rig-button-hover-bg: #221e30;
 
-  /* Scrollbar — warm cream tint for evening ambiance */
-  --rig-scrollbar-thumb: rgba(240, 232, 216, 0.15);
-  --rig-scrollbar-thumb-hover: rgba(240, 232, 216, 0.3);
+  /* Scrollbar — lavender tint for evening ambiance */
+  --rig-scrollbar-thumb: rgba(228, 223, 240, 0.15);
+  --rig-scrollbar-thumb-hover: rgba(228, 223, 240, 0.3);
 }

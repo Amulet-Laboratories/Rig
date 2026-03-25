@@ -46,11 +46,13 @@ const innerWidth = computed(() => props.width - padding.left - padding.right)
 const innerHeight = computed(() => props.height - padding.top - padding.bottom)
 
 const xRange = computed(() => {
+  if (!props.data.length) return { min: 0, max: 1 }
   const xs = props.data.map((d) => d.x)
   return { min: Math.min(...xs, 0), max: Math.max(...xs, 1) }
 })
 
 const yRange = computed(() => {
+  if (!props.data.length) return { min: 0, max: 1 }
   const ys = props.data.map((d) => d.y)
   return { min: Math.min(...ys, 0), max: Math.max(...ys, 1) }
 })

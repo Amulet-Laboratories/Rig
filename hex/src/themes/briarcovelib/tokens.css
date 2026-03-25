@@ -1,5 +1,5 @@
 /* Hex — Briarcovelib Design Tokens
- * Public library. Warm light mode with brick red and slate blue.
+ * Public library. Warm light mode with sienna and slate blue.
  * Civic warmth — welcoming, literary, community-focused.
  *
  * Full palette (7 swatch colors):
@@ -8,7 +8,7 @@
  *   #E2DCD0  sandstone       — secondary, muted
  *   #2B2622  umber           — foreground text
  *   #6B6054  driftwood       — muted foreground
- *   #9E4A2F  brick           — primary, ring
+ *   #A5562E  sienna          — primary, ring
  *   #3A6B8C  slate blue      — accent
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
@@ -25,7 +25,7 @@
   --color-popover-foreground: #2b2622;
 
   /* Brand */
-  --color-primary: #9e4a2f;
+  --color-primary: #a5562e;
   --color-primary-foreground: #faf8f4;
 
   /* Soft accents */
@@ -46,7 +46,7 @@
   /* Borders and focus */
   --color-border: #d0c8ba;
   --color-input: #d0c8ba;
-  --color-ring: #9e4a2f;
+  --color-ring: #a5562e;
 
   /* Typography */
   --font-sans: 'Cabin', 'Inter', system-ui, sans-serif;
@@ -82,7 +82,7 @@
   --card-foreground: #2b2622;
   --popover: #ffffff;
   --popover-foreground: #2b2622;
-  --primary: #9e4a2f;
+  --primary: #a5562e;
   --primary-foreground: #faf8f4;
   --secondary: #e2dcd0;
   --secondary-foreground: #2b2622;
@@ -97,7 +97,7 @@
   --info: #3a6b8c;
   --border: #d0c8ba;
   --input: #d0c8ba;
-  --ring: #9e4a2f;
+  --ring: #a5562e;
   /* Typography — IDE-density type scale */
   --font-size-2xs: 0.625rem;
   --font-size-2xs--line-height: 1.25;
@@ -150,7 +150,7 @@
   --bl-sandstone: #e2dcd0;
   --bl-umber: #2b2622;
   --bl-driftwood: #6b6054;
-  --bl-brick: #9e4a2f;
+  --bl-sienna: #a5562e;
   --bl-slate: #3a6b8c;
 
   /* ── Rig component token bridge ─────────────────────────────────────────

@@ -7,7 +7,7 @@ const active = ref(true)
 </script>
 
 <template>
-  <Story title="Extras/LoadingOverlay" icon="lucide:loader" group="extras">
+  <Story title="LoadingOverlay" icon="lucide:loader" group="extras">
     <Variant title="Active">
       <div style="position: relative; height: 200px; border: 1px solid var(--border, #333)">
         <div style="padding: 16px">Content behind the overlay</div>

@@ -1,29 +1,49 @@
 import { ref, inject, provide, type Ref } from 'vue'
-import { TooltipKey, type TooltipState } from '../injection-keys'
+import { TooltipKey, type TooltipState, type TooltipVirtualEl } from '../injection-keys'
 import { useReducedMotion } from './useReducedMotion'
 
 function createTooltipState(prefersReducedMotion?: Readonly<Ref<boolean>>): TooltipState {
   const visible = ref(false)
   const content = ref('')
-  const referenceEl = ref<HTMLElement | null>(null)
+  const referenceEl = ref<HTMLElement | TooltipVirtualEl | null>(null)
   const placement = ref<'top' | 'bottom' | 'left' | 'right'>('bottom')
 
   let showTimer: ReturnType<typeof setTimeout> | null = null
+
+  function scheduleShow(
+    el: HTMLElement | TooltipVirtualEl,
+    text: string,
+    p: 'top' | 'bottom' | 'left' | 'right',
+  ) {
+    if (showTimer) clearTimeout(showTimer)
+
+    const delay = prefersReducedMotion?.value ? 0 : 500
+    showTimer = setTimeout(() => {
+      referenceEl.value = el
+      placement.value = p
+      content.value = text
+      visible.value = true
+    }, delay)
+  }
 
   function show(
     target: HTMLElement,
     text: string,
     p: 'top' | 'bottom' | 'left' | 'right' = 'bottom',
   ) {
-    if (showTimer) clearTimeout(showTimer)
+    scheduleShow(target, text, p)
+  }
 
-    const delay = prefersReducedMotion?.value ? 0 : 500
-    showTimer = setTimeout(() => {
-      referenceEl.value = target
-      placement.value = p
-      content.value = text
-      visible.value = true
-    }, delay)
+  function showAtPoint(
+    x: number,
+    y: number,
+    text: string,
+    p: 'top' | 'bottom' | 'left' | 'right' = 'bottom',
+  ) {
+    const virtualEl: TooltipVirtualEl = {
+      getBoundingClientRect: () => DOMRect.fromRect({ x, y, width: 0, height: 0 }),
+    }
+    scheduleShow(virtualEl, text, p)
   }
 
   function hide() {
@@ -35,7 +55,7 @@ function createTooltipState(prefersReducedMotion?: Readonly<Ref<boolean>>): Tool
     referenceEl.value = null
   }
 
-  return { visible, content, referenceEl, placement, show, hide }
+  return { visible, content, referenceEl, placement, show, showAtPoint, hide }
 }
 
 /**

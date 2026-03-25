@@ -8,7 +8,7 @@ const dismissible = ref(false)
 </script>
 
 <template>
-  <Story title="Extras/Alert" icon="lucide:alert-triangle" group="extras">
+  <Story title="Alert" icon="lucide:alert-triangle" group="extras">
     <Variant title="Info">
       <Alert variant="info" title="Information"> This is an informational alert message. </Alert>
     </Variant>

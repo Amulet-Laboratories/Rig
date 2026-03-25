@@ -22,7 +22,7 @@ const passwordRules = [
 </script>
 
 <template>
-  <Story title="Core/Form" icon="lucide:file-check" group="core">
+  <Story title="Form" icon="lucide:file-check" group="core">
     <Variant title="Basic Validation">
       <Form
         :initial-values="{ email: '', password: '' }"

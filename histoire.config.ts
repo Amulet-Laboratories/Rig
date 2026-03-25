@@ -29,6 +29,8 @@ export default defineConfig({
       { id: 'data', title: 'Data' },
       { id: 'spatial', title: 'Spatial' },
       { id: 'temporal', title: 'Temporal' },
+      { id: 'web', title: 'Web' },
+      { id: 'demos', title: 'Demos' },
     ],
   },
 
@@ -80,7 +82,11 @@ export default defineConfig({
   // ── Background presets ────────────────────────────────────────────────
   backgroundPresets: [
     { label: 'VSCode', color: '#1f1f1f', contrastColor: '#cccccc' },
-    { label: 'Garden', color: '#372d3b', contrastColor: '#ffffde' },
+    { label: 'Duskline', color: '#0a0f14', contrastColor: '#d8e4ec' },
+    { label: 'Lanternhouse', color: '#110e18', contrastColor: '#e4dff0' },
+    { label: 'Garden', color: '#331f3c', contrastColor: '#f5e3bc' },
+    { label: 'Briarcove', color: '#ffffff', contrastColor: '#1a1428' },
+    { label: 'Marenlys', color: '#fafafa', contrastColor: '#1a0a18' },
     { label: 'Transparent', color: 'transparent', contrastColor: '#888888' },
   ],
 

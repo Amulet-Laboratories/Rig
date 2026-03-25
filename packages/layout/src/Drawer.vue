@@ -40,6 +40,7 @@ useFocusTrap({
   containerRef: drawerRef,
   active: toRef(props, 'open'),
   onEscape: close,
+  scrollLock: true,
 })
 
 function onOverlayClick(e: MouseEvent) {

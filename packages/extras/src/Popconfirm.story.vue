@@ -13,7 +13,7 @@ const lastAction = ref('')
 </script>
 
 <template>
-  <Story title="Extras/Popconfirm" icon="lucide:circle-alert" group="extras">
+  <Story title="Popconfirm" icon="lucide:circle-alert" group="extras">
     <Variant title="Default">
       <Popconfirm
         v-model:open="defaultOpen"

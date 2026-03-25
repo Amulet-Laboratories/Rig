@@ -1,0 +1,204 @@
+/* Hex — Shared Utility Classes
+ * Reusable decorative and interactive utilities for marketing themes.
+ * All utilities use CSS custom properties for per-use parameterization.
+ *
+ * Classes:
+ *   .paper-grain       — fractal noise overlay (add to body or container)
+ *   .link-slide        — sliding underline on hover
+ *   .heading-glow      — text-shadow luminous haze
+ *   .ornament-float    — drop-shadow for decorative elements
+ *
+ * All respect prefers-reduced-motion where applicable.
+ */
+
+/* ───────── Paper grain overlay ───────── */
+
+.paper-grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: var(--paper-grain-opacity, 0.06);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ───────── Sliding underline links ───────── */
+
+.link-slide {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.link-slide::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--link-slide-color, var(--color-primary));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link-slide:hover::after {
+  transform: scaleX(1);
+}
+
+/* ───────── Heading glow ───────── */
+
+.heading-glow {
+  text-shadow:
+    0 0 30px var(--heading-glow-color, color-mix(in srgb, var(--color-primary) 20%, transparent)),
+    0 0 60px
+      var(--heading-glow-color-faint, color-mix(in srgb, var(--color-primary) 6%, transparent));
+}
+
+/* ───────── Ornament float shadow ───────── */
+
+.ornament-float {
+  filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.25));
+}
+
+/* ───────── CTA button variants ───────── */
+
+[data-rig-button][data-variant='cta'],
+[data-rig-button][data-variant='cta-light'] {
+  cursor: pointer;
+}
+
+[data-rig-button][data-variant='cta'] {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  color: var(--color-primary-foreground);
+  background: var(--color-primary);
+  padding: 1rem 2.25rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius, 4px);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 2px 8px color-mix(in srgb, var(--color-primary) 15%, transparent);
+  transition:
+    background 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-rig-button][data-variant='cta']:hover {
+  background: color-mix(in srgb, var(--color-primary) 85%, white);
+  transform: translateY(-1px);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.25),
+    0 4px 16px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+[data-rig-button][data-variant='cta']:active {
+  transform: translateY(0.5px);
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.2),
+    0 1px 4px color-mix(in srgb, var(--color-primary) 10%, transparent);
+  transition-duration: 0.1s;
+}
+
+[data-rig-button][data-variant='cta-light'] {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid var(--color-foreground);
+  color: var(--color-foreground);
+  padding: 1rem 2.25rem;
+  border-radius: var(--radius, 4px);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    0 2px 8px color-mix(in srgb, var(--color-foreground) 6%, transparent);
+  transition:
+    background 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-rig-button][data-variant='cta-light']:hover {
+  background: var(--color-foreground);
+  color: var(--color-background);
+  transform: translateY(-1px);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 4px 16px color-mix(in srgb, var(--color-foreground) 12%, transparent);
+}
+
+[data-rig-button][data-variant='cta-light']:active {
+  transform: translateY(0.5px);
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.15),
+    0 1px 4px color-mix(in srgb, var(--color-foreground) 5%, transparent);
+  transition-duration: 0.1s;
+}
+
+/* ───────── Focus rings for CTAs ───────── */
+
+[data-rig-button][data-variant='cta']:focus-visible,
+[data-rig-button][data-variant='cta-light']:focus-visible {
+  outline: 2px solid var(--color-ring, var(--color-primary));
+  outline-offset: 3px;
+}
+
+/* ───────── Decorative backgrounds ───────── */
+
+.bg-scrim-soft {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-background) 82%, transparent),
+    color-mix(in srgb, var(--color-background) 92%, transparent)
+  );
+}
+
+.bg-stripe-primary {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-primary) 0,
+    var(--color-primary) 1px,
+    transparent 1px,
+    transparent 60px
+  );
+}
+
+/* ───────── Typography utilities ───────── */
+
+.font-smallcaps {
+  font-variant: small-caps;
+}
+
+/* ───────── Reduced motion ───────── */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-rig-button][data-variant='cta']:hover,
+  [data-rig-button][data-variant='cta-light']:hover {
+    transform: none;
+  }
+
+  [data-rig-button][data-variant='cta']:active,
+  [data-rig-button][data-variant='cta-light']:active {
+    transform: none;
+  }
+
+  .link-slide::after {
+    transition: none;
+  }
+}

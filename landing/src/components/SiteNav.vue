@@ -11,6 +11,7 @@ let observer: IntersectionObserver | null = null
 
 function onScroll() {
   scrolled.value = window.scrollY > 40
+  if (mobileOpen.value) mobileOpen.value = false
 }
 
 function navigateTo(id: string) {
@@ -36,7 +37,7 @@ onMounted(() => {
     { rootMargin: '-40% 0px -55% 0px' },
   )
 
-  for (const id of ['packages', 'themes']) {
+  for (const id of ['packages', 'themes', 'composables']) {
     const el = document.getElementById(id)
     if (el) observer.observe(el)
   }
@@ -80,6 +81,14 @@ onUnmounted(() => {
         >
           Themes
         </button>
+        <button
+          class="transition hover:text-text"
+          :class="isActive('composables') ? 'text-primary' : 'text-text-muted'"
+          @click="navigateTo('composables')"
+        >
+          Composables
+        </button>
+        <a href="/hexrig/story/" class="text-text-muted transition hover:text-text"> Playground </a>
         <a
           href="https://github.com/Amulet-Laboratories/Rig"
           target="_blank"
@@ -135,6 +144,14 @@ onUnmounted(() => {
       >
         Themes
       </button>
+      <button
+        class="text-left"
+        :class="isActive('composables') ? 'text-primary' : 'text-text-muted'"
+        @click="navigateTo('composables')"
+      >
+        Composables
+      </button>
+      <a href="/hexrig/story/" class="text-text-muted" @click="mobileOpen = false">Playground</a>
       <a
         href="https://github.com/Amulet-Laboratories/Rig"
         target="_blank"

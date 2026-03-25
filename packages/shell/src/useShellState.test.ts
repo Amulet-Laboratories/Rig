@@ -465,9 +465,9 @@ describe('useShellState', () => {
       const { shell } = createShell()
       shell.openTab(tab('a'))
       shell.openTab(tab('b'))
-      // from: 5 is out of bounds, splice returns empty → tab is undefined
+      // from: 5 is out of bounds — should be a no-op
       shell.reorderTabs({ from: 5, to: 0 })
-      expect(shell.openTabs.value.map((t) => t.id)).toEqual(['a', 'b'])
+      expect(shell.openTabs.value.map((t) => t.id)).toEqual(['b', 'a'])
     })
   })
 

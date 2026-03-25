@@ -184,7 +184,7 @@ describe('Hex build', () => {
     const garden = readFileSync(resolve(DIST, 'garden.css'), 'utf-8')
 
     assert.ok(vscode.includes('#0078d4'), 'vscode should use VS Code blue primary')
-    assert.ok(garden.includes('#d94362'), 'garden should use rose primary')
+    assert.ok(garden.includes('#eb4963'), 'garden should use rose primary')
   })
 
   it('theme bundles include unstyled reset selector', () => {

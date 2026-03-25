@@ -40,7 +40,13 @@ async function copyInstall() {
         class="h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_var(--color-primary)]"
         aria-hidden="true"
       />
-      <span>v0.2.0 -- 128 components across 12 packages</span>
+      <a
+        href="https://github.com/Amulet-Laboratories/Rig/blob/main/CHANGELOG.md"
+        target="_blank"
+        rel="noopener"
+        class="no-underline"
+        ><span>v0.2.0 -- 144 components across 12 packages</span></a
+      >
     </div>
 
     <h1
@@ -54,7 +60,7 @@ async function copyInstall() {
     <p
       class="fade-in delay-2 mx-auto mb-10 max-w-[560px] text-[clamp(16px,2.2vw,20px)] leading-relaxed text-text-muted"
     >
-      Headless Vue 3 components. Curated CSS themes. One system.
+      Headless Vue 3 components. Curated CSS themes. Ship faster.
     </p>
 
     <div class="fade-in delay-3 mb-12 flex flex-wrap items-center justify-center gap-3">
@@ -70,6 +76,12 @@ async function copyInstall() {
       >
         Browse Components
       </button>
+      <a
+        href="/hexrig/story/"
+        class="text-[15px] font-medium text-text-muted transition hover:text-primary"
+      >
+        Live Playground
+      </a>
     </div>
 
     <div class="fade-in delay-4 flex justify-center">
@@ -93,10 +105,10 @@ async function copyInstall() {
     >
       <div
         v-for="stat in [
-          { value: '128', label: 'Components' },
+          { value: '144', label: 'Components' },
           { value: '12', label: 'Packages' },
-          { value: '16', label: 'Themes' },
-          { value: '22', label: 'Composables' },
+          { value: '18', label: 'Themes' },
+          { value: '24', label: 'Composables' },
         ]"
         :key="stat.label"
         class="bg-bg-elevated px-5 py-7 text-center"

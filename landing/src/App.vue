@@ -8,6 +8,7 @@ import ThemesSection from '@/components/sections/ThemesSection.vue'
 import ComposablesSection from '@/components/sections/ComposablesSection.vue'
 import DiffSection from '@/components/sections/DiffSection.vue'
 import PrinciplesSection from '@/components/sections/PrinciplesSection.vue'
+import QuickStartSection from '@/components/sections/QuickStartSection.vue'
 import CtaSection from '@/components/sections/CtaSection.vue'
 import SiteFooter from '@/components/sections/SiteFooter.vue'
 </script>
@@ -29,6 +30,7 @@ import SiteFooter from '@/components/sections/SiteFooter.vue'
     <ComposablesSection />
     <DiffSection />
     <PrinciplesSection />
+    <QuickStartSection />
     <CtaSection />
   </main>
   <SiteFooter />

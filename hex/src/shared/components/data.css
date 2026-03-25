@@ -330,3 +330,89 @@
 [data-rig-sankey-diagram-link]:hover {
   opacity: 0.6;
 }
+
+/* ───────── StatRow ───────── */
+
+[data-rig-stat-row] {
+  @apply flex items-center justify-between text-xs font-mono;
+}
+
+[data-rig-stat-row][data-separator] {
+  padding-top: 4px;
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+}
+
+[data-rig-stat-row-label] {
+  color: color-mix(in srgb, var(--color-muted-foreground) 70%, transparent);
+}
+
+[data-rig-stat-row-value] {
+  color: var(--color-foreground);
+}
+
+[data-rig-stat-row][data-bold] [data-rig-stat-row-value] {
+  font-weight: 700;
+}
+
+[data-rig-stat-row][data-tone='success'] [data-rig-stat-row-value] {
+  color: var(--color-success);
+}
+
+[data-rig-stat-row][data-tone='danger'] [data-rig-stat-row-value] {
+  color: var(--color-destructive);
+}
+
+[data-rig-stat-row][data-tone='warning'] [data-rig-stat-row-value] {
+  color: var(--color-warning);
+}
+
+[data-rig-stat-row][data-tone='info'] [data-rig-stat-row-value] {
+  color: var(--color-info);
+}
+
+[data-rig-stat-row][data-tone='muted'] [data-rig-stat-row-value] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── ChartTooltip ───────── */
+
+[data-rig-chart-tooltip] {
+  @apply absolute pointer-events-none z-50 text-foreground;
+
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 13px;
+  line-height: normal;
+  background: var(--rig-widget-bg, var(--color-popover));
+  border: 1px solid var(--rig-widget-border, var(--color-border));
+  box-shadow: 0 2px 8px rgb(0 0 0 / 36%);
+}
+
+/* ───────── ChartEmpty ───────── */
+
+[data-rig-chart-empty] {
+  @apply flex flex-col items-center justify-center text-center;
+
+  height: 100%;
+  min-height: 300px;
+  padding: 0 24px;
+}
+
+[data-rig-chart-empty-icon] {
+  color: var(--color-muted-foreground);
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+[data-rig-chart-empty-label] {
+  @apply font-mono text-sm;
+
+  color: color-mix(in srgb, var(--color-foreground) 40%, transparent);
+  margin: 0;
+}
+
+[data-rig-chart-empty-hint] {
+  @apply text-xs text-muted-foreground;
+
+  margin: 4px 0 0;
+}

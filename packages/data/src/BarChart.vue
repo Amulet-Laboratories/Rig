@@ -46,7 +46,9 @@ const padding = { top: 20, right: 20, bottom: 40, left: 50 }
 const innerWidth = computed(() => props.width - padding.left - padding.right)
 const innerHeight = computed(() => props.height - padding.top - padding.bottom)
 
-const maxValue = computed(() => Math.max(...props.data.map((d) => d.value), 1))
+const maxValue = computed(() =>
+  props.data.length ? Math.max(...props.data.map((d) => d.value), 1) : 1,
+)
 
 const bars = computed(() => {
   if (props.data.length === 0) return []

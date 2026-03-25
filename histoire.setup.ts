@@ -4,14 +4,46 @@
 // Runs inside every story sandbox iframe before the story mounts.
 // Injects the active Hex theme + a persistent floating theme switcher.
 
-import vscodeCss from './hex/dist/vscode.css?inline'
+import aldricpaceCss from './hex/dist/aldricpace.css?inline'
+import briarcoveCss from './hex/dist/briarcove.css?inline'
+import briarcoveLibCss from './hex/dist/briarcovelib.css?inline'
+import compassCss from './hex/dist/compass.css?inline'
+import dusklineCss from './hex/dist/duskline.css?inline'
+import forgeCss from './hex/dist/forge.css?inline'
 import gardenCss from './hex/dist/garden.css?inline'
+import greylineCss from './hex/dist/greyline.css?inline'
+import kbcvCss from './hex/dist/kbcv.css?inline'
+import lanternhouseCss from './hex/dist/lanternhouse.css?inline'
+import marlenlysCss from './hex/dist/marenlys.css?inline'
+import quizbitCss from './hex/dist/quizbit.css?inline'
+import saltsignalCss from './hex/dist/saltsignal.css?inline'
+import spacewizardCss from './hex/dist/spacewizard.css?inline'
+import tidemarkCss from './hex/dist/tidemark.css?inline'
+import undertowCss from './hex/dist/undertow.css?inline'
+import vscodeCss from './hex/dist/vscode.css?inline'
 
 // ── Theme registry ──────────────────────────────────────────────────────
 
 const THEMES: Record<string, { css: string; label: string; scheme: 'dark' | 'light' }> = {
+  // Dark
   vscode: { css: vscodeCss, label: 'VSCode', scheme: 'dark' },
   garden: { css: gardenCss, label: 'Garden', scheme: 'dark' },
+  forge: { css: forgeCss, label: 'Forge', scheme: 'dark' },
+  duskline: { css: dusklineCss, label: 'Duskline', scheme: 'dark' },
+  greyline: { css: greylineCss, label: 'Greyline', scheme: 'dark' },
+  lanternhouse: { css: lanternhouseCss, label: 'Lanternhouse', scheme: 'dark' },
+  spacewizard: { css: spacewizardCss, label: 'Spacewizard', scheme: 'dark' },
+  undertow: { css: undertowCss, label: 'Undertow', scheme: 'dark' },
+  quizbit: { css: quizbitCss, label: 'Quizbit', scheme: 'dark' },
+  // Light
+  aldricpace: { css: aldricpaceCss, label: 'Aldricpace', scheme: 'light' },
+  briarcove: { css: briarcoveCss, label: 'Briarcove', scheme: 'light' },
+  briarcovelib: { css: briarcoveLibCss, label: 'Briarcove Lib', scheme: 'light' },
+  compass: { css: compassCss, label: 'Compass', scheme: 'light' },
+  kbcv: { css: kbcvCss, label: 'KBCV', scheme: 'light' },
+  marenlys: { css: marlenlysCss, label: 'Marenlys', scheme: 'light' },
+  saltsignal: { css: saltsignalCss, label: 'Saltsignal', scheme: 'light' },
+  tidemark: { css: tidemarkCss, label: 'Tidemark', scheme: 'light' },
 }
 
 const STORAGE_KEY = 'hex-active-theme-id'
@@ -32,6 +64,10 @@ function applyTheme(id: string): void {
   document.documentElement.style.colorScheme = entry.scheme
   document.body.dataset.theme = id
   localStorage.setItem(STORAGE_KEY, id)
+
+  // Update select if it exists (theme may be applied before bar is created)
+  const select = document.getElementById('hex-theme-select') as HTMLSelectElement | null
+  if (select && select.value !== id) select.value = id
 }
 
 applyTheme(getActiveId())
@@ -104,15 +140,26 @@ document.head.appendChild(overrides)
 const activeId = getActiveId()
 const bar = document.createElement('div')
 bar.id = 'hex-theme-bar'
+
+const darkGroup = Object.entries(THEMES)
+  .filter(([, t]) => t.scheme === 'dark')
+  .map(
+    ([id, t]) => `<option value="${id}"${id === activeId ? ' selected' : ''}>${t.label}</option>`,
+  )
+  .join('')
+
+const lightGroup = Object.entries(THEMES)
+  .filter(([, t]) => t.scheme === 'light')
+  .map(
+    ([id, t]) => `<option value="${id}"${id === activeId ? ' selected' : ''}>${t.label}</option>`,
+  )
+  .join('')
+
 bar.innerHTML = `
   <span>theme</span>
   <select id="hex-theme-select">
-    ${Object.entries(THEMES)
-      .map(
-        ([id, t]) =>
-          `<option value="${id}"${id === activeId ? ' selected' : ''}>${t.label}</option>`,
-      )
-      .join('')}
+    <optgroup label="Dark">${darkGroup}</optgroup>
+    <optgroup label="Light">${lightGroup}</optgroup>
   </select>
 `
 document.body.appendChild(bar)

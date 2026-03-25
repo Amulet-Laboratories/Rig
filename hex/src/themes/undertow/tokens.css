@@ -158,6 +158,10 @@
    * values that can't be derived directly from --color-* semantics.
    */
 
+  /* Site footer — card background, not primary */
+  --site-footer-bg: var(--color-card);
+  --site-footer-color: var(--color-foreground);
+
   /* Button — worn iron for hover feedback */
   --rig-button-hover-bg: #3b3633;
 

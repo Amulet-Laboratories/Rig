@@ -28,10 +28,14 @@ const packages = [
   },
   {
     name: 'extras',
-    count: 13,
-    desc: 'Alert, Toast, Carousel, Popconfirm, LoadingOverlay, KanbanBoard, Tooltip, Skeleton',
+    count: 16,
+    desc: 'Alert, Toast, Carousel, Popconfirm, LoadingOverlay, KanbanBoard, Tooltip, Skeleton, ConfirmDialog, ErrorBoundary, LiveRegion',
   },
-  { name: 'shell', count: 1, desc: 'IdeShell — full IDE layout orchestrator' },
+  {
+    name: 'shell',
+    count: 8,
+    desc: 'IdeShell, ChatPanel, SearchPanel, FileBrowser, ContentViewer, FormView, WelcomeView, SettingsView',
+  },
   {
     name: 'data',
     count: 11,
@@ -45,7 +49,12 @@ const packages = [
   {
     name: 'temporal',
     count: 5,
-    desc: 'PlaybackControls, ParticleField, AnimatedChart, TimelineScrubber',
+    desc: 'PlaybackControls, ParticleField, AnimatedChart, TimelineScrubber, TemporalHeatmap',
+  },
+  {
+    name: 'web',
+    count: 9,
+    desc: 'SiteShell, SiteNav, Hero, Section, StatRow, CTABanner, Testimonial, PricingCard, SiteFooter',
   },
 ]
 </script>
@@ -71,7 +80,7 @@ const packages = [
 
         <h2 style="font-size: 20px; font-weight: 600; margin: 0 0 12px">Architecture</h2>
         <p style="margin: 0 0 16px; line-height: 1.6">
-          Rig is organized into 11 packages, each targeting a specific UI domain. Components emit
+          Rig is organized into 12 packages, each targeting a specific UI domain. Components emit
           semantic HTML with
           <code
             style="

@@ -1,15 +1,27 @@
 <template>
+  <div class="mx-auto my-0 h-px max-w-[1200px] bg-border-subtle" />
+
   <section id="get-started" class="reveal px-6 py-24 text-center" aria-labelledby="cta-title">
     <div class="mx-auto max-w-[1200px]">
+      <div
+        class="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface px-3.5 py-1.5 text-[13px] text-text-muted"
+      >
+        <span
+          class="h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_var(--color-primary)]"
+          aria-hidden="true"
+        />
+        <span>v0.2.0 -- MIT licensed</span>
+      </div>
+
       <h2 id="cta-title" class="mb-3 text-[clamp(28px,3.5vw,40px)] font-bold tracking-tight">
         Start building.
       </h2>
-      <p class="mx-auto mb-8 max-w-[480px] text-[17px] text-text-muted">
-        MIT licensed. Two packages. Get a full design system in three lines.
+      <p class="mx-auto mb-10 max-w-[480px] text-[17px] leading-relaxed text-text-muted">
+        144 components. 18 themes. 24 composables. Two packages. One import to ship.
       </p>
 
       <div
-        class="mx-auto mb-8 max-w-[640px] overflow-hidden rounded-xl border border-border bg-bg text-left"
+        class="mx-auto mb-10 max-w-[640px] overflow-hidden rounded-xl border border-border bg-bg text-left"
       >
         <div
           class="flex items-center gap-2 border-b border-border-subtle px-4 py-3 font-mono text-xs text-text-dim"
@@ -35,12 +47,10 @@
           View on GitHub
         </a>
         <a
-          href="https://github.com/Amulet-Laboratories/Rig#readme"
-          target="_blank"
-          rel="noopener"
+          href="/hexrig/story/"
           class="inline-flex items-center gap-2 rounded-lg border border-border bg-bg-surface px-6 py-3 text-[15px] font-medium text-text no-underline transition hover:-translate-y-px hover:border-text-dim hover:bg-bg-surface-hover"
         >
-          Read the Docs
+          Browse Playground
         </a>
       </div>
     </div>

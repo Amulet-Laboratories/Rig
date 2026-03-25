@@ -1,150 +1,245 @@
 <script setup lang="ts">
-const themes = [
+import { ref } from 'vue'
+
+interface Theme {
+  name: string
+  meta: string
+  bg: string
+  bar: string
+  btn: string
+  btnText: string
+  swatch: string
+  text?: string
+  muted?: string
+  border?: string
+  input?: string
+}
+
+const themes: Theme[] = [
   {
     name: 'VSCode',
     meta: 'Dark -- Gray + Blue',
     bg: '#1f1f1f',
-    bar: '#333333',
+    bar: '#2b2b2b',
     btn: '#0078d4',
     btnText: '#ffffff',
     swatch: '#0078d4',
+    text: '#cccccc',
+    muted: '#9d9d9d',
+    border: '#2b2b2b',
+    input: '#181818',
   },
   {
     name: 'Garden',
-    meta: 'Dark -- Purple + Rose',
+    meta: 'Dark -- Wine + Rose',
     bg: '#331f3c',
-    bar: '#4f3043',
+    bar: '#ac3954',
     btn: '#eb4963',
-    btnText: '#ffffde',
+    btnText: '#f5e3bc',
     swatch: '#eb4963',
+    text: '#f5e3bc',
+    muted: '#f9b0a2',
+    border: '#ac3954',
+    input: '#3d2844',
   },
   {
     name: 'Forge',
-    meta: 'Dark -- Carbon + Amber',
+    meta: 'Dark -- Carbon + Yellow',
     bg: '#0e0d0c',
-    bar: '#1c1b19',
-    btn: '#ffb000',
+    bar: '#1e1c1a',
+    btn: '#e6c830',
     btnText: '#0e0d0c',
-    swatch: '#ffb000',
+    swatch: '#e6c830',
+    text: '#d4ccba',
+    muted: '#8a8478',
+    border: '#3a3530',
+    input: '#1e1c1a',
   },
   {
     name: 'Duskline',
-    meta: 'Dark -- Black + Amber',
-    bg: '#0d0f12',
-    bar: '#1a1c20',
-    btn: '#d4a843',
-    btnText: '#0d0f12',
-    swatch: '#d4a843',
+    meta: 'Dark -- Slate + Cyan',
+    bg: '#0a0f14',
+    bar: '#121a22',
+    btn: '#3cc8b4',
+    btnText: '#0a0f14',
+    swatch: '#3cc8b4',
+    text: '#d8e4ec',
+    muted: '#6a8494',
+    border: '#1e3040',
+    input: '#121a22',
   },
   {
     name: 'Greyline',
     meta: 'Dark -- Black + Silver',
-    bg: '#0c0d0f',
-    bar: '#1a1b1e',
-    btn: '#8b8d92',
-    btnText: '#0c0d0f',
-    swatch: '#8b8d92',
+    bg: '#0c0c0c',
+    bar: '#141414',
+    btn: '#9a9a9a',
+    btnText: '#0c0c0c',
+    swatch: '#9a9a9a',
+    text: '#e8e8e8',
+    muted: '#606060',
+    border: '#2a2a2a',
+    input: '#141414',
   },
   {
     name: 'Lanternhouse',
-    meta: 'Dark -- Navy + Copper',
-    bg: '#0f1923',
-    bar: '#1a2633',
-    btn: '#c48b6c',
-    btnText: '#0f1923',
-    swatch: '#c48b6c',
+    meta: 'Dark -- Plum + Lavender',
+    bg: '#110e18',
+    bar: '#1a1624',
+    btn: '#a87bd4',
+    btnText: '#110e18',
+    swatch: '#a87bd4',
+    text: '#e4dff0',
+    muted: '#8a80a0',
+    border: '#2e2840',
+    input: '#1a1624',
   },
   {
     name: 'Spacewizard',
-    meta: 'Dark -- Navy + Green',
+    meta: 'Dark -- Navy + Lime',
     bg: '#060d2b',
-    bar: '#0f1640',
+    bar: '#0a1440',
     btn: '#aef66d',
     btnText: '#060d2b',
     swatch: '#aef66d',
+    text: '#cad3f7',
+    muted: '#7b88b8',
+    border: '#1e2a6b',
+    input: '#0a1440',
   },
   {
     name: 'Undertow',
     meta: 'Dark -- Tar + Orange',
     bg: '#1c1917',
-    bar: '#2a2622',
+    bar: '#292524',
     btn: '#d95f2a',
     btnText: '#1c1917',
     swatch: '#d95f2a',
+    text: '#f5f0eb',
+    muted: '#a8a09a',
+    border: '#4a4440',
+    input: '#292524',
+  },
+  {
+    name: 'Quizbit',
+    meta: 'Dark -- Earth + Bronze',
+    bg: '#12100c',
+    bar: '#1e1a14',
+    btn: '#c9956d',
+    btnText: '#12100c',
+    swatch: '#c9956d',
+    text: '#f5f1ed',
+    muted: '#a89e94',
+    border: '#302a22',
+    input: '#1e1a14',
   },
   {
     name: 'Aldricpace',
     meta: 'Light -- White + Navy',
     bg: '#fafbfc',
-    bar: '#e8eaed',
+    bar: '#d1d5de',
     btn: '#2b4c7e',
     btnText: '#fafbfc',
     swatch: '#2b4c7e',
+    text: '#1b2033',
+    muted: '#555e73',
+    border: '#d1d5de',
+    input: '#f2f4f7',
   },
   {
     name: 'Briarcove',
-    meta: 'Light -- White + Blue',
+    meta: 'Light -- White + Violet',
     bg: '#ffffff',
-    bar: '#e5e7eb',
-    btn: '#1d4ed8',
+    bar: '#d8d0e5',
+    btn: '#6d42c4',
     btnText: '#ffffff',
-    swatch: '#1d4ed8',
+    swatch: '#6d42c4',
+    text: '#1a1428',
+    muted: '#6a5a80',
+    border: '#d8d0e5',
+    input: '#f5f2fa',
   },
   {
     name: 'Briarcove Lib',
-    meta: 'Light -- Vellum + Brick',
+    meta: 'Light -- Vellum + Sienna',
     bg: '#faf8f4',
-    bar: '#ece8e0',
-    btn: '#9e4a2f',
+    bar: '#d0c8ba',
+    btn: '#a5562e',
     btnText: '#faf8f4',
-    swatch: '#9e4a2f',
+    swatch: '#a5562e',
+    text: '#2a2018',
+    muted: '#8a7a6a',
+    border: '#d8d0c4',
+    input: '#f2efe8',
   },
   {
     name: 'Compass',
-    meta: 'Light -- Mint + Teal',
-    bg: '#fafdf9',
-    bar: '#e6ede4',
-    btn: '#2a7d5f',
-    btnText: '#fafdf9',
-    swatch: '#2a7d5f',
+    meta: 'Light -- Mint + Green',
+    bg: '#f8fdf6',
+    bar: '#c0d8c0',
+    btn: '#2d7a3e',
+    btnText: '#f8fdf6',
+    swatch: '#2d7a3e',
+    text: '#1a2a1a',
+    muted: '#4a6a4a',
+    border: '#c0d8c0',
+    input: '#f0f5ee',
   },
   {
     name: 'KBCV',
     meta: 'Light -- Parchment + Red',
     bg: '#f7f3ee',
-    bar: '#e4dfd7',
+    bar: '#cbc4ba',
     btn: '#b83232',
-    btnText: '#f7f3ee',
+    btnText: '#fffdf8',
     swatch: '#b83232',
+    text: '#2a2521',
+    muted: '#706459',
+    border: '#cbc4ba',
+    input: '#edeae4',
   },
   {
     name: 'Marenlys',
-    meta: 'Light -- White + Indigo',
+    meta: 'Light -- White + Magenta',
     bg: '#fafafa',
-    bar: '#e5e5e5',
-    btn: '#4a4a8a',
-    btnText: '#fafafa',
-    swatch: '#4a4a8a',
+    bar: '#e5d5e0',
+    btn: '#c43a8a',
+    btnText: '#ffffff',
+    swatch: '#c43a8a',
+    text: '#1a0a18',
+    muted: '#8a6a80',
+    border: '#e5d5e0',
+    input: '#faf5f8',
   },
   {
     name: 'Saltsignal',
-    meta: 'Light -- Cream + Orange',
-    bg: '#f5f0e8',
-    bar: '#e2dbd0',
-    btn: '#c2571a',
-    btnText: '#f5f0e8',
-    swatch: '#c2571a',
+    meta: 'Light -- Cream + Amber',
+    bg: '#faf6ee',
+    bar: '#d8ccb0',
+    btn: '#b8860b',
+    btnText: '#fffcf4',
+    swatch: '#b8860b',
+    text: '#2a2210',
+    muted: '#7a6a4a',
+    border: '#d8ccb0',
+    input: '#fffcf4',
   },
   {
     name: 'Tidemark',
-    meta: 'Light -- Linen + Teal',
+    meta: 'Light -- Linen + Cyan',
     bg: '#faf7f2',
-    bar: '#e8e4dc',
-    btn: '#1a6b5a',
-    btnText: '#faf7f2',
-    swatch: '#1a6b5a',
+    bar: '#d4c9b8',
+    btn: '#1a7a7a',
+    btnText: '#fffdf8',
+    swatch: '#1a7a7a',
+    text: '#2c2420',
+    muted: '#6a8888',
+    border: '#d4c9b8',
+    input: '#fffdf8',
   },
 ]
+
+const activeTheme = ref(themes[0]!)
 </script>
 
 <template>
@@ -158,21 +253,107 @@ const themes = [
           id="themes-title"
           class="mb-4 text-[clamp(28px,3.5vw,40px)] font-bold leading-tight tracking-tight"
         >
-          16 curated themes. One import to swap.
+          18 curated themes. One import to swap.
         </h2>
         <p class="mx-auto max-w-[520px] text-[17px] leading-relaxed text-text-muted">
           Each theme is a single CSS bundle. No JavaScript. No config. Change one import and every
-          component re-skins instantly. 8 dark. 8 light.
+          component re-skins instantly. Click a theme to preview.
         </p>
       </div>
 
+      <!-- Live preview panel -->
+      <div
+        class="mx-auto mb-10 max-w-[720px] overflow-hidden rounded-xl border transition-colors duration-300"
+        :style="{
+          background: activeTheme.bg,
+          borderColor: activeTheme.border,
+        }"
+      >
+        <div
+          class="flex items-center gap-2 border-b px-4 py-3 font-mono text-xs transition-colors duration-300"
+          :style="{ borderColor: activeTheme.border, color: activeTheme.muted }"
+        >
+          <span class="h-2.5 w-2.5 rounded-full bg-red-500/50" />
+          <span class="h-2.5 w-2.5 rounded-full bg-amber-500/50" />
+          <span class="h-2.5 w-2.5 rounded-full bg-green-500/50" />
+          <span class="ml-2">{{ activeTheme.name }}</span>
+        </div>
+        <div class="flex flex-col gap-4 p-6">
+          <div class="flex items-center gap-3">
+            <div
+              class="rounded-md px-4 py-2 text-sm font-medium transition-colors duration-300"
+              :style="{ background: activeTheme.btn, color: activeTheme.btnText }"
+            >
+              Primary
+            </div>
+            <div
+              class="rounded-md border px-4 py-2 text-sm font-medium transition-colors duration-300"
+              :style="{ borderColor: activeTheme.border, color: activeTheme.text }"
+            >
+              Secondary
+            </div>
+            <div
+              class="rounded-md px-4 py-2 text-sm transition-colors duration-300"
+              :style="{ color: activeTheme.muted }"
+            >
+              Ghost
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div
+              class="flex-1 rounded-md border px-3 py-2 text-sm transition-colors duration-300"
+              :style="{
+                background: activeTheme.input,
+                borderColor: activeTheme.border,
+                color: activeTheme.muted,
+              }"
+            >
+              Search components...
+            </div>
+            <div
+              class="flex h-5 w-9 items-center rounded-full p-0.5 transition-colors duration-300"
+              :style="{ background: activeTheme.btn }"
+            >
+              <div
+                class="h-4 w-4 translate-x-4 rounded-full transition-colors duration-300"
+                :style="{ background: activeTheme.btnText }"
+              />
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div
+              v-for="n in 3"
+              :key="n"
+              class="flex-1 rounded-md border p-3 transition-colors duration-300"
+              :style="{ borderColor: activeTheme.border }"
+            >
+              <div
+                class="mb-2 h-2 w-3/4 rounded-sm transition-colors duration-300"
+                :style="{ background: activeTheme.bar }"
+              />
+              <div
+                class="h-2 w-1/2 rounded-sm transition-colors duration-300"
+                :style="{ background: activeTheme.bar }"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme grid -->
       <div
         class="stagger-children mx-auto grid max-w-[960px] grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
       >
-        <div
+        <button
           v-for="theme in themes"
           :key="theme.name"
-          class="overflow-hidden rounded-xl border border-border-subtle transition hover:-translate-y-0.5 hover:border-border hover:shadow-[0_12px_40px_#00000040]"
+          class="overflow-hidden rounded-xl border text-left transition hover:-translate-y-0.5 hover:shadow-[0_12px_40px_#00000040]"
+          :class="
+            activeTheme.name === theme.name
+              ? 'border-primary ring-1 ring-primary'
+              : 'border-border-subtle hover:border-border'
+          "
+          @click="activeTheme = theme"
         >
           <div class="flex h-40 flex-col justify-end p-4" :style="{ background: theme.bg }">
             <div class="flex flex-col gap-1.5">
@@ -197,7 +378,7 @@ const themes = [
               {{ theme.meta }}
             </div>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </section>

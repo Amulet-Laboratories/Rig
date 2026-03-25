@@ -45,7 +45,9 @@ const emit = defineEmits<{
   'cell-click': [cell: HeatmapCell]
 }>()
 
-const maxValue = computed(() => Math.max(...props.data.map((d) => d.value), 1))
+const maxValue = computed(() =>
+  props.data.length ? Math.max(...props.data.map((d) => d.value), 1) : 1,
+)
 
 const labelOffset = computed(() => (props.rowLabels.length ? 60 : 0))
 const headerOffset = computed(() => (props.colLabels.length ? 24 : 0))

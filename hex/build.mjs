@@ -32,6 +32,7 @@ const themes = [
   'compass',
   'briarcovelib',
   'forge',
+  'quizbit',
 ]
 
 const getThemeEntrypoints = (theme) => [

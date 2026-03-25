@@ -3,8 +3,11 @@
     <div
       class="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-4 text-[13px] text-text-dim sm:flex-row"
     >
-      <span>MIT License -- Amulet Laboratories</span>
-      <div class="flex gap-6">
+      <span>MIT License -- Amulet Laboratories -- v0.2.0</span>
+      <div class="flex flex-wrap gap-6">
+        <a href="/hexrig/story/" class="text-text-dim transition hover:text-text-muted"
+          >Playground</a
+        >
         <a
           href="https://github.com/Amulet-Laboratories/Rig"
           target="_blank"

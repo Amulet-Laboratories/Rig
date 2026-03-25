@@ -10,7 +10,7 @@ const persistentOpen = ref(false)
 </script>
 
 <template>
-  <Story title="Layout/Drawer" icon="lucide:panel-right-open" group="layout">
+  <Story title="Drawer" icon="lucide:panel-right-open" group="layout">
     <Variant title="Right (default)">
       <button @click="rightOpen = true">Open Right Drawer</button>
       <Drawer v-model:open="rightOpen" side="right" aria-label="Right drawer">

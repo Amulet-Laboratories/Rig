@@ -33,6 +33,13 @@
   --color-warning: #cca700;
   --color-info: #75beff;
 
+  /* Extended palette — semantic accents beyond the core four */
+  --color-purple: #8b5cf6;
+  --color-teal: #14b8a6;
+  --color-orange: #f97316;
+  --color-rose: #f43f5e;
+  --color-neutral: #78716c;
+
   /* Borders and focus — widget.border, input.border, focusBorder */
   --color-border: #2b2b2b;
   --color-input: #3c3c3c;
@@ -248,8 +255,12 @@
   --rig-activitybar-fg: var(--vsc-activitybar-fg);
   --rig-activitybar-inactive-fg: var(--vsc-activitybar-inactive-fg);
   --rig-activitybar-active-border: var(--vsc-activitybar-active-border);
+  --rig-activitybar-active-border-width: 3px;
+  --rig-activitybar-active-fg: var(--color-foreground);
   --rig-activitybar-badge-bg: var(--vsc-activitybar-badge-bg);
   --rig-activitybar-badge-fg: var(--vsc-activitybar-badge-fg);
+
+  --rig-sidebar-active-bg: var(--vsc-list-hover-bg);
 
   --rig-badge-bg: var(--vsc-badge-bg);
   --rig-badge-fg: var(--vsc-badge-fg);

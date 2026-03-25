@@ -19,6 +19,16 @@ const props = withDefaults(
     maxlength?: number
     /** Accessible label for the textarea (when no visible <label> is provided) */
     ariaLabel?: string
+    /** HTML name attribute (for form submission) */
+    name?: string
+    /** Whether the textarea is required */
+    required?: boolean
+    /** Browser autocomplete hint */
+    autocomplete?: string
+    /** Whether the current value is invalid (for form validation) */
+    invalid?: boolean
+    /** ID of an element describing the textarea (e.g. error message element) */
+    describedBy?: string
   }>(),
   {
     modelValue: '',
@@ -67,6 +77,11 @@ defineExpose({ focus })
       :placeholder="props.placeholder"
       :disabled="props.disabled"
       :rows="props.rows"
+      :name="props.name"
+      :required="props.required || undefined"
+      :autocomplete="props.autocomplete"
+      :aria-invalid="props.invalid || undefined"
+      :aria-describedby="props.describedBy || undefined"
       :aria-label="props.ariaLabel"
       :maxlength="props.maxlength || undefined"
       :style="{ resize: props.resize }"

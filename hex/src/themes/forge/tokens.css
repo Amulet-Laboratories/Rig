@@ -1,7 +1,7 @@
 /* Hex — Forge Design Tokens
  * 1980s spacecraft cockpit hardware — CRT phosphor displays, beige ABS plastic
  * housings, brushed aluminum channels, dark rubber gaskets.
- * Dark mode industrial theme — deep carbon hull, amber phosphor accents,
+ * Dark mode industrial theme — deep carbon hull, yellow phosphor accents,
  * IBM Plex instrument typography, machined 2px radii.
  *
  * Key palette:
@@ -11,9 +11,9 @@
  *   #3A3530  dark panel seam       — border
  *   #D4CCBA  warm off-white        — foreground (12.8:1 on base)
  *   #8A8478  mid warm gray         — muted foreground (5.8:1 on base)
- *   #FFB000  CRT amber phosphor    — primary accent (9.5:1 on base)
+ *   #E6C830  CRT yellow phosphor   — primary accent (h≈55)
  *   #33DD33  phosphor green        — success (9.6:1 on base)
- *   #FFBB22  bright amber          — warning (10.1:1 on base)
+ *   #FFCC44  bright yellow         — warning
  *   #FF4444  phosphor red          — destructive (5.4:1 on base)
  *   #4488FF  phosphor blue         — info (5.6:1 on base)
  *
@@ -30,8 +30,8 @@
   --color-popover: #2a2826;
   --color-popover-foreground: #d4ccba;
 
-  /* Brand — amber phosphor */
-  --color-primary: #ffb000;
+  /* Brand — yellow phosphor */
+  --color-primary: #e6c830;
   --color-primary-foreground: #0e0d0c;
 
   /* Soft accents */
@@ -39,20 +39,20 @@
   --color-secondary-foreground: #d4ccba;
   --color-muted: #1e1c1a;
   --color-muted-foreground: #8a8478;
-  --color-accent: #ffb000;
+  --color-accent: #e6c830;
   --color-accent-foreground: #0e0d0c;
 
   /* Semantic status */
   --color-destructive: #ff4444;
   --color-destructive-foreground: #0e0d0c;
   --color-success: #33dd33;
-  --color-warning: #ffbb22;
+  --color-warning: #ffcc44;
   --color-info: #4488ff;
 
   /* Borders and focus */
   --color-border: #3a3530;
   --color-input: #3a3530;
-  --color-ring: #ffb000;
+  --color-ring: #e6c830;
 
   /* Typography — IBM Plex instrument family */
   --font-mono: 'IBM Plex Mono', 'Courier New', ui-monospace, monospace;
@@ -87,22 +87,22 @@
   --card-foreground: #d4ccba;
   --popover: #2a2826;
   --popover-foreground: #d4ccba;
-  --primary: #ffb000;
+  --primary: #e6c830;
   --primary-foreground: #0e0d0c;
   --secondary: #1e1c1a;
   --secondary-foreground: #d4ccba;
   --muted: #1e1c1a;
   --muted-foreground: #8a8478;
-  --accent: #ffb000;
+  --accent: #e6c830;
   --accent-foreground: #0e0d0c;
   --destructive: #ff4444;
   --destructive-foreground: #0e0d0c;
   --success: #33dd33;
-  --warning: #ffbb22;
+  --warning: #ffcc44;
   --info: #4488ff;
   --border: #3a3530;
   --input: #3a3530;
-  --ring: #ffb000;
+  --ring: #e6c830;
 
   /* Typography — IDE-density type scale */
   --font-size-2xs: 0.625rem;
@@ -159,8 +159,8 @@
   --forge-text: #d4ccba;
   --forge-text-mid: #8a8478;
   --forge-text-dim: #5a5548;
-  --forge-amber: #ffb000;
-  --forge-amber-bright: #ffcc44;
+  --forge-yellow: #e6c830;
+  --forge-yellow-bright: #f0d84a;
   --forge-green: #33dd33;
   --forge-red: #ff4444;
   --forge-blue: #4488ff;
@@ -173,6 +173,6 @@
   --rig-scrollbar-thumb: rgba(212, 204, 186, 0.15);
   --rig-scrollbar-thumb-hover: rgba(212, 204, 186, 0.28);
 
-  /* Button — slightly dimmed amber for hover */
-  --rig-button-hover-bg: #cc8c00;
+  /* Button — slightly dimmed yellow for hover */
+  --rig-button-hover-bg: #c4aa28;
 }
