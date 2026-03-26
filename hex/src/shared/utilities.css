@@ -151,10 +151,43 @@
   transition-duration: 0.1s;
 }
 
+/* ───────── CTA Ghost (borderless) ───────── */
+
+[data-rig-button][data-variant='cta-ghost'] {
+  cursor: pointer;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  color: var(--color-foreground);
+  padding: 1rem 2.25rem;
+  border-radius: var(--radius, 4px);
+  transition:
+    background 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-rig-button][data-variant='cta-ghost']:hover {
+  background: var(--color-foreground);
+  color: var(--color-background);
+  transform: translateY(-1px);
+}
+
+[data-rig-button][data-variant='cta-ghost']:active {
+  transform: translateY(0.5px);
+  transition-duration: 0.1s;
+}
+
 /* ───────── Focus rings for CTAs ───────── */
 
 [data-rig-button][data-variant='cta']:focus-visible,
-[data-rig-button][data-variant='cta-light']:focus-visible {
+[data-rig-button][data-variant='cta-light']:focus-visible,
+[data-rig-button][data-variant='cta-ghost']:focus-visible {
   outline: 2px solid var(--color-ring, var(--color-primary));
   outline-offset: 3px;
 }
@@ -179,6 +212,20 @@
   );
 }
 
+/* ───────── Gradient overlays ───────── */
+
+.overlay-bottom {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
+}
+
+.overlay-full {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-background) 70%, transparent) 0%,
+    color-mix(in srgb, var(--color-background) 90%, transparent) 100%
+  );
+}
+
 /* ───────── Typography utilities ───────── */
 
 .font-smallcaps {
@@ -189,12 +236,14 @@
 
 @media (prefers-reduced-motion: reduce) {
   [data-rig-button][data-variant='cta']:hover,
-  [data-rig-button][data-variant='cta-light']:hover {
+  [data-rig-button][data-variant='cta-light']:hover,
+  [data-rig-button][data-variant='cta-ghost']:hover {
     transform: none;
   }
 
   [data-rig-button][data-variant='cta']:active,
-  [data-rig-button][data-variant='cta-light']:active {
+  [data-rig-button][data-variant='cta-light']:active,
+  [data-rig-button][data-variant='cta-ghost']:active {
     transform: none;
   }
 

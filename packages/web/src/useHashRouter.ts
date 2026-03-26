@@ -1,4 +1,4 @@
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, type Ref } from 'vue'
 
 /**
  * useHashRouter — hash-based page routing composable.
@@ -16,7 +16,10 @@ export interface UseHashRouterOptions {
   prefix?: string
 }
 
-export function useHashRouter(options: UseHashRouterOptions) {
+export function useHashRouter(options: UseHashRouterOptions): {
+  currentPage: Ref<string>
+  navigateTo: (page: string) => void
+} {
   const { pages, prefix = '' } = options
   const defaultPage = options.defaultPage ?? pages[0]?.id ?? 'home'
   const currentPage = ref(defaultPage)

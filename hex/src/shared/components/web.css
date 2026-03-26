@@ -37,6 +37,7 @@
 
 [data-rig-hero-eyebrow] {
   color: var(--color-accent);
+  letter-spacing: var(--tracking-caps, 0.1em);
 }
 
 [data-rig-testimonial-attribution] p:first-child {
@@ -614,6 +615,25 @@
 
 [data-rig-site-footer-pre] {
   /* Consumer styles — accent stripe, emergency banner, etc. */
+}
+
+[data-rig-site-footer-social] {
+  max-width: var(--site-max-width, 80rem);
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+[data-rig-site-footer-social] a {
+  color: var(--color-primary-foreground);
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+[data-rig-site-footer-social] a:hover {
+  opacity: 1;
 }
 
 [data-rig-site-footer-post] {
@@ -1244,6 +1264,7 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+  letter-spacing: var(--tracking-heading, 0);
 }
 
 [data-rig-flanked-heading-ornament] {
@@ -1686,4 +1707,61 @@
 [data-rig-map-description] {
   font-size: 0.8125rem;
   color: var(--color-muted-foreground);
+}
+
+/* ───────── NewsletterForm ───────── */
+
+[data-rig-newsletter-form-body] {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+[data-rig-newsletter-form-body] [data-rig-input] {
+  flex: 1;
+}
+
+[data-rig-newsletter-form-success] {
+  color: var(--color-muted-foreground);
+  font-size: 0.875rem;
+}
+
+[data-rig-newsletter-form-error] {
+  color: var(--color-destructive);
+  font-size: 0.8125rem;
+  margin-top: 0.5rem;
+}
+
+/* ───────── ToggleGroup (web context) ───────── */
+
+[data-rig-site-shell] [data-rig-toggle-group] {
+  display: inline-flex;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+[data-rig-site-shell] [data-rig-toggle] {
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+[data-rig-site-shell] [data-rig-toggle][data-state='on'] {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+[data-rig-site-shell] [data-rig-toggle][data-state='off'] {
+  background: transparent;
+  color: var(--color-foreground);
+}
+
+[data-rig-site-shell] [data-rig-toggle][data-state='off']:hover {
+  background: var(--color-secondary);
 }

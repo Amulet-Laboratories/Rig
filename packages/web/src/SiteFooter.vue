@@ -31,6 +31,10 @@ defineProps<{
       </div>
     </div>
 
+    <div v-if="$slots['social']" data-rig-site-footer-social>
+      <slot name="social" />
+    </div>
+
     <div v-if="$slots['post-footer']" data-rig-site-footer-post>
       <slot name="post-footer" />
     </div>
