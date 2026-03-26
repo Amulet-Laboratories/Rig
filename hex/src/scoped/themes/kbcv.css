@@ -58,6 +58,9 @@
   --font-size-xl--line-height: 1.25;
   --font-display: var(--font-sans);
   --radius: 6px;
+  --tracking-heading: 0.15em;
+  --tracking-display: 0.2em;
+  --tracking-caps: 0.3em;
   --background: #f7f3ee;
   --foreground: #2a2521;
   --card: #edeae4;

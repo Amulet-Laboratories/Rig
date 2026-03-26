@@ -10,7 +10,7 @@
  *   #E2DCD0  sandstone       — secondary, muted
  *   #2B2622  umber           — foreground text
  *   #6B6054  driftwood       — muted foreground
- *   #9E5229  sienna          — primary, ring
+ *   #A5562E  sienna          — primary, ring
  *   #3A6B8C  slate blue      — accent
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
@@ -24,7 +24,7 @@
   --color-card-foreground: #2b2622;
   --color-popover: #ffffff;
   --color-popover-foreground: #2b2622;
-  --color-primary: #9e5229;
+  --color-primary: #a5562e;
   --color-primary-foreground: #faf8f4;
   --color-secondary: #e2dcd0;
   --color-secondary-foreground: #2b2622;
@@ -39,7 +39,7 @@
   --color-info: #3a6b8c;
   --color-border: #d0c8ba;
   --color-input: #d0c8ba;
-  --color-ring: #9e5229;
+  --color-ring: #a5562e;
   --font-sans: 'Cabin', 'Inter', system-ui, sans-serif;
   --font-mono: 'Cabin', 'SF Mono', ui-monospace, monospace;
   --font-serif: 'Bitter', Georgia, serif;
@@ -64,7 +64,7 @@
   --card-foreground: #2b2622;
   --popover: #ffffff;
   --popover-foreground: #2b2622;
-  --primary: #9e5229;
+  --primary: #a5562e;
   --primary-foreground: #faf8f4;
   --secondary: #e2dcd0;
   --secondary-foreground: #2b2622;
@@ -79,7 +79,7 @@
   --info: #3a6b8c;
   --border: #d0c8ba;
   --input: #d0c8ba;
-  --ring: #9e5229;
+  --ring: #a5562e;
   --text-2xs: 0.625rem;
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
@@ -103,7 +103,7 @@
   --bl-sandstone: #e2dcd0;
   --bl-umber: #2b2622;
   --bl-driftwood: #6b6054;
-  --bl-sienna: #9e5229;
+  --bl-sienna: #a5562e;
   --bl-slate: #3a6b8c;
   --rig-button-hover-bg: #e2dcd0;
   --rig-scrollbar-thumb: rgba(43, 38, 34, 0.12);

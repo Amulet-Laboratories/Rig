@@ -9,10 +9,10 @@
  *   #FAF7F2  linen white     — background
  *   #E8E0D4  warm sand       — secondary, muted
  *   #B5A898  driftwood       — soft neutral
- *   #5B7575  muted cyan      — muted foreground
+ *   #6A8888  muted cyan      — muted foreground
  *   #2C2420  charcoal brown  — foreground text
  *   #1A7A7A  true cyan       — primary brand
- *   #B7523D  terracotta      — accent, destructive
+ *   #C4634F  terracotta      — accent, destructive
  *   #7A9E7E  sage            — success
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
@@ -31,10 +31,10 @@
   --color-secondary: #e8e0d4;
   --color-secondary-foreground: #2c2420;
   --color-muted: #e8e0d4;
-  --color-muted-foreground: #5b7575;
-  --color-accent: #b7523d;
+  --color-muted-foreground: #6a8888;
+  --color-accent: #c4634f;
   --color-accent-foreground: #fffdf8;
-  --color-destructive: #b7523d;
+  --color-destructive: #c4634f;
   --color-destructive-foreground: #fffdf8;
   --color-success: #7a9e7e;
   --color-warning: #d4a843;
@@ -71,10 +71,10 @@
   --secondary: #e8e0d4;
   --secondary-foreground: #2c2420;
   --muted: #e8e0d4;
-  --muted-foreground: #5b7575;
-  --accent: #b7523d;
+  --muted-foreground: #6a8888;
+  --accent: #c4634f;
   --accent-foreground: #fffdf8;
-  --destructive: #b7523d;
+  --destructive: #c4634f;
   --destructive-foreground: #fffdf8;
   --success: #7a9e7e;
   --warning: #d4a843;
@@ -104,9 +104,9 @@
   --tm-sand: #e8e0d4;
   --tm-driftwood: #b5a898;
   --tm-charcoal: #2c2420;
-  --tm-clay: #5b7575;
+  --tm-clay: #6a8888;
   --tm-cyan: #1a7a7a;
-  --tm-terracotta: #b7523d;
+  --tm-terracotta: #c4634f;
   --tm-sage: #7a9e7e;
   --rig-button-hover-bg: #156a6a;
   --rig-button-hover-fg: #fffdf8;

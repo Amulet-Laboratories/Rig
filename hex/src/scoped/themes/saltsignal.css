@@ -11,7 +11,7 @@
  *   #FFFCF4  warm white  — card, popover
  *   #2A2210  dark roast  — foreground text
  *   #7A6A4A  leather     — muted foreground
- *   #846008  amber       — primary, ring
+ *   #B8860B  amber       — primary, ring
  *   #3D6B4F  green       — accent, success
  *   #B84233  red         — destructive
  *
@@ -26,7 +26,7 @@
   --color-card-foreground: #2a2210;
   --color-popover: #fffcf4;
   --color-popover-foreground: #2a2210;
-  --color-primary: #846008;
+  --color-primary: #b8860b;
   --color-primary-foreground: #fffcf4;
   --color-secondary: #ede4d4;
   --color-secondary-foreground: #2a2210;
@@ -41,7 +41,7 @@
   --color-info: #5a7aaa;
   --color-border: #d8ccb0;
   --color-input: #d8ccb0;
-  --color-ring: #846008;
+  --color-ring: #b8860b;
   --font-sans: 'Nunito Sans', 'Inter', system-ui, sans-serif;
   --font-mono: 'Anybody', 'DM Mono', ui-monospace, monospace;
   --font-serif: 'Fraunces', Georgia, serif;
@@ -66,7 +66,7 @@
   --card-foreground: #2a2210;
   --popover: #fffcf4;
   --popover-foreground: #2a2210;
-  --primary: #846008;
+  --primary: #b8860b;
   --primary-foreground: #fffcf4;
   --secondary: #ede4d4;
   --secondary-foreground: #2a2210;
@@ -81,7 +81,7 @@
   --info: #5a7aaa;
   --border: #d8ccb0;
   --input: #d8ccb0;
-  --ring: #846008;
+  --ring: #b8860b;
   --text-2xs: 0.625rem;
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
@@ -105,7 +105,7 @@
   --ss-warm-white: #fffcf4;
   --ss-dark-roast: #2a2210;
   --ss-leather: #7a6a4a;
-  --ss-amber: #846008;
+  --ss-amber: #b8860b;
   --ss-green: #3d6b4f;
   --ss-red: #b84233;
   --rig-button-hover-bg: #ede4d4;

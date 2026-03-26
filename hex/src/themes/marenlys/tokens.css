@@ -73,6 +73,11 @@
   --font-display: var(--font-sans);
 
   --radius: 0px;
+
+  /* Tracking — letter-spacing for heading typography */
+  --tracking-heading: 0.1em;
+  --tracking-display: 0.15em;
+  --tracking-caps: 0.2em;
 }
 
 :root {

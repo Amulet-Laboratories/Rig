@@ -1,0 +1,171 @@
+/* Hex — Root & Remedy Design Tokens
+ * Medical cannabis dispensary. Midnight apothecary with sage and copper.
+ * Deep navy base, warm parchment text, botanical sage primary, earthy copper accent.
+ * Clinical yet warm — a pharmacy that feels like a sanctuary.
+ *
+ * Full palette (7 swatch colors):
+ *   #0B1222  midnight        — background
+ *   #141D30  indigo          — card, popover
+ *   #1E2A40  slate           — secondary, muted
+ *   #ECE8E1  parchment       — foreground text
+ *   #8B92A0  cool slate      — muted foreground
+ *   #7BA68E  sage            — primary, ring
+ *   #D4A574  copper          — accent
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #0b1222;
+  --color-foreground: #ece8e1;
+  --color-card: #141d30;
+  --color-card-foreground: #ece8e1;
+  --color-popover: #141d30;
+  --color-popover-foreground: #ece8e1;
+
+  /* Brand */
+  --color-primary: #7ba68e;
+  --color-primary-foreground: #0b1222;
+
+  /* Soft accents */
+  --color-secondary: #1e2a40;
+  --color-secondary-foreground: #ece8e1;
+  --color-muted: #1e2a40;
+  --color-muted-foreground: #8b92a0;
+  --color-accent: #d4a574;
+  --color-accent-foreground: #0b1222;
+
+  /* Semantic status */
+  --color-destructive: #c44040;
+  --color-destructive-foreground: #ece8e1;
+  --color-success: #7ba68e;
+  --color-warning: #d4a574;
+  --color-info: #6b8faa;
+
+  /* Borders and focus */
+  --color-border: #2a3650;
+  --color-input: #2a3650;
+  --color-ring: #7ba68e;
+
+  /* Typography */
+  --font-sans: 'Cabin', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Newsreader', 'Georgia', serif;
+  --font-heading: 'Newsreader', 'Georgia', serif;
+
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-serif);
+
+  --radius: 8px;
+}
+
+:root {
+  --background: #0b1222;
+  --foreground: #ece8e1;
+  --card: #141d30;
+  --card-foreground: #ece8e1;
+  --popover: #141d30;
+  --popover-foreground: #ece8e1;
+  --primary: #7ba68e;
+  --primary-foreground: #0b1222;
+  --secondary: #1e2a40;
+  --secondary-foreground: #ece8e1;
+  --muted: #1e2a40;
+  --muted-foreground: #8b92a0;
+  --accent: #d4a574;
+  --accent-foreground: #0b1222;
+  --destructive: #c44040;
+  --destructive-foreground: #ece8e1;
+  --success: #7ba68e;
+  --warning: #d4a574;
+  --info: #6b8faa;
+  --border: #2a3650;
+  --input: #2a3650;
+  --ring: #7ba68e;
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-serif);
+
+  --radius: 8px;
+
+  /* Typography — IDE-density type scale (shorthand aliases) */
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --font-display: var(--font-serif);
+  --font-sans: 'Cabin', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Newsreader', 'Georgia', serif;
+  --font-heading: 'Newsreader', 'Georgia', serif;
+
+  /* ── Named palette aliases ──────────────────────────────────────────────
+   * All 7 swatch colors available for direct template use.
+   */
+  --rr-midnight: #0b1222;
+  --rr-indigo: #141d30;
+  --rr-slate: #1e2a40;
+  --rr-parchment: #ece8e1;
+  --rr-cool-slate: #8b92a0;
+  --rr-sage: #7ba68e;
+  --rr-copper: #d4a574;
+
+  /* ── Rig component token bridge ─────────────────────────────────────────
+   * Overrides shared/tokens.css defaults where the Root & Remedy palette needs
+   * values that can't be derived directly from --color-* semantics.
+   */
+
+  /* Site footer — card background, not primary */
+  --site-footer-bg: var(--color-card);
+  --site-footer-color: var(--color-foreground);
+
+  /* Button — slate for hover feedback */
+  --rig-button-hover-bg: #1e2a40;
+
+  /* Scrollbar — parchment tint for dark mode */
+  --rig-scrollbar-thumb: rgba(236, 232, 225, 0.1);
+  --rig-scrollbar-thumb-hover: rgba(236, 232, 225, 0.2);
+}

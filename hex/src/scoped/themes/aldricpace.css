@@ -59,6 +59,9 @@
   --font-size-xl--line-height: 1.25;
   --font-display: var(--font-sans);
   --radius: 3px;
+  --tracking-heading: 0.05em;
+  --tracking-display: 0.1em;
+  --tracking-caps: 0.15em;
   --background: #fafbfc;
   --foreground: #1b2033;
   --card: #f2f4f7;
@@ -110,6 +113,4 @@
   --rig-button-hover-bg: #e6e9ef;
   --rig-scrollbar-thumb: rgba(27, 32, 51, 0.12);
   --rig-scrollbar-thumb-hover: rgba(27, 32, 51, 0.25);
-  --site-nav-utility-bg: var(--color-primary);
-  --site-max-width: 64rem;
 }

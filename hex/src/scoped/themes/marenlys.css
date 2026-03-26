@@ -9,7 +9,7 @@
  *   #FAF5F8  pink tint       — card
  *   #F2E8F0  blush           — secondary, muted
  *   #1A0A18  dark magenta    — foreground text
- *   #846578  mauve           — muted foreground
+ *   #8A6A80  mauve           — muted foreground
  *   #E5D5E0  rose border     — borders
  *   #C43A8A  magenta-pink    — primary, accent
  *
@@ -29,7 +29,7 @@
   --color-secondary: #f2e8f0;
   --color-secondary-foreground: #1a0a18;
   --color-muted: #f2e8f0;
-  --color-muted-foreground: #846578;
+  --color-muted-foreground: #8a6a80;
   --color-accent: #c43a8a;
   --color-accent-foreground: #ffffff;
   --color-destructive: #cc4444;
@@ -58,6 +58,9 @@
   --font-size-xl--line-height: 1.25;
   --font-display: var(--font-sans);
   --radius: 0px;
+  --tracking-heading: 0.1em;
+  --tracking-display: 0.15em;
+  --tracking-caps: 0.2em;
   --background: #fafafa;
   --foreground: #1a0a18;
   --card: #faf5f8;
@@ -69,7 +72,7 @@
   --secondary: #f2e8f0;
   --secondary-foreground: #1a0a18;
   --muted: #f2e8f0;
-  --muted-foreground: #846578;
+  --muted-foreground: #8a6a80;
   --accent: #c43a8a;
   --accent-foreground: #ffffff;
   --destructive: #cc4444;
@@ -102,11 +105,10 @@
   --ml-pink-tint: #faf5f8;
   --ml-blush: #f2e8f0;
   --ml-dark-magenta: #1a0a18;
-  --ml-mauve: #846578;
+  --ml-mauve: #8a6a80;
   --ml-rose-border: #e5d5e0;
   --ml-magenta: #c43a8a;
   --rig-button-hover-bg: #f2e8f0;
   --rig-scrollbar-thumb: rgba(26, 10, 24, 0.08);
   --rig-scrollbar-thumb-hover: rgba(26, 10, 24, 0.18);
-  --site-max-width: 64rem;
 }

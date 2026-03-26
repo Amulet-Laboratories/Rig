@@ -1,0 +1,111 @@
+/* Hex — Root & Remedy Base Styles
+ * Midnight apothecary — Newsreader display, Cabin body.
+ */
+
+@reference 'tailwindcss';
+@reference './tokens.css';
+
+html {
+  font-size: 16px;
+}
+
+html,
+body {
+  @apply bg-background text-foreground font-sans;
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 700;
+  font-family: var(--font-serif);
+  color: var(--color-foreground);
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 36px;
+  font-weight: 700;
+  font-family: var(--font-serif);
+  color: var(--color-foreground);
+  margin: 0;
+  padding: 0;
+  line-height: 1.15;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-foreground) 12%, transparent);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--color-foreground) 22%, transparent);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+::selection {
+  background: color-mix(in srgb, var(--color-primary) 35%, transparent);
+  color: var(--color-foreground);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--color-foreground) 12%, transparent) transparent;
+}
+
+@keyframes scroll-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.scroll-reveal {
+  animation: scroll-fade-in linear both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 30%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

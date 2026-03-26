@@ -10,7 +10,7 @@
  *   #121A22  cold graphite  — card, popover
  *   #1A2430  cold charcoal  — secondary, muted
  *   #4A6478  dim            — subtle text
- *   #7090A2  steel          — muted foreground
+ *   #6A8494  steel          — muted foreground
  *   #3CC8B4  teal-cyan      — primary, accent, ring (h≈170)
  *   #D8E4EC  cool white     — foreground text
  *
@@ -30,10 +30,10 @@
   --color-secondary: #1a2430;
   --color-secondary-foreground: #d8e4ec;
   --color-muted: #1a2430;
-  --color-muted-foreground: #7090a2;
+  --color-muted-foreground: #6a8494;
   --color-accent: #d4a040;
   --color-accent-foreground: #0a0f14;
-  --color-destructive: #c94545;
+  --color-destructive: #e05555;
   --color-destructive-foreground: #d8e4ec;
   --color-success: #2db87a;
   --color-warning: #d4a040;
@@ -58,6 +58,9 @@
   --font-size-xl--line-height: 1.25;
   --font-display: var(--font-sans);
   --radius: 2px;
+  --tracking-heading: 0.1em;
+  --tracking-display: 0.15em;
+  --tracking-caps: 0.3em;
   --background: #0a0f14;
   --foreground: #d8e4ec;
   --card: #121a22;
@@ -69,10 +72,10 @@
   --secondary: #1a2430;
   --secondary-foreground: #d8e4ec;
   --muted: #1a2430;
-  --muted-foreground: #7090a2;
-  --accent: #d4a040;
+  --muted-foreground: #6a8494;
+  --accent: #3cc8b4;
   --accent-foreground: #0a0f14;
-  --destructive: #c94545;
+  --destructive: #e05555;
   --destructive-foreground: #d8e4ec;
   --success: #2db87a;
   --warning: #d4a040;
@@ -101,7 +104,7 @@
   --dk-black: #0a0f14;
   --dk-graphite: #121a22;
   --dk-charcoal: #1a2430;
-  --dk-steel: #7090a2;
+  --dk-steel: #6a8494;
   --dk-dim: #4a6478;
   --dk-cyan: #3cc8b4;
   --dk-white: #d8e4ec;
@@ -113,5 +116,4 @@
   --rig-button-secondary-hover-fg: var(--color-foreground);
   --rig-scrollbar-thumb: rgba(216, 228, 236, 0.1);
   --rig-scrollbar-thumb-hover: rgba(216, 228, 236, 0.22);
-  --site-footer-color: var(--color-background);
 }

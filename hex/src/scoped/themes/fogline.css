@@ -1,0 +1,120 @@
+/* Hex — fogline (scoped) */
+
+/* Hex — Fogline Design Tokens
+ * Warm espresso dark mode. The only brown-toned dark theme in Hex.
+ * Feels like the inside of a dimly lit roastery at dawn — deep
+ * espresso background, crema gold primary, patina copper accent.
+ *
+ * Full palette (8 swatch colors):
+ *   #16120e  deep espresso   — background
+ *   #1e1914  dark roast      — card, popover
+ *   #2a231c  walnut          — secondary, muted
+ *   #ede4d8  steamed milk    — foreground text
+ *   #9a8b78  warm taupe      — muted foreground
+ *   #c8a265  crema gold      — primary, ring
+ *   #d4843a  patina copper   — accent
+ *   #c44830  ember red       — destructive
+ *
+ * Font pairing: DM Sans (sans) + Cormorant Garamond (serif/heading)
+ * Radius: 4px — precise, not fussy
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ */
+
+[data-hex-theme='fogline'] {
+  --color-background: #16120e;
+  --color-foreground: #ede4d8;
+  --color-card: #1e1914;
+  --color-card-foreground: #ede4d8;
+  --color-popover: #1e1914;
+  --color-popover-foreground: #ede4d8;
+  --color-primary: #c8a265;
+  --color-primary-foreground: #16120e;
+  --color-secondary: #2a231c;
+  --color-secondary-foreground: #ede4d8;
+  --color-muted: #2a231c;
+  --color-muted-foreground: #9a8b78;
+  --color-accent: #d4843a;
+  --color-accent-foreground: #16120e;
+  --color-destructive: #c44830;
+  --color-destructive-foreground: #ede4d8;
+  --color-success: #5a8a5c;
+  --color-warning: #d4a040;
+  --color-info: #5a8ab0;
+  --color-border: #362e26;
+  --color-input: #362e26;
+  --color-ring: #c8a265;
+  --font-sans: 'DM Sans', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+  --font-display: var(--font-sans);
+  --radius: 4px;
+  --background: #16120e;
+  --foreground: #ede4d8;
+  --card: #1e1914;
+  --card-foreground: #ede4d8;
+  --popover: #1e1914;
+  --popover-foreground: #ede4d8;
+  --primary: #c8a265;
+  --primary-foreground: #16120e;
+  --secondary: #2a231c;
+  --secondary-foreground: #ede4d8;
+  --muted: #2a231c;
+  --muted-foreground: #9a8b78;
+  --accent: #d4843a;
+  --accent-foreground: #16120e;
+  --destructive: #c44830;
+  --destructive-foreground: #ede4d8;
+  --success: #5a8a5c;
+  --warning: #d4a040;
+  --info: #5a8ab0;
+  --border: #362e26;
+  --input: #362e26;
+  --ring: #c8a265;
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --fl-espresso: #16120e;
+  --fl-roast: #1e1914;
+  --fl-walnut: #2a231c;
+  --fl-milk: #ede4d8;
+  --fl-taupe: #9a8b78;
+  --fl-crema: #c8a265;
+  --fl-copper: #d4843a;
+  --fl-ember: #c44830;
+  --rig-button-hover-bg: #362e26;
+  --rig-scrollbar-thumb: rgba(237, 228, 216, 0.1);
+  --rig-scrollbar-thumb-hover: rgba(237, 228, 216, 0.2);
+  --section-divider-fill: #1e1914;
+  --section-divider-bg: #16120e;
+  --ornament-color: #c8a265;
+  --flanked-heading-stroke: #362e26;
+}

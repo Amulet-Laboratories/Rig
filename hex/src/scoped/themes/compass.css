@@ -10,8 +10,8 @@
  *   #E0ECE0  pale eucalyptus  — secondary, muted
  *   #1A2A1A  deep moss        — foreground text
  *   #4A6A4A  fern             — muted foreground
- *   #2B743B  true green       — primary, ring
- *   #BB572D  warm coral       — accent, action
+ *   #2D7A3E  true green       — primary, ring
+ *   #D16B3F  warm coral       — accent, action
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
@@ -24,22 +24,22 @@
   --color-card-foreground: #1a2a1a;
   --color-popover: #ffffff;
   --color-popover-foreground: #1a2a1a;
-  --color-primary: #2b743b;
+  --color-primary: #2d7a3e;
   --color-primary-foreground: #f8fdf6;
   --color-secondary: #e0ece0;
   --color-secondary-foreground: #1a2a1a;
   --color-muted: #e0ece0;
   --color-muted-foreground: #4a6a4a;
-  --color-accent: #bb572d;
+  --color-accent: #d16b3f;
   --color-accent-foreground: #f8fdf6;
   --color-destructive: #cc3b3b;
   --color-destructive-foreground: #f8fdf6;
-  --color-success: #2b743b;
+  --color-success: #2d7a3e;
   --color-warning: #d4a030;
   --color-info: #4a7a9e;
   --color-border: #c0d8c0;
   --color-input: #c0d8c0;
-  --color-ring: #2b743b;
+  --color-ring: #2d7a3e;
   --font-sans: 'Outfit', 'Inter', system-ui, sans-serif;
   --font-mono: 'Outfit', 'SF Mono', ui-monospace, monospace;
   --font-serif: 'Atkinson Hyperlegible', 'Inter', system-ui, sans-serif;
@@ -64,22 +64,22 @@
   --card-foreground: #1a2a1a;
   --popover: #ffffff;
   --popover-foreground: #1a2a1a;
-  --primary: #2b743b;
+  --primary: #2d7a3e;
   --primary-foreground: #f8fdf6;
   --secondary: #e0ece0;
   --secondary-foreground: #1a2a1a;
   --muted: #e0ece0;
   --muted-foreground: #4a6a4a;
-  --accent: #bb572d;
+  --accent: #d16b3f;
   --accent-foreground: #f8fdf6;
   --destructive: #cc3b3b;
   --destructive-foreground: #f8fdf6;
-  --success: #2b743b;
+  --success: #2d7a3e;
   --warning: #d4a030;
   --info: #4a7a9e;
   --border: #c0d8c0;
   --input: #c0d8c0;
-  --ring: #2b743b;
+  --ring: #2d7a3e;
   --text-2xs: 0.625rem;
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
@@ -103,8 +103,8 @@
   --ca-eucalyptus: #e0ece0;
   --ca-moss: #1a2a1a;
   --ca-fern: #4a6a4a;
-  --ca-green: #2b743b;
-  --ca-coral: #bb572d;
+  --ca-green: #2d7a3e;
+  --ca-coral: #d16b3f;
   --rig-button-hover-bg: #e0ece0;
   --rig-scrollbar-thumb: rgba(26, 42, 26, 0.12);
   --rig-scrollbar-thumb-hover: rgba(26, 42, 26, 0.25);
