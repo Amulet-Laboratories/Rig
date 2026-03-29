@@ -24,7 +24,7 @@
   --color-secondary: #282850;
   --color-secondary-foreground: #e8e8f0;
   --color-muted: #282850;
-  --color-muted-foreground: #9090b8;
+  --color-muted-foreground: #a4a4c8;
   --color-accent: #f868d8;
   --color-accent-foreground: #0a0a1e;
 
@@ -79,7 +79,7 @@
   --secondary: #282850;
   --secondary-foreground: #e8e8f0;
   --muted: #282850;
-  --muted-foreground: #9090b8;
+  --muted-foreground: #a4a4c8;
   --accent: #f868d8;
   --accent-foreground: #0a0a1e;
   --destructive: #f04848;
@@ -123,7 +123,7 @@
   --quizbit-gold: #f8d848;
   --quizbit-gold-light: #ffe878;
   --quizbit-pixel-white: #e8e8f0;
-  --quizbit-lavender: #9090b8;
+  --quizbit-lavender: #a4a4c8;
   --quizbit-magenta: #f868d8;
   --quizbit-green: #58d858;
   --quizbit-red: #f04848;

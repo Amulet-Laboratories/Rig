@@ -1,0 +1,179 @@
+/* Hex — Spinelight Base Styles
+ * Books and reading — Merriweather serif headings, Inter sans body. Literary.
+ */
+
+@reference 'tailwindcss';
+@reference './tokens.css';
+
+/* Base styles */
+html {
+  /* Keep 16px on <html> so Tailwind rem utilities stay correctly sized */
+  font-size: 16px;
+}
+
+html,
+body {
+  @apply bg-background text-foreground;
+
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  /* Literary reading: 16px body, weight 400, relaxed leading, sans body */
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  font-family: var(--font-sans);
+}
+
+/* Heading defaults — serif display headings */
+h1 {
+  font-size: 40px;
+  font-weight: 700;
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 600;
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: var(--font-serif);
+  color: var(--color-foreground);
+  margin: 0;
+  padding: 0;
+  line-height: 1.3;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-foreground) 12%, transparent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--color-foreground) 25%, transparent);
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  color: var(--color-foreground);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduced motion — disable animations and transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--color-foreground) 12%, transparent) transparent;
+}
+
+/* ───────── Scroll-draw SVG utility ───────── */
+
+@keyframes scroll-draw-in {
+  from {
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.scroll-draw path,
+.scroll-draw line,
+.scroll-draw polyline,
+.scroll-draw polygon,
+.scroll-draw circle,
+.scroll-draw ellipse {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: scroll-draw-in linear both;
+  animation-timeline: view();
+  animation-range: entry 20% cover 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-draw path,
+  .scroll-draw line,
+  .scroll-draw polyline,
+  .scroll-draw polygon,
+  .scroll-draw circle,
+  .scroll-draw ellipse {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ───────── Scroll-reveal utility ───────── */
+
+@keyframes scroll-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-reveal {
+  animation: scroll-fade-in linear both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 30%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

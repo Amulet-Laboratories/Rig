@@ -1,0 +1,172 @@
+/* Hex — Spinelight Design Tokens
+ * Books and reading. Deep navy structure with muted gold accents.
+ * Literary warmth — contemplative, refined, knowledge-forward.
+ *
+ * Full palette (10 swatch colors):
+ *   #F8F5EF  warm ivory       — background
+ *   #FFFFFF  white            — card, popover
+ *   #EFEAE0  warm parchment   — secondary
+ *   #E3DDD0  light taupe      — muted
+ *   #D6D0C4  warm border      — borders
+ *   #5A5A5A  neutral gray     — muted foreground
+ *   #161616  near-black       — foreground text
+ *   #3D4F6E  deep navy        — primary, ring
+ *   #C9A74F  muted gold       — accent
+ *   #2D3D58  darker navy      — hover
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #f8f5ef;
+  --color-foreground: #161616;
+  --color-card: #ffffff;
+  --color-card-foreground: #161616;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #161616;
+
+  /* Brand */
+  --color-primary: #3d4f6e;
+  --color-primary-foreground: #ffffff;
+
+  /* Soft accents */
+  --color-secondary: #efeae0;
+  --color-secondary-foreground: #161616;
+  --color-muted: #e3ddd0;
+  --color-muted-foreground: #5a5a5a;
+  --color-accent: #c9a74f;
+  --color-accent-foreground: #161616;
+
+  /* Semantic status */
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-info: #2563eb;
+
+  /* Borders and focus */
+  --color-border: #d6d0c4;
+  --color-input: #d6d0c4;
+  --color-ring: #3d4f6e;
+
+  /* Typography */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-serif: 'Merriweather', ui-serif, Georgia, serif;
+  --font-heading: 'Merriweather', ui-serif, Georgia, serif;
+
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-serif);
+
+  --radius: 6px;
+}
+
+:root {
+  --background: #f8f5ef;
+  --foreground: #161616;
+  --card: #ffffff;
+  --card-foreground: #161616;
+  --popover: #ffffff;
+  --popover-foreground: #161616;
+  --primary: #3d4f6e;
+  --primary-foreground: #ffffff;
+  --secondary: #efeae0;
+  --secondary-foreground: #161616;
+  --muted: #e3ddd0;
+  --muted-foreground: #5a5a5a;
+  --accent: #c9a74f;
+  --accent-foreground: #161616;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --success: #16a34a;
+  --warning: #d97706;
+  --info: #2563eb;
+  --border: #d6d0c4;
+  --input: #d6d0c4;
+  --ring: #3d4f6e;
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-serif);
+
+  --radius: 6px;
+
+  /* Typography — IDE-density type scale (shorthand aliases) */
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --font-display: var(--font-serif);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-serif: 'Merriweather', ui-serif, Georgia, serif;
+  --font-heading: 'Merriweather', ui-serif, Georgia, serif;
+
+  /* ── Named palette aliases ──────────────────────────────────────────────
+   * All 10 swatch colors available for direct template use.
+   */
+  --sl-ivory: #f8f5ef;
+  --sl-white: #ffffff;
+  --sl-parchment: #efeae0;
+  --sl-taupe: #e3ddd0;
+  --sl-border: #d6d0c4;
+  --sl-gray: #5a5a5a;
+  --sl-dark: #161616;
+  --sl-navy: #3d4f6e;
+  --sl-gold: #c9a74f;
+  --sl-navy-hover: #2d3d58;
+
+  /* ── Rig component token bridge ─────────────────────────────────────────
+   * Overrides shared/tokens.css defaults where the Spinelight palette needs
+   * values that can't be derived directly from --color-* semantics.
+   */
+
+  /* Button — darker navy for hover feedback */
+  --rig-button-hover-bg: #2d3d58;
+
+  /* Scrollbar — near-black tint for light mode */
+  --rig-scrollbar-thumb: rgba(22, 22, 22, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(22, 22, 22, 0.25);
+}

@@ -44,15 +44,21 @@ body::after {
   mix-blend-mode: multiply;
 }
 
-/* ── Headings — VT323 CRT with gold glow ── */
-h1 {
-  font-family: var(--font-heading);
-  font-size: 2.5rem;
-  font-weight: 400; /* VT323 is single-weight */
-  color: var(--color-primary);
+/* ── Headings — reset margins, keep font-family flexible ──
+ * Tailwind utilities (text-xl, font-bold, etc.) override font-family
+ * and weight, so base headings only reset margin/padding.
+ * Opt-in to VT323 CRT display style via `.heading-display`. */
+h1,
+h2,
+h3 {
   margin: 0;
   padding: 0;
-  line-height: 1.2;
+}
+
+/* Opt-in VT323 CRT display heading — apply with class="heading-display" */
+.heading-display {
+  font-family: var(--font-heading);
+  font-weight: 400;
   letter-spacing: 0.04em;
   text-shadow:
     0 0 10px rgba(248, 216, 72, 0.4),
@@ -60,27 +66,24 @@ h1 {
     2px 2px 0 rgba(0, 0, 0, 0.6);
 }
 
-h2 {
-  font-family: var(--font-heading);
-  font-size: 1.75rem;
-  font-weight: 400;
+h1.heading-display {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+h2.heading-display {
   color: var(--color-foreground);
-  margin: 0;
-  padding: 0;
+  font-size: 1.75rem;
   line-height: 1.3;
-  letter-spacing: 0.03em;
   text-shadow:
     0 0 8px rgba(248, 216, 72, 0.2),
     2px 2px 0 rgba(0, 0, 0, 0.5);
 }
 
-h3 {
-  font-family: var(--font-heading);
-  font-size: 1.375rem;
-  font-weight: 400;
+h3.heading-display {
   color: var(--color-foreground);
-  margin: 0;
-  padding: 0;
+  font-size: 1.375rem;
   line-height: 1.4;
   letter-spacing: 0.02em;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
@@ -109,10 +112,10 @@ details[class*='border'] {
   }
 }
 
-/* Cursor on interactive summaries and primary buttons */
-summary::before,
-a[class*='bg-primary']::before,
-button[class*='bg-primary']::before {
+/* Cursor on interactive summaries — details toggle only.
+ * Buttons/links handle their own icons via template SVGs;
+ * injecting a pseudo-element breaks flex alignment on those. */
+summary::before {
   content: '\25B6'; /* ▶ */
   display: inline-block;
   margin-right: 0.5em;
@@ -122,25 +125,16 @@ button[class*='bg-primary']::before {
   text-shadow: 0 0 6px rgba(248, 216, 72, 0.5);
 }
 
-/* Answer buttons get a subtle arrow on hover */
-button[class*='border'][class*='bg-card']::before {
-  content: '\25B6';
-  display: inline-block;
-  margin-right: 0.25em;
-  color: var(--color-primary);
-  font-size: 0.65em;
-  opacity: 0;
-  transition: opacity 0s; /* step snap, not smooth */
-}
-
-button[class*='border'][class*='bg-card']:hover::before {
-  opacity: 1;
-}
-
-/* ── Step transitions — pixel-snap, not smooth ── */
-a,
-button,
+/* ── Step transitions — pixel-snap on elements without Tailwind transitions.
+ * Elements with class="transition" use Tailwind's timing; these
+ * provide the retro step-snap only for unstyled interactive elements. */
 summary {
+  transition-timing-function: steps(3);
+  transition-duration: 0.1s;
+}
+
+a:not([class*='transition']),
+button:not([class*='transition']) {
   transition-timing-function: steps(3);
   transition-duration: 0.1s;
 }
@@ -205,16 +199,31 @@ html {
   scrollbar-color: var(--rig-scrollbar-thumb) transparent;
 }
 
-/* ── Links — gold with step hover ── */
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color 0.1s steps(2);
-}
+/* ── Links — gold with step hover ──
+ * Inside @layer base so Tailwind @layer utilities (text-*, bg-*) override it.
+ * NuxtLink "buttons" with explicit text-/bg- utility classes keep their colors. */
+@layer base {
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.1s steps(2);
+  }
 
-a:hover {
-  color: var(--quizbit-gold-light);
-  text-shadow: 0 0 8px rgba(248, 216, 72, 0.3);
+  a:hover {
+    color: var(--quizbit-gold-light);
+    text-shadow: 0 0 8px rgba(248, 216, 72, 0.3);
+  }
+
+  /* NuxtLink rendered as <a> with a solid primary background — force dark text.
+   * Tailwind utilities on <a> lose to the bare `a` rule above without this. */
+  a[class*='bg-primary'] {
+    color: var(--color-primary-foreground);
+  }
+
+  a[class*='bg-primary']:hover {
+    color: var(--color-primary-foreground);
+    text-shadow: none;
+  }
 }
 
 /* ── Progress bars — pixel-stepped fill ── */

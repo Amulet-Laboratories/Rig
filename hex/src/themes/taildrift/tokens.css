@@ -1,0 +1,172 @@
+/* Hex — Taildrift Design Tokens
+ * Pet care warmth. Soft amber leadership with dusty teal accents.
+ * Friendly, approachable, nature-grounded — suited for pet services and animal care.
+ *
+ * Full palette (10 swatch colors):
+ *   #F8F6F2  warm light gray  — background
+ *   #FFFFFF  white            — card, popover
+ *   #F0ECE4  warm beige       — secondary
+ *   #E6E0D6  light taupe      — muted
+ *   #DCD5C8  warm border      — borders
+ *   #7A6E5E  warm muted       — muted foreground
+ *   #2C2418  warm dark brown  — foreground text
+ *   #B88F42  soft amber       — primary, ring
+ *   #548383  dusty teal       — accent
+ *   #A07A30  darker amber     — hover
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #f8f6f2;
+  --color-foreground: #2c2418;
+  --color-card: #ffffff;
+  --color-card-foreground: #2c2418;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #2c2418;
+
+  /* Brand */
+  --color-primary: #b88f42;
+  --color-primary-foreground: #ffffff;
+
+  /* Soft accents */
+  --color-secondary: #f0ece4;
+  --color-secondary-foreground: #2c2418;
+  --color-muted: #e6e0d6;
+  --color-muted-foreground: #7a6e5e;
+  --color-accent: #548383;
+  --color-accent-foreground: #ffffff;
+
+  /* Semantic status */
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-info: #2563eb;
+
+  /* Borders and focus */
+  --color-border: #dcd5c8;
+  --color-input: #dcd5c8;
+  --color-ring: #b88f42;
+
+  /* Typography */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-heading: 'Lora', ui-serif, Georgia, serif;
+
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-serif);
+
+  --radius: 8px;
+}
+
+:root {
+  --background: #f8f6f2;
+  --foreground: #2c2418;
+  --card: #ffffff;
+  --card-foreground: #2c2418;
+  --popover: #ffffff;
+  --popover-foreground: #2c2418;
+  --primary: #b88f42;
+  --primary-foreground: #ffffff;
+  --secondary: #f0ece4;
+  --secondary-foreground: #2c2418;
+  --muted: #e6e0d6;
+  --muted-foreground: #7a6e5e;
+  --accent: #548383;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --success: #16a34a;
+  --warning: #d97706;
+  --info: #2563eb;
+  --border: #dcd5c8;
+  --input: #dcd5c8;
+  --ring: #b88f42;
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-serif);
+
+  --radius: 8px;
+
+  /* Typography — IDE-density type scale (shorthand aliases) */
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --font-display: var(--font-serif);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-heading: 'Lora', ui-serif, Georgia, serif;
+
+  /* ── Named palette aliases ──────────────────────────────────────────────
+   * All 10 swatch colors available for direct template use.
+   */
+  --td-light-gray: #f8f6f2;
+  --td-white: #ffffff;
+  --td-beige: #f0ece4;
+  --td-taupe: #e6e0d6;
+  --td-border: #dcd5c8;
+  --td-muted: #7a6e5e;
+  --td-dark: #2c2418;
+  --td-amber: #b88f42;
+  --td-teal: #548383;
+  --td-amber-hover: #a07a30;
+
+  /* ── Rig component token bridge ─────────────────────────────────────────
+   * Overrides shared/tokens.css defaults where the Taildrift palette needs
+   * values that can't be derived directly from --color-* semantics.
+   */
+
+  /* Button — darker amber for hover feedback */
+  --rig-button-hover-bg: #a07a30;
+
+  /* Scrollbar — warm brown tint for light mode */
+  --rig-scrollbar-thumb: rgba(44, 36, 24, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(44, 36, 24, 0.25);
+}

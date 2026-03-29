@@ -1,0 +1,172 @@
+/* Hex — Dermatica Design Tokens
+ * Warm rose palette for skincare and beauty content sites.
+ * Light mode theme — soft rose primary, mauve accent, warm neutrals.
+ *
+ * Full palette (10 swatch colors):
+ *   #faf8f6  warm off-white   — background
+ *   #ffffff  white            — card, popover
+ *   #f5efed  light rose tint  — secondary
+ *   #f0eae7  warm gray        — muted
+ *   #e8ddd8  warm border      — border, input
+ *   #c08585  soft rose        — primary
+ *   #b07070  darker rose      — hover
+ *   #a06b78  mauve            — accent
+ *   #8a7575  muted foreground — muted-foreground
+ *   #2d2424  warm dark brown  — foreground
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #faf8f6;
+  --color-foreground: #2d2424;
+  --color-card: #ffffff;
+  --color-card-foreground: #2d2424;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #2d2424;
+
+  /* Brand */
+  --color-primary: #c08585;
+  --color-primary-foreground: #ffffff;
+
+  /* Soft accents */
+  --color-secondary: #f5efed;
+  --color-secondary-foreground: #2d2424;
+  --color-muted: #f0eae7;
+  --color-muted-foreground: #8a7575;
+  --color-accent: #a06b78;
+  --color-accent-foreground: #ffffff;
+
+  /* Semantic status */
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-info: #2563eb;
+
+  /* Borders and focus */
+  --color-border: #e8ddd8;
+  --color-input: #e8ddd8;
+  --color-ring: #c08585;
+
+  /* Typography */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Typography — content-optimized type scale */
+  --font-size-2xs: 0.75rem;
+  --font-size-2xs--line-height: 1.5;
+  --font-size-xs: 0.8125rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.875rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 1rem;
+  --font-size-base--line-height: 1.7;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.5;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.4;
+
+  /* Display font family */
+  --font-display: var(--font-serif);
+
+  /* Radius */
+  --radius: 8px;
+}
+
+:root {
+  --background: #faf8f6;
+  --foreground: #2d2424;
+  --card: #ffffff;
+  --card-foreground: #2d2424;
+  --popover: #ffffff;
+  --popover-foreground: #2d2424;
+  --primary: #c08585;
+  --primary-foreground: #ffffff;
+  --secondary: #f5efed;
+  --secondary-foreground: #2d2424;
+  --muted: #f0eae7;
+  --muted-foreground: #8a7575;
+  --accent: #a06b78;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --success: #16a34a;
+  --warning: #d97706;
+  --info: #2563eb;
+  --border: #e8ddd8;
+  --input: #e8ddd8;
+  --ring: #c08585;
+
+  /* Typography — content-optimized type scale */
+  --font-size-2xs: 0.75rem;
+  --font-size-2xs--line-height: 1.5;
+  --font-size-xs: 0.8125rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.875rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 1rem;
+  --font-size-base--line-height: 1.7;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.5;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.4;
+
+  /* Display font family */
+  --font-display: var(--font-serif);
+
+  --radius: 8px;
+
+  /* Typography — content-optimized type scale (shorthand aliases) */
+  --text-2xs: 0.75rem;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --font-display: var(--font-serif);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* ── Named palette aliases ──────────────────────────────────────────────
+   * All 10 swatch colors available for direct template use.
+   */
+  --dermatica-off-white: #faf8f6;
+  --dermatica-white: #ffffff;
+  --dermatica-rose-tint: #f5efed;
+  --dermatica-warm-gray: #f0eae7;
+  --dermatica-warm-border: #e8ddd8;
+  --dermatica-soft-rose: #c08585;
+  --dermatica-dark-rose: #b07070;
+  --dermatica-mauve: #a06b78;
+  --dermatica-muted-fg: #8a7575;
+  --dermatica-dark-brown: #2d2424;
+
+  /* ── Rig component token bridge ─────────────────────────────────────────
+   * Overrides shared/tokens.css defaults where the Dermatica palette needs
+   * values that can't be derived directly from --color-* semantics.
+   */
+
+  /* Button — darker rose for hover feedback */
+  --rig-button-hover-bg: #b07070;
+
+  /* Scrollbar — warm brown tint */
+  --rig-scrollbar-thumb: rgba(45, 36, 36, 0.15);
+  --rig-scrollbar-thumb-hover: rgba(45, 36, 36, 0.3);
+}

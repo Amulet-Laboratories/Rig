@@ -1,0 +1,172 @@
+/* Hex — Hearthread Design Tokens
+ * Sage green palette for home and living content sites.
+ * Light mode theme — sage green primary, terracotta accent, warm cream neutrals.
+ *
+ * Full palette (10 swatch colors):
+ *   #f7f4ef  warm cream       — background
+ *   #ffffff  white            — card, popover
+ *   #f0ede6  warm beige       — secondary
+ *   #e8e4dc  light taupe      — muted
+ *   #ddd8cf  warm border      — border, input
+ *   #c17d5e  terracotta       — accent
+ *   #779572  sage green       — primary
+ *   #658560  darker sage      — hover
+ *   #7a7872  muted foreground — muted-foreground
+ *   #2a2a28  warm charcoal    — foreground
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #f7f4ef;
+  --color-foreground: #2a2a28;
+  --color-card: #ffffff;
+  --color-card-foreground: #2a2a28;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #2a2a28;
+
+  /* Brand */
+  --color-primary: #779572;
+  --color-primary-foreground: #ffffff;
+
+  /* Soft accents */
+  --color-secondary: #f0ede6;
+  --color-secondary-foreground: #2a2a28;
+  --color-muted: #e8e4dc;
+  --color-muted-foreground: #7a7872;
+  --color-accent: #c17d5e;
+  --color-accent-foreground: #ffffff;
+
+  /* Semantic status */
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-info: #2563eb;
+
+  /* Borders and focus */
+  --color-border: #ddd8cf;
+  --color-input: #ddd8cf;
+  --color-ring: #779572;
+
+  /* Typography */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Typography — content-optimized type scale */
+  --font-size-2xs: 0.75rem;
+  --font-size-2xs--line-height: 1.5;
+  --font-size-xs: 0.8125rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.875rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 1rem;
+  --font-size-base--line-height: 1.7;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.5;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.4;
+
+  /* Display font family */
+  --font-display: var(--font-serif);
+
+  /* Radius */
+  --radius: 8px;
+}
+
+:root {
+  --background: #f7f4ef;
+  --foreground: #2a2a28;
+  --card: #ffffff;
+  --card-foreground: #2a2a28;
+  --popover: #ffffff;
+  --popover-foreground: #2a2a28;
+  --primary: #779572;
+  --primary-foreground: #ffffff;
+  --secondary: #f0ede6;
+  --secondary-foreground: #2a2a28;
+  --muted: #e8e4dc;
+  --muted-foreground: #7a7872;
+  --accent: #c17d5e;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --success: #16a34a;
+  --warning: #d97706;
+  --info: #2563eb;
+  --border: #ddd8cf;
+  --input: #ddd8cf;
+  --ring: #779572;
+
+  /* Typography — content-optimized type scale */
+  --font-size-2xs: 0.75rem;
+  --font-size-2xs--line-height: 1.5;
+  --font-size-xs: 0.8125rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.875rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 1rem;
+  --font-size-base--line-height: 1.7;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.5;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.4;
+
+  /* Display font family */
+  --font-display: var(--font-serif);
+
+  --radius: 8px;
+
+  /* Typography — content-optimized type scale (shorthand aliases) */
+  --text-2xs: 0.75rem;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --font-display: var(--font-serif);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* ── Named palette aliases ──────────────────────────────────────────────
+   * All 10 swatch colors available for direct template use.
+   */
+  --hearthread-warm-cream: #f7f4ef;
+  --hearthread-white: #ffffff;
+  --hearthread-warm-beige: #f0ede6;
+  --hearthread-light-taupe: #e8e4dc;
+  --hearthread-warm-border: #ddd8cf;
+  --hearthread-terracotta: #c17d5e;
+  --hearthread-sage: #779572;
+  --hearthread-dark-sage: #658560;
+  --hearthread-muted-fg: #7a7872;
+  --hearthread-charcoal: #2a2a28;
+
+  /* ── Rig component token bridge ─────────────────────────────────────────
+   * Overrides shared/tokens.css defaults where the Hearthread palette needs
+   * values that can't be derived directly from --color-* semantics.
+   */
+
+  /* Button — darker sage for hover feedback */
+  --rig-button-hover-bg: #658560;
+
+  /* Scrollbar — warm charcoal tint */
+  --rig-scrollbar-thumb: rgba(42, 42, 40, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(42, 42, 40, 0.25);
+}

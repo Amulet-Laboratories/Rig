@@ -1,0 +1,25 @@
+/* Hex — Spinelight Domains */
+
+@reference 'tailwindcss';
+@reference './tokens.css';
+
+/* Content site — no domain accents needed */
+
+@media (width <= 700px) {
+  [data-rig-shell-grid] {
+    grid-template-areas:
+      'editor'
+      'panel'
+      'statusbar';
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto auto;
+  }
+
+  [data-rig-shell-activity] {
+    display: none;
+  }
+
+  [data-rig-shell-sidebar] {
+    display: none;
+  }
+}

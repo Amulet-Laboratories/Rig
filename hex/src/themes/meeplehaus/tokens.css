@@ -1,0 +1,172 @@
+/* Hex — Meeplehaus Design Tokens
+ * Board game lounge. Deep indigo leadership with warm amber accents.
+ * Strategic warmth — inviting, thoughtful, community-driven.
+ *
+ * Full palette (10 swatch colors):
+ *   #F5F3F0  warm off-white   — background
+ *   #FFFFFF  white            — card, popover
+ *   #EDEAE5  warm gray        — secondary
+ *   #E3DFD8  light taupe      — muted
+ *   #D8D4CC  warm border      — borders
+ *   #6B6B82  muted indigo     — muted foreground
+ *   #1A1A2E  near-black blue  — foreground text
+ *   #4A3F6B  deep indigo      — primary, ring
+ *   #D4A04A  warm amber       — accent
+ *   #3A3058  darker indigo    — hover
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: #f5f3f0;
+  --color-foreground: #1a1a2e;
+  --color-card: #ffffff;
+  --color-card-foreground: #1a1a2e;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1a1a2e;
+
+  /* Brand */
+  --color-primary: #4a3f6b;
+  --color-primary-foreground: #ffffff;
+
+  /* Soft accents */
+  --color-secondary: #edeae5;
+  --color-secondary-foreground: #1a1a2e;
+  --color-muted: #e3dfd8;
+  --color-muted-foreground: #6b6b82;
+  --color-accent: #d4a04a;
+  --color-accent-foreground: #1a1a2e;
+
+  /* Semantic status */
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-info: #2563eb;
+
+  /* Borders and focus */
+  --color-border: #d8d4cc;
+  --color-input: #d8d4cc;
+  --color-ring: #4a3f6b;
+
+  /* Typography */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-heading: 'Lora', ui-serif, Georgia, serif;
+
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-serif);
+
+  --radius: 8px;
+}
+
+:root {
+  --background: #f5f3f0;
+  --foreground: #1a1a2e;
+  --card: #ffffff;
+  --card-foreground: #1a1a2e;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a2e;
+  --primary: #4a3f6b;
+  --primary-foreground: #ffffff;
+  --secondary: #edeae5;
+  --secondary-foreground: #1a1a2e;
+  --muted: #e3dfd8;
+  --muted-foreground: #6b6b82;
+  --accent: #d4a04a;
+  --accent-foreground: #1a1a2e;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --success: #16a34a;
+  --warning: #d97706;
+  --info: #2563eb;
+  --border: #d8d4cc;
+  --input: #d8d4cc;
+  --ring: #4a3f6b;
+  /* Typography — IDE-density type scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font family */
+  --font-display: var(--font-serif);
+
+  --radius: 8px;
+
+  /* Typography — IDE-density type scale (shorthand aliases) */
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --font-display: var(--font-serif);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-heading: 'Lora', ui-serif, Georgia, serif;
+
+  /* ── Named palette aliases ──────────────────────────────────────────────
+   * All 10 swatch colors available for direct template use.
+   */
+  --mh-off-white: #f5f3f0;
+  --mh-white: #ffffff;
+  --mh-warm-gray: #edeae5;
+  --mh-taupe: #e3dfd8;
+  --mh-border: #d8d4cc;
+  --mh-muted-indigo: #6b6b82;
+  --mh-dark: #1a1a2e;
+  --mh-indigo: #4a3f6b;
+  --mh-amber: #d4a04a;
+  --mh-indigo-hover: #3a3058;
+
+  /* ── Rig component token bridge ─────────────────────────────────────────
+   * Overrides shared/tokens.css defaults where the Meeplehaus palette needs
+   * values that can't be derived directly from --color-* semantics.
+   */
+
+  /* Button — darker indigo for hover feedback */
+  --rig-button-hover-bg: #3a3058;
+
+  /* Scrollbar — dark blue tint for light mode */
+  --rig-scrollbar-thumb: rgba(26, 26, 46, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(26, 26, 46, 0.25);
+}
