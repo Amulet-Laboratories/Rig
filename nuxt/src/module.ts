@@ -154,6 +154,17 @@ const COMPONENTS = [
   'Testimonial',
   'SiteFooter',
   'PricingCard',
+  'SectionDivider',
+  'FlankedHeading',
+  'Ornament',
+  'ContactForm',
+  'NewsletterForm',
+  'ServiceGrid',
+  'TeamGrid',
+  'MenuList',
+  'FeatureList',
+  'Gallery',
+  'MapPlaceholder',
 ] as const
 
 const COMPOSABLES = [
