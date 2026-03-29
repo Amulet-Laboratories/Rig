@@ -100,6 +100,36 @@
   --border: #dcd5c8;
   --input: #dcd5c8;
   --ring: #b88f42;
+
+  /* Color token bridge -- component CSS uses var(--color-*) */
+  --color-background: #f8f6f2;
+  --color-foreground: #2c2418;
+  --color-card: #ffffff;
+  --color-card-foreground: #2c2418;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #2c2418;
+  --color-primary: #b88f42;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f0ece4;
+  --color-secondary-foreground: #2c2418;
+  --color-muted: #e6e0d6;
+  --color-muted-foreground: #7a6e5e;
+  --color-accent: #548383;
+  --color-accent-foreground: #ffffff;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-info: #2563eb;
+  --color-border: #dcd5c8;
+  --color-input: #dcd5c8;
+  --color-ring: #b88f42;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-heading: 'Lora', ui-serif, Georgia, serif;
+  --radius: 8px;
+
   /* Typography — IDE-density type scale */
   --font-size-2xs: 0.625rem;
   --font-size-2xs--line-height: 1.25;
