@@ -1,25 +1,731 @@
-/* Hex — Meeplehaus Domains */
+/* Hex — Meeplehaus Domains
+ * Playful, sophisticated board game authority site.
+ */
 
 @reference 'tailwindcss';
 @reference './tokens.css';
 
-/* Content site — no domain accents needed */
+/* ── Reading typography ───────────────────────────────────────────────
+ * Serif (Lora) for all reading surfaces. Sans (Source Sans 3) for UI.
+ */
 
-@media (width <= 700px) {
-  [data-rig-shell-grid] {
-    grid-template-areas:
-      'editor'
-      'panel'
-      'statusbar';
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto auto;
+[data-rig-prose],
+[data-rig-article-layout-content],
+[data-rig-static-page],
+[data-rig-article-header-description],
+[data-rig-featured-card-description],
+[data-rig-category-header-description],
+[data-rig-category-card-description],
+[data-rig-article-card-description] {
+  font-family: var(--font-serif);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Category accent colors
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   Mobile-first fluid design
+   All spacing, typography, and layout scales smoothly from 320px up.
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-category='reviews'] {
+  --card-accent: #d4a04a;
+}
+[data-category='best-of'] {
+  --card-accent: #c05050;
+}
+[data-category='comparisons'] {
+  --card-accent: #4a8fa0;
+}
+[data-category='mechanics'] {
+  --card-accent: #7a6b9b;
+}
+[data-category='guides'] {
+  --card-accent: #5a8a5a;
+}
+
+/* ── Fluid typography — clamp between mobile and desktop ──────────── */
+
+h1 {
+  font-size: clamp(1.75rem, 1.25rem + 2.5vw, 2.5rem);
+}
+
+h2 {
+  font-size: clamp(1.375rem, 1rem + 1.875vw, 2rem);
+}
+
+[data-rig-article-header-title] {
+  font-size: clamp(1.5rem, 1rem + 2.5vw, 2.5rem);
+}
+
+[data-rig-section-title] {
+  font-size: clamp(1.25rem, 1rem + 1.25vw, 1.5rem);
+}
+
+[data-rig-category-header-title] {
+  font-size: clamp(1.75rem, 1.25rem + 2.5vw, 2.5rem);
+}
+
+/* ── Fluid section spacing ────────────────────────────────────────── */
+
+[data-rig-section] {
+  padding: clamp(2rem, 1.5rem + 2.5vw, 4rem) clamp(1rem, 0.5rem + 2.5vw, 1.5rem);
+}
+
+[data-rig-section-header] {
+  margin-bottom: clamp(1.5rem, 1rem + 1.5vw, 2.5rem);
+}
+
+/* ── Mobile touch targets and font floor ──────────────────────────── */
+
+@media (max-width: 640px) {
+  /* Nav links — 44px minimum touch target */
+  [data-rig-site-nav-mobile-link] {
+    padding: 0.75rem 1rem;
+    font-size: 0.9375rem;
+    min-height: 2.75rem;
   }
 
-  [data-rig-shell-activity] {
-    display: none;
+  /* Breadcrumbs — readable on small screens */
+  [data-rig-breadcrumbs-item] {
+    font-size: 0.75rem;
   }
 
-  [data-rig-shell-sidebar] {
-    display: none;
+  [data-rig-breadcrumbs-current] {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 12rem;
   }
+
+  /* Card visual — shorter on mobile */
+  [data-rig-card-visual] {
+    height: 6rem;
+  }
+
+  /* Card photo — shorter on mobile */
+  [data-rig-card-photo] {
+    height: 8rem;
+  }
+
+  /* CTA banner — tighter */
+  [data-rig-cta-banner] {
+    padding: 2rem 1rem;
+  }
+
+  /* Static page — tighter on mobile */
+  [data-rig-static-page] {
+    padding: 1.5rem 1rem;
+  }
+
+  /* Article layout — tighter horizontal padding */
+  [data-rig-article-layout] {
+    padding: 1.5rem 1rem;
+  }
+
+  /* TOC — hidden on mobile (sidebar already hidden) */
+  [data-rig-toc] {
+    font-size: 0.8125rem;
+  }
+
+  /* Product card — pros/cons text readable */
+  [data-rig-product-card-pros],
+  [data-rig-product-card-cons] {
+    font-size: 0.875rem;
+  }
+
+  /* Footer brand — slightly smaller */
+  [data-rig-site-footer-brand] {
+    font-size: 1.25rem;
+  }
+}
+
+/* ── Newsletter form stacking on small screens ────────────────────── */
+
+@media (max-width: 480px) {
+  [data-rig-newsletter-form-body] {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  [data-rig-newsletter-form-body] [data-rig-input] {
+    border-radius: var(--radius, 6px);
+  }
+
+  [data-rig-newsletter-form-body] [data-rig-button] {
+    border-radius: var(--radius, 6px);
+    width: 100%;
+    justify-content: center;
+    padding: 0.875rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Hero — warm parchment gradient, centered, compact
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-hero] {
+  background: linear-gradient(170deg, #f5f3f0 0%, #eeecf0 40%, #e8e4ee 100%);
+  border-bottom: 1px solid var(--color-accent);
+}
+
+[data-rig-hero][data-layout='centered'] [data-rig-hero-content] {
+  padding: clamp(2.5rem, 2rem + 3vw, 4rem) clamp(1.5rem, 1rem + 2vw, 2rem);
+}
+
+[data-rig-hero] h1 {
+  color: var(--color-primary);
+}
+
+[data-rig-hero-eyebrow] {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  display: inline-block;
+}
+
+[data-rig-hero-description] {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 0.875rem + 0.5vw, 1.125rem);
+  line-height: 1.7;
+  color: var(--color-muted-foreground);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Cards — editorial depth, smooth transitions, category color
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-card] {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+  box-shadow:
+    0 1px 3px rgba(22, 22, 22, 0.06),
+    0 1px 2px rgba(22, 22, 22, 0.04);
+  border-color: color-mix(in srgb, var(--color-border) 80%, transparent);
+  transition:
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s ease;
+  overflow: hidden;
+}
+
+[data-rig-card][data-interactive]:hover {
+  border-color: var(--card-accent, var(--color-primary));
+  box-shadow:
+    0 12px 28px rgba(22, 22, 22, 0.1),
+    0 4px 10px rgba(22, 22, 22, 0.06);
+  transform: translateY(-4px);
+}
+
+/* Card visual — stronger gradient, larger icon */
+[data-rig-card-visual] {
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--card-accent, var(--color-primary)) 28%, var(--color-background)) 0%,
+    color-mix(in srgb, var(--card-accent, var(--color-primary)) 14%, var(--color-background)) 60%,
+    color-mix(in srgb, var(--card-accent, var(--color-primary)) 8%, var(--color-card)) 100%
+  ) !important;
+  border-bottom: 2px solid
+    color-mix(in srgb, var(--card-accent, var(--color-primary)) 30%, transparent) !important;
+}
+
+[data-rig-card-visual] svg {
+  opacity: 0.4 !important;
+  color: var(--card-accent, var(--color-primary)) !important;
+  transition:
+    opacity 0.2s ease,
+    transform 0.3s ease;
+}
+
+[data-rig-card][data-interactive]:hover [data-rig-card-visual] svg {
+  opacity: 0.6 !important;
+  transform: scale(1.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Category cards — rich colored icon circles, hover glow
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-category-card-icon] {
+  background: color-mix(in srgb, var(--card-accent, var(--color-accent)) 18%, transparent);
+  color: var(--card-accent, var(--color-accent));
+  width: 3rem;
+  height: 3rem;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+[data-rig-card][data-interactive]:hover [data-rig-category-card-icon] {
+  background: color-mix(in srgb, var(--card-accent, var(--color-accent)) 28%, transparent);
+  transform: scale(1.05);
+}
+
+[data-rig-category-card-title] {
+  color: var(--card-accent, var(--color-foreground));
+  transition: color 0.2s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Article card labels — category colored with dot separator
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-article-card-category] {
+  color: var(--card-accent, var(--color-primary));
+  font-weight: 700;
+}
+
+[data-rig-article-card-title] {
+  transition: color 0.15s ease;
+}
+
+[data-rig-card][data-interactive]:hover [data-rig-article-card-title],
+[data-rig-card][data-interactive]:hover [data-rig-featured-card-title] {
+  color: var(--card-accent, var(--color-primary));
+}
+
+[data-rig-featured-card-category] {
+  color: var(--card-accent, var(--color-accent));
+}
+
+[data-rig-featured-card-category] svg {
+  color: var(--card-accent, var(--color-accent));
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Article header — bold category badge, refined typography
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-article-header-category] {
+  color: #ffffff;
+  background: var(--color-accent);
+  padding: 0.375rem 0.875rem;
+  font-weight: 700;
+  transition: background-color 0.15s ease;
+}
+
+[data-rig-article-header-category]:hover {
+  background: color-mix(in srgb, var(--color-accent) 85%, #000);
+}
+
+[data-rig-article-header-category] svg {
+  color: #ffffff;
+}
+
+/* Drop cap on first paragraph of article prose */
+[data-rig-article-layout-content] [data-rig-prose] > p:first-of-type::first-letter {
+  font-family: var(--font-heading);
+  font-size: 3.5em;
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.1em;
+  margin-top: 0.05em;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Sections — accent bars, warm alternation, refined headers
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-section-accent] {
+  background: var(--color-accent);
+  height: 3px;
+  width: 4rem;
+}
+
+[data-rig-section-title] {
+  color: var(--color-primary);
+}
+
+[data-rig-section-subtitle] {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+[data-rig-section][data-variant='alternate'] {
+  background: linear-gradient(180deg, #f0eef2 0%, #ede9f0 100%);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Prose — rich blockquotes, vivid links, refined reading
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-article-layout-content] [data-rig-prose] blockquote {
+  border-left: 4px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  font-style: italic;
+}
+
+[data-rig-prose] a {
+  color: #5a5080;
+  text-decoration-color: color-mix(in srgb, #5a5080 40%, transparent);
+  transition:
+    color 0.15s ease,
+    text-decoration-color 0.15s ease;
+}
+
+[data-rig-prose] a:hover {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
+/* Horizontal rules as decorative dividers */
+[data-rig-prose] hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-border) 20%,
+    var(--color-accent) 50%,
+    var(--color-border) 80%,
+    transparent 100%
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TOC — refined sidebar with accent active state
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-toc] {
+  padding: 1.25rem;
+  background: color-mix(in srgb, var(--color-muted) 30%, transparent);
+  border-radius: var(--radius, 6px);
+  border: 1px solid var(--color-border);
+}
+
+[data-rig-toc-link] {
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+[data-rig-toc-link][data-active] {
+  color: var(--color-accent);
+  border-left-color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Product card — vivid rating badge
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-product-card-rating] {
+  background: var(--color-accent);
+  color: #161616;
+  font-weight: 800;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Newsletter CTA — dramatic dark section with gold accent
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-cta-banner][data-variant='card'] {
+  background: linear-gradient(160deg, #2a2540 0%, #3a3460 40%, #4a3f6b 100%);
+  color: #f5f5f0;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gold decorative glow */
+[data-rig-cta-banner][data-variant='card']::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(
+    ellipse,
+    color-mix(in srgb, var(--color-accent) 10%, transparent) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+[data-rig-cta-banner][data-variant='card'] h2,
+[data-rig-cta-banner][data-variant='card'] [data-rig-newsletter-heading] {
+  color: var(--color-accent);
+  position: relative;
+}
+
+[data-rig-cta-banner][data-variant='card'] p,
+[data-rig-cta-banner][data-variant='card'] [data-rig-newsletter-description] {
+  color: rgba(255, 255, 255, 0.75);
+  position: relative;
+}
+
+/* Newsletter form — input + button inline */
+[data-rig-newsletter-form-body] {
+  display: flex;
+  gap: 0;
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+[data-rig-newsletter-form-body] [data-rig-input] {
+  flex: 1;
+  border-radius: var(--radius, 6px) 0 0 var(--radius, 6px);
+  min-width: 0;
+}
+
+[data-rig-newsletter-form-body] [data-rig-button] {
+  border-radius: 0 var(--radius, 6px) var(--radius, 6px) 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Newsletter form input styling inside dark banner */
+[data-rig-cta-banner][data-variant='card'] input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-radius: var(--radius, 6px);
+  padding: 0.75rem 1rem;
+}
+
+[data-rig-cta-banner][data-variant='card'] input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-rig-cta-banner][data-variant='card'] input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+
+[data-rig-cta-banner][data-variant='card'] [data-rig-button] {
+  background: var(--color-accent);
+  color: #161616;
+  border-color: var(--color-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Footer — deep navy, gold headings, refined grid
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-site-footer] {
+  background: linear-gradient(180deg, #1e1a30 0%, #141028 100%);
+}
+
+[data-rig-site-footer-grid] h3,
+[data-rig-site-footer-grid] h4 {
+  color: var(--color-accent) !important;
+  font-family: var(--font-heading);
+  letter-spacing: 0.08em;
+}
+
+[data-rig-site-footer-grid] a {
+  transition: color 0.15s ease;
+}
+
+[data-rig-site-footer-grid] a:hover {
+  color: var(--color-accent);
+}
+
+[data-rig-site-footer-brand] {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+[data-rig-site-footer-tagline] {
+  font-family: var(--font-serif);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+[data-rig-site-footer-copyright] {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Buttons — bold and refined
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-button] {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+[data-rig-button]:active {
+  transform: scale(0.97);
+}
+
+[data-rig-button][data-variant='primary'] {
+  background: var(--color-accent);
+  color: #161616;
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+
+[data-rig-button][data-variant='primary']:hover {
+  background: color-mix(in srgb, var(--color-accent) 85%, #000);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 40%, transparent);
+}
+
+[data-rig-button][data-variant='secondary'] {
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  background: transparent;
+}
+
+[data-rig-button][data-variant='secondary']:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-primary) 25%, transparent);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Breadcrumbs
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-breadcrumbs] {
+  font-family: var(--font-sans);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Nav — editorial serif brand, gold active state
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-site-nav-brand-link] {
+  font-family: var(--font-heading);
+  letter-spacing: 0.02em;
+}
+
+[data-rig-site-nav-link] {
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+[data-rig-site-nav-link]:hover {
+  color: var(--color-accent);
+}
+
+[data-rig-site-nav-link][data-active] {
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+  color: #161616;
+}
+
+[data-rig-site-nav][data-variant='pill'] [data-rig-site-nav-link][data-active] {
+  background: var(--color-accent);
+  color: #161616;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Reading progress bar
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-reading-progress-bar] {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Affiliate notice — warm accent
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-affiliate-notice] {
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  border-left: 3px solid var(--color-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Scrollbar
+   ═══════════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--color-primary) 40%, transparent);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Related articles — hover accent
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-related-link]:hover {
+  border-color: var(--color-accent);
+}
+
+[data-rig-related-category] {
+  color: var(--color-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Article header — refined bottom border with ornament
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-article-header] {
+  position: relative;
+}
+
+[data-rig-article-header]::after {
+  content: '~';
+  display: block;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-accent);
+  margin-top: 1.5rem;
+  letter-spacing: 0.5em;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Category header — refined with accent underline
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-category-header-title] {
+  display: inline-block;
+}
+
+[data-rig-category-header-title]::after {
+  content: '';
+  display: block;
+  width: 4rem;
+  height: 3px;
+  background: var(--card-accent, var(--color-accent));
+  margin-top: 0.75rem;
+  border-radius: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Static page title — decorative underline
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-static-page-title] {
+  border-bottom-color: var(--color-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Error page — warm character
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-rig-error-code] {
+  color: var(--color-accent);
+  font-family: var(--font-heading);
 }

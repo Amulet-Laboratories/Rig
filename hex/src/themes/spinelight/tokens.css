@@ -52,10 +52,10 @@
   --color-ring: #3d4f6e;
 
   /* Typography */
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --font-serif: 'Merriweather', ui-serif, Georgia, serif;
-  --font-heading: 'Merriweather', ui-serif, Georgia, serif;
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-heading: 'Playfair Display', ui-serif, Georgia, serif;
 
   /* Typography — IDE-density type scale */
   --font-size-2xs: 0.625rem;
@@ -124,10 +124,10 @@
   --color-border: #d6d0c4;
   --color-input: #d6d0c4;
   --color-ring: #3d4f6e;
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Merriweather', ui-serif, Georgia, serif;
+  --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --font-heading: 'Merriweather', ui-serif, Georgia, serif;
+  --font-heading: 'Playfair Display', ui-serif, Georgia, serif;
   --radius: 6px;
 
   /* Typography — IDE-density type scale */
@@ -187,6 +187,12 @@
   --sl-navy: #3d4f6e;
   --sl-gold: #c9a74f;
   --sl-navy-hover: #2d3d58;
+
+  /* ── Site layout ─────────────────────────────────────────────────────────
+   * Narrower max-width for a literary reading site (72rem = 1152px).
+   * Nav, footer, sections, article layout all reference this value.
+   */
+  --site-max-width: 72rem;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
    * Overrides shared/tokens.css defaults where the Spinelight palette needs

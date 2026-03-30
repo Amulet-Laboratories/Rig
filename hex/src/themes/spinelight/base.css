@@ -1,5 +1,6 @@
 /* Hex — Spinelight Base Styles
- * Books and reading — Merriweather serif headings, Inter sans body. Literary.
+ * Books and reading — Playfair Display headings, Source Sans 3 UI,
+ * Lora body text. Warm, editorial, literary.
  */
 
 @reference 'tailwindcss';
@@ -20,29 +21,46 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Subtle paper texture overlay on the body */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('/images/texture-paper.jpg');
+  background-size: 600px;
+  background-repeat: repeat;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+}
+
 body {
-  /* Literary reading: 16px body, weight 400, relaxed leading, sans body */
-  font-size: 16px;
+  /* Literary reading: 1rem body, weight 400, relaxed leading, sans body */
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.7;
   font-family: var(--font-sans);
 }
 
-/* Heading defaults — serif display headings */
+/* Heading defaults — serif display headings
+ * Scale: h1 2.5rem, h2 2rem, h3 1.5rem, h4 1.25rem
+ * All rem-based, matching content.css article/category heading sizes.
+ */
 h1 {
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 700;
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   color: var(--color-primary);
   margin: 0;
   padding: 0;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 h2 {
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 600;
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   color: var(--color-primary);
   margin: 0;
   padding: 0;
@@ -50,13 +68,23 @@ h2 {
 }
 
 h3 {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 600;
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   color: var(--color-foreground);
   margin: 0;
   padding: 0;
   line-height: 1.3;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  color: var(--color-foreground);
+  margin: 0;
+  padding: 0;
+  line-height: 1.35;
 }
 
 /* Scrollbar */
@@ -84,9 +112,9 @@ h3 {
   outline-offset: 2px;
 }
 
-/* Selection */
+/* Selection — gold accent highlight */
 ::selection {
-  background: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 30%, transparent);
   color: var(--color-foreground);
 }
 

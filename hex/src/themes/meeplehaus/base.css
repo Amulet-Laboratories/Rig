@@ -1,5 +1,5 @@
 /* Hex — Meeplehaus Base Styles
- * Board game lounge — Lora serif headings, Inter sans body. Strategic warmth.
+ * Board game lounge — Custom heading + body fonts. Strategic warmth.
  */
 
 @reference 'tailwindcss';
@@ -32,7 +32,7 @@ body {
 h1 {
   font-size: 40px;
   font-weight: 700;
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   color: var(--color-primary);
   margin: 0;
   padding: 0;
@@ -42,7 +42,7 @@ h1 {
 h2 {
   font-size: 32px;
   font-weight: 600;
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   color: var(--color-primary);
   margin: 0;
   padding: 0;
@@ -52,7 +52,7 @@ h2 {
 h3 {
   font-size: 24px;
   font-weight: 600;
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   color: var(--color-foreground);
   margin: 0;
   padding: 0;

@@ -52,8 +52,9 @@
   --color-ring: #7a5636;
 
   /* Typography */
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-sans: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Spectral', ui-serif, Georgia, serif;
+  --font-heading: 'Cormorant Garamond', ui-serif, Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   /* Typography — content-optimized type scale */
@@ -72,6 +73,7 @@
 
   /* Display font family */
   --font-display: var(--font-serif);
+  --font-heading: 'Cormorant Garamond', ui-serif, Georgia, serif;
 
   /* Radius */
   --radius: 6px;
@@ -124,10 +126,12 @@
   --color-border: #d9cfc2;
   --color-input: #d9cfc2;
   --color-ring: #7a5636;
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-sans: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Spectral', ui-serif, Georgia, serif;
+  --font-heading: 'Cormorant Garamond', ui-serif, Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --font-heading: var(--font-serif);
+  --font-heading: 'Cormorant Garamond', ui-serif, Georgia, serif;
   --radius: 6px;
 
   /* Typography — content-optimized type scale */
@@ -146,6 +150,7 @@
 
   /* Display font family */
   --font-display: var(--font-serif);
+  --font-heading: 'Cormorant Garamond', ui-serif, Georgia, serif;
 
   --radius: 6px;
 
@@ -169,8 +174,10 @@
   --tracking-wide: 0.05em;
   --tracking-wider: 0.08em;
   --font-display: var(--font-serif);
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-heading: 'Cormorant Garamond', ui-serif, Georgia, serif;
+  --font-sans: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Spectral', ui-serif, Georgia, serif;
+  --font-heading: 'Cormorant Garamond', ui-serif, Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   /* ── Named palette aliases ──────────────────────────────────────────────

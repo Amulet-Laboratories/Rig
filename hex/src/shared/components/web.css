@@ -58,6 +58,26 @@
   font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
 }
 
+/* Brand link with icon + text */
+[data-rig-site-nav-brand-link] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--color-foreground);
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+[data-rig-site-nav-brand-icon] {
+  display: block;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
 /* Border elements inside web components inherit theme border color */
 [data-rig-site-shell] [class*='border'] {
   border-color: var(--color-border);

@@ -52,9 +52,10 @@
   --color-ring: #4a3f6b;
 
   /* Typography */
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-serif: 'Merriweather', ui-serif, Georgia, serif;
+  --font-heading: 'Archivo Black', ui-sans-serif, system-ui, sans-serif;
   --font-heading: 'Lora', ui-serif, Georgia, serif;
 
   /* Typography — IDE-density type scale */
@@ -73,6 +74,7 @@
 
   /* Display font family */
   --font-display: var(--font-serif);
+  --font-heading: 'Archivo Black', ui-sans-serif, system-ui, sans-serif;
 
   --radius: 8px;
 }
@@ -124,8 +126,9 @@
   --color-border: #d8d4cc;
   --color-input: #d8d4cc;
   --color-ring: #4a3f6b;
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Merriweather', ui-serif, Georgia, serif;
+  --font-heading: 'Archivo Black', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --font-heading: 'Lora', ui-serif, Georgia, serif;
   --radius: 8px;
@@ -146,6 +149,7 @@
 
   /* Display font family */
   --font-display: var(--font-serif);
+  --font-heading: 'Archivo Black', ui-sans-serif, system-ui, sans-serif;
 
   --radius: 8px;
 
@@ -169,9 +173,11 @@
   --tracking-wide: 0.05em;
   --tracking-wider: 0.08em;
   --font-display: var(--font-serif);
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Archivo Black', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --font-serif: 'Lora', ui-serif, Georgia, serif;
+  --font-serif: 'Merriweather', ui-serif, Georgia, serif;
+  --font-heading: 'Archivo Black', ui-sans-serif, system-ui, sans-serif;
   --font-heading: 'Lora', ui-serif, Georgia, serif;
 
   /* ── Named palette aliases ──────────────────────────────────────────────
