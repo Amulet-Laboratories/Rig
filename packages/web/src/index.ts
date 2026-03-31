@@ -33,3 +33,11 @@ export type { GalleryItem } from './Gallery.vue'
 export { default as MapPlaceholder } from './MapPlaceholder.vue'
 export { useDetailView } from './useDetailView'
 export type { UseDetailViewOptions, UseDetailViewReturn } from './useDetailView'
+
+// Content/authority site utilities
+export { default as ReadingProgress } from './ReadingProgress.vue'
+export { useFormatDate } from './useFormatDate'
+export type { FormatDateStyle } from './useFormatDate'
+export { useBreadcrumbs } from './useBreadcrumbs'
+export type { ContentBreadcrumbItem, ContentBreadcrumbPage } from './useBreadcrumbs'
+export { useFathom } from './useFathom'

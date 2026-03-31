@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/hex",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "description": "Multi-theme layer for Rig — curated palettes targeting data-rig-* selectors",
   "license": "MIT",

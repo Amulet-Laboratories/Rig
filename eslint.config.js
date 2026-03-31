@@ -12,6 +12,7 @@ export default [
       '.histoire/',
       'deploy/',
       'landing/',
+      'nuxt/',
     ],
   },
   {

@@ -1,4 +1,11 @@
-import { defineNuxtModule, addImports, addComponent } from '@nuxt/kit'
+import {
+  defineNuxtModule,
+  addImports,
+  addComponent,
+  addPlugin,
+  addServerHandler,
+  createResolver,
+} from '@nuxt/kit'
 
 /**
  * @amulet-laboratories/rig-nuxt
@@ -12,13 +19,31 @@ import { defineNuxtModule, addImports, addComponent } from '@nuxt/kit'
  * Options:
  *   prefix: string — component prefix (default: '' — no prefix)
  *   composables: boolean — auto-import composables (default: true)
+ *   content: boolean | ContentOptions — enable authority-site content features
  */
+
+export interface ContentOptions {
+  /** Enable Fathom analytics plugin (default: true) */
+  fathom?: boolean
+  /** Enable Sentry error tracking plugin (default: true) */
+  sentry?: boolean
+  /** Enable product API routes (default: true) */
+  products?: boolean
+  /** Enable newsletter API route (default: true) */
+  newsletter?: boolean
+  /** Enable RSS feed route (default: true) */
+  feed?: boolean
+  /** Enable sitemap route (default: true) */
+  sitemap?: boolean
+}
 
 export interface NuxtRigOptions {
   /** Prefix for component names (e.g. 'Rig' → RigButton, RigModal) */
   prefix?: string
   /** Whether to auto-import composables (default: true) */
   composables?: boolean
+  /** Enable authority-site content features (components, composables, plugins, server routes) */
+  content?: boolean | ContentOptions
 }
 
 const COMPONENTS = [
@@ -145,6 +170,7 @@ const COMPONENTS = [
   'TemporalHeatmap',
   'ParticleField',
   // Web
+  'ReadingProgress',
   'SiteShell',
   'SiteNav',
   'Hero',
@@ -199,11 +225,13 @@ export default defineNuxtModule<NuxtRigOptions>({
   defaults: {
     prefix: '',
     composables: true,
+    content: false,
   },
   setup(options) {
     const prefix = options.prefix ?? ''
+    const { resolve } = createResolver(import.meta.url)
 
-    // Auto-import all components
+    // Auto-import all Rig components
     for (const name of COMPONENTS) {
       addComponent({
         name: `${prefix}${name}`,
@@ -228,6 +256,129 @@ export default defineNuxtModule<NuxtRigOptions>({
       // Web composables
       addImports({ name: 'useHashRouter', from: '@amulet-laboratories/rig' })
       addImports({ name: 'useScrollNav', from: '@amulet-laboratories/rig' })
+      addImports({ name: 'useDetailView', from: '@amulet-laboratories/rig' })
+      addImports({ name: 'useFormatDate', from: '@amulet-laboratories/rig' })
+      addImports({ name: 'useBreadcrumbs', from: '@amulet-laboratories/rig' })
+      addImports({ name: 'useFathom', from: '@amulet-laboratories/rig' })
+    }
+
+    // ── Content features (authority-site runtime) ──
+    if (!options.content) return
+
+    const contentOpts: ContentOptions = options.content === true ? {} : options.content
+
+    // Content components
+    const contentComponents: Array<{ name: string; filePath: string }> = [
+      {
+        name: 'ArticleHeader',
+        filePath: resolve('./runtime/components/content/ArticleHeader.vue'),
+      },
+      {
+        name: 'ContentBreadcrumbs',
+        filePath: resolve('./runtime/components/content/ContentBreadcrumbs.vue'),
+      },
+      {
+        name: 'TableOfContents',
+        filePath: resolve('./runtime/components/content/TableOfContents.vue'),
+      },
+      {
+        name: 'RelatedArticles',
+        filePath: resolve('./runtime/components/content/RelatedArticles.vue'),
+      },
+      {
+        name: 'RelatedOnSite',
+        filePath: resolve('./runtime/components/content/RelatedOnSite.vue'),
+      },
+      {
+        name: 'NetworkArticles',
+        filePath: resolve('./runtime/components/content/NetworkArticles.vue'),
+      },
+      {
+        name: 'ProductCardWrapper',
+        filePath: resolve('./runtime/components/content/ProductCardWrapper.vue'),
+      },
+      {
+        name: 'AffiliateDisclosure',
+        filePath: resolve('./runtime/components/content/AffiliateDisclosure.vue'),
+      },
+      {
+        name: 'ContentNewsletterSignup',
+        filePath: resolve('./runtime/components/content/NewsletterSignup.vue'),
+      },
+      { name: 'QuizPromo', filePath: resolve('./runtime/components/content/QuizPromo.vue') },
+      {
+        name: 'QuizEmbedWrapper',
+        filePath: resolve('./runtime/components/content/QuizEmbedWrapper.vue'),
+      },
+      {
+        name: 'QuizGatedGuide',
+        filePath: resolve('./runtime/components/content/QuizGatedGuide.vue'),
+      },
+      {
+        name: 'PersonalizedHero',
+        filePath: resolve('./runtime/components/content/PersonalizedHero.vue'),
+      },
+      {
+        name: 'ContentAppFooter',
+        filePath: resolve('./runtime/components/layout/ContentAppFooter.vue'),
+      },
+      { name: 'NetworkFooter', filePath: resolve('./runtime/components/layout/NetworkFooter.vue') },
+      { name: 'CookieConsent', filePath: resolve('./runtime/components/layout/CookieConsent.vue') },
+      { name: 'AdSlot', filePath: resolve('./runtime/components/layout/AdSlot.vue') },
+    ]
+
+    for (const comp of contentComponents) {
+      addComponent({
+        name: `${prefix}${comp.name}`,
+        filePath: comp.filePath,
+      })
+    }
+
+    // Content composables
+    addImports({ name: 'useArticleSeo', from: resolve('./runtime/composables/useArticleSeo') })
+    addImports({
+      name: 'useStructuredData',
+      from: resolve('./runtime/composables/useStructuredData'),
+    })
+    addImports({ name: 'useProducts', from: resolve('./runtime/composables/useProducts') })
+
+    // Plugins
+    if (contentOpts.fathom !== false) {
+      addPlugin(resolve('./runtime/plugins/fathom.client'))
+    }
+    if (contentOpts.sentry !== false) {
+      addPlugin(resolve('./runtime/plugins/sentry.client'))
+    }
+
+    // Server routes
+    if (contentOpts.products !== false) {
+      addServerHandler({
+        route: '/api/products',
+        handler: resolve('./runtime/server/api/products/index.get'),
+      })
+      addServerHandler({
+        route: '/api/products/:slug',
+        handler: resolve('./runtime/server/api/products/[slug].get'),
+      })
+    }
+    if (contentOpts.newsletter !== false) {
+      addServerHandler({
+        route: '/api/newsletter/subscribe',
+        method: 'post',
+        handler: resolve('./runtime/server/api/newsletter/subscribe.post'),
+      })
+    }
+    if (contentOpts.feed !== false) {
+      addServerHandler({
+        route: '/feed.xml',
+        handler: resolve('./runtime/server/routes/feed.xml'),
+      })
+    }
+    if (contentOpts.sitemap !== false) {
+      addServerHandler({
+        route: '/sitemap.xml',
+        handler: resolve('./runtime/server/routes/sitemap.xml'),
+      })
     }
   },
 })

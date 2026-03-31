@@ -3,3 +3,4 @@ packages:
   - 'hex'
   - 'config'
   - 'landing'
+  - 'nuxt'
