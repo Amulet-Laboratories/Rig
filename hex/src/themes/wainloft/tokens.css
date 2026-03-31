@@ -1,4 +1,4 @@
-/* Hex — Nookwoven Design Tokens
+/* Hex — Wainloft Design Tokens
  * Sage green palette for home and living content sites.
  * Light mode theme — sage green primary, terracotta accent, warm cream neutrals.
  *
@@ -183,19 +183,19 @@
   /* ── Named palette aliases ──────────────────────────────────────────────
    * All 10 swatch colors available for direct template use.
    */
-  --nookwoven-warm-cream: #f7f4ef;
-  --nookwoven-white: #ffffff;
-  --nookwoven-warm-beige: #f0ede6;
-  --nookwoven-light-taupe: #e8e4dc;
-  --nookwoven-warm-border: #ddd8cf;
-  --nookwoven-terracotta: #c17d5e;
-  --nookwoven-sage: #779572;
-  --nookwoven-dark-sage: #658560;
-  --nookwoven-muted-fg: #7a7872;
-  --nookwoven-charcoal: #2a2a28;
+  --wainloft-warm-cream: #f7f4ef;
+  --wainloft-white: #ffffff;
+  --wainloft-warm-beige: #f0ede6;
+  --wainloft-light-taupe: #e8e4dc;
+  --wainloft-warm-border: #ddd8cf;
+  --wainloft-terracotta: #c17d5e;
+  --wainloft-sage: #779572;
+  --wainloft-dark-sage: #658560;
+  --wainloft-muted-fg: #7a7872;
+  --wainloft-charcoal: #2a2a28;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
-   * Overrides shared/tokens.css defaults where the Nookwoven palette needs
+   * Overrides shared/tokens.css defaults where the Wainloft palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 

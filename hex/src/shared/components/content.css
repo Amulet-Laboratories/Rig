@@ -4,7 +4,7 @@
  * related articles, affiliate disclosure, newsletter, ad slots, error pages,
  * prose overrides, and empty states.
  *
- * All six authority themes (Dewthread, Nookwoven, Meeplehaus,
+ * All six authority themes (Dewthread, Wainloft, Meeplehaus,
  * Burrowtail, Beanwoven, Shelfglow) consume this file. Consumer sites
  * compose components with props and slots -- no inline styles needed.
  */

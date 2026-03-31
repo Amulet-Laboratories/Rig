@@ -34,7 +34,7 @@ const themes = [
   'forge',
   'quizbit',
   'dewthread',
-  'nookwoven',
+  'wainloft',
   'beanwoven',
   'meeplehaus',
   'burrowtail',
