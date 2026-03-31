@@ -1,18 +1,18 @@
-/* Hex — Dermatica Design Tokens
- * Warm rose palette for skincare and beauty content sites.
- * Light mode theme — soft rose primary, mauve accent, warm neutrals.
+/* Hex — Nookwoven Design Tokens
+ * Sage green palette for home and living content sites.
+ * Light mode theme — sage green primary, terracotta accent, warm cream neutrals.
  *
  * Full palette (10 swatch colors):
- *   #faf8f6  warm off-white   — background
+ *   #f7f4ef  warm cream       — background
  *   #ffffff  white            — card, popover
- *   #f5efed  light rose tint  — secondary
- *   #f0eae7  warm gray        — muted
- *   #e8ddd8  warm border      — border, input
- *   #c08585  soft rose        — primary
- *   #b07070  darker rose      — hover
- *   #a06b78  mauve            — accent
- *   #8a7575  muted foreground — muted-foreground
- *   #2d2424  warm dark brown  — foreground
+ *   #f0ede6  warm beige       — secondary
+ *   #e8e4dc  light taupe      — muted
+ *   #ddd8cf  warm border      — border, input
+ *   #c17d5e  terracotta       — accent
+ *   #779572  sage green       — primary
+ *   #658560  darker sage      — hover
+ *   #7a7872  muted foreground — muted-foreground
+ *   #2a2a28  warm charcoal    — foreground
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
@@ -20,23 +20,23 @@
 
 @theme {
   /* Surface colors */
-  --color-background: #faf8f6;
-  --color-foreground: #2d2424;
+  --color-background: #f7f4ef;
+  --color-foreground: #2a2a28;
   --color-card: #ffffff;
-  --color-card-foreground: #2d2424;
+  --color-card-foreground: #2a2a28;
   --color-popover: #ffffff;
-  --color-popover-foreground: #2d2424;
+  --color-popover-foreground: #2a2a28;
 
   /* Brand */
-  --color-primary: #c08585;
+  --color-primary: #779572;
   --color-primary-foreground: #ffffff;
 
   /* Soft accents */
-  --color-secondary: #f5efed;
-  --color-secondary-foreground: #2d2424;
-  --color-muted: #f0eae7;
-  --color-muted-foreground: #8a7575;
-  --color-accent: #a06b78;
+  --color-secondary: #f0ede6;
+  --color-secondary-foreground: #2a2a28;
+  --color-muted: #e8e4dc;
+  --color-muted-foreground: #7a7872;
+  --color-accent: #c17d5e;
   --color-accent-foreground: #ffffff;
 
   /* Semantic status */
@@ -47,14 +47,14 @@
   --color-info: #2563eb;
 
   /* Borders and focus */
-  --color-border: #e8ddd8;
-  --color-input: #e8ddd8;
-  --color-ring: #c08585;
+  --color-border: #ddd8cf;
+  --color-input: #ddd8cf;
+  --color-ring: #779572;
 
   /* Typography */
-  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Crimson Pro', ui-serif, Georgia, serif;
-  --font-heading: 'DM Serif Display', ui-serif, Georgia, serif;
+  --font-sans: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Libre Baskerville', ui-serif, Georgia, serif;
+  --font-heading: 'Playfair Display', ui-serif, Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   /* Typography — content-optimized type scale */
@@ -73,65 +73,65 @@
 
   /* Display font family */
   --font-display: var(--font-serif);
-  --font-heading: 'DM Serif Display', ui-serif, Georgia, serif;
+  --font-heading: 'Playfair Display', ui-serif, Georgia, serif;
 
   /* Radius */
   --radius: 8px;
 }
 
 :root {
-  --background: #faf8f6;
-  --foreground: #2d2424;
+  --background: #f7f4ef;
+  --foreground: #2a2a28;
   --card: #ffffff;
-  --card-foreground: #2d2424;
+  --card-foreground: #2a2a28;
   --popover: #ffffff;
-  --popover-foreground: #2d2424;
-  --primary: #c08585;
+  --popover-foreground: #2a2a28;
+  --primary: #779572;
   --primary-foreground: #ffffff;
-  --secondary: #f5efed;
-  --secondary-foreground: #2d2424;
-  --muted: #f0eae7;
-  --muted-foreground: #8a7575;
-  --accent: #a06b78;
+  --secondary: #f0ede6;
+  --secondary-foreground: #2a2a28;
+  --muted: #e8e4dc;
+  --muted-foreground: #7a7872;
+  --accent: #c17d5e;
   --accent-foreground: #ffffff;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
   --success: #16a34a;
   --warning: #d97706;
   --info: #2563eb;
-  --border: #e8ddd8;
-  --input: #e8ddd8;
-  --ring: #c08585;
+  --border: #ddd8cf;
+  --input: #ddd8cf;
+  --ring: #779572;
 
   /* Color token bridge -- component CSS uses var(--color-*) */
-  --color-background: #faf8f6;
-  --color-foreground: #2d2424;
+  --color-background: #f7f4ef;
+  --color-foreground: #2a2a28;
   --color-card: #ffffff;
-  --color-card-foreground: #2d2424;
+  --color-card-foreground: #2a2a28;
   --color-popover: #ffffff;
-  --color-popover-foreground: #2d2424;
-  --color-primary: #c08585;
+  --color-popover-foreground: #2a2a28;
+  --color-primary: #779572;
   --color-primary-foreground: #ffffff;
-  --color-secondary: #f5efed;
-  --color-secondary-foreground: #2d2424;
-  --color-muted: #f0eae7;
-  --color-muted-foreground: #8a7575;
-  --color-accent: #a06b78;
+  --color-secondary: #f0ede6;
+  --color-secondary-foreground: #2a2a28;
+  --color-muted: #e8e4dc;
+  --color-muted-foreground: #7a7872;
+  --color-accent: #c17d5e;
   --color-accent-foreground: #ffffff;
   --color-destructive: #dc2626;
   --color-destructive-foreground: #ffffff;
   --color-success: #16a34a;
   --color-warning: #d97706;
   --color-info: #2563eb;
-  --color-border: #e8ddd8;
-  --color-input: #e8ddd8;
-  --color-ring: #c08585;
-  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Crimson Pro', ui-serif, Georgia, serif;
-  --font-heading: 'DM Serif Display', ui-serif, Georgia, serif;
+  --color-border: #ddd8cf;
+  --color-input: #ddd8cf;
+  --color-ring: #779572;
+  --font-sans: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Libre Baskerville', ui-serif, Georgia, serif;
+  --font-heading: 'Playfair Display', ui-serif, Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --font-heading: var(--font-serif);
-  --font-heading: 'DM Serif Display', ui-serif, Georgia, serif;
+  --font-heading: 'Playfair Display', ui-serif, Georgia, serif;
   --radius: 8px;
 
   /* Typography — content-optimized type scale */
@@ -150,7 +150,7 @@
 
   /* Display font family */
   --font-display: var(--font-serif);
-  --font-heading: 'DM Serif Display', ui-serif, Georgia, serif;
+  --font-heading: 'Playfair Display', ui-serif, Georgia, serif;
 
   --radius: 8px;
 
@@ -174,35 +174,35 @@
   --tracking-wide: 0.05em;
   --tracking-wider: 0.08em;
   --font-display: var(--font-serif);
-  --font-heading: 'DM Serif Display', ui-serif, Georgia, serif;
-  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Crimson Pro', ui-serif, Georgia, serif;
-  --font-heading: 'DM Serif Display', ui-serif, Georgia, serif;
+  --font-heading: 'Playfair Display', ui-serif, Georgia, serif;
+  --font-sans: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Libre Baskerville', ui-serif, Georgia, serif;
+  --font-heading: 'Playfair Display', ui-serif, Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   /* ── Named palette aliases ──────────────────────────────────────────────
    * All 10 swatch colors available for direct template use.
    */
-  --dermatica-off-white: #faf8f6;
-  --dermatica-white: #ffffff;
-  --dermatica-rose-tint: #f5efed;
-  --dermatica-warm-gray: #f0eae7;
-  --dermatica-warm-border: #e8ddd8;
-  --dermatica-soft-rose: #c08585;
-  --dermatica-dark-rose: #b07070;
-  --dermatica-mauve: #a06b78;
-  --dermatica-muted-fg: #8a7575;
-  --dermatica-dark-brown: #2d2424;
+  --nookwoven-warm-cream: #f7f4ef;
+  --nookwoven-white: #ffffff;
+  --nookwoven-warm-beige: #f0ede6;
+  --nookwoven-light-taupe: #e8e4dc;
+  --nookwoven-warm-border: #ddd8cf;
+  --nookwoven-terracotta: #c17d5e;
+  --nookwoven-sage: #779572;
+  --nookwoven-dark-sage: #658560;
+  --nookwoven-muted-fg: #7a7872;
+  --nookwoven-charcoal: #2a2a28;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
-   * Overrides shared/tokens.css defaults where the Dermatica palette needs
+   * Overrides shared/tokens.css defaults where the Nookwoven palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 
-  /* Button — darker rose for hover feedback */
-  --rig-button-hover-bg: #b07070;
+  /* Button — darker sage for hover feedback */
+  --rig-button-hover-bg: #658560;
 
-  /* Scrollbar — warm brown tint */
-  --rig-scrollbar-thumb: rgba(45, 36, 36, 0.15);
-  --rig-scrollbar-thumb-hover: rgba(45, 36, 36, 0.3);
+  /* Scrollbar — warm charcoal tint */
+  --rig-scrollbar-thumb: rgba(42, 42, 40, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(42, 42, 40, 0.25);
 }

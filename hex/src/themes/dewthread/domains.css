@@ -1,5 +1,5 @@
-/* Hex — Hearthread Domains
- * Warm, natural home design authority site.
+/* Hex — Dewthread Domains
+ * Clean, clinical skincare authority site.
  */
 
 @reference 'tailwindcss';
@@ -29,20 +29,20 @@
    All spacing, typography, and layout scales smoothly from 320px up.
    ═══════════════════════════════════════════════════════════════════ */
 
-[data-category='style-guides'] {
-  --card-accent: #c17d5e;
+[data-category='routines'] {
+  --card-accent: #c08585;
 }
-[data-category='room-guides'] {
-  --card-accent: #779572;
+[data-category='ingredients'] {
+  --card-accent: #7a9e7a;
 }
 [data-category='reviews'] {
   --card-accent: #d4a04a;
 }
 [data-category='buying-guides'] {
-  --card-accent: #6b7fa0;
+  --card-accent: #6b8ea0;
 }
-[data-category='organization'] {
-  --card-accent: #9b8a6b;
+[data-category='education'] {
+  --card-accent: #9b7ab8;
 }
 
 /* ── Fluid typography — clamp between mobile and desktop ──────────── */
@@ -167,8 +167,8 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-hero] {
-  background: linear-gradient(170deg, #f7f4ef 0%, #f0eade 40%, #e8e0d2 100%);
-  border-bottom: 1px solid var(--color-accent);
+  background: linear-gradient(170deg, #faf8f6 0%, #f5ede9 40%, #f0e6e1 100%);
+  border-bottom: 1px solid var(--color-primary);
 }
 
 [data-rig-hero][data-layout='centered'] [data-rig-hero-content] {
@@ -352,7 +352,7 @@ h2 {
 }
 
 [data-rig-section][data-variant='alternate'] {
-  background: linear-gradient(180deg, #f3ede3 0%, #f0e9dd 100%);
+  background: linear-gradient(180deg, #f7f0ec 0%, #f5ece7 100%);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
@@ -368,8 +368,8 @@ h2 {
 }
 
 [data-rig-prose] a {
-  color: #6a8a6a;
-  text-decoration-color: color-mix(in srgb, #6a8a6a 40%, transparent);
+  color: #7a5a60;
+  text-decoration-color: color-mix(in srgb, #7a5a60 40%, transparent);
   transition:
     color 0.15s ease,
     text-decoration-color 0.15s ease;
@@ -432,7 +432,7 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-cta-banner][data-variant='card'] {
-  background: linear-gradient(160deg, #3a5a3a 0%, #4a6a48 40%, #5a7a56 100%);
+  background: linear-gradient(160deg, #5a3a3f 0%, #7a4a50 40%, #9a5a62 100%);
   color: #f5f5f0;
   border: none;
   position: relative;
@@ -517,7 +517,7 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-site-footer] {
-  background: linear-gradient(180deg, #2a4a2a 0%, #1e3a1e 100%);
+  background: linear-gradient(180deg, #4a2a30 0%, #3a1e24 100%);
 }
 
 [data-rig-site-footer-grid] h3,

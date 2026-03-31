@@ -1,5 +1,5 @@
-/* Hex — Pourform Domains
- * Warm, artisanal coffee and tea authority site.
+/* Hex — Burrowtail Domains
+ * Warm, friendly pet care authority site.
  */
 
 @reference 'tailwindcss';
@@ -29,20 +29,20 @@
    All spacing, typography, and layout scales smoothly from 320px up.
    ═══════════════════════════════════════════════════════════════════ */
 
-[data-category='brewing-guides'] {
-  --card-accent: #c07840;
+[data-category='dog-guides'] {
+  --card-accent: #b88f42;
 }
-[data-category='equipment-reviews'] {
-  --card-accent: #5a7a8a;
+[data-category='cat-guides'] {
+  --card-accent: #7a6b9b;
 }
-[data-category='beans-and-blends'] {
-  --card-accent: #7a5636;
+[data-category='reviews'] {
+  --card-accent: #d4964a;
 }
 [data-category='buying-guides'] {
-  --card-accent: #8a7a5a;
+  --card-accent: #4a8a7a;
 }
-[data-category='culture'] {
-  --card-accent: #9b6b7a;
+[data-category='care'] {
+  --card-accent: #c06060;
 }
 
 /* ── Fluid typography — clamp between mobile and desktop ──────────── */
@@ -167,8 +167,8 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-hero] {
-  background: linear-gradient(170deg, #faf6ef 0%, #f2e8d8 40%, #eadcc8 100%);
-  border-bottom: 1px solid var(--color-accent);
+  background: linear-gradient(170deg, #f8f6f2 0%, #f2ece0 40%, #ebe3d2 100%);
+  border-bottom: 1px solid var(--color-primary);
 }
 
 [data-rig-hero][data-layout='centered'] [data-rig-hero-content] {
@@ -352,7 +352,7 @@ h2 {
 }
 
 [data-rig-section][data-variant='alternate'] {
-  background: linear-gradient(180deg, #f5ede0 0%, #f2e8da 100%);
+  background: linear-gradient(180deg, #f3ede3 0%, #f0e8dc 100%);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
@@ -368,8 +368,8 @@ h2 {
 }
 
 [data-rig-prose] a {
-  color: #8a5a30;
-  text-decoration-color: color-mix(in srgb, #8a5a30 40%, transparent);
+  color: #4a7a7a;
+  text-decoration-color: color-mix(in srgb, #4a7a7a 40%, transparent);
   transition:
     color 0.15s ease,
     text-decoration-color 0.15s ease;
@@ -432,7 +432,7 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-cta-banner][data-variant='card'] {
-  background: linear-gradient(160deg, #3a2818 0%, #5a3a24 40%, #7a5636 100%);
+  background: linear-gradient(160deg, #2a4a4a 0%, #3a5a5a 40%, #486868 100%);
   color: #f5f5f0;
   border: none;
   position: relative;
@@ -517,7 +517,7 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-site-footer] {
-  background: linear-gradient(180deg, #2a1e14 0%, #1e140e 100%);
+  background: linear-gradient(180deg, #1e3a3a 0%, #142e2e 100%);
 }
 
 [data-rig-site-footer-grid] h3,
@@ -576,9 +576,9 @@ h2 {
 
 [data-rig-button][data-variant='primary'] {
   background: var(--color-accent);
-  color: #161616;
-  border-color: var(--color-accent);
-  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-accent) 30%, transparent);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-primary) 30%, transparent);
 }
 
 [data-rig-button][data-variant='primary']:hover {
@@ -593,7 +593,7 @@ h2 {
 }
 
 [data-rig-button][data-variant='secondary']:hover {
-  background: var(--color-primary);
+  background: var(--color-accent);
   color: #ffffff;
   box-shadow: 0 2px 8px color-mix(in srgb, var(--color-primary) 25%, transparent);
 }

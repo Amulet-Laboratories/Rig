@@ -1,4 +1,4 @@
-/* Hex — Pourform Design Tokens
+/* Hex — Beanwoven Design Tokens
  * Deep brown palette for coffee and tea content sites.
  * Light mode theme — deep brown primary, copper accent, warm cream neutrals.
  *
@@ -183,19 +183,19 @@
   /* ── Named palette aliases ──────────────────────────────────────────────
    * All 10 swatch colors available for direct template use.
    */
-  --pourform-warm-cream: #faf6ef;
-  --pourform-white: #ffffff;
-  --pourform-linen: #f0ebe2;
-  --pourform-light-taupe: #e4ddd0;
-  --pourform-warm-border: #d9cfc2;
-  --pourform-copper: #c07840;
-  --pourform-deep-brown: #7a5636;
-  --pourform-dark-brown: #654528;
-  --pourform-muted-fg: #6b5d4f;
-  --pourform-near-black: #1e1610;
+  --beanwoven-warm-cream: #faf6ef;
+  --beanwoven-white: #ffffff;
+  --beanwoven-linen: #f0ebe2;
+  --beanwoven-light-taupe: #e4ddd0;
+  --beanwoven-warm-border: #d9cfc2;
+  --beanwoven-copper: #c07840;
+  --beanwoven-deep-brown: #7a5636;
+  --beanwoven-dark-brown: #654528;
+  --beanwoven-muted-fg: #6b5d4f;
+  --beanwoven-near-black: #1e1610;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
-   * Overrides shared/tokens.css defaults where the Pourform palette needs
+   * Overrides shared/tokens.css defaults where the Beanwoven palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 

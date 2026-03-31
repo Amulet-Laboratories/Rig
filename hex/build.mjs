@@ -33,12 +33,12 @@ const themes = [
   'briarcovelib',
   'forge',
   'quizbit',
-  'dermatica',
-  'hearthread',
-  'pourform',
+  'dewthread',
+  'nookwoven',
+  'beanwoven',
   'meeplehaus',
-  'taildrift',
-  'spinelight',
+  'burrowtail',
+  'shelfglow',
 ]
 
 const getThemeEntrypoints = (theme) => [

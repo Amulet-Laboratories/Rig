@@ -1,5 +1,5 @@
-/* Hex — Dermatica Domains
- * Clean, clinical skincare authority site.
+/* Hex — Beanwoven Domains
+ * Warm, artisanal coffee and tea authority site.
  */
 
 @reference 'tailwindcss';
@@ -29,20 +29,20 @@
    All spacing, typography, and layout scales smoothly from 320px up.
    ═══════════════════════════════════════════════════════════════════ */
 
-[data-category='routines'] {
-  --card-accent: #c08585;
+[data-category='brewing-guides'] {
+  --card-accent: #c07840;
 }
-[data-category='ingredients'] {
-  --card-accent: #7a9e7a;
+[data-category='equipment-reviews'] {
+  --card-accent: #5a7a8a;
 }
-[data-category='reviews'] {
-  --card-accent: #d4a04a;
+[data-category='beans-and-blends'] {
+  --card-accent: #7a5636;
 }
 [data-category='buying-guides'] {
-  --card-accent: #6b8ea0;
+  --card-accent: #8a7a5a;
 }
-[data-category='education'] {
-  --card-accent: #9b7ab8;
+[data-category='culture'] {
+  --card-accent: #9b6b7a;
 }
 
 /* ── Fluid typography — clamp between mobile and desktop ──────────── */
@@ -167,8 +167,8 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-hero] {
-  background: linear-gradient(170deg, #faf8f6 0%, #f5ede9 40%, #f0e6e1 100%);
-  border-bottom: 1px solid var(--color-primary);
+  background: linear-gradient(170deg, #faf6ef 0%, #f2e8d8 40%, #eadcc8 100%);
+  border-bottom: 1px solid var(--color-accent);
 }
 
 [data-rig-hero][data-layout='centered'] [data-rig-hero-content] {
@@ -352,7 +352,7 @@ h2 {
 }
 
 [data-rig-section][data-variant='alternate'] {
-  background: linear-gradient(180deg, #f7f0ec 0%, #f5ece7 100%);
+  background: linear-gradient(180deg, #f5ede0 0%, #f2e8da 100%);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
@@ -368,8 +368,8 @@ h2 {
 }
 
 [data-rig-prose] a {
-  color: #7a5a60;
-  text-decoration-color: color-mix(in srgb, #7a5a60 40%, transparent);
+  color: #8a5a30;
+  text-decoration-color: color-mix(in srgb, #8a5a30 40%, transparent);
   transition:
     color 0.15s ease,
     text-decoration-color 0.15s ease;
@@ -432,7 +432,7 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-cta-banner][data-variant='card'] {
-  background: linear-gradient(160deg, #5a3a3f 0%, #7a4a50 40%, #9a5a62 100%);
+  background: linear-gradient(160deg, #3a2818 0%, #5a3a24 40%, #7a5636 100%);
   color: #f5f5f0;
   border: none;
   position: relative;
@@ -517,7 +517,7 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-site-footer] {
-  background: linear-gradient(180deg, #4a2a30 0%, #3a1e24 100%);
+  background: linear-gradient(180deg, #2a1e14 0%, #1e140e 100%);
 }
 
 [data-rig-site-footer-grid] h3,
@@ -576,7 +576,7 @@ h2 {
 
 [data-rig-button][data-variant='primary'] {
   background: var(--color-accent);
-  color: #ffffff;
+  color: #161616;
   border-color: var(--color-accent);
   box-shadow: 0 2px 8px color-mix(in srgb, var(--color-accent) 30%, transparent);
 }

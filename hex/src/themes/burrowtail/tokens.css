@@ -1,4 +1,4 @@
-/* Hex — Taildrift Design Tokens
+/* Hex — Burrowtail Design Tokens
  * Pet care warmth. Soft amber leadership with dusty teal accents.
  * Friendly, approachable, nature-grounded — suited for pet services and animal care.
  *
@@ -195,7 +195,7 @@
   --td-amber-hover: #a07a30;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
-   * Overrides shared/tokens.css defaults where the Taildrift palette needs
+   * Overrides shared/tokens.css defaults where the Burrowtail palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 

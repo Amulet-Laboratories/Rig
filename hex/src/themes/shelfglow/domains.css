@@ -1,5 +1,5 @@
-/* Hex — Taildrift Domains
- * Warm, friendly pet care authority site.
+/* Hex — Shelfglow Domains
+ * Premium editorial design for a literary book recommendation site.
  */
 
 @reference 'tailwindcss';
@@ -24,26 +24,26 @@
    Category accent colors
    ═══════════════════════════════════════════════════════════════════ */
 
+[data-category='recommendations'] {
+  --card-accent: #d4960a;
+}
+[data-category='genre-guides'] {
+  --card-accent: #2d8659;
+}
+[data-category='device-reviews'] {
+  --card-accent: #3a7ca5;
+}
+[data-category='reading-guides'] {
+  --card-accent: #c46a2a;
+}
+[data-category='culture'] {
+  --card-accent: #8b3a6a;
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    Mobile-first fluid design
    All spacing, typography, and layout scales smoothly from 320px up.
    ═══════════════════════════════════════════════════════════════════ */
-
-[data-category='dog-guides'] {
-  --card-accent: #b88f42;
-}
-[data-category='cat-guides'] {
-  --card-accent: #7a6b9b;
-}
-[data-category='reviews'] {
-  --card-accent: #d4964a;
-}
-[data-category='buying-guides'] {
-  --card-accent: #4a8a7a;
-}
-[data-category='care'] {
-  --card-accent: #c06060;
-}
 
 /* ── Fluid typography — clamp between mobile and desktop ──────────── */
 
@@ -167,8 +167,8 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-hero] {
-  background: linear-gradient(170deg, #f8f6f2 0%, #f2ece0 40%, #ebe3d2 100%);
-  border-bottom: 1px solid var(--color-primary);
+  background: linear-gradient(170deg, #f8f5ef 0%, #f0e8d8 40%, #e8dcc8 100%);
+  border-bottom: 1px solid var(--color-border);
 }
 
 [data-rig-hero][data-layout='centered'] [data-rig-hero-content] {
@@ -352,7 +352,7 @@ h2 {
 }
 
 [data-rig-section][data-variant='alternate'] {
-  background: linear-gradient(180deg, #f3ede3 0%, #f0e8dc 100%);
+  background: linear-gradient(180deg, #f3ede1 0%, #f0e9dc 100%);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
@@ -368,8 +368,8 @@ h2 {
 }
 
 [data-rig-prose] a {
-  color: #4a7a7a;
-  text-decoration-color: color-mix(in srgb, #4a7a7a 40%, transparent);
+  color: #2d6b8a;
+  text-decoration-color: color-mix(in srgb, #2d6b8a 40%, transparent);
   transition:
     color 0.15s ease,
     text-decoration-color 0.15s ease;
@@ -432,8 +432,8 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-cta-banner][data-variant='card'] {
-  background: linear-gradient(160deg, #2a4a4a 0%, #3a5a5a 40%, #486868 100%);
-  color: #f5f5f0;
+  background: linear-gradient(160deg, #1e2d45 0%, #2a3a55 40%, #3d4f6e 100%);
+  color: #f8f5ef;
   border: none;
   position: relative;
   overflow: hidden;
@@ -463,7 +463,7 @@ h2 {
 
 [data-rig-cta-banner][data-variant='card'] p,
 [data-rig-cta-banner][data-variant='card'] [data-rig-newsletter-description] {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(248, 245, 239, 0.8);
   position: relative;
 }
 
@@ -517,7 +517,7 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-site-footer] {
-  background: linear-gradient(180deg, #1e3a3a 0%, #142e2e 100%);
+  background: linear-gradient(180deg, #1a2840 0%, #121c2e 100%);
 }
 
 [data-rig-site-footer-grid] h3,
@@ -576,9 +576,9 @@ h2 {
 
 [data-rig-button][data-variant='primary'] {
   background: var(--color-accent);
-  color: #ffffff;
-  border-color: var(--color-primary);
-  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-primary) 30%, transparent);
+  color: #161616;
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-accent) 30%, transparent);
 }
 
 [data-rig-button][data-variant='primary']:hover {
@@ -593,7 +593,7 @@ h2 {
 }
 
 [data-rig-button][data-variant='secondary']:hover {
-  background: var(--color-accent);
+  background: var(--color-primary);
   color: #ffffff;
   box-shadow: 0 2px 8px color-mix(in srgb, var(--color-primary) 25%, transparent);
 }
