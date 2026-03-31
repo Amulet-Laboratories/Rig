@@ -16,7 +16,7 @@ export default defineEventHandler((event) => {
     const filePath = join(dataDir, niche, `${slug}.yaml`)
     if (existsSync(filePath)) {
       const content = readFileSync(filePath, 'utf-8')
-      const product = parse(content) as Record<string, unknown>
+      const product = parse(content)
       return injectAffiliateTag(product)
     }
   }

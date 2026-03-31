@@ -3,7 +3,7 @@ import {
   addImports,
   addComponent,
   addPlugin,
-  addServerHandler,
+  addServerScanDir,
   createResolver,
 } from '@nuxt/kit'
 
@@ -350,36 +350,8 @@ export default defineNuxtModule<NuxtRigOptions>({
       addPlugin(resolve('./runtime/plugins/sentry.client'))
     }
 
-    // Server routes
-    if (contentOpts.products !== false) {
-      addServerHandler({
-        route: '/api/products',
-        handler: resolve('./runtime/server/api/products/index.get'),
-      })
-      addServerHandler({
-        route: '/api/products/:slug',
-        handler: resolve('./runtime/server/api/products/[slug].get'),
-      })
-    }
-    if (contentOpts.newsletter !== false) {
-      addServerHandler({
-        route: '/api/newsletter/subscribe',
-        method: 'post',
-        handler: resolve('./runtime/server/api/newsletter/subscribe.post'),
-      })
-    }
-    if (contentOpts.feed !== false) {
-      addServerHandler({
-        route: '/feed.xml',
-        handler: resolve('./runtime/server/routes/feed.xml'),
-      })
-    }
-    if (contentOpts.sitemap !== false) {
-      addServerHandler({
-        route: '/sitemap.xml',
-        handler: resolve('./runtime/server/routes/sitemap.xml'),
-      })
-    }
+    // Server routes — use addServerScanDir so Nitro transpiles TypeScript
+    addServerScanDir(resolve('./runtime/server'))
   },
 })
 

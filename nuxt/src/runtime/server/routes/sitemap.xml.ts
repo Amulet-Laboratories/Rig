@@ -2,40 +2,31 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { parse } from 'yaml'
 
-interface SitemapUrl {
-  loc: string
-  priority: number
-  changefreq: string
-  lastmod?: string
-}
-
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const siteUrl = config.public.siteUrl || 'http://localhost:3000'
 
-  const articles: any[] = await queryCollection(event, 'articles').all()
-  const pages: any[] = await queryCollection(event, 'pages').all()
+  const articles = await queryCollection(event, 'articles').all()
+  const pages = await queryCollection(event, 'pages').all()
 
   const comparisonUrls = getComparisonUrls()
 
-  // Site-specific values -- override via NUXT_CONTENT_PERSONA_SLUGS and
-  // NUXT_CONTENT_CATEGORY_SLUGS env vars (comma-separated), or keep defaults.
-  const personaSlugs = ((config.contentPersonaSlugs as string) || '')
+  const personaSlugs = (config.contentPersonaSlugs || '')
     .split(',')
-    .map((s: string) => s.trim())
+    .map((s) => s.trim())
     .filter(Boolean)
 
-  const freePages = ((config.contentFreePages as string) || '')
+  const freePages = (config.contentFreePages || '')
     .split(',')
-    .map((s: string) => s.trim())
+    .map((s) => s.trim())
     .filter(Boolean)
 
-  const categorySlugs = ((config.contentCategorySlugs as string) || '')
+  const categorySlugs = (config.contentCategorySlugs || '')
     .split(',')
-    .map((s: string) => s.trim())
+    .map((s) => s.trim())
     .filter(Boolean)
 
-  const urls: SitemapUrl[] = [
+  const urls = [
     { loc: '/', priority: 1.0, changefreq: 'daily' },
     ...pages.map((page) => ({
       loc: page.path,
@@ -52,22 +43,22 @@ export default defineEventHandler(async (event) => {
     ...comparisonUrls.map((loc) => ({
       loc,
       priority: 0.6,
-      changefreq: 'monthly' as const,
+      changefreq: 'monthly',
     })),
     ...personaSlugs.map((slug) => ({
       loc: `/best-for/${slug}`,
       priority: 0.6,
-      changefreq: 'monthly' as const,
+      changefreq: 'monthly',
     })),
     ...freePages.map((slug) => ({
       loc: `/free/${slug}`,
       priority: 0.5,
-      changefreq: 'monthly' as const,
+      changefreq: 'monthly',
     })),
     ...categorySlugs.map((slug) => ({
       loc: `/category/${slug}`,
       priority: 0.7,
-      changefreq: 'weekly' as const,
+      changefreq: 'weekly',
     })),
   ]
 
@@ -88,15 +79,15 @@ ${urls
   return sitemap
 })
 
-function getComparisonUrls(): string[] {
+function getComparisonUrls() {
   const config = useRuntimeConfig()
-  const comparisonNiches = ((config.contentComparisonNiches as string) || 'coffee')
+  const comparisonNiches = (config.contentComparisonNiches || 'coffee')
     .split(',')
-    .map((s: string) => s.trim())
+    .map((s) => s.trim())
     .filter(Boolean)
 
   const dataDir = resolve(process.cwd(), 'data/products')
-  const products: Array<{ slug: string; category: string }> = []
+  const products = []
 
   for (const niche of comparisonNiches) {
     const nicheDir = join(dataDir, niche)
@@ -105,9 +96,9 @@ function getComparisonUrls(): string[] {
     for (const file of files) {
       try {
         const content = readFileSync(join(nicheDir, file), 'utf-8')
-        const product = parse(content) as Record<string, unknown>
+        const product = parse(content)
         if (product.slug && product.category) {
-          products.push({ slug: product.slug as string, category: product.category as string })
+          products.push({ slug: product.slug, category: product.category })
         }
       } catch {
         // Skip malformed files
@@ -115,7 +106,7 @@ function getComparisonUrls(): string[] {
     }
   }
 
-  const urls: string[] = []
+  const urls = []
   for (let i = 0; i < products.length; i++) {
     for (let j = i + 1; j < products.length; j++) {
       if (products[i].category === products[j].category) {

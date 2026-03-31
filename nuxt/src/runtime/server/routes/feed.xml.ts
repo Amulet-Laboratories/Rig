@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   const siteName = config.public?.siteName || 'Site'
 
   const rssItems = articles
-    .map((article: any) => {
+    .map((article) => {
       const link = `${siteUrl}${article.path}`
       const pubDate = article.publishedAt ? new Date(article.publishedAt).toUTCString() : ''
       return `    <item>
