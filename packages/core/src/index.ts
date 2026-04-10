@@ -59,26 +59,27 @@ export {
   requestConfirm,
   useAnnounce,
   announce,
+  EventBus,
+  renderMarkdown,
+  setMarkdownCacheSize,
+  clearMarkdownCache,
+  extractSnippet,
+  highlightParts,
+  timeAgo,
+  todayStr,
+  isMacPlatform,
+  usePlatform,
   useContainerSize,
   useThrottledRender,
   withAlpha,
   resolveToken,
   resolveTokenWithAlpha,
-  EventBus,
-  renderMarkdown,
-  setMarkdownCacheSize,
-  clearMarkdownCache,
-  timeAgo,
-  todayStr,
   useZoom,
   useGlobalTooltip,
-  extractSnippet,
-  highlightParts,
   useSortableOrder,
 } from './composables'
 export type { RigConfig, ValidationRule, FieldState, FormValidationOptions } from './composables'
 export type { ConfirmOptions, ConfirmRequest } from './composables'
-export type { ZoomOptions, SortableOrderOptions } from './composables'
 export type {
   FocusTrapOptions,
   VirtualItem,
@@ -92,6 +93,8 @@ export type {
   ParallaxOptions,
   ParallaxReturn,
   MediaPlaybackOptions,
+  ZoomOptions,
+  SortableOrderOptions,
 } from './composables'
 
 // Primitives
@@ -132,5 +135,4 @@ export {
   Transfer,
   Mention,
   InfiniteScroll,
-  SectionHeader,
 } from './primitives'

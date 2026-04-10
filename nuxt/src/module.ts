@@ -294,6 +294,10 @@ export default defineNuxtModule<NuxtRigOptions>({
         filePath: resolve('./runtime/components/content/NetworkArticles.vue'),
       },
       {
+        name: 'NetworkLinks',
+        filePath: resolve('./runtime/components/content/NetworkLinks.vue'),
+      },
+      {
         name: 'ProductCardWrapper',
         filePath: resolve('./runtime/components/content/ProductCardWrapper.vue'),
       },

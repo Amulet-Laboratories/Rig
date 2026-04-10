@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRuntimeConfig } from '#imports'
+
 interface Props {
   location: 'sidebar-top' | 'sidebar-bottom' | 'in-content' | 'header' | 'footer'
   format?: 'display' | 'native' | 'text'

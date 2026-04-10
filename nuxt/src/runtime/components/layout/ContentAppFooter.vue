@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useSiteConfig, useAppConfig } from '#imports'
+
 defineProps<{
   tagline?: string
 }>()

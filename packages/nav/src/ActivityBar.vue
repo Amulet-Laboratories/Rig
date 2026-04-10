@@ -24,6 +24,8 @@ const emit = defineEmits<{
   'update:activeId': [id: ID]
   select: [action: Action]
   reorder: [items: Action[]]
+  'drag-start': [action: Action]
+  'drag-end': []
 }>()
 
 defineSlots<{
@@ -73,6 +75,8 @@ function onDragStart(e: DragEvent, index: number) {
   dragSourceIndex.value = index
   e.dataTransfer.effectAllowed = 'move'
   e.dataTransfer.setData('text/plain', String(index))
+  const action = props.items[index]
+  if (action) emit('drag-start', action)
   // Slight delay so the browser captures the element before we style it
   requestAnimationFrame(() => {
     const el = itemRefs.value[index]
@@ -114,6 +118,10 @@ function onDrop(e: DragEvent) {
   const from = dragSourceIndex.value
   let to = dragOverIndex.value
 
+  // Clean up dragging attribute before reset (onDragEnd won't find it otherwise)
+  const el = itemRefs.value[from]
+  if (el) delete el.dataset.dragging
+
   // Adjust target based on drop edge
   if (dropEdge.value === 'after') to += 1
   // If dropping after the source, adjust for removal
@@ -137,6 +145,7 @@ function onDragEnd() {
     if (el) delete el.dataset.dragging
   }
   resetDragState()
+  emit('drag-end')
 }
 
 function resetDragState() {

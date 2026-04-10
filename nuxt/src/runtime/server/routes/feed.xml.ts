@@ -4,7 +4,9 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const siteUrl = config.public?.siteUrl || 'http://localhost:3000'
 
+  // @ts-expect-error -- Server queryCollection takes (event, collection); vue-tsc resolves client types
   const articles = await queryCollection(event, 'articles')
+    // @ts-expect-error -- publishedAt exists on articles collection but not on union type
     .order('publishedAt', 'DESC')
     .limit(50)
     .all()
@@ -14,6 +16,7 @@ export default defineEventHandler(async (event) => {
   const rssItems = articles
     .map((article) => {
       const link = `${siteUrl}${article.path}`
+      // @ts-expect-error -- publishedAt exists on articles collection items
       const pubDate = article.publishedAt ? new Date(article.publishedAt).toUTCString() : ''
       return `    <item>
       <title><![CDATA[${article.title || ''}]]></title>

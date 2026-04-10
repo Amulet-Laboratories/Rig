@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import { useSiteConfig } from '#imports'
 import { useFathom } from '@amulet-laboratories/rig'
 
 const props = defineProps<{

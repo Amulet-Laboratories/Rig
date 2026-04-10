@@ -20,6 +20,14 @@
   flex-direction: column;
   align-items: center;
   gap: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  scrollbar-width: none;
+}
+
+[data-rig-activity-bar-top]::-webkit-scrollbar {
+  display: none;
 }
 
 [data-rig-activity-bar-bottom] {
@@ -27,6 +35,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0;
+  flex-shrink: 0;
 }
 
 [data-rig-activity-bar-item] {

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useAsyncData } from '#imports'
 import { useFathom } from '@amulet-laboratories/rig'
 import { useProducts } from '../../composables/useProducts'
 

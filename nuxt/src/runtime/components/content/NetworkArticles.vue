@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useSiteConfig } from '#imports'
 import { useFathom } from '@amulet-laboratories/rig'
 
 interface NetworkArticle {

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+import { useRuntimeConfig } from '#imports'
+
 const props = defineProps<{
   quizSlug: string
   heading?: string

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { Button } from '@amulet-laboratories/rig'
 
 const accepted = ref(true)

@@ -1571,6 +1571,67 @@
   line-height: 1.4;
 }
 
+/* ─── NetworkLinks (per-article cross-site links from frontmatter) ─── */
+
+[data-rig-network-links] {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+[data-rig-network-links-heading] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-foreground-muted, var(--color-foreground));
+  margin-bottom: 0.75rem;
+}
+
+[data-rig-network-links-grid] {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.625rem;
+}
+
+@media (min-width: 768px) {
+  [data-rig-network-links-grid] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+[data-rig-network-links-card] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius, 6px);
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+[data-rig-network-links-card]:hover {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 4%, transparent);
+}
+
+[data-rig-network-links-site] {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+[data-rig-network-links-title] {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-foreground);
+  line-height: 1.35;
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    Comparison Page
    ═══════════════════════════════════════════════════════════════════ */

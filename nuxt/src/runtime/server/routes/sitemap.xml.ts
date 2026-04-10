@@ -6,7 +6,9 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const siteUrl = config.public.siteUrl || 'http://localhost:3000'
 
+  // @ts-expect-error -- Server queryCollection takes (event, collection); vue-tsc resolves client types
   const articles = await queryCollection(event, 'articles').all()
+  // @ts-expect-error -- Server queryCollection takes (event, collection); vue-tsc resolves client types
   const pages = await queryCollection(event, 'pages').all()
 
   const comparisonUrls = getComparisonUrls()
@@ -37,6 +39,7 @@ export default defineEventHandler(async (event) => {
       loc: article.path,
       priority: 0.8,
       changefreq: 'weekly',
+      // @ts-expect-error -- updatedAt/publishedAt exist on articles collection items
       lastmod: article.updatedAt || article.publishedAt,
     })),
     { loc: '/compare', priority: 0.7, changefreq: 'weekly' },

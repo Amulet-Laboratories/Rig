@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useAsyncData, queryCollection } from '#imports'
+
 const props = defineProps<{
   slugs: string[]
 }>()

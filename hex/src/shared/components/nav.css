@@ -157,6 +157,27 @@
   box-shadow: inset -2px 0 0 0 var(--rig-activitybar-active-border, var(--color-accent));
 }
 
+[data-rig-activity-stash-zone] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 8px);
+  height: 32px;
+  margin: 2px 4px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-muted-foreground);
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+}
+
+[data-rig-activity-stash-zone]:hover,
+[data-rig-activity-stash-zone][data-over] {
+  border-color: var(--color-ring);
+  color: var(--color-foreground);
+}
+
 /* ───────── SideBar ───────── */
 
 [data-rig-sidebar] {

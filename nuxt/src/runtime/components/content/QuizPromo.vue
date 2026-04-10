@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useRuntimeConfig } from '#imports'
+
 const props = defineProps<{
   quizSlug: string
   quizTitle: string

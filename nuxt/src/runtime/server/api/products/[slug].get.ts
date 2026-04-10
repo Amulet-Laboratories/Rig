@@ -1,6 +1,7 @@
 import { readFileSync, existsSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { parse } from 'yaml'
+import { defineEventHandler, getRouterParam, createError } from 'h3'
 import { injectAffiliateTag } from '../../utils/injectAffiliateTag'
 
 export default defineEventHandler((event) => {
@@ -10,7 +11,19 @@ export default defineEventHandler((event) => {
   }
 
   const dataDir = resolve(process.cwd(), 'data/products')
-  const niches = ['skincare', 'home', 'boardgames', 'pets', 'coffee', 'books']
+  const niches = [
+    'skincare',
+    'home',
+    'boardgames',
+    'pets',
+    'coffee',
+    'books',
+    'fashion',
+    'fitness',
+    'food',
+    'merch',
+    'wellness',
+  ]
 
   for (const niche of niches) {
     const filePath = join(dataDir, niche, `${slug}.yaml`)

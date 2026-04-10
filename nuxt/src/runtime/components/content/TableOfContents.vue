@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { useRoute, useAsyncData, queryCollection } from '#imports'
+
 interface TocLink {
   id: string
   text: string

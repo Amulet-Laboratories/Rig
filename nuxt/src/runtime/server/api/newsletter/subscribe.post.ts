@@ -1,3 +1,5 @@
+import { defineEventHandler, readBody, createError } from 'h3'
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const email = body?.email?.trim()
