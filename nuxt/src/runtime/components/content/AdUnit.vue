@@ -5,20 +5,17 @@ import { useRuntimeConfig, useHead } from '#imports'
 interface Props {
   /** Ad unit slot ID from AdSense */
   slot: string
-  /** Ad format — 'auto' adapts to container, 'horizontal' and 'vertical' are fixed axis */
+  /** Ad format — 'auto' adapts to container (default) */
   format?: 'auto' | 'horizontal' | 'vertical'
   /** Enable responsive sizing (default: true) */
   responsive?: boolean
   /** Layout hint for native ads */
   layout?: string
-  /** Location label for analytics/debugging */
-  location?: 'sidebar-top' | 'sidebar-bottom' | 'in-content' | 'header' | 'footer'
 }
 
 const props = withDefaults(defineProps<Props>(), {
   format: 'auto',
   responsive: true,
-  location: 'in-content',
 })
 
 const config = useRuntimeConfig()
@@ -57,13 +54,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
+  <aside
     v-if="adClientId"
-    data-rig-ad-slot
-    :data-ad-location="location"
-    :style="{
-      minHeight: format === 'horizontal' ? '90px' : format === 'vertical' ? '250px' : '100px',
-    }"
+    data-rig-ad-unit
+    aria-label="Advertisement"
+    :style="{ minHeight: '100px' }"
   >
     <ins
       class="adsbygoogle"
@@ -74,5 +69,5 @@ onMounted(() => {
       :data-ad-layout="layout || undefined"
       :data-full-width-responsive="responsive ? 'true' : undefined"
     />
-  </div>
+  </aside>
 </template>

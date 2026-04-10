@@ -323,6 +323,10 @@ export default defineNuxtModule<NuxtRigOptions>({
         filePath: resolve('./runtime/components/content/PersonalizedHero.vue'),
       },
       {
+        name: 'AdUnit',
+        filePath: resolve('./runtime/components/content/AdUnit.vue'),
+      },
+      {
         name: 'ContentAppFooter',
         filePath: resolve('./runtime/components/layout/ContentAppFooter.vue'),
       },
