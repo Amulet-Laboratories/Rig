@@ -327,6 +327,10 @@ export default defineNuxtModule<NuxtRigOptions>({
         filePath: resolve('./runtime/components/content/AdUnit.vue'),
       },
       {
+        name: 'EditorialSidebar',
+        filePath: resolve('./runtime/components/content/EditorialSidebar.vue'),
+      },
+      {
         name: 'ContentAppFooter',
         filePath: resolve('./runtime/components/layout/ContentAppFooter.vue'),
       },
