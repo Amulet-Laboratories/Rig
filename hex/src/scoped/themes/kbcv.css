@@ -111,4 +111,17 @@
   --rig-button-hover-bg: #ddd7ce;
   --rig-scrollbar-thumb: rgba(42, 37, 33, 0.12);
   --rig-scrollbar-thumb-hover: rgba(42, 37, 33, 0.25);
+
+  /* Editorial newsprint rhythm */
+  --rig-display-md: 2.25rem;
+  --rig-display-lg: 3rem;
+  --rig-display-xl: 4rem;
+  --rig-display-tracking: 0;
+  --rig-display-leading: 1.1;
+
+  /* Slight grain on imagery — newspaper feel */
+  --rig-media-filter: saturate(0.95) brightness(0.98);
+
+  --link-slide-color: #b83232;
+  --rig-elevation-rgb: 42 37 33;
 }

@@ -54,8 +54,8 @@ describe('Hex build', () => {
 
   // ─── CSS size budget (prevents unbounded growth) ────────────────────────
 
-  it('no CSS file exceeds 150 KB budget', () => {
-    const MAX_BYTES = 175 * 1024 // 175 KB (minified)
+  it('no CSS file exceeds 200 KB budget', () => {
+    const MAX_BYTES = 200 * 1024 // 200 KB (minified — bumped from 175 to accommodate display + elevation + media-filter tokens)
     const allFiles = ['hex.css', ...themes.map((t) => `${t}.css`)]
     for (const file of allFiles) {
       const size = readFileSync(resolve(DIST, file)).length

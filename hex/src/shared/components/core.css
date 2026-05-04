@@ -422,8 +422,36 @@
 [data-rig-card][data-interactive]:hover {
   border-color: var(--rig-input-border);
   background: var(--rig-card-hover-bg, var(--color-card));
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  box-shadow: var(--rig-elevation-2);
+}
+
+/* Media-zoom variant — wraps an image and scales it on hover. */
+[data-rig-card][data-media] {
+  overflow: hidden;
+}
+
+[data-rig-card][data-media] img {
+  filter: var(--rig-media-filter);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.4s ease;
+}
+
+@media (hover: hover) {
+  [data-rig-card][data-media]:hover img {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-rig-card][data-media] img {
+    transition: none;
+  }
+
+  [data-rig-card][data-media]:hover img {
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -11,7 +11,8 @@
  *   #E4DFF0  lavender white  — foreground text
  *   #8A80A0  dusty violet    — muted foreground
  *   #7A8EB8  cool blue       — info
- *   #A87BD4  soft lavender   — primary, accent (h≈280)
+ *   #A87BD4  soft lavender   — primary (h≈280)
+ *   #C89FB8  dusty rose      — accent (h≈325, warm complement)
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
@@ -30,7 +31,7 @@
   --color-secondary-foreground: #e4dff0;
   --color-muted: #221e30;
   --color-muted-foreground: #8a80a0;
-  --color-accent: #a87bd4;
+  --color-accent: #c89fb8;
   --color-accent-foreground: #110e18;
   --color-destructive: #d45a5a;
   --color-destructive-foreground: #e4dff0;
@@ -73,7 +74,7 @@
   --secondary-foreground: #e4dff0;
   --muted: #221e30;
   --muted-foreground: #8a80a0;
-  --accent: #a87bd4;
+  --accent: #c89fb8;
   --accent-foreground: #110e18;
   --destructive: #d45a5a;
   --destructive-foreground: #e4dff0;
@@ -111,4 +112,21 @@
   --rig-button-hover-bg: #221e30;
   --rig-scrollbar-thumb: rgba(228, 223, 240, 0.15);
   --rig-scrollbar-thumb-hover: rgba(228, 223, 240, 0.3);
+
+  /* Editorial display rhythm — generous tracking for serif elegance */
+  --rig-display-md: 3rem;
+  --rig-display-lg: 4rem;
+  --rig-display-xl: 5.5rem;
+  --rig-display-2xl: 7rem;
+  --rig-display-tracking: -0.01em;
+  --rig-display-leading: 1.05;
+
+  /* Evening-warmth media filter */
+  --rig-media-filter: brightness(0.97) saturate(1.08);
+
+  /* Link slide accent */
+  --link-slide-color: #c89fb8;
+
+  /* Light-shadow tint over plum */
+  --rig-elevation-rgb: 17 14 24;
 }

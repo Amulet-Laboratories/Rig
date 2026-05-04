@@ -32,7 +32,7 @@
   --color-secondary: #f2e8f0;
   --color-secondary-foreground: #1a0a18;
   --color-muted: #f2e8f0;
-  --color-muted-foreground: #8a6a80;
+  --color-muted-foreground: #6a4860;
   --color-accent: #c43a8a;
   --color-accent-foreground: #ffffff;
 
@@ -92,7 +92,7 @@
   --secondary: #f2e8f0;
   --secondary-foreground: #1a0a18;
   --muted: #f2e8f0;
-  --muted-foreground: #8a6a80;
+  --muted-foreground: #6a4860;
   --accent: #c43a8a;
   --accent-foreground: #ffffff;
   --destructive: #cc4444;
@@ -154,7 +154,7 @@
   --ml-pink-tint: #faf5f8;
   --ml-blush: #f2e8f0;
   --ml-dark-magenta: #1a0a18;
-  --ml-mauve: #8a6a80;
+  --ml-mauve: #6a4860;
   --ml-rose-border: #e5d5e0;
   --ml-magenta: #c43a8a;
 

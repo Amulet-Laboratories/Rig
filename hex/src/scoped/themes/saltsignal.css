@@ -26,12 +26,12 @@
   --color-card-foreground: #2a2210;
   --color-popover: #fffcf4;
   --color-popover-foreground: #2a2210;
-  --color-primary: #b8860b;
+  --color-primary: #8a6209;
   --color-primary-foreground: #fffcf4;
   --color-secondary: #ede4d4;
   --color-secondary-foreground: #2a2210;
   --color-muted: #ede4d4;
-  --color-muted-foreground: #7a6a4a;
+  --color-muted-foreground: #5a4a30;
   --color-accent: #3d6b4f;
   --color-accent-foreground: #fffcf4;
   --color-destructive: #b84233;
@@ -41,7 +41,7 @@
   --color-info: #5a7aaa;
   --color-border: #d8ccb0;
   --color-input: #d8ccb0;
-  --color-ring: #b8860b;
+  --color-ring: #8a6209;
   --font-sans: 'Nunito Sans', 'Inter', system-ui, sans-serif;
   --font-mono: 'Anybody', 'DM Mono', ui-monospace, monospace;
   --font-serif: 'Fraunces', Georgia, serif;
@@ -66,12 +66,12 @@
   --card-foreground: #2a2210;
   --popover: #fffcf4;
   --popover-foreground: #2a2210;
-  --primary: #b8860b;
+  --primary: #8a6209;
   --primary-foreground: #fffcf4;
   --secondary: #ede4d4;
   --secondary-foreground: #2a2210;
   --muted: #ede4d4;
-  --muted-foreground: #7a6a4a;
+  --muted-foreground: #5a4a30;
   --accent: #3d6b4f;
   --accent-foreground: #fffcf4;
   --destructive: #b84233;
@@ -81,7 +81,7 @@
   --info: #5a7aaa;
   --border: #d8ccb0;
   --input: #d8ccb0;
-  --ring: #b8860b;
+  --ring: #8a6209;
   --text-2xs: 0.625rem;
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
@@ -104,11 +104,24 @@
   --ss-parchment: #ede4d4;
   --ss-warm-white: #fffcf4;
   --ss-dark-roast: #2a2210;
-  --ss-leather: #7a6a4a;
-  --ss-amber: #b8860b;
+  --ss-leather: #5a4a30;
+  --ss-amber: #8a6209;
   --ss-green: #3d6b4f;
   --ss-red: #b84233;
   --rig-button-hover-bg: #ede4d4;
   --rig-scrollbar-thumb: rgba(42, 34, 16, 0.12);
   --rig-scrollbar-thumb-hover: rgba(42, 34, 16, 0.25);
+
+  /* Goods-store rhythm — friendly serif */
+  --rig-display-md: 2.25rem;
+  --rig-display-lg: 3rem;
+  --rig-display-xl: 4rem;
+  --rig-display-tracking: -0.005em;
+  --rig-display-leading: 1.1;
+
+  /* Warm parchment tone on imagery */
+  --rig-media-filter: saturate(1.05) brightness(1.02) sepia(0.04);
+
+  --link-slide-color: #8a6209;
+  --rig-elevation-rgb: 42 34 16;
 }

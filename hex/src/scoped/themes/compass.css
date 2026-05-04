@@ -108,4 +108,17 @@
   --rig-button-hover-bg: #e0ece0;
   --rig-scrollbar-thumb: rgba(26, 42, 26, 0.12);
   --rig-scrollbar-thumb-hover: rgba(26, 42, 26, 0.25);
+
+  /* Approachable medical rhythm */
+  --rig-display-md: 2.25rem;
+  --rig-display-lg: 2.75rem;
+  --rig-display-xl: 3.5rem;
+  --rig-display-tracking: -0.005em;
+  --rig-display-leading: 1.15;
+
+  /* Soft natural warmth */
+  --rig-media-filter: saturate(1.03) brightness(1.02);
+
+  --link-slide-color: #2d7a3e;
+  --rig-elevation-rgb: 26 42 26;
 }

@@ -1,5 +1,3 @@
-/* Hex — fogline (scoped) */
-
 /* Hex — Fogline Design Tokens
  * Warm espresso dark mode. The only brown-toned dark theme in Hex.
  * Feels like the inside of a dimly lit roastery at dawn — deep
@@ -19,35 +17,49 @@
  * Radius: 4px — precise, not fussy
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
-[data-hex-theme='fogline'] {
+@theme {
+  /* Surface colors */
   --color-background: #16120e;
   --color-foreground: #ede4d8;
   --color-card: #1e1914;
   --color-card-foreground: #ede4d8;
   --color-popover: #1e1914;
   --color-popover-foreground: #ede4d8;
+
+  /* Brand */
   --color-primary: #c8a265;
   --color-primary-foreground: #16120e;
+
+  /* Soft accents */
   --color-secondary: #2a231c;
   --color-secondary-foreground: #ede4d8;
   --color-muted: #2a231c;
   --color-muted-foreground: #9a8b78;
   --color-accent: #d4843a;
   --color-accent-foreground: #16120e;
+
+  /* Semantic status */
   --color-destructive: #c44830;
   --color-destructive-foreground: #ede4d8;
   --color-success: #5a8a5c;
   --color-warning: #d4a040;
   --color-info: #5a8ab0;
+
+  /* Borders and focus */
   --color-border: #362e26;
   --color-input: #362e26;
   --color-ring: #c8a265;
+
+  /* Typography */
   --font-sans: 'DM Sans', 'Inter', system-ui, sans-serif;
   --font-mono: 'Space Mono', 'SF Mono', ui-monospace, monospace;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', 'Georgia', serif;
+  --font-heading: 'Cormorant Garamond', 'Georgia', serif;
+
+  /* Typography — IDE-density type scale */
   --font-size-2xs: 0.625rem;
   --font-size-2xs--line-height: 1.25;
   --font-size-xs: 0.75rem;
@@ -60,8 +72,13 @@
   --font-size-lg--line-height: 1.25;
   --font-size-xl: 1.25rem;
   --font-size-xl--line-height: 1.25;
-  --font-display: var(--font-sans);
+
+  --font-display: var(--font-serif);
+
   --radius: 4px;
+}
+
+:root {
   --background: #16120e;
   --foreground: #ede4d8;
   --card: #1e1914;
@@ -84,6 +101,24 @@
   --border: #362e26;
   --input: #362e26;
   --ring: #c8a265;
+
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  --font-display: var(--font-serif);
+
+  --radius: 4px;
+
   --text-2xs: 0.625rem;
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
@@ -102,6 +137,12 @@
   --tracking-normal: 0;
   --tracking-wide: 0.05em;
   --tracking-wider: 0.08em;
+  --font-sans: 'DM Sans', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Cormorant Garamond', 'Georgia', serif;
+  --font-heading: 'Cormorant Garamond', 'Georgia', serif;
+
+  /* ── Named palette aliases ── */
   --fl-espresso: #16120e;
   --fl-roast: #1e1914;
   --fl-walnut: #2a231c;
@@ -110,15 +151,19 @@
   --fl-crema: #c8a265;
   --fl-copper: #d4843a;
   --fl-ember: #c44830;
+
+  /* ── Rig component token bridge ── */
+
   --rig-button-hover-bg: #362e26;
   --rig-scrollbar-thumb: rgba(237, 228, 216, 0.1);
   --rig-scrollbar-thumb-hover: rgba(237, 228, 216, 0.2);
+
   --section-divider-fill: #1e1914;
   --section-divider-bg: #16120e;
   --ornament-color: #c8a265;
   --flanked-heading-stroke: #362e26;
 
-  /* Editorial roastery rhythm */
+  /* Display rhythm — editorial roastery */
   --rig-display-md: 2.5rem;
   --rig-display-lg: 3.5rem;
   --rig-display-xl: 5rem;
@@ -126,7 +171,7 @@
   --rig-display-tracking: -0.01em;
   --rig-display-leading: 1.05;
 
-  /* Espresso warmth on imagery */
+  /* Imagery — espresso warmth */
   --rig-media-filter: sepia(0.12) saturate(1.12) brightness(0.97);
 
   --link-slide-color: #c8a265;

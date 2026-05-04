@@ -108,4 +108,17 @@
   --rig-button-hover-bg: #e2dcd0;
   --rig-scrollbar-thumb: rgba(43, 38, 34, 0.12);
   --rig-scrollbar-thumb-hover: rgba(43, 38, 34, 0.25);
+
+  /* Library editorial — bookish */
+  --rig-display-md: 2.25rem;
+  --rig-display-lg: 3rem;
+  --rig-display-xl: 4rem;
+  --rig-display-tracking: -0.005em;
+  --rig-display-leading: 1.15;
+
+  /* Vellum warmth on imagery */
+  --rig-media-filter: sepia(0.06) saturate(1.02) brightness(0.99);
+
+  --link-slide-color: #a5562e;
+  --rig-elevation-rgb: 43 38 34;
 }

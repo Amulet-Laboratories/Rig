@@ -120,4 +120,15 @@
   --rig-button-secondary-hover-fg: var(--color-foreground);
   --rig-scrollbar-thumb: rgba(26, 20, 40, 0.15);
   --rig-scrollbar-thumb-hover: rgba(26, 20, 40, 0.3);
+
+  /* Civic — solid, readable */
+  --rig-display-md: 2.25rem;
+  --rig-display-lg: 2.75rem;
+  --rig-display-xl: 3.5rem;
+  --rig-display-tracking: 0;
+  --rig-display-leading: 1.2;
+
+  --rig-media-filter: saturate(0.95);
+  --link-slide-color: #6d42c4;
+  --rig-elevation-rgb: 26 20 40;
 }

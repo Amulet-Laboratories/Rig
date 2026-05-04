@@ -116,4 +116,18 @@
   --rig-button-secondary-hover-fg: var(--color-foreground);
   --rig-scrollbar-thumb: rgba(216, 228, 236, 0.1);
   --rig-scrollbar-thumb-hover: rgba(216, 228, 236, 0.22);
+
+  /* Noir rhythm — narrow, mono-feeling display */
+  --rig-display-md: 2.25rem;
+  --rig-display-lg: 2.75rem;
+  --rig-display-xl: 3.5rem;
+  --rig-display-tracking: 0.08em;
+  --rig-display-leading: 1.15;
+  --rig-display-weight: 600;
+
+  /* Cool desaturation reinforces noir */
+  --rig-media-filter: saturate(0.7) brightness(0.92) contrast(1.05);
+
+  --link-slide-color: #d4a040;
+  --rig-elevation-rgb: 10 15 20;
 }
