@@ -110,4 +110,19 @@
   --rig-button-hover-bg: #3b3633;
   --rig-scrollbar-thumb: rgba(245, 240, 235, 0.12);
   --rig-scrollbar-thumb-hover: rgba(245, 240, 235, 0.25);
+
+  /* Industrial display rhythm — heavy, condensed, uppercase */
+  --rig-display-md: 3rem;
+  --rig-display-lg: 4.5rem;
+  --rig-display-xl: 6rem;
+  --rig-display-2xl: 8rem;
+  --rig-display-tracking: -0.02em;
+  --rig-display-leading: 0.95;
+  --rig-display-weight: 900;
+
+  /* Slight warmth on imagery — orange-leaning */
+  --rig-media-filter: contrast(1.05) saturate(1.1);
+
+  --link-slide-color: #d95f2a;
+  --rig-elevation-rgb: 28 25 23;
 }

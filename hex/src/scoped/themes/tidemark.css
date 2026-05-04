@@ -116,4 +116,17 @@
   --rig-button-secondary-hover-fg: var(--color-foreground);
   --rig-scrollbar-thumb: rgba(44, 36, 32, 0.15);
   --rig-scrollbar-thumb-hover: rgba(44, 36, 32, 0.3);
+
+  /* Coastal real estate rhythm */
+  --rig-display-md: 2.25rem;
+  --rig-display-lg: 2.75rem;
+  --rig-display-xl: 3.75rem;
+  --rig-display-tracking: -0.005em;
+  --rig-display-leading: 1.15;
+
+  /* Coastal warm-light cast */
+  --rig-media-filter: saturate(1.05) brightness(1.03);
+
+  --link-slide-color: #1a7a7a;
+  --rig-elevation-rgb: 44 36 32;
 }

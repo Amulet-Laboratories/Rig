@@ -11,7 +11,8 @@
  *   #1A0A18  dark magenta    — foreground text
  *   #8A6A80  mauve           — muted foreground
  *   #E5D5E0  rose border     — borders
- *   #C43A8A  magenta-pink    — primary, accent
+ *   #C43A8A  magenta-pink    — primary
+ *   #8A2160  deep plum-rose  — accent (same hue family, deeper for hierarchy)
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
@@ -29,8 +30,8 @@
   --color-secondary: #f2e8f0;
   --color-secondary-foreground: #1a0a18;
   --color-muted: #f2e8f0;
-  --color-muted-foreground: #8a6a80;
-  --color-accent: #c43a8a;
+  --color-muted-foreground: #6a4860;
+  --color-accent: #8a2160;
   --color-accent-foreground: #ffffff;
   --color-destructive: #cc4444;
   --color-destructive-foreground: #ffffff;
@@ -72,8 +73,8 @@
   --secondary: #f2e8f0;
   --secondary-foreground: #1a0a18;
   --muted: #f2e8f0;
-  --muted-foreground: #8a6a80;
-  --accent: #c43a8a;
+  --muted-foreground: #6a4860;
+  --accent: #8a2160;
   --accent-foreground: #ffffff;
   --destructive: #cc4444;
   --destructive-foreground: #ffffff;
@@ -105,10 +106,24 @@
   --ml-pink-tint: #faf5f8;
   --ml-blush: #f2e8f0;
   --ml-dark-magenta: #1a0a18;
-  --ml-mauve: #8a6a80;
+  --ml-mauve: #6a4860;
   --ml-rose-border: #e5d5e0;
   --ml-magenta: #c43a8a;
   --rig-button-hover-bg: #f2e8f0;
   --rig-scrollbar-thumb: rgba(26, 10, 24, 0.08);
   --rig-scrollbar-thumb-hover: rgba(26, 10, 24, 0.18);
+
+  /* Gallery rhythm — italic serif display, generous spacing */
+  --rig-display-md: 3rem;
+  --rig-display-lg: 4.25rem;
+  --rig-display-xl: 6rem;
+  --rig-display-2xl: 8rem;
+  --rig-display-tracking: -0.015em;
+  --rig-display-leading: 1.05;
+
+  /* Gallery integrity — no filter, accurate color reproduction */
+  --rig-media-filter: none;
+
+  --link-slide-color: #c43a8a;
+  --rig-elevation-rgb: 138 33 96;
 }

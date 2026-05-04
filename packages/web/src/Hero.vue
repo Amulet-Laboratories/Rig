@@ -2,22 +2,24 @@
 /**
  * Hero — full-width hero section for marketing sites.
  *
- * Three layout variants:
+ * Four layout variants:
  *   split     — text on left, media on right (2-column at sm+)
  *   centered  — all content centered, no media column
  *   immersive — full-bleed media background with content overlay
+ *   editorial — centered serif title with ornament rule + below-the-fold underbelt
  *
  * Slots:
  *   #eyebrow    — badge, icon, or eyebrow text above title
  *   #title      — main heading
  *   #description — supporting text
  *   #actions    — CTA buttons
- *   #media      — right column (split) or background (immersive)
+ *   #ornament   — decorative rule for editorial layout (rendered between title and description)
+ *   #media      — right column (split) or background (immersive) or below-fold (editorial)
  *   #overlay    — content that overlaps below hero (e.g. search card)
  */
 defineProps<{
   /** Layout variant. */
-  layout?: 'split' | 'centered' | 'immersive'
+  layout?: 'split' | 'centered' | 'immersive' | 'editorial'
   /** Render a gradient scrim over media for immersive layouts. */
   scrim?: boolean
 }>()
@@ -32,6 +34,10 @@ defineProps<{
 
       <div data-rig-hero-title>
         <slot name="title" />
+      </div>
+
+      <div v-if="$slots.ornament" data-rig-hero-ornament>
+        <slot name="ornament" />
       </div>
 
       <div v-if="$slots.description" data-rig-hero-description>

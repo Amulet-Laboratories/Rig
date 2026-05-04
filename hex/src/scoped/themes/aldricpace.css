@@ -113,4 +113,15 @@
   --rig-button-hover-bg: #e6e9ef;
   --rig-scrollbar-thumb: rgba(27, 32, 51, 0.12);
   --rig-scrollbar-thumb-hover: rgba(27, 32, 51, 0.25);
+
+  /* Conservative professional rhythm */
+  --rig-display-md: 2.25rem;
+  --rig-display-lg: 2.75rem;
+  --rig-display-xl: 3.5rem;
+  --rig-display-tracking: 0;
+  --rig-display-leading: 1.2;
+
+  --rig-media-filter: saturate(0.92);
+  --link-slide-color: #1e3a5f;
+  --rig-elevation-rgb: 27 32 51;
 }

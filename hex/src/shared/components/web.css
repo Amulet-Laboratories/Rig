@@ -297,6 +297,54 @@
   justify-content: flex-end;
 }
 
+[data-rig-hero][data-layout='editorial'] {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+[data-rig-hero][data-layout='editorial'] [data-rig-hero-content] {
+  align-items: center;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+[data-rig-hero][data-layout='editorial'] [data-rig-hero-actions] {
+  justify-content: center;
+}
+
+[data-rig-hero][data-layout='editorial'] [data-rig-hero-description] {
+  max-width: 32rem;
+  text-align: center;
+}
+
+[data-rig-hero-ornament] {
+  margin: 24px auto;
+  color: var(--color-primary);
+}
+
+[data-rig-hero][data-layout='editorial'] [data-rig-hero-media] {
+  display: block;
+  margin-top: 32px;
+  width: 100%;
+  max-height: 60vh;
+  overflow: hidden;
+}
+
+/* Display typography hook — title size, tracking, leading, weight come from theme. */
+[data-rig-hero-title] :where(h1, h2) {
+  font-size: var(--rig-display-xl);
+  letter-spacing: var(--rig-display-tracking, 0);
+  line-height: var(--rig-display-leading, 1.1);
+  font-weight: var(--rig-display-weight, 700);
+}
+
+@media (min-width: 1024px) {
+  [data-rig-hero-title] :where(h1, h2) {
+    font-size: var(--rig-display-2xl, var(--rig-display-xl));
+  }
+}
+
 [data-rig-hero-content] {
   display: flex;
   flex-direction: column;

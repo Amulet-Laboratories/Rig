@@ -122,4 +122,41 @@
   /* ── Widget ── */
   --rig-widget-bg: var(--color-popover);
   --rig-widget-border: var(--color-border);
+
+  /* ── Elevation (shadow scale) ──
+   * Default rgb-shadow uses neutral black; light themes can tint it warmer
+   * by overriding --rig-elevation-rgb in their scoped block.
+   */
+  --rig-elevation-rgb: 0 0 0;
+  --rig-elevation-0: none;
+  --rig-elevation-1:
+    0 1px 2px rgba(var(--rig-elevation-rgb), 0.06), 0 1px 1px rgba(var(--rig-elevation-rgb), 0.04);
+  --rig-elevation-2:
+    0 4px 12px rgba(var(--rig-elevation-rgb), 0.08), 0 2px 4px rgba(var(--rig-elevation-rgb), 0.06);
+  --rig-elevation-3:
+    0 12px 32px rgba(var(--rig-elevation-rgb), 0.12), 0 4px 8px rgba(var(--rig-elevation-rgb), 0.08);
+  --rig-elevation-4:
+    0 24px 64px rgba(var(--rig-elevation-rgb), 0.18), 0 8px 16px rgba(var(--rig-elevation-rgb), 0.1);
+
+  /* ── Display typography scale ──
+   * Page-level hero/section sizes. Themes can override per-theme rhythm.
+   */
+  --rig-display-xs: 1.5rem;
+  --rig-display-sm: 2rem;
+  --rig-display-md: 2.75rem;
+  --rig-display-lg: 3.5rem;
+  --rig-display-xl: 4.5rem;
+  --rig-display-2xl: 6rem;
+  --rig-display-tracking: 0;
+  --rig-display-leading: 1.1;
+  --rig-display-weight: 700;
+
+  /* ── Imagery filter ──
+   * Themes set their own filter to give imagery a unified look.
+   * Default is no filter — gallery + portfolio themes typically want this.
+   */
+  --rig-media-filter: none;
+
+  /* ── Link slide underline color (per-theme override) ── */
+  --link-slide-color: var(--color-primary);
 }

@@ -27,14 +27,14 @@
   --color-popover-foreground: #2a2210;
 
   /* Brand */
-  --color-primary: #b8860b;
+  --color-primary: #8a6209;
   --color-primary-foreground: #fffcf4;
 
   /* Soft accents */
   --color-secondary: #ede4d4;
   --color-secondary-foreground: #2a2210;
   --color-muted: #ede4d4;
-  --color-muted-foreground: #7a6a4a;
+  --color-muted-foreground: #5a4a30;
   --color-accent: #3d6b4f;
   --color-accent-foreground: #fffcf4;
 
@@ -48,7 +48,7 @@
   /* Borders and focus */
   --color-border: #d8ccb0;
   --color-input: #d8ccb0;
-  --color-ring: #b8860b;
+  --color-ring: #8a6209;
 
   /* Typography */
   --font-sans: 'Nunito Sans', 'Inter', system-ui, sans-serif;
@@ -84,12 +84,12 @@
   --card-foreground: #2a2210;
   --popover: #fffcf4;
   --popover-foreground: #2a2210;
-  --primary: #b8860b;
+  --primary: #8a6209;
   --primary-foreground: #fffcf4;
   --secondary: #ede4d4;
   --secondary-foreground: #2a2210;
   --muted: #ede4d4;
-  --muted-foreground: #7a6a4a;
+  --muted-foreground: #5a4a30;
   --accent: #3d6b4f;
   --accent-foreground: #fffcf4;
   --destructive: #b84233;
@@ -99,7 +99,7 @@
   --info: #5a7aaa;
   --border: #d8ccb0;
   --input: #d8ccb0;
-  --ring: #b8860b;
+  --ring: #8a6209;
   /* Typography — IDE-density type scale */
   --font-size-2xs: 0.625rem;
   --font-size-2xs--line-height: 1.25;
@@ -151,8 +151,8 @@
   --ss-parchment: #ede4d4;
   --ss-warm-white: #fffcf4;
   --ss-dark-roast: #2a2210;
-  --ss-leather: #7a6a4a;
-  --ss-amber: #b8860b;
+  --ss-leather: #5a4a30;
+  --ss-amber: #8a6209;
   --ss-green: #3d6b4f;
   --ss-red: #b84233;
 

@@ -31,6 +31,8 @@ const themes = [
   'kbcv',
   'compass',
   'briarcovelib',
+  'fogline',
+  'rootremedy',
   'forge',
   'quizbit',
   'dewthread',
