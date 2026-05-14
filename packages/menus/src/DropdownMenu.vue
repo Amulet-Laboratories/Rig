@@ -33,7 +33,13 @@ defineSlots<{
     toggle: () => void
     triggerProps: { 'aria-haspopup': 'menu'; 'aria-expanded': boolean }
   }) => unknown
+  /** Optional header rendered above the items list — useful for a search
+   *  input, a count badge, or a section label. Keyboard navigation stays
+   *  focused on items; header content is interactive but doesn't trap focus. */
+  header?: (props: { open: boolean }) => unknown
   item?: (props: { item: Action }) => unknown
+  /** Optional footer below the items list. */
+  footer?: (props: { open: boolean }) => unknown
 }>()
 
 const triggerRef = ref<HTMLElement | null>(null)
@@ -163,25 +169,33 @@ onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
         :style="{ ...floatingStyles, zIndex: 'var(--rig-dropdown-z, 9000)' }"
         @keydown="onKeydown"
       >
-        <button
-          v-for="(item, index) in items"
-          :key="item.id"
-          data-rig-dropdown-item
-          role="menuitem"
-          :data-disabled="item.disabled || undefined"
-          :data-state="focusedIndex === index ? 'highlighted' : undefined"
-          :disabled="item.disabled"
-          :tabindex="index === focusedIndex ? 0 : -1"
-          @click="selectItem(item)"
-          @mouseenter="focusedIndex = index"
-        >
-          <slot name="item" :item="item">
-            <span data-rig-dropdown-item-label>{{ item.label }}</span>
-            <span v-if="item.keybinding" data-rig-dropdown-item-keybinding>
-              {{ item.keybinding }}
-            </span>
-          </slot>
-        </button>
+        <div v-if="$slots.header" data-rig-dropdown-header>
+          <slot name="header" :open="open" />
+        </div>
+        <div data-rig-dropdown-items>
+          <button
+            v-for="(item, index) in items"
+            :key="item.id"
+            data-rig-dropdown-item
+            role="menuitem"
+            :data-disabled="item.disabled || undefined"
+            :data-state="focusedIndex === index ? 'highlighted' : undefined"
+            :disabled="item.disabled"
+            :tabindex="index === focusedIndex ? 0 : -1"
+            @click="selectItem(item)"
+            @mouseenter="focusedIndex = index"
+          >
+            <slot name="item" :item="item">
+              <span data-rig-dropdown-item-label>{{ item.label }}</span>
+              <span v-if="item.keybinding" data-rig-dropdown-item-keybinding>
+                {{ item.keybinding }}
+              </span>
+            </slot>
+          </button>
+        </div>
+        <div v-if="$slots.footer" data-rig-dropdown-footer>
+          <slot name="footer" :open="open" />
+        </div>
       </div>
     </Teleport>
   </div>
