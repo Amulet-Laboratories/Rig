@@ -81,7 +81,7 @@ const packages = [
           id="pkg-title"
           class="mb-4 text-[clamp(28px,3.5vw,40px)] font-bold leading-tight tracking-tight"
         >
-          144 components across 12 packages
+          149 components across 12 packages
         </h2>
         <p class="mx-auto max-w-[520px] text-[17px] leading-relaxed text-text-muted">
           From primitive form controls to data visualization, spatial rendering, temporal animation,

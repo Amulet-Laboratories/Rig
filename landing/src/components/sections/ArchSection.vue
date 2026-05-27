@@ -9,7 +9,7 @@ const rigTags = [
 ]
 const hexTags = [
   'CSS-only',
-  '18 themes',
+  '27 themes',
   'Tailwind v4',
   'Custom properties',
   '22 token groups',
@@ -83,7 +83,7 @@ const hexTags = [
             >
           </h3>
           <p class="mb-6 text-[15px] leading-relaxed text-text-muted">
-            Pure CSS theme layer. 16 curated themes targeting Rig's data attributes. Hot-swap by
+            Pure CSS theme layer. 27 curated themes targeting Rig's data attributes. Hot-swap by
             changing one import. Zero JavaScript. Built on Tailwind v4 and CSS custom properties.
           </p>
           <div class="flex flex-wrap gap-1.5">

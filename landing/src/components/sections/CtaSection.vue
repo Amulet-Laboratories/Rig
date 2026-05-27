@@ -10,14 +10,14 @@
           class="h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_var(--color-primary)]"
           aria-hidden="true"
         />
-        <span>v0.2.0 -- MIT licensed</span>
+        <span>v0.4.0 -- MIT licensed</span>
       </div>
 
       <h2 id="cta-title" class="mb-3 text-[clamp(28px,3.5vw,40px)] font-bold tracking-tight">
         Start building.
       </h2>
       <p class="mx-auto mb-10 max-w-[480px] text-[17px] leading-relaxed text-text-muted">
-        144 components. 18 themes. 24 composables. Two packages. One import to ship.
+        149 components. 27 themes. 24 composables. Two packages. One import to ship.
       </p>
 
       <div

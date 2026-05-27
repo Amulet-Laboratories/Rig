@@ -8,7 +8,7 @@ const diffs = [
   {
     vs: 'vs shadcn/ui',
     title: 'Versioned, not vendored',
-    desc: 'shadcn copies source into your project for full control. Rig takes a different path: an installable, versioned package with 144 components. Updates arrive via npm with semver guarantees.',
+    desc: 'shadcn copies source into your project for full control. Rig takes a different path: an installable, versioned package with 149 components. Updates arrive via npm with semver guarantees.',
   },
   {
     vs: 'vs Radix Vue',

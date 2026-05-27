@@ -45,7 +45,7 @@ async function copyInstall() {
         target="_blank"
         rel="noopener"
         class="no-underline"
-        ><span>v0.2.0 -- 144 components across 12 packages</span></a
+        ><span>v0.4.0 -- 149 components across 12 packages</span></a
       >
     </div>
 
@@ -105,9 +105,9 @@ async function copyInstall() {
     >
       <div
         v-for="stat in [
-          { value: '144', label: 'Components' },
+          { value: '149', label: 'Components' },
           { value: '12', label: 'Packages' },
-          { value: '18', label: 'Themes' },
+          { value: '27', label: 'Themes' },
           { value: '24', label: 'Composables' },
         ]"
         :key="stat.label"

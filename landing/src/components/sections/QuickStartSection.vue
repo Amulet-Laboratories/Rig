@@ -57,7 +57,7 @@
 <span class="code-kw">@import</span> <span class="code-str">'@amulet-laboratories/hex/vscode'</span>;</pre>
           </div>
           <p class="mt-3 text-[13px] leading-relaxed text-text-dim">
-            Pick any of 18 themes. Swap by changing one import. Zero config.
+            Pick any of 27 themes. Swap by changing one import. Zero config.
           </p>
         </div>
 
@@ -79,7 +79,7 @@
 <span class="code-punct">&lt;</span><span class="code-comp">Button</span> <span class="code-attr">variant</span>=<span class="code-str">"primary"</span><span class="code-punct">&gt;</span>Ship it<span class="code-punct">&lt;/</span><span class="code-comp">Button</span><span class="code-punct">&gt;</span></pre>
           </div>
           <p class="mt-3 text-[13px] leading-relaxed text-text-dim">
-            144 components. Tree-shakeable. Typed slots and emits. Full ARIA built in.
+            149 components. Tree-shakeable. Typed slots and emits. Full ARIA built in.
           </p>
         </div>
       </div>
