@@ -23,7 +23,12 @@ const otherSites = computed(() => props.sites.filter((s) => s.name !== currentSi
       <p data-rig-network-footer-label>From our network</p>
       <ul data-rig-network-footer-list>
         <li v-for="site in otherSites" :key="site.name">
-          <a :href="site.url" target="_blank" rel="noopener" data-rig-network-footer-link>
+          <a
+            :href="site.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-rig-network-footer-link
+          >
             <span data-rig-network-footer-name>{{ site.name }}</span>
             <span data-rig-network-footer-tagline>{{ site.tagline }}</span>
           </a>

@@ -32,7 +32,7 @@ const recommendations = computed(() =>
         :key="article.path"
         :href="`${article.url}${article.path}`"
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
         data-rig-network-articles-link
         @click="trackCrossSiteNav(article.site)"
       >

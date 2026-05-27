@@ -10,6 +10,12 @@ interface Props {
   updatedAt?: string
   category?: string
   timeToRead?: number
+  featuredImage?: {
+    src: string
+    alt: string
+    width?: number
+    height?: number
+  }
 }
 
 const props = defineProps<Props>()
@@ -46,6 +52,16 @@ const formattedUpdatedDate = computed(() => {
     </div>
     <h1 data-rig-article-header-title>{{ title }}</h1>
     <p v-if="description" data-rig-article-header-description>{{ description }}</p>
+    <NuxtImg
+      v-if="featuredImage"
+      :src="featuredImage.src"
+      :alt="featuredImage.alt"
+      :width="featuredImage.width ?? 1200"
+      :height="featuredImage.height ?? 630"
+      fetchpriority="high"
+      loading="eager"
+      data-rig-article-header-image
+    />
     <div v-if="publishedAt || updatedAt" data-rig-article-header-byline>
       <time v-if="publishedAt" :datetime="publishedAt">
         {{ formattedDate }}
