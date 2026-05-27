@@ -1,7 +1,0 @@
-/* Hex — Nostromo Base Styles
- * Empty scaffold — add scrollbar, focus, selection, and any custom
- * selectors (text-shadow glows, scanline overlays, tactile buttons, etc.).
- */
-
-@reference 'tailwindcss';
-@reference './tokens.css';

@@ -90,10 +90,10 @@ const features = [
         <pre
           v-show="activeTab === 'theme'"
           class="overflow-x-auto p-5 font-mono text-[13px] leading-[1.7] text-text-muted"
-        ><span class="code-kw">@import</span> <span class="code-str">'@amulet-laboratories/hex/vscode'</span>
+        ><span class="code-kw">@import</span> <span class="code-str">'@amulet-laboratories/hex/cobalt'</span>
 
 <span class="code-cmt">/* or use source for Tailwind v4 */</span>
-<span class="code-kw">@import</span> <span class="code-str">'@amulet-laboratories/hex/vscode/source'</span>
+<span class="code-kw">@import</span> <span class="code-str">'@amulet-laboratories/hex/cobalt/source'</span>
 
 <span class="code-cmt">/* Every component re-skins instantly */</span>
 <span class="code-cmt">/* Switch themes by changing one import */</span></pre>

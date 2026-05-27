@@ -17,7 +17,7 @@
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
-[data-hex-theme='compass'] {
+[data-hex-theme='clover'] {
   --color-background: #f8fdf6;
   --color-foreground: #1a2a1a;
   --color-card: #f0f5ee;

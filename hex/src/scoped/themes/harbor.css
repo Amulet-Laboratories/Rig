@@ -18,7 +18,7 @@
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
-[data-hex-theme='aldricpace'] {
+[data-hex-theme='harbor'] {
   --color-background: #fafbfc;
   --color-foreground: #1b2033;
   --color-card: #f2f4f7;

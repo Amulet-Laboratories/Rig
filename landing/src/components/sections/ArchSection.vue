@@ -97,7 +97,7 @@ const hexTags = [
           </div>
           <pre
             class="mt-4 rounded-lg bg-bg/50 p-3 font-mono text-[12px] text-text-dim"
-          ><code><span class="text-primary">@import</span> <span class="text-text-muted">'@amulet-laboratories/hex/vscode'</span></code></pre>
+          ><code><span class="text-primary">@import</span> <span class="text-text-muted">'@amulet-laboratories/hex/cobalt'</span></code></pre>
         </div>
       </div>
     </div>

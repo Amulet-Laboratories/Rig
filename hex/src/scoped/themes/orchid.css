@@ -18,7 +18,7 @@
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
-[data-hex-theme='marenlys'] {
+[data-hex-theme='orchid'] {
   --color-background: #fafafa;
   --color-foreground: #1a0a18;
   --color-card: #faf5f8;

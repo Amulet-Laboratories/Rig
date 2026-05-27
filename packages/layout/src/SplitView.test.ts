@@ -32,13 +32,13 @@ describe('SplitView', () => {
     expect(panes).toHaveLength(3)
   })
 
-  it('applies flex-basis from sizes', () => {
+  it('applies proportional flex-grow from sizes', () => {
     const wrapper = mount(SplitView, {
       props: { sizes: [150, 350] },
     })
     const panes = wrapper.findAll('[data-rig-split-pane]')
-    expect(panes[0]!.attributes('style')).toContain('flex-basis: 150px')
-    expect(panes[1]!.attributes('style')).toContain('flex-basis: 350px')
+    expect(panes[0]!.attributes('style')).toContain('flex-grow: 150')
+    expect(panes[1]!.attributes('style')).toContain('flex-grow: 350')
   })
 
   it('renders resizer between panes when resizable', () => {

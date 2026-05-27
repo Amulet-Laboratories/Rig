@@ -53,7 +53,7 @@ describe('DatePicker', () => {
     await wrapper.find('[data-rig-date-picker-trigger]').trigger('click')
     const enabledDays = wrapper
       .findAll('[data-rig-date-picker-day]')
-      .filter((d) => !d.attributes('disabled'))
+      .filter((d) => d.attributes('disabled') === undefined)
     await enabledDays[0]!.trigger('click')
     expect(wrapper.emitted('update:modelValue')).toBeTruthy()
     expect(typeof wrapper.emitted('update:modelValue')![0]![0]).toBe('string')

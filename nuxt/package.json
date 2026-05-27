@@ -16,7 +16,7 @@
   ],
   "peerDependencies": {
     "@amulet-laboratories/rig": ">=0.4.0",
-    "nuxt": "^3.0.0",
+    "nuxt": "^3.21.6",
     "@nuxt/content": "^3.0.0",
     "@sentry/vue": "^9.0.0"
   },

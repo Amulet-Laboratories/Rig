@@ -54,7 +54,7 @@
             <pre
               class="p-4 font-mono text-[12px] leading-relaxed text-text-muted"
             ><span class="code-cmt">/* main.css */</span>
-<span class="code-kw">@import</span> <span class="code-str">'@amulet-laboratories/hex/vscode'</span>;</pre>
+<span class="code-kw">@import</span> <span class="code-str">'@amulet-laboratories/hex/cobalt'</span>;</pre>
           </div>
           <p class="mt-3 text-[13px] leading-relaxed text-text-dim">
             Pick any of 27 themes. Swap by changing one import. Zero config.

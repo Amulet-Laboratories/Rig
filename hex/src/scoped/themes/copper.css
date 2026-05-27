@@ -17,7 +17,7 @@
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
-[data-hex-theme='undertow'] {
+[data-hex-theme='copper'] {
   --color-background: #1c1917;
   --color-foreground: #f5f0eb;
   --color-card: #292524;

@@ -10,7 +10,7 @@ import { execSync } from 'node:child_process'
 const ROOT = resolve(import.meta.dirname)
 const DIST = resolve(ROOT, 'dist')
 
-const themes = ['vscode', 'garden']
+const themes = ['cobalt', 'garden']
 
 describe('Hex build', () => {
   before(() => {
@@ -46,10 +46,10 @@ describe('Hex build', () => {
       const fullSize = readFileSync(resolve(DIST, `${theme}.css`)).length
       assert.ok(fullSize > 5000, `${theme}.css full bundle is ${fullSize} bytes, expected >5000`)
     }
-    // Root bundle should match vscode (default theme)
+    // Root bundle should match cobalt (default theme)
     const hexSize = readFileSync(resolve(DIST, 'hex.css')).length
-    const vscodeSize = readFileSync(resolve(DIST, 'vscode.css')).length
-    assert.equal(hexSize, vscodeSize, 'hex.css should match vscode.css size')
+    const cobaltSize = readFileSync(resolve(DIST, 'cobalt.css')).length
+    assert.equal(hexSize, cobaltSize, 'hex.css should match cobalt.css size')
   })
 
   // ─── CSS size budget (prevents unbounded growth) ────────────────────────
@@ -180,10 +180,10 @@ describe('Hex build', () => {
   })
 
   it('each theme has distinct primary colors', () => {
-    const vscode = readFileSync(resolve(DIST, 'vscode.css'), 'utf-8')
+    const cobalt = readFileSync(resolve(DIST, 'cobalt.css'), 'utf-8')
     const garden = readFileSync(resolve(DIST, 'garden.css'), 'utf-8')
 
-    assert.ok(vscode.includes('#0078d4'), 'vscode should use VS Code blue primary')
+    assert.ok(cobalt.includes('#0078d4'), 'cobalt should use VS Code blue primary')
     assert.ok(garden.includes('#eb4963'), 'garden should use rose primary')
   })
 

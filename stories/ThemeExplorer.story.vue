@@ -24,8 +24,8 @@ interface ThemeDef {
 const themes: ThemeDef[] = [
   // Dark
   {
-    id: 'vscode',
-    label: 'VSCode',
+    id: 'cobalt',
+    label: 'Cobalt',
     scheme: 'dark',
     primary: '#0078d4',
     bg: '#1f1f1f',
@@ -81,8 +81,8 @@ const themes: ThemeDef[] = [
     radius: '2px',
   },
   {
-    id: 'duskline',
-    label: 'Duskline',
+    id: 'lagoon',
+    label: 'Lagoon',
     scheme: 'dark',
     primary: '#3cc8b4',
     bg: '#0a0f14',
@@ -119,8 +119,8 @@ const themes: ThemeDef[] = [
     radius: '4px',
   },
   {
-    id: 'lanternhouse',
-    label: 'Lanternhouse',
+    id: 'vesper',
+    label: 'Vesper',
     scheme: 'dark',
     primary: '#a87bd4',
     bg: '#110e18',
@@ -157,8 +157,8 @@ const themes: ThemeDef[] = [
     radius: '6px',
   },
   {
-    id: 'undertow',
-    label: 'Undertow',
+    id: 'copper',
+    label: 'Copper',
     scheme: 'dark',
     primary: '#d95f2a',
     bg: '#1c1917',
@@ -176,8 +176,8 @@ const themes: ThemeDef[] = [
     radius: '4px',
   },
   {
-    id: 'quizbit',
-    label: 'Quizbit',
+    id: 'citron',
+    label: 'Citron',
     scheme: 'dark',
     primary: '#c9956d',
     bg: '#12100c',
@@ -196,8 +196,8 @@ const themes: ThemeDef[] = [
   },
   // Light
   {
-    id: 'aldricpace',
-    label: 'Aldricpace',
+    id: 'harbor',
+    label: 'Harbor',
     scheme: 'light',
     primary: '#2b4c7e',
     bg: '#fafbfc',
@@ -215,8 +215,8 @@ const themes: ThemeDef[] = [
     radius: '3px',
   },
   {
-    id: 'briarcove',
-    label: 'Briarcove',
+    id: 'iris',
+    label: 'Iris',
     scheme: 'light',
     primary: '#6d42c4',
     bg: '#ffffff',
@@ -234,8 +234,8 @@ const themes: ThemeDef[] = [
     radius: '3px',
   },
   {
-    id: 'briarcovelib',
-    label: 'Briarcove Lib',
+    id: 'sienna',
+    label: 'Sienna',
     scheme: 'light',
     primary: '#a5562e',
     bg: '#faf8f4',
@@ -253,8 +253,8 @@ const themes: ThemeDef[] = [
     radius: '6px',
   },
   {
-    id: 'compass',
-    label: 'Compass',
+    id: 'clover',
+    label: 'Clover',
     scheme: 'light',
     primary: '#2d7a3e',
     bg: '#f8fdf6',
@@ -272,8 +272,8 @@ const themes: ThemeDef[] = [
     radius: '8px',
   },
   {
-    id: 'kbcv',
-    label: 'KBCV',
+    id: 'cardinal',
+    label: 'Cardinal',
     scheme: 'light',
     primary: '#b83232',
     bg: '#f7f3ee',
@@ -291,8 +291,8 @@ const themes: ThemeDef[] = [
     radius: '6px',
   },
   {
-    id: 'marenlys',
-    label: 'Marenlys',
+    id: 'orchid',
+    label: 'Orchid',
     scheme: 'light',
     primary: '#c43a8a',
     bg: '#fafafa',
@@ -310,8 +310,8 @@ const themes: ThemeDef[] = [
     radius: '0px',
   },
   {
-    id: 'saltsignal',
-    label: 'Saltsignal',
+    id: 'ochre',
+    label: 'Ochre',
     scheme: 'light',
     primary: '#b8860b',
     bg: '#faf6ee',
@@ -329,8 +329,8 @@ const themes: ThemeDef[] = [
     radius: '10px',
   },
   {
-    id: 'tidemark',
-    label: 'Tidemark',
+    id: 'cypress',
+    label: 'Cypress',
     scheme: 'light',
     primary: '#1a7a7a',
     bg: '#faf7f2',
@@ -349,7 +349,7 @@ const themes: ThemeDef[] = [
   },
 ]
 
-const activeId = ref('vscode')
+const activeId = ref('cobalt')
 const active = computed(() => themes.find((t) => t.id === activeId.value) ?? themes[0]!)
 const darkThemes = computed(() => themes.filter((t) => t.scheme === 'dark'))
 const lightThemes = computed(() => themes.filter((t) => t.scheme === 'light'))

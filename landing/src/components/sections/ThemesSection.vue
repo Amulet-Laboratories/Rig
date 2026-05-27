@@ -17,7 +17,7 @@ interface Theme {
 
 const themes: Theme[] = [
   {
-    name: 'VSCode',
+    name: 'Cobalt',
     meta: 'Dark -- Gray + Blue',
     bg: '#1f1f1f',
     bar: '#2b2b2b',
@@ -56,7 +56,7 @@ const themes: Theme[] = [
     input: '#1e1c1a',
   },
   {
-    name: 'Duskline',
+    name: 'Lagoon',
     meta: 'Dark -- Slate + Cyan',
     bg: '#0a0f14',
     bar: '#121a22',
@@ -82,7 +82,7 @@ const themes: Theme[] = [
     input: '#141414',
   },
   {
-    name: 'Lanternhouse',
+    name: 'Vesper',
     meta: 'Dark -- Plum + Lavender',
     bg: '#110e18',
     bar: '#1a1624',
@@ -108,7 +108,7 @@ const themes: Theme[] = [
     input: '#0a1440',
   },
   {
-    name: 'Undertow',
+    name: 'Copper',
     meta: 'Dark -- Tar + Orange',
     bg: '#1c1917',
     bar: '#292524',
@@ -121,7 +121,7 @@ const themes: Theme[] = [
     input: '#292524',
   },
   {
-    name: 'Quizbit',
+    name: 'Citron',
     meta: 'Dark -- Earth + Bronze',
     bg: '#12100c',
     bar: '#1e1a14',
@@ -134,7 +134,7 @@ const themes: Theme[] = [
     input: '#1e1a14',
   },
   {
-    name: 'LCARS',
+    name: 'Beacon',
     meta: 'Dark -- Black + Orange',
     bg: '#000000',
     bar: '#cc6600',
@@ -147,7 +147,7 @@ const themes: Theme[] = [
     input: '#001122',
   },
   {
-    name: 'Fogline',
+    name: 'Hearth',
     meta: 'Dark -- Cocoa + Wheat',
     bg: '#16120e',
     bar: '#1e1914',
@@ -160,7 +160,7 @@ const themes: Theme[] = [
     input: '#362e26',
   },
   {
-    name: 'Rootremedy',
+    name: 'Juniper',
     meta: 'Dark -- Indigo + Sage',
     bg: '#0b1222',
     bar: '#141d30',
@@ -173,7 +173,7 @@ const themes: Theme[] = [
     input: '#2a3650',
   },
   {
-    name: 'Andrew Passanisi',
+    name: 'Voltaic',
     meta: 'Dark -- Indigo + Lime',
     bg: '#060d2b',
     bar: '#091441',
@@ -186,7 +186,7 @@ const themes: Theme[] = [
     input: '#0d1b56',
   },
   {
-    name: 'Aldricpace',
+    name: 'Harbor',
     meta: 'Light -- White + Navy',
     bg: '#fafbfc',
     bar: '#d1d5de',
@@ -199,7 +199,7 @@ const themes: Theme[] = [
     input: '#f2f4f7',
   },
   {
-    name: 'Briarcove',
+    name: 'Iris',
     meta: 'Light -- White + Violet',
     bg: '#ffffff',
     bar: '#d8d0e5',
@@ -212,7 +212,7 @@ const themes: Theme[] = [
     input: '#f5f2fa',
   },
   {
-    name: 'Briarcove Lib',
+    name: 'Sienna',
     meta: 'Light -- Vellum + Sienna',
     bg: '#faf8f4',
     bar: '#d0c8ba',
@@ -225,7 +225,7 @@ const themes: Theme[] = [
     input: '#f2efe8',
   },
   {
-    name: 'Compass',
+    name: 'Clover',
     meta: 'Light -- Mint + Green',
     bg: '#f8fdf6',
     bar: '#c0d8c0',
@@ -238,7 +238,7 @@ const themes: Theme[] = [
     input: '#f0f5ee',
   },
   {
-    name: 'KBCV',
+    name: 'Cardinal',
     meta: 'Light -- Parchment + Red',
     bg: '#f7f3ee',
     bar: '#cbc4ba',
@@ -251,7 +251,7 @@ const themes: Theme[] = [
     input: '#edeae4',
   },
   {
-    name: 'Marenlys',
+    name: 'Orchid',
     meta: 'Light -- White + Magenta',
     bg: '#fafafa',
     bar: '#e5d5e0',
@@ -264,7 +264,7 @@ const themes: Theme[] = [
     input: '#faf5f8',
   },
   {
-    name: 'Saltsignal',
+    name: 'Ochre',
     meta: 'Light -- Cream + Amber',
     bg: '#faf6ee',
     bar: '#d8ccb0',
@@ -277,7 +277,7 @@ const themes: Theme[] = [
     input: '#fffcf4',
   },
   {
-    name: 'Tidemark',
+    name: 'Cypress',
     meta: 'Light -- Linen + Cyan',
     bg: '#faf7f2',
     bar: '#d4c9b8',
@@ -290,7 +290,7 @@ const themes: Theme[] = [
     input: '#fffdf8',
   },
   {
-    name: 'Beanwoven',
+    name: 'Roast',
     meta: 'Light -- Cream + Walnut',
     bg: '#faf6ef',
     bar: '#f0ebe2',
@@ -303,7 +303,7 @@ const themes: Theme[] = [
     input: '#d9cfc2',
   },
   {
-    name: 'Burrowtail',
+    name: 'Brass',
     meta: 'Light -- Linen + Honey',
     bg: '#f8f6f2',
     bar: '#f0ece4',
@@ -316,7 +316,7 @@ const themes: Theme[] = [
     input: '#dcd5c8',
   },
   {
-    name: 'Meeplehaus',
+    name: 'Damson',
     meta: 'Light -- Linen + Plum',
     bg: '#f5f3f0',
     bar: '#edeae5',
@@ -329,7 +329,7 @@ const themes: Theme[] = [
     input: '#d8d4cc',
   },
   {
-    name: 'Dewthread',
+    name: 'Quartz',
     meta: 'Light -- Vellum + Rose',
     bg: '#faf8f6',
     bar: '#f5efed',
@@ -342,7 +342,7 @@ const themes: Theme[] = [
     input: '#e8ddd8',
   },
   {
-    name: 'Shelfglow',
+    name: 'Slate',
     meta: 'Light -- Vellum + Slate',
     bg: '#f8f5ef',
     bar: '#efeae0',
@@ -355,7 +355,7 @@ const themes: Theme[] = [
     input: '#d6d0c4',
   },
   {
-    name: 'Wainloft',
+    name: 'Fern',
     meta: 'Light -- Cream + Sage',
     bg: '#f7f4ef',
     bar: '#f0ede6',

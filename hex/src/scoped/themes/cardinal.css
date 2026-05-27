@@ -17,7 +17,7 @@
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
-[data-hex-theme='kbcv'] {
+[data-hex-theme='cardinal'] {
   --color-background: #f7f3ee;
   --color-foreground: #2a2521;
   --color-card: #edeae4;

@@ -19,7 +19,7 @@
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
-[data-hex-theme='tidemark'] {
+[data-hex-theme='cypress'] {
   --color-background: #faf7f2;
   --color-foreground: #2c2420;
   --color-card: #fffdf8;

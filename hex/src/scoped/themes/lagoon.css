@@ -18,7 +18,7 @@
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
-[data-hex-theme='duskline'] {
+[data-hex-theme='lagoon'] {
   --color-background: #0a0f14;
   --color-foreground: #d8e4ec;
   --color-card: #121a22;

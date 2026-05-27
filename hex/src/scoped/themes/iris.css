@@ -21,7 +21,7 @@
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
-[data-hex-theme='briarcove'] {
+[data-hex-theme='iris'] {
   --color-background: #ffffff;
   --color-foreground: #1a1428;
   --color-card: #f5f2fa;

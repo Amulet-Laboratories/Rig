@@ -19,7 +19,7 @@
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
-[data-hex-theme='saltsignal'] {
+[data-hex-theme='ochre'] {
   --color-background: #faf6ee;
   --color-foreground: #2a2210;
   --color-card: #fffcf4;

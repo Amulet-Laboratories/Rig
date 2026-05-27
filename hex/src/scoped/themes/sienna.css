@@ -17,7 +17,7 @@
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
-[data-hex-theme='briarcovelib'] {
+[data-hex-theme='sienna'] {
   --color-background: #faf8f4;
   --color-foreground: #2b2622;
   --color-card: #f0ece3;

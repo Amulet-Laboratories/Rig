@@ -9,7 +9,7 @@
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
-[data-hex-theme='quizbit'] {
+[data-hex-theme='citron'] {
   --color-background: #0a0a1e;
   --color-foreground: #e8e8f0;
   --color-card: #161638;

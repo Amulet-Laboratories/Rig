@@ -18,7 +18,7 @@
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
  */
 
-[data-hex-theme='lanternhouse'] {
+[data-hex-theme='vesper'] {
   --color-background: #110e18;
   --color-foreground: #e4dff0;
   --color-card: #1a1624;

@@ -16,43 +16,42 @@ const DIST = resolve(ROOT, 'dist')
 // Define themes (directory-based, shadcn token contract)
 // One CSS per theme — no light/dark variants
 const themes = [
-  'vscode',
+  'cobalt',
   'garden',
   'spacewizard',
   'greyline',
-  'tidemark',
-  'briarcove',
-  'duskline',
-  'saltsignal',
-  'marenlys',
-  'lanternhouse',
-  'aldricpace',
-  'undertow',
-  'kbcv',
-  'compass',
-  'briarcovelib',
-  'fogline',
-  'rootremedy',
+  'cypress',
+  'iris',
+  'lagoon',
+  'ochre',
+  'orchid',
+  'vesper',
+  'harbor',
+  'copper',
+  'cardinal',
+  'clover',
+  'sienna',
+  'hearth',
+  'juniper',
   'forge',
-  'quizbit',
-  'andrewpassanisi',
-  'dewthread',
-  'wainloft',
-  'beanwoven',
-  'meeplehaus',
-  'burrowtail',
-  'shelfglow',
-  'nostromo',
-  'lcars',
+  'citron',
+  'voltaic',
+  'quartz',
+  'fern',
+  'roast',
+  'damson',
+  'brass',
+  'slate',
+  'beacon',
 ]
 
 const getThemeEntrypoints = (theme) => [
   { input: `src/themes/${theme}/index.css`, output: `dist/${theme}.css` },
 ]
 
-// Default theme entry (builds vscode as the root bundle)
+// Default theme entry (builds cobalt as the root bundle)
 const rootEntrypoints = [
-  { input: 'src/themes/vscode/index.css', output: 'dist/hex.css' },
+  { input: 'src/themes/cobalt/index.css', output: 'dist/hex.css' },
   { input: 'src/scoped/index.css', output: 'dist/scoped.css' },
 ]
 

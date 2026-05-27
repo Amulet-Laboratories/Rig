@@ -32,20 +32,20 @@
 @import '../shared/a11y.css';
 
 /* Scoped theme tokens */
-@import './themes/aldricpace.css';
-@import './themes/briarcove.css';
-@import './themes/briarcovelib.css';
-@import './themes/compass.css';
-@import './themes/duskline.css';
+@import './themes/harbor.css';
+@import './themes/iris.css';
+@import './themes/sienna.css';
+@import './themes/clover.css';
+@import './themes/lagoon.css';
 @import './themes/forge.css';
 @import './themes/garden.css';
 @import './themes/greyline.css';
-@import './themes/kbcv.css';
-@import './themes/lanternhouse.css';
-@import './themes/marenlys.css';
-@import './themes/quizbit.css';
-@import './themes/saltsignal.css';
+@import './themes/cardinal.css';
+@import './themes/vesper.css';
+@import './themes/orchid.css';
+@import './themes/citron.css';
+@import './themes/ochre.css';
 @import './themes/spacewizard.css';
-@import './themes/tidemark.css';
-@import './themes/undertow.css';
-@import './themes/vscode.css';
+@import './themes/cypress.css';
+@import './themes/copper.css';
+@import './themes/cobalt.css';

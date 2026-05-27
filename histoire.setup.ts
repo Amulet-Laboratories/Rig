@@ -4,52 +4,52 @@
 // Runs inside every story sandbox iframe before the story mounts.
 // Injects the active Hex theme + a persistent floating theme switcher.
 
-import aldricpaceCss from './hex/dist/aldricpace.css?inline'
-import briarcoveCss from './hex/dist/briarcove.css?inline'
-import briarcoveLibCss from './hex/dist/briarcovelib.css?inline'
-import compassCss from './hex/dist/compass.css?inline'
-import dusklineCss from './hex/dist/duskline.css?inline'
+import harborCss from './hex/dist/harbor.css?inline'
+import irisCss from './hex/dist/iris.css?inline'
+import siennaCss from './hex/dist/sienna.css?inline'
+import cloverCss from './hex/dist/clover.css?inline'
+import lagoonCss from './hex/dist/lagoon.css?inline'
 import forgeCss from './hex/dist/forge.css?inline'
 import gardenCss from './hex/dist/garden.css?inline'
 import greylineCss from './hex/dist/greyline.css?inline'
-import kbcvCss from './hex/dist/kbcv.css?inline'
-import lanternhouseCss from './hex/dist/lanternhouse.css?inline'
-import marlenlysCss from './hex/dist/marenlys.css?inline'
-import quizbitCss from './hex/dist/quizbit.css?inline'
-import saltsignalCss from './hex/dist/saltsignal.css?inline'
+import cardinalCss from './hex/dist/cardinal.css?inline'
+import vesperCss from './hex/dist/vesper.css?inline'
+import orchidCss from './hex/dist/orchid.css?inline'
+import citronCss from './hex/dist/citron.css?inline'
+import ochreCss from './hex/dist/ochre.css?inline'
 import spacewizardCss from './hex/dist/spacewizard.css?inline'
-import tidemarkCss from './hex/dist/tidemark.css?inline'
-import undertowCss from './hex/dist/undertow.css?inline'
-import vscodeCss from './hex/dist/vscode.css?inline'
+import cypressCss from './hex/dist/cypress.css?inline'
+import copperCss from './hex/dist/copper.css?inline'
+import cobaltCss from './hex/dist/cobalt.css?inline'
 
 // ── Theme registry ──────────────────────────────────────────────────────
 
 const THEMES: Record<string, { css: string; label: string; scheme: 'dark' | 'light' }> = {
   // Dark
-  vscode: { css: vscodeCss, label: 'VSCode', scheme: 'dark' },
+  cobalt: { css: cobaltCss, label: 'Cobalt', scheme: 'dark' },
   garden: { css: gardenCss, label: 'Garden', scheme: 'dark' },
   forge: { css: forgeCss, label: 'Forge', scheme: 'dark' },
-  duskline: { css: dusklineCss, label: 'Duskline', scheme: 'dark' },
+  lagoon: { css: lagoonCss, label: 'Lagoon', scheme: 'dark' },
   greyline: { css: greylineCss, label: 'Greyline', scheme: 'dark' },
-  lanternhouse: { css: lanternhouseCss, label: 'Lanternhouse', scheme: 'dark' },
+  vesper: { css: vesperCss, label: 'Vesper', scheme: 'dark' },
   spacewizard: { css: spacewizardCss, label: 'Spacewizard', scheme: 'dark' },
-  undertow: { css: undertowCss, label: 'Undertow', scheme: 'dark' },
-  quizbit: { css: quizbitCss, label: 'Quizbit', scheme: 'dark' },
+  copper: { css: copperCss, label: 'Copper', scheme: 'dark' },
+  citron: { css: citronCss, label: 'Citron', scheme: 'dark' },
   // Light
-  aldricpace: { css: aldricpaceCss, label: 'Aldricpace', scheme: 'light' },
-  briarcove: { css: briarcoveCss, label: 'Briarcove', scheme: 'light' },
-  briarcovelib: { css: briarcoveLibCss, label: 'Briarcove Lib', scheme: 'light' },
-  compass: { css: compassCss, label: 'Compass', scheme: 'light' },
-  kbcv: { css: kbcvCss, label: 'KBCV', scheme: 'light' },
-  marenlys: { css: marlenlysCss, label: 'Marenlys', scheme: 'light' },
-  saltsignal: { css: saltsignalCss, label: 'Saltsignal', scheme: 'light' },
-  tidemark: { css: tidemarkCss, label: 'Tidemark', scheme: 'light' },
+  harbor: { css: harborCss, label: 'Harbor', scheme: 'light' },
+  iris: { css: irisCss, label: 'Iris', scheme: 'light' },
+  sienna: { css: siennaCss, label: 'Sienna', scheme: 'light' },
+  clover: { css: cloverCss, label: 'Clover', scheme: 'light' },
+  cardinal: { css: cardinalCss, label: 'Cardinal', scheme: 'light' },
+  orchid: { css: orchidCss, label: 'Orchid', scheme: 'light' },
+  ochre: { css: ochreCss, label: 'Ochre', scheme: 'light' },
+  cypress: { css: cypressCss, label: 'Cypress', scheme: 'light' },
 }
 
 const STORAGE_KEY = 'hex-active-theme-id'
 
 function getActiveId(): string {
-  return localStorage.getItem(STORAGE_KEY) ?? 'vscode'
+  return localStorage.getItem(STORAGE_KEY) ?? 'cobalt'
 }
 
 // ── Inject active theme ─────────────────────────────────────────────────
@@ -59,7 +59,7 @@ themeEl.id = 'hex-active-theme'
 document.head.appendChild(themeEl)
 
 function applyTheme(id: string): void {
-  const entry = THEMES[id] ?? THEMES['vscode']!
+  const entry = THEMES[id] ?? THEMES['cobalt']!
   themeEl.textContent = entry.css
   document.documentElement.style.colorScheme = entry.scheme
   document.body.dataset.theme = id
