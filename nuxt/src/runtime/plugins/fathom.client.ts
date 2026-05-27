@@ -1,3 +1,5 @@
+import { defineNuxtPlugin, useRuntimeConfig, useHead } from 'nuxt/app'
+
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig()
   const siteId = config.public.fathomSiteId as string

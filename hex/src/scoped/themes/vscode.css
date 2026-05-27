@@ -97,15 +97,15 @@
   --vsc-button-secondary-fg: #cccccc;
   --vsc-button-secondary-hover-bg: #2b2b2b;
   --vsc-input-bg: #313131;
-  --vsc-input-border: #3c3c3c;
+  --vsc-input-border: var(--color-border);
   --vsc-input-fg: #cccccc;
   --vsc-input-placeholder: #989898;
   --vsc-dropdown-bg: #313131;
-  --vsc-dropdown-border: #3c3c3c;
+  --vsc-dropdown-border: var(--color-border);
   --vsc-dropdown-fg: #cccccc;
   --vsc-dropdown-list-bg: #1f1f1f;
   --vsc-checkbox-bg: #313131;
-  --vsc-checkbox-border: #3c3c3c;
+  --vsc-checkbox-border: var(--color-border);
   --vsc-badge-bg: #616161;
   --vsc-badge-fg: #f8f8f8;
   --vsc-activitybar-bg: #181818;
@@ -144,7 +144,7 @@
   --vsc-notification-fg: #cccccc;
   --vsc-notification-border: #2b2b2b;
   --vsc-widget-bg: #202020;
-  --vsc-widget-border: #313131;
+  --vsc-widget-border: var(--color-border);
   --vsc-scrollbar-thumb: rgba(121, 121, 121, 0.4);
   --vsc-scrollbar-thumb-hover: rgba(100, 100, 100, 0.7);
   --vsc-scrollbar-thumb-active: rgba(191, 191, 191, 0.4);

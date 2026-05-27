@@ -1,6 +1,9 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { parse } from 'yaml'
+import { defineEventHandler } from 'h3'
+import { useRuntimeConfig } from 'nitropack/runtime'
+import { queryCollection } from '@nuxt/content/nitro'
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()

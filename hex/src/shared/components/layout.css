@@ -1,93 +1,40 @@
-/* Hex — Shared Layout Components
- * Theme styles for Rig's layout package: TitleBar, Drawer, ShellGrid, Sidebar,
- * View, Panel, Modal, Resizer, Accordion, Collapsible, Popover, PeekView, ScrollArea.
+/* Hex — Shared Layout Components (skin only)
+ * Theme colors, backgrounds, borders (colors), shadows, font-family, transitions.
+ * Structural layout lives in Rig/src/styles/layout.css.
  */
 
 /* ───────── Drawer ───────── */
 
 [data-rig-drawer-overlay] {
-  position: fixed;
-  inset: 0;
-  z-index: var(--rig-drawer-z, 9998);
   background: rgba(0, 0, 0, 0.5);
 }
 
 [data-rig-drawer] {
-  position: fixed;
   background: var(--color-background);
-  border: 1px solid var(--color-border);
-  overflow-y: auto;
+  border-color: var(--color-border);
 }
 
 [data-rig-drawer][data-side='right'] {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: var(--rig-drawer-width, 320px);
-  border-left: 1px solid var(--color-border);
+  border-left-color: var(--color-border);
 }
 
 [data-rig-drawer][data-side='left'] {
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: var(--rig-drawer-width, 320px);
-  border-right: 1px solid var(--color-border);
+  border-right-color: var(--color-border);
 }
 
 [data-rig-drawer][data-side='top'] {
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--rig-drawer-height, 320px);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom-color: var(--color-border);
 }
 
 [data-rig-drawer][data-side='bottom'] {
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: var(--rig-drawer-height, 320px);
-  border-top: 1px solid var(--color-border);
+  border-top-color: var(--color-border);
 }
 
 /* ───────── Title Bar ───────── */
 
 [data-rig-titlebar] {
-  display: flex;
-  align-items: center;
-  height: 30px;
   background: var(--color-muted);
-  border-bottom: 1px solid var(--color-border);
-  user-select: none;
-  flex-shrink: 0;
-  position: relative;
-  font-size: 12px;
-}
-
-[data-rig-titlebar][data-draggable] {
-  -webkit-app-region: drag;
-}
-
-[data-rig-titlebar-leading] {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  gap: 2px;
-  padding-left: 8px;
-  flex-shrink: 0;
-  -webkit-app-region: no-drag;
-}
-
-[data-rig-titlebar-caption] {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  pointer-events: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 50%;
+  border-bottom-color: var(--color-border);
 }
 
 [data-rig-titlebar-title] {
@@ -102,23 +49,8 @@
   color: var(--color-muted-foreground);
 }
 
-[data-rig-titlebar-trailing] {
-  margin-left: auto;
-  display: flex;
-  align-items: stretch;
-  height: 100%;
-  -webkit-app-region: no-drag;
-}
-
 [data-rig-titlebar-action] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 8px;
-  background: transparent;
-  border: none;
   color: var(--color-foreground);
-  cursor: pointer;
   opacity: 0.8;
 }
 
@@ -137,196 +69,28 @@
 
 /* ───────── Shell Grid ───────── */
 
-[data-rig-ide-shell],
-[data-rig-shell-grid] {
-  flex: 1;
-  min-height: 0;
-}
-
 [data-rig-shell-titlebar] {
-  grid-area: titlebar;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  border-bottom: 1px solid var(--color-border);
-  user-select: none;
-}
-
-[data-rig-shell-grid] {
-  display: grid;
-  grid-template-areas:
-    'activity sidebar editor'
-    'activity sidebar v-res'
-    'activity sidebar panel'
-    'statusbar statusbar statusbar';
-  grid-template-columns: auto auto 1fr;
-  grid-template-rows: 1fr 0 auto 22px;
-  height: 100%;
-  overflow: hidden;
-}
-
-[data-rig-shell-grid]:has([data-rig-shell-sidebar][data-collapsed]) {
-  grid-template-columns: auto 0 1fr;
-}
-
-[data-rig-shell-activity] {
-  grid-area: activity;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  user-select: none;
+  border-bottom-color: var(--color-border);
 }
 
 [data-rig-shell-sidebar] {
-  grid-area: sidebar;
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  overflow: visible;
-  border-right: 1px solid var(--rig-sidebar-border);
-  user-select: none;
-}
-
-[data-rig-shell-sidebar][data-collapsed] {
-  border-right: none;
-}
-
-[data-rig-shell-editor] {
-  grid-area: editor;
-  overflow: hidden;
-  min-height: 0;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-[data-rig-shell-panel] {
-  grid-area: panel;
-  overflow: hidden;
-  min-height: 0;
-  min-width: 0;
-}
-
-[data-rig-shell-statusbar] {
-  grid-area: statusbar;
-  overflow: hidden;
-  user-select: none;
-}
-
-[data-rig-shell-sidebar] > [data-rig-resizer][data-orientation='horizontal'] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 4px;
-  z-index: 50;
-  cursor: col-resize;
-}
-
-[data-rig-shell-sidebar] > [data-rig-resizer][data-orientation='horizontal']::before {
-  content: '';
-  position: absolute;
-  inset: 0 -4px;
-  cursor: col-resize;
-}
-
-[data-rig-resizer][data-orientation='vertical'] {
-  grid-area: v-res;
-  cursor: row-resize;
-  height: 5px;
-}
-
-/* Collapse panels when hidden */
-[data-rig-shell-grid]:has([data-rig-shell-panel][style='height: 0px'])
-  [data-rig-resizer][data-orientation='vertical'] {
-  height: 0;
-}
-
-[data-rig-shell-panel] {
-  border-top: none;
+  border-right-color: var(--rig-sidebar-border);
 }
 
 [data-rig-shell-statusbar] {
   background: var(--rig-statusbar-bg);
   color: var(--rig-statusbar-fg);
   font-family: var(--font-mono);
-  border-top: 1px solid var(--rig-sidebar-border);
-  font-size: 12px;
-  height: 22px;
-}
-
-/* ───────── Sidebar ───────── */
-
-[data-rig-sidebar] {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-[data-rig-sidebar-content] {
-  flex: 1;
-  overflow-y: auto;
-  min-height: 0;
+  border-top-color: var(--rig-sidebar-border);
 }
 
 /* ───────── Editor Workbench ───────── */
 
-[data-rig-editor-workbench] {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-}
-
-[data-rig-editor-workbench-content] {
-  flex: 1;
-  overflow: hidden;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-[data-rig-sidebar-header] {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  flex-shrink: 0;
-}
+/* (No skin overrides currently — workbench surface inherits editor bg.) */
 
 /* ───────── View (collapsible section) ───────── */
 
-[data-rig-view] {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-[data-rig-view-toggle] {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  flex: 1;
-  min-width: 0;
-  cursor: pointer;
-  user-select: none;
-}
-
-[data-rig-view-content] {
-  flex: 1;
-  overflow-y: auto;
-  min-height: 0;
-}
-
 [data-rig-view-header] {
-  font-size: 11px;
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   color: var(--rig-sidebar-fg);
 }
 
@@ -364,57 +128,20 @@
 /* ───────── Panel ───────── */
 
 [data-rig-panel] {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
   background: var(--color-background);
 }
 
 [data-rig-panel][data-position='right'] {
-  border-left: 1px solid var(--rig-panel-border);
-  position: relative;
-}
-
-[data-rig-panel][data-position='right'] > [data-rig-resizer][data-orientation='horizontal'] {
-  position: absolute;
-  top: 0;
-  left: -3px;
-  bottom: 0;
-  width: 6px;
-  z-index: 35;
-  cursor: col-resize;
+  border-left-color: var(--rig-panel-border);
 }
 
 [data-rig-panel][data-position='left'] {
-  border-right: 1px solid var(--rig-panel-border);
-  position: relative;
-}
-
-[data-rig-panel][data-position='left'] > [data-rig-resizer][data-orientation='horizontal'] {
-  position: absolute;
-  top: 0;
-  right: -3px;
-  bottom: 0;
-  width: 6px;
-  z-index: 35;
-  cursor: col-resize;
+  border-right-color: var(--rig-panel-border);
 }
 
 [data-rig-panel-header] {
-  border-bottom: 1px solid var(--rig-panel-border);
-  font-size: 13px;
+  border-bottom-color: var(--rig-panel-border);
   color: var(--rig-panel-title-inactive-fg);
-  flex-shrink: 0;
-}
-
-[data-rig-panel-header]:empty {
-  display: none;
-}
-
-[data-rig-panel-content] {
-  flex: 1;
-  overflow: auto;
-  min-height: 0;
 }
 
 /* ───────── Modal ───────── */
@@ -425,9 +152,8 @@
 
 [data-rig-modal] {
   background: var(--rig-widget-bg);
-  border: 1px solid var(--rig-widget-border);
+  border-color: var(--rig-widget-border);
   box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
-  border-radius: 8px;
 }
 
 /* ───────── Accordion ───────── */
@@ -437,10 +163,6 @@
 }
 
 [data-rig-accordion-trigger] {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   color: var(--rig-sidebar-fg);
   transition: background-color 0.15s ease;
 }
@@ -455,7 +177,6 @@
   transition:
     opacity 0.2s ease,
     transform 0.2s ease;
-  transform-origin: top;
 }
 
 .accordion-enter-from {
@@ -473,35 +194,25 @@
   transition: transform 0.2s ease;
 }
 
-[data-rig-accordion-item][data-open] [data-rig-accordion-chevron] {
-  transform: rotate(180deg);
-}
-
 /* ───────── Collapsible ───────── */
 
 [data-rig-collapsible][data-disabled] {
   @apply opacity-40;
 }
 
-[data-rig-collapsible-content] {
-  overflow: hidden;
-}
-
 /* ───────── PeekView ───────── */
 
 [data-rig-peek-view] {
-  border: 1px solid var(--rig-widget-border);
-  border-radius: var(--radius);
+  border-color: var(--rig-widget-border);
   box-shadow: 0 4px 16px rgb(0 0 0 / 40%);
 }
 
 [data-rig-peek-view-header] {
   background: var(--color-card);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom-color: var(--color-border);
 }
 
 [data-rig-peek-view-title] {
-  font-size: 13px;
   color: var(--color-foreground);
   font-family: var(--font-mono);
 }
@@ -522,21 +233,10 @@
 
 /* ───────── Popover ───────── */
 
-[data-rig-popover] {
-  display: inline-flex;
-  position: relative;
-}
-
-[data-rig-popover-trigger] {
-  display: inline-flex;
-}
-
 [data-rig-popover-content] {
   background: var(--vsc-menu-bg);
-  border: 1px solid var(--vsc-widget-border);
-  border-radius: 5px;
+  border-color: var(--vsc-widget-border);
   box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
-  font-size: 13px;
   color: var(--color-foreground);
   animation: popover-in 0.12s ease;
 }
@@ -554,61 +254,17 @@
 
 /* ───────── ScrollArea ───────── */
 
-[data-rig-scroll-area] {
-  position: relative;
-  overflow: hidden;
-}
-
-[data-rig-scroll-viewport] {
-  overflow: auto;
-  height: 100%;
-  width: 100%;
-  scrollbar-width: none;
-}
-
-[data-rig-scroll-viewport]::-webkit-scrollbar {
-  display: none;
-}
-
 [data-rig-scroll-bar] {
   transition: opacity 0.15s;
 }
 
 [data-rig-scroll-thumb] {
-  border-radius: 5px;
   background: var(--rig-scrollbar-thumb);
   transition: background 0.15s;
-  min-height: 20px;
-}
-
-[data-rig-scroll-bar][data-orientation='vertical'] [data-rig-scroll-thumb] {
-  margin: 0 2px;
-}
-
-[data-rig-scroll-bar][data-orientation='horizontal'] [data-rig-scroll-thumb] {
-  margin: 2px 0;
 }
 
 [data-rig-scroll-thumb]:hover {
   background: var(--rig-scrollbar-thumb-hover);
-}
-
-/* ───────── SplitView ───────── */
-
-[data-rig-split-view] {
-  display: flex;
-  height: 100%;
-  overflow: hidden;
-}
-
-[data-rig-split-view][data-orientation='vertical'] {
-  flex-direction: column;
-}
-
-[data-rig-split-pane] {
-  overflow: auto;
-  min-width: 0;
-  min-height: 0;
 }
 
 /* ───────── Resizer ───────── */
@@ -640,10 +296,6 @@
   @apply bg-background;
 }
 
-[data-rig-resizable-panel-content] {
-  @apply overflow-auto;
-}
-
 [data-rig-resizable-panel-handle] {
   background: color-mix(in srgb, var(--color-foreground) 8%, transparent);
   transition: background 0.15s ease;
@@ -659,5 +311,5 @@
 }
 
 [data-rig-resizable-panel][data-disabled] [data-rig-resizable-panel-handle] {
-  @apply opacity-30 cursor-not-allowed;
+  @apply opacity-30;
 }

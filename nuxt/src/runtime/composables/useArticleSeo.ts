@@ -1,3 +1,5 @@
+import { useRuntimeConfig, useRoute, useSeoMeta, useHead } from 'nuxt/app'
+
 export interface SeoMetaOptions {
   title: string
   description?: string
@@ -7,7 +9,9 @@ export interface SeoMetaOptions {
 }
 
 export const useArticleSeo = (options: SeoMetaOptions) => {
-  const { name: siteName, url: siteUrl } = useSiteConfig()
+  const config = useRuntimeConfig()
+  const siteUrl = (config.public?.siteUrl as string) || ''
+  const siteName = (config.public?.siteName as string) || ''
   const route = useRoute()
   const canonicalUrl = `${siteUrl}${route.path}`
   const ogImage = options.ogImage || `${siteUrl}/og-default.svg`

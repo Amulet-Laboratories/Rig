@@ -1,0 +1,13 @@
+/* Hex — Nostromo Design Tokens
+ * Empty scaffold — fill @theme with --color-*, --font-*, --radius-* etc.,
+ * and :root with shadcn-style shorthand aliases + Rig bridge tokens.
+ */
+
+@theme {
+  /* Surface, brand, status, border, ring tokens land here. */
+}
+
+:root {
+  /* shadcn shorthand aliases (--background, --foreground, etc.) and
+     Rig bridge tokens (--rig-sidebar-bg, --rig-button-bg, etc.) land here. */
+}

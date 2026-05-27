@@ -130,6 +130,12 @@ export interface PaneState {
    * - bl|br → no-op
    */
   splitDown: (fromPaneId: PaneId, tabId: ID) => void
+  /**
+   * Move a tab from one explicit pane to another. Creates `toPaneId` if
+   * it isn't open yet (for non-`tl` destinations). No-op when source and
+   * destination are the same pane.
+   */
+  moveTabToPane: (fromPaneId: PaneId, tabId: ID, toPaneId: PaneId) => void
 
   // ── Utility ──
   /** Find which pane currently holds the given tab ID */
@@ -398,6 +404,18 @@ function createPaneState(config: PaneStateConfig = {}): PaneState {
     openPane(target, tab)
   }
 
+  function moveTabToPane(fromPaneId: PaneId, tabId: ID, toPaneId: PaneId): void {
+    if (fromPaneId === toPaneId) return
+    const tab = extractTab(fromPaneId, tabId)
+    if (!tab) return
+    if (toPaneId === 'tl') {
+      openTabInPane('tl', tab)
+      focusedPaneId.value = 'tl'
+    } else {
+      openPane(toPaneId, tab)
+    }
+  }
+
   // ── Utility ──
 
   function findTabPane(tabId: ID): PaneId | null {
@@ -431,6 +449,7 @@ function createPaneState(config: PaneStateConfig = {}): PaneState {
     isPaneEditing,
     splitRight,
     splitDown,
+    moveTabToPane,
     findTabPane,
     isPaneOpen,
   }

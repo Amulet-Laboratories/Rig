@@ -35,12 +35,15 @@ const themes = [
   'rootremedy',
   'forge',
   'quizbit',
+  'andrewpassanisi',
   'dewthread',
   'wainloft',
   'beanwoven',
   'meeplehaus',
   'burrowtail',
   'shelfglow',
+  'nostromo',
+  'lcars',
 ]
 
 const getThemeEntrypoints = (theme) => [

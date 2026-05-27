@@ -1,45 +1,28 @@
-/* Hex — Shared Menus Components
- * Theme styles for Rig's menus package: CommandPalette, ContextMenu,
- * ActionBar, KeyboardHint, DropdownMenu, Menubar.
+/* Hex — Shared Menus Components (skin only)
+ * Colors, backgrounds, borders (colors), shadows, font-family, transitions.
+ * Structural layout lives in Rig/src/styles/menus.css.
  */
 
 /* ───────── Command Palette ───────── */
 
 [data-rig-command-palette-overlay] {
-  position: fixed;
-  inset: 0;
-  z-index: var(--rig-command-palette-z, 9999);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 20vh;
   background: rgb(0 0 0 / 50%);
 }
 
 [data-rig-command-palette] {
   background: var(--vsc-quickinput-bg);
-  border: 1px solid var(--vsc-widget-border);
+  border-color: var(--vsc-widget-border);
   box-shadow: 0 8px 30px rgb(0 0 0 / 50%);
-  border-radius: 8px;
-  overflow: hidden;
-  max-width: 600px;
 }
 
 [data-rig-command-palette-input] {
   background: var(--vsc-input-bg);
   color: var(--color-foreground);
-  border-bottom: 1px solid var(--color-border);
-  font-size: 13px;
-  outline: none;
+  border-bottom-color: var(--color-border);
 }
 
 [data-rig-command-palette-input]::placeholder {
   color: var(--vsc-input-placeholder);
-}
-
-[data-rig-command-palette-results] {
-  overflow-y: auto;
-  max-height: 300px;
 }
 
 [data-rig-command-palette-item] {
@@ -57,54 +40,31 @@
 
 [data-rig-command-palette-item][data-disabled] {
   opacity: 0.4;
-  pointer-events: none;
 }
 
 [data-rig-command-palette-item-label] {
   color: var(--color-foreground);
-  font-size: 13px;
 }
 
 [data-rig-command-palette-item-description] {
   color: var(--vsc-description-fg);
-  font-size: 12px;
   font-family: var(--font-mono);
 }
 
 [data-rig-command-palette-empty] {
   color: var(--vsc-description-fg);
-  font-size: 13px;
 }
 
 /* ───────── Context Menu ───────── */
 
 [data-rig-context-menu] {
-  display: flex;
-  flex-direction: column;
-  padding: 4px 0;
   background: var(--vsc-menu-bg);
-  border: 1px solid var(--vsc-widget-border);
+  border-color: var(--vsc-widget-border);
   box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
-  border-radius: 5px;
-  overflow: hidden;
-  min-width: 220px;
 }
 
 [data-rig-context-menu-item] {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  width: 100%;
-  height: 26px;
-  padding: 0 12px;
-  border: none;
-  background: none;
   color: var(--color-foreground);
-  font-size: 13px;
-  white-space: nowrap;
-  cursor: default;
-  text-align: left;
   transition: background-color 0.1s ease;
 }
 
@@ -124,40 +84,21 @@
 
 [data-rig-context-menu-label] {
   color: var(--color-foreground);
-  font-size: 13px;
 }
 
 [data-rig-context-menu-separator] {
-  height: 1px;
-  border: none;
-  margin: 4px 0;
   background: var(--color-border);
-  pointer-events: none;
 }
 
 [data-rig-context-menu-keybinding] {
   color: var(--vsc-description-fg);
   font-family: var(--font-mono);
-  font-size: 12px;
 }
 
 /* ───────── Menubar ───────── */
 
-[data-rig-menubar] {
-  display: flex;
-  align-items: center;
-}
-
-[data-rig-menubar-entry] {
-  position: relative;
-  user-select: none;
-}
-
 [data-rig-menubar-trigger] {
   color: var(--color-foreground);
-  font-size: 13px;
-  border-radius: 5px;
-  padding: 2px 8px;
   transition: background-color 0.15s ease;
 }
 
@@ -171,20 +112,10 @@
 }
 
 [data-rig-menubar-content] {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  min-width: 220px;
-  padding: 4px 0;
   background: var(--vsc-menu-bg);
-  border: 1px solid var(--vsc-widget-border);
-  border-radius: 5px;
+  border-color: var(--vsc-widget-border);
   box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
   animation: menubar-in 0.1s ease;
-  overflow: hidden;
 }
 
 @keyframes menubar-in {
@@ -199,28 +130,11 @@
 }
 
 [data-rig-menubar-separator] {
-  height: 1px;
-  border: none;
-  margin: 4px 0;
   background: var(--color-border);
-  pointer-events: none;
 }
 
 [data-rig-menubar-item] {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  width: 100%;
-  height: 26px;
-  padding: 0 12px;
-  border: none;
-  background: none;
   color: var(--color-foreground);
-  font-size: 13px;
-  white-space: nowrap;
-  cursor: default;
-  text-align: left;
   transition: background-color 0.1s ease;
 }
 
@@ -240,54 +154,24 @@
 
 [data-rig-menubar-item-label] {
   color: var(--color-foreground);
-  font-size: 13px;
 }
 
 [data-rig-menubar-item-keybinding] {
   color: var(--vsc-description-fg);
   font-family: var(--font-mono);
-  font-size: 12px;
 }
 
 /* ───────── DropdownMenu ───────── */
 
-[data-rig-dropdown] {
-  position: relative;
-  display: inline-flex;
-}
-
-[data-rig-dropdown-trigger] {
-  cursor: pointer;
-}
-
 [data-rig-dropdown-menu] {
-  display: flex;
-  flex-direction: column;
-  padding: 4px 0;
-  min-width: 220px;
   background: var(--vsc-menu-bg);
-  border: 1px solid var(--vsc-widget-border);
-  border-radius: 5px;
+  border-color: var(--vsc-widget-border);
   box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
   animation: menubar-in 0.1s ease;
-  overflow: hidden;
 }
 
 [data-rig-dropdown-item] {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  width: 100%;
-  height: 26px;
-  padding: 0 12px;
-  border: none;
-  background: none;
   color: var(--color-foreground);
-  font-size: 13px;
-  white-space: nowrap;
-  cursor: default;
-  text-align: left;
   transition: background-color 0.1s ease;
 }
 
@@ -307,26 +191,17 @@
 
 [data-rig-dropdown-item-label] {
   color: var(--color-foreground);
-  font-size: 13px;
 }
 
 [data-rig-dropdown-item-keybinding] {
   color: var(--vsc-description-fg);
   font-family: var(--font-mono);
-  font-size: 12px;
 }
 
 /* ───────── ActionBar ───────── */
 
-[data-rig-action-bar] {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
-
 [data-rig-action-bar-item] {
   color: var(--vsc-description-fg);
-  border-radius: 5px;
   transition:
     color 0.15s ease,
     background-color 0.15s ease;
@@ -338,8 +213,7 @@
 }
 
 [data-rig-action-bar-item]:focus-visible {
-  outline: 1px solid var(--color-ring);
-  outline-offset: -1px;
+  outline-color: var(--color-ring);
 }
 
 [data-rig-action-bar-item][data-disabled] {
@@ -348,7 +222,6 @@
 
 [data-rig-action-bar-overflow] {
   color: var(--vsc-description-fg);
-  border-radius: 5px;
   transition:
     color 0.15s ease,
     background-color 0.15s ease;
@@ -361,17 +234,8 @@
 
 /* ───────── Keyboard Hint ───────── */
 
-[data-rig-keyboard-hint] {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-}
-
 [data-rig-keyboard-hint-key] {
   color: var(--vsc-keybinding-fg);
   font-family: var(--font-mono);
-  font-size: 11px;
-  border: 1px solid var(--color-border);
-  border-radius: 3px;
-  padding: 2px 4px;
+  border-color: var(--color-border);
 }

@@ -1,11 +1,12 @@
 /* Rig Structural — List Components
- * Table, List, TreeView
+ * Table, List, TreeView, FileTree, DataGrid
  */
 
 /* ── Table ── */
 
 [data-rig-table] {
   width: 100%;
+  font-size: 13px;
 }
 
 [data-rig-table-head] {
@@ -18,6 +19,9 @@
   padding: 0.5rem 1.25rem;
   cursor: pointer;
   user-select: none;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 [data-rig-table-header][data-sortable] {
@@ -26,15 +30,19 @@
 
 [data-rig-table-body] [data-rig-table-row] {
   cursor: pointer;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
 }
 
 [data-rig-table-cell] {
   padding: 0.625rem 1.25rem;
+  font-size: 13px;
 }
 
 [data-rig-table-empty] {
   padding: 2rem 1.25rem;
   text-align: center;
+  font-size: 13px;
 }
 
 /* ── List ── */
@@ -43,26 +51,41 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  font-size: 13px;
 }
 
 [data-rig-list-item] {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2px 12px;
-  cursor: pointer;
+  padding: 2px 8px;
   min-height: 22px;
+  font-size: 13px;
+  cursor: default;
+  text-align: left;
+}
+
+[data-rig-list-item]:focus {
+  outline-width: 1px;
+  outline-style: solid;
+  outline-offset: -1px;
+}
+
+[data-rig-list-item][data-disabled] {
+  pointer-events: none;
 }
 
 [data-rig-list-item-label] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 13px;
 }
 
 [data-rig-list-item-description] {
   white-space: normal;
   word-break: break-word;
+  font-size: 12px;
 }
 
 /* ── Tree ── */
@@ -71,19 +94,26 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  font-size: 13px;
+  outline: none;
   --rig-tree-indent: 8px;
 }
 
 [data-rig-tree-node] {
   display: flex;
   align-items: center;
-  gap: 0;
-  padding: 0;
-  padding-left: 4px;
-  cursor: pointer;
+  gap: 2px;
   height: 22px;
   line-height: 22px;
+  padding: 0 8px;
+  min-width: 100%;
+  cursor: pointer;
+  white-space: nowrap;
   position: relative;
+}
+
+[data-rig-tree-node]:focus {
+  outline: none;
 }
 
 /* Indent guides container */
@@ -98,30 +128,53 @@
 [data-rig-tree-indent-guide] {
   display: inline-block;
   box-sizing: border-box;
-  width: var(--rig-tree-indent, 8px);
+  width: 8px;
+  flex-shrink: 0;
   height: 100%;
-  border-left: 1px solid transparent;
+  align-self: stretch;
+  border-left-width: 1px;
+  border-left-style: solid;
 }
 
 [data-rig-tree-toggle] {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
-  width: 18px;
-  height: 100%;
   cursor: pointer;
   background: none;
   border: 0;
   padding: 0;
 }
 
+[data-rig-tree-toggle]::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 8px;
+  background: currentColor;
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  transition: transform 0.15s ease;
+}
+
+[data-rig-tree-toggle][data-state='open']::before {
+  transform: rotate(90deg);
+}
+
 /* Leaf spacer — reserve the same width as the toggle for leaf nodes */
 [data-rig-tree-node][data-leaf] {
-  padding-left: 22px;
+  padding-left: calc(8px + 16px);
+}
+
+[data-rig-tree-node-icon] {
+  flex-shrink: 0;
+  margin-right: 2px;
 }
 
 [data-rig-tree-node-label] {
+  flex: 1 1 0%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -172,11 +225,17 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
+  font-size: 13px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: var(--radius);
 }
 
 [data-rig-data-grid-header] {
   display: flex;
   align-items: center;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
 }
 
 [data-rig-data-grid-header-cell] {
@@ -187,17 +246,30 @@
   padding: 0.5rem;
   cursor: pointer;
   user-select: none;
+  font-size: 12px;
+  font-weight: 500;
+  border-right-width: 1px;
+  border-right-style: solid;
+}
+
+[data-rig-data-grid-header-cell]:focus-visible {
+  outline: none;
 }
 
 [data-rig-data-grid-body] {
-  display: flex;
-  flex-direction: column;
+  display: contents;
 }
 
 [data-rig-data-grid-row] {
   display: flex;
   align-items: center;
   cursor: pointer;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+[data-rig-data-grid-row]:focus-visible {
+  outline: none;
 }
 
 [data-rig-data-grid-cell] {
@@ -206,11 +278,14 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  border-right-width: 1px;
+  border-right-style: solid;
 }
 
 [data-rig-data-grid-empty] {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  text-align: center;
+  padding: 24px 0;
 }

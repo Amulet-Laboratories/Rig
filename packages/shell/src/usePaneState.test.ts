@@ -98,7 +98,7 @@ describe('closeTabInPane', () => {
     panes.closeTabInPane('tl', 'b')
     const tl = panes.activePanes.value.get('tl')!
     expect(tl.tabs.value).toHaveLength(1)
-    expect(tl.tabs.value[0].id).toBe('a')
+    expect(tl.tabs.value[0]!.id).toBe('a')
   })
 
   it('tl pane stays open when last tab closed', () => {
@@ -170,7 +170,7 @@ describe('splitRight', () => {
     panes.splitRight('tl', 'a')
     expect(panes.activePanes.value.get('tl')!.tabs.value).toHaveLength(0)
     expect(panes.activePanes.value.has('tr')).toBe(true)
-    expect(panes.activePanes.value.get('tr')!.tabs.value[0].id).toBe('a')
+    expect(panes.activePanes.value.get('tr')!.tabs.value[0]!.id).toBe('a')
   })
 
   it('moves tab from bl to tr', () => {
@@ -178,7 +178,7 @@ describe('splitRight', () => {
     panes.openPane('bl', makeTab('a'))
     panes.splitRight('bl', 'a')
     expect(panes.activePanes.value.has('tr')).toBe(true)
-    expect(panes.activePanes.value.get('tr')!.tabs.value[0].id).toBe('a')
+    expect(panes.activePanes.value.get('tr')!.tabs.value[0]!.id).toBe('a')
     // bl auto-closed since it had 1 tab
     expect(panes.activePanes.value.has('bl')).toBe(false)
   })
@@ -191,7 +191,7 @@ describe('splitRight', () => {
     panes.openTabInPane('tr', makeTab('x'))
     panes.splitRight('tr', 'x')
     expect(panes.activePanes.value.has('br')).toBe(true)
-    expect(panes.activePanes.value.get('br')!.tabs.value[0].id).toBe('x')
+    expect(panes.activePanes.value.get('br')!.tabs.value[0]!.id).toBe('x')
   })
 
   it('no-ops on br', () => {
@@ -221,7 +221,7 @@ describe('splitDown', () => {
     panes.splitDown('tl', 'a')
     expect(panes.activePanes.value.get('tl')!.tabs.value).toHaveLength(0)
     expect(panes.activePanes.value.has('bl')).toBe(true)
-    expect(panes.activePanes.value.get('bl')!.tabs.value[0].id).toBe('a')
+    expect(panes.activePanes.value.get('bl')!.tabs.value[0]!.id).toBe('a')
   })
 
   it('moves tab from tr to br when bottom row exists', () => {
@@ -231,7 +231,7 @@ describe('splitDown', () => {
     panes.openTabInPane('tr', makeTab('x'))
     panes.splitDown('tr', 'x')
     expect(panes.activePanes.value.has('br')).toBe(true)
-    expect(panes.activePanes.value.get('br')!.tabs.value[0].id).toBe('x')
+    expect(panes.activePanes.value.get('br')!.tabs.value[0]!.id).toBe('x')
   })
 
   it('moves tab from tr to bl when no bottom row exists', () => {
@@ -241,7 +241,7 @@ describe('splitDown', () => {
     panes.splitDown('tr', 'x')
     // No bl existed, so creates bl
     expect(panes.activePanes.value.has('bl')).toBe(true)
-    expect(panes.activePanes.value.get('bl')!.tabs.value[0].id).toBe('x')
+    expect(panes.activePanes.value.get('bl')!.tabs.value[0]!.id).toBe('x')
   })
 
   it('no-ops on bl', () => {
@@ -259,6 +259,44 @@ describe('splitDown', () => {
     const sizeBefore = panes.activePanes.value.size
     panes.splitDown('br', 'b')
     expect(panes.activePanes.value.size).toBe(sizeBefore)
+  })
+})
+
+// ── moveTabToPane ─────────────────────────────────────────────────────────────
+
+describe('moveTabToPane', () => {
+  it('moves a tab from tr into tl and focuses tl', () => {
+    const { panes } = createPanes()
+    panes.openPane('tr', makeTab('x'))
+    panes.moveTabToPane('tr', 'x', 'tl')
+    expect(panes.findTabPane('x')).toBe('tl')
+    expect(panes.focusedPaneId.value).toBe('tl')
+  })
+
+  it('creates the destination pane when it is not open yet', () => {
+    const { panes } = createPanes()
+    panes.openTabInPane('tl', makeTab('a'))
+    expect(panes.isPaneOpen('tr')).toBe(false)
+    panes.moveTabToPane('tl', 'a', 'tr')
+    expect(panes.isPaneOpen('tr')).toBe(true)
+    expect(panes.findTabPane('a')).toBe('tr')
+  })
+
+  it('no-ops when source and destination are the same pane', () => {
+    const { panes } = createPanes()
+    panes.openTabInPane('tl', makeTab('a'))
+    const sizeBefore = panes.activePanes.value.size
+    panes.moveTabToPane('tl', 'a', 'tl')
+    expect(panes.activePanes.value.size).toBe(sizeBefore)
+    expect(panes.findTabPane('a')).toBe('tl')
+  })
+
+  it('no-ops when the tab is not in the source pane', () => {
+    const { panes } = createPanes()
+    panes.openTabInPane('tl', makeTab('a'))
+    panes.moveTabToPane('tl', 'missing', 'tr')
+    expect(panes.isPaneOpen('tr')).toBe(false)
+    expect(panes.findTabPane('a')).toBe('tl')
   })
 })
 

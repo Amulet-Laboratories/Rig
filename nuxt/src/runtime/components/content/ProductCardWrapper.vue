@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useAsyncData } from '#imports'
 import { useFathom } from '@amulet-laboratories/rig'
 import { useProducts } from '../../composables/useProducts'
@@ -13,6 +14,50 @@ const { data: product, status } = await useAsyncData(`product-${props.slug}`, ()
 )
 
 const { trackAffiliateClick } = useFathom()
+
+interface Retailer {
+  name: string
+  url: string
+  commission_rate: string
+}
+
+const bestRetailer = computed<Retailer | null>(() => {
+  if (!product.value) return null
+
+  const candidates: Retailer[] = []
+
+  if (product.value.amazon?.url) {
+    candidates.push({
+      name: 'Amazon',
+      url: product.value.amazon.url,
+      commission_rate: product.value.amazon.commission_rate || '0%',
+    })
+  }
+
+  if (product.value.alt_retailers?.length) {
+    for (const retailer of product.value.alt_retailers) {
+      if (retailer.url) candidates.push(retailer as Retailer)
+    }
+  }
+
+  if (!candidates.length) return null
+
+  return candidates.sort((a, b) => {
+    const rateA = parseFloat(a.commission_rate) || 0
+    const rateB = parseFloat(b.commission_rate) || 0
+    return rateB - rateA
+  })[0]
+})
+
+const amazonFallback = computed<Retailer | null>(() => {
+  if (!product.value?.amazon?.url) return null
+  if (bestRetailer.value?.name === 'Amazon') return null
+  return {
+    name: 'Amazon',
+    url: product.value.amazon.url,
+    commission_rate: product.value.amazon.commission_rate || '0%',
+  }
+})
 
 function onAffiliateClick() {
   trackAffiliateClick(props.slug)
@@ -66,13 +111,24 @@ function onAffiliateClick() {
     </div>
     <div data-rig-product-card-footer>
       <a
-        :href="product.amazon?.url"
+        v-if="bestRetailer"
+        :href="bestRetailer.url"
         target="_blank"
         rel="nofollow noopener sponsored"
         data-rig-product-card-link
         @click="onAffiliateClick"
       >
-        Check price on Amazon
+        Check price on {{ bestRetailer.name }}
+      </a>
+      <a
+        v-if="amazonFallback"
+        :href="amazonFallback.url"
+        target="_blank"
+        rel="nofollow noopener sponsored"
+        data-rig-product-card-link-secondary
+        @click="onAffiliateClick"
+      >
+        Also on Amazon
       </a>
     </div>
   </div>

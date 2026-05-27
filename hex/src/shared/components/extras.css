@@ -1,18 +1,12 @@
-/* Hex — Shared Extras Components
- * Theme styles for Rig's extras package: Alert, Toast, EmptyState,
- * NotificationCenter, KanbanBoard, CalendarGrid, Skeleton, Tooltip, PropertyGrid.
+/* Hex — Shared Extras Components (skin only)
+ * Colors, backgrounds, borders (colors), shadows, font-family, transitions.
+ * Structural layout lives in Rig/src/styles/extras.css.
  */
 
 /* ───────── Alert ───────── */
 
 [data-rig-alert] {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px 16px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  font-size: 13px;
+  border-color: var(--color-border);
 }
 
 [data-rig-alert][data-variant='info'] {
@@ -35,43 +29,16 @@
   background: color-mix(in srgb, var(--color-destructive) 8%, transparent);
 }
 
-[data-rig-alert-icon] {
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-[data-rig-alert-content] {
-  flex: 1;
-  min-width: 0;
-}
-
 [data-rig-alert-title] {
-  font-weight: 500;
   color: var(--color-foreground);
-  margin-bottom: 2px;
 }
 
 [data-rig-alert-description] {
   color: var(--color-muted-foreground);
-  font-size: 12px;
-}
-
-[data-rig-alert-action] {
-  flex-shrink: 0;
 }
 
 [data-rig-alert-dismiss] {
-  @apply inline-flex items-center justify-center;
-
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  border: none;
-  background: none;
   color: var(--color-muted-foreground);
-  cursor: pointer;
-  border-radius: 3px;
-  font-size: 14px;
   transition: color 0.15s ease;
 }
 
@@ -81,42 +48,29 @@
 
 /* ───────── Toast ───────── */
 
-[data-rig-toast-container] {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-width: 360px;
-}
-
 [data-rig-toast] {
   background: var(--rig-notification-bg);
-  border: 1px solid var(--rig-notification-border);
+  border-color: var(--rig-notification-border);
   box-shadow: 0 4px 16px rgb(0 0 0 / 40%);
-  font-size: 12px;
-  border-radius: var(--radius);
 }
 
 [data-rig-toast][data-variant='info'] {
-  border-left: 3px solid var(--color-info);
+  border-left-color: var(--color-info);
   color: var(--color-foreground);
 }
 
 [data-rig-toast][data-variant='success'] {
-  border-left: 3px solid var(--color-success);
+  border-left-color: var(--color-success);
   color: var(--color-foreground);
 }
 
 [data-rig-toast][data-variant='error'] {
-  border-left: 3px solid var(--color-destructive);
+  border-left-color: var(--color-destructive);
   color: var(--color-foreground);
 }
 
 [data-rig-toast][data-variant='warning'] {
-  border-left: 3px solid var(--color-warning);
+  border-left-color: var(--color-warning);
   color: var(--color-foreground);
 }
 
@@ -137,34 +91,24 @@
 
 [data-rig-empty-state] {
   color: var(--rig-description-fg);
-  font-size: 13px;
 }
 
 [data-rig-empty-state-title] {
   color: var(--color-foreground);
-  font-size: 14px;
 }
 
 [data-rig-empty-state-description] {
   color: var(--rig-description-fg);
-  font-size: 13px;
 }
 
 [data-rig-empty-state-icon] {
   color: var(--rig-description-fg);
-  font-size: 24px;
 }
 
 /* ───────── NotificationCenter ───────── */
 
-[data-rig-notification-center] {
-  position: relative;
-}
-
 [data-rig-notification-bell] {
   color: var(--rig-activitybar-inactive-fg);
-  font-size: 14px;
-  border-radius: 2px;
   transition:
     color 0.15s ease,
     background-color 0.15s ease;
@@ -180,16 +124,13 @@
 }
 
 [data-rig-notification-badge] {
-  font-size: 9px;
   color: var(--rig-activitybar-badge-fg);
   background: var(--rig-activitybar-badge-bg);
-  border-radius: 7px;
 }
 
 [data-rig-notification-panel] {
   background: var(--rig-notification-bg);
-  border: 1px solid var(--rig-notification-border);
-  border-radius: 3px;
+  border-color: var(--rig-notification-border);
   box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
   animation: notification-panel-in 0.12s ease;
 }
@@ -207,15 +148,12 @@
 }
 
 [data-rig-notification-header] {
-  border-bottom: 1px solid var(--color-border);
-  font-size: 11px;
+  border-bottom-color: var(--color-border);
   color: var(--rig-description-fg);
 }
 
 [data-rig-notification-header] button {
-  font-size: 10px;
   color: var(--rig-description-fg);
-  border-radius: 2px;
   transition: color 0.1s ease;
 }
 
@@ -224,9 +162,7 @@
 }
 
 [data-rig-notification-clear] {
-  font-size: 10px;
   color: var(--rig-description-fg);
-  border-radius: 2px;
   transition: color 0.1s ease;
 }
 
@@ -234,14 +170,8 @@
   color: var(--color-foreground);
 }
 
-[data-rig-notification-list] {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
 [data-rig-notification-item] {
-  border-bottom: 1px solid var(--color-border);
+  border-bottom-color: var(--color-border);
   transition: background-color 0.1s ease;
 }
 
@@ -249,18 +179,8 @@
   background: var(--rig-list-hover-bg);
 }
 
-[data-rig-notification-item]:last-child {
-  border-bottom: none;
-}
-
 /* Variant dot via pseudo-element */
 [data-rig-notification-item]::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  margin-top: 5px;
-  flex-shrink: 0;
   background: var(--color-info);
 }
 
@@ -281,20 +201,15 @@
 }
 
 [data-rig-notification-message] {
-  font-size: 12px;
   color: var(--rig-notification-fg);
-  line-height: 1.4;
 }
 
 [data-rig-notification-time] {
-  font-size: 10px;
   color: var(--rig-description-fg);
 }
 
 [data-rig-notification-dismiss] {
-  font-size: 12px;
   color: var(--rig-description-fg);
-  border-radius: 2px;
   transition: color 0.1s ease;
 }
 
@@ -303,55 +218,32 @@
 }
 
 [data-rig-notification-empty] {
-  font-size: 12px;
   color: var(--rig-description-fg);
-  font-style: italic;
 }
 
 /* ───────── KanbanBoard ───────── */
 
-[data-rig-kanban-board] {
-  gap: 16px;
-}
-
 [data-rig-kanban-column] {
   background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-color: var(--color-border);
 }
 
 [data-rig-kanban-column-header] {
   color: var(--color-foreground);
-  font-size: 13px;
-  font-weight: 500;
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom-color: var(--color-border);
 }
 
 [data-rig-kanban-column-title] {
   color: var(--color-foreground);
-  font-weight: 500;
 }
 
 [data-rig-kanban-column-count] {
   color: var(--rig-description-fg);
-  font-size: 11px;
-  font-weight: 400;
-}
-
-[data-rig-kanban-column-items] {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 8px;
 }
 
 [data-rig-kanban-card] {
   background: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  padding: 12px;
-  font-size: 13px;
+  border-color: var(--color-border);
   transition: border-color 0.1s ease;
   box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
 }
@@ -361,31 +253,15 @@
   box-shadow: 0 2px 6px rgb(0 0 0 / 30%);
 }
 
-[data-rig-kanban-card][draggable='true'] {
-  cursor: grab;
-}
-
 [data-rig-kanban-card-title] {
   color: var(--color-foreground);
-  font-weight: 500;
 }
 
 [data-rig-kanban-card-description] {
   color: var(--rig-description-fg);
-  font-size: 12px;
-}
-
-[data-rig-kanban-card-tags] {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-top: 8px;
 }
 
 [data-rig-kanban-card-tag] {
-  font-size: 11px;
-  border-radius: 11px;
-  padding: 1px 8px;
   background: color-mix(in srgb, var(--color-primary) 15%, transparent);
   color: var(--color-primary);
 }
@@ -394,22 +270,11 @@
 
 [data-rig-calendar-grid] {
   background: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  padding: 12px;
-}
-
-[data-rig-calendar-grid-header] {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
+  border-color: var(--color-border);
 }
 
 [data-rig-calendar-grid-title] {
   color: var(--color-foreground);
-  font-size: 13px;
-  font-weight: 500;
 }
 
 [data-rig-calendar-grid-nav] {
@@ -421,27 +286,12 @@
   color: var(--color-foreground);
 }
 
-[data-rig-calendar-grid-weekdays] {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  margin-bottom: 4px;
-}
-
 [data-rig-calendar-grid-weekday] {
   color: var(--rig-description-fg);
-  font-size: 11px;
-  text-align: center;
-}
-
-[data-rig-calendar-grid-week] {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
 }
 
 [data-rig-calendar-grid-day] {
-  font-size: 13px;
   color: var(--color-foreground);
-  border-radius: var(--radius);
   transition: background-color 0.1s ease;
 }
 
@@ -455,8 +305,7 @@
 }
 
 [data-rig-calendar-grid-day][data-today] {
-  outline: 1px solid var(--color-ring);
-  outline-offset: -1px;
+  outline-color: var(--color-ring);
 }
 
 [data-rig-calendar-grid-day]:not([data-current-month]) {
@@ -464,46 +313,18 @@
   opacity: 0.5;
 }
 
-[data-rig-calendar-grid-day-number] {
-  font-size: 12px;
-  line-height: 1;
-}
-
-[data-rig-calendar-grid-events] {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-top: 2px;
-}
-
 [data-rig-calendar-grid-event] {
-  font-size: 10px;
-  border-radius: 2px;
-  padding: 0 4px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   background: color-mix(in srgb, var(--color-primary) 15%, transparent);
   color: var(--color-primary);
 }
 
 /* ───────── Skeleton ───────── */
 
-[data-rig-skeleton] {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 [data-rig-skeleton][data-mode='shimmer'] {
   background: color-mix(in srgb, var(--color-foreground) 8%, transparent);
-  overflow: hidden;
-  position: relative;
 }
 
 [data-rig-shimmer-wave] {
-  position: absolute;
-  inset: 0;
   background: linear-gradient(
     90deg,
     transparent,
@@ -523,8 +344,6 @@
 }
 
 [data-rig-skeleton-line] {
-  height: 12px;
-  border-radius: 2px;
   background: color-mix(in srgb, var(--color-foreground) 6%, transparent);
 }
 
@@ -546,17 +365,9 @@
 /* ───────── Tooltip ───────── */
 
 [data-rig-tooltip] {
-  position: fixed;
-  z-index: 9999;
   background: var(--rig-widget-bg);
-  border: 1px solid var(--rig-widget-border);
-  border-radius: 3px;
-  padding: 2px 4px;
-  font-size: 13px;
-  line-height: 1.5em;
+  border-color: var(--rig-widget-border);
   color: var(--color-foreground);
-  pointer-events: none;
-  white-space: nowrap;
   box-shadow: 0 2px 8px rgb(0 0 0 / 36%);
   animation: tooltip-in 0.1s ease;
 }
@@ -573,67 +384,27 @@
 
 /* ───────── PropertyGrid ───────── */
 
-[data-rig-property-grid] {
-  display: grid;
-  gap: 0;
-}
-
-[data-rig-property-row] {
-  display: contents;
-}
-
 [data-rig-property-key] {
-  padding: 4px 12px 4px 0;
-  font-size: 12px;
   color: var(--rig-description-fg);
-  white-space: nowrap;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom-color: var(--color-border);
 }
 
 [data-rig-property-value] {
-  padding: 4px 0;
-  font-size: 12px;
   color: var(--color-foreground);
-  border-bottom: 1px solid var(--color-border);
-  word-break: break-word;
+  border-bottom-color: var(--color-border);
 }
 
 [data-rig-property-value][data-mono] {
   font-family: var(--font-mono);
-  font-size: 11px;
 }
 
 /* ───────── Carousel ───────── */
 
-[data-rig-carousel] {
-  position: relative;
-}
-
-[data-rig-carousel-track] {
-  position: relative;
-  overflow: hidden;
-}
-
-[data-rig-carousel-slide] {
-  display: none;
-}
-
-[data-rig-carousel-slide][data-active] {
-  display: block;
-}
-
 [data-rig-carousel-prev],
 [data-rig-carousel-next] {
-  @apply inline-flex items-center justify-center;
-
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius);
-  border: 1px solid var(--color-border);
+  border-color: var(--color-border);
   background: var(--color-card);
   color: var(--color-foreground);
-  cursor: pointer;
-  font-size: 18px;
   transition:
     background-color 0.15s ease,
     border-color 0.15s ease;
@@ -647,31 +418,16 @@
 
 [data-rig-carousel-prev]:focus-visible,
 [data-rig-carousel-next]:focus-visible {
-  outline: 1px solid var(--color-ring);
-  outline-offset: -1px;
+  outline-color: var(--color-ring);
 }
 
 [data-rig-carousel-prev]:disabled,
 [data-rig-carousel-next]:disabled {
   opacity: 0.3;
-  cursor: not-allowed;
-}
-
-[data-rig-carousel-indicators] {
-  @apply flex items-center justify-center;
-
-  gap: 6px;
-  margin-top: 8px;
 }
 
 [data-rig-carousel-indicator] {
-  width: 8px;
-  height: 8px;
-  border-radius: 9999px;
-  border: none;
   background: color-mix(in srgb, var(--color-foreground) 20%, transparent);
-  cursor: pointer;
-  padding: 0;
   transition: background-color 0.15s ease;
 }
 
@@ -684,33 +440,20 @@
 }
 
 [data-rig-carousel-indicator]:focus-visible {
-  outline: 1px solid var(--color-ring);
-  outline-offset: 2px;
+  outline-color: var(--color-ring);
 }
 
 /* ───────── ImagePreview ───────── */
 
 [data-rig-image-preview] {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  border-radius: var(--radius);
   background: color-mix(in srgb, var(--color-foreground) 4%, transparent);
 }
 
-[data-rig-image-preview][data-zoomable] {
-  cursor: zoom-in;
-}
-
 [data-rig-image-preview][data-zoomable]:focus-visible {
-  outline: 1px solid var(--color-ring);
-  outline-offset: 2px;
+  outline-color: var(--color-ring);
 }
 
 [data-rig-image-preview-img] {
-  display: block;
-  max-width: 100%;
-  height: auto;
   transition: opacity 0.2s ease;
 }
 
@@ -723,19 +466,10 @@
 }
 
 [data-rig-image-preview-fallback] {
-  @apply flex items-center justify-center;
-
-  min-height: 80px;
   color: var(--rig-description-fg);
-  font-size: 13px;
 }
 
 [data-rig-image-preview-overlay] {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: rgb(0 0 0 / 40%);
   opacity: 0;
   transition: opacity 0.15s ease;
@@ -746,31 +480,14 @@
 }
 
 [data-rig-image-preview][data-error] {
-  border: 1px dashed var(--color-border);
+  border-color: var(--color-border);
 }
 
 /* ───────── Popconfirm ───────── */
 
-[data-rig-popconfirm] {
-  position: relative;
-  display: inline-block;
-}
-
-[data-rig-popconfirm-trigger] {
-  cursor: pointer;
-}
-
 [data-rig-popconfirm-content] {
-  position: absolute;
-  z-index: 50;
-  bottom: calc(100% + 6px);
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 200px;
   background: var(--rig-widget-bg);
-  border: 1px solid var(--rig-widget-border);
-  border-radius: var(--radius);
-  padding: 12px;
+  border-color: var(--rig-widget-border);
   box-shadow: 0 4px 16px rgb(0 0 0 / 40%);
   animation: popconfirm-in 0.12s ease;
 }
@@ -788,34 +505,17 @@
 }
 
 [data-rig-popconfirm-title] {
-  font-size: 13px;
-  font-weight: 500;
   color: var(--color-foreground);
-  margin-bottom: 4px;
 }
 
 [data-rig-popconfirm-description] {
-  font-size: 12px;
   color: var(--rig-description-fg);
-  margin-bottom: 8px;
-}
-
-[data-rig-popconfirm-actions] {
-  @apply flex items-center justify-end;
-
-  gap: 6px;
 }
 
 [data-rig-popconfirm-cancel] {
-  @apply inline-flex items-center justify-center;
-
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: var(--radius);
-  border: 1px solid var(--color-border);
+  border-color: var(--color-border);
   background: none;
   color: var(--color-foreground);
-  cursor: pointer;
   transition:
     background-color 0.15s ease,
     border-color 0.15s ease;
@@ -826,20 +526,13 @@
 }
 
 [data-rig-popconfirm-cancel]:focus-visible {
-  outline: 1px solid var(--color-ring);
-  outline-offset: -1px;
+  outline-color: var(--color-ring);
 }
 
 [data-rig-popconfirm-confirm] {
-  @apply inline-flex items-center justify-center gap-1;
-
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: var(--radius);
-  border: 1px solid transparent;
+  border-color: transparent;
   background: var(--color-destructive);
   color: var(--color-destructive-foreground);
-  cursor: pointer;
   transition: background-color 0.15s ease;
 }
 
@@ -848,20 +541,13 @@
 }
 
 [data-rig-popconfirm-confirm]:focus-visible {
-  outline: 1px solid var(--color-ring);
-  outline-offset: -1px;
+  outline-color: var(--color-ring);
 }
 
 /* ───────── LoadingOverlay ───────── */
 
 [data-rig-loading-overlay] {
-  @apply flex flex-col items-center justify-center;
-
-  position: absolute;
-  inset: 0;
-  z-index: 50;
   background: color-mix(in srgb, var(--color-background) 80%, transparent);
-  gap: 8px;
   animation: loading-overlay-in 0.15s ease;
 }
 
@@ -877,7 +563,6 @@
 
 [data-rig-loading-overlay-spinner] {
   color: var(--color-primary);
-  font-size: 24px;
   animation: loading-overlay-spin 1s linear infinite;
 }
 
@@ -892,6 +577,5 @@
 }
 
 [data-rig-loading-overlay-label] {
-  font-size: 12px;
   color: var(--rig-description-fg);
 }

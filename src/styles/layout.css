@@ -1,42 +1,177 @@
 /* Rig Structural — Layout Components
- * ShellGrid, Sidebar, View, Panel, Modal, Accordion, Collapsible,
- * PeekView, Popover, ScrollArea, SplitView, Resizer
+ * ShellGrid, IdeShell, Sidebar, View, Panel, Modal, Accordion, Collapsible,
+ * PeekView, Popover, ScrollArea, SplitView, Resizer, ChatPanel, SearchPanel,
+ * FileBrowser, ContentViewer, FormView, WelcomeView, SettingsView,
+ * Drawer, TitleBar, EditorWorkbench, ResizablePanel.
  */
 
-/* ── Shell Grid ── */
+/* ── Drawer ── */
 
+[data-rig-drawer-overlay] {
+  position: fixed;
+  inset: 0;
+  z-index: var(--rig-drawer-z, 9998);
+}
+
+[data-rig-drawer] {
+  position: fixed;
+  overflow-y: auto;
+  border-width: 1px;
+  border-style: solid;
+}
+
+[data-rig-drawer][data-side='right'] {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--rig-drawer-width, 320px);
+  border-left-width: 1px;
+  border-left-style: solid;
+}
+
+[data-rig-drawer][data-side='left'] {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--rig-drawer-width, 320px);
+  border-right-width: 1px;
+  border-right-style: solid;
+}
+
+[data-rig-drawer][data-side='top'] {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--rig-drawer-height, 320px);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+[data-rig-drawer][data-side='bottom'] {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--rig-drawer-height, 320px);
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+
+/* ── Title Bar ── */
+
+[data-rig-titlebar] {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  user-select: none;
+  flex-shrink: 0;
+  position: relative;
+  font-size: 12px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+[data-rig-titlebar][data-draggable] {
+  -webkit-app-region: drag;
+}
+
+[data-rig-titlebar-leading] {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 2px;
+  padding-left: 8px;
+  flex-shrink: 0;
+  -webkit-app-region: no-drag;
+}
+
+[data-rig-titlebar-caption] {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50%;
+}
+
+[data-rig-titlebar-trailing] {
+  margin-left: auto;
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  -webkit-app-region: no-drag;
+}
+
+[data-rig-titlebar-action] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* ── Shell Grid / IdeShell ── */
+
+[data-rig-ide-shell],
 [data-rig-shell-grid] {
-  display: grid;
   flex: 1 1 0%;
   min-height: 0;
-  min-width: 0;
-  overflow: hidden;
-  grid-template-areas:
-    'titlebar  titlebar  titlebar'
-    'activity  sidebar   editor'
-    'activity  sidebar   panel'
-    'statusbar statusbar statusbar';
-  grid-template-columns: auto auto 1fr;
-  grid-template-rows: auto 1fr auto auto;
 }
 
 [data-rig-shell-titlebar] {
   grid-area: titlebar;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+  user-select: none;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+[data-rig-shell-grid] {
+  display: grid;
+  grid-template-areas:
+    'activity sidebar editor'
+    'activity sidebar v-res'
+    'activity sidebar panel'
+    'statusbar statusbar statusbar';
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: 1fr 0 auto 22px;
+  height: 100%;
+  overflow: hidden;
+}
+
+[data-rig-shell-grid]:has([data-rig-shell-sidebar][data-collapsed]) {
+  grid-template-columns: auto 0 1fr;
 }
 
 [data-rig-shell-activity] {
   grid-area: activity;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
 }
 
 [data-rig-shell-sidebar] {
   grid-area: sidebar;
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  min-width: 0;
   overflow: visible;
+  user-select: none;
+  border-right-width: 1px;
+  border-right-style: solid;
+}
+
+[data-rig-shell-sidebar][data-collapsed] {
+  border-right: none;
 }
 
 [data-rig-shell-editor] {
@@ -51,6 +186,8 @@
 [data-rig-shell-panel] {
   grid-area: panel;
   overflow: hidden;
+  min-height: 0;
+  min-width: 0;
 }
 
 [data-rig-shell-statusbar] {
@@ -58,16 +195,36 @@
   display: flex;
   align-items: center;
   padding: 0;
+  overflow: hidden;
+  user-select: none;
+  font-size: 12px;
+  height: 22px;
+  border-top-width: 1px;
+  border-top-style: solid;
 }
 
-/* Position resizers — sidebar resizer is absolutely positioned inside sidebar */
+/* Position resizers */
 [data-rig-shell-sidebar] > [data-rig-resizer][data-orientation='horizontal'] {
   position: absolute;
   top: 0;
-  right: -3px;
+  right: 0;
   bottom: 0;
-  width: 6px;
-  z-index: 35;
+  width: 4px;
+  z-index: 50;
+  cursor: col-resize;
+}
+
+[data-rig-shell-sidebar] > [data-rig-resizer][data-orientation='horizontal']::before {
+  content: '';
+  position: absolute;
+  inset: 0 -4px;
+  cursor: col-resize;
+}
+
+[data-rig-resizer][data-orientation='vertical'] {
+  grid-area: v-res;
+  cursor: row-resize;
+  height: 5px;
 }
 
 [data-rig-shell-grid] > [data-rig-resizer][data-orientation='vertical'] {
@@ -78,27 +235,56 @@
   margin-top: -2px;
 }
 
+/* Collapse panels when hidden */
+[data-rig-shell-grid]:has([data-rig-shell-panel][style='height: 0px'])
+  [data-rig-resizer][data-orientation='vertical'] {
+  height: 0;
+}
+
 /* ── Sidebar ── */
 
 [data-rig-sidebar] {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+[data-rig-sidebar-header] {
+  display: flex;
+  align-items: center;
+  height: 35px;
+  padding-left: 20px;
+  padding-right: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+[data-rig-sidebar-content] {
+  flex: 1 1 0%;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+/* ── EditorWorkbench ── */
+
+[data-rig-editor-workbench] {
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow: hidden;
 }
 
-[data-rig-sidebar-header] {
-  padding: 0;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  padding-left: 20px;
-  padding-right: 8px;
-}
-
-[data-rig-sidebar-content] {
+[data-rig-editor-workbench-content] {
   flex: 1 1 0%;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
 }
 
 /* ── View ── */
@@ -106,6 +292,7 @@
 [data-rig-view] {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 [data-rig-view-header] {
@@ -116,6 +303,20 @@
   cursor: pointer;
   user-select: none;
   height: 22px;
+  font-size: 11px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-rig-view-toggle] {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1 1 0%;
+  min-width: 0;
+  cursor: pointer;
+  user-select: none;
 }
 
 [data-rig-view-chevron] {
@@ -128,6 +329,9 @@
 }
 
 [data-rig-view-content] {
+  flex: 1 1 0%;
+  overflow-y: auto;
+  min-height: 0;
   padding: 0;
 }
 
@@ -167,6 +371,37 @@
 [data-rig-panel][data-position='right'],
 [data-rig-panel][data-position='left'] {
   flex-shrink: 0;
+  position: relative;
+}
+
+[data-rig-panel][data-position='right'] {
+  border-left-width: 1px;
+  border-left-style: solid;
+}
+
+[data-rig-panel][data-position='left'] {
+  border-right-width: 1px;
+  border-right-style: solid;
+}
+
+[data-rig-panel][data-position='right'] > [data-rig-resizer][data-orientation='horizontal'] {
+  position: absolute;
+  top: 0;
+  left: -3px;
+  bottom: 0;
+  width: 6px;
+  z-index: 35;
+  cursor: col-resize;
+}
+
+[data-rig-panel][data-position='left'] > [data-rig-resizer][data-orientation='horizontal'] {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  bottom: 0;
+  width: 6px;
+  z-index: 35;
+  cursor: col-resize;
 }
 
 [data-rig-panel-header] {
@@ -174,11 +409,20 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 0.75rem;
+  font-size: 13px;
+  flex-shrink: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+[data-rig-panel-header]:empty {
+  display: none;
 }
 
 [data-rig-panel-content] {
   flex: 1 1 0%;
   overflow: auto;
+  min-height: 0;
 }
 
 /* ── Modal ── */
@@ -196,6 +440,9 @@
   overflow: hidden;
   width: fit-content;
   max-width: calc(100vw - 2rem);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
 }
 
 /* ── Accordion ── */
@@ -221,6 +468,20 @@
   border: 0;
   text-align: left;
   height: 22px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Accordion panel reveal transition */
+.accordion-enter-active,
+.accordion-leave-active {
+  transform-origin: top;
+}
+
+[data-rig-accordion-item][data-open] [data-rig-accordion-chevron] {
+  transform: rotate(180deg);
 }
 
 /* ── Collapsible ── */
@@ -246,6 +507,9 @@
 
 [data-rig-peek-view] {
   overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: var(--radius);
 }
 
 [data-rig-peek-view][data-state='closed'] {
@@ -257,12 +521,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 0.75rem;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
 }
 
 [data-rig-peek-view-title] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 13px;
 }
 
 [data-rig-peek-view-close] {
@@ -294,6 +561,10 @@
 
 [data-rig-popover-content] {
   padding: 0.5rem 0.75rem;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  font-size: 13px;
 }
 
 [data-rig-popover-content][data-state='closed'] {
@@ -341,10 +612,17 @@
 
 [data-rig-scroll-bar][data-orientation='vertical'] [data-rig-scroll-thumb] {
   width: 100%;
+  margin: 0 2px;
 }
 
 [data-rig-scroll-bar][data-orientation='horizontal'] [data-rig-scroll-thumb] {
   height: 100%;
+  margin: 2px 0;
+}
+
+[data-rig-scroll-thumb] {
+  border-radius: 5px;
+  min-height: 20px;
 }
 
 /* ── SplitView ── */
@@ -361,7 +639,9 @@
 }
 
 [data-rig-split-pane] {
-  overflow: hidden;
+  overflow: auto;
+  min-width: 0;
+  min-height: 0;
 }
 
 /* ── Resizer ── */
@@ -381,6 +661,17 @@
 [data-rig-resizer][data-orientation='vertical'] {
   height: 4px;
   cursor: row-resize;
+}
+
+/* ── ResizablePanel ── */
+
+[data-rig-resizable-panel-content] {
+  overflow: auto;
+}
+
+[data-rig-resizable-panel][data-disabled] [data-rig-resizable-panel-handle] {
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 /* ── ChatPanel ── */

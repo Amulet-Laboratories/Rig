@@ -69,6 +69,7 @@ function onDragEnd() {
         <div
           v-for="(tab, index) in tabs"
           :key="tab.id"
+          :data-tab-id="tab.id"
           data-rig-editor-tab
           role="tab"
           :tabindex="activeId === tab.id ? 0 : -1"

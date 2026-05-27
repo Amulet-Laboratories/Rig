@@ -1,12 +1,9 @@
-/* Hex — Shared Lists Components
- * Theme styles for Rig's lists package: List, TreeView, Table, DataGrid.
+/* Hex — Shared Lists Components (skin only)
+ * Colors, backgrounds, borders (colors), shadows, font-family, transitions.
+ * Structural layout lives in Rig/src/styles/lists.css.
  */
 
 /* ───────── Table ───────── */
-
-[data-rig-table] {
-  font-size: 13px;
-}
 
 [data-rig-table-head] {
   background: var(--color-background);
@@ -15,9 +12,6 @@
 [data-rig-table-header] {
   color: var(--rig-description-fg);
   font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   transition: color 0.15s ease;
 }
 
@@ -26,7 +20,7 @@
 }
 
 [data-rig-table-body] [data-rig-table-row] {
-  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--color-border) 50%, transparent);
   transition: background-color 0.15s ease;
 }
 
@@ -34,31 +28,14 @@
   background: var(--rig-list-hover-bg);
 }
 
-[data-rig-table-cell] {
-  font-size: 13px;
-}
-
 [data-rig-table-empty] {
   color: var(--rig-description-fg);
-  font-size: 13px;
 }
 
 /* ───────── List ───────── */
 
-[data-rig-list] {
-  font-size: 13px;
-}
-
 [data-rig-list-item] {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2px 8px;
-  min-height: 22px;
-  font-size: 13px;
   color: var(--color-foreground);
-  cursor: default;
-  text-align: left;
   transition: background-color 0.15s ease;
 }
 
@@ -77,8 +54,7 @@
 }
 
 [data-rig-list-item]:focus {
-  outline: 1px solid var(--color-ring);
-  outline-offset: -1px;
+  outline-color: var(--color-ring);
 }
 
 [data-rig-list-item][data-selected]:focus-within {
@@ -88,36 +64,17 @@
 
 [data-rig-list-item][data-disabled] {
   opacity: 0.4;
-  pointer-events: none;
 }
 
 [data-rig-list-item-label] {
   color: var(--color-foreground);
-  font-size: 13px;
 }
 
 [data-rig-list-item-description] {
   color: var(--rig-description-fg);
-  font-size: 12px;
 }
 
 /* ───────── Tree ───────── */
-
-[data-rig-tree] {
-  font-size: 13px;
-  outline: none;
-}
-
-[data-rig-tree-node] {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  height: 22px;
-  padding: 0 8px;
-  min-width: 100%;
-  cursor: pointer;
-  white-space: nowrap;
-}
 
 [data-rig-tree-node]:hover {
   background: var(--rig-list-hover-bg);
@@ -130,7 +87,6 @@
 [data-rig-tree-node]:focus {
   background: var(--rig-list-active-bg);
   color: var(--rig-list-active-fg);
-  outline: none;
 }
 
 [data-rig-tree-node][data-selected]:focus-within {
@@ -142,18 +98,9 @@
   opacity: 0.6;
 }
 
-/* Indent container */
-[data-rig-tree-indent] {
-  display: inline-flex;
-  align-items: stretch;
-}
-
 /* Indent guides — always visible at low opacity, brighter on hover/focus */
 [data-rig-tree-indent-guide] {
-  width: 8px;
-  flex-shrink: 0;
-  border-left: 1px solid var(--color-border);
-  align-self: stretch;
+  border-left-color: var(--color-border);
   opacity: 0.4;
 }
 
@@ -165,69 +112,27 @@
 
 /* Toggle chevron */
 [data-rig-tree-toggle] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
   color: var(--rig-description-fg);
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-/* Leaf spacer — maintains alignment when no toggle */
-[data-rig-tree-node][data-leaf] {
-  padding-left: calc(8px + 16px);
-}
-
-/* Node icon */
-[data-rig-tree-node-icon] {
-  flex-shrink: 0;
-  margin-right: 2px;
-}
-
-[data-rig-tree-toggle]::before {
-  content: '';
-  display: block;
-  width: 6px;
-  height: 8px;
-  background: currentColor;
-  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
-  transition: transform 0.15s ease;
-}
-
-[data-rig-tree-toggle][data-state='open']::before {
-  transform: rotate(90deg);
 }
 
 [data-rig-tree-node-label] {
   color: var(--color-foreground);
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* ───────── DataGrid ───────── */
 
 [data-rig-data-grid] {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  font-size: 13px;
+  border-color: var(--color-border);
 }
 
 [data-rig-data-grid-header] {
   background: var(--color-card);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom-color: var(--color-border);
 }
 
 [data-rig-data-grid-header-cell] {
   color: var(--rig-description-fg);
-  font-size: 12px;
-  font-weight: 500;
-  border-right: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  border-right-color: color-mix(in srgb, var(--color-border) 50%, transparent);
 }
 
 [data-rig-data-grid-header-cell][data-sortable]:hover {
@@ -236,7 +141,6 @@
 }
 
 [data-rig-data-grid-header-cell]:focus-visible {
-  outline: none;
   box-shadow: inset 0 0 0 1px var(--color-ring);
 }
 
@@ -244,12 +148,8 @@
   color: var(--rig-description-fg);
 }
 
-[data-rig-data-grid-body] {
-  display: contents;
-}
-
 [data-rig-data-grid-row] {
-  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--color-border) 50%, transparent);
   transition: background-color 0.15s ease;
 }
 
@@ -258,7 +158,6 @@
 }
 
 [data-rig-data-grid-row]:focus-visible {
-  outline: none;
   box-shadow: inset 0 0 0 1px var(--color-ring);
 }
 
@@ -268,11 +167,9 @@
 
 [data-rig-data-grid-cell] {
   color: var(--color-foreground);
-  border-right: 1px solid color-mix(in srgb, var(--color-border) 30%, transparent);
+  border-right-color: color-mix(in srgb, var(--color-border) 30%, transparent);
 }
 
 [data-rig-data-grid-empty] {
   color: var(--rig-description-fg);
-  text-align: center;
-  padding: 24px 0;
 }

@@ -134,26 +134,26 @@
   --vsc-button-bg: #0078d4;
   --vsc-button-fg: #ffffff;
   --vsc-button-hover-bg: #026ec1;
-  --vsc-button-border: rgba(255, 255, 255, 0.1);
+  --vsc-button-border: var(--color-border);
   --vsc-button-secondary-bg: transparent;
   --vsc-button-secondary-fg: #cccccc;
   --vsc-button-secondary-hover-bg: #2b2b2b;
 
   /* Input */
   --vsc-input-bg: #313131;
-  --vsc-input-border: #3c3c3c;
+  --vsc-input-border: var(--color-border);
   --vsc-input-fg: #cccccc;
   --vsc-input-placeholder: #989898;
 
   /* Dropdown / Select */
   --vsc-dropdown-bg: #313131;
-  --vsc-dropdown-border: #3c3c3c;
+  --vsc-dropdown-border: var(--color-border);
   --vsc-dropdown-fg: #cccccc;
   --vsc-dropdown-list-bg: #1f1f1f;
 
   /* Checkbox */
   --vsc-checkbox-bg: #313131;
-  --vsc-checkbox-border: #3c3c3c;
+  --vsc-checkbox-border: var(--color-border);
 
   /* Badge */
   --vsc-badge-bg: #616161;
@@ -212,7 +212,7 @@
 
   /* Widget */
   --vsc-widget-bg: #202020;
-  --vsc-widget-border: #313131;
+  --vsc-widget-border: var(--color-border);
 
   /* Scrollbar */
   --vsc-scrollbar-thumb: rgba(121, 121, 121, 0.4);

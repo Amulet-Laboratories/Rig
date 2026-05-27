@@ -34,13 +34,24 @@ function getResizerValueNow(index: number): number {
   return Math.round((before / total) * 100)
 }
 
+// Snapshot sizes at drag-start so each `drag` event (which reports total
+// displacement since dragstart, not per-frame delta) applies against the
+// pre-drag baseline instead of the already-updated sizes. Mirrors the
+// sidebar's behavior in ShellGrid.vue.
+let sizesAtStart: number[] = []
+
+function onDragStart() {
+  sizesAtStart = [...props.sizes]
+}
+
 function onResize(index: number, payload: { delta: number }) {
-  const newSizes = [...props.sizes]
+  const baseline = sizesAtStart.length === props.sizes.length ? sizesAtStart : props.sizes
+  const newSizes = [...baseline]
   const minA = props.minSizes[index] ?? 50
   const minB = props.minSizes[index + 1] ?? 50
 
-  const a = (newSizes[index] ?? 0) + payload.delta
-  const b = (newSizes[index + 1] ?? 0) - payload.delta
+  const a = (baseline[index] ?? 0) + payload.delta
+  const b = (baseline[index + 1] ?? 0) - payload.delta
 
   if (a >= minA && b >= minB) {
     newSizes[index] = a
@@ -62,9 +73,9 @@ function onResize(index: number, payload: { delta: number }) {
       <div
         data-rig-split-pane
         :style="{
-          flexBasis: size + 'px',
-          flexGrow: 0,
-          flexShrink: 0,
+          flexBasis: 0,
+          flexGrow: size,
+          flexShrink: 1,
         }"
       >
         <slot :name="`pane-${i}`" />
@@ -73,6 +84,7 @@ function onResize(index: number, payload: { delta: number }) {
         v-if="resizable && i < sizes.length - 1"
         :orientation="orientation"
         :valuenow="getResizerValueNow(i)"
+        @dragstart="onDragStart"
         @drag="(payload) => onResize(i, payload)"
       />
     </template>

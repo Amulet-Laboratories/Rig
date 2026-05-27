@@ -1,3 +1,5 @@
+import { useRuntimeConfig } from 'nitropack/runtime'
+
 /**
  * Replaces placeholder affiliate tags in product Amazon URLs
  * with the real tag from environment config.

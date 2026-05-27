@@ -302,11 +302,39 @@ export default defineNuxtModule<NuxtRigOptions>({
         filePath: resolve('./runtime/components/content/ProductCardWrapper.vue'),
       },
       {
+        name: 'CategoryIcon',
+        filePath: resolve('./runtime/components/content/CategoryIcon.vue'),
+      },
+      {
+        name: 'ContentHomePage',
+        filePath: resolve('./runtime/components/content/ContentHomePage.vue'),
+      },
+      {
+        name: 'ContentComparePage',
+        filePath: resolve('./runtime/components/content/ContentComparePage.vue'),
+      },
+      {
+        name: 'ContentCompareIndexPage',
+        filePath: resolve('./runtime/components/content/ContentCompareIndexPage.vue'),
+      },
+      {
+        name: 'ContentBestForPersonaPage',
+        filePath: resolve('./runtime/components/content/ContentBestForPersonaPage.vue'),
+      },
+      {
+        name: 'ContentBestForIndexPage',
+        filePath: resolve('./runtime/components/content/ContentBestForIndexPage.vue'),
+      },
+      {
         name: 'AffiliateDisclosure',
         filePath: resolve('./runtime/components/content/AffiliateDisclosure.vue'),
       },
       {
         name: 'ContentNewsletterSignup',
+        filePath: resolve('./runtime/components/content/NewsletterSignup.vue'),
+      },
+      {
+        name: 'NewsletterSignup',
         filePath: resolve('./runtime/components/content/NewsletterSignup.vue'),
       },
       { name: 'QuizPromo', filePath: resolve('./runtime/components/content/QuizPromo.vue') },
