@@ -1,4 +1,4 @@
-/* Hex — Meeplehaus Design Tokens
+/* Hex — Damson Design Tokens
  * Board game lounge. Deep indigo leadership with warm amber accents.
  * Strategic warmth — inviting, thoughtful, community-driven.
  *
@@ -195,7 +195,7 @@
   --mh-indigo-hover: #3a3058;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
-   * Overrides shared/tokens.css defaults where the Meeplehaus palette needs
+   * Overrides shared/tokens.css defaults where the Damson palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 

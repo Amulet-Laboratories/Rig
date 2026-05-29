@@ -1,4 +1,4 @@
-/* Hex — Undertow Design Tokens
+/* Hex — Copper Design Tokens
  * Industrial craft brewery. Gritty dark mode with blaze orange and grain gold.
  * Warehouse taproom energy — loud, unpretentious, industrial warm.
  *
@@ -154,7 +154,7 @@
   --uw-gold: #c9b458;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
-   * Overrides shared/tokens.css defaults where the Undertow palette needs
+   * Overrides shared/tokens.css defaults where the Copper palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 

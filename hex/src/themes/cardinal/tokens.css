@@ -1,4 +1,4 @@
-/* Hex — KBCV Design Tokens
+/* Hex — Cardinal Design Tokens
  * Community radio station. Warm neutral with analog character.
  * Parchment background, broadcast red, dial green accents.
  *
@@ -150,16 +150,16 @@
   /* ── Named palette aliases ──────────────────────────────────────────────
    * All 7 swatch colors available for direct template use.
    */
-  --kbcv-parchment: #f7f3ee;
-  --kbcv-oatmeal: #edeae4;
-  --kbcv-kraft: #ddd7ce;
-  --kbcv-espresso: #2a2521;
-  --kbcv-walnut: #706459;
-  --kbcv-red: #b83232;
-  --kbcv-green: #2d6a4f;
+  --cardinal-parchment: #f7f3ee;
+  --cardinal-oatmeal: #edeae4;
+  --cardinal-kraft: #ddd7ce;
+  --cardinal-espresso: #2a2521;
+  --cardinal-walnut: #706459;
+  --cardinal-red: #b83232;
+  --cardinal-green: #2d6a4f;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
-   * Overrides shared/tokens.css defaults where the KBCV palette needs
+   * Overrides shared/tokens.css defaults where the Cardinal palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 

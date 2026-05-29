@@ -1,4 +1,4 @@
-/* Hex — Compass Design Tokens
+/* Hex — Clover Design Tokens
  * Veterinary clinic. Soft light mode with true green and warm coral.
  * Clinical warmth — reassuring, accessible, nature-forward.
  *
@@ -154,7 +154,7 @@
   --ca-coral: #d16b3f;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
-   * Overrides shared/tokens.css defaults where the Compass palette needs
+   * Overrides shared/tokens.css defaults where the Clover palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 

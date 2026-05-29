@@ -1,4 +1,4 @@
-/* Hex — Duskline Design Tokens
+/* Hex — Lagoon Design Tokens
  * Digital frost. Cold-running terminal with teal-cyan glow.
  * Dark mode investigative palette — cold blue-black background, cool white text,
  * teal-cyan highlights that pulse like frozen circuitry.
@@ -158,7 +158,7 @@
   --dk-white: #d8e4ec;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
-   * Overrides shared/tokens.css defaults where the Duskline palette needs
+   * Overrides shared/tokens.css defaults where the Lagoon palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 

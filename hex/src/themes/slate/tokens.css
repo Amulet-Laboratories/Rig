@@ -1,4 +1,4 @@
-/* Hex — Shelfglow Design Tokens
+/* Hex — Slate Design Tokens
  * Books and reading. Deep navy structure with muted gold accents.
  * Literary warmth — contemplative, refined, knowledge-forward.
  *
@@ -195,7 +195,7 @@
   --site-max-width: 72rem;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
-   * Overrides shared/tokens.css defaults where the Shelfglow palette needs
+   * Overrides shared/tokens.css defaults where the Slate palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 

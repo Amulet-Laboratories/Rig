@@ -1,7 +1,15 @@
 /* Rig — Scaffold Theme
+ *
  * Minimal monochrome defaults so components are visible without a Hex theme.
  * Uses shadcn-compatible token names so scaffold and Hex layer cleanly.
  * Import a Hex theme to override these values.
+ *
+ * Why scaffold lives here (in Rig) and not in Hex:
+ * scaffold's purpose is "let Rig components render before any Hex theme is
+ * loaded" — it's a fallback for Rig consumers, not a theme that stands on
+ * its own. Hex themes are the public art-direction surface (27 of them);
+ * scaffold is the safety net under all of them. Different concern, different
+ * package.
  *
  * Usage:
  *   import '@amulet-laboratories/rig/scaffold'
