@@ -1,0 +1,134 @@
+/* Hex — Prose & feedback layers (skin only)
+ * Colors, backgrounds, text decoration, opacity, font-family.
+ * Structural layout lives in Rig/src/styles/prose.css.
+ */
+
+/* ───────── Prose ───────── */
+
+[data-rig-prose] {
+  color: var(--color-foreground);
+}
+
+[data-rig-prose] h2 {
+  color: var(--color-foreground);
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-prose] h3 {
+  color: var(--color-foreground);
+}
+
+[data-rig-prose] h4 {
+  color: var(--color-foreground);
+}
+
+[data-rig-prose] li::marker {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-prose] code:not(pre code) {
+  background: var(--color-muted);
+  color: var(--color-foreground);
+}
+
+[data-rig-prose] pre {
+  background: var(--color-muted);
+  border-color: var(--color-border);
+}
+
+[data-rig-prose] blockquote {
+  border-left-color: var(--color-muted-foreground);
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-prose] th {
+  color: var(--color-foreground);
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-prose] td {
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-prose] a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+[data-rig-prose] a:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-prose] hr {
+  border-top-color: var(--color-border);
+}
+
+[data-rig-prose] strong {
+  color: var(--color-foreground);
+}
+
+/* ───────── ConfirmDialog ───────── */
+
+[data-rig-confirm-dialog] {
+  background: var(--color-card);
+  border-color: var(--color-border);
+}
+
+[data-rig-confirm-dialog-title] {
+  color: var(--color-foreground);
+}
+
+[data-rig-confirm-dialog-message] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── ErrorBoundary ───────── */
+
+[data-rig-error-boundary-message] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-error-boundary-details] > summary {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-error-boundary-details] > summary:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-error-boundary-details] > pre {
+  color: var(--color-muted-foreground);
+  background: var(--color-accent);
+}
+
+/* ───────── CrashScreen ───────── */
+
+[data-rig-crash-screen] {
+  background: var(--color-background, #0f0d0a);
+}
+
+[data-rig-crash-screen-icon] {
+  color: var(--color-destructive, #e54d2e);
+  opacity: 0.8;
+}
+
+[data-rig-crash-screen-title] {
+  color: var(--color-foreground);
+}
+
+[data-rig-crash-screen-message] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-crash-screen-details] > summary {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-crash-screen-details] > summary:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-crash-screen-details] > pre {
+  color: var(--color-muted-foreground);
+  background: var(--color-accent);
+}

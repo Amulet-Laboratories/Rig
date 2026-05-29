@@ -1,0 +1,172 @@
+/* Rig Structural — Spatial Components
+ * MapCanvas, GlobeView, ScatterPlot3D, GraphNetwork, PointCloud
+ */
+
+/* ── MapCanvas ── */
+
+[data-rig-map-canvas] {
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  border-width: 1px;
+  border-style: solid;
+}
+
+[data-rig-map-canvas][data-dragging],
+[data-rig-map-canvas-viewport][data-state='panning'] {
+  cursor: grabbing;
+}
+
+[data-rig-map-canvas-viewport] {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+[data-rig-map-canvas-marker] {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-map-canvas-marker]:focus-visible {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-offset: 2px;
+}
+
+[data-rig-map-canvas-marker-label] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+[data-rig-map-canvas-controls] {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* ── GlobeView ── */
+
+[data-rig-globe-view] {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+
+[data-rig-globe-view] canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+[data-rig-globe-view-marker] {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-globe-view-marker]:focus-visible {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-offset: 2px;
+}
+
+[data-rig-globe-view-marker-label] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+/* ── ScatterPlot3D ── */
+
+[data-rig-scatter-plot-3d] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-rig-scatter-plot-3d] canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+[data-rig-scatter-plot-3d-axis-label] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+[data-rig-scatter-plot-3d-point] {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+/* ── GraphNetwork ── */
+
+[data-rig-graph-network] {
+  position: relative;
+  overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+}
+
+[data-rig-graph-network] svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+[data-rig-graph-network-edge] {
+  pointer-events: auto;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-graph-network-node] {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-graph-network-node]:focus-visible {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-offset: 2px;
+}
+
+[data-rig-graph-network-node-circle] {
+  stroke-width: 1;
+}
+
+[data-rig-graph-network-node-label] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+/* ── PointCloud ── */
+
+[data-rig-point-cloud] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-rig-point-cloud] canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+[data-rig-point-cloud-point] {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-point-cloud-point]:focus-visible {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-offset: 2px;
+}

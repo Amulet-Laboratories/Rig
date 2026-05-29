@@ -1,0 +1,124 @@
+/* Hex — compass (scoped) */
+
+/* Hex — Compass Design Tokens
+ * Veterinary clinic. Soft light mode with true green and warm coral.
+ * Clinical warmth — reassuring, accessible, nature-forward.
+ *
+ * Full palette (7 swatch colors):
+ *   #F8FDF6  mint green       — background
+ *   #F0F5EE  soft sage        — card
+ *   #E0ECE0  pale eucalyptus  — secondary, muted
+ *   #1A2A1A  deep moss        — foreground text
+ *   #4A6A4A  fern             — muted foreground
+ *   #2D7A3E  true green       — primary, ring
+ *   #D16B3F  warm coral       — accent, action
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+[data-hex-theme='clover'] {
+  --color-background: #f8fdf6;
+  --color-foreground: #1a2a1a;
+  --color-card: #f0f5ee;
+  --color-card-foreground: #1a2a1a;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1a2a1a;
+  --color-primary: #2d7a3e;
+  --color-primary-foreground: #f8fdf6;
+  --color-secondary: #e0ece0;
+  --color-secondary-foreground: #1a2a1a;
+  --color-muted: #e0ece0;
+  --color-muted-foreground: #4a6a4a;
+  --color-accent: #d16b3f;
+  --color-accent-foreground: #f8fdf6;
+  --color-destructive: #cc3b3b;
+  --color-destructive-foreground: #f8fdf6;
+  --color-success: #2d7a3e;
+  --color-warning: #d4a030;
+  --color-info: #4a7a9e;
+  --color-border: #c0d8c0;
+  --color-input: #c0d8c0;
+  --color-ring: #2d7a3e;
+  --font-sans: 'Outfit', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Outfit', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Atkinson Hyperlegible', 'Inter', system-ui, sans-serif;
+  --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+  --font-display: var(--font-sans);
+  --radius: 8px;
+  --background: #f8fdf6;
+  --foreground: #1a2a1a;
+  --card: #f0f5ee;
+  --card-foreground: #1a2a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a2a1a;
+  --primary: #2d7a3e;
+  --primary-foreground: #f8fdf6;
+  --secondary: #e0ece0;
+  --secondary-foreground: #1a2a1a;
+  --muted: #e0ece0;
+  --muted-foreground: #4a6a4a;
+  --accent: #d16b3f;
+  --accent-foreground: #f8fdf6;
+  --destructive: #cc3b3b;
+  --destructive-foreground: #f8fdf6;
+  --success: #2d7a3e;
+  --warning: #d4a030;
+  --info: #4a7a9e;
+  --border: #c0d8c0;
+  --input: #c0d8c0;
+  --ring: #2d7a3e;
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --ca-mint-green: #f8fdf6;
+  --ca-sage: #f0f5ee;
+  --ca-eucalyptus: #e0ece0;
+  --ca-moss: #1a2a1a;
+  --ca-fern: #4a6a4a;
+  --ca-green: #2d7a3e;
+  --ca-coral: #d16b3f;
+  --rig-button-hover-bg: #e0ece0;
+  --rig-scrollbar-thumb: rgba(26, 42, 26, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(26, 42, 26, 0.25);
+
+  /* Approachable medical rhythm */
+  --rig-display-md: 2.25rem;
+  --rig-display-lg: 2.75rem;
+  --rig-display-xl: 3.5rem;
+  --rig-display-tracking: -0.005em;
+  --rig-display-leading: 1.15;
+
+  /* Soft natural warmth */
+  --rig-media-filter: saturate(1.03) brightness(1.02);
+
+  --link-slide-color: #2d7a3e;
+  --rig-elevation-rgb: 26 42 26;
+}

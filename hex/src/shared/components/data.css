@@ -1,0 +1,316 @@
+/* Hex — Shared Data Components (skin only)
+ * Colors, fills, strokes, backgrounds, shadows, font-family, opacity, transitions.
+ * Structural layout lives in Rig/src/styles/data.css.
+ */
+
+/* ───────── Sparkline ───────── */
+
+[data-rig-sparkline-line] {
+  fill: none;
+  stroke: var(--domain-accent, var(--color-primary));
+}
+
+[data-rig-sparkline-area] {
+  fill: var(--domain-accent, var(--color-primary));
+  opacity: 0.1;
+}
+
+/* ───────── MiniBar ───────── */
+
+[data-rig-mini-bar-rect] {
+  fill: var(--domain-accent, var(--color-primary));
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-mini-bar-rect]:hover {
+  opacity: 1;
+}
+
+/* ───────── StatCard ───────── */
+
+[data-rig-stat-card] {
+  @apply bg-card text-card-foreground;
+  border-radius: var(--radius);
+  border-color: color-mix(in srgb, var(--color-border) 50%, transparent);
+}
+
+[data-rig-stat-card-label] {
+  @apply text-muted-foreground font-mono;
+}
+
+[data-rig-stat-card-value] {
+  @apply font-mono;
+}
+
+[data-rig-stat-card-trend] {
+  @apply font-mono;
+}
+
+[data-rig-stat-card-trend][data-trend='up'] {
+  @apply text-success;
+}
+
+[data-rig-stat-card-trend][data-trend='down'] {
+  @apply text-destructive;
+}
+
+[data-rig-stat-card-description] {
+  @apply text-muted-foreground;
+}
+
+/* ───────── BarChart ───────── */
+
+[data-rig-bar-chart] {
+  @apply text-foreground;
+}
+
+[data-rig-bar-chart-bar] {
+  fill: var(--domain-accent, var(--color-primary));
+  opacity: 0.8;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-bar-chart-bar-group]:hover [data-rig-bar-chart-bar] {
+  opacity: 1;
+}
+
+[data-rig-bar-chart-label] {
+  fill: var(--color-muted-foreground);
+  @apply font-mono;
+}
+
+[data-rig-bar-chart-value] {
+  fill: var(--color-muted-foreground);
+  @apply font-mono;
+}
+
+/* ───────── LineChart ───────── */
+
+[data-rig-line-chart] {
+  @apply text-foreground;
+}
+
+[data-rig-line-chart-line] {
+  fill: none;
+  stroke: var(--domain-accent, var(--color-primary));
+}
+
+[data-rig-line-chart-dot] {
+  fill: var(--domain-accent, var(--color-primary));
+  transition: r 0.15s ease;
+}
+
+[data-rig-line-chart-dot]:hover {
+  r: 5;
+}
+
+[data-rig-line-chart-label] {
+  fill: var(--color-muted-foreground);
+  @apply font-mono;
+}
+
+/* ───────── AreaChart ───────── */
+
+[data-rig-area-chart] {
+  @apply text-foreground;
+}
+
+[data-rig-area-chart-fill] {
+  fill: var(--domain-accent, var(--color-primary));
+  opacity: 0.15;
+}
+
+[data-rig-area-chart-line] {
+  fill: none;
+  stroke: var(--domain-accent, var(--color-primary));
+}
+
+[data-rig-area-chart-label] {
+  fill: var(--color-muted-foreground);
+  @apply font-mono;
+}
+
+/* ───────── ScatterPlot ───────── */
+
+[data-rig-scatter-plot] {
+  @apply text-foreground;
+}
+
+[data-rig-scatter-plot-point] {
+  fill: var(--domain-accent, var(--color-primary));
+  opacity: 0.7;
+  transition:
+    opacity 0.15s ease,
+    r 0.15s ease;
+}
+
+[data-rig-scatter-plot-point]:hover {
+  opacity: 1;
+}
+
+[data-rig-scatter-plot] text {
+  fill: var(--color-muted-foreground);
+  @apply font-mono;
+}
+
+/* ───────── Heatmap ───────── */
+
+[data-rig-heatmap] {
+  @apply text-foreground;
+}
+
+[data-rig-heatmap-col-labels] text,
+[data-rig-heatmap-row-labels] text {
+  fill: var(--color-muted-foreground);
+  @apply font-mono;
+}
+
+[data-rig-heatmap-cell] {
+  stroke: var(--color-background);
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-heatmap-cell]:hover {
+  opacity: 0.85;
+}
+
+/* ───────── RadarChart ───────── */
+
+[data-rig-radar-chart] {
+  @apply text-foreground;
+}
+
+[data-rig-radar-chart-ring] {
+  fill: none;
+  stroke: var(--color-border);
+  opacity: 0.3;
+}
+
+[data-rig-radar-chart-axis] {
+  stroke: var(--color-border);
+  opacity: 0.2;
+}
+
+[data-rig-radar-chart-area] {
+  fill: var(--domain-accent, var(--color-primary));
+  opacity: 0.2;
+}
+
+[data-rig-radar-chart-line] {
+  fill: none;
+  stroke: var(--domain-accent, var(--color-primary));
+}
+
+[data-rig-radar-chart-label] {
+  fill: var(--color-muted-foreground);
+  @apply font-mono;
+}
+
+/* ───────── Treemap ───────── */
+
+[data-rig-treemap] {
+  @apply text-foreground;
+}
+
+[data-rig-treemap-rect] {
+  stroke: var(--color-background);
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-treemap-node]:hover [data-rig-treemap-rect] {
+  opacity: 0.85;
+}
+
+[data-rig-treemap-label] {
+  fill: var(--color-foreground);
+  @apply font-mono;
+}
+
+/* ───────── SankeyDiagram ───────── */
+
+[data-rig-sankey-diagram] {
+  @apply text-foreground;
+}
+
+[data-rig-sankey-diagram-rect] {
+  fill: var(--domain-accent, var(--color-primary));
+}
+
+[data-rig-sankey-diagram-label] {
+  fill: var(--color-muted-foreground);
+  @apply font-mono;
+}
+
+[data-rig-sankey-diagram-link] {
+  fill: none;
+  stroke: var(--color-muted-foreground);
+  opacity: 0.3;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-sankey-diagram-link]:hover {
+  opacity: 0.6;
+}
+
+/* ───────── StatRow ───────── */
+
+[data-rig-stat-row] {
+  @apply font-mono;
+}
+
+[data-rig-stat-row][data-separator] {
+  border-top-color: color-mix(in srgb, var(--color-border) 50%, transparent);
+}
+
+[data-rig-stat-row-label] {
+  color: color-mix(in srgb, var(--color-muted-foreground) 70%, transparent);
+}
+
+[data-rig-stat-row-value] {
+  color: var(--color-foreground);
+}
+
+[data-rig-stat-row][data-tone='success'] [data-rig-stat-row-value] {
+  color: var(--color-success);
+}
+
+[data-rig-stat-row][data-tone='danger'] [data-rig-stat-row-value] {
+  color: var(--color-destructive);
+}
+
+[data-rig-stat-row][data-tone='warning'] [data-rig-stat-row-value] {
+  color: var(--color-warning);
+}
+
+[data-rig-stat-row][data-tone='info'] [data-rig-stat-row-value] {
+  color: var(--color-info);
+}
+
+[data-rig-stat-row][data-tone='muted'] [data-rig-stat-row-value] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── ChartTooltip ───────── */
+
+[data-rig-chart-tooltip] {
+  @apply text-foreground;
+  background: var(--rig-widget-bg, var(--color-popover));
+  border-color: var(--rig-widget-border, var(--color-border));
+  box-shadow: 0 2px 8px rgb(0 0 0 / 36%);
+}
+
+/* ───────── ChartEmpty ───────── */
+
+[data-rig-chart-empty-icon] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-chart-empty-label] {
+  @apply font-mono;
+  color: color-mix(in srgb, var(--color-foreground) 40%, transparent);
+}
+
+[data-rig-chart-empty-hint] {
+  @apply text-muted-foreground;
+}

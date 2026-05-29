@@ -1,0 +1,123 @@
+/* Hex — garden (scoped) */
+
+/* Hex — Garden Design Tokens
+ * Warm botanical palette derived from Garden Estudio's brand identity.
+ * Deep purple background, warm cream text, rose accents, botanical greens.
+ * Dark mode marketing theme — suited for portfolio and showcase sites.
+ *
+ * Full palette (13 swatch colors):
+ *   #331F3C  deep purple     — background
+ *   #AC3954  dark rose       — secondary, borders
+ *   #EB4963  amulet rose     — primary brand
+ *   #F16874  warm pink       — accent
+ *   #F58384  coral pink      — destructive
+ *   #F99C94  warm salmon     — status
+ *   #F9B0A2  light salmon    — muted foreground
+ *   #F8C7B3  apricot         — soft accent
+ *   #F7D7B9  peach           — warning
+ *   #F5E3BC  warm cream      — foreground text
+ *   #EDECC0  pale chartreuse — subtle highlights
+ *   #D8E8C3  sage green      — info
+ *   #CBE6C5  mint green      — success
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+[data-hex-theme='garden'] {
+  --color-background: #331f3c;
+  --color-foreground: #f5e3bc;
+  --color-card: #eb4963;
+  --color-card-foreground: #f5e3bc;
+  --color-popover: #331f3c;
+  --color-popover-foreground: #f5e3bc;
+  --color-primary: #eb4963;
+  --color-primary-foreground: #f5e3bc;
+  --color-secondary: #ac3954;
+  --color-secondary-foreground: #f5e3bc;
+  --color-muted: #ac3954;
+  --color-muted-foreground: #f9b0a2;
+  --color-accent: #f16874;
+  --color-accent-foreground: #331f3c;
+  --color-destructive: #f58384;
+  --color-destructive-foreground: #331f3c;
+  --color-success: #cbe6c5;
+  --color-warning: #f7d7b9;
+  --color-info: #d8e8c3;
+  --color-border: #ac3954;
+  --color-input: #ac3954;
+  --color-ring: #eb4963;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+  --font-sans: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
+  --font-serif: 'Roboto Slab', 'Georgia', 'Times New Roman', serif;
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+  --font-display: var(--font-sans);
+  --radius: 7px;
+  --background: #331f3c;
+  --foreground: #f5e3bc;
+  --card: #eb4963;
+  --card-foreground: #f5e3bc;
+  --popover: #331f3c;
+  --popover-foreground: #f5e3bc;
+  --primary: #eb4963;
+  --primary-foreground: #f5e3bc;
+  --secondary: #ac3954;
+  --secondary-foreground: #f5e3bc;
+  --muted: #ac3954;
+  --muted-foreground: #f9b0a2;
+  --accent: #f16874;
+  --accent-foreground: #331f3c;
+  --destructive: #f58384;
+  --destructive-foreground: #331f3c;
+  --success: #cbe6c5;
+  --warning: #f7d7b9;
+  --info: #d8e8c3;
+  --border: #ac3954;
+  --input: #ac3954;
+  --ring: #eb4963;
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --garden-deep-purple: #331f3c;
+  --garden-dark-rose: #ac3954;
+  --garden-rose: #eb4963;
+  --garden-warm-pink: #f16874;
+  --garden-coral: #f58384;
+  --garden-warm-salmon: #f99c94;
+  --garden-light-salmon: #f9b0a2;
+  --garden-apricot: #f8c7b3;
+  --garden-peach: #f7d7b9;
+  --garden-cream: #f5e3bc;
+  --garden-chartreuse: #edecc0;
+  --garden-sage: #d8e8c3;
+  --garden-mint: #cbe6c5;
+  --rig-button-hover-bg: #ac3954;
+  --rig-scrollbar-thumb: rgba(245, 227, 188, 0.18);
+  --rig-scrollbar-thumb-hover: rgba(245, 227, 188, 0.35);
+}

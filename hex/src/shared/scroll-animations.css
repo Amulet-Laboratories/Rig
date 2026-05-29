@@ -1,0 +1,176 @@
+/* Hex — Shared Scroll Animation Utilities
+ * Reusable scroll-driven animation classes for marketing themes.
+ * These use CSS scroll-timeline features (view()) for zero-JS animations.
+ *
+ * Classes:
+ *   .scroll-reveal       — basic fade + rise on scroll into view
+ *   .scroll-reveal-blur  — fade + rise + blur entry/exit (bidirectional)
+ *   .scroll-stagger      — parent container that delays children
+ *   .scroll-draw         — SVG stroke-draw on scroll into view
+ *   .parallax-slow       — slow scroll-driven Y translation
+ *   .parallax-mid        — medium scroll-driven Y translation
+ *
+ * All animations respect prefers-reduced-motion.
+ */
+
+/* ───────── Basic scroll reveal (entry only) ───────── */
+
+@keyframes scroll-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-reveal {
+  animation: scroll-fade-in linear both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 30%;
+}
+
+/* ───────── Advanced scroll reveal with blur (entry + exit) ───────── */
+
+@keyframes scroll-reveal-blur-in {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-reveal-blur-out {
+  from {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(-24px);
+  }
+}
+
+.scroll-reveal-blur {
+  animation:
+    scroll-reveal-blur-in linear both,
+    scroll-reveal-blur-out linear both;
+  animation-timeline: view(), view();
+  animation-range:
+    entry 5% cover 25%,
+    exit 0% exit 30%;
+}
+
+/* ───────── Stagger children utility ───────── */
+
+.scroll-stagger > :nth-child(1) {
+  animation-delay: 0ms;
+}
+.scroll-stagger > :nth-child(2) {
+  animation-delay: 80ms;
+}
+.scroll-stagger > :nth-child(3) {
+  animation-delay: 160ms;
+}
+.scroll-stagger > :nth-child(4) {
+  animation-delay: 240ms;
+}
+.scroll-stagger > :nth-child(5) {
+  animation-delay: 320ms;
+}
+.scroll-stagger > :nth-child(6) {
+  animation-delay: 400ms;
+}
+
+/* ───────── SVG scroll-draw ───────── */
+
+@keyframes scroll-draw-in {
+  from {
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.scroll-draw path,
+.scroll-draw line,
+.scroll-draw polyline,
+.scroll-draw polygon,
+.scroll-draw circle,
+.scroll-draw ellipse {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: scroll-draw-in linear both;
+  animation-timeline: view();
+  animation-range: entry 20% cover 50%;
+}
+
+/* ───────── Parallax drift ───────── */
+
+@keyframes parallax-drift {
+  from {
+    transform: translateY(var(--parallax-distance, 40px));
+  }
+
+  to {
+    transform: translateY(calc(var(--parallax-distance, 40px) * -1));
+  }
+}
+
+.parallax-slow {
+  --parallax-distance: 30px;
+  animation: parallax-drift linear both;
+  animation-timeline: scroll();
+}
+
+.parallax-mid {
+  --parallax-distance: 60px;
+  animation: parallax-drift linear both;
+  animation-timeline: scroll();
+}
+
+/* ───────── Reduced motion ───────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-reveal-blur {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
+  .scroll-stagger > * {
+    animation-delay: 0ms !important;
+  }
+
+  .scroll-draw path,
+  .scroll-draw line,
+  .scroll-draw polyline,
+  .scroll-draw polygon,
+  .scroll-draw circle,
+  .scroll-draw ellipse {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .parallax-slow,
+  .parallax-mid {
+    animation: none;
+    transform: none;
+  }
+}

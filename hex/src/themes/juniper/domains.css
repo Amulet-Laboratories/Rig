@@ -1,0 +1,19 @@
+/* Hex — Root & Remedy Domains */
+@reference 'tailwindcss';
+@reference './tokens.css';
+
+[data-domain='legal'] {
+  --domain-accent: #c9a55c;
+}
+[data-domain='life'] {
+  --domain-accent: #4a8c5c;
+}
+[data-domain='software'] {
+  --domain-accent: #6b8faa;
+}
+[data-domain='business'] {
+  --domain-accent: #4a8c5c;
+}
+[data-domain='history'] {
+  --domain-accent: #8a9a8e;
+}

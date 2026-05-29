@@ -1,0 +1,19 @@
+/* Hex — Aldricpace Domains */
+@reference 'tailwindcss';
+@reference './tokens.css';
+
+[data-domain='legal'] {
+  --domain-accent: #2b4c7e;
+}
+[data-domain='life'] {
+  --domain-accent: #8b6f4e;
+}
+[data-domain='software'] {
+  --domain-accent: #3b7a57;
+}
+[data-domain='business'] {
+  --domain-accent: #2b4c7e;
+}
+[data-domain='history'] {
+  --domain-accent: #9e3b3b;
+}

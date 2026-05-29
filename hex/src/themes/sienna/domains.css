@@ -1,0 +1,19 @@
+/* Hex — Briarcovelib Domains */
+@reference 'tailwindcss';
+@reference './tokens.css';
+
+[data-domain='legal'] {
+  --domain-accent: #9e4a2f;
+}
+[data-domain='life'] {
+  --domain-accent: #3a6b8c;
+}
+[data-domain='software'] {
+  --domain-accent: #3a6b8c;
+}
+[data-domain='business'] {
+  --domain-accent: #9e4a2f;
+}
+[data-domain='history'] {
+  --domain-accent: #6b6054;
+}

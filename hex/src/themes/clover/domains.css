@@ -1,0 +1,19 @@
+/* Hex — Compass Domains */
+@reference 'tailwindcss';
+@reference './tokens.css';
+
+[data-domain='legal'] {
+  --domain-accent: #d16b3f;
+}
+[data-domain='life'] {
+  --domain-accent: #2a7d5f;
+}
+[data-domain='software'] {
+  --domain-accent: #4a7a9e;
+}
+[data-domain='business'] {
+  --domain-accent: #2a7d5f;
+}
+[data-domain='history'] {
+  --domain-accent: #4e6650;
+}

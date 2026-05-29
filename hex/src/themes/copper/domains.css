@@ -1,0 +1,19 @@
+/* Hex — Undertow Domains */
+@reference 'tailwindcss';
+@reference './tokens.css';
+
+[data-domain='legal'] {
+  --domain-accent: #c9b458;
+}
+[data-domain='life'] {
+  --domain-accent: #d95f2a;
+}
+[data-domain='software'] {
+  --domain-accent: #6b8faa;
+}
+[data-domain='business'] {
+  --domain-accent: #d95f2a;
+}
+[data-domain='history'] {
+  --domain-accent: #a8a09a;
+}

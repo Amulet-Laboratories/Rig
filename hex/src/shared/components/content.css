@@ -1,0 +1,772 @@
+/* Hex -- Shared Content Components (skin only)
+ * Colors, backgrounds, gradients, shadows, color-only transitions, font-family.
+ * Structural layout lives in Rig/src/styles/content.css.
+ *
+ * All six authority themes (Dewthread, Wainloft, Meeplehaus,
+ * Burrowtail, Beanwoven, Shelfglow) consume this file.
+ */
+
+/* ───────── Article Header ───────── */
+
+[data-rig-article-header] {
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-article-header-meta] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-article-header-category] {
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  text-decoration: none;
+  transition: background-color 150ms ease;
+}
+
+[data-rig-article-header-category]:hover {
+  background: color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+
+[data-rig-article-header-reading-time] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-article-header-title] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-article-header-description] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-article-header-byline] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-article-header-updated] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-article-header-caption] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Article Grid / Card ───────── */
+
+[data-rig-article-card-link] {
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 150ms ease;
+}
+
+[data-rig-article-card-link]:hover {
+  background: color-mix(in srgb, var(--color-muted) 40%, transparent);
+}
+
+[data-rig-article-card-category] {
+  color: var(--color-primary);
+}
+
+[data-rig-article-card-title] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-article-card-description] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-article-card-meta] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Card Visual ───────── */
+
+[data-rig-card-visual] {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--card-accent, var(--color-primary)) 25%, var(--color-card)),
+    color-mix(in srgb, var(--card-accent, var(--color-primary)) 12%, var(--color-card))
+  );
+  border-bottom-color: color-mix(
+    in srgb,
+    var(--card-accent, var(--color-primary)) 30%,
+    transparent
+  );
+}
+
+[data-rig-card-visual] svg {
+  color: var(--card-accent, var(--color-primary));
+  opacity: 0.45;
+}
+
+/* ───────── Card Photo ───────── */
+
+[data-rig-card-photo-overlay] {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--card-accent, var(--color-primary)) 20%, transparent) 0%,
+    color-mix(in srgb, var(--card-accent, var(--color-primary)) 50%, transparent) 100%
+  );
+  transition: background 0.3s ease;
+}
+
+[data-rig-card][data-interactive]:hover [data-rig-card-photo-overlay] {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--card-accent, var(--color-primary)) 30%, transparent) 0%,
+    color-mix(in srgb, var(--card-accent, var(--color-primary)) 60%, transparent) 100%
+  );
+}
+
+[data-rig-card-photo-overlay] svg {
+  color: #ffffff;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* ───────── Category Grid / Card ───────── */
+
+[data-rig-category-card-link] {
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 150ms ease;
+}
+
+[data-rig-category-card-link]:hover {
+  background: color-mix(in srgb, var(--color-muted) 40%, transparent);
+}
+
+[data-rig-category-card-title] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-category-card-description] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-category-header-title] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-category-header-description] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Product Card ───────── */
+
+[data-rig-product-card-image] {
+  background: color-mix(in srgb, var(--color-surface, #f5f5f5) 60%, transparent);
+}
+
+[data-rig-product-card-name] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-product-card-brand] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-product-card-rating] {
+  color: var(--color-primary-foreground);
+  background: var(--color-primary);
+}
+
+[data-rig-product-card-oneliner] {
+  color: var(--color-foreground);
+}
+
+[data-rig-product-card-details] {
+  background: var(--color-muted);
+}
+
+[data-rig-product-card-pros],
+[data-rig-product-card-cons] {
+  color: var(--color-foreground);
+}
+
+[data-rig-product-card-pros]::before {
+  color: var(--color-success, #22c55e);
+}
+
+[data-rig-product-card-cons]::before {
+  color: var(--color-destructive, #e54d2e);
+}
+
+[data-rig-product-card-footer] {
+  border-top-color: var(--color-border);
+}
+
+[data-rig-product-card-link] {
+  color: #ffffff;
+  background: var(--color-primary);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+[data-rig-product-card-link]:hover {
+  background: color-mix(in srgb, var(--color-primary) 85%, #000);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* ───────── Table of Contents ───────── */
+
+[data-rig-toc-heading] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-toc-link] {
+  color: var(--color-muted-foreground);
+  text-decoration: none;
+  border-left-color: transparent;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease;
+}
+
+[data-rig-toc-link]:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-toc-link][data-active] {
+  color: var(--color-primary);
+  border-left-color: var(--color-primary);
+}
+
+/* ───────── Quiz Embed ───────── */
+
+[data-rig-quiz-embed] {
+  background: var(--color-card);
+  border-color: var(--color-border);
+}
+
+[data-rig-quiz-embed-heading] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-quiz-embed-cta] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Related Articles ───────── */
+
+[data-rig-related-link] {
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 150ms ease;
+}
+
+[data-rig-related-link]:hover {
+  background: color-mix(in srgb, var(--color-muted) 30%, transparent);
+}
+
+[data-rig-related-category] {
+  color: var(--color-primary);
+}
+
+[data-rig-related-title] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-related-description] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Affiliate Disclosure ───────── */
+
+[data-rig-affiliate-disclosure] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Newsletter Overrides ───────── */
+
+[data-rig-newsletter-heading] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-newsletter-description] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Ad Slot ───────── */
+
+[data-rig-ad-slot] {
+  background: var(--color-muted);
+  border-color: var(--color-border);
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Error Page ───────── */
+
+[data-rig-error-code] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-primary);
+  opacity: 0.6;
+}
+
+[data-rig-error-title] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-error-message] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Prose — article-layout extensions ───────── */
+
+[data-rig-article-layout-content] [data-rig-prose] h2 {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+}
+
+[data-rig-article-layout-content] [data-rig-prose] h3 {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+}
+
+[data-rig-article-layout-content] [data-rig-prose] blockquote {
+  border-left-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-muted) 40%, transparent);
+}
+
+/* ───────── Empty State ───────── */
+
+[data-rig-empty-state] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Static Page ───────── */
+
+[data-rig-static-page-title] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-primary);
+  border-bottom-color: var(--color-border);
+}
+
+/* ───────── Breadcrumbs ───────── */
+
+[data-rig-breadcrumbs-link] {
+  color: var(--color-muted-foreground);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+[data-rig-breadcrumbs-link]:hover {
+  color: var(--color-primary);
+}
+
+[data-rig-breadcrumbs-current] {
+  color: var(--color-foreground);
+}
+
+[data-rig-breadcrumbs-separator] {
+  color: var(--color-muted-foreground);
+  opacity: 0.5;
+}
+
+/* ───────── Reading Progress ───────── */
+
+[data-rig-reading-progress] {
+  background: transparent;
+}
+
+[data-rig-reading-progress-bar] {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  transition: width 100ms ease-out;
+}
+
+/* ───────── Category Icon / Card ───────── */
+
+[data-rig-category-icon] {
+  color: var(--color-primary);
+}
+
+[data-rig-category-card-icon] {
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  color: var(--color-primary);
+}
+
+/* ───────── Featured Card ───────── */
+
+[data-rig-featured-card-link] {
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 150ms ease;
+}
+
+[data-rig-featured-card-link]:hover {
+  background: color-mix(in srgb, var(--color-muted) 40%, transparent);
+}
+
+[data-rig-featured-card-category] {
+  color: var(--color-primary);
+}
+
+[data-rig-featured-card-title] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-featured-card-description] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-featured-card-meta] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Hero — Light-theme decoration ───────── */
+
+[data-rig-hero-decoration] {
+  opacity: 0.5;
+}
+
+[data-rig-hero-decoration] svg {
+  color: var(--color-border);
+}
+
+/* ───────── Prose — Standalone ───────── */
+
+[data-rig-static-page] [data-rig-prose] h2 {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-primary);
+}
+
+[data-rig-static-page] [data-rig-prose] h3 {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+}
+
+[data-rig-static-page] [data-rig-prose] a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  transition: color 150ms ease;
+}
+
+[data-rig-static-page] [data-rig-prose] a:hover {
+  color: var(--color-accent);
+}
+
+/* ───────── Prose — Base link ───────── */
+
+[data-rig-prose] a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  transition: text-decoration-color 150ms ease;
+}
+
+[data-rig-prose] a:hover {
+  text-decoration-color: var(--color-primary);
+}
+
+/* ───────── Affiliate Notice ───────── */
+
+[data-rig-affiliate-notice] {
+  color: var(--color-muted-foreground);
+  background: color-mix(in srgb, var(--color-muted) 50%, transparent);
+}
+
+[data-rig-affiliate-notice] svg {
+  color: var(--color-muted-foreground);
+  opacity: 0.7;
+}
+
+[data-rig-affiliate-notice] a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* ───────── Section Ornament ───────── */
+
+[data-rig-section-ornament] {
+  color: var(--color-border);
+}
+
+[data-rig-section-ornament] svg {
+  opacity: 0.6;
+}
+
+/* ───────── Cookie Consent ───────── */
+
+[data-rig-cookie-consent] {
+  background: var(--color-foreground);
+  color: var(--color-background);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15);
+}
+
+[data-rig-cookie-consent-text] a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* ───────── Quiz Gated ───────── */
+
+[data-rig-quiz-gated-prompt] {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-accent) 8%, var(--color-card)),
+    color-mix(in srgb, var(--color-primary) 5%, var(--color-card))
+  );
+  border-color: color-mix(in srgb, var(--color-accent) 20%, var(--color-border));
+}
+
+[data-rig-quiz-gated-prompt] h3 {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-quiz-gated-prompt] p {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-quiz-gated-result] {
+  background: var(--color-card);
+  border-color: var(--color-border);
+}
+
+[data-rig-quiz-gated-badge] {
+  color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+}
+
+/* ───────── Quiz Promo ───────── */
+
+[data-rig-quiz-promo] {
+  background: var(--color-card);
+  border-color: var(--color-border);
+  text-decoration: none;
+  color: inherit;
+}
+
+[data-rig-quiz-promo]:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+[data-rig-quiz-promo-icon] {
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  color: var(--color-accent);
+}
+
+[data-rig-quiz-promo-badge] {
+  color: var(--color-accent);
+}
+
+[data-rig-quiz-promo-title] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-quiz-promo-description] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-quiz-promo-arrow] {
+  color: var(--color-muted-foreground);
+  transition: color 0.2s ease;
+}
+
+[data-rig-quiz-promo]:hover [data-rig-quiz-promo-arrow] {
+  color: var(--color-accent);
+}
+
+/* ───────── Network Footer ───────── */
+
+[data-rig-network-footer] {
+  border-top-color: var(--color-border);
+  background: var(--color-background);
+}
+
+[data-rig-network-footer-label] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-network-footer-link] {
+  border-color: var(--color-border);
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+[data-rig-network-footer-link]:hover {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 5%, transparent);
+}
+
+[data-rig-network-footer-name] {
+  color: var(--color-foreground);
+}
+
+[data-rig-network-footer-tagline] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Network Articles ───────── */
+
+[data-rig-network-articles] {
+  border-top-color: var(--color-border);
+}
+
+[data-rig-network-articles-heading] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-network-articles-link] {
+  border-color: var(--color-border);
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+[data-rig-network-articles-link]:hover {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 4%, transparent);
+}
+
+[data-rig-network-articles-site] {
+  color: var(--color-accent);
+}
+
+[data-rig-network-articles-title] {
+  color: var(--color-foreground);
+}
+
+/* ───────── Network Links ───────── */
+
+[data-rig-network-links] {
+  border-top-color: var(--color-border);
+}
+
+[data-rig-network-links-heading] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground-muted, var(--color-foreground));
+}
+
+[data-rig-network-links-card] {
+  border-color: var(--color-border);
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+[data-rig-network-links-card]:hover {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 4%, transparent);
+}
+
+[data-rig-network-links-site] {
+  color: var(--color-accent);
+}
+
+[data-rig-network-links-title] {
+  color: var(--color-foreground);
+}
+
+/* ───────── Comparison Page ───────── */
+
+[data-rig-compare-card] {
+  border-color: var(--color-border);
+  background: var(--color-card);
+}
+
+[data-rig-compare-card-name] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-compare-card-brand] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-compare-card-price] {
+  color: var(--color-primary);
+}
+
+[data-rig-compare-card-oneliner] {
+  color: var(--color-foreground);
+}
+
+[data-rig-compare-verdict] {
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  border-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+
+[data-rig-compare-verdict] h2 {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-accent);
+}
+
+[data-rig-compare-verdict] p {
+  color: var(--color-foreground);
+}
+
+/* ───────── Persona Landing ───────── */
+
+[data-rig-persona-header] {
+  background: linear-gradient(
+    170deg,
+    color-mix(in srgb, var(--color-accent) 8%, var(--color-background)),
+    color-mix(in srgb, var(--color-primary) 5%, var(--color-background))
+  );
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-persona-badge] {
+  color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+}
+
+[data-rig-persona-title] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-persona-description] {
+  font-family: var(--font-serif);
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-persona-products-heading] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Related On-Site ───────── */
+
+[data-rig-related-onsite] {
+  border-top-color: var(--color-border);
+}
+
+[data-rig-related-onsite-heading] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+/* ───────── Personalized Hero ───────── */
+
+[data-rig-personalized-hero] {
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-background));
+  border-bottom-color: color-mix(in srgb, var(--color-accent) 15%, var(--color-border));
+}
+
+[data-rig-personalized-hero-text] {
+  color: var(--color-foreground);
+}
+
+[data-rig-personalized-hero-text] strong {
+  color: var(--color-accent);
+}
+
+[data-rig-personalized-hero-link] {
+  color: var(--color-accent);
+}

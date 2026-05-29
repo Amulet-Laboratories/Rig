@@ -1,0 +1,51 @@
+@import 'tailwindcss';
+
+/* Hex — Scoped Theme Bundle
+ * All demo site themes scoped to [data-hex-theme="name"] containers.
+ * For standalone use (Hex build). Vite projects should import individual
+ * scoped theme files instead.
+ */
+
+/* Universal token bridge — maps Tailwind utilities to CSS custom properties */
+@import './bridge.css';
+
+/* References for @apply resolution */
+@reference 'tailwindcss';
+@reference './bridge.css';
+
+/* Rig component token defaults */
+@import '../shared/rig-defaults.css';
+
+/* Component styles (shared across all themes) */
+@import '../shared/components/core.css';
+@import '../shared/components/layout.css';
+@import '../shared/components/nav.css';
+@import '../shared/components/editor.css';
+@import '../shared/components/lists.css';
+@import '../shared/components/menus.css';
+@import '../shared/components/extras.css';
+@import '../shared/components/shell.css';
+@import '../shared/components/data.css';
+@import '../shared/components/spatial.css';
+@import '../shared/components/temporal.css';
+@import '../shared/components/web.css';
+@import '../shared/a11y.css';
+
+/* Scoped theme tokens */
+@import './themes/harbor.css';
+@import './themes/iris.css';
+@import './themes/sienna.css';
+@import './themes/clover.css';
+@import './themes/lagoon.css';
+@import './themes/forge.css';
+@import './themes/garden.css';
+@import './themes/greyline.css';
+@import './themes/cardinal.css';
+@import './themes/vesper.css';
+@import './themes/orchid.css';
+@import './themes/citron.css';
+@import './themes/ochre.css';
+@import './themes/spacewizard.css';
+@import './themes/cypress.css';
+@import './themes/copper.css';
+@import './themes/cobalt.css';

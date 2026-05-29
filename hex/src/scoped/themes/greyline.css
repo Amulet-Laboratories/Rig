@@ -1,0 +1,116 @@
+/* Hex — greyline (scoped) */
+
+/* Hex — Greyline Design Tokens
+ * True achromatic monochrome. Grayscale newspaper / monochrome monitor.
+ * Dark mode corporate/consultancy theme — suited for professional services.
+ * Every color is pure gray (h=0, s=0) — no blue, no warm tint.
+ *
+ * Palette:
+ *   #0c0c0c  near-black      — background
+ *   #141414  charcoal        — card, popover
+ *   #1c1c1c  dark gray       — secondary, muted
+ *   #2a2a2a  border gray     — borders
+ *   #606060  medium gray     — muted foreground
+ *   #9a9a9a  silver          — primary brand
+ *   #b5b5b5  light silver    — accent
+ *   #e8e8e8  near-white      — foreground text
+ *   #f87171  red             — destructive
+ *   #fbbf24  amber           — warning
+ *   #34d399  emerald         — success
+ *   #60a5fa  blue            — info
+ *
+ * @theme feeds Tailwind v4 utility generation.
+ * :root provides standalone CSS custom property access.
+ */
+
+[data-hex-theme='greyline'] {
+  --color-background: #0c0c0c;
+  --color-foreground: #e8e8e8;
+  --color-card: #141414;
+  --color-card-foreground: #e8e8e8;
+  --color-popover: #141414;
+  --color-popover-foreground: #e8e8e8;
+  --color-primary: #9a9a9a;
+  --color-primary-foreground: #0c0c0c;
+  --color-secondary: #1c1c1c;
+  --color-secondary-foreground: #e8e8e8;
+  --color-muted: #1c1c1c;
+  --color-muted-foreground: #606060;
+  --color-accent: #b5b5b5;
+  --color-accent-foreground: #0c0c0c;
+  --color-destructive: #f87171;
+  --color-destructive-foreground: #0c0c0c;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-info: #60a5fa;
+  --color-border: #2a2a2a;
+  --color-input: #2a2a2a;
+  --color-ring: #9a9a9a;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', 'JetBrains Mono', ui-monospace, monospace;
+  --font-sans: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+  --font-display: var(--font-sans);
+  --radius: 4px;
+  --background: #0c0c0c;
+  --foreground: #e8e8e8;
+  --card: #141414;
+  --card-foreground: #e8e8e8;
+  --popover: #141414;
+  --popover-foreground: #e8e8e8;
+  --primary: #9a9a9a;
+  --primary-foreground: #0c0c0c;
+  --secondary: #1c1c1c;
+  --secondary-foreground: #e8e8e8;
+  --muted: #1c1c1c;
+  --muted-foreground: #606060;
+  --accent: #b5b5b5;
+  --accent-foreground: #0c0c0c;
+  --destructive: #f87171;
+  --destructive-foreground: #0c0c0c;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --info: #60a5fa;
+  --border: #2a2a2a;
+  --input: #2a2a2a;
+  --ring: #9a9a9a;
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --gl-black: #0c0c0c;
+  --gl-charcoal: #141414;
+  --gl-surface: #1c1c1c;
+  --gl-border: #2a2a2a;
+  --gl-muted: #606060;
+  --gl-silver: #9a9a9a;
+  --gl-silver-light: #b5b5b5;
+  --gl-white: #e8e8e8;
+  --rig-button-hover-bg: #1c1c1c;
+  --rig-scrollbar-thumb: rgba(232, 232, 232, 0.12);
+  --rig-scrollbar-thumb-hover: rgba(232, 232, 232, 0.25);
+}

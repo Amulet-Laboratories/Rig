@@ -1,0 +1,47 @@
+/* Hex — Scoped Theme Bridge
+ *
+ * Universal @theme block that maps Tailwind utility names to CSS custom
+ * properties. Values are resolved from the nearest [data-hex-theme] container.
+ *
+ * Import this in multi-theme environments (like the amuletlabs-org demo site)
+ * where multiple Hex themes coexist in the same build.
+ */
+
+@theme {
+  /* Surface colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover, var(--background));
+  --color-popover-foreground: var(--popover-foreground, var(--foreground));
+
+  /* Brand */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  /* Soft accents */
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground, var(--foreground));
+  --color-muted: var(--muted, var(--secondary));
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground, var(--primary-foreground));
+
+  /* Semantic */
+  --color-destructive: var(--destructive, #9e3b3b);
+  --color-destructive-foreground: var(--destructive-foreground, #ffffff);
+
+  /* Borders and focus */
+  --color-border: var(--border);
+  --color-input: var(--input, var(--border));
+  --color-ring: var(--ring);
+
+  /* Typography */
+  --font-sans: var(--font-sans, system-ui, sans-serif);
+  --font-serif: var(--font-serif, Georgia, serif);
+  --font-mono: var(--font-mono, ui-monospace, monospace);
+
+  /* Radius */
+  --radius: var(--radius, 4px);
+}

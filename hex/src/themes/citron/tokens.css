@@ -1,0 +1,136 @@
+/* Hex — Quizbit Design Tokens
+ * SNES retro pixel game palette.
+ * Deep indigo backgrounds, gold UI highlights, hot magenta accent, chunky pixel aesthetic.
+ * Inspired by Chrono Trigger / FF6 / Super Mario World menu screens.
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+@theme {
+  /* Surface colors — dark indigo RPG menu */
+  --color-background: #0a0a1e;
+  --color-foreground: #e8e8f0;
+  --color-card: #161638;
+  --color-card-foreground: #e8e8f0;
+  --color-popover: #161638;
+  --color-popover-foreground: #e8e8f0;
+
+  /* Brand — SNES gold cursor / select */
+  --color-primary: #f8d848;
+  --color-primary-foreground: #0a0a1e;
+
+  /* Soft accents — muted indigo shelf */
+  --color-secondary: #282850;
+  --color-secondary-foreground: #e8e8f0;
+  --color-muted: #282850;
+  --color-muted-foreground: #a4a4c8;
+  --color-accent: #f868d8;
+  --color-accent-foreground: #0a0a1e;
+
+  /* Semantic status — classic RPG HUD colors */
+  --color-destructive: #f04848;
+  --color-destructive-foreground: #0a0a1e;
+  --color-success: #58d858;
+  --color-warning: #f89838;
+  --color-info: #38a8e8;
+
+  /* Borders and focus — pixel-border blue */
+  --color-border: #303068;
+  --color-input: #303068;
+  --color-ring: #f8d848;
+
+  /* Typography — VT323 headings, Space Grotesk body */
+  --font-sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono: 'VT323', 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Radius — pixel-sharp, no rounding */
+  --radius: 0px;
+
+  /* Typography scale */
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.875rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 1rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+
+  /* Display font — CRT terminal heading */
+  --font-display: 'VT323', 'Courier New', monospace;
+  --font-heading: 'VT323', 'Courier New', monospace;
+}
+
+:root {
+  --background: #0a0a1e;
+  --foreground: #e8e8f0;
+  --card: #161638;
+  --card-foreground: #e8e8f0;
+  --popover: #161638;
+  --popover-foreground: #e8e8f0;
+  --primary: #f8d848;
+  --primary-foreground: #0a0a1e;
+  --secondary: #282850;
+  --secondary-foreground: #e8e8f0;
+  --muted: #282850;
+  --muted-foreground: #a4a4c8;
+  --accent: #f868d8;
+  --accent-foreground: #0a0a1e;
+  --destructive: #f04848;
+  --destructive-foreground: #0a0a1e;
+  --success: #58d858;
+  --warning: #f89838;
+  --info: #38a8e8;
+  --border: #303068;
+  --input: #303068;
+  --ring: #f8d848;
+
+  /* Typography scale shorthand aliases */
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --font-display: 'VT323', 'Courier New', monospace;
+  --font-heading: 'VT323', 'Courier New', monospace;
+  --font-sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono: 'VT323', 'JetBrains Mono', ui-monospace, monospace;
+
+  /* ── Named palette aliases ──
+   * Direct references to the SNES swatch.
+   */
+  --quizbit-indigo: #0a0a1e;
+  --quizbit-indigo-light: #161638;
+  --quizbit-gold: #f8d848;
+  --quizbit-gold-light: #ffe878;
+  --quizbit-pixel-white: #e8e8f0;
+  --quizbit-lavender: #a4a4c8;
+  --quizbit-magenta: #f868d8;
+  --quizbit-green: #58d858;
+  --quizbit-red: #f04848;
+  --quizbit-cyan: #38a8e8;
+
+  /* ── Rig component token bridge ── */
+  --rig-button-hover-bg: #303068;
+  --rig-scrollbar-thumb: rgba(248, 216, 72, 0.18);
+  --rig-scrollbar-thumb-hover: rgba(248, 216, 72, 0.35);
+}

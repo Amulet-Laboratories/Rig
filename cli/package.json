@@ -1,0 +1,22 @@
+{
+  "name": "create-rig",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "Scaffold a new project with @amulet-laboratories/rig + hex + Tailwind pre-configured",
+  "license": "MIT",
+  "author": "Amulet Laboratories",
+  "bin": {
+    "create-rig": "./index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "templates"
+  ],
+  "keywords": [
+    "vue",
+    "rig",
+    "scaffold",
+    "create",
+    "cli"
+  ]
+}

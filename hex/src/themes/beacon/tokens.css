@@ -1,0 +1,219 @@
+/* Hex — LCARS Design Tokens
+ * Library Computer Access/Retrieval System — Michael Okuda's UI language
+ * from Star Trek: TNG / DS9 / Voyager. Burnt-orange-dominated chrome
+ * (sidebar, statusbar, title bar) wrapping deep-navy data-display content,
+ * with mauve/peach/mustard accents and pill geometry. Pure black gaps
+ * separate panels instead of strokes.
+ *
+ * Palette grounded in the canonical Okuda values per LCARS reference
+ * imagery; ratios chosen so warm chrome occupies ~40-50% of visual weight.
+ */
+
+@theme {
+  /* Content surfaces — deep navy "data display" background per LCARS
+     canon (Captain's logs, sensor readouts), with black gap layer. */
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-card: #001122;
+  --color-card-foreground: #ffffff;
+  --color-popover: #001a33;
+  --color-popover-foreground: #ffffff;
+
+  /* Brand — peachy salmon for primary CTAs (Okuda's "action" color) */
+  --color-primary: #ff9966;
+  --color-primary-foreground: #000000;
+
+  /* Soft accents — mauve secondary, navy muted, yellow highlight */
+  --color-secondary: #9966cc;
+  --color-secondary-foreground: #000000;
+  --color-muted: #001122;
+  --color-muted-foreground: #9999cc;
+  --color-accent: #ffcc00;
+  --color-accent-foreground: #000000;
+
+  /* Semantic status — LCARS red alert, yellow caution, sage success */
+  --color-destructive: #cc4444;
+  --color-destructive-foreground: #000000;
+  --color-success: #99cc66;
+  --color-warning: #ffcc00;
+  --color-info: #6699cc;
+
+  /* Borders — invisible. LCARS uses black gaps between colored panels
+     instead of strokes. */
+  --color-border: #000000;
+  --color-input: #001122;
+  --color-ring: #ff9966;
+
+  /* Pill geometry — LCARS controls are capsules and endcaps */
+  --radius: 9999px;
+  --radius-sm: 4px;
+  --radius-md: 9999px;
+  --radius-lg: 9999px;
+}
+
+:root {
+  /* shadcn-style shorthand aliases */
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #001122;
+  --card-foreground: #ffffff;
+  --popover: #001a33;
+  --popover-foreground: #ffffff;
+  --primary: #ff9966;
+  --primary-foreground: #000000;
+  --secondary: #9966cc;
+  --secondary-foreground: #000000;
+  --muted: #001122;
+  --muted-foreground: #9999cc;
+  --accent: #ffcc00;
+  --accent-foreground: #000000;
+  --destructive: #cc4444;
+  --destructive-foreground: #000000;
+  --success: #99cc66;
+  --warning: #ffcc00;
+  --info: #6699cc;
+  --border: #000000;
+  --input: #001122;
+  --ring: #ff9966;
+  --radius: 9999px;
+
+  /* LCARS canonical palette — the Okuda block colors */
+  --lcars-burnt-orange: #cc6600;
+  --lcars-orange: #ff9933;
+  --lcars-peach: #ff9966;
+  --lcars-salmon: #ff9988;
+  --lcars-yellow: #ffcc00;
+  --lcars-mustard: #ffcc66;
+  --lcars-cream: #ffcc99;
+  --lcars-mauve: #9966cc;
+  --lcars-plum: #cc99cc;
+  --lcars-red: #cc4444;
+  --lcars-red-bright: #cc6666;
+  --lcars-navy: #001122;
+  --lcars-navy-mid: #003366;
+  --lcars-blue: #6699cc;
+  --lcars-blue-light: #99ccff;
+
+  /* ── Rig bridge tokens — every chrome surface explicitly themed ── */
+
+  /* Sidebar — solid burnt orange (canonical LCARS chunky bar) */
+  --rig-sidebar-bg: #cc6600;
+  --rig-sidebar-border: #000000;
+  --rig-sidebar-fg: #000000;
+  --rig-sidebar-active-bg: #ff9966;
+  --rig-sidebar-active-fg: #000000;
+  --rig-sidebar-section-header-border: #000000;
+
+  /* Activity bar — mauve column (the alternating-color LCARS pattern) */
+  --rig-activitybar-bg: #9966cc;
+  --rig-activitybar-border: #000000;
+  --rig-activitybar-fg: #000000;
+  --rig-activitybar-inactive-fg: #000000;
+  --rig-activitybar-active-fg: #000000;
+  --rig-activitybar-active-border: #000000;
+  --rig-activitybar-active-border-width: 0;
+  --rig-activitybar-badge-bg: #cc4444;
+  --rig-activitybar-badge-fg: #000000;
+
+  /* Status bar — solid peachy salmon strip */
+  --rig-statusbar-bg: #ff9966;
+  --rig-statusbar-fg: #000000;
+  --rig-statusbar-border: #000000;
+  --rig-statusbar-hover-bg: #ffcc00;
+
+  /* Title bar hover — mustard yellow flash */
+  --rig-titlebar-hover-bg: rgba(255, 204, 0, 0.25);
+
+  /* Tabs — peach active, dark inactive, mustard top stripe */
+  --rig-tab-active-bg: #001122;
+  --rig-tab-active-fg: #ff9966;
+  --rig-tab-active-border-top: #ffcc00;
+  --rig-tab-inactive-bg: #000000;
+  --rig-tab-inactive-fg: #cc6600;
+  --rig-tab-border: #000000;
+
+  /* Buttons — peachy salmon bg, black text */
+  --rig-button-bg: #ff9966;
+  --rig-button-fg: #000000;
+  --rig-button-border: #ff9966;
+  --rig-button-hover-bg: #ffcc00;
+  --rig-button-hover-fg: #000000;
+  --rig-button-outline-border: #ff9966;
+  --rig-button-secondary-bg: #9966cc;
+  --rig-button-secondary-fg: #000000;
+  --rig-button-secondary-hover-bg: #cc99cc;
+  --rig-button-secondary-hover-fg: #000000;
+
+  /* Inputs — recessed navy wells with orange focus */
+  --rig-input-bg: #001122;
+  --rig-input-border: #000000;
+  --rig-input-fg: #ffffff;
+  --rig-input-placeholder: #6699cc;
+
+  /* Dropdown / Select */
+  --rig-dropdown-bg: #001a33;
+  --rig-dropdown-border: #000000;
+  --rig-dropdown-fg: #ffffff;
+  --rig-dropdown-list-bg: #000000;
+
+  /* Checkbox */
+  --rig-checkbox-bg: #001122;
+  --rig-checkbox-border: #ff9966;
+
+  /* Badge — mustard yellow on black (data readout look) */
+  --rig-badge-bg: #ffcc00;
+  --rig-badge-fg: #000000;
+
+  /* Editor — content area is data-display navy */
+  --rig-editor-bg: #000000;
+  --rig-editor-fg: #ffffff;
+  --rig-editor-group-header-bg: #001122;
+  --rig-editor-line-number-fg: #6699cc;
+
+  /* List rows — soft orange hover, peach active */
+  --rig-list-hover-bg: rgba(204, 102, 0, 0.18);
+  --rig-list-active-bg: #ff9966;
+  --rig-list-active-fg: #000000;
+  --rig-list-inactive-bg: transparent;
+
+  /* Scrollbar — orange pill (track invisible against black gap layer) */
+  --rig-scrollbar-thumb: #cc6600;
+  --rig-scrollbar-thumb-hover: #ffcc00;
+
+  /* Panel (bottom panel — Terminal/Problems/Output) */
+  --rig-panel-border: #000000;
+  --rig-panel-title-active-border: #ffcc00;
+  --rig-panel-title-active-fg: #ff9966;
+  --rig-panel-title-inactive-fg: #cc6600;
+
+  /* Notifications — navy bg with peach accent */
+  --rig-notification-bg: #001122;
+  --rig-notification-border: #ff9966;
+  --rig-notification-fg: #ffffff;
+
+  /* Widget (tooltips, popovers, find/replace overlays) */
+  --rig-widget-bg: #001a33;
+  --rig-widget-border: #000000;
+
+  /* Progress */
+  --rig-progress-bg: #001122;
+
+  /* Sash (resizer hover) — orange */
+  --rig-sash-hover: #ff9966;
+
+  /* Card hover/accent */
+  --rig-card-accent: #ffcc00;
+  --rig-card-hover-bg: #001a33;
+
+  /* Description / muted text */
+  --rig-description-fg: #9999cc;
+
+  /* Keybinding chip */
+  --rig-keybinding-fg: #ffcc00;
+
+  /* Elevation — LCARS is flat */
+  --rig-elevation-2: none;
+
+  /* Media filter (image-tinting on filters) */
+  --rig-media-filter: none;
+}

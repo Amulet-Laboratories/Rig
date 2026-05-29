@@ -1,0 +1,7 @@
+/* Hex — Quizbit Domains
+ * Quizbit is a single-purpose quiz site — domains are not used.
+ * Included for contract compatibility with the Hex theme structure.
+ */
+
+@reference 'tailwindcss';
+@reference './tokens.css';

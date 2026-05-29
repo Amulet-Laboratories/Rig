@@ -1,0 +1,581 @@
+/* Hex — Shared Extras Components (skin only)
+ * Colors, backgrounds, borders (colors), shadows, font-family, transitions.
+ * Structural layout lives in Rig/src/styles/extras.css.
+ */
+
+/* ───────── Alert ───────── */
+
+[data-rig-alert] {
+  border-color: var(--color-border);
+}
+
+[data-rig-alert][data-variant='info'] {
+  border-color: color-mix(in srgb, var(--color-info) 40%, transparent);
+  background: color-mix(in srgb, var(--color-info) 8%, transparent);
+}
+
+[data-rig-alert][data-variant='success'] {
+  border-color: color-mix(in srgb, var(--color-success) 40%, transparent);
+  background: color-mix(in srgb, var(--color-success) 8%, transparent);
+}
+
+[data-rig-alert][data-variant='warning'] {
+  border-color: color-mix(in srgb, var(--color-warning) 40%, transparent);
+  background: color-mix(in srgb, var(--color-warning) 8%, transparent);
+}
+
+[data-rig-alert][data-variant='error'] {
+  border-color: color-mix(in srgb, var(--color-destructive) 40%, transparent);
+  background: color-mix(in srgb, var(--color-destructive) 8%, transparent);
+}
+
+[data-rig-alert-title] {
+  color: var(--color-foreground);
+}
+
+[data-rig-alert-description] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-alert-dismiss] {
+  color: var(--color-muted-foreground);
+  transition: color 0.15s ease;
+}
+
+[data-rig-alert-dismiss]:hover {
+  color: var(--color-foreground);
+}
+
+/* ───────── Toast ───────── */
+
+[data-rig-toast] {
+  background: var(--rig-notification-bg);
+  border-color: var(--rig-notification-border);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 40%);
+}
+
+[data-rig-toast][data-variant='info'] {
+  border-left-color: var(--color-info);
+  color: var(--color-foreground);
+}
+
+[data-rig-toast][data-variant='success'] {
+  border-left-color: var(--color-success);
+  color: var(--color-foreground);
+}
+
+[data-rig-toast][data-variant='error'] {
+  border-left-color: var(--color-destructive);
+  color: var(--color-foreground);
+}
+
+[data-rig-toast][data-variant='warning'] {
+  border-left-color: var(--color-warning);
+  color: var(--color-foreground);
+}
+
+[data-rig-toast-message] {
+  color: var(--color-foreground);
+}
+
+[data-rig-toast-dismiss] {
+  color: var(--rig-description-fg);
+  transition: color 0.1s ease;
+}
+
+[data-rig-toast-dismiss]:hover {
+  color: var(--color-foreground);
+}
+
+/* ───────── Empty State ───────── */
+
+[data-rig-empty-state] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-empty-state-title] {
+  color: var(--color-foreground);
+}
+
+[data-rig-empty-state-description] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-empty-state-icon] {
+  color: var(--rig-description-fg);
+}
+
+/* ───────── NotificationCenter ───────── */
+
+[data-rig-notification-bell] {
+  color: var(--rig-activitybar-inactive-fg);
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+[data-rig-notification-bell]:hover {
+  color: var(--color-foreground);
+  background: var(--rig-list-hover-bg);
+}
+
+[data-rig-notification-bell-icon] {
+  color: inherit;
+}
+
+[data-rig-notification-badge] {
+  color: var(--rig-activitybar-badge-fg);
+  background: var(--rig-activitybar-badge-bg);
+}
+
+[data-rig-notification-panel] {
+  background: var(--rig-notification-bg);
+  border-color: var(--rig-notification-border);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+  animation: notification-panel-in 0.12s ease;
+}
+
+@keyframes notification-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-rig-notification-header] {
+  border-bottom-color: var(--color-border);
+  color: var(--rig-description-fg);
+}
+
+[data-rig-notification-header] button {
+  color: var(--rig-description-fg);
+  transition: color 0.1s ease;
+}
+
+[data-rig-notification-header] button:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-notification-clear] {
+  color: var(--rig-description-fg);
+  transition: color 0.1s ease;
+}
+
+[data-rig-notification-clear]:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-notification-item] {
+  border-bottom-color: var(--color-border);
+  transition: background-color 0.1s ease;
+}
+
+[data-rig-notification-item]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+/* Variant dot via pseudo-element */
+[data-rig-notification-item]::before {
+  background: var(--color-info);
+}
+
+[data-rig-notification-item][data-variant='info']::before {
+  background: var(--color-info);
+}
+
+[data-rig-notification-item][data-variant='success']::before {
+  background: var(--color-success);
+}
+
+[data-rig-notification-item][data-variant='warning']::before {
+  background: var(--color-warning);
+}
+
+[data-rig-notification-item][data-variant='error']::before {
+  background: var(--color-destructive);
+}
+
+[data-rig-notification-message] {
+  color: var(--rig-notification-fg);
+}
+
+[data-rig-notification-time] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-notification-dismiss] {
+  color: var(--rig-description-fg);
+  transition: color 0.1s ease;
+}
+
+[data-rig-notification-dismiss]:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-notification-empty] {
+  color: var(--rig-description-fg);
+}
+
+/* ───────── KanbanBoard ───────── */
+
+[data-rig-kanban-column] {
+  background: var(--color-card);
+  border-color: var(--color-border);
+}
+
+[data-rig-kanban-column-header] {
+  color: var(--color-foreground);
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-kanban-column-title] {
+  color: var(--color-foreground);
+}
+
+[data-rig-kanban-column-count] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-kanban-card] {
+  background: var(--color-background);
+  border-color: var(--color-border);
+  transition: border-color 0.1s ease;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
+}
+
+[data-rig-kanban-card]:hover {
+  border-color: var(--rig-widget-border);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 30%);
+}
+
+[data-rig-kanban-card-title] {
+  color: var(--color-foreground);
+}
+
+[data-rig-kanban-card-description] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-kanban-card-tag] {
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  color: var(--color-primary);
+}
+
+/* ───────── CalendarGrid ───────── */
+
+[data-rig-calendar-grid] {
+  background: var(--color-background);
+  border-color: var(--color-border);
+}
+
+[data-rig-calendar-grid-title] {
+  color: var(--color-foreground);
+}
+
+[data-rig-calendar-grid-nav] {
+  color: var(--rig-description-fg);
+  transition: color 0.1s ease;
+}
+
+[data-rig-calendar-grid-nav]:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-calendar-grid-weekday] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-calendar-grid-day] {
+  color: var(--color-foreground);
+  transition: background-color 0.1s ease;
+}
+
+[data-rig-calendar-grid-day]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+[data-rig-calendar-grid-day][data-selected] {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+[data-rig-calendar-grid-day][data-today] {
+  outline-color: var(--color-ring);
+}
+
+[data-rig-calendar-grid-day]:not([data-current-month]) {
+  color: var(--rig-description-fg);
+  opacity: 0.5;
+}
+
+[data-rig-calendar-grid-event] {
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  color: var(--color-primary);
+}
+
+/* ───────── Skeleton ───────── */
+
+[data-rig-skeleton][data-mode='shimmer'] {
+  background: color-mix(in srgb, var(--color-foreground) 8%, transparent);
+}
+
+[data-rig-shimmer-wave] {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-foreground) 4%, transparent),
+    transparent
+  );
+  animation: rig-shimmer-wave 1.5s ease-in-out infinite;
+}
+
+@keyframes rig-shimmer-wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+[data-rig-skeleton-line] {
+  background: color-mix(in srgb, var(--color-foreground) 6%, transparent);
+}
+
+[data-rig-skeleton][data-animate] [data-rig-skeleton-line] {
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* ───────── Tooltip ───────── */
+
+[data-rig-tooltip] {
+  background: var(--rig-widget-bg);
+  border-color: var(--rig-widget-border);
+  color: var(--color-foreground);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 36%);
+  animation: tooltip-in 0.1s ease;
+}
+
+@keyframes tooltip-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ───────── PropertyGrid ───────── */
+
+[data-rig-property-key] {
+  color: var(--rig-description-fg);
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-property-value] {
+  color: var(--color-foreground);
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-property-value][data-mono] {
+  font-family: var(--font-mono);
+}
+
+/* ───────── Carousel ───────── */
+
+[data-rig-carousel-prev],
+[data-rig-carousel-next] {
+  border-color: var(--color-border);
+  background: var(--color-card);
+  color: var(--color-foreground);
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+[data-rig-carousel-prev]:hover:not(:disabled),
+[data-rig-carousel-next]:hover:not(:disabled) {
+  background: var(--rig-list-hover-bg);
+  border-color: var(--rig-widget-border);
+}
+
+[data-rig-carousel-prev]:focus-visible,
+[data-rig-carousel-next]:focus-visible {
+  outline-color: var(--color-ring);
+}
+
+[data-rig-carousel-prev]:disabled,
+[data-rig-carousel-next]:disabled {
+  opacity: 0.3;
+}
+
+[data-rig-carousel-indicator] {
+  background: color-mix(in srgb, var(--color-foreground) 20%, transparent);
+  transition: background-color 0.15s ease;
+}
+
+[data-rig-carousel-indicator]:hover {
+  background: color-mix(in srgb, var(--color-foreground) 40%, transparent);
+}
+
+[data-rig-carousel-indicator][data-active] {
+  background: var(--color-primary);
+}
+
+[data-rig-carousel-indicator]:focus-visible {
+  outline-color: var(--color-ring);
+}
+
+/* ───────── ImagePreview ───────── */
+
+[data-rig-image-preview] {
+  background: color-mix(in srgb, var(--color-foreground) 4%, transparent);
+}
+
+[data-rig-image-preview][data-zoomable]:focus-visible {
+  outline-color: var(--color-ring);
+}
+
+[data-rig-image-preview-img] {
+  transition: opacity 0.2s ease;
+}
+
+[data-rig-image-preview]:not([data-loaded]) [data-rig-image-preview-img] {
+  opacity: 0;
+}
+
+[data-rig-image-preview][data-loaded] [data-rig-image-preview-img] {
+  opacity: 1;
+}
+
+[data-rig-image-preview-fallback] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-image-preview-overlay] {
+  background: rgb(0 0 0 / 40%);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-image-preview]:hover [data-rig-image-preview-overlay] {
+  opacity: 1;
+}
+
+[data-rig-image-preview][data-error] {
+  border-color: var(--color-border);
+}
+
+/* ───────── Popconfirm ───────── */
+
+[data-rig-popconfirm-content] {
+  background: var(--rig-widget-bg);
+  border-color: var(--rig-widget-border);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 40%);
+  animation: popconfirm-in 0.12s ease;
+}
+
+@keyframes popconfirm-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+[data-rig-popconfirm-title] {
+  color: var(--color-foreground);
+}
+
+[data-rig-popconfirm-description] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-popconfirm-cancel] {
+  border-color: var(--color-border);
+  background: none;
+  color: var(--color-foreground);
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+[data-rig-popconfirm-cancel]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+[data-rig-popconfirm-cancel]:focus-visible {
+  outline-color: var(--color-ring);
+}
+
+[data-rig-popconfirm-confirm] {
+  border-color: transparent;
+  background: var(--color-destructive);
+  color: var(--color-destructive-foreground);
+  transition: background-color 0.15s ease;
+}
+
+[data-rig-popconfirm-confirm]:hover {
+  background: color-mix(in srgb, var(--color-destructive) 85%, black);
+}
+
+[data-rig-popconfirm-confirm]:focus-visible {
+  outline-color: var(--color-ring);
+}
+
+/* ───────── LoadingOverlay ───────── */
+
+[data-rig-loading-overlay] {
+  background: color-mix(in srgb, var(--color-background) 80%, transparent);
+  animation: loading-overlay-in 0.15s ease;
+}
+
+@keyframes loading-overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+[data-rig-loading-overlay-spinner] {
+  color: var(--color-primary);
+  animation: loading-overlay-spin 1s linear infinite;
+}
+
+@keyframes loading-overlay-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+[data-rig-loading-overlay-label] {
+  color: var(--rig-description-fg);
+}

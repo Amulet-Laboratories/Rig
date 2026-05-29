@@ -1,0 +1,175 @@
+/* Hex — Shared Lists Components (skin only)
+ * Colors, backgrounds, borders (colors), shadows, font-family, transitions.
+ * Structural layout lives in Rig/src/styles/lists.css.
+ */
+
+/* ───────── Table ───────── */
+
+[data-rig-table-head] {
+  background: var(--color-background);
+}
+
+[data-rig-table-header] {
+  color: var(--rig-description-fg);
+  font-family: var(--font-mono);
+  transition: color 0.15s ease;
+}
+
+[data-rig-table-header]:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-table-body] [data-rig-table-row] {
+  border-bottom-color: color-mix(in srgb, var(--color-border) 50%, transparent);
+  transition: background-color 0.15s ease;
+}
+
+[data-rig-table-body] [data-rig-table-row]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+[data-rig-table-empty] {
+  color: var(--rig-description-fg);
+}
+
+/* ───────── List ───────── */
+
+[data-rig-list-item] {
+  color: var(--color-foreground);
+  transition: background-color 0.15s ease;
+}
+
+[data-rig-list-item]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+[data-rig-list-item][data-selected] {
+  background: var(--rig-list-inactive-bg);
+  color: var(--color-foreground);
+}
+
+[data-rig-list-item][data-highlighted] {
+  background: var(--rig-list-active-bg);
+  color: var(--rig-list-active-fg);
+}
+
+[data-rig-list-item]:focus {
+  outline-color: var(--color-ring);
+}
+
+[data-rig-list-item][data-selected]:focus-within {
+  background: var(--rig-list-active-bg);
+  color: var(--rig-list-active-fg);
+}
+
+[data-rig-list-item][data-disabled] {
+  opacity: 0.4;
+}
+
+[data-rig-list-item-label] {
+  color: var(--color-foreground);
+}
+
+[data-rig-list-item-description] {
+  color: var(--rig-description-fg);
+}
+
+/* ───────── Tree ───────── */
+
+[data-rig-tree-node]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+[data-rig-tree-node][data-selected] {
+  background: var(--rig-list-inactive-bg);
+}
+
+[data-rig-tree-node]:focus {
+  background: var(--rig-list-active-bg);
+  color: var(--rig-list-active-fg);
+}
+
+[data-rig-tree-node][data-selected]:focus-within {
+  background: var(--rig-list-active-bg);
+  color: var(--rig-list-active-fg);
+}
+
+[data-rig-tree-node][data-loading] {
+  opacity: 0.6;
+}
+
+/* Indent guides — always visible at low opacity, brighter on hover/focus */
+[data-rig-tree-indent-guide] {
+  border-left-color: var(--color-border);
+  opacity: 0.4;
+}
+
+[data-rig-tree-node]:hover [data-rig-tree-indent-guide],
+[data-rig-tree-node]:focus [data-rig-tree-indent-guide],
+[data-rig-tree-node][data-selected] [data-rig-tree-indent-guide] {
+  opacity: 1;
+}
+
+/* Toggle chevron */
+[data-rig-tree-toggle] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-tree-node-label] {
+  color: var(--color-foreground);
+}
+
+/* ───────── DataGrid ───────── */
+
+[data-rig-data-grid] {
+  border-color: var(--color-border);
+}
+
+[data-rig-data-grid-header] {
+  background: var(--color-card);
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-data-grid-header-cell] {
+  color: var(--rig-description-fg);
+  border-right-color: color-mix(in srgb, var(--color-border) 50%, transparent);
+}
+
+[data-rig-data-grid-header-cell][data-sortable]:hover {
+  background: var(--rig-list-hover-bg);
+  cursor: pointer;
+}
+
+[data-rig-data-grid-header-cell]:focus-visible {
+  box-shadow: inset 0 0 0 1px var(--color-ring);
+}
+
+[data-rig-data-grid-sort-indicator] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-data-grid-row] {
+  border-bottom-color: color-mix(in srgb, var(--color-border) 50%, transparent);
+  transition: background-color 0.15s ease;
+}
+
+[data-rig-data-grid-row]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+[data-rig-data-grid-row]:focus-visible {
+  box-shadow: inset 0 0 0 1px var(--color-ring);
+}
+
+[data-rig-data-grid-row]:nth-child(even) {
+  background: color-mix(in srgb, var(--color-foreground) 2%, transparent);
+}
+
+[data-rig-data-grid-cell] {
+  color: var(--color-foreground);
+  border-right-color: color-mix(in srgb, var(--color-border) 30%, transparent);
+}
+
+[data-rig-data-grid-empty] {
+  color: var(--rig-description-fg);
+}

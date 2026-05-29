@@ -1,0 +1,175 @@
+/* Hex — Accessibility Overrides
+ * Cross-cutting media queries for forced-colors mode and
+ * high-contrast preferences. Imported by every theme bundle.
+ *
+ * forced-colors: active — Windows High Contrast Mode.
+ *   Browsers replace colors with system palette. We ensure
+ *   borders, outlines, and focus rings remain visible using
+ *   system color keywords.
+ *
+ * prefers-contrast: more — user opted for increased contrast.
+ *   We strengthen borders, backgrounds, and focus indicators
+ *   beyond the defaults.
+ */
+
+/* ── Forced Colors (Windows High Contrast) ── */
+
+@media (forced-colors: active) {
+  /* Ensure buttons have a visible border */
+  [data-rig-button] {
+    border: 1px solid ButtonText;
+  }
+
+  [data-rig-button][data-variant='ghost'] {
+    border-color: transparent;
+  }
+
+  [data-rig-button][data-variant='ghost']:hover,
+  [data-rig-button][data-variant='ghost']:focus-visible {
+    border-color: ButtonText;
+  }
+
+  /* Inputs, selects, textareas — system border */
+  [data-rig-input] input,
+  [data-rig-select] select,
+  [data-rig-textarea] textarea,
+  [data-rig-combobox-input] {
+    border: 1px solid ButtonText;
+  }
+
+  /* Checkbox and switch — visible boundary */
+  [data-rig-checkbox-indicator],
+  [data-rig-switch-track] {
+    border: 1px solid ButtonText;
+  }
+
+  /* Active / checked states use Highlight */
+  [data-rig-checkbox][data-checked] [data-rig-checkbox-indicator],
+  [data-rig-switch][data-checked] [data-rig-switch-track] {
+    background: Highlight;
+    border-color: Highlight;
+  }
+
+  /* Focus rings — system HighlightText outline */
+  :focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+
+  /* Cards, panels, and overlays — visible borders */
+  [data-rig-card],
+  [data-rig-panel],
+  [data-rig-sidebar],
+  [data-rig-command-palette],
+  [data-rig-modal-overlay] [data-rig-modal-content],
+  [data-rig-popover-content],
+  [data-rig-tooltip-content],
+  [data-rig-dropdown-menu],
+  [data-rig-data-grid] {
+    border: 1px solid CanvasText;
+  }
+
+  /* Disabled elements */
+  [data-disabled],
+  [data-rig-button][data-disabled] {
+    border-color: GrayText;
+    color: GrayText;
+  }
+
+  /* Badge */
+  [data-rig-badge] {
+    border: 1px solid CanvasText;
+  }
+
+  /* Tabs — active tab uses system highlight */
+  [data-rig-tab][data-active] {
+    border-bottom: 2px solid Highlight;
+  }
+
+  /* Tree / List active items */
+  [data-rig-tree-node][data-selected],
+  [data-rig-list-item][data-selected] {
+    outline: 2px solid Highlight;
+  }
+
+  /* Divider */
+  [data-rig-divider] {
+    border-color: CanvasText;
+  }
+
+  /* Progress bar */
+  [data-rig-progress-fill] {
+    background: Highlight;
+  }
+}
+
+/* ── Increased Contrast ── */
+
+@media (prefers-contrast: more) {
+  /* Stronger borders on form controls */
+  [data-rig-input] input,
+  [data-rig-select] select,
+  [data-rig-textarea] textarea,
+  [data-rig-combobox-input] {
+    border-width: 2px;
+  }
+
+  /* Bolder focus rings */
+  :focus-visible {
+    outline-width: 3px;
+  }
+
+  /* Stronger button borders */
+  [data-rig-button] {
+    border: 1px solid currentColor;
+  }
+
+  [data-rig-button][data-variant='ghost'] {
+    border-color: transparent;
+  }
+
+  /* Checkbox / switch — thicker borders */
+  [data-rig-checkbox-indicator],
+  [data-rig-switch-track] {
+    border-width: 2px;
+  }
+
+  /* Cards and overlays — doubled borders */
+  [data-rig-card],
+  [data-rig-panel],
+  [data-rig-command-palette],
+  [data-rig-modal-overlay] [data-rig-modal-content],
+  [data-rig-popover-content],
+  [data-rig-dropdown-menu] {
+    border-width: 2px;
+  }
+
+  /* Disabled — more explicit visual distinction */
+  [data-disabled] {
+    opacity: 0.5;
+  }
+
+  /* Active tabs — thicker indicator */
+  [data-rig-tab][data-active] {
+    border-bottom-width: 3px;
+  }
+
+  /* Tree / List selected items — stronger highlight */
+  [data-rig-tree-node][data-selected],
+  [data-rig-list-item][data-selected] {
+    outline: 2px solid currentColor;
+  }
+}
+
+/* ── Reduced Motion ── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

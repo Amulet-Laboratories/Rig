@@ -1,0 +1,106 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import type { StatusBarItem } from '@core/types'
+
+const props = withDefaults(
+  defineProps<{
+    /** Status bar items */
+    items?: StatusBarItem[]
+  }>(),
+  {
+    items: () => [],
+  },
+)
+
+const emit = defineEmits<{
+  'item-click': [item: StatusBarItem]
+}>()
+
+defineSlots<{
+  item?: (props: { item: StatusBarItem }) => unknown
+  left?: (props: Record<string, never>) => unknown
+  right?: (props: Record<string, never>) => unknown
+  default?: (props: Record<string, never>) => unknown
+}>()
+
+const leftItems = computed(() =>
+  props.items.filter((i) => i.align === 'left').sort((a, b) => a.priority - b.priority),
+)
+
+const rightItems = computed(() =>
+  props.items.filter((i) => i.align === 'right').sort((a, b) => a.priority - b.priority),
+)
+
+function onItemClick(item: StatusBarItem) {
+  if (typeof item.command === 'function') {
+    item.command()
+  }
+  emit('item-click', item)
+}
+
+function onKeydown(e: KeyboardEvent) {
+  const buttons = Array.from(
+    (e.currentTarget as HTMLElement).querySelectorAll<HTMLElement>('button'),
+  )
+  const idx = buttons.indexOf(e.target as HTMLElement)
+  if (idx < 0) return
+
+  let next: number | null = null
+  switch (e.key) {
+    case 'ArrowRight':
+      e.preventDefault()
+      next = (idx + 1) % buttons.length
+      break
+    case 'ArrowLeft':
+      e.preventDefault()
+      next = (idx - 1 + buttons.length) % buttons.length
+      break
+  }
+  if (next !== null) buttons[next]?.focus()
+}
+</script>
+
+<template>
+  <footer
+    data-rig-status-bar
+    role="contentinfo"
+    aria-label="Status bar"
+    tabindex="-1"
+    @keydown="onKeydown"
+  >
+    <slot>
+      <div data-rig-status-bar-left>
+        <slot name="left">
+          <component
+            :is="item.command ? 'button' : 'span'"
+            v-for="item in leftItems"
+            :key="item.id"
+            data-rig-status-bar-item
+            :title="item.tooltip"
+            @click="item.command ? onItemClick(item) : undefined"
+          >
+            <slot name="item" :item="item">
+              {{ item.content }}
+            </slot>
+          </component>
+        </slot>
+      </div>
+      <div data-rig-status-bar-right>
+        <slot name="right">
+          <component
+            :is="item.command ? 'button' : 'span'"
+            v-for="item in rightItems"
+            :key="item.id"
+            data-rig-status-bar-item
+            :title="item.tooltip"
+            @click="item.command ? onItemClick(item) : undefined"
+          >
+            <slot name="item" :item="item">
+              {{ item.content }}
+            </slot>
+          </component>
+        </slot>
+      </div>
+    </slot>
+  </footer>
+</template>

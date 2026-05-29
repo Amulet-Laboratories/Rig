@@ -1,0 +1,151 @@
+/* Hex — Shared Temporal Components (skin only)
+ * Colors, fills, strokes, backgrounds, shadows, opacity, color-only transitions, font-family.
+ * Structural layout lives in Rig/src/styles/temporal.css.
+ */
+
+/* ───────── TimelineScrubber ───────── */
+
+[data-rig-timeline-scrubber] {
+  @apply text-foreground;
+}
+
+[data-rig-timeline-scrubber][data-disabled] {
+  @apply opacity-40;
+}
+
+[data-rig-timeline-scrubber-track] {
+  @apply bg-foreground/10;
+}
+
+[data-rig-timeline-scrubber-fill] {
+  background: var(--domain-accent, var(--color-primary));
+}
+
+[data-rig-timeline-scrubber-thumb] {
+  background: var(--domain-accent, var(--color-primary));
+  border-color: var(--color-foreground);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+}
+
+[data-rig-timeline-scrubber-value] {
+  @apply text-muted-foreground font-mono;
+}
+
+/* ───────── PlaybackControls ───────── */
+
+[data-rig-playback-controls] {
+  @apply text-foreground;
+}
+
+[data-rig-playback-controls-skip-back],
+[data-rig-playback-controls-play],
+[data-rig-playback-controls-skip-forward] {
+  @apply bg-transparent text-foreground transition-colors;
+}
+
+[data-rig-playback-controls-skip-back]:hover,
+[data-rig-playback-controls-play]:hover,
+[data-rig-playback-controls-skip-forward]:hover {
+  @apply text-primary;
+}
+
+[data-rig-playback-controls-speed] {
+  @apply text-muted-foreground font-mono bg-transparent transition-colors;
+}
+
+[data-rig-playback-controls-speed]:hover {
+  @apply text-primary;
+}
+
+[data-rig-playback-controls-track] {
+  @apply bg-foreground/10;
+  transition: background 0.15s ease;
+}
+
+[data-rig-playback-controls-track]:hover {
+  @apply bg-foreground/15;
+}
+
+[data-rig-playback-controls-progress] {
+  background: var(--domain-accent, var(--color-primary));
+}
+
+[data-rig-playback-controls-time] {
+  @apply text-muted-foreground font-mono;
+}
+
+[data-rig-playback-controls-current],
+[data-rig-playback-controls-duration] {
+  @apply font-mono;
+}
+
+[data-rig-playback-controls-separator] {
+  @apply text-muted-foreground font-mono;
+  opacity: 0.5;
+}
+
+/* ───────── AnimatedChart ───────── */
+
+[data-rig-animated-chart] {
+  @apply text-foreground;
+}
+
+[data-rig-animated-chart-bar] {
+  fill: var(--domain-accent, var(--color-primary));
+  transition:
+    height 0.3s ease,
+    y 0.3s ease;
+}
+
+[data-rig-animated-chart-bar]:hover {
+  opacity: 0.85;
+}
+
+[data-rig-animated-chart-line] {
+  stroke: var(--domain-accent, var(--color-primary));
+  fill: none;
+  transition: d 0.3s ease;
+}
+
+[data-rig-animated-chart-play] {
+  @apply bg-transparent text-foreground transition-colors;
+}
+
+[data-rig-animated-chart-play]:hover {
+  @apply text-primary;
+}
+
+[data-rig-animated-chart-label] {
+  @apply text-muted-foreground font-mono;
+}
+
+[data-rig-animated-chart-counter] {
+  @apply text-muted-foreground font-mono;
+}
+
+/* ───────── TemporalHeatmap ───────── */
+
+[data-rig-temporal-heatmap] {
+  @apply text-foreground;
+}
+
+[data-rig-temporal-heatmap-time-labels] text,
+[data-rig-temporal-heatmap-category-labels] text {
+  fill: var(--color-muted-foreground);
+  @apply font-mono;
+}
+
+[data-rig-temporal-heatmap-cell] {
+  stroke: var(--color-background);
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-temporal-heatmap-cell]:hover {
+  opacity: 0.85;
+}
+
+/* ───────── ParticleField ───────── */
+
+[data-rig-particle-field] {
+  @apply bg-background;
+}

@@ -1,0 +1,326 @@
+/* Rig Structural — Menu Components
+ * CommandPalette, ContextMenu, Menubar, DropdownMenu, ActionBar, KeyboardHint
+ */
+
+/* ── Command Palette ── */
+
+[data-rig-command-palette-overlay] {
+  position: fixed;
+  inset: 0;
+  z-index: var(--rig-command-palette-z, 9999);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20vh;
+}
+
+[data-rig-command-palette] {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+}
+
+[data-rig-command-palette-input] {
+  flex: 1 1 0%;
+  width: 100%;
+  padding: 7px 6px 7px 14px;
+  font-size: 13px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+[data-rig-command-palette-input]:focus {
+  outline: none;
+}
+
+[data-rig-command-palette-results] {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+[data-rig-command-palette-item] {
+  width: 100%;
+  text-align: left;
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  line-height: 22px;
+  height: 22px;
+}
+
+[data-rig-command-palette-item][data-disabled] {
+  pointer-events: none;
+}
+
+[data-rig-command-palette-item-label] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+[data-rig-command-palette-item-description] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+[data-rig-command-palette-empty] {
+  padding: 0.75rem 14px;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* ── Context Menu ── */
+
+[data-rig-context-menu] {
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  padding: 4px 0;
+  overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+[data-rig-context-menu-item] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  height: 26px;
+  padding: 0 12px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: default;
+  text-align: left;
+}
+
+[data-rig-context-menu-item][data-disabled] {
+  pointer-events: none;
+}
+
+[data-rig-context-menu-label] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+[data-rig-context-menu-separator] {
+  height: 1px;
+  border: none;
+  margin: 4px 0;
+  pointer-events: none;
+}
+
+[data-rig-context-menu-keybinding] {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+/* ── Menubar ── */
+
+[data-rig-menubar] {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+[data-rig-menubar-entry] {
+  position: relative;
+  user-select: none;
+}
+
+[data-rig-menubar-trigger] {
+  padding: 2px 8px;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  border-radius: 5px;
+}
+
+[data-rig-menubar-content] {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  padding: 4px 0;
+  overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+[data-rig-menubar-separator] {
+  height: 1px;
+  border: none;
+  margin: 4px 0;
+  pointer-events: none;
+}
+
+[data-rig-menubar-item] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  height: 26px;
+  padding: 0 12px;
+  cursor: default;
+  background: none;
+  border: 0;
+  font-size: 13px;
+  white-space: nowrap;
+  text-align: left;
+}
+
+[data-rig-menubar-item][data-disabled] {
+  pointer-events: none;
+}
+
+[data-rig-menubar-item-label] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+[data-rig-menubar-item-keybinding] {
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+/* ── Dropdown Menu ── */
+
+[data-rig-dropdown] {
+  position: relative;
+  display: inline-flex;
+}
+
+[data-rig-dropdown-trigger] {
+  display: inline-flex;
+  cursor: pointer;
+}
+
+[data-rig-dropdown-menu] {
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  padding: 4px 0;
+  overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+[data-rig-dropdown-item] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  height: 26px;
+  padding: 0 12px;
+  cursor: default;
+  background: none;
+  border: 0;
+  font-size: 13px;
+  white-space: nowrap;
+  text-align: left;
+}
+
+[data-rig-dropdown-item][data-disabled] {
+  pointer-events: none;
+}
+
+[data-rig-dropdown-item-label] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+[data-rig-dropdown-item-keybinding] {
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+/* ── Action Bar ── */
+
+[data-rig-action-bar] {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+[data-rig-action-bar-item] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+  border-radius: 5px;
+}
+
+[data-rig-action-bar-item]:focus-visible {
+  outline-width: 1px;
+  outline-style: solid;
+  outline-offset: -1px;
+}
+
+[data-rig-action-bar-item][data-disabled] {
+  pointer-events: none;
+}
+
+[data-rig-action-bar-overflow] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+  border-radius: 5px;
+}
+
+/* ── Keyboard Hint ── */
+
+[data-rig-keyboard-hint] {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+[data-rig-keyboard-hint-key] {
+  padding: 2px 4px;
+  font-size: 11px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+}

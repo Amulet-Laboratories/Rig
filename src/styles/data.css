@@ -1,0 +1,364 @@
+/* Rig Structural — Data Components
+ * Sparkline, MiniBar, StatCard, BarChart, LineChart, AreaChart,
+ * ScatterPlot, Heatmap, BubbleChart, RadarChart, Treemap, SankeyDiagram,
+ * StatRow, ChartTooltip, ChartEmpty
+ */
+
+/* ── Sparkline ── */
+
+[data-rig-sparkline] {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+[data-rig-sparkline] svg {
+  display: block;
+}
+
+[data-rig-sparkline-line] {
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── MiniBar ── */
+
+[data-rig-mini-bar] {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 1px;
+  vertical-align: middle;
+}
+
+[data-rig-mini-bar] svg {
+  display: block;
+}
+
+/* ── StatCard ── */
+
+[data-rig-stat-card] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  border-width: 1px;
+  border-style: solid;
+}
+
+[data-rig-stat-card-header] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+[data-rig-stat-card-label] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-rig-stat-card-value] {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+[data-rig-stat-card-footer] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+[data-rig-stat-card-trend] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+[data-rig-stat-card-description] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+/* ── BarChart ── */
+
+[data-rig-bar-chart] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-bar-chart] svg {
+  display: block;
+  width: 100%;
+}
+
+[data-rig-bar-chart-bar-group] {
+  cursor: pointer;
+}
+
+[data-rig-bar-chart-label],
+[data-rig-bar-chart-value] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+/* ── LineChart ── */
+
+[data-rig-line-chart] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-line-chart] svg {
+  display: block;
+  width: 100%;
+}
+
+[data-rig-line-chart-line] {
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+[data-rig-line-chart-dot] {
+  cursor: pointer;
+}
+
+[data-rig-line-chart-label] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+/* ── AreaChart ── */
+
+[data-rig-area-chart] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-area-chart] svg {
+  display: block;
+  width: 100%;
+}
+
+[data-rig-area-chart-line] {
+  stroke-width: 2;
+}
+
+[data-rig-area-chart-label] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+/* ── ScatterPlot ── */
+
+[data-rig-scatter-plot] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-scatter-plot] svg {
+  display: block;
+  width: 100%;
+}
+
+[data-rig-scatter-plot-point] {
+  cursor: pointer;
+}
+
+[data-rig-scatter-plot] text {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+/* ── Heatmap ── */
+
+[data-rig-heatmap] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-heatmap] svg {
+  display: block;
+  width: 100%;
+}
+
+[data-rig-heatmap-col-labels] text,
+[data-rig-heatmap-row-labels] text {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+[data-rig-heatmap-cell] {
+  stroke-width: 1;
+  cursor: pointer;
+}
+
+/* ── BubbleChart ── */
+
+[data-rig-bubble-chart] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-bubble-chart] svg {
+  display: block;
+  width: 100%;
+}
+
+/* ── RadarChart ── */
+
+[data-rig-radar-chart] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-radar-chart] svg {
+  display: block;
+  width: 100%;
+}
+
+[data-rig-radar-chart-line] {
+  stroke-width: 2;
+}
+
+[data-rig-radar-chart-label] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+/* ── Treemap ── */
+
+[data-rig-treemap] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-treemap] svg {
+  display: block;
+  width: 100%;
+}
+
+[data-rig-treemap-node] {
+  cursor: pointer;
+}
+
+[data-rig-treemap-rect] {
+  stroke-width: 2;
+}
+
+[data-rig-treemap-label] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  pointer-events: none;
+}
+
+/* ── SankeyDiagram ── */
+
+[data-rig-sankey-diagram] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+[data-rig-sankey-diagram] svg {
+  display: block;
+  width: 100%;
+}
+
+[data-rig-sankey-diagram-node] {
+  cursor: pointer;
+}
+
+[data-rig-sankey-diagram-label] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+/* ── StatRow ── */
+
+[data-rig-stat-row] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+[data-rig-stat-row][data-separator] {
+  padding-top: 4px;
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+
+[data-rig-stat-row][data-bold] [data-rig-stat-row-value] {
+  font-weight: 700;
+}
+
+/* ── ChartTooltip ── */
+
+[data-rig-chart-tooltip] {
+  position: absolute;
+  pointer-events: none;
+  z-index: 50;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 13px;
+  line-height: normal;
+  border-width: 1px;
+  border-style: solid;
+}
+
+/* ── ChartEmpty ── */
+
+[data-rig-chart-empty] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  min-height: 300px;
+  padding: 0 24px;
+}
+
+[data-rig-chart-empty-icon] {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+[data-rig-chart-empty-label] {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin: 0;
+}
+
+[data-rig-chart-empty-hint] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  margin: 4px 0 0;
+}

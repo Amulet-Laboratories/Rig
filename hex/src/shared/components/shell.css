@@ -1,0 +1,291 @@
+/* Hex — Shared Shell Components (skin only)
+ * Colors, backgrounds, shadows, opacity, color-only transitions, font-family.
+ * Structural layout lives in Rig/src/styles/shell.css.
+ */
+
+/* ───────── IdeShell ───────── */
+
+[data-rig-ide-shell] {
+  @apply bg-background text-foreground font-mono;
+}
+
+/* ───────── ChatPanel ───────── */
+
+[data-rig-chat-panel] {
+  background: var(--color-background);
+}
+
+[data-rig-chat-panel-header] {
+  border-bottom-color: var(--rig-sidebar-border);
+  font-family: var(--font-mono);
+  color: var(--color-foreground);
+}
+
+[data-rig-chat-panel-input] {
+  border-top-color: var(--rig-sidebar-border);
+}
+
+/* ── Header ── */
+
+[data-rig-chat-header-btn] {
+  background: none;
+  color: var(--color-muted-foreground);
+  transition:
+    background-color 0.1s,
+    color 0.1s;
+}
+
+[data-rig-chat-header-btn]:hover {
+  background: color-mix(in srgb, var(--color-foreground) 10%, transparent);
+  color: var(--color-foreground);
+}
+
+[data-rig-chat-icon-accent] {
+  color: var(--color-info);
+}
+
+/* ── Chat bubbles ── */
+
+[data-rig-chat-bubble][data-role='user'] [data-rig-chat-bubble-content] {
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+  color: var(--color-foreground);
+}
+
+[data-rig-chat-bubble-label] {
+  font-family: var(--font-mono);
+  color: var(--color-info);
+}
+
+[data-rig-chat-bubble][data-role='assistant'] [data-rig-chat-bubble-content] {
+  color: color-mix(in srgb, var(--color-foreground) 90%, transparent);
+}
+
+[data-rig-chat-bubble-time] {
+  font-family: var(--font-mono);
+  color: var(--color-muted-foreground);
+  opacity: 0.5;
+}
+
+/* ── Tool calls ── */
+
+[data-rig-chat-tool-badge] {
+  font-family: var(--font-mono);
+  color: var(--color-muted-foreground);
+  background: color-mix(in srgb, var(--color-foreground) 6%, transparent);
+  border-color: color-mix(in srgb, var(--color-foreground) 8%, transparent);
+}
+
+[data-rig-chat-tool-error] {
+  color: var(--color-destructive);
+}
+
+/* ── Typing indicator ── */
+
+[data-rig-chat-typing-dot] {
+  background: var(--color-info);
+  opacity: 0.3;
+  animation:
+    chat-typing 1.4s infinite ease-in-out,
+    chat-typing-opacity 1.4s infinite ease-in-out;
+}
+
+@keyframes chat-typing-opacity {
+  0%,
+  80%,
+  100% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+/* ── Empty state ── */
+
+[data-rig-chat-empty-icon] {
+  color: var(--color-info);
+  opacity: 0.3;
+}
+
+[data-rig-chat-empty-title] {
+  font-family: var(--font-mono);
+  color: var(--color-foreground);
+}
+
+[data-rig-chat-empty-desc] {
+  color: var(--color-muted-foreground);
+}
+
+/* ── Input area ── */
+
+[data-rig-chat-context-chip] {
+  font-family: var(--font-mono);
+  color: var(--color-muted-foreground);
+  background: color-mix(in srgb, var(--color-foreground) 5%, transparent);
+  border-color: color-mix(in srgb, var(--color-foreground) 8%, transparent);
+}
+
+[data-rig-chat-textarea] {
+  font-family: var(--font-sans);
+  color: var(--color-foreground);
+  background: color-mix(in srgb, var(--color-foreground) 4%, transparent);
+  border-color: var(--rig-sidebar-border);
+  transition: border-color 0.15s ease;
+}
+
+[data-rig-chat-textarea]:focus {
+  border-color: color-mix(in srgb, var(--color-info) 50%, var(--rig-sidebar-border));
+}
+
+[data-rig-chat-textarea]::placeholder {
+  color: var(--color-muted-foreground);
+  opacity: 0.5;
+}
+
+[data-rig-chat-textarea]:disabled {
+  opacity: 0.5;
+}
+
+[data-rig-chat-send] {
+  background: var(--color-info);
+  color: #fff;
+  transition:
+    opacity 0.15s,
+    transform 0.1s;
+}
+
+[data-rig-chat-send]:disabled {
+  opacity: 0.2;
+}
+
+[data-rig-chat-send]:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+/* ── Footer ── */
+
+[data-rig-chat-footer-hint] {
+  font-family: var(--font-mono);
+  color: var(--color-muted-foreground);
+  opacity: 0.4;
+}
+
+[data-rig-chat-footer-hint] kbd {
+  font-family: var(--font-mono);
+  border-color: color-mix(in srgb, var(--color-foreground) 15%, transparent);
+}
+
+/* ── Model selector ── */
+
+[data-rig-chat-model-selector] {
+  font-family: var(--font-mono);
+  color: var(--color-muted-foreground);
+  background: none;
+  transition:
+    background-color 0.1s,
+    color 0.1s;
+}
+
+[data-rig-chat-model-selector]:hover {
+  background: color-mix(in srgb, var(--color-foreground) 8%, transparent);
+  color: var(--color-foreground);
+}
+
+[data-rig-chat-model-menu] {
+  background: var(--vsc-menu-bg);
+  border-color: var(--vsc-widget-border);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+}
+
+[data-rig-chat-model-option] {
+  background: none;
+  color: var(--color-foreground);
+  font-family: var(--font-mono);
+  transition: background-color 0.1s;
+}
+
+[data-rig-chat-model-option]:hover {
+  background: var(--vsc-menu-selection-bg);
+  color: var(--vsc-list-active-fg);
+}
+
+[data-rig-chat-model-option][data-selected] {
+  color: var(--color-info);
+}
+
+[data-rig-chat-model-option-desc] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── SearchPanel ───────── */
+
+[data-rig-search-panel] {
+  background: var(--color-background);
+}
+
+/* ───────── FileBrowser ───────── */
+
+[data-rig-file-browser] {
+  background: var(--color-background);
+}
+
+/* ───────── ContentViewer ───────── */
+
+[data-rig-content-viewer] {
+  background: var(--color-background);
+}
+
+[data-rig-content-viewer-breadcrumbs] {
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-content-viewer-header] {
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-content-viewer-empty] {
+  color: var(--color-muted-foreground);
+  font-family: var(--font-mono);
+}
+
+/* ───────── FormView ───────── */
+
+[data-rig-form-view] {
+  background: var(--color-background);
+}
+
+[data-rig-form-view-header] {
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-form-view-actions] {
+  border-top-color: var(--color-border);
+}
+
+/* ───────── WelcomeView ───────── */
+
+[data-rig-welcome-view] {
+  background: var(--color-background);
+}
+
+[data-rig-welcome-view-title] {
+  font-family: var(--font-mono);
+  color: var(--color-foreground);
+}
+
+[data-rig-welcome-view-description] {
+  font-family: var(--font-mono);
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── SettingsView ───────── */
+
+[data-rig-settings-view] {
+  background: var(--color-background);
+}
+
+[data-rig-settings-view-title] {
+  font-family: var(--font-mono);
+  color: var(--color-foreground);
+}

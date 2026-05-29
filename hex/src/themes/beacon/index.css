@@ -1,0 +1,11 @@
+/* Hex — LCARS Full Bundle
+ * Import this single file to get everything:
+ * Tailwind v4 + shared Rig tokens + base styles + theme tokens.
+ *
+ * Usage: import '@amulet-laboratories/hex/lcars/source'
+ */
+
+@import 'tailwindcss';
+@import '../../shared/tokens.css';
+@import './base.css';
+@import './tokens.css';

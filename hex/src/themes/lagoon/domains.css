@@ -1,0 +1,72 @@
+/* Hex — Duskline Domains
+ * Domain accent colors, responsive breakpoints, unstyled overrides.
+ * Duskline is an investigative noir theme — domains are less relevant
+ * but included for contract compatibility.
+ */
+
+@reference 'tailwindcss';
+@reference './tokens.css';
+
+/* ───────── Domain accent colors ───────── */
+
+[data-domain='legal'] {
+  --domain-accent: #f59e0b;
+}
+
+[data-domain='life'] {
+  --domain-accent: #14b8a6;
+}
+
+[data-domain='software'] {
+  --domain-accent: #3b82f6;
+}
+
+[data-domain='business'] {
+  --domain-accent: #10b981;
+}
+
+[data-domain='history'] {
+  --domain-accent: #a8a29e;
+}
+
+[data-domain='world'] {
+  --domain-accent: #8b5cf6;
+}
+
+/* ───────── Responsive: Marketing site ───────── */
+
+@media (width <= 700px) {
+  [data-rig-shell-grid] {
+    grid-template-areas:
+      'editor'
+      'panel'
+      'statusbar';
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto auto;
+  }
+
+  [data-rig-shell-activity] {
+    display: none;
+  }
+
+  [data-rig-shell-sidebar] {
+    display: none;
+  }
+}
+
+/* ───────── Unstyled theme overrides ───────── */
+
+[data-theme='unstyled'] *,
+[data-theme='unstyled'] *::before,
+[data-theme='unstyled'] *::after {
+  color: revert !important;
+  background-color: revert !important;
+  background: revert !important;
+  border-color: revert !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+
+  --domain-accent: initial !important;
+}

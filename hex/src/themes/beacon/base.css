@@ -1,0 +1,59 @@
+/* Hex — LCARS Base Styles
+ * Orange scrollbar, glowing focus ring, mauve selection — minimal so the
+ * tokens carry the look. Pill geometry is set globally via --radius.
+ */
+
+@reference 'tailwindcss';
+@reference './tokens.css';
+
+/* ───────── Scrollbar ─────────
+ * Solid LCARS orange — no track, no border. Pure block-color thumb.
+ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--lcars-orange);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--lcars-yellow);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--lcars-orange) transparent;
+}
+
+/* ───────── Focus ─────────
+ * LCARS focus is bright and direct — no subtle outline.
+ */
+
+*:focus-visible {
+  outline: 2px solid var(--lcars-orange);
+  outline-offset: 1px;
+}
+
+/* ───────── Selection ───────── */
+
+::selection {
+  background: var(--lcars-mauve);
+  color: #000000;
+}
+
+/* ───────── Pill-shaped buttons ─────────
+ * Force pill silhouette even where Rig structural sets a smaller radius
+ * via shorthand. Targets Rig's button selector specifically.
+ */
+
+[data-rig-button] {
+  border-radius: 9999px;
+}

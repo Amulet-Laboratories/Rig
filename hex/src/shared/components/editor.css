@@ -1,0 +1,227 @@
+/* Hex — Shared Editor Components (skin only)
+ * Colors, backgrounds, borders (colors), shadows, font-family, transitions.
+ * Structural layout lives in Rig/src/styles/editor.css.
+ */
+
+/* ───────── Editor Workbench ───────── */
+
+[data-rig-editor-workbench] {
+  background: var(--color-background);
+}
+
+[data-rig-editor-workbench-tabs] {
+  background: var(--rig-editor-group-header-bg);
+  font-family: var(--font-sans);
+}
+
+[data-rig-editor-workbench-empty] {
+  color: var(--rig-description-fg);
+}
+
+/* ───────── Editor Tab ───────── */
+
+[data-rig-editor-tab] {
+  @apply transition-colors;
+
+  color: var(--rig-tab-inactive-fg);
+  background: var(--rig-tab-inactive-bg);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: var(--rig-tab-border);
+}
+
+[data-rig-editor-tab]:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-editor-tab][data-state='active'] {
+  color: var(--rig-tab-active-fg);
+  background: var(--rig-tab-active-bg);
+  border-top-color: var(--rig-tab-active-border-top);
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+}
+
+[data-rig-editor-tab-dirty] {
+  background: var(--color-foreground);
+}
+
+[data-rig-editor-tab-close] {
+  color: var(--rig-description-fg);
+  transition: opacity 0.1s;
+}
+
+[data-rig-editor-tab-close]:hover {
+  color: var(--color-foreground);
+  background: color-mix(in srgb, var(--color-foreground) 10%, transparent);
+  border-radius: 3px;
+}
+
+[data-rig-editor-tab][data-drag-over] {
+  border-left-color: var(--color-primary);
+}
+
+/* ───────── CodeBlock ───────── */
+
+[data-rig-code-block] {
+  background: var(--rig-editor-bg);
+  border-color: var(--color-border);
+  font-family: var(--font-mono);
+}
+
+[data-rig-code-block-header] {
+  background: var(--color-card);
+  border-bottom-color: var(--color-border);
+  color: var(--rig-description-fg);
+}
+
+[data-rig-code-block-language] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-code-block-line-number] {
+  color: var(--rig-editor-line-number-fg);
+}
+
+[data-rig-code-block-line] {
+  color: var(--rig-editor-fg);
+}
+
+[data-rig-code-block-copy] {
+  color: var(--rig-description-fg);
+  transition: color 0.15s ease;
+}
+
+[data-rig-code-block-copy]:hover {
+  color: var(--color-foreground);
+  background: var(--rig-list-hover-bg);
+}
+
+/* ───────── DiffViewer ───────── */
+
+[data-rig-diff-viewer] {
+  background: var(--rig-editor-bg);
+  border-color: var(--color-border);
+  font-family: var(--font-mono);
+}
+
+[data-rig-diff-viewer-header] {
+  background: var(--color-card);
+  border-bottom-color: var(--color-border);
+  color: var(--rig-description-fg);
+}
+
+[data-rig-diff-viewer-language] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-diff-viewer-stats] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-diff-viewer-added] {
+  color: var(--color-success, #22c55e);
+}
+
+[data-rig-diff-viewer-removed] {
+  color: var(--color-destructive, #ef4444);
+}
+
+[data-rig-diff-viewer-pane] + [data-rig-diff-viewer-pane] {
+  border-left-color: var(--color-border);
+}
+
+[data-rig-diff-viewer-line] {
+  color: var(--rig-editor-fg);
+}
+
+[data-rig-diff-viewer-line][data-type='added'] {
+  background: color-mix(in srgb, var(--color-success, #22c55e) 10%, transparent);
+  color: var(--color-success, #22c55e);
+}
+
+[data-rig-diff-viewer-line][data-type='removed'] {
+  background: color-mix(in srgb, var(--color-destructive, #ef4444) 10%, transparent);
+  color: var(--color-destructive, #ef4444);
+}
+
+[data-rig-diff-viewer-line][data-type='unchanged'] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-diff-viewer-gutter] {
+  color: var(--rig-editor-line-number-fg);
+}
+
+[data-rig-diff-viewer-old-num],
+[data-rig-diff-viewer-new-num] {
+  color: var(--rig-editor-line-number-fg);
+}
+
+[data-rig-diff-viewer-prefix] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-diff-viewer-content] {
+  color: inherit;
+}
+
+/* ───────── ColorPicker ───────── */
+
+[data-rig-color-picker] {
+  background: var(--color-background);
+  border-color: var(--color-border);
+}
+
+[data-rig-color-picker-preview] {
+  outline-color: var(--color-border);
+}
+
+[data-rig-color-picker-field] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-color-picker-hue] {
+  background: linear-gradient(to right, red, yellow, lime, aqua, blue, fuchsia, red);
+}
+
+[data-rig-color-picker-saturation] {
+  background: linear-gradient(to right, hsl(0 0% 50%), hsl(0 100% 50%));
+}
+
+[data-rig-color-picker-lightness] {
+  background: linear-gradient(to right, #000, hsl(0 100% 50%), #fff);
+}
+
+[data-rig-color-picker-hex] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-color-picker-input] {
+  background: var(--rig-input-bg);
+  border-color: var(--rig-input-border);
+  color: var(--color-foreground);
+  font-family: var(--font-mono);
+}
+
+[data-rig-color-picker-input]:focus {
+  border-color: var(--color-ring);
+}
+
+/* ───────── Pane Group ───────── */
+
+[data-rig-pane-group][data-focused]::after {
+  outline-color: var(--color-ring);
+  opacity: 0.35;
+}
+
+/* Resizer between panes */
+
+[data-rig-split-editor-area] [data-rig-resizer]::after {
+  background: var(--color-border);
+}
+
+[data-rig-split-editor-area] [data-rig-resizer]:hover::after,
+[data-rig-split-editor-area] [data-rig-resizer][data-dragging]::after {
+  background: var(--color-ring);
+}

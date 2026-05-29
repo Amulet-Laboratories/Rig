@@ -1,0 +1,241 @@
+/* Hex — Shared Menus Components (skin only)
+ * Colors, backgrounds, borders (colors), shadows, font-family, transitions.
+ * Structural layout lives in Rig/src/styles/menus.css.
+ */
+
+/* ───────── Command Palette ───────── */
+
+[data-rig-command-palette-overlay] {
+  background: rgb(0 0 0 / 50%);
+}
+
+[data-rig-command-palette] {
+  background: var(--vsc-quickinput-bg);
+  border-color: var(--vsc-widget-border);
+  box-shadow: 0 8px 30px rgb(0 0 0 / 50%);
+}
+
+[data-rig-command-palette-input] {
+  background: var(--vsc-input-bg);
+  color: var(--color-foreground);
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-command-palette-input]::placeholder {
+  color: var(--vsc-input-placeholder);
+}
+
+[data-rig-command-palette-item] {
+  transition: background-color 0.1s ease;
+}
+
+[data-rig-command-palette-item]:hover {
+  background: var(--vsc-list-hover-bg);
+}
+
+[data-rig-command-palette-item][data-highlighted] {
+  background: var(--vsc-list-active-bg);
+  color: var(--vsc-list-active-fg);
+}
+
+[data-rig-command-palette-item][data-disabled] {
+  opacity: 0.4;
+}
+
+[data-rig-command-palette-item-label] {
+  color: var(--color-foreground);
+}
+
+[data-rig-command-palette-item-description] {
+  color: var(--vsc-description-fg);
+  font-family: var(--font-mono);
+}
+
+[data-rig-command-palette-empty] {
+  color: var(--vsc-description-fg);
+}
+
+/* ───────── Context Menu ───────── */
+
+[data-rig-context-menu] {
+  background: var(--vsc-menu-bg);
+  border-color: var(--vsc-widget-border);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+}
+
+[data-rig-context-menu-item] {
+  color: var(--color-foreground);
+  transition: background-color 0.1s ease;
+}
+
+[data-rig-context-menu-item]:hover {
+  background: var(--vsc-menu-selection-bg);
+  color: var(--vsc-list-active-fg);
+}
+
+[data-rig-context-menu-item][data-highlighted] {
+  background: var(--vsc-menu-selection-bg);
+  color: var(--vsc-list-active-fg);
+}
+
+[data-rig-context-menu-item][data-disabled] {
+  opacity: 0.4;
+}
+
+[data-rig-context-menu-label] {
+  color: var(--color-foreground);
+}
+
+[data-rig-context-menu-separator] {
+  background: var(--color-border);
+}
+
+[data-rig-context-menu-keybinding] {
+  color: var(--vsc-description-fg);
+  font-family: var(--font-mono);
+}
+
+/* ───────── Menubar ───────── */
+
+[data-rig-menubar-trigger] {
+  color: var(--color-foreground);
+  transition: background-color 0.15s ease;
+}
+
+[data-rig-menubar-trigger]:hover {
+  background: var(--vsc-list-hover-bg);
+}
+
+[data-rig-menubar-trigger][data-state='open'] {
+  color: var(--color-foreground);
+  background: var(--vsc-list-hover-bg);
+}
+
+[data-rig-menubar-content] {
+  background: var(--vsc-menu-bg);
+  border-color: var(--vsc-widget-border);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+  animation: menubar-in 0.1s ease;
+}
+
+@keyframes menubar-in {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-rig-menubar-separator] {
+  background: var(--color-border);
+}
+
+[data-rig-menubar-item] {
+  color: var(--color-foreground);
+  transition: background-color 0.1s ease;
+}
+
+[data-rig-menubar-item]:hover {
+  background: var(--vsc-menu-selection-bg);
+  color: var(--vsc-list-active-fg);
+}
+
+[data-rig-menubar-item][data-highlighted] {
+  background: var(--vsc-menu-selection-bg);
+  color: var(--vsc-list-active-fg);
+}
+
+[data-rig-menubar-item][data-disabled] {
+  opacity: 0.4;
+}
+
+[data-rig-menubar-item-label] {
+  color: var(--color-foreground);
+}
+
+[data-rig-menubar-item-keybinding] {
+  color: var(--vsc-description-fg);
+  font-family: var(--font-mono);
+}
+
+/* ───────── DropdownMenu ───────── */
+
+[data-rig-dropdown-menu] {
+  background: var(--vsc-menu-bg);
+  border-color: var(--vsc-widget-border);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+  animation: menubar-in 0.1s ease;
+}
+
+[data-rig-dropdown-item] {
+  color: var(--color-foreground);
+  transition: background-color 0.1s ease;
+}
+
+[data-rig-dropdown-item]:hover {
+  background: var(--vsc-menu-selection-bg);
+  color: var(--vsc-list-active-fg);
+}
+
+[data-rig-dropdown-item][data-state='highlighted'] {
+  background: var(--vsc-menu-selection-bg);
+  color: var(--vsc-list-active-fg);
+}
+
+[data-rig-dropdown-item][data-disabled] {
+  opacity: 0.4;
+}
+
+[data-rig-dropdown-item-label] {
+  color: var(--color-foreground);
+}
+
+[data-rig-dropdown-item-keybinding] {
+  color: var(--vsc-description-fg);
+  font-family: var(--font-mono);
+}
+
+/* ───────── ActionBar ───────── */
+
+[data-rig-action-bar-item] {
+  color: var(--vsc-description-fg);
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+[data-rig-action-bar-item]:hover {
+  color: var(--color-foreground);
+  background: var(--vsc-list-hover-bg);
+}
+
+[data-rig-action-bar-item]:focus-visible {
+  outline-color: var(--color-ring);
+}
+
+[data-rig-action-bar-item][data-disabled] {
+  opacity: 0.4;
+}
+
+[data-rig-action-bar-overflow] {
+  color: var(--vsc-description-fg);
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+[data-rig-action-bar-overflow]:hover {
+  color: var(--color-foreground);
+  background: var(--vsc-list-hover-bg);
+}
+
+/* ───────── Keyboard Hint ───────── */
+
+[data-rig-keyboard-hint-key] {
+  color: var(--vsc-keybinding-fg);
+  font-family: var(--font-mono);
+  border-color: var(--color-border);
+}

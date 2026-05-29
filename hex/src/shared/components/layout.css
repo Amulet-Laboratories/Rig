@@ -1,0 +1,315 @@
+/* Hex — Shared Layout Components (skin only)
+ * Theme colors, backgrounds, borders (colors), shadows, font-family, transitions.
+ * Structural layout lives in Rig/src/styles/layout.css.
+ */
+
+/* ───────── Drawer ───────── */
+
+[data-rig-drawer-overlay] {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+[data-rig-drawer] {
+  background: var(--color-background);
+  border-color: var(--color-border);
+}
+
+[data-rig-drawer][data-side='right'] {
+  border-left-color: var(--color-border);
+}
+
+[data-rig-drawer][data-side='left'] {
+  border-right-color: var(--color-border);
+}
+
+[data-rig-drawer][data-side='top'] {
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-drawer][data-side='bottom'] {
+  border-top-color: var(--color-border);
+}
+
+/* ───────── Title Bar ───────── */
+
+[data-rig-titlebar] {
+  background: var(--color-muted);
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-titlebar-title] {
+  color: var(--color-foreground);
+}
+
+[data-rig-titlebar-separator] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-titlebar-subtitle] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-titlebar-action] {
+  color: var(--color-foreground);
+  opacity: 0.8;
+}
+
+[data-rig-titlebar-action]:hover {
+  background: var(
+    --rig-titlebar-hover-bg,
+    color-mix(in srgb, var(--color-foreground) 10%, transparent)
+  );
+  opacity: 1;
+}
+
+[data-rig-titlebar-action][data-state='active'] {
+  opacity: 1;
+  color: var(--color-primary, var(--color-foreground));
+}
+
+/* ───────── Shell Grid ───────── */
+
+[data-rig-shell-titlebar] {
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-shell-sidebar] {
+  border-right-color: var(--rig-sidebar-border);
+}
+
+[data-rig-shell-statusbar] {
+  background: var(--rig-statusbar-bg);
+  color: var(--rig-statusbar-fg);
+  font-family: var(--font-mono);
+  border-top-color: var(--rig-sidebar-border);
+}
+
+/* ───────── Editor Workbench ───────── */
+
+/* (No skin overrides currently — workbench surface inherits editor bg.) */
+
+/* ───────── View (collapsible section) ───────── */
+
+[data-rig-view-header] {
+  color: var(--rig-sidebar-fg);
+}
+
+[data-rig-view-header]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+[data-rig-view-title] {
+  color: var(--rig-sidebar-fg);
+}
+
+[data-rig-view-actions] {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+[data-rig-view-header]:hover [data-rig-view-actions],
+[data-rig-view-header]:focus-within [data-rig-view-actions] {
+  opacity: 1;
+}
+
+[data-rig-view-action] {
+  color: var(--rig-description-fg);
+  border-radius: 5px;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+[data-rig-view-action]:hover {
+  color: var(--color-foreground);
+  background: var(--rig-list-hover-bg);
+}
+
+/* ───────── Panel ───────── */
+
+[data-rig-panel] {
+  background: var(--color-background);
+}
+
+[data-rig-panel][data-position='right'] {
+  border-left-color: var(--rig-panel-border);
+}
+
+[data-rig-panel][data-position='left'] {
+  border-right-color: var(--rig-panel-border);
+}
+
+[data-rig-panel-header] {
+  border-bottom-color: var(--rig-panel-border);
+  color: var(--rig-panel-title-inactive-fg);
+}
+
+/* ───────── Modal ───────── */
+
+[data-rig-modal-overlay] {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+[data-rig-modal] {
+  background: var(--rig-widget-bg);
+  border-color: var(--rig-widget-border);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+}
+
+/* ───────── Accordion ───────── */
+
+[data-rig-accordion][data-disabled] {
+  @apply opacity-40;
+}
+
+[data-rig-accordion-trigger] {
+  color: var(--rig-sidebar-fg);
+  transition: background-color 0.15s ease;
+}
+
+[data-rig-accordion-trigger]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+/* Accordion panel reveal transition (used with Vue <Transition name="accordion">) */
+.accordion-enter-active,
+.accordion-leave-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.accordion-enter-from {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.accordion-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+/* Chevron rotation transition */
+[data-rig-accordion-chevron] {
+  transition: transform 0.2s ease;
+}
+
+/* ───────── Collapsible ───────── */
+
+[data-rig-collapsible][data-disabled] {
+  @apply opacity-40;
+}
+
+/* ───────── PeekView ───────── */
+
+[data-rig-peek-view] {
+  border-color: var(--rig-widget-border);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 40%);
+}
+
+[data-rig-peek-view-header] {
+  background: var(--color-card);
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-peek-view-title] {
+  color: var(--color-foreground);
+  font-family: var(--font-mono);
+}
+
+[data-rig-peek-view-close] {
+  color: var(--rig-description-fg);
+  border-radius: 5px;
+  transition: color 0.15s ease;
+}
+
+[data-rig-peek-view-close]:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-peek-view-content] {
+  background: var(--color-background);
+}
+
+/* ───────── Popover ───────── */
+
+[data-rig-popover-content] {
+  background: var(--vsc-menu-bg);
+  border-color: var(--vsc-widget-border);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+  color: var(--color-foreground);
+  animation: popover-in 0.12s ease;
+}
+
+@keyframes popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ───────── ScrollArea ───────── */
+
+[data-rig-scroll-bar] {
+  transition: opacity 0.15s;
+}
+
+[data-rig-scroll-thumb] {
+  background: var(--rig-scrollbar-thumb);
+  transition: background 0.15s;
+}
+
+[data-rig-scroll-thumb]:hover {
+  background: var(--rig-scrollbar-thumb-hover);
+}
+
+/* ───────── Resizer ───────── */
+
+[data-rig-resizer][data-orientation='horizontal'],
+[data-rig-resizer][data-orientation='vertical'] {
+  transition: background-color 0.1s ease-out 0.3s;
+}
+
+[data-rig-resizer][data-orientation='horizontal']:hover,
+[data-rig-resizer][data-orientation='vertical']:hover {
+  background: var(--rig-sash-hover);
+  transition-delay: 0.3s;
+}
+
+[data-rig-resizer][data-orientation='horizontal']:active,
+[data-rig-resizer][data-orientation='vertical']:active {
+  background: var(--rig-sash-hover);
+  transition-delay: 0s;
+}
+
+[data-rig-resizer][data-dragging] {
+  background: var(--rig-sash-hover);
+}
+
+/* ───────── ResizablePanel ───────── */
+
+[data-rig-resizable-panel] {
+  @apply bg-background;
+}
+
+[data-rig-resizable-panel-handle] {
+  background: color-mix(in srgb, var(--color-foreground) 8%, transparent);
+  transition: background 0.15s ease;
+}
+
+[data-rig-resizable-panel-handle]:hover {
+  background: var(--rig-sash-hover);
+}
+
+[data-rig-resizable-panel-handle]:active,
+[data-rig-resizable-panel-handle][data-dragging] {
+  background: var(--rig-sash-hover);
+}
+
+[data-rig-resizable-panel][data-disabled] [data-rig-resizable-panel-handle] {
+  @apply opacity-30;
+}

@@ -1,0 +1,694 @@
+/* Hex — Shared Web Components (skin only)
+ * Colors, backgrounds, shadows, opacity, color-only transitions, fonts.
+ * Structural layout lives in Rig/src/styles/web.css.
+ *
+ * Typography & color conventions
+ * ──────────────────────────────
+ * Each scoped theme provides:
+ *   --font-sans       body copy
+ *   --font-serif      display / heading font (if the brand uses a serif)
+ *   --font-mono       code / monospace accents
+ *   --font-heading    resolved heading font (set by each scoped theme)
+ *
+ * All heading elements (h1-h6) inside web components inherit
+ * --font-heading and --color-primary automatically. Body text
+ * inherits --color-muted-foreground. SVG icons inherit --color-primary.
+ */
+
+/* ───────── Global Typography Defaults ───────── */
+
+[data-rig-site-shell] h1,
+[data-rig-site-shell] h2,
+[data-rig-site-shell] h3,
+[data-rig-site-shell] h4,
+[data-rig-site-shell] h5,
+[data-rig-site-shell] h6 {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-primary);
+}
+
+[data-rig-hero-description],
+[data-rig-section-header] p,
+[data-rig-section] p,
+[data-rig-testimonial-attribution] p {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-hero-eyebrow] {
+  color: var(--color-accent);
+}
+
+[data-rig-testimonial-attribution] p:first-child {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+[data-rig-stat-row-value] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+}
+
+/* SVG icons inside web components inherit primary color */
+[data-rig-site-shell] svg[aria-hidden] {
+  color: var(--color-primary);
+}
+
+/* Brand slot in nav inherits heading font */
+[data-rig-site-nav-brand] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+}
+
+[data-rig-site-nav-brand-link] {
+  color: var(--color-foreground);
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+}
+
+/* Border elements inside web components inherit theme border color */
+[data-rig-site-shell] [class*='border'] {
+  border-color: var(--color-border);
+}
+
+/* Decorative accent bars — theme-colored dividers */
+[data-rig-accent] {
+  background: var(--color-primary);
+}
+
+/* Footer text hierarchy — body text dimmed, headings/brands full opacity */
+[data-rig-site-footer] {
+  color: var(--color-primary-foreground);
+}
+
+[data-rig-site-footer-grid] p,
+[data-rig-site-footer-grid] ul,
+[data-rig-site-footer-grid] li,
+[data-rig-site-footer-post] {
+  opacity: 0.85;
+}
+
+[data-rig-site-footer-grid] h3,
+[data-rig-site-footer-grid] h4,
+[data-rig-site-footer-grid] p:first-child {
+  opacity: 0.9;
+}
+
+/* ───────── Skip Link ───────── */
+
+[data-rig-skip-link]:focus {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+/* ───────── Site Shell ───────── */
+
+[data-rig-site-shell] {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans, system-ui, sans-serif);
+}
+
+/* ───────── Site Nav ───────── */
+
+[data-rig-site-nav-bar] {
+  border-bottom-color: var(--color-border);
+  background: var(--color-background);
+}
+
+[data-rig-site-nav-link] {
+  color: var(--color-muted-foreground);
+  background: transparent;
+  transition:
+    color 0.15s,
+    background 0.15s;
+}
+
+[data-rig-site-nav-link]:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-site-nav-link][data-active] {
+  color: var(--color-primary);
+  background: var(--color-secondary);
+}
+
+[data-rig-site-nav-toggle] {
+  background: none;
+  color: var(--color-primary);
+}
+
+[data-rig-site-nav-mobile] {
+  border-top-color: var(--color-border);
+  background: var(--color-background);
+}
+
+[data-rig-site-nav-mobile-link] {
+  background: transparent;
+  color: var(--color-muted-foreground);
+  transition:
+    color 0.15s,
+    background 0.15s;
+}
+
+[data-rig-site-nav-mobile-link]:hover {
+  color: var(--color-foreground);
+}
+
+[data-rig-site-nav-mobile-link][data-active] {
+  color: var(--color-primary);
+  background: var(--color-secondary);
+}
+
+/* ───────── Hero ───────── */
+
+[data-rig-hero-ornament] {
+  color: var(--color-primary);
+}
+
+[data-rig-hero-scrim] {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-background) 80%, transparent) 0%,
+    color-mix(in srgb, var(--color-background) 87%, transparent) 50%,
+    color-mix(in srgb, var(--color-background) 94%, transparent) 100%
+  );
+}
+
+/* ───────── Section ───────── */
+
+[data-rig-section][data-variant='alternate'] {
+  background: var(--color-card);
+}
+
+[data-rig-section][data-variant='bordered'] {
+  border-top-color: var(--color-border);
+  border-bottom-color: var(--color-border);
+  background: var(--color-card);
+}
+
+[data-rig-section-accent] {
+  background: var(--color-primary);
+}
+
+[data-rig-section-subtitle] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Stat Row ───────── */
+
+[data-rig-stat-row][data-variant='bordered'] {
+  border-top-color: var(--color-border);
+  border-bottom-color: var(--color-border);
+  background: var(--color-card);
+}
+
+[data-rig-stat-row][data-variant='card'] {
+  background: var(--color-card);
+}
+
+[data-rig-stat-row][data-variant='filled'] {
+  background: var(--color-primary);
+}
+
+[data-rig-stat-row][data-variant='filled-secondary'] {
+  background: var(--color-secondary);
+}
+
+[data-rig-stat-row-value] {
+  color: var(--color-primary);
+}
+
+[data-rig-stat-row][data-variant='filled'] [data-rig-stat-row-value] {
+  color: var(--color-primary-foreground);
+}
+
+[data-rig-stat-row-label] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-stat-row][data-variant='filled'] [data-rig-stat-row-label] {
+  color: var(--color-primary-foreground);
+  opacity: 0.85;
+}
+
+[data-rig-stat-row-change] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── CTA Banner ───────── */
+
+[data-rig-cta-banner] {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+[data-rig-cta-banner][data-variant='card'] {
+  background: var(--color-card);
+  color: var(--color-foreground);
+}
+
+[data-rig-cta-banner][data-variant='background'] {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+[data-rig-cta-banner][data-variant='inverted'] {
+  background: var(--color-foreground);
+  color: var(--color-background);
+}
+
+[data-rig-cta-banner][data-variant='destructive'] {
+  background: var(--color-destructive);
+  color: var(--color-destructive-foreground);
+}
+
+/* ───────── Testimonial ───────── */
+
+[data-rig-testimonial-quote] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-testimonial][data-layout='border'] {
+  border-left-color: var(--color-primary);
+}
+
+/* ───────── Site Footer ───────── */
+
+[data-rig-site-footer] {
+  background: var(--site-footer-bg, var(--color-primary));
+  color: var(--site-footer-color, var(--color-primary-foreground));
+}
+
+[data-rig-site-footer][data-variant='card'] {
+  background: var(--color-card);
+  color: var(--color-foreground);
+}
+
+[data-rig-site-footer][data-variant='inverted'] {
+  background: var(--color-foreground);
+  color: var(--color-background);
+}
+
+[data-rig-site-footer-post] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Site Nav — Scroll State ───────── */
+
+[data-rig-site-nav][data-scrolled] [data-rig-site-nav-bar] {
+  background: color-mix(in srgb, var(--color-background) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+[data-rig-site-nav][data-at-top] [data-rig-site-nav-bar] {
+  border-bottom-color: transparent;
+  background: transparent;
+}
+
+/* ───────── Site Nav — Pill Variant ───────── */
+
+[data-rig-site-nav][data-variant='pill'] [data-rig-site-nav-bar] {
+  background: transparent;
+}
+
+[data-rig-site-nav][data-variant='pill'] [data-rig-site-nav-container] {
+  background: color-mix(in srgb, var(--color-background) 80%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: color-mix(in srgb, var(--color-border) 60%, transparent);
+  box-shadow: 0 4px 24px rgb(0 0 0 / 0.08);
+}
+
+[data-rig-site-nav][data-variant='pill'] [data-rig-site-nav-link][data-active] {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+[data-rig-site-nav][data-variant='pill'] [data-rig-site-nav-mobile] {
+  border-color: var(--color-border);
+  background: color-mix(in srgb, var(--color-background) 90%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgb(0 0 0 / 0.1);
+}
+
+[data-rig-site-nav][data-variant='pill'] [data-rig-site-nav-mobile-link][data-active] {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+/* Pill — scroll states */
+[data-rig-site-nav][data-variant='pill'][data-at-top] [data-rig-site-nav-container] {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* ───────── Site Nav — Glass Variant ───────── */
+
+[data-rig-site-nav][data-variant='glass'] [data-rig-site-nav-bar] {
+  background: color-mix(in srgb, var(--color-background) 55%, transparent);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  border-bottom-color: color-mix(in srgb, var(--color-border) 35%, transparent);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+[data-rig-site-nav][data-variant='glass'] [data-rig-site-nav-link]:hover {
+  background: color-mix(in srgb, var(--color-foreground) 8%, transparent);
+}
+
+[data-rig-site-nav][data-variant='glass'] [data-rig-site-nav-link][data-active] {
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+[data-rig-site-nav][data-variant='glass'] [data-rig-site-nav-mobile] {
+  background: color-mix(in srgb, var(--color-background) 75%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top-color: color-mix(in srgb, var(--color-border) 35%, transparent);
+}
+
+[data-rig-site-nav][data-variant='glass'] [data-rig-site-nav-mobile-link][data-active] {
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  color: var(--color-primary);
+}
+
+/* ───────── Site Nav — Theater Variant ───────── */
+
+[data-rig-site-nav][data-variant='theater'] [data-rig-site-nav-link] {
+  background: transparent !important;
+}
+
+[data-rig-site-nav][data-variant='theater'] [data-rig-site-nav-link]::after {
+  background: var(--color-primary);
+}
+
+[data-rig-site-nav][data-variant='theater'] [data-rig-site-nav-link][data-active] {
+  color: var(--color-primary);
+}
+
+[data-rig-site-nav][data-variant='theater'] [data-rig-site-nav-mobile-link] {
+  border-bottom-color: color-mix(in srgb, var(--color-border) 40%, transparent);
+}
+
+[data-rig-site-nav][data-variant='theater'] [data-rig-site-nav-mobile-link][data-active] {
+  background: transparent;
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+/* ───────── Site Nav — Split Variant ───────── */
+
+[data-rig-site-nav][data-variant='split'] [data-rig-site-nav-link] {
+  background: transparent !important;
+}
+
+[data-rig-site-nav][data-variant='split'] [data-rig-site-nav-link][data-active] {
+  color: var(--color-primary);
+}
+
+[data-rig-site-nav][data-variant='split'] [data-rig-site-nav-link][data-active]::after {
+  background: var(--color-primary);
+}
+
+[data-rig-site-nav][data-variant='split'] [data-rig-site-nav-mobile-link][data-active] {
+  background: transparent;
+  color: var(--color-primary);
+}
+
+/* ───────── Site Nav — Drawer Variant ───────── */
+
+[data-rig-site-nav][data-variant='drawer'] [data-rig-site-nav-mobile] {
+  border-right-color: var(--color-border);
+  background: var(--color-background);
+  box-shadow: 8px 0 32px rgb(0 0 0 / 0.15);
+}
+
+[data-rig-site-nav][data-variant='drawer'][data-mobile-open]::after {
+  background: rgb(0 0 0 / 0.3);
+}
+
+/* ───────── Site Nav — Overlay Variant ───────── */
+
+[data-rig-site-nav][data-variant='overlay'] [data-rig-site-nav-bar] {
+  background: transparent;
+}
+
+[data-rig-site-nav][data-variant='overlay'] [data-rig-site-nav-mobile] {
+  background: var(--color-background);
+}
+
+[data-rig-site-nav][data-variant='overlay'] [data-rig-site-nav-mobile-link] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  opacity: 0;
+}
+
+[data-rig-site-nav][data-variant='overlay'] [data-rig-site-nav-mobile-link][data-active] {
+  color: var(--color-primary);
+  background: transparent;
+}
+
+[data-rig-site-nav][data-variant='overlay'] [data-rig-site-nav-mobile-link]:hover {
+  color: var(--color-primary);
+}
+
+@keyframes rig-overlay-link-in-opacity {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Reuse the structural keyframes by adding a paired opacity animation */
+[data-rig-site-nav][data-variant='overlay'] [data-rig-site-nav-mobile-link] {
+  animation:
+    rig-overlay-link-in 0.4s ease forwards,
+    rig-overlay-link-in-opacity 0.4s ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-rig-site-nav][data-variant='overlay'] [data-rig-site-nav-mobile-link] {
+    opacity: 1;
+  }
+}
+
+/* ───────── Site Nav — Tabs Variant ───────── */
+
+[data-rig-site-nav][data-variant='tabs'] [data-rig-site-nav-bar] {
+  border-top-color: var(--color-border);
+  background: var(--color-background);
+}
+
+[data-rig-site-nav][data-variant='tabs'] [data-rig-site-nav-link][data-active] {
+  background: transparent;
+  color: var(--color-primary);
+}
+
+/* ───────── Pricing Card ───────── */
+
+[data-rig-pricing-card] {
+  border-color: var(--color-border);
+  background: color-mix(in srgb, var(--color-background) 95%, var(--color-foreground));
+}
+
+[data-rig-pricing-card]:hover {
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.15);
+}
+
+[data-rig-pricing-card][data-featured] {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+[data-rig-pricing-card][data-featured]:hover {
+  box-shadow:
+    0 0 0 1px var(--color-primary),
+    0 8px 24px rgb(0 0 0 / 0.2);
+}
+
+[data-rig-pricing-card-badge] {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+[data-rig-pricing-card-title] {
+  color: var(--color-foreground);
+}
+
+[data-rig-pricing-card-price] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-primary);
+}
+
+[data-rig-pricing-card-period] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-pricing-card-description] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-pricing-card-features] li {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-pricing-card-features] li svg {
+  color: var(--color-success, var(--color-primary));
+}
+
+[data-rig-pricing-card-footer] {
+  border-top-color: var(--color-border);
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── SectionDivider ───────── */
+
+[data-rig-section-divider-path] {
+  fill: var(--section-divider-fill, var(--color-primary));
+}
+
+/* ───────── FlankedHeading ───────── */
+
+[data-rig-flanked-heading-ornament] {
+  color: var(--color-primary);
+}
+
+[data-rig-flanked-heading-rule] {
+  background: var(--color-muted-foreground);
+  opacity: 0.3;
+}
+
+/* ───────── Ornament ───────── */
+
+[data-rig-ornament] {
+  color: var(--color-primary);
+}
+
+/* ───────── ContactForm ───────── */
+
+[data-rig-contact-form-label] {
+  font-family: var(--font-mono, monospace);
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-contact-form-field-error] {
+  color: var(--color-destructive, #ef4444);
+}
+
+[data-rig-contact-form-error] {
+  border-color: color-mix(in srgb, var(--color-destructive, #ef4444) 40%, transparent);
+  background: color-mix(in srgb, var(--color-destructive, #ef4444) 10%, transparent);
+}
+
+/* ───────── ServiceGrid ───────── */
+
+[data-rig-service-grid][data-layout='list'] [data-rig-service-grid-item],
+[data-rig-service-grid][data-layout='numbered'] [data-rig-service-grid-item] {
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-service-grid-number] {
+  font-family: var(--font-serif, var(--font-sans));
+  color: var(--color-primary);
+}
+
+[data-rig-service-grid-title] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-service-grid-description] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-service-grid-icon] {
+  color: var(--color-primary);
+}
+
+/* ───────── TeamGrid ───────── */
+
+[data-rig-team-grid-name] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-team-grid-role] {
+  color: var(--color-primary);
+}
+
+[data-rig-team-grid-bio] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-team-grid-credentials] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── MenuList ───────── */
+
+[data-rig-menu-list-item] {
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-menu-list-name] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-menu-list-note] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-menu-list-description] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-menu-list-price] {
+  font-family: var(--font-mono, monospace);
+  color: var(--color-foreground);
+}
+
+/* ───────── FeatureList ───────── */
+
+[data-rig-feature-list-icon] {
+  color: var(--color-primary);
+}
+
+[data-rig-feature-list-text] {
+  color: var(--color-foreground);
+}
+
+[data-rig-feature-list-detail] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── Gallery ───────── */
+
+[data-rig-gallery-title] {
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+  color: var(--color-foreground);
+}
+
+[data-rig-gallery-description] {
+  color: var(--color-muted-foreground);
+}
+
+/* ───────── MapPlaceholder ───────── */
+
+[data-rig-map-placeholder] {
+  background: var(--color-card);
+  border-color: var(--color-border);
+}
+
+[data-rig-map-pin] {
+  color: var(--color-primary);
+  opacity: 0.6;
+}
+
+[data-rig-map-address] {
+  color: var(--color-foreground);
+}
+
+[data-rig-map-description] {
+  color: var(--color-muted-foreground);
+}

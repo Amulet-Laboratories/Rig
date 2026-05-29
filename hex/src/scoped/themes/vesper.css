@@ -1,0 +1,132 @@
+/* Hex — lanternhouse (scoped) */
+
+/* Hex — Lanternhouse Design Tokens
+ * Evening observatory. Soft violet glow on deep plum.
+ * Boutique hospitality theme with lavender accent on dark plum canvas.
+ *
+ * Full palette (7 swatch colors):
+ *   #110E18  dark plum       — background
+ *   #1A1624  deep violet     — card, popover
+ *   #221E30  muted plum      — secondary, muted
+ *   #E4DFF0  lavender white  — foreground text
+ *   #8A80A0  dusty violet    — muted foreground
+ *   #7A8EB8  cool blue       — info
+ *   #A87BD4  soft lavender   — primary (h≈280)
+ *   #C89FB8  dusty rose      — accent (h≈325, warm complement)
+ *
+ * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
+ * :root provides standalone CSS custom property access for non-Tailwind consumers.
+ */
+
+[data-hex-theme='vesper'] {
+  --color-background: #110e18;
+  --color-foreground: #e4dff0;
+  --color-card: #1a1624;
+  --color-card-foreground: #e4dff0;
+  --color-popover: #1a1624;
+  --color-popover-foreground: #e4dff0;
+  --color-primary: #a87bd4;
+  --color-primary-foreground: #110e18;
+  --color-secondary: #221e30;
+  --color-secondary-foreground: #e4dff0;
+  --color-muted: #221e30;
+  --color-muted-foreground: #8a80a0;
+  --color-accent: #c89fb8;
+  --color-accent-foreground: #110e18;
+  --color-destructive: #d45a5a;
+  --color-destructive-foreground: #e4dff0;
+  --color-success: #5aaa70;
+  --color-warning: #d4a843;
+  --color-info: #7a8eb8;
+  --color-border: #2e2840;
+  --color-input: #2e2840;
+  --color-ring: #a87bd4;
+  --font-sans: 'Josefin Sans', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Josefin Sans', 'SF Mono', ui-monospace, monospace;
+  --font-serif: 'Bodoni Moda', 'Lora', Georgia, serif;
+  --font-heading: 'Bodoni Moda', 'Lora', Georgia, serif;
+  --font-size-2xs: 0.625rem;
+  --font-size-2xs--line-height: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-xs--line-height: 1.5;
+  --font-size-sm: 0.8125rem;
+  --font-size-sm--line-height: 1.5;
+  --font-size-base: 0.875rem;
+  --font-size-base--line-height: 1.5;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.25;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 1.25;
+  --font-display: var(--font-sans);
+  --radius: 5px;
+  --tracking-heading: 0.1em;
+  --tracking-display: 0.15em;
+  --tracking-caps: 0.2em;
+  --background: #110e18;
+  --foreground: #e4dff0;
+  --card: #1a1624;
+  --card-foreground: #e4dff0;
+  --popover: #1a1624;
+  --popover-foreground: #e4dff0;
+  --primary: #a87bd4;
+  --primary-foreground: #110e18;
+  --secondary: #221e30;
+  --secondary-foreground: #e4dff0;
+  --muted: #221e30;
+  --muted-foreground: #8a80a0;
+  --accent: #c89fb8;
+  --accent-foreground: #110e18;
+  --destructive: #d45a5a;
+  --destructive-foreground: #e4dff0;
+  --success: #5aaa70;
+  --warning: #d4a843;
+  --info: #7a8eb8;
+  --border: #2e2840;
+  --input: #2e2840;
+  --ring: #a87bd4;
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.08em;
+  --lh-plum: #110e18;
+  --lh-deep: #1a1624;
+  --lh-charcoal: #221e30;
+  --lh-cream: #e4dff0;
+  --lh-dusty: #8a80a0;
+  --lh-steel: #7a8eb8;
+  --lh-lavender: #a87bd4;
+  --rig-button-hover-bg: #221e30;
+  --rig-scrollbar-thumb: rgba(228, 223, 240, 0.15);
+  --rig-scrollbar-thumb-hover: rgba(228, 223, 240, 0.3);
+
+  /* Editorial display rhythm — generous tracking for serif elegance */
+  --rig-display-md: 3rem;
+  --rig-display-lg: 4rem;
+  --rig-display-xl: 5.5rem;
+  --rig-display-2xl: 7rem;
+  --rig-display-tracking: -0.01em;
+  --rig-display-leading: 1.05;
+
+  /* Evening-warmth media filter */
+  --rig-media-filter: brightness(0.97) saturate(1.08);
+
+  /* Link slide accent */
+  --link-slide-color: #c89fb8;
+
+  /* Light-shadow tint over plum */
+  --rig-elevation-rgb: 17 14 24;
+}
