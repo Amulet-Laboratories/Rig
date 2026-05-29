@@ -1,4 +1,4 @@
-/* Hex — Tidemark Design Tokens
+/* Hex — Cypress Design Tokens
  * Coastal luxury real estate. Warm light mode with cyan accents.
  * Linen white background, charcoal brown text, true cyan primary, terracotta accent.
  * Light mode real estate theme — suited for property listings and luxury brand sites.
@@ -157,7 +157,7 @@
   --tm-sage: #7a9e7e;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
-   * Overrides shared/tokens.css defaults where the Tidemark palette needs
+   * Overrides shared/tokens.css defaults where the Cypress palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 

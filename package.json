@@ -41,6 +41,66 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.mjs",
+      "require": "./dist/core.cjs"
+    },
+    "./layout": {
+      "types": "./dist/layout.d.ts",
+      "import": "./dist/layout.mjs",
+      "require": "./dist/layout.cjs"
+    },
+    "./nav": {
+      "types": "./dist/nav.d.ts",
+      "import": "./dist/nav.mjs",
+      "require": "./dist/nav.cjs"
+    },
+    "./editor": {
+      "types": "./dist/editor.d.ts",
+      "import": "./dist/editor.mjs",
+      "require": "./dist/editor.cjs"
+    },
+    "./lists": {
+      "types": "./dist/lists.d.ts",
+      "import": "./dist/lists.mjs",
+      "require": "./dist/lists.cjs"
+    },
+    "./menus": {
+      "types": "./dist/menus.d.ts",
+      "import": "./dist/menus.mjs",
+      "require": "./dist/menus.cjs"
+    },
+    "./extras": {
+      "types": "./dist/extras.d.ts",
+      "import": "./dist/extras.mjs",
+      "require": "./dist/extras.cjs"
+    },
+    "./shell": {
+      "types": "./dist/shell.d.ts",
+      "import": "./dist/shell.mjs",
+      "require": "./dist/shell.cjs"
+    },
+    "./data": {
+      "types": "./dist/data.d.ts",
+      "import": "./dist/data.mjs",
+      "require": "./dist/data.cjs"
+    },
+    "./spatial": {
+      "types": "./dist/spatial.d.ts",
+      "import": "./dist/spatial.mjs",
+      "require": "./dist/spatial.cjs"
+    },
+    "./temporal": {
+      "types": "./dist/temporal.d.ts",
+      "import": "./dist/temporal.mjs",
+      "require": "./dist/temporal.cjs"
+    },
+    "./web": {
+      "types": "./dist/web.d.ts",
+      "import": "./dist/web.mjs",
+      "require": "./dist/web.cjs"
+    },
     "./styles": "./src/styles/base.css",
     "./scaffold": "./src/styles/scaffold.css"
   },

@@ -1,4 +1,4 @@
-/* Hex — Briarcove Design Tokens
+/* Hex — Iris Design Tokens
  * Studio clarity. Clean white canvas with violet accents.
  * WCAG 2.1 AA compliant. Pure white background, dark purple-tinted foreground.
  * Light mode studio theme — suited for creative platforms and portfolios.
@@ -161,7 +161,7 @@
   --bc-violet-border: #d8d0e5;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
-   * Overrides shared/tokens.css defaults where the Briarcove palette needs
+   * Overrides shared/tokens.css defaults where the Iris palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 

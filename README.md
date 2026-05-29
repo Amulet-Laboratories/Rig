@@ -46,6 +46,23 @@ import { Button, Modal, TreeView } from '@amulet-laboratories/rig'
 </template>
 ```
 
+### Subpackage imports (smaller bundles)
+
+The root barrel re-exports every component. For projects that only need a slice — say, primitives + marketing-web bits — import from a subpackage instead. This skips the data / spatial / temporal trees and their optional peer deps (`d3`, `markdown-it`, `dompurify`) entirely.
+
+```ts
+// Just primitives — Button, Card, Badge, Avatar, Icon, etc.
+import { Button, Card, Badge } from '@amulet-laboratories/rig/core'
+
+// Marketing-site scaffolds — Hero, Section, SiteFooter, CTABanner, etc.
+import { Hero, Section, SiteFooter } from '@amulet-laboratories/rig/web'
+
+// Nav — Tabs, Breadcrumbs, Stepper, ActivityBar, etc.
+import { Tabs, Breadcrumbs } from '@amulet-laboratories/rig/nav'
+```
+
+Available subpackage entries: `./core`, `./layout`, `./nav`, `./editor`, `./lists`, `./menus`, `./extras`, `./shell`, `./data`, `./spatial`, `./temporal`, `./web`. The root barrel (`@amulet-laboratories/rig`) still works and is fine for shell apps that use components across many packages.
+
 ## Packages
 
 | Package      | Components | Description                                          |
@@ -93,13 +110,15 @@ pnpm add @amulet-laboratories/hex
 
 ```ts
 // Pick a theme — each is a single minified CSS bundle
-import '@amulet-laboratories/hex' // Hexrig dark (default)
-import '@amulet-laboratories/hex/vscode' // VSCode dark
-import '@amulet-laboratories/hex/spotify' // Spotify dark
-import '@amulet-laboratories/hex/gmail' // Gmail light
+import '@amulet-laboratories/hex/cobalt'
+import '@amulet-laboratories/hex/garden'
+import '@amulet-laboratories/hex/spacewizard'
+// …and 24 more
 ```
 
-Hex targets Rig's `data-rig-*` attributes using CSS custom properties. All tokens are overridable per-element or globally.
+**27 themes** ship with Hex: beacon, brass, cardinal, citron, clover, cobalt, copper, cypress, damson, fern, forge, garden, greyline, harbor, hearth, iris, juniper, lagoon, ochre, orchid, quartz, roast, sienna, slate, spacewizard, vesper, voltaic. Each is a self-contained CSS bundle (typically 80–130 KB minified) targeting Rig's `data-rig-*` attributes. Switch themes by changing one import — every component re-skins on the next paint.
+
+All tokens are overridable per-element or globally. CTA variants for example expose `--rig-button-cta-bg / -fg / -border / -shadow` so consumer sites can drop in their own brand color without overriding the selector.
 
 ## Styling
 

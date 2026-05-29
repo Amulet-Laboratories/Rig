@@ -48,15 +48,25 @@
   color: var(--rig-button-secondary-hover-fg, var(--color-accent-foreground));
 }
 
+/* CTA — distinct token namespace so themes (and per-site overrides) can
+ * skin call-to-action buttons without colliding with the primary palette.
+ * Falls back to the primary tokens if a theme hasn't set CTA-specific ones,
+ * preserving prior behavior while giving consumers a clean opt-in path. */
 [data-rig-button][data-variant='cta'] {
-  background: var(--rig-button-bg);
-  color: var(--rig-button-fg);
-  border-color: var(--rig-button-border);
+  background: var(--rig-button-cta-bg, var(--rig-button-bg));
+  color: var(--rig-button-cta-fg, var(--rig-button-fg));
+  border-color: var(--rig-button-cta-border, var(--rig-button-border));
+  box-shadow: var(--rig-button-cta-shadow, none);
 }
 
 [data-rig-button][data-variant='cta']:hover {
-  background: var(--rig-button-hover-bg);
-  color: var(--rig-button-hover-fg, var(--color-foreground));
+  background: var(--rig-button-cta-hover-bg, var(--rig-button-hover-bg));
+  color: var(--rig-button-cta-hover-fg, var(--rig-button-hover-fg, var(--color-foreground)));
+  box-shadow: var(--rig-button-cta-hover-shadow, var(--rig-button-cta-shadow, none));
+}
+
+[data-rig-button][data-variant='cta']:active {
+  box-shadow: var(--rig-button-cta-active-shadow, var(--rig-button-cta-shadow, none));
 }
 
 [data-rig-button][data-variant='danger'] {

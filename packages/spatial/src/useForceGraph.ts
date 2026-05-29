@@ -1,7 +1,20 @@
 // useForceGraph — shared utilities for D3 force-directed graph components.
 // Creates drag behaviors and click-to-highlight interactions.
+//
+// Named imports here are deliberate — `import * as d3 from 'd3'` defeats
+// Rollup tree-shaking, which pulls the entire d3 + data-package code into
+// any consumer's bundle even when they don't use spatial graphs.
 
-import * as d3 from 'd3'
+import { drag } from 'd3'
+import type {
+  BaseType,
+  DragBehavior,
+  Selection,
+  Simulation,
+  SimulationLinkDatum,
+  SimulationNodeDatum,
+  SubjectPosition,
+} from 'd3'
 
 /**
  * Create a drag behavior that pins / unpins simulation nodes.
@@ -13,11 +26,10 @@ import * as d3 from 'd3'
  * nodeGroups.call(drag)
  * ```
  */
-export function createDragBehavior<N extends d3.SimulationNodeDatum>(
-  getSimulation: () => d3.Simulation<N, d3.SimulationLinkDatum<N>> | null,
-): d3.DragBehavior<SVGGElement, N, N | d3.SubjectPosition> {
-  return d3
-    .drag<SVGGElement, N>()
+export function createDragBehavior<N extends SimulationNodeDatum>(
+  getSimulation: () => Simulation<N, SimulationLinkDatum<N>> | null,
+): DragBehavior<SVGGElement, N, N | SubjectPosition> {
+  return drag<SVGGElement, N>()
     .on('start', (event, d) => {
       if (!event.active) getSimulation()?.alphaTarget(0.3).restart()
       d.fx = d.x
@@ -35,13 +47,13 @@ export function createDragBehavior<N extends d3.SimulationNodeDatum>(
 }
 
 export interface GraphHighlightOptions<
-  N extends d3.SimulationNodeDatum & { id: string },
-  L extends d3.SimulationLinkDatum<N>,
+  N extends SimulationNodeDatum & { id: string },
+  L extends SimulationLinkDatum<N>,
 > {
   links: L[]
-  nodes: d3.Selection<SVGGElement, N, SVGGElement | null, unknown>
-  linkLines: d3.Selection<d3.BaseType, L, SVGGElement | null, unknown>
-  svg: d3.Selection<SVGSVGElement, unknown, null, undefined>
+  nodes: Selection<SVGGElement, N, SVGGElement | null, unknown>
+  linkLines: Selection<BaseType, L, SVGGElement | null, unknown>
+  svg: Selection<SVGSVGElement, unknown, null, undefined>
   defaultLinkOpacity: number
 }
 
@@ -50,8 +62,8 @@ export interface GraphHighlightOptions<
  * Click a node to dim all unconnected nodes/links; click again or background to reset.
  */
 export function applyGraphHighlight<
-  N extends d3.SimulationNodeDatum & { id: string },
-  L extends d3.SimulationLinkDatum<N>,
+  N extends SimulationNodeDatum & { id: string },
+  L extends SimulationLinkDatum<N>,
 >(opts: GraphHighlightOptions<N, L>): void {
   const { links, nodes, linkLines, svg, defaultLinkOpacity } = opts
   let selected: string | null = null

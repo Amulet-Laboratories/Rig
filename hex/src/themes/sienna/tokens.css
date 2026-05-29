@@ -1,5 +1,5 @@
-/* Hex — Briarcovelib Design Tokens
- * Public library. Warm light mode with sienna and slate blue.
+/* Hex — Sienna Design Tokens
+ * Warm light mode with sienna and slate blue.
  * Civic warmth — welcoming, literary, community-focused.
  *
  * Full palette (7 swatch colors):
@@ -154,7 +154,7 @@
   --bl-slate: #3a6b8c;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
-   * Overrides shared/tokens.css defaults where the Briarcovelib palette needs
+   * Overrides shared/tokens.css defaults where the Sienna palette needs
    * values that can't be derived directly from --color-* semantics.
    */
 
