@@ -17,7 +17,7 @@
         Start building.
       </h2>
       <p class="mx-auto mb-10 max-w-[480px] text-[17px] leading-relaxed text-text-muted">
-        149 components. 27 themes. 24 composables. Two packages. One import to ship.
+        149 components. 27 themes. 39 composables. Two packages. One import to ship.
       </p>
 
       <div

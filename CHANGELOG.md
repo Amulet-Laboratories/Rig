@@ -5,6 +5,25 @@ All notable changes to `@amulet-laboratories/rig` will be documented in this fil
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **Subpackage exports.** Consumers can now import from any of the 12 packages directly — `import { Button } from '@amulet-laboratories/rig/core'`, `import { Hero } from '@amulet-laboratories/rig/web'`, etc. — and skip the full 149-component barrel. Entries: `./core`, `./layout`, `./nav`, `./editor`, `./lists`, `./menus`, `./extras`, `./shell`, `./data`, `./spatial`, `./temporal`, `./web`. Each emits its own `.mjs` + `.cjs` + `.d.ts`. The root `.` barrel still works.
+- **CTA button token hooks.** New `--rig-button-cta-{bg,fg,border,shadow}` (plus hover + active variants) on the shared button CSS — sites with custom CTA palettes can override the tokens instead of the entire selector. Each falls back to the primary tokens when unset, so existing themes are unaffected.
+
+### Changed
+
+- **`useForceGraph` uses named d3 imports** instead of `import * as d3 from 'd3'`. Restores Rollup tree-shaking on the data + spatial packages — consumers of just primitives no longer pull the full d3 library into their bundle.
+- **Build emits per-entry bundles.** `vite.config.ts` is now multi-entry library mode (13 entries). `vite-plugin-dts` switched from `rollupTypes: true` to `insertTypesEntry` so each entry gets its own `.d.ts` without OOMing the bundler.
+- **Hex theme content cleanup (27 themes).** Stripped project identifiers from 14 themes (cardinal, clover, copper, cypress, damson, hearth, iris, lagoon, roast, sienna, slate, vesper, voltaic — plus residual descriptive phrases in cypress + vesper). Renamed 17 brand-prefixed CSS variables to use theme names (`--beanwoven-*` → `--roast-*`, `--kbcv-*` → `--cardinal-*`, etc.). Zero source files in any consumer project reference the old names.
+- **README:** corrected theme count from 4 (in the example list) to the actual 27, alphabetically enumerated. New "Subpackage imports" section. CTA-token customization documented.
+- **Scaffold (`@amulet-laboratories/rig/scaffold`)** keeps its current location with a comment explaining the architectural distinction from Hex themes (scaffold is Rig's fallback so components render before any theme loads; Hex themes are the public art-direction surface).
+
+### Added (Hex)
+
+- **`./shared/*` package exports** so custom themes built outside `Rig/hex/src/themes/` can import the shared component CSS individually (`@amulet-laboratories/hex/shared/rig-defaults`, `/shared/components/core`, etc.). 16 new entries.
+
 ## [0.3.0] — 2026-03-25
 
 ### Added

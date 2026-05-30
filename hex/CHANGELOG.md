@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **`./shared/*` package exports** so custom themes built outside `src/themes/` can import the shared component CSS individually. 16 new entries: `./shared/rig-defaults`, `./shared/a11y`, `./shared/tokens`, and `./shared/components/{core, layout, nav, editor, lists, menus, extras, shell, data, spatial, temporal, prose, web, content}`.
+
+### Changed
+
+- **Theme content cleanup (all 27 themes).** Stripped project-specific identifiers from comments across 14 themes — cardinal (KBCV), clover (Compass), copper (Undertow), cypress ("real estate theme"), damson (Meeplehaus), hearth (Fogline), iris (Briarcove), lagoon (Duskline), roast (Beanwoven), sienna (Briarcovelib), slate (Shelfglow), vesper ("hospitality theme"), voltaic (Andrew Passanisi). Renamed 17 brand-prefixed CSS variables to use theme names (`--beanwoven-*` → `--roast-*`, `--kbcv-*` → `--cardinal-*`, etc.). Zero source files in any consumer project reference the old names. Token values unchanged.
+- **README rewrite.** Documents all 27 themes (was 4) with one-line palette summaries. New section on building a custom theme outside `src/themes/` via `@amulet-laboratories/hex/shared/*` imports.
+
+### Added (component skins)
+
+- **CTA button distinct token namespace** — new `--rig-button-cta-{bg, fg, border, shadow}` (plus hover + active variants). Consumers with custom CTA palettes now override tokens instead of the entire selector. Each falls back to the primary token when unset; existing themes unaffected.
+
 ## [0.4.0] — 2026-05-03
 
 ### Added
