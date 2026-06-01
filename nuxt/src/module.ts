@@ -259,13 +259,17 @@ export default defineNuxtModule<NuxtRigOptions>({
       addImports({ name: 'useDetailView', from: '@amulet-laboratories/rig' })
       addImports({ name: 'useFormatDate', from: '@amulet-laboratories/rig' })
       addImports({ name: 'useBreadcrumbs', from: '@amulet-laboratories/rig' })
-      addImports({ name: 'useFathom', from: '@amulet-laboratories/rig' })
     }
 
     // ── Content features (authority-site runtime) ──
     if (!options.content) return
 
     const contentOpts: ContentOptions = options.content === true ? {} : options.content
+
+    // Authority-site analytics composable. Gated to content consumers so it
+    // does not shadow an app's own `useFathom` auto-import (e.g. QuizSort's
+    // quiz-specific analytics live in its local composables/useFathom.ts).
+    addImports({ name: 'useFathom', from: '@amulet-laboratories/rig' })
 
     // Content components
     const contentComponents: Array<{ name: string; filePath: string }> = [
