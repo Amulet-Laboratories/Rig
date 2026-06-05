@@ -3,15 +3,23 @@
 import DOMPurify from 'dompurify'
 import MarkdownIt from 'markdown-it'
 
-const md = new MarkdownIt({
-  html: false,
-  linkify: true,
-})
+// Lazily constructed so this module has no top-level side effects. That lets
+// bundlers tree-shake the whole module — and the heavy markdown-it / dompurify
+// imports — out of any consumer that never calls renderMarkdown.
+let md: MarkdownIt | null = null
 
-// Block javascript: protocol in linkified URLs
-md.linkify.set({ fuzzyLink: false })
-md.disable('html_block')
-md.disable('html_inline')
+function getRenderer(): MarkdownIt {
+  if (md) return md
+  md = new MarkdownIt({
+    html: false,
+    linkify: true,
+  })
+  // Block javascript: protocol in linkified URLs
+  md.linkify.set({ fuzzyLink: false })
+  md.disable('html_block')
+  md.disable('html_inline')
+  return md
+}
 
 // LRU-style cache: Map preserves insertion order, we evict oldest on overflow.
 const DEFAULT_CACHE_MAX = 128
@@ -34,7 +42,7 @@ export function renderMarkdown(raw: string): string {
   const cached = renderCache.get(raw)
   if (cached !== undefined) return cached
 
-  const result = DOMPurify.sanitize(md.render(raw))
+  const result = DOMPurify.sanitize(getRenderer().render(raw))
 
   if (renderCache.size >= cacheMax) {
     // Evict oldest entry (first key in Map)
