@@ -24,7 +24,7 @@
   --color-card-foreground: #2b2622;
   --color-popover: #ffffff;
   --color-popover-foreground: #2b2622;
-  --color-primary: #a5562e;
+  --color-primary: #9d4f29;
   --color-primary-foreground: #faf8f4;
   --color-secondary: #e2dcd0;
   --color-secondary-foreground: #2b2622;
@@ -39,7 +39,7 @@
   --color-info: #3a6b8c;
   --color-border: #d0c8ba;
   --color-input: #d0c8ba;
-  --color-ring: #a5562e;
+  --color-ring: #9d4f29;
   --font-sans: 'Cabin', 'Inter', system-ui, sans-serif;
   --font-mono: 'Cabin', 'SF Mono', ui-monospace, monospace;
   --font-serif: 'Bitter', Georgia, serif;
@@ -64,7 +64,7 @@
   --card-foreground: #2b2622;
   --popover: #ffffff;
   --popover-foreground: #2b2622;
-  --primary: #a5562e;
+  --primary: #9d4f29;
   --primary-foreground: #faf8f4;
   --secondary: #e2dcd0;
   --secondary-foreground: #2b2622;
@@ -79,7 +79,7 @@
   --info: #3a6b8c;
   --border: #d0c8ba;
   --input: #d0c8ba;
-  --ring: #a5562e;
+  --ring: #9d4f29;
   --text-2xs: 0.625rem;
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
@@ -103,7 +103,7 @@
   --bl-sandstone: #e2dcd0;
   --bl-umber: #2b2622;
   --bl-driftwood: #6b6054;
-  --bl-sienna: #a5562e;
+  --bl-sienna: #9d4f29;
   --bl-slate: #3a6b8c;
   --rig-button-hover-bg: #e2dcd0;
   --rig-scrollbar-thumb: rgba(43, 38, 34, 0.12);
@@ -119,6 +119,6 @@
   /* Vellum warmth on imagery */
   --rig-media-filter: sepia(0.06) saturate(1.02) brightness(0.99);
 
-  --link-slide-color: #a5562e;
+  --link-slide-color: #9d4f29;
   --rig-elevation-rgb: 43 38 34;
 }

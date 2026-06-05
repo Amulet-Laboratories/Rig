@@ -30,7 +30,7 @@
   --color-secondary: #221e30;
   --color-secondary-foreground: #e4dff0;
   --color-muted: #221e30;
-  --color-muted-foreground: #8a80a0;
+  --color-muted-foreground: #9a90b0;
   --color-accent: #c89fb8;
   --color-accent-foreground: #110e18;
   --color-destructive: #d45a5a;
@@ -73,7 +73,7 @@
   --secondary: #221e30;
   --secondary-foreground: #e4dff0;
   --muted: #221e30;
-  --muted-foreground: #8a80a0;
+  --muted-foreground: #9a90b0;
   --accent: #c89fb8;
   --accent-foreground: #110e18;
   --destructive: #d45a5a;
@@ -106,7 +106,7 @@
   --lh-deep: #1a1624;
   --lh-charcoal: #221e30;
   --lh-cream: #e4dff0;
-  --lh-dusty: #8a80a0;
+  --lh-dusty: #9a90b0;
   --lh-steel: #7a8eb8;
   --lh-lavender: #a87bd4;
   --rig-button-hover-bg: #221e30;

@@ -28,7 +28,7 @@
   --color-card-foreground: #1a1428;
   --color-popover: #ffffff;
   --color-popover-foreground: #1a1428;
-  --color-primary: #6d42c4;
+  --color-primary: #653bb8;
   --color-primary-foreground: #ffffff;
   --color-secondary: #ede8f5;
   --color-secondary-foreground: #1a1428;
@@ -39,11 +39,11 @@
   --color-destructive: #dc2626;
   --color-destructive-foreground: #ffffff;
   --color-success: #16a34a;
-  --color-warning: #d97706;
-  --color-info: #6d42c4;
+  --color-warning: #92490a;
+  --color-info: #653bb8;
   --color-border: #d8d0e5;
   --color-input: #d8d0e5;
-  --color-ring: #6d42c4;
+  --color-ring: #653bb8;
   --font-sans: 'Libre Franklin', 'Inter', system-ui, sans-serif;
   --font-mono: 'SF Mono', ui-monospace, monospace;
   --font-serif: 'Merriweather', Georgia, serif;
@@ -68,22 +68,22 @@
   --card-foreground: #1a1428;
   --popover: #ffffff;
   --popover-foreground: #1a1428;
-  --primary: #6d42c4;
+  --primary: #653bb8;
   --primary-foreground: #ffffff;
   --secondary: #ede8f5;
   --secondary-foreground: #1a1428;
   --muted: #ede8f5;
   --muted-foreground: #6a5a80;
-  --accent: #6d42c4;
+  --accent: #653bb8;
   --accent-foreground: #ffffff;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
   --success: #16a34a;
-  --warning: #d97706;
-  --info: #6d42c4;
+  --warning: #92490a;
+  --info: #653bb8;
   --border: #d8d0e5;
   --input: #d8d0e5;
-  --ring: #6d42c4;
+  --ring: #653bb8;
   --text-2xs: 0.625rem;
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
@@ -107,9 +107,9 @@
   --bc-lavender: #ede8f5;
   --bc-dark: #1a1428;
   --bc-purple-gray: #6a5a80;
-  --bc-violet: #6d42c4;
+  --bc-violet: #653bb8;
   --bc-red: #dc2626;
-  --bc-amber: #d97706;
+  --bc-amber: #92490a;
   --bc-green: #16a34a;
   --bc-violet-border: #d8d0e5;
   --rig-button-hover-bg: #5c37a6;
@@ -129,6 +129,6 @@
   --rig-display-leading: 1.2;
 
   --rig-media-filter: saturate(0.95);
-  --link-slide-color: #6d42c4;
+  --link-slide-color: #653bb8;
   --rig-elevation-rgb: 26 20 40;
 }

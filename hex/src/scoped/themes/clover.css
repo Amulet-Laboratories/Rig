@@ -30,7 +30,7 @@
   --color-secondary-foreground: #1a2a1a;
   --color-muted: #e0ece0;
   --color-muted-foreground: #4a6a4a;
-  --color-accent: #d16b3f;
+  --color-accent: #b8592f;
   --color-accent-foreground: #f8fdf6;
   --color-destructive: #cc3b3b;
   --color-destructive-foreground: #f8fdf6;
@@ -70,7 +70,7 @@
   --secondary-foreground: #1a2a1a;
   --muted: #e0ece0;
   --muted-foreground: #4a6a4a;
-  --accent: #d16b3f;
+  --accent: #b8592f;
   --accent-foreground: #f8fdf6;
   --destructive: #cc3b3b;
   --destructive-foreground: #f8fdf6;
@@ -104,7 +104,7 @@
   --ca-moss: #1a2a1a;
   --ca-fern: #4a6a4a;
   --ca-green: #2d7a3e;
-  --ca-coral: #d16b3f;
+  --ca-coral: #b8592f;
   --rig-button-hover-bg: #e0ece0;
   --rig-scrollbar-thumb: rgba(26, 42, 26, 0.12);
   --rig-scrollbar-thumb-hover: rgba(26, 42, 26, 0.25);

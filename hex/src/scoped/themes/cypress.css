@@ -26,22 +26,22 @@
   --color-card-foreground: #2c2420;
   --color-popover: #fffdf8;
   --color-popover-foreground: #2c2420;
-  --color-primary: #1a7a7a;
+  --color-primary: #136868;
   --color-primary-foreground: #fffdf8;
   --color-secondary: #e8e0d4;
   --color-secondary-foreground: #2c2420;
   --color-muted: #e8e0d4;
-  --color-muted-foreground: #6a8888;
+  --color-muted-foreground: #5a7676;
   --color-accent: #c4634f;
   --color-accent-foreground: #fffdf8;
   --color-destructive: #c4634f;
   --color-destructive-foreground: #fffdf8;
   --color-success: #7a9e7e;
   --color-warning: #d4a843;
-  --color-info: #1a7a7a;
+  --color-info: #136868;
   --color-border: #d4c9b8;
   --color-input: #d4c9b8;
-  --color-ring: #1a7a7a;
+  --color-ring: #136868;
   --font-sans: 'Source Sans 3', 'Inter', system-ui, sans-serif;
   --font-mono: 'DM Mono', 'SF Mono', ui-monospace, monospace;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
@@ -66,22 +66,22 @@
   --card-foreground: #2c2420;
   --popover: #fffdf8;
   --popover-foreground: #2c2420;
-  --primary: #1a7a7a;
+  --primary: #136868;
   --primary-foreground: #fffdf8;
   --secondary: #e8e0d4;
   --secondary-foreground: #2c2420;
   --muted: #e8e0d4;
-  --muted-foreground: #6a8888;
+  --muted-foreground: #5a7676;
   --accent: #c4634f;
   --accent-foreground: #fffdf8;
   --destructive: #c4634f;
   --destructive-foreground: #fffdf8;
   --success: #7a9e7e;
   --warning: #d4a843;
-  --info: #1a7a7a;
+  --info: #136868;
   --border: #d4c9b8;
   --input: #d4c9b8;
-  --ring: #1a7a7a;
+  --ring: #136868;
   --text-2xs: 0.625rem;
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
@@ -104,11 +104,11 @@
   --tm-sand: #e8e0d4;
   --tm-driftwood: #b5a898;
   --tm-charcoal: #2c2420;
-  --tm-clay: #6a8888;
-  --tm-cyan: #1a7a7a;
+  --tm-clay: #5a7676;
+  --tm-cyan: #136868;
   --tm-terracotta: #c4634f;
   --tm-sage: #7a9e7e;
-  --rig-button-hover-bg: #156a6a;
+  --rig-button-hover-bg: #136262;
   --rig-button-hover-fg: #fffdf8;
   --rig-button-secondary-bg: transparent;
   --rig-button-secondary-fg: var(--color-foreground);
@@ -127,6 +127,6 @@
   /* Coastal warm-light cast */
   --rig-media-filter: saturate(1.05) brightness(1.03);
 
-  --link-slide-color: #1a7a7a;
+  --link-slide-color: #136868;
   --rig-elevation-rgb: 44 36 32;
 }

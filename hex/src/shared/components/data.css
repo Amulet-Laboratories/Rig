@@ -264,7 +264,7 @@
 }
 
 [data-rig-stat-row-label] {
-  color: color-mix(in srgb, var(--color-muted-foreground) 70%, transparent);
+  color: color-mix(in srgb, var(--color-muted-foreground) 85%, transparent);
 }
 
 [data-rig-stat-row-value] {
