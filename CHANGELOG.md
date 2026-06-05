@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] — 2026-06-05
+
+### Fixed
+
+- **`Testimonial` accepts `quote` / `name` / `role` props** (rendered as slot fallbacks). Declaring them as props means they are consumed rather than falling through onto the root `<blockquote>` as stray attributes — notably `role`, which a consumer could otherwise set to a non-ARIA string and produce an invalid ARIA role (a critical axe violation). Legitimate `class` / `aria-*` still pass through.
+- **Markdown renderer constructed lazily.** `useMarkdown` no longer runs `new MarkdownIt()` at module load, so the module is side-effect free and bundlers tree-shake it — and the externalized `markdown-it` + `dompurify` deps — out of any consumer that never calls `renderMarkdown`.
+
 ### Added
 
 - **Subpackage exports.** Consumers can now import from any of the 12 packages directly — `import { Button } from '@amulet-laboratories/rig/core'`, `import { Hero } from '@amulet-laboratories/rig/web'`, etc. — and skip the full 149-component barrel. Entries: `./core`, `./layout`, `./nav`, `./editor`, `./lists`, `./menus`, `./extras`, `./shell`, `./data`, `./spatial`, `./temporal`, `./web`. Each emits its own `.mjs` + `.cjs` + `.d.ts`. The root `.` barrel still works.

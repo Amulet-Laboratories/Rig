@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] — 2026-06-05
+
+### Fixed
+
+- **Theme color-contrast raised to WCAG AA.** Nudged token lightness (hue preserved) across iris, sienna, clover, lagoon, hearth, vesper, ochre, cardinal, and cypress so demo-site text and UI clear AA, and raised the shared stat-row label color-mix (fixing the near-invisible vesper stat-row). Each change verified by recomputed WCAG 2.1 ratios (≥4.5:1 text, ≥3:1 large/UI).
+
 ### Added
 
 - **`./shared/*` package exports** so custom themes built outside `src/themes/` can import the shared component CSS individually. 16 new entries: `./shared/rig-defaults`, `./shared/a11y`, `./shared/tokens`, and `./shared/components/{core, layout, nav, editor, lists, menus, extras, shell, data, spatial, temporal, prose, web, content}`.
