@@ -75,4 +75,30 @@ describe('Testimonial', () => {
     })
     expect(wrapper.element.tagName).toBe('BLOCKQUOTE')
   })
+
+  it('renders quote/name/role props as a fallback for the slots', () => {
+    const wrapper = mount(Testimonial, {
+      props: { quote: 'Amazing', name: 'Jane Doe', role: 'Founder' },
+    })
+    expect(wrapper.find('[data-rig-testimonial-quote]').text()).toBe('Amazing')
+    const attribution = wrapper.find('[data-rig-testimonial-attribution]').text()
+    expect(attribution).toContain('Jane Doe')
+    expect(attribution).toContain('Founder')
+  })
+
+  it('consumes the role prop instead of setting an ARIA role on the blockquote', () => {
+    const wrapper = mount(Testimonial, {
+      props: { quote: 'Amazing', name: 'Jane', role: 'Portland, OR' },
+    })
+    // role is a declared prop, so it must not fall through as a DOM attribute
+    expect(wrapper.element.hasAttribute('role')).toBe(false)
+  })
+
+  it('prefers slot content over props when both are provided', () => {
+    const wrapper = mount(Testimonial, {
+      props: { quote: 'From prop' },
+      slots: { quote: 'From slot' },
+    })
+    expect(wrapper.find('[data-rig-testimonial-quote]').text()).toBe('From slot')
+  })
 })
