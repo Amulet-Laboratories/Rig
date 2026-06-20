@@ -18,11 +18,11 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: pnpm/action-setup@v4
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version-file: .node-version
           cache: pnpm
@@ -58,18 +58,36 @@ jobs:
             exit 1
           fi
 
+      # Publishes are idempotent: if the version in package.json is already on
+      # npm (e.g. a re-run of the same tag, or a release published manually),
+      # skip rather than hard-fail on "cannot publish over existing version".
       - name: Publish @amulet-laboratories/rig
-        run: pnpm publish --access public --no-git-checks
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          if npm view "@amulet-laboratories/rig@${VERSION}" version >/dev/null 2>&1; then
+            echo "rig@${VERSION} is already published — skipping."
+          else
+            pnpm publish --access public --no-git-checks
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish @amulet-laboratories/hex
         working-directory: hex
-        run: pnpm publish --access public --no-git-checks
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          if npm view "@amulet-laboratories/hex@${VERSION}" version >/dev/null 2>&1; then
+            echo "hex@${VERSION} is already published — skipping."
+          else
+            pnpm publish --access public --no-git-checks
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      # A release-notes hiccup must not mark a successful publish as failed.
       - name: Create GitHub Release
+        if: always()
+        continue-on-error: true
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
