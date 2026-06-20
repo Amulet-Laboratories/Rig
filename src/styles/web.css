@@ -109,7 +109,9 @@
   gap: 4px;
 }
 
-@media (min-width: 640px) {
+/* Horizontal nav switches on at md (768), not sm (640): a full link row with
+ * 6+ items overflows a 640px viewport. Below this, the hamburger is shown. */
+@media (min-width: 768px) {
   [data-rig-site-nav-links] {
     display: flex;
   }
@@ -168,7 +170,7 @@
   font-weight: 500;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   [data-rig-site-nav-mobile] {
     display: none;
   }
