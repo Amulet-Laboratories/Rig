@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.1] — 2026-06-20
+
+### Fixed
+
+- **`SiteNav` collapses to the hamburger below `md` (768px), not `sm` (640px).** A full horizontal nav row with 6+ items overflowed a 640px viewport, pushing the page wider than the screen on consumers with longer navs. Both the links/toggle switch and the mobile-drawer hide now engage at `min-width: 768px`, so the hamburger stays until there is room for the links.
+
 ## [0.5.0] — 2026-06-05
 
 ### Fixed
