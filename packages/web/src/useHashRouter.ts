@@ -14,15 +14,23 @@ export interface UseHashRouterOptions {
   defaultPage?: string
   /** Optional hash prefix (e.g. 'aldric-pace' → #aldric-pace/contact). */
   prefix?: string
+  /** Scroll to top on navigation and popstate. Defaults to true. */
+  scrollToTop?: boolean
+  /** Scroll behavior when scrolling to top. Defaults to 'instant'. */
+  scrollBehavior?: ScrollBehavior
 }
 
 export function useHashRouter(options: UseHashRouterOptions): {
   currentPage: Ref<string>
   navigateTo: (page: string) => void
 } {
-  const { pages, prefix = '' } = options
+  const { pages, prefix = '', scrollToTop = true, scrollBehavior = 'instant' } = options
   const defaultPage = options.defaultPage ?? pages[0]?.id ?? 'home'
   const currentPage = ref(defaultPage)
+
+  function scrollTop() {
+    if (scrollToTop) window.scrollTo({ top: 0, behavior: scrollBehavior })
+  }
 
   function getPageFromHash(): string {
     const hash = window.location.hash.slice(1)
@@ -40,12 +48,12 @@ export function useHashRouter(options: UseHashRouterOptions): {
       history.pushState(null, '', `#${hashPath}`)
     }
 
-    window.scrollTo({ top: 0, behavior: 'instant' })
+    scrollTop()
   }
 
   function onPopState() {
     currentPage.value = getPageFromHash()
-    window.scrollTo({ top: 0, behavior: 'instant' })
+    scrollTop()
   }
 
   onMounted(() => {

@@ -82,6 +82,18 @@ describe('useHashRouter', () => {
     expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'instant' })
   })
 
+  it('navigateTo honors a custom scrollBehavior', () => {
+    const wrapper = createWrapper({ scrollBehavior: 'smooth' })
+    wrapper.vm.navigateTo('about')
+    expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' })
+  })
+
+  it('navigateTo does not scroll when scrollToTop is false', () => {
+    const wrapper = createWrapper({ scrollToTop: false })
+    wrapper.vm.navigateTo('about')
+    expect(window.scrollTo).not.toHaveBeenCalled()
+  })
+
   it('responds to popstate event', async () => {
     const wrapper = createWrapper()
     window.location.hash = '#contact'
