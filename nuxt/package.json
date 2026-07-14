@@ -36,6 +36,7 @@
     }
   },
   "devDependencies": {
+    "@amulet-laboratories/rig": "workspace:*",
     "@nuxt/kit": "^3.0.0"
   }
 }
