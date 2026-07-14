@@ -389,6 +389,41 @@
   border-left-color: var(--rig-card-accent);
 }
 
+/* Selected / featured — a persistent highlighted border, distinct from :hover.
+   Replaces consumers hand-setting `style="border-color: var(--color-primary)"`
+   on a featured card. */
+[data-rig-card][data-selected] {
+  border-color: var(--rig-card-selected-border, var(--color-primary));
+}
+
+/* ───────── Icon tone ───────── */
+
+/* Maps Icon's semantic `tone` prop to a theme color token. Icons inherit
+   currentColor by default; the `color` prop (inline) overrides both. */
+[data-rig-icon][data-tone='primary'] {
+  color: var(--color-primary);
+}
+
+[data-rig-icon][data-tone='success'] {
+  color: var(--color-success);
+}
+
+[data-rig-icon][data-tone='warning'] {
+  color: var(--color-warning);
+}
+
+[data-rig-icon][data-tone='danger'] {
+  color: var(--color-destructive);
+}
+
+[data-rig-icon][data-tone='info'] {
+  color: var(--color-info);
+}
+
+[data-rig-icon][data-tone='muted'] {
+  color: var(--color-muted-foreground);
+}
+
 /* ───────── Divider ───────── */
 
 [data-rig-divider] {

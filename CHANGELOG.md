@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] — 2026-07-14
+
+### Added
+
+- **Structural styles for the content callout + FAQ** (`src/styles/content.css`, shipped via `@amulet-laboratories/rig/styles`) — `[data-rig-callout*]` and `[data-rig-faq*]` layout/markers, paired with `@amulet-laboratories/rig-nuxt`'s new `QuickAnswer` / `FaqBlock` components and Hex's color skin. Closes two spots where content sites hand-rolled `<style scoped>` because no shared styling existed.
+- **`SectionDivider` gains `fill` / `bg` props and `FlankedHeading` gains a `color` prop.** All three drove CSS custom properties (`--section-divider-fill/-bg`, `--flanked-heading-color`) that consumers could only reach via inline `style`. They're now typed props. In the process, two of those vars were dead: `--section-divider-bg` was never applied (now backs the divider's `background`) and the flanked-heading ornament color was hardcoded to `--color-primary` (now reads `--flanked-heading-color`, still defaulting to primary). Wiring lives in Hex `web.css`.
+- **`Icon` gains `tone` and `color` props.** `tone` (primary | success | warning | danger | info | muted) maps to a theme color token via CSS; `color` accepts any CSS color as an escape hatch for domain/brand colors and overrides `tone`. Replaces consumers reaching for `style="color: #…"` on an icon. Tone styling ships in Hex (full set) and the scaffold fallback (primary/danger/muted subset).
+- **`Button` `size` prop now renders.** Like Input/Select, `Button` already emitted `data-size` (xs–xl) with no CSS behind it, so consumers forced small buttons with `!important` overrides (`!h-6 !px-2 !text-[10px]`). Added the xs/sm/lg/xl scale (padding + font-size, and matching icon-only dimensions) to `src/styles/core.css`; md unchanged.
+- **`Input` and `Select` gain a `size` prop.** Both already received `size="sm"` from consumers, but neither declared the prop and no CSS backed it, so it was a silent no-op (the attribute fell through onto the wrapper). `size` (xs–xl; sm/lg rescale font-size + padding, md unchanged) now emits `data-size` and renders. Structural rules ship via `@amulet-laboratories/rig/styles`.
+- **`Card` gains `selected`, `layout`, and `columns` props.** `selected` emits `data-selected` for a persistent highlighted/featured state (distinct from `:hover`) — replacing consumers hand-setting `style="border-color: var(--color-primary)"` on a featured card (they were even hand-rolling the `data-selected` attribute themselves). `layout="row"` lays the card's direct children out as a horizontal grid (`columns` sets `grid-template-columns`, e.g. `"1fr auto auto"`), so a card can be a data row without `class="grid grid-cols-[1fr_auto_auto] items-center"`. Structural rules ship via `@amulet-laboratories/rig/styles`; the `selected` border color is a Hex token (see Hex 0.6.x).
+
+### Fixed
+
+- **`useZoom` no longer warns when constructed outside a component `setup()`.** Its `onMounted`/`onUnmounted` registration is now guarded by `getCurrentInstance()`, so calling it in tests or other non-setup contexts is safe (the lifecycle-tied keydown listener still wires up exactly as before inside a component).
+- **`Badge`'s `size` prop now renders.** The component always emitted `data-size` (xs|sm|md|lg|xl) but the structural CSS (`src/styles/core.css`, shipped via `@amulet-laboratories/rig/styles`) defined a single fixed size, so every value looked identical and consumers shrank badges with arbitrary utilities like `text-[10px]`. Each size now rescales font-size, padding, and radius together (md unchanged, matching the previous default). The scaffold fallback and Badge story cover the full scale. `variant` already provided the tone/color axis.
+
+### Added
+
+- **`@amulet-laboratories/rig/manifest` export** — a pure-data inventory of the library's auto-importable surface (`components: readonly string[]`, `composables: readonly string[]`, plus `RigComponentName` / `RigComposableName` union types). Generated from the barrel via `pnpm manifest:gen` and pinned by a CI drift guard (`src/manifest.test.ts`), so it can never fall behind the actual exports. `@amulet-laboratories/rig-nuxt` now derives its auto-import list from this instead of a hardcoded array that had drifted ~18 components behind. The manifest is data-only (no Vue/optional-peer imports), so consuming it never pulls `d3`/`markdown-it` into a bundle.
+
 ## [0.5.1] — 2026-06-20
 
 ### Fixed

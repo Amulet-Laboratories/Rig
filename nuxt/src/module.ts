@@ -6,6 +6,10 @@ import {
   addServerScanDir,
   createResolver,
 } from '@nuxt/kit'
+import {
+  components as RIG_COMPONENTS,
+  composables as RIG_COMPOSABLES,
+} from '@amulet-laboratories/rig/manifest'
 
 /**
  * @amulet-laboratories/rig-nuxt
@@ -46,175 +50,22 @@ export interface NuxtRigOptions {
   content?: boolean | ContentOptions
 }
 
-const COMPONENTS = [
-  // Core primitives
-  'Icon',
-  'Button',
-  'Input',
-  'Select',
-  'Textarea',
-  'Checkbox',
-  'Switch',
-  'RadioGroup',
-  'Badge',
-  'Progress',
-  'InlineEditor',
-  'Resizer',
-  'Card',
-  'Divider',
-  'Kbd',
-  'TagInput',
-  'Combobox',
-  'Label',
-  'ToggleGroup',
-  'Slider',
-  'Avatar',
-  'Dot',
-  'PulseIndicator',
-  'ProgressRing',
-  'RangeSlider',
-  'AvatarGroup',
-  'Pagination',
-  'FileInput',
-  'Rating',
-  'ConfigProvider',
-  'Form',
-  'NumberInput',
-  'OTPInput',
-  'Transfer',
-  'Mention',
-  'InfiniteScroll',
-  // Layout
-  'ShellGrid',
-  'SplitView',
-  'Panel',
-  'Modal',
-  'Collapsible',
-  'Accordion',
-  'Popover',
-  'ScrollArea',
-  'PeekView',
-  'ResizablePanel',
-  'TitleBar',
-  'Drawer',
-  // Nav
-  'NavigationMenu',
-  // Navigation
-  'ActivityBar',
-  'SideBar',
-  'View',
-  'PanelBar',
-  'StatusBar',
-  'Breadcrumbs',
-  'Tabs',
-  'Timeline',
-  'Stepper',
-  'DatePicker',
-  'DateRangePicker',
-  // Editor
-  'EditorWorkbench',
-  'EditorTab',
-  'CodeBlock',
-  'DiffViewer',
-  'ColorPicker',
-  // Lists
-  'List',
-  'TreeView',
-  'Table',
-  'DataGrid',
-  // Menus
-  'ContextMenu',
-  'CommandPalette',
-  'ActionBar',
-  'KeyboardHint',
-  'DropdownMenu',
-  'Menubar',
-  // Extras
-  'Toast',
-  'EmptyState',
-  'Tooltip',
-  'Skeleton',
-  'PropertyGrid',
-  'NotificationCenter',
-  'KanbanBoard',
-  'CalendarGrid',
-  'Alert',
-  'Carousel',
-  'ImagePreview',
-  'Popconfirm',
-  'LoadingOverlay',
-  // Shell
-  'IdeShell',
-  // Data
-  'Sparkline',
-  'MiniBar',
-  'StatCard',
-  'BarChart',
-  'LineChart',
-  'AreaChart',
-  'ScatterPlot',
-  'Heatmap',
-  'RadarChart',
-  'Treemap',
-  'SankeyDiagram',
-  // Spatial
-  'MapCanvas',
-  'GlobeView',
-  'ScatterPlot3D',
-  'GraphNetwork',
-  'PointCloud',
-  // Temporal
-  'TimelineScrubber',
-  'AnimatedChart',
-  'PlaybackControls',
-  'TemporalHeatmap',
-  'ParticleField',
-  // Web
-  'ReadingProgress',
-  'SiteShell',
-  'SiteNav',
-  'Hero',
-  'Section',
-  'StatRow',
-  'CTABanner',
-  'Testimonial',
-  'SiteFooter',
-  'PricingCard',
-  'SectionDivider',
-  'FlankedHeading',
-  'Ornament',
-  'ContactForm',
-  'NewsletterForm',
-  'ServiceGrid',
-  'TeamGrid',
-  'MenuList',
-  'FeatureList',
-  'Gallery',
-  'MapPlaceholder',
-] as const
+// The component + composable name lists come from `@amulet-laboratories/rig/
+// manifest`, which Rig generates from its own barrel and drift-tests in CI. This
+// module used to hardcode the list, which silently fell ~18 components behind
+// every time Rig shipped new ones. Deriving it means new Rig components are
+// auto-imported the moment a consumer bumps Rig — no edit here required.
 
-const COMPOSABLES = [
-  'useFocusTrap',
-  'useKeyboard',
-  'usePersistedState',
-  'useGlobalState',
-  'useCommandRegistry',
-  'useTooltip',
-  'useVirtualList',
-  'provideDragDrop',
-  'useDragDrop',
-  'useReducedMotion',
-  'useScrollVisibility',
-  'useParallax',
-  'useMediaPlayback',
-  'useShellState',
-  'useToast',
-  'useNotifications',
-  'provideConfig',
-  'useConfig',
-  'useComponentDefaults',
-  'useFormValidation',
-] as const
+// Composables deliberately withheld from the global auto-import namespace
+// because they collide with an app's own composable of the same name. `useFathom`
+// is instead provided under the content-feature block below (authority sites),
+// so a plain app keeps its own `useFathom`.
+const CONTENT_GATED_COMPOSABLES = new Set<string>(['useFathom'])
+
+// Provide-style setup helpers and singleton objects live outside the `use*`
+// naming convention, so they aren't in the manifest's composable list —
+// enumerate them here.
+const EXTRA_AUTO_IMPORTS = ['provideDragDrop', 'provideConfig', 'toast', 'notification'] as const
 
 export default defineNuxtModule<NuxtRigOptions>({
   meta: {
@@ -231,8 +82,9 @@ export default defineNuxtModule<NuxtRigOptions>({
     const prefix = options.prefix ?? ''
     const { resolve } = createResolver(import.meta.url)
 
-    // Auto-import all Rig components
-    for (const name of COMPONENTS) {
+    // Auto-import every Rig component (derived from the manifest, never a
+    // hardcoded list). Tree-shaking drops any a site doesn't use in a template.
+    for (const name of RIG_COMPONENTS) {
       addComponent({
         name: `${prefix}${name}`,
         export: name,
@@ -240,25 +92,16 @@ export default defineNuxtModule<NuxtRigOptions>({
       })
     }
 
-    // Auto-import composables
+    // Auto-import composables (manifest `use*` list, minus content-gated ones),
+    // plus the non-`use*` provide/singleton helpers.
     if (options.composables !== false) {
-      for (const name of COMPOSABLES) {
-        addImports({
-          name,
-          from: '@amulet-laboratories/rig',
-        })
+      for (const name of RIG_COMPOSABLES) {
+        if (CONTENT_GATED_COMPOSABLES.has(name)) continue
+        addImports({ name, from: '@amulet-laboratories/rig' })
       }
-
-      // Toast and notification singletons
-      addImports({ name: 'toast', from: '@amulet-laboratories/rig' })
-      addImports({ name: 'notification', from: '@amulet-laboratories/rig' })
-
-      // Web composables
-      addImports({ name: 'useHashRouter', from: '@amulet-laboratories/rig' })
-      addImports({ name: 'useScrollNav', from: '@amulet-laboratories/rig' })
-      addImports({ name: 'useDetailView', from: '@amulet-laboratories/rig' })
-      addImports({ name: 'useFormatDate', from: '@amulet-laboratories/rig' })
-      addImports({ name: 'useBreadcrumbs', from: '@amulet-laboratories/rig' })
+      for (const name of EXTRA_AUTO_IMPORTS) {
+        addImports({ name, from: '@amulet-laboratories/rig' })
+      }
     }
 
     // ── Content features (authority-site runtime) ──
@@ -341,6 +184,8 @@ export default defineNuxtModule<NuxtRigOptions>({
         name: 'NewsletterSignup',
         filePath: resolve('./runtime/components/content/NewsletterSignup.vue'),
       },
+      { name: 'QuickAnswer', filePath: resolve('./runtime/components/content/QuickAnswer.vue') },
+      { name: 'FaqBlock', filePath: resolve('./runtime/components/content/FaqBlock.vue') },
       { name: 'QuizPromo', filePath: resolve('./runtime/components/content/QuizPromo.vue') },
       {
         name: 'QuizEmbedWrapper',

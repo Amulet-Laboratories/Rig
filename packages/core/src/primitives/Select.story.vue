@@ -47,6 +47,14 @@ function onChange(value: string) {
       </div>
     </Variant>
 
+    <Variant title="Sizes">
+      <div style="display: flex; flex-direction: column; gap: 8px; width: 240px">
+        <Select :model-value="'us'" :options="options" size="sm" />
+        <Select :model-value="'us'" :options="options" size="md" />
+        <Select :model-value="'us'" :options="options" size="lg" />
+      </div>
+    </Variant>
+
     <Variant title="Leading & Trailing Slots">
       <div style="width: 280px">
         <Select v-model="selected" :options="options" placeholder="Select country...">

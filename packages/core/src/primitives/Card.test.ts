@@ -38,6 +38,19 @@ describe('Card', () => {
     expect(wrapper.attributes('style')).toContain('--rig-card-accent: #c9956d')
   })
 
+  it('sets data-selected only when selected', () => {
+    expect(mount(Card).attributes('data-selected')).toBeUndefined()
+    const wrapper = mount(Card, { props: { selected: true } })
+    expect(wrapper.attributes('data-selected')).toBe('true')
+  })
+
+  it('emits data-layout and columns custom property for row layout', () => {
+    expect(mount(Card).attributes('data-layout')).toBeUndefined()
+    const wrapper = mount(Card, { props: { layout: 'row', columns: '1fr auto auto' } })
+    expect(wrapper.attributes('data-layout')).toBe('row')
+    expect(wrapper.attributes('style')).toContain('--rig-card-columns: 1fr auto auto')
+  })
+
   it('renders header and footer slots', () => {
     const wrapper = mount(Card, {
       slots: {

@@ -15,6 +15,11 @@ describe('Select', () => {
     expect(wrapper.attributes('data-rig-select')).toBe('')
   })
 
+  it('defaults to md size and reflects the size prop', () => {
+    expect(mount(Select, { props: { options } }).attributes('data-size')).toBe('md')
+    expect(mount(Select, { props: { options, size: 'sm' } }).attributes('data-size')).toBe('sm')
+  })
+
   it('renders all options', () => {
     const wrapper = mount(Select, { props: { options } })
     const opts = wrapper.findAll('option')

@@ -23,6 +23,30 @@
   border-style: solid;
 }
 
+/* Size scale — Button's `size` prop (xs|sm|md|lg|xl) emits data-size; md matches
+   the base rule above. Without these, size was a no-op and consumers reached for
+   `!h-6 !px-2 !text-[10px]`-style overrides to shrink a button. */
+[data-rig-button][data-size='xs'] {
+  padding: 2px 6px;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+[data-rig-button][data-size='sm'] {
+  padding: 3px 7px;
+  font-size: 11px;
+}
+
+[data-rig-button][data-size='lg'] {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+[data-rig-button][data-size='xl'] {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
 [data-rig-button]:focus-visible {
   outline-width: 1px;
   outline-style: solid;
@@ -36,6 +60,30 @@
 [data-rig-button][data-icon-only] {
   width: 28px;
   height: 28px;
+  padding: 0;
+}
+
+[data-rig-button][data-icon-only][data-size='xs'] {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+}
+
+[data-rig-button][data-icon-only][data-size='sm'] {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+
+[data-rig-button][data-icon-only][data-size='lg'] {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+[data-rig-button][data-icon-only][data-size='xl'] {
+  width: 36px;
+  height: 36px;
   padding: 0;
 }
 
@@ -53,6 +101,19 @@
   padding: 4px 6px;
   border-width: 1px;
   border-style: solid;
+}
+
+/* Size scale — Input/Select expose a `size` prop (emits data-size); md matches
+   the base rule above. Without these, size was a no-op and consumers reached for
+   arbitrary width/height utilities to shrink a control. */
+[data-rig-input][data-size='sm'] input {
+  font-size: 12px;
+  padding: 2px 6px;
+}
+
+[data-rig-input][data-size='lg'] input {
+  font-size: 14px;
+  padding: 6px 10px;
 }
 
 [data-rig-input] input:focus {
@@ -83,6 +144,17 @@
   padding: 4px 6px;
   border-width: 1px;
   border-style: solid;
+}
+
+/* Size scale — md matches the base rule above (see Input note). */
+[data-rig-select][data-size='sm'] select {
+  font-size: 12px;
+  padding: 2px 6px;
+}
+
+[data-rig-select][data-size='lg'] select {
+  font-size: 14px;
+  padding: 6px 10px;
 }
 
 [data-rig-select] select:focus {
@@ -230,6 +302,34 @@
   border-radius: 11px;
 }
 
+/* Size scale — Badge's `size` prop (xs|sm|md|lg|xl) emits data-size. md is the
+   default and matches the base rule above; the others rescale font, padding, and
+   radius together. Without these, every size rendered identically and consumers
+   reached for `text-[10px]` etc. to shrink a badge. */
+[data-rig-badge][data-size='xs'] {
+  font-size: 9px;
+  padding: 1px 4px;
+  border-radius: 8px;
+}
+
+[data-rig-badge][data-size='sm'] {
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 9px;
+}
+
+[data-rig-badge][data-size='lg'] {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 13px;
+}
+
+[data-rig-badge][data-size='xl'] {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 16px;
+}
+
 /* ── Progress ── */
 
 [data-rig-progress] {
@@ -290,6 +390,18 @@
 [data-rig-card][style*='--rig-card-accent'] {
   border-left-width: 2px;
   border-left-style: solid;
+}
+
+/* Row layout — lays the card's direct children out as a horizontal grid, so a
+   card can be a data row (label / meta / value) without consumers hand-rolling
+   `grid grid-cols-[...] items-center`. Set the track sizes with the `columns`
+   prop (--rig-card-columns); the accent/selected color treatment is theme CSS. */
+[data-rig-card][data-layout='row'] {
+  display: grid;
+  grid-template-columns: var(--rig-card-columns, 1fr auto);
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
 }
 
 /* ── Divider ── */

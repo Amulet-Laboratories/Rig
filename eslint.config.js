@@ -13,6 +13,7 @@ export default [
       'deploy/',
       'landing/',
       'nuxt/',
+      'src/generated/',
     ],
   },
   {

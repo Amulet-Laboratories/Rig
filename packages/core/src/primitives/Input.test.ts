@@ -8,6 +8,11 @@ describe('Input', () => {
     expect(wrapper.attributes('data-rig-input')).toBe('')
   })
 
+  it('defaults to md size and reflects the size prop', () => {
+    expect(mount(Input).attributes('data-size')).toBe('md')
+    expect(mount(Input, { props: { size: 'sm' } }).attributes('data-size')).toBe('sm')
+  })
+
   it('binds modelValue to input', () => {
     const wrapper = mount(Input, { props: { modelValue: 'hello' } })
     const input = wrapper.find('input')

@@ -1467,3 +1467,68 @@
 [data-rig-personalized-hero-link]:hover {
   opacity: 0.8;
 }
+
+/* ── Callout (QuickAnswer TL;DR / inline notes) ── */
+
+[data-rig-callout] {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  border-width: 1px;
+  border-style: solid;
+}
+
+[data-rig-callout-label] {
+  margin: 0 0 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+[data-rig-callout-body] {
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+[data-rig-callout-body] > :last-child {
+  margin-bottom: 0;
+}
+
+/* ── FAQ (FaqBlock) ── */
+
+[data-rig-faq] {
+  margin: 2rem 0;
+}
+
+[data-rig-faq-item] {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  padding: 0.75rem 0;
+}
+
+[data-rig-faq-question] {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+}
+
+[data-rig-faq-question]::-webkit-details-marker {
+  display: none;
+}
+
+[data-rig-faq-question]::before {
+  content: '+';
+  display: inline-block;
+  width: 1.1em;
+  font-weight: 700;
+}
+
+[data-rig-faq-item][open] [data-rig-faq-question]::before {
+  content: '\2013';
+}
+
+[data-rig-faq-answer] {
+  padding: 0.5rem 0 0.25rem 1.1em;
+  line-height: 1.6;
+}
