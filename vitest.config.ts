@@ -12,7 +12,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    include: ['packages/*/src/**/*.test.ts', 'stories/__tests__/**/*.test.ts'],
+    include: ['src/**/*.test.ts', 'packages/*/src/**/*.test.ts', 'stories/__tests__/**/*.test.ts'],
     coverage: {
       provider: 'v8',
       include: ['packages/*/src/**/*.{ts,vue}'],

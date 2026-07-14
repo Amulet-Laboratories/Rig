@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref, onUnmounted } from 'vue'
+import type { Size } from '../types'
 
 const props = withDefaults(
   defineProps<{
     /** DOM id for the input element (enables external <label for=""> linkage) */
     id?: string
+    /** Size scale — controls font-size and padding of the control */
+    size?: Size
     /** Bound value */
     modelValue?: string
     /** Placeholder text */
@@ -36,6 +39,7 @@ const props = withDefaults(
     modelValue: '',
     type: 'text',
     debounce: 0,
+    size: 'md',
   },
 )
 
@@ -96,6 +100,7 @@ defineExpose({ focus })
 <template>
   <div
     data-rig-input
+    :data-size="size"
     :data-disabled="disabled || undefined"
     :data-clearable="clearable || undefined"
   >

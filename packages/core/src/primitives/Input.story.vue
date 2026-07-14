@@ -18,6 +18,14 @@ const invalid = ref(false)
       <Input v-model="text" placeholder="Clearable input" clearable />
     </Variant>
 
+    <Variant title="Sizes">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <Input model-value="Small" size="sm" />
+        <Input model-value="Medium" size="md" />
+        <Input model-value="Large" size="lg" />
+      </div>
+    </Variant>
+
     <Variant title="Invalid">
       <Input v-model="text" placeholder="Invalid input" invalid described-by="error-msg" />
       <p id="error-msg" style="color: var(--destructive); font-size: 12px; margin-top: 4px">

@@ -38,6 +38,16 @@ describe('SectionDivider', () => {
     expect(wrapper.find('[data-rig-section-divider]').attributes('aria-hidden')).toBe('true')
   })
 
+  it('sets fill/bg custom properties from props', () => {
+    expect(mount(SectionDivider).attributes('style')).toBeUndefined()
+    const wrapper = mount(SectionDivider, {
+      props: { fill: 'var(--color-rose)', bg: 'var(--color-space)' },
+    })
+    const style = wrapper.find('[data-rig-section-divider]').attributes('style')
+    expect(style).toContain('--section-divider-fill: var(--color-rose)')
+    expect(style).toContain('--section-divider-bg: var(--color-space)')
+  })
+
   it('renders SVG with viewBox', () => {
     const wrapper = mount(SectionDivider)
     const svg = wrapper.find('[data-rig-section-divider-svg]')

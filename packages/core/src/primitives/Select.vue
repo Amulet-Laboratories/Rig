@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import type { SelectOption } from '../types'
+import type { SelectOption, Size } from '../types'
 
 const props = withDefaults(
   defineProps<{
     /** DOM id for the select element (enables external <label for=""> linkage) */
     id?: string
+    /** Size scale — controls font-size and padding of the control */
+    size?: Size
     /** Bound value */
     modelValue?: string
     /** Available options */
@@ -21,6 +23,7 @@ const props = withDefaults(
   {
     modelValue: '',
     options: () => [],
+    size: 'md',
   },
 )
 
@@ -42,7 +45,7 @@ function onChange(e: Event) {
 </script>
 
 <template>
-  <div data-rig-select :data-disabled="props.disabled || undefined" @keydown.stop>
+  <div data-rig-select :data-size="size" :data-disabled="props.disabled || undefined" @keydown.stop>
     <slot name="leading" />
     <select
       :id="props.id"

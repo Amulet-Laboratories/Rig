@@ -543,6 +543,10 @@
 
 /* ───────── SectionDivider ───────── */
 
+[data-rig-section-divider] {
+  background: var(--section-divider-bg, transparent);
+}
+
 [data-rig-section-divider-path] {
   fill: var(--section-divider-fill, var(--color-primary));
 }
@@ -550,7 +554,7 @@
 /* ───────── FlankedHeading ───────── */
 
 [data-rig-flanked-heading-ornament] {
-  color: var(--color-primary);
+  color: var(--flanked-heading-color, var(--color-primary));
 }
 
 [data-rig-flanked-heading-rule] {

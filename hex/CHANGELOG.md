@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] — 2026-07-14
+
+### Changed
+
+- **Added a `prepare` script** (`node build.mjs`) that builds every theme's CSS on install and before publish. `dist/` is gitignored, so this guarantees the built bundles exist for consumers — sibling repos reading `../Rig/hex/dist/*.css` no longer need a manual pre-build step (the root cause of Obelisk's `ensure-hex.mjs` workaround), and publishing can never ship a stale/absent `dist/`.
+- **Rewrote `CLAUDE.md`** — it documented four themes that were removed long ago (`hexrig`/`vscode`/`spotify`/`gmail`); the real roster is 27 themes with `cobalt` as the default. Also corrected the shared component-file list (added `prose`/`web`/`content`) and the build-outputs section.
+
+### Fixed
+
+- **`SectionDivider` background and `FlankedHeading` ornament color now honor their custom properties.** `[data-rig-section-divider]` gained `background: var(--section-divider-bg, transparent)` (the var was previously defined by some themes but never applied), and the flanked-heading ornament color now reads `var(--flanked-heading-color, var(--color-primary))` instead of a hardcoded `--color-primary`. Pairs with Rig's new `SectionDivider` `fill`/`bg` and `FlankedHeading` `color` props.
+
+### Added (component skins)
+
+- **Callout + FAQ skins** — `[data-rig-callout*]` (tone-aware: info/success/warning/danger via `--rig-callout-accent` + `color-mix`) and `[data-rig-faq*]` in `content.css`, for rig-nuxt's new `QuickAnswer` / `FaqBlock`. Previously every content site re-implemented these in a local `<style scoped>` block.
+- **`Icon` tone** — `[data-rig-icon][data-tone='…']` maps Icon's semantic `tone` prop (primary/success/warning/danger/info/muted) to the matching theme color token. Icons still inherit `currentColor` by default; Rig's `color` prop (inline) overrides both.
+- **`Card` selected/featured state** — `[data-rig-card][data-selected]` now draws a highlighted border via a new `--rig-card-selected-border` token (falls back to `--color-primary`). Pairs with Rig's new `Card` `selected` prop; replaces consumers hand-setting an inline `border-color` on featured cards.
+
 ## [0.6.0] — 2026-06-05
 
 ### Fixed

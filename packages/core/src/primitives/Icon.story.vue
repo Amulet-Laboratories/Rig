@@ -21,6 +21,18 @@ const icon = ref('lucide:star')
       </div>
     </Variant>
 
+    <Variant title="Tone">
+      <div style="display: flex; gap: 12px; align-items: center">
+        <Icon icon="lucide:circle" tone="primary" label="Primary" />
+        <Icon icon="lucide:circle-check" tone="success" label="Success" />
+        <Icon icon="lucide:triangle-alert" tone="warning" label="Warning" />
+        <Icon icon="lucide:circle-x" tone="danger" label="Danger" />
+        <Icon icon="lucide:info" tone="info" label="Info" />
+        <Icon icon="lucide:circle" tone="muted" label="Muted" />
+        <Icon icon="lucide:palette" color="#c9956d" label="Custom color" />
+      </div>
+    </Variant>
+
     <Variant title="Various Icons">
       <div style="display: flex; gap: 12px; align-items: center; color: var(--foreground)">
         <Icon icon="lucide:home" label="Home" />

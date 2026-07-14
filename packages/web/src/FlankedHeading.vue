@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 /**
  * FlankedHeading — heading with decorative flanking elements.
  *
@@ -6,17 +7,30 @@
  * On mobile: simple horizontal rules replace the SVGs.
  * Hex CSS controls the responsive switching.
  *
+ * The flourish color is set via the `color` prop (drives
+ * --flanked-heading-color, defaulting to the theme primary), so consumers
+ * never need an inline `style`.
+ *
  * Slots:
  *   #default        — heading content (typically an <h2>)
  *   #ornament-left  — custom left ornament (overrides default flourish)
  *   #ornament-right — custom right ornament (overrides default flourish)
  */
+const props = defineProps<{
+  /** Color of the flanking ornaments (any CSS color; defaults to theme primary). */
+  color?: string
+}>()
+
 const flourishPath =
   'M57.3,13.1c-3.2,10.4,10.4,16.1,16.8,8.7c7.1-8.2,0.6-17.8-7-20.1c-19.6-5.2-31.9,18-49,23.1C9.3,27.5-1.7,20.4,1.6,9.8c3.8-12.4,23.3-9,19.3,4'
+
+const headingStyle = computed(() =>
+  props.color ? { '--flanked-heading-color': props.color } : undefined,
+)
 </script>
 
 <template>
-  <div data-rig-flanked-heading>
+  <div data-rig-flanked-heading :style="headingStyle">
     <span data-rig-flanked-heading-ornament data-side="left" aria-hidden="true">
       <slot name="ornament-left">
         <svg

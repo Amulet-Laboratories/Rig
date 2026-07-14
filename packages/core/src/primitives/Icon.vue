@@ -10,6 +10,11 @@ const props = withDefaults(
     size?: Size
     /** Accessible label — when omitted, icon is decorative (aria-hidden) */
     label?: string
+    /** Semantic color tone — mapped to a theme color token by CSS */
+    tone?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'muted'
+    /** Explicit color (any CSS color) — escape hatch for domain/brand colors;
+     *  overrides `tone` when both are set */
+    color?: string
   }>(),
   {
     size: 'md',
@@ -32,6 +37,8 @@ const isDecorative = computed(() => !props.label)
     data-rig-icon
     tabindex="-1"
     :data-size="size"
+    :data-tone="tone || undefined"
+    :style="color ? { color } : undefined"
     :role="isDecorative ? undefined : 'img'"
     :aria-label="label"
     :aria-hidden="isDecorative ? 'true' : undefined"

@@ -46,6 +46,9 @@ export default defineConfig({
     lib: {
       entry: {
         index: resolve(__dirname, 'src/index.ts'),
+        // Pure-data name inventory (no Vue import) consumed by rig-nuxt and
+        // other tooling via `@amulet-laboratories/rig/manifest`.
+        manifest: resolve(__dirname, 'src/generated/manifest.ts'),
         ...Object.fromEntries(
           PACKAGES.map((pkg) => [pkg, resolve(__dirname, `packages/${pkg}/src/index.ts`)]),
         ),

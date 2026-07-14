@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/hex",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "type": "module",
   "description": "Multi-theme layer for Rig — curated palettes targeting data-rig-* selectors",
   "license": "MIT",
@@ -135,6 +135,7 @@
   },
   "scripts": {
     "build": "node build.mjs",
+    "prepare": "node build.mjs",
     "dev": "node build.mjs --watch",
     "test": "node --test build.test.mjs",
     "lint": "eslint .",

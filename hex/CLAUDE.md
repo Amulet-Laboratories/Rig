@@ -19,7 +19,7 @@ Hex is the ONLY place visual styling decisions are made. Consumer sites should n
 
 ```
 src/
-  index.css                          default entry (imports themes/hexrig/index.css)
+  index.css                          default entry (imports themes/cobalt/index.css)
   shared/
     a11y.css                         forced-colors + prefers-contrast overrides
     components/
@@ -42,36 +42,42 @@ src/
                                      PointCloud
       temporal.css                   TimelineScrubber, AnimatedChart, PlaybackControls,
                                      TemporalHeatmap, ParticleField
+      prose.css                      markdown/prose typography (data-rig-prose)
+      web.css                        marketing-web (Hero, Section, SiteNav, PricingCard,
+                                     SectionDivider, FlankedHeading, ContactForm, …)
+      content.css                    authority-site content layer (ProductCard, ArticleHeader,
+                                     Callout, FAQ, affiliate, TOC, related, network footer, …)
   themes/
-    hexrig/                          dark — slate (#121417) & teal (#5ea9a2)
+    {name}/                          one directory per theme — 27 total (default: cobalt)
       index.css                      entry: tailwindcss + tokens + base + components + domains
       tokens.css                     @theme + :root tokens
       base.css                       html/body reset, scrollbar, focus, selection
       components.css                 imports shared/components/* + @reference tokens
       domains.css                    domain accents + responsive breakpoints
-    vscode/                          dark — gray (#1f1f1f) & blue (#0078d4)
-      index.css / tokens.css / base.css / components.css / domains.css
-    spotify/                         dark — near-black (#121212) & green (#1db954)
-      index.css / tokens.css / base.css / components.css / domains.css
-    gmail/                           light — white (#ffffff) & Google blue (#1a73e8)
-      index.css / tokens.css / base.css / components.css / domains.css
+  scoped/                            scoped-theme variants ([data-hex-theme="name"] scope)
 ```
 
 ## Themes
 
-| Theme       | Mode  | Background           | Primary                | Feel                           | Sans        | Mono           |
-| ----------- | ----- | -------------------- | ---------------------- | ------------------------------ | ----------- | -------------- |
-| **Hexrig**  | Dark  | `#121417` slate      | `#5ea9a2` teal         | Lab default, neutral developer | Inter       | JetBrains Mono |
-| **VSCode**  | Dark  | `#1f1f1f` dark gray  | `#0078d4` VS Code blue | IDE faithful                   | System      | SF Mono        |
-| **Spotify** | Dark  | `#121212` near-black | `#1db954` green        | Music streaming                | Circular    | Fira Code      |
-| **Gmail**   | Light | `#ffffff` white      | `#1a73e8` Google blue  | Material                       | Google Sans | Roboto Mono    |
+**27 curated themes**, one directory each under `src/themes/`. The default (the
+`.` / `dist/hex.css` bundle, and `src/index.css`) is **cobalt**. Each theme is a
+single self-contained CSS bundle; consumers hot-swap by loading a different file.
+
+Roster (see [README.md](./README.md) for one-line palette summaries):
+`cobalt` · `garden` · `spacewizard` · `greyline` · `cypress` · `iris` ·
+`lagoon` · `ochre` · `orchid` · `vesper` · `harbor` · `copper` · `cardinal` ·
+`clover` · `sienna` · `hearth` · `juniper` · `forge` · `citron` · `voltaic` ·
+`quartz` · `fern` · `roast` · `damson` · `brass` · `slate` · `beacon`
+
+The `themes` array in `build.mjs` is the source of truth for what gets built;
+`package.json` `exports` mirrors it (`./{name}` → built `dist/{name}.css`,
+`./{name}/source` → `src/themes/{name}/index.css`).
 
 ```js
-// Import themes
-import '@amulet-laboratories/hex' // default (hexrig dark)
-import '@amulet-laboratories/hex/vscode' // vscode dark
-import '@amulet-laboratories/hex/spotify' // spotify dark
-import '@amulet-laboratories/hex/gmail' // gmail light
+// Import a theme (built bundle or raw source)
+import '@amulet-laboratories/hex' // default (cobalt), built
+import '@amulet-laboratories/hex/garden' // a specific theme, built
+import '@amulet-laboratories/hex/garden/source' // raw source (for Vite/Tailwind pipelines)
 ```
 
 ## Token API
@@ -146,8 +152,11 @@ pnpm format       # Prettier
 
 Outputs:
 
-- `dist/hex.css` — default bundle (hexrig)
-- `dist/hexrig.css` — hexrig dark
-- `dist/vscode.css` — vscode dark
-- `dist/spotify.css` — spotify dark
-- `dist/gmail.css` — gmail light
+- `dist/hex.css` — default bundle (cobalt)
+- `dist/{name}.css` — one minified bundle per theme (27 total: `cobalt`, `garden`, `roast`, `damson`, …)
+- `dist/scoped.css` — scoped-theme bundle (`[data-hex-theme="name"]`)
+
+`dist/` is gitignored and rebuilt from source; the `prepare` script runs
+`build.mjs` on install and before publish, so the built CSS always exists for
+consumers (this is what lets sibling repos read `../Rig/hex/dist/*.css` without a
+manual build step).

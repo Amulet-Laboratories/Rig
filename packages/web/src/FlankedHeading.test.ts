@@ -15,6 +15,14 @@ describe('FlankedHeading', () => {
     expect(wrapper.find('h2').text()).toBe('Section Title')
   })
 
+  it('sets --flanked-heading-color from the color prop', () => {
+    expect(mount(FlankedHeading).attributes('style')).toBeUndefined()
+    const wrapper = mount(FlankedHeading, { props: { color: 'var(--color-sage)' } })
+    expect(wrapper.find('[data-rig-flanked-heading]').attributes('style')).toContain(
+      '--flanked-heading-color: var(--color-sage)',
+    )
+  })
+
   it('renders left and right ornaments', () => {
     const wrapper = mount(FlankedHeading, { slots: { default: '<h2>Title</h2>' } })
     const ornaments = wrapper.findAll('[data-rig-flanked-heading-ornament]')

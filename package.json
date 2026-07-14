@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/rig",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "type": "module",
   "engines": {
     "node": ">=22",
@@ -16,18 +16,28 @@
       "lodash": ">=4.18.0",
       "defu": ">=6.1.5",
       "fast-uri": ">=3.1.2",
-      "vite": "^7.3.2",
+      "vite": ">=7.3.5 <8",
       "picomatch@<2.3.2": ">=2.3.2 <3",
       "picomatch@>=4.0.0 <4.0.4": ">=4.0.4",
       "brace-expansion@>=4.0.0 <5.0.5": ">=5.0.5",
-      "nuxt": ">=3.21.6 <4",
+      "nuxt": ">=3.21.7 <4",
+      "nuxt-og-image": ">=6.2.5",
+      "launch-editor": ">=2.14.1",
+      "shell-quote": ">=1.8.4",
+      "tar": ">=7.5.16",
+      "esbuild": ">=0.28.1",
+      "js-yaml@>=4.0.0 <4.2.0": ">=4.2.0",
+      "@babel/core": ">=7.29.6",
       "dompurify": ">=3.4.0",
       "postcss": ">=8.5.10",
       "ws": ">=8.20.1"
     },
     "auditConfig": {
       "ignoreGhsas": [
-        "GHSA-vf6r-87q4-2vjf"
+        "GHSA-vf6r-87q4-2vjf",
+        "GHSA-934w-87qh-qr26",
+        "GHSA-c9cv-mq2m-ppp3",
+        "GHSA-m3q2-p4fw-w38m"
       ]
     }
   },
@@ -101,6 +111,11 @@
       "import": "./dist/web.mjs",
       "require": "./dist/web.cjs"
     },
+    "./manifest": {
+      "types": "./dist/manifest.d.ts",
+      "import": "./dist/manifest.mjs",
+      "require": "./dist/manifest.cjs"
+    },
     "./styles": "./src/styles/base.css",
     "./scaffold": "./src/styles/scaffold.css"
   },
@@ -139,6 +154,7 @@
     "typecheck": "vue-tsc --noEmit",
     "check": "concurrently -n lint,fmt,tsc -c magenta,cyan,yellow \"eslint .\" \"prettier --write .\" \"vue-tsc --noEmit\"",
     "build": "vite build",
+    "manifest:gen": "vitest run -u src/manifest.test.ts",
     "prepublishOnly": "pnpm build",
     "prepare": "husky",
     "test:e2e": "playwright test",

@@ -1,6 +1,6 @@
 // useZoom — CSS zoom management with keyboard shortcuts and localStorage persistence.
 
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, getCurrentInstance } from 'vue'
 
 export interface ZoomOptions {
   /** localStorage key for persisting zoom level */
@@ -75,14 +75,20 @@ export function useZoom(options: ZoomOptions = {}) {
     }
   }
 
-  onMounted(() => {
-    applyZoom()
-    window.addEventListener('keydown', handleKeydown, { capture: true })
-  })
+  // Only wire lifecycle-tied listeners when called from a component setup().
+  // Guarding lets useZoom be constructed outside a component (tests, non-setup
+  // contexts) without Vue's "lifecycle injection APIs can only be used during
+  // setup()" warnings; outside setup the hooks would no-op anyway.
+  if (getCurrentInstance()) {
+    onMounted(() => {
+      applyZoom()
+      window.addEventListener('keydown', handleKeydown, { capture: true })
+    })
 
-  onUnmounted(() => {
-    window.removeEventListener('keydown', handleKeydown, { capture: true })
-  })
+    onUnmounted(() => {
+      window.removeEventListener('keydown', handleKeydown, { capture: true })
+    })
+  }
 
   return { zoomLevel, zoomIn, zoomOut, zoomReset }
 }

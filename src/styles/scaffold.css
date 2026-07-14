@@ -60,6 +60,18 @@ body {
   color: var(--foreground);
   font: inherit;
 }
+[data-rig-button][data-size='xs'] {
+  font-size: 10px;
+}
+[data-rig-button][data-size='sm'] {
+  font-size: 11px;
+}
+[data-rig-button][data-size='lg'] {
+  font-size: 13px;
+}
+[data-rig-button][data-size='xl'] {
+  font-size: 14px;
+}
 [data-rig-button]:hover {
   background: var(--accent);
 }
@@ -150,6 +162,23 @@ body {
   font-size: 11px;
 }
 
+/* Badge `size` scale (xs|sm|md|lg|xl); md matches the base rule above. */
+[data-rig-badge][data-size='xs'] {
+  font-size: 9px;
+}
+
+[data-rig-badge][data-size='sm'] {
+  font-size: 10px;
+}
+
+[data-rig-badge][data-size='lg'] {
+  font-size: 12px;
+}
+
+[data-rig-badge][data-size='xl'] {
+  font-size: 14px;
+}
+
 [data-rig-progress] {
   background: var(--border);
   border-radius: var(--radius);
@@ -175,6 +204,16 @@ body {
 }
 [data-rig-card][data-interactive]:hover {
   border-color: var(--primary);
+}
+[data-rig-card][data-selected] {
+  border-color: var(--primary);
+}
+[data-rig-card][data-layout='row'] {
+  display: grid;
+  grid-template-columns: var(--rig-card-columns, 1fr auto);
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
 }
 
 [data-rig-divider] {
@@ -335,6 +374,17 @@ body {
 }
 [data-rig-slider][data-disabled] {
   opacity: 0.4;
+}
+
+/* Icon tone (subset with scaffold tokens; full set is in Hex). */
+[data-rig-icon][data-tone='primary'] {
+  color: var(--primary);
+}
+[data-rig-icon][data-tone='danger'] {
+  color: var(--destructive);
+}
+[data-rig-icon][data-tone='muted'] {
+  color: var(--muted-foreground);
 }
 
 [data-rig-icon-button] {

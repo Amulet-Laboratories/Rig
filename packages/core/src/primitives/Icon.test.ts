@@ -18,6 +18,17 @@ describe('Icon', () => {
     expect(wrapper.attributes('data-size')).toBe('lg')
   })
 
+  it('sets data-tone when tone is provided', () => {
+    expect(mount(Icon).attributes('data-tone')).toBeUndefined()
+    const wrapper = mount(Icon, { props: { tone: 'danger' } })
+    expect(wrapper.attributes('data-tone')).toBe('danger')
+  })
+
+  it('applies an explicit color as inline style', () => {
+    const wrapper = mount(Icon, { props: { color: '#c9956d' } })
+    expect(wrapper.attributes('style')).toMatch(/color:\s*(#c9956d|rgb\(201, 149, 109\))/i)
+  })
+
   it('is decorative when no label is provided', () => {
     const wrapper = mount(Icon)
     expect(wrapper.attributes('aria-hidden')).toBe('true')

@@ -32,6 +32,7 @@ const label = ref('Badge')
         <Badge size="sm">SM</Badge>
         <Badge size="md">MD</Badge>
         <Badge size="lg">LG</Badge>
+        <Badge size="xl">XL</Badge>
       </div>
     </Variant>
 
@@ -53,7 +54,7 @@ const label = ref('Badge')
             'warning',
           ]"
         />
-        <HstSelect v-model="size" title="Size" :options="['xs', 'sm', 'md', 'lg']" />
+        <HstSelect v-model="size" title="Size" :options="['xs', 'sm', 'md', 'lg', 'xl']" />
       </template>
     </Variant>
   </Story>

@@ -770,3 +770,49 @@
 [data-rig-personalized-hero-link] {
   color: var(--color-accent);
 }
+
+/* ───────── Callout (QuickAnswer) ───────── */
+
+[data-rig-callout] {
+  --rig-callout-accent: var(--color-info);
+  border-color: color-mix(in srgb, var(--rig-callout-accent) 30%, transparent);
+  background: color-mix(in srgb, var(--rig-callout-accent) 8%, transparent);
+}
+
+[data-rig-callout][data-tone='success'] {
+  --rig-callout-accent: var(--color-success);
+}
+
+[data-rig-callout][data-tone='warning'] {
+  --rig-callout-accent: var(--color-warning);
+}
+
+[data-rig-callout][data-tone='danger'] {
+  --rig-callout-accent: var(--color-destructive);
+}
+
+[data-rig-callout-label] {
+  color: var(--rig-callout-accent);
+}
+
+[data-rig-callout-body] {
+  color: var(--color-foreground);
+}
+
+/* ───────── FAQ (FaqBlock) ───────── */
+
+[data-rig-faq-item] {
+  border-bottom-color: color-mix(in srgb, var(--color-border) 80%, transparent);
+}
+
+[data-rig-faq-question] {
+  color: var(--color-foreground);
+}
+
+[data-rig-faq-question]::before {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-faq-answer] {
+  color: var(--color-muted-foreground);
+}
