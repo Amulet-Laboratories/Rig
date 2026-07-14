@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+
+- **Resolved dependency advisories surfaced by `pnpm audit --prod`.** Tightened the loose `vite` (`^7.3.2` → `>=7.3.5 <8`, kept within the v7 line) and `nuxt` (`>=3.21.6` → `>=3.21.7`) overrides, which had permitted patched-but-vulnerable versions, and added overrides for the transitive `shell-quote` (critical), `tar`, `esbuild`, `js-yaml`, `launch-editor`, `nuxt-og-image`, and `@babel/core` advisories (all in the Nuxt toolchain). The remaining 3 "nuxt <3.21.7" audit findings are a false positive — `pnpm audit` matches our own `@amulet-laboratories/rig-nuxt@0.5.0` workspace package (directory `nuxt/`) against the npm `nuxt` advisories; the real, resolved `nuxt` is 3.21.8, patched against all three. They're pinned in `auditConfig.ignoreGhsas` (GHSA-934w-87qh-qr26, GHSA-c9cv-mq2m-ppp3, GHSA-m3q2-p4fw-w38m).
+
+### CI
+
+- Bumped `.node-version` `22.14.0` → `22.23.1` to satisfy `@babel/generator@8`'s engine floor (`^22.18.0 || >=24.11.0`), which was failing every job at install.
+
 ## [0.6.0] — 2026-07-14
 
 ### Added
