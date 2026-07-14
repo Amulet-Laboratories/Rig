@@ -84,6 +84,18 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Publish @amulet-laboratories/rig-nuxt
+        working-directory: nuxt
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          if npm view "@amulet-laboratories/rig-nuxt@${VERSION}" version >/dev/null 2>&1; then
+            echo "rig-nuxt@${VERSION} is already published — skipping."
+          else
+            pnpm publish --access public --no-git-checks
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       # A release-notes hiccup must not mark a successful publish as failed.
       - name: Create GitHub Release
         if: always()
