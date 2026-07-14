@@ -31,6 +31,8 @@ export interface ContentOptions {
   fathom?: boolean
   /** Enable Sentry error tracking plugin (default: true) */
   sentry?: boolean
+  /** Enable the global AdSense loader plugin, required by Auto Ads (default: true) */
+  adsense?: boolean
   /** Enable product API routes (default: true) */
   products?: boolean
   /** Enable newsletter API route (default: true) */
@@ -237,6 +239,9 @@ export default defineNuxtModule<NuxtRigOptions>({
     }
     if (contentOpts.sentry !== false) {
       addPlugin(resolve('./runtime/plugins/sentry.client'))
+    }
+    if (contentOpts.adsense !== false) {
+      addPlugin(resolve('./runtime/plugins/adsense.client'))
     }
 
     // Server routes — use addServerScanDir so Nitro transpiles TypeScript

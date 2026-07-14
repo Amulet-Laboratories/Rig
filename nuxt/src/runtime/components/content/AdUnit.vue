@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
-import { useRuntimeConfig, useHead } from '#imports'
+import { onMounted, computed } from 'vue'
+import { useRuntimeConfig } from '#imports'
 
 interface Props {
-  /** Ad unit slot ID from AdSense */
+  /** AdSense ad unit slot ID — the numeric ID from the dashboard, e.g. '1234567890' */
   slot: string
   /** Ad format — 'auto' adapts to container (default) */
   format?: 'auto' | 'horizontal' | 'vertical'
@@ -20,21 +20,16 @@ const props = withDefaults(defineProps<Props>(), {
 
 const config = useRuntimeConfig()
 const adClientId = computed(() => config.public.adsenseClientId as string | undefined)
-const adReady = ref(false)
 
-// Conditionally add the AdSense script to <head> when a client ID is configured
-if (adClientId.value) {
-  useHead({
-    script: [
-      {
-        src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adClientId.value}`,
-        async: true,
-        crossorigin: 'anonymous',
-        key: 'adsense',
-      },
-    ],
-  })
-}
+// The AdSense loader script is injected globally by the `adsense.client`
+// plugin, because Auto Ads needs it on every page — not only on pages that
+// happen to render an <AdUnit>.
+
+// AdSense slots are numeric IDs. A non-numeric value (e.g. an 'in-article'
+// placeholder) can never fill, so rendering it would reserve an empty box on
+// every article. Skip it and let Auto Ads place the unit instead.
+const hasRealSlot = computed(() => /^\d+$/.test(props.slot ?? ''))
+const shouldRender = computed(() => Boolean(adClientId.value) && hasRealSlot.value)
 
 declare global {
   interface Window {
@@ -43,10 +38,9 @@ declare global {
 }
 
 onMounted(() => {
-  if (!adClientId.value) return
+  if (!shouldRender.value) return
   try {
     ;(window.adsbygoogle = window.adsbygoogle || []).push({})
-    adReady.value = true
   } catch {
     // AdSense blocked by ad blocker or not loaded — fail silently
   }
@@ -55,7 +49,7 @@ onMounted(() => {
 
 <template>
   <aside
-    v-if="adClientId"
+    v-if="shouldRender"
     data-rig-ad-unit
     aria-label="Advertisement"
     :style="{ minHeight: '100px' }"
