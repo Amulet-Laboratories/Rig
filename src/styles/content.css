@@ -472,6 +472,51 @@
   border-radius: var(--radius, 4px);
 }
 
+/* The buy row. Every retailer we have a link for, ordered by commission — so a
+   shopper loyal to a specific store is captured instead of lost at an
+   Amazon-only button, while the top slot still nudges toward best margin.
+
+   Lived as scoped CSS in seven site-local copies of ProductCardWrapper, keyed
+   off .pcw-* classes no theme could reach. It belongs here, with the seventeen
+   product-card rules that were already in this file. */
+
+[data-rig-product-card-buy] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+[data-rig-product-card-buy-label] {
+  flex-basis: 100%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+[data-rig-product-card-link],
+[data-rig-product-card-link-secondary] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+[data-rig-product-card-recommended] {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.1em 0.5em;
+  border-radius: 999px;
+}
+
+[data-rig-product-card-verified] {
+  flex-basis: 100%;
+  margin: 0.5rem 0 0;
+  font-size: 0.72rem;
+}
+
 /* ── Table of Contents ── */
 
 [data-rig-toc] {

@@ -1,12 +1,12 @@
 {
   "name": "@amulet-laboratories/rig",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "type": "module",
   "engines": {
     "node": ">=22",
     "pnpm": ">=10"
   },
-  "description": "Headless, accessible Vue 3 component library — VSCode-style, slot-driven, unstyled",
+  "description": "Headless, accessible Vue 3 component library \u2014 VSCode-style, slot-driven, unstyled",
   "license": "MIT",
   "author": "Amulet Laboratories",
   "pnpm": {
