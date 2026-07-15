@@ -15,8 +15,8 @@ const SITE_URLS: Record<string, string> = ((runtimeConfig.public as Record<strin
   'beanwoven.com': 'https://beanwoven.com',
   'burrowtail.com': 'https://burrowtail.com',
   'dewthread.com': 'https://dewthread.com',
-  'meeplehaus.com': 'https://meeplehaus.com',
-  'shelfglow.com': 'https://shelfglow.com',
+  'meepleloft.com': 'https://meepleloft.com',
+  'theshelfnook.com': 'https://theshelfnook.com',
   'wainloft.com': 'https://wainloft.com',
 }
 
@@ -24,8 +24,8 @@ const SITE_LABELS: Record<string, string> = {
   'beanwoven.com': 'Beanwoven',
   'burrowtail.com': 'Burrowtail',
   'dewthread.com': 'Dewthread',
-  'meeplehaus.com': 'Meeplehaus',
-  'shelfglow.com': 'Shelfglow',
+  'meepleloft.com': 'Meepleloft',
+  'theshelfnook.com': 'The Shelf Nook',
   'wainloft.com': 'Wainloft',
 }
 

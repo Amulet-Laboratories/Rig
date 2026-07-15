@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **Theme content cleanup (all 27 themes).** Stripped project-specific identifiers from comments across 14 themes — cardinal (KBCV), clover (Compass), copper (Undertow), cypress ("real estate theme"), damson (Meeplehaus), hearth (Fogline), iris (Briarcove), lagoon (Duskline), roast (Beanwoven), sienna (Briarcovelib), slate (Shelfglow), vesper ("hospitality theme"), voltaic (Andrew Passanisi). Renamed 17 brand-prefixed CSS variables to use theme names (`--beanwoven-*` → `--roast-*`, `--kbcv-*` → `--cardinal-*`, etc.). Zero source files in any consumer project reference the old names. Token values unchanged.
+- **Theme content cleanup (all 27 themes).** Stripped project-specific identifiers from comments across 14 themes — cardinal (KBCV), clover (Compass), copper (Undertow), cypress ("real estate theme"), damson (Meepleloft), hearth (Fogline), iris (Briarcove), lagoon (Duskline), roast (Beanwoven), sienna (Briarcovelib), slate (The Shelf Nook), vesper ("hospitality theme"), voltaic (Andrew Passanisi). Renamed 17 brand-prefixed CSS variables to use theme names (`--beanwoven-*` → `--roast-*`, `--kbcv-*` → `--cardinal-*`, etc.). Zero source files in any consumer project reference the old names. Token values unchanged.
 - **README rewrite.** Documents all 27 themes (was 4) with one-line palette summaries. New section on building a custom theme outside `src/themes/` via `@amulet-laboratories/hex/shared/*` imports.
 
 ### Added (component skins)
