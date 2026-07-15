@@ -39,6 +39,29 @@ export function usePersistedState<T>(key: string, initial: T, storage?: Storage)
     { deep: true },
   )
 
+  // Flush a pending write when the scope goes away, rather than letting the
+  // timer outlive the component that owns it. Two reasons:
+  //
+  // - Correctness: toggle something and navigate away inside the debounce window
+  //   and the write is simply lost.
+  // - Isolation: the timer fires 100ms later regardless of who is around by
+  //   then. In tests that means one test's write lands in the middle of the
+  //   next one — which is half of why workbench-flows was flaky.
+  //
+  // Flush rather than cancel: the last value is the one worth keeping.
+  if (getCurrentScope()) {
+    onScopeDispose(() => {
+      if (!writeTimer) return
+      clearTimeout(writeTimer)
+      writeTimer = null
+      try {
+        store?.setItem(key, JSON.stringify(state.value))
+      } catch {
+        // Storage full or unavailable
+      }
+    })
+  }
+
   // Cross-tab sync — only registered within a component/effect scope so the
   // listener is always cleaned up. Outside a scope (e.g. a Pinia store) the
   // listener would leak permanently, so we skip it there intentionally.
