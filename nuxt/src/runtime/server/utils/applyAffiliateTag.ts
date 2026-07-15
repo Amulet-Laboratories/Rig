@@ -15,12 +15,24 @@ let warnedMissingTag = false
  *   stripped rather than shipped (and warned once in dev).
  *
  * Non-Amazon retailer URLs are never touched.
+ *
+ * NOTE: types are JSDoc, not annotations, and that is deliberate. Nitro does not
+ * transpile this package's TypeScript when it is imported from node_modules —
+ * Rollup parses these files as plain JavaScript and a bare `x: string` fails the
+ * consumer's build with "Expected ',', got ':'". Every other runtime file here
+ * is already annotation-free, which is why the convention held silently: `nuxt/`
+ * is not in the root tsconfig `include`, so `pnpm typecheck` never checks it and
+ * nothing enforces this. Keep runtime files JS-parseable.
+ *
+ * @param {{ amazon?: { url?: string } }} product
+ * @param {string} amazonTag Per-site Associates tag, or '' when unconfigured.
  */
-export function applyAffiliateTag(product, amazonTag: string) {
+export function applyAffiliateTag(product, amazonTag) {
   const url = product.amazon?.url
   if (!url) return product
 
-  let parsed: URL
+  /** @type {URL} */
+  let parsed
   try {
     parsed = new URL(url)
   } catch {
@@ -28,9 +40,7 @@ export function applyAffiliateTag(product, amazonTag: string) {
     if (!url.includes(PLACEHOLDER_TAG)) return product
     const next = amazonTag
       ? url.replace(PLACEHOLDER_TAG, amazonTag)
-      : url.replace(/([?&])tag=YOURTAG-20(&|$)/, (_m: string, pre: string, post: string) =>
-          post === '&' ? pre : '',
-        )
+      : url.replace(/([?&])tag=YOURTAG-20(&|$)/, (_m, pre, post) => (post === '&' ? pre : ''))
     return { ...product, amazon: { ...product.amazon, url: next } }
   }
 
