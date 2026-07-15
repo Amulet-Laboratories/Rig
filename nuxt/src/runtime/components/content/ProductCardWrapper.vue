@@ -92,7 +92,7 @@ function onAffiliateClick() {
           >{{ product.brand }} &middot; {{ product.price_range }}</span
         >
       </div>
-      <span data-rig-product-card-rating>{{ product.rating }}/5</span>
+      <span v-if="product.rating" data-rig-product-card-rating>{{ product.rating }}/5</span>
     </div>
     <p data-rig-product-card-oneliner>{{ product.one_liner }}</p>
     <div data-rig-product-card-details>
