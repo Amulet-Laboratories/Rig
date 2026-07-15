@@ -256,6 +256,12 @@ export default defineNuxtModule<NuxtRigOptions>({
       from: resolve('./runtime/composables/useStructuredData'),
     })
     addImports({ name: 'useProducts', from: resolve('./runtime/composables/useProducts') })
+    // Amazon geo-localisation. Lived in seven identical copies under each site's
+    // composables/ — it is library behaviour and every site had the same file.
+    addImports({
+      name: 'useAmazonLocale',
+      from: resolve('./runtime/composables/useAmazonLocale'),
+    })
 
     // Plugins
     if (contentOpts.fathom !== false) {
