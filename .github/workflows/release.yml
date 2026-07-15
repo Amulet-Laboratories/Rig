@@ -28,6 +28,28 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
+      # Trusted publishing (OIDC) needs npm >= 11.5.1; the npm bundled with
+      # Node 22.23.1 is 10.9.8, which silently has no OIDC support at all and
+      # fails as an opaque E404. pnpm cannot do this itself — 10.30.2 contains
+      # no OIDC code (grep: no ACTIONS_ID_TOKEN_REQUEST / NPM_ID_TOKEN); support
+      # only arrives in pnpm 11.x, which is a separate migration (pnpm 11 stops
+      # reading `pnpm.overrides` / `pnpm.auditConfig` from package.json).
+      - name: Install npm with trusted-publishing support
+        run: npm install -g npm@latest
+
+      - name: Verify npm supports trusted publishing
+        run: |
+          NPM_VERSION="$(npm --version)"
+          echo "npm ${NPM_VERSION}"
+          node -e '
+            const [maj, min, pat] = process.argv[1].split(".").map(Number)
+            const ok = maj > 11 || (maj === 11 && (min > 5 || (min === 5 && pat >= 1)))
+            if (!ok) {
+              console.error(`npm ${process.argv[1]} is too old for trusted publishing (need >= 11.5.1)`)
+              process.exit(1)
+            }
+          ' "$NPM_VERSION"
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -58,47 +80,83 @@ jobs:
             exit 1
           fi
 
-      # Publishes are idempotent: if the version in package.json is already on
-      # npm (e.g. a re-run of the same tag, or a release published manually),
-      # skip rather than hard-fail on "cannot publish over existing version".
+      # ── Publishing ────────────────────────────────────────────────────────
+      #
+      # Authenticated by trusted publishing (OIDC). There is deliberately NO
+      # NODE_AUTH_TOKEN here and no NPM_TOKEN secret in use: the job mints a
+      # short-lived, workflow-scoped credential from `id-token: write`. Nothing
+      # to rotate, expire, or paste into the wrong box.
+      #
+      # This requires a Trusted Publisher configured on npmjs.com for EACH of
+      # the three packages (Settings -> Trusted Publisher):
+      #   Organization / user : Amulet-Laboratories
+      #   Repository          : Rig
+      #   Workflow filename   : release.yml     <- filename only, NOT a path
+      #   Environment         : (leave blank)
+      # A mismatch in any field surfaces as an opaque `E404 ... PUT` — npm
+      # reports a bad OIDC chain as "not found", not as an auth error. If this
+      # job 404s, check those four fields before suspecting the code.
+      #
+      # Why `pnpm pack` then `npm publish <tarball>` rather than either alone:
+      #   - pnpm rewrites `workspace:*` deps to real versions when packing
+      #     (verified: npm pack ships `"@amulet-laboratories/rig":"workspace:*"`,
+      #     pnpm pack ships `"0.6.0"`). npm cannot do that rewrite.
+      #   - npm has trusted publishing; pnpm 10.x has no OIDC code at all.
+      # Packing with pnpm and uploading with npm gets both. npm publish on a
+      # prebuilt tarball also skips re-running prepublishOnly, which otherwise
+      # rebuilds the library a second time after the Build step above.
+      #
+      # Publishes stay idempotent: a version already on npm is skipped rather
+      # than hard-failing on "cannot publish over existing version", so
+      # re-running a partially-published tag is safe.
       - name: Publish @amulet-laboratories/rig
         run: |
+          NAME="$(node -p "require('./package.json').name")"
           VERSION="$(node -p "require('./package.json').version")"
-          if npm view "@amulet-laboratories/rig@${VERSION}" version >/dev/null 2>&1; then
-            echo "rig@${VERSION} is already published — skipping."
+          if npm view "${NAME}@${VERSION}" version >/dev/null 2>&1; then
+            echo "${NAME}@${VERSION} is already published — skipping."
           else
-            pnpm publish --access public --no-git-checks
+            TARBALL="$(pnpm pack --pack-destination "$RUNNER_TEMP" | tail -1)"
+            npm publish "$TARBALL" --access public
           fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish @amulet-laboratories/hex
         working-directory: hex
         run: |
+          NAME="$(node -p "require('./package.json').name")"
           VERSION="$(node -p "require('./package.json').version")"
-          if npm view "@amulet-laboratories/hex@${VERSION}" version >/dev/null 2>&1; then
-            echo "hex@${VERSION} is already published — skipping."
+          if npm view "${NAME}@${VERSION}" version >/dev/null 2>&1; then
+            echo "${NAME}@${VERSION} is already published — skipping."
           else
-            pnpm publish --access public --no-git-checks
+            TARBALL="$(pnpm pack --pack-destination "$RUNNER_TEMP" | tail -1)"
+            npm publish "$TARBALL" --access public
           fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish @amulet-laboratories/rig-nuxt
         working-directory: nuxt
         run: |
+          NAME="$(node -p "require('./package.json').name")"
           VERSION="$(node -p "require('./package.json').version")"
-          if npm view "@amulet-laboratories/rig-nuxt@${VERSION}" version >/dev/null 2>&1; then
-            echo "rig-nuxt@${VERSION} is already published — skipping."
+          if npm view "${NAME}@${VERSION}" version >/dev/null 2>&1; then
+            echo "${NAME}@${VERSION} is already published — skipping."
           else
-            pnpm publish --access public --no-git-checks
+            TARBALL="$(pnpm pack --pack-destination "$RUNNER_TEMP" | tail -1)"
+            npm publish "$TARBALL" --access public
           fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # A release-notes hiccup must not mark a successful publish as failed.
+      # Only cut a GitHub Release once the publishes above actually succeeded.
+      #
+      # This used to be `if: always()`, which meant a run where every publish
+      # failed still advertised a release — v0.6.0 was tagged, published nothing
+      # (npm E404), and still produced a non-draft GitHub Release pointing at
+      # versions that do not exist on npm.
+      #
+      # `continue-on-error` stays: once the packages are out, a release-notes
+      # hiccup must not mark a successful publish as failed. Note the publish
+      # steps are idempotent — a re-run where all three versions are already on
+      # npm still counts as success, so re-running a partially-published tag
+      # correctly produces the release.
       - name: Create GitHub Release
-        if: always()
         continue-on-error: true
         uses: softprops/action-gh-release@v2
         with:
