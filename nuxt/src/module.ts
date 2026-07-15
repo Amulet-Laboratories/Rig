@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs'
+import { resolve as resolvePath } from 'node:path'
 import {
   defineNuxtModule,
   addImports,
@@ -80,9 +82,31 @@ export default defineNuxtModule<NuxtRigOptions>({
     composables: true,
     content: false,
   },
-  setup(options) {
+  setup(options, nuxt) {
     const prefix = options.prefix ?? ''
     const { resolve } = createResolver(import.meta.url)
+
+    // ── Ship the product data with the server build ──
+    //
+    // Deliberately ahead of the `content` gate below, and keyed on the directory
+    // existing rather than on any option: QuizSort declares no `rig` block at
+    // all, so `content` is false there, but its own /go/[slug] route reads the
+    // same data. Gating this on `content` would leave that route broken.
+    //
+    // Why it is needed: the handlers look up data/products/<niche>/<slug>.yaml
+    // through a path assembled at runtime. Nitro's bundler traces static imports,
+    // not strings built from a router param, so nothing tells it these files are
+    // needed and none of them reach the deployed function. Locally every lookup
+    // succeeds (cwd is the repo root and the files are right there); in
+    // production every lookup misses and /api/products returns [] rather than
+    // erroring, so it fails silently. Registering the directory as a server asset
+    // is what makes the data present at runtime.
+    const productsDir = resolvePath(nuxt.options.rootDir, 'data/products')
+    if (existsSync(productsDir)) {
+      nuxt.options.nitro ||= {}
+      nuxt.options.nitro.serverAssets ||= []
+      nuxt.options.nitro.serverAssets.push({ baseName: 'products', dir: productsDir })
+    }
 
     // Auto-import every Rig component (derived from the manifest, never a
     // hardcoded list). Tree-shaking drops any a site doesn't use in a template.
