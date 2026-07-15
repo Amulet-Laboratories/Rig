@@ -65,17 +65,53 @@ The workflow upgrades npm (`npm install -g npm@latest`) because trusted
 publishing needs **npm >= 11.5.1**, and Node 22.23.1 bundles npm 10.9.8 — which
 has no OIDC support and fails as the same opaque E404.
 
+## Every package MUST declare `repository`
+
+Trusted publishing signs a sigstore provenance statement automatically, and npm
+**rejects the upload** unless `package.json`'s `repository.url` matches the repo
+the provenance was built from. A package with no `repository` field fails with:
+
+```
+E422 Unprocessable Entity — Error verifying sigstore provenance bundle:
+Failed to validate repository information: package.json: "repository.url" is "",
+expected to match "https://github.com/Amulet-Laboratories/Rig" from provenance
+```
+
+This is exactly how the first OIDC release half-landed: `rig` and `hex` declared
+`repository` and published; `rig-nuxt` did not and was rejected _after_
+authenticating successfully. Any new publishable package needs:
+
+```jsonc
+"repository": {
+  "type": "git",
+  "url": "https://github.com/Amulet-Laboratories/rig",
+  "directory": "hex"   // workspace path; omit for the root package
+}
+```
+
+Tokens never required this — provenance is what makes it mandatory. It is also
+what you gain: every release now carries a SLSA attestation proving it was built
+from this repo by this workflow (`npm view <pkg> dist.attestations`).
+
 ## Debugging a failed publish
 
-`E404 ... PUT https://registry.npmjs.org/@amulet-laboratories%2f<pkg>` almost
-never means "not found". npm reports a **bad OIDC chain as a 404**. Check, in
-order:
+The status code tells you which half broke:
+
+| Code            | Meaning                                                                      | Look at                                        |
+| --------------- | ---------------------------------------------------------------------------- | ---------------------------------------------- |
+| `E404` on `PUT` | **Auth** — npm reports a bad OIDC chain as "not found", not as an auth error | Trusted Publisher config (below)               |
+| `E422`          | **Auth worked**, the payload was rejected                                    | Usually `repository.url` vs provenance (above) |
+
+For `E404`, check in order:
 
 1. Does the package have a Trusted Publisher configured at all?
 2. Is the workflow filename `release.yml` (not a path)?
 3. Do org/repo match this repository exactly?
 4. Is `id-token: write` still in the job's `permissions`?
 5. Did `npm --version` print >= 11.5.1? (the workflow asserts this)
+6. Is the tag pointing at a commit that actually **contains** this workflow?
+   Actions runs the workflow from the triggering ref — re-running an old tag
+   replays the old workflow, however current `main` is.
 
 ## Moving to pnpm 11 later
 
