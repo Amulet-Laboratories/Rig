@@ -5,6 +5,11 @@
   "description": "Nuxt module for @amulet-laboratories/rig — auto-imports, tree-shaking, SSR-safe",
   "license": "MIT",
   "author": "Amulet Laboratories",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Amulet-Laboratories/rig",
+    "directory": "nuxt"
+  },
   "exports": {
     ".": {
       "import": "./src/module.ts"
