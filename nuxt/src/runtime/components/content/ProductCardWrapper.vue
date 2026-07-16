@@ -1,18 +1,23 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useAsyncData } from '#imports'
+import { useState } from '#imports'
 import { useFathom } from '@amulet-laboratories/rig'
-import { useProducts } from '../../composables/useProducts'
+import type { Product } from '../../composables/useProducts'
 import { useAmazonLocale } from '../../composables/useAmazonLocale'
 
 const props = defineProps<{
   slug: string
 }>()
 
-const { getProduct } = useProducts()
-const { data: product, status } = await useAsyncData(`product-${props.slug}`, () =>
-  getProduct(props.slug),
-)
+// Read the product from state primed once by the products.server plugin, rather
+// than fetching per card. A per-card `await useAsyncData` made this an async
+// component, and Nuxt Content's MDC renderer resolves only the first async
+// component in an article — so a roundup listing several products rendered one.
+// This setup is synchronous, so every card mounts; the plugin runs before
+// content renders, so the data is already here at SSR time.
+const store = useState<Record<string, Product> | null>('rig:products', () => null)
+const product = computed<Product | null>(() => store.value?.[props.slug] ?? null)
+const status = computed(() => (store.value === null ? 'pending' : 'success'))
 
 const { trackAffiliateClick } = useFathom()
 const { localizeAmazon } = useAmazonLocale()
