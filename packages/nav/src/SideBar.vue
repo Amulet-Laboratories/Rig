@@ -28,7 +28,7 @@ defineEmits<{
 }>()
 
 defineSlots<{
-  'header'?(props: Record<string, never>): unknown
+  header?(props: Record<string, never>): unknown
   /** Inline content after the title — actions, badges, etc. Only rendered
    *  when `title` is set and `#header` is not. */
   'header-actions'?(props: Record<string, never>): unknown

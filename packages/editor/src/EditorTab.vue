@@ -25,10 +25,10 @@ const emit = defineEmits<{
 }>()
 
 defineSlots<{
-  'icon'(props: Record<string, never>): unknown
+  icon(props: Record<string, never>): unknown
   default(props: Record<string, never>): unknown
-  'indicator'(props: Record<string, never>): unknown
-  'close'(props: Record<string, never>): unknown
+  indicator(props: Record<string, never>): unknown
+  close(props: Record<string, never>): unknown
 }>()
 </script>
 

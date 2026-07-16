@@ -30,8 +30,7 @@ function retry() {
       <summary>{{ error.message }}</summary>
       <pre
         >{{ error.stack }}
-Lifecycle: {{ errorInfo }}</pre
-      >
+Lifecycle: {{ errorInfo }}</pre>
     </details>
     <Button variant="ghost" size="sm" @click="retry"> Retry </Button>
   </div>

@@ -30,9 +30,9 @@ defineEmits<{
 }>()
 
 defineSlots<{
-  'header'?(props: Record<string, never>): unknown
+  header?(props: Record<string, never>): unknown
   default?(props: Record<string, never>): unknown
-  'footer'?(props: Record<string, never>): unknown
+  footer?(props: Record<string, never>): unknown
 }>()
 
 // Merge the two CSS custom properties a card can set into one inline style,

@@ -30,12 +30,12 @@ const emit = defineEmits<{
 }>()
 
 defineSlots<{
-  'titlebar'?(props: Record<string, never>): unknown
-  'activity'?(props: Record<string, never>): unknown
-  'sidebar'?(props: Record<string, never>): unknown
-  'editor'?(props: Record<string, never>): unknown
-  'panel'?(props: Record<string, never>): unknown
-  'statusbar'?(props: Record<string, never>): unknown
+  titlebar?(props: Record<string, never>): unknown
+  activity?(props: Record<string, never>): unknown
+  sidebar?(props: Record<string, never>): unknown
+  editor?(props: Record<string, never>): unknown
+  panel?(props: Record<string, never>): unknown
+  statusbar?(props: Record<string, never>): unknown
 }>()
 
 // Snapshot sizes at drag start — apply absolute delta against these

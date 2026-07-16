@@ -33,8 +33,8 @@ const emit = defineEmits<{
 }>()
 
 defineSlots<{
-  'leading'(props: Record<string, never>): unknown
-  'trailing'(props: Record<string, never>): unknown
+  leading(props: Record<string, never>): unknown
+  trailing(props: Record<string, never>): unknown
 }>()
 
 function onChange(e: Event) {

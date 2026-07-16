@@ -101,8 +101,7 @@ const schema = z.object({
 })
 
 // Pass as schema prop:
-// &lt;Form :schema="zodAdapter(schema)" /&gt;</pre
-        >
+// &lt;Form :schema="zodAdapter(schema)" /&gt;</pre>
         <p style="margin-top: 8px">
           The schema function receives all form values and returns a record of field-name to
           error-message strings.

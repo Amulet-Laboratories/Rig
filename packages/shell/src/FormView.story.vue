@@ -60,8 +60,7 @@ const pgCancelLabel = ref('Cancel')
                   resize: vertical;
                 "
               >
-A wandering scholar of the old arcane traditions.</textarea
-              >
+A wandering scholar of the old arcane traditions.</textarea>
             </label>
           </div>
         </FormView>

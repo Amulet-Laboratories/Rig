@@ -40,8 +40,7 @@ function reload() {
         <summary>Error details</summary>
         <pre
           >{{ error.stack }}
-Lifecycle: {{ errorInfo }}</pre
-        >
+Lifecycle: {{ errorInfo }}</pre>
       </details>
       <div data-rig-crash-screen-actions>
         <Button variant="primary" size="sm" @click="reset"> Try Again </Button>

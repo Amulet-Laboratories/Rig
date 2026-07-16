@@ -22,7 +22,7 @@ withDefaults(
 )
 
 defineSlots<{
-  'actions'?(props: Record<string, never>): unknown
+  actions?(props: Record<string, never>): unknown
   default?(props: Record<string, never>): unknown
 }>()
 </script>

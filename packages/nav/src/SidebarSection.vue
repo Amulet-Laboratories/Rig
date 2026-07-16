@@ -10,13 +10,7 @@
 // Both modes can coexist — rows render first, then slot content.
 
 export type SidebarSectionTone =
-  | 'muted'
-  | 'foreground'
-  | 'success'
-  | 'warning'
-  | 'info'
-  | 'danger'
-  | 'accent'
+  'muted' | 'foreground' | 'success' | 'warning' | 'info' | 'danger' | 'accent'
 
 export interface SidebarSectionRow {
   label: string

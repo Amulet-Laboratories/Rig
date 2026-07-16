@@ -52,9 +52,9 @@ const emit = defineEmits<{
 }>()
 
 defineSlots<{
-  'leading'?(props: Record<string, never>): unknown
+  leading?(props: Record<string, never>): unknown
   'clear-icon'?(props: Record<string, never>): unknown
-  'trailing'?(props: Record<string, never>): unknown
+  trailing?(props: Record<string, never>): unknown
 }>()
 
 const inputRef = ref<HTMLInputElement | null>(null)

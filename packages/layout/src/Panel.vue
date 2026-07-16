@@ -32,7 +32,7 @@ const emit = defineEmits<{
 }>()
 
 defineSlots<{
-  'header'?(props: Record<string, never>): unknown
+  header?(props: Record<string, never>): unknown
   default?(props: Record<string, never>): unknown
 }>()
 
