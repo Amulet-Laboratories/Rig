@@ -264,11 +264,6 @@ export default defineNuxtModule<NuxtRigOptions>({
     })
 
     // Plugins
-    // Primes every product into shared state once per request so
-    // ProductCardWrapper can read synchronously — see the plugin for why the
-    // card must not fetch its own data. Server-only; the result rides the
-    // payload to the client.
-    addPlugin(resolve('./runtime/plugins/products.server'))
     if (contentOpts.fathom !== false) {
       addPlugin(resolve('./runtime/plugins/fathom.client'))
     }
