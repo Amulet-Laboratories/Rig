@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **`@amulet-laboratories/rig-nuxt` (0.6.4) — build-time content guard against self-closing MDC component tags.** MDC (`@nuxtjs/mdc` 0.20–0.22) does not honor `/>` on component tags: `<ProductCardWrapper slug="x" />` parses as an _open_ tag that swallows every following sibling (prose, headings, later cards) as its children, and since these leaf components have no `<slot/>` the swallowed content is discarded at render — so a roundup with N cards rendered only the first. The module now scans `content/**/*.md` in a `build:before` hook and fails the build with a file:line list if any self-closing PascalCase component tag is present, directing authors to the explicit-close form (`<X></X>`). This replaces a per-site `scripts/check-content-components.mjs` that had to be copied into every authority site — the rule now lives once in the library. Lowercase HTML voids (`<br/>`, `<img/>`) are intentionally ignored.
+
 ### Security
 
 - **Resolved dependency advisories surfaced by `pnpm audit --prod`.** Tightened the loose `vite` (`^7.3.2` → `>=7.3.5 <8`, kept within the v7 line) and `nuxt` (`>=3.21.6` → `>=3.21.7`) overrides, which had permitted patched-but-vulnerable versions, and added overrides for the transitive `shell-quote` (critical), `tar`, `esbuild`, `js-yaml`, `launch-editor`, `nuxt-og-image`, and `@babel/core` advisories (all in the Nuxt toolchain). The remaining 3 "nuxt <3.21.7" audit findings are a false positive — `pnpm audit` matches our own `@amulet-laboratories/rig-nuxt@0.5.0` workspace package (directory `nuxt/`) against the npm `nuxt` advisories; the real, resolved `nuxt` is 3.21.8, patched against all three. They're pinned in `auditConfig.ignoreGhsas` (GHSA-934w-87qh-qr26, GHSA-c9cv-mq2m-ppp3, GHSA-m3q2-p4fw-w38m).
