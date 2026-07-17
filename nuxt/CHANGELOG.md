@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.5] — 2026-07-17
+
+### Changed
+
+- **Sentry `environment` is now the reporting site's hostname instead of a flat `'production'`.** The whole affiliate network reports into one shared Sentry project; tagging every site `'production'` made errors indistinguishable in the shared view. The client plugin now uses `window.location.hostname` (e.g. `beanwoven.com`, `quizsort.com`) so events are filterable per site with no per-site config; local dev still reports as `'development'`. No API change — sites pick this up on bump.
+
 ## [0.5.0] — 2026-07-14
 
 ### Added
