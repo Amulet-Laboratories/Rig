@@ -44,6 +44,32 @@
   color: var(--color-muted-foreground);
 }
 
+/* ───────── Editorial byline card (author, article sidebar) ───────── */
+
+[data-rig-editorial-sidebar] {
+  background: color-mix(in srgb, var(--color-primary) 5%, var(--color-background, #fff));
+  border-color: var(--color-border);
+}
+
+[data-rig-editorial-sidebar-avatar] {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground, #ffffff);
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+}
+
+[data-rig-editorial-sidebar-name] {
+  color: var(--color-foreground);
+  font-family: var(--font-heading, var(--font-serif, var(--font-sans)));
+}
+
+[data-rig-editorial-sidebar-role] {
+  color: var(--color-accent, var(--color-primary));
+}
+
+[data-rig-editorial-sidebar-blurb] {
+  color: var(--color-muted-foreground);
+}
+
 [data-rig-article-header-updated] {
   color: var(--color-muted-foreground);
 }
@@ -205,13 +231,45 @@
   color: #ffffff;
   background: var(--color-primary);
   text-decoration: none;
-  transition: background-color 0.2s ease;
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-foreground) 16%, transparent);
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.12s ease;
 }
 
 [data-rig-product-card-link]:hover {
-  background: color-mix(in srgb, var(--color-primary) 85%, #000);
+  background: color-mix(in srgb, var(--color-primary) 88%, #000);
   color: #ffffff;
   text-decoration: none;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--color-primary) 34%, transparent);
+  transform: translateY(-1px);
+}
+
+/* Alternate retailers get an outline treatment so the primary (best-margin)
+   retailer stays the visual hero. */
+[data-rig-product-card-link-secondary] {
+  color: var(--color-primary);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+[data-rig-product-card-link-secondary]:hover {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  text-decoration: none;
+}
+
+[data-rig-product-card-buy-label] {
+  color: var(--color-muted-foreground);
+}
+
+[data-rig-product-card-verified] {
+  color: var(--color-muted-foreground);
 }
 
 /* ───────── Table of Contents ───────── */

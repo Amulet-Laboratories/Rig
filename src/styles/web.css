@@ -94,6 +94,10 @@
   font-weight: 700;
   font-size: 1.125rem;
   line-height: 1;
+  /* Keep multi-word site names ("The Scruff Guide", "One Good Lamp") on one line
+     instead of wrapping under the logo mark. */
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 [data-rig-site-nav-brand-icon] {

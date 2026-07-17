@@ -50,6 +50,62 @@
   overflow-y: auto;
 }
 
+/* Editorial byline card (author in the article sidebar). Structure only —
+   colors/fonts come from the Hex theme. */
+[data-rig-editorial-sidebar] {
+  padding: 1.25rem;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: var(--radius, 6px);
+}
+
+[data-rig-editorial-sidebar-header] {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+[data-rig-editorial-sidebar-avatar] {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+[data-rig-editorial-sidebar-identity] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+[data-rig-editorial-sidebar-name] {
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
+
+[data-rig-editorial-sidebar-role] {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+[data-rig-editorial-sidebar-blurb] {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
 /* ── Article Header ── */
 
 [data-rig-article-header] {
@@ -470,6 +526,8 @@
   font-size: 0.875rem;
   font-weight: 600;
   border-radius: var(--radius, 4px);
+  /* Keep the CTA label + arrow on one line even in a narrow card column. */
+  white-space: nowrap;
 }
 
 /* The buy row. Every retailer we have a link for, ordered by commission — so a
@@ -500,6 +558,21 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+/* A trailing arrow that nudges on hover — makes the CTA feel intentional rather
+   than a stock coloured button. Skin (colour/shadow/lift) is in the Hex theme. */
+[data-rig-product-card-link]::after,
+[data-rig-product-card-link-secondary]::after {
+  content: '→';
+  font-size: 0.95em;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+
+[data-rig-product-card-link]:hover::after,
+[data-rig-product-card-link-secondary]:hover::after {
+  transform: translateX(3px);
 }
 
 [data-rig-product-card-recommended] {
