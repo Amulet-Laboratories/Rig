@@ -25,34 +25,32 @@ import { queryCollection } from '@nuxt/content/nitro'
  * content:false consumers (e.g. QuizSort) never mount it. The collection reads
  * are defensive anyway, so a content site missing a collection degrades to a
  * partial list rather than a 500 that would blank the whole sitemap.
+ *
+ * NB: server runtime files must stay JS-parseable (Rollup parses them as plain
+ * JS in consumer builds) — no type annotations, interfaces, or as-casts. See
+ * server/utils/js-parseable.test.ts.
+ *
+ * @returns {Promise<Array<{loc: string, lastmod?: string, changefreq?: string, priority?: number}>>}
  */
-
-interface SitemapUrl {
-  loc: string
-  lastmod?: string
-  changefreq?: string
-  priority?: number
-}
-
-export default defineEventHandler(async (event): Promise<SitemapUrl[]> => {
+export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
 
-  let articles: Array<Record<string, unknown>> = []
-  let pages: Array<Record<string, unknown>> = []
+  let articles = []
+  let pages = []
   try {
-    // @ts-expect-error -- server queryCollection takes (event, collection)
+    // @ts-expect-error -- Server queryCollection takes (event, collection); vue-tsc resolves client types
     articles = await queryCollection(event, 'articles').all()
   } catch {
     articles = []
   }
   try {
-    // @ts-expect-error -- server queryCollection takes (event, collection)
+    // @ts-expect-error -- Server queryCollection takes (event, collection); vue-tsc resolves client types
     pages = await queryCollection(event, 'pages').all()
   } catch {
     pages = []
   }
 
-  const csv = (value: unknown): string[] =>
+  const csv = (value) =>
     String(value || '')
       .split(',')
       .map((s) => s.trim())
@@ -66,15 +64,16 @@ export default defineEventHandler(async (event): Promise<SitemapUrl[]> => {
   return [
     { loc: '/', priority: 1.0, changefreq: 'daily' },
     ...pages.map((page) => ({
-      loc: page.path as string,
+      loc: page.path,
       priority: 0.7,
       changefreq: 'monthly',
     })),
     ...articles.map((article) => ({
-      loc: article.path as string,
+      loc: article.path,
       priority: 0.8,
       changefreq: 'weekly',
-      lastmod: (article.updatedAt || article.publishedAt) as string | undefined,
+      // @ts-expect-error -- updatedAt/publishedAt exist on the articles collection items
+      lastmod: article.updatedAt || article.publishedAt,
     })),
     { loc: '/compare', priority: 0.7, changefreq: 'weekly' },
     ...comparisonUrls.map((loc) => ({
@@ -100,15 +99,15 @@ export default defineEventHandler(async (event): Promise<SitemapUrl[]> => {
   ].filter((url) => url.loc)
 })
 
-function getComparisonUrls(): string[] {
+function getComparisonUrls() {
   const config = useRuntimeConfig()
   const comparisonNiches = (config.contentComparisonNiches || 'coffee')
     .split(',')
-    .map((s: string) => s.trim())
+    .map((s) => s.trim())
     .filter(Boolean)
 
   const dataDir = resolve(process.cwd(), 'data/products')
-  const products: Array<{ slug: string; category: string }> = []
+  const products = []
 
   for (const niche of comparisonNiches) {
     const nicheDir = join(dataDir, niche)
@@ -127,7 +126,7 @@ function getComparisonUrls(): string[] {
     }
   }
 
-  const urls: string[] = []
+  const urls = []
   for (let i = 0; i < products.length; i++) {
     for (let j = i + 1; j < products.length; j++) {
       if (products[i].category === products[j].category) {
