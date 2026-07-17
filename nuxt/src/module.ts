@@ -12,6 +12,7 @@ import {
   components as RIG_COMPONENTS,
   composables as RIG_COMPOSABLES,
 } from '@amulet-laboratories/rig/manifest'
+import { findSelfClosingComponents, formatViolations } from './content-guard'
 
 /**
  * @amulet-laboratories/rig-nuxt
@@ -276,6 +277,21 @@ export default defineNuxtModule<NuxtRigOptions>({
 
     // Server routes — use addServerScanDir so Nitro transpiles TypeScript
     addServerScanDir(resolve('./runtime/server'))
+
+    // ── Content guard ──
+    // MDC silently swallows siblings after a self-closing component tag
+    // (`<ProductCardWrapper />`), so a roundup renders only its first card. This
+    // lives here — once, in the library — rather than as a script copied into
+    // every site. Fails the build if any content file reintroduces the form.
+    const contentDir = resolvePath(nuxt.options.rootDir, 'content')
+    if (existsSync(contentDir)) {
+      nuxt.hook('build:before', () => {
+        const violations = findSelfClosingComponents(contentDir)
+        if (violations.length) {
+          throw new Error(`[rig-nuxt] content guard: ${formatViolations(violations)}`)
+        }
+      })
+    }
   },
 })
 
