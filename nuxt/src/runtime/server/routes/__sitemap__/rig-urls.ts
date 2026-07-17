@@ -5,33 +5,63 @@ import { defineEventHandler } from 'h3'
 import { useRuntimeConfig } from 'nitropack/runtime'
 import { queryCollection } from '@nuxt/content/nitro'
 
+/**
+ * Sitemap URL source for @nuxtjs/sitemap.
+ *
+ * The authority sites' content routes — /articles/**, /pages/** (about,
+ * privacy…), /category/**, /best-for/**, /compare/**, /free/** — are ISR, so
+ * they never enter the prerender manifest @nuxtjs/sitemap auto-discovers URLs
+ * from. Left alone the generated sitemap.xml lists only the handful of static
+ * page routes, hiding every article from search-engine discovery.
+ *
+ * A site opts in with a single line in nuxt.config:
+ *   sitemap: { sources: ['/__sitemap__/rig-urls'] }
+ * (It has to be per-site config rather than injected from the rig-nuxt module:
+ * @nuxtjs/sitemap freezes `config.sources` at its own setup, which runs while
+ * @nuxtjs/seo installs it — before rig-nuxt's setup — so a programmatic push
+ * from here would arrive too late.)
+ *
+ * This route is registered via the module's content-gated addServerScanDir, so
+ * content:false consumers (e.g. QuizSort) never mount it. The collection reads
+ * are defensive anyway, so a content site missing a collection degrades to a
+ * partial list rather than a 500 that would blank the whole sitemap.
+ *
+ * NB: server runtime files must stay JS-parseable (Rollup parses them as plain
+ * JS in consumer builds) — no type annotations, interfaces, or as-casts. See
+ * server/utils/js-parseable.test.ts.
+ *
+ * @returns {Promise<Array<{loc: string, lastmod?: string, changefreq?: string, priority?: number}>>}
+ */
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
-  const siteUrl = config.public.siteUrl || 'http://localhost:3000'
 
-  // @ts-expect-error -- Server queryCollection takes (event, collection); vue-tsc resolves client types
-  const articles = await queryCollection(event, 'articles').all()
-  // @ts-expect-error -- Server queryCollection takes (event, collection); vue-tsc resolves client types
-  const pages = await queryCollection(event, 'pages').all()
+  let articles = []
+  let pages = []
+  try {
+    // @ts-expect-error -- Server queryCollection takes (event, collection); vue-tsc resolves client types
+    articles = await queryCollection(event, 'articles').all()
+  } catch {
+    articles = []
+  }
+  try {
+    // @ts-expect-error -- Server queryCollection takes (event, collection); vue-tsc resolves client types
+    pages = await queryCollection(event, 'pages').all()
+  } catch {
+    pages = []
+  }
 
+  const csv = (value) =>
+    String(value || '')
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean)
+
+  const personaSlugs = csv(config.contentPersonaSlugs)
+  const freePages = csv(config.contentFreePages)
+  const categorySlugs = csv(config.contentCategorySlugs)
   const comparisonUrls = getComparisonUrls()
 
-  const personaSlugs = (config.contentPersonaSlugs || '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean)
-
-  const freePages = (config.contentFreePages || '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean)
-
-  const categorySlugs = (config.contentCategorySlugs || '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean)
-
-  const urls = [
+  return [
     { loc: '/', priority: 1.0, changefreq: 'daily' },
     ...pages.map((page) => ({
       loc: page.path,
@@ -42,7 +72,7 @@ export default defineEventHandler(async (event) => {
       loc: article.path,
       priority: 0.8,
       changefreq: 'weekly',
-      // @ts-expect-error -- updatedAt/publishedAt exist on articles collection items
+      // @ts-expect-error -- updatedAt/publishedAt exist on the articles collection items
       lastmod: article.updatedAt || article.publishedAt,
     })),
     { loc: '/compare', priority: 0.7, changefreq: 'weekly' },
@@ -66,23 +96,7 @@ export default defineEventHandler(async (event) => {
       priority: 0.7,
       changefreq: 'weekly',
     })),
-  ]
-
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls
-  .map(
-    (url) => `  <url>
-    <loc>${siteUrl}${url.loc}</loc>
-    <changefreq>${url.changefreq}</changefreq>
-    <priority>${url.priority}</priority>${url.lastmod ? `\n    <lastmod>${url.lastmod}</lastmod>` : ''}
-  </url>`,
-  )
-  .join('\n')}
-</urlset>`
-
-  setResponseHeader(event, 'content-type', 'application/xml')
-  return sitemap
+  ].filter((url) => url.loc)
 })
 
 function getComparisonUrls() {
