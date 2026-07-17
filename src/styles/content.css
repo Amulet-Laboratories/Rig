@@ -470,8 +470,8 @@
 [data-rig-product-card-details] {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 1.5rem;
+  padding: 1.25rem;
   border-radius: calc(var(--radius, 4px) * 1.5);
 }
 
@@ -485,35 +485,60 @@
 [data-rig-product-card-cons] {
   display: flex;
   flex-direction: column;
-  gap: 0.375rem;
+  gap: 0.55rem;
   font-size: 0.8125rem;
   line-height: 1.5;
 }
 
-[data-rig-product-card-pros]::before {
-  content: 'Pros';
-  font-size: 0.75rem;
+/* The component already renders <strong>Pros</strong>/<strong>Cons</strong> as the
+   label — style THAT rather than a ::before, which duplicated it. */
+[data-rig-product-card-pros] > strong,
+[data-rig-product-card-cons] > strong {
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  margin-bottom: 0.25rem;
 }
 
-[data-rig-product-card-cons]::before {
-  content: 'Cons';
-  font-size: 0.75rem;
+/* Clean list: drop default discs for a tight, marker-led list. */
+[data-rig-product-card-pros] ul,
+[data-rig-product-card-cons] ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+[data-rig-product-card-pros] li,
+[data-rig-product-card-cons] li {
+  position: relative;
+  padding-left: 1.15rem;
+}
+
+[data-rig-product-card-pros] li::before,
+[data-rig-product-card-cons] li::before {
+  position: absolute;
+  left: 0;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 0.25rem;
+  line-height: 1.4;
+}
+
+[data-rig-product-card-pros] li::before {
+  content: '+';
+}
+
+[data-rig-product-card-cons] li::before {
+  content: '\2013'; /* en dash */
 }
 
 [data-rig-product-card-footer] {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-top: 0.75rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding-top: 1rem;
   border-top-width: 1px;
   border-top-style: solid;
 }
@@ -547,9 +572,10 @@
 
 [data-rig-product-card-buy-label] {
   flex-basis: 100%;
-  font-size: 0.75rem;
+  margin-bottom: 0.15rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -558,6 +584,17 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+/* Alternate retailers are real buttons too — give them a button body (the primary
+   link already has one) so they don't read as bare text links. Slightly smaller
+   than the primary to keep the hierarchy. */
+[data-rig-product-card-link-secondary] {
+  padding: 0.5rem 0.95rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: var(--radius, 4px);
+  white-space: nowrap;
 }
 
 /* A trailing arrow that nudges on hover — makes the CTA feel intentional rather
@@ -576,17 +613,17 @@
 }
 
 [data-rig-product-card-recommended] {
-  font-size: 0.65rem;
+  margin-left: 0.5rem;
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 0.1em 0.5em;
+  padding: 0.15em 0.55em;
   border-radius: 999px;
 }
 
 [data-rig-product-card-verified] {
-  flex-basis: 100%;
-  margin: 0.5rem 0 0;
+  margin: 0;
   font-size: 0.72rem;
 }
 
