@@ -1,0 +1,49 @@
+/* briar-cove — Libre Franklin + Merriweather */
+
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/libre-franklin/libre-franklin-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/libre-franklin/libre-franklin-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/libre-franklin/libre-franklin-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/libre-franklin/libre-franklin-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Merriweather;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/merriweather/merriweather-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Merriweather;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/merriweather/merriweather-700.woff2') format('woff2');
+}

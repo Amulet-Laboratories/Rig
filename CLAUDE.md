@@ -4,6 +4,14 @@
 
 Headless, accessible Vue 3 component library. Completely unstyled — Hex provides all visual styling. Consumers compose sites from Rig components using props, slots, and content. They do not write CSS.
 
+## Branding
+
+Marketed as **one product: Hexrig** — the design system. Rig and Hex are its two _layers_
+(Rig = headless components, Hex = the theme framework), named only in developer/architecture
+contexts. Client- and marketing-facing copy says "Hexrig," never "Rig + Hex" or "Hex/Rig". The
+live site is `/hexrig`; the example sites are `/hexrig/demos`. (Package names stay
+`@amulet-laboratories/rig` and `hex` — the layers are still the real installable units.)
+
 ## Composition Boundary
 
 Rig and Hex together form the library. Consumer sites are the composition layer.
@@ -26,15 +34,24 @@ Rig and Hex together form the library. Consumer sites are the composition layer.
 
 ## Monorepo Structure
 
-pnpm workspace with three packages:
+pnpm workspace packages:
 
-| Package                       | Path       | Purpose                                                |
-| ----------------------------- | ---------- | ------------------------------------------------------ |
-| `@amulet-laboratories/rig`    | `.` (root) | Headless Vue 3 component library                       |
-| `@amulet-laboratories/hex`    | `hex/`     | Multi-theme CSS layer targeting `data-rig-*` selectors |
-| `@amulet-laboratories/config` | `config/`  | Shared ESLint 9 flat config + Prettier                 |
+| Package                            | Path       | Purpose                                                |
+| ---------------------------------- | ---------- | ------------------------------------------------------ |
+| `@amulet-laboratories/rig`         | `.` (root) | Headless Vue 3 component library                       |
+| `@amulet-laboratories/hex`         | `hex/`     | Multi-theme CSS layer targeting `data-rig-*` selectors |
+| `@amulet-laboratories/config`      | `config/`  | Shared ESLint 9 flat config + Prettier                 |
+| `@amulet-laboratories/hexrig-site` | `landing/` | Hexrig marketing landing page (→ `/hexrig`)            |
+| `@amulet-laboratories/demos`       | `demos/`   | 13 example sites showcasing Hexrig (→ `/hexrig/demos`) |
+| `@amulet-laboratories/rig-nuxt`    | `nuxt/`    | Nuxt module wrapper                                    |
 
-Internal dependencies use `workspace:*` protocol. Config is consumed by both Rig and Hex.
+Internal dependencies use `workspace:*` protocol. Config is consumed across packages.
+
+`landing/`, `demos/`, and the Histoire stories are built and assembled into `deploy/hexrig/**`
+by `scripts/build-deploy.mjs` (wired in `netlify.toml`). **`demos/` moved here from
+AmuletLabs.org** so the example sites sit next to the design system they showcase; each demo
+is a self-contained app route (`demos/src/pages/demos/<name>/index.vue`) composing Rig + Hex,
+consuming them as `workspace:*` deps. AmuletLabs.org `/demos/*` 301-redirects to `/hexrig/demos`.
 
 ## Tech Stack
 

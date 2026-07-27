@@ -1,0 +1,566 @@
+/* Hexrig demos — imports the Garden theme from Hex, adds the demo-gallery
+ * palette and the theme-aware attribution band.
+ *
+ * Garden provides via Hex:
+ *   - Tailwind v4 + semantic tokens
+ *   - All Rig component CSS (core, layout, nav, editor, lists, menus, extras, shell, data,
+ *     spatial, temporal, web, prose)
+ *   - Scroll animations, utilities, CTA button variants, web components
+ *     (SectionDivider, FlankedHeading, Ornament, ServiceGrid, TeamGrid, MenuList,
+ *     FeatureList, Gallery)
+ *
+ * This file adds the gallery (`DemoIndex`) palette via @theme plus the shared
+ * bits every demo relies on: CTA button colors, the demo hero clamps, and the
+ * demo attribution band.
+ */
+
+@import '@amulet-laboratories/rig/styles';
+@import '@amulet-laboratories/hex/garden/source';
+
+/* Demo theme tokens are NOT loaded globally — each demo imports its own
+ * scoped block (@amulet-laboratories/hex/scoped/<theme>) in its index.vue so
+ * Vite code-splits it into that demo's chunk. This keeps the gallery from
+ * shipping all 13 themes' tokens. */
+@import './fonts/main.css';
+
+/* ── Gallery palette ──
+ * Four-color system used by DemoIndex: purple (dark), cream (light text),
+ * rose (accent), sage/mint (secondary).
+ */
+
+@theme {
+  --color-space: #16101f;
+  --color-purple: #331f3c;
+  --color-purple-deep: #241530;
+  --color-cream: #f5e3bc;
+  --color-rose: #b32d4c;
+  --color-rose-surface: #ac3954;
+  --color-warm-pink: #f16874;
+  --color-sage: #d8e8c3;
+  --color-mint: #cbe6c5;
+  --color-border: #ac3954;
+  --text-mono-sm: 0.6875rem;
+
+  /* RGB triplets for rgba() usage */
+  --rgb-space: 22 16 31;
+  --rgb-purple: 51 31 60;
+  --rgb-purple-deep: 36 21 48;
+  --rgb-rose-surface: 172 57 84;
+  --rgb-rose: 179 45 76;
+  --rgb-cream: 245 227 188;
+
+  /* Typography scale — eyebrow tracking + display/prose leading. */
+  --tracking-widest: 0.1em;
+  --tracking-eyebrow-sm: 0.15em;
+  --tracking-eyebrow: 0.2em;
+  --tracking-eyebrow-lg: 0.3em;
+  --tracking-eyebrow-xl: 0.4em;
+  --leading-display-tight: 0.9;
+  --leading-display: 1.1;
+  --leading-body-loose: 1.8;
+  --leading-prose: 1.9;
+
+  /* Easing — smooth deceleration used across hover/scroll transitions. */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility z-overlay {
+  z-index: 100;
+}
+
+/* ── Base overrides ── */
+
+body {
+  font-size: 16px;
+}
+
+h1,
+h2 {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+nav a,
+[data-rig-button][data-variant='cta'],
+[data-rig-button][data-variant='cta-light'],
+.link-slide {
+  text-decoration: none;
+}
+
+/* ── CTA button color overrides ──
+ * Hex provides structure (font, padding, transitions, transforms).
+ * The gallery overrides with cream/rose palette colors.
+ */
+
+[data-rig-button][data-variant='cta'] {
+  color: var(--color-cream);
+  background: var(--color-rose);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(var(--rgb-rose), 0.15);
+}
+
+@media (hover: hover) {
+  [data-rig-button][data-variant='cta']:hover {
+    background: var(--color-warm-pink);
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.25),
+      0 4px 16px rgba(var(--rgb-rose), 0.2);
+  }
+}
+
+[data-rig-button][data-variant='cta']:active {
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.2),
+    0 1px 4px rgba(var(--rgb-rose), 0.1);
+}
+
+[data-rig-button][data-variant='cta-light'] {
+  border-color: var(--color-cream);
+  color: var(--color-cream);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    0 2px 8px rgba(var(--rgb-cream), 0.06);
+}
+
+@media (hover: hover) {
+  [data-rig-button][data-variant='cta-light']:hover {
+    background: var(--color-cream);
+    color: var(--color-rose-surface);
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      0 4px 16px rgba(var(--rgb-cream), 0.12);
+  }
+}
+
+[data-rig-button][data-variant='cta-light']:active {
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.15),
+    0 1px 4px rgba(var(--rgb-cream), 0.05);
+}
+
+/* Demo isolation: revert gallery CTA palette inside themed demo shells.
+ * Inside [data-hex-theme], `cta` and `cta-light` should use the active theme's
+ * tokens, not the gallery's rose/cream palette.
+ */
+
+[data-hex-theme] [data-rig-button][data-variant='cta'],
+[data-hex-theme] [data-rig-button][data-variant='cta-light'] {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border-color: var(--color-primary);
+  box-shadow: none;
+}
+
+@media (hover: hover) {
+  [data-hex-theme] [data-rig-button][data-variant='cta']:hover,
+  [data-hex-theme] [data-rig-button][data-variant='cta-light']:hover {
+    background: var(--color-accent, var(--color-primary));
+    color: var(--color-accent-foreground, var(--color-primary-foreground));
+    border-color: var(--color-accent, var(--color-primary));
+    box-shadow: none;
+  }
+}
+
+/* ── Scroll-reveal ──
+ * Hex provides .scroll-reveal-blur as a generic version; the demos use these
+ * tuned ranges (.reveal / .stagger-children / .reveal-heading / .reveal-body).
+ */
+
+@keyframes reveal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes reveal-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+    filter: blur(2px);
+  }
+}
+
+.reveal,
+.stagger-children > *,
+.reveal-heading,
+.reveal-body {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation:
+      reveal-enter linear both,
+      reveal-exit linear both;
+    animation-timeline: view(), view();
+    animation-range:
+      entry 0% entry 100%,
+      exit 0% exit 100%;
+  }
+
+  @keyframes stagger-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+      filter: blur(2px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  .stagger-children > * {
+    animation: stagger-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+  }
+
+  .stagger-children > *:nth-child(1) {
+    animation-delay: 0ms;
+  }
+
+  .stagger-children > *:nth-child(2) {
+    animation-delay: 80ms;
+  }
+
+  .stagger-children > *:nth-child(3) {
+    animation-delay: 160ms;
+  }
+
+  .stagger-children > *:nth-child(4) {
+    animation-delay: 240ms;
+  }
+
+  .reveal-heading {
+    animation: reveal-enter linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 80%;
+  }
+
+  .reveal-body {
+    animation: reveal-enter linear both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .stagger-children > *,
+  .reveal-heading,
+  .reveal-body {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* ── Demo site navigation scroll state ── */
+
+[data-rig-site-nav] {
+  padding-top: var(--sat);
+  padding-left: var(--sal);
+  padding-right: var(--sar);
+}
+
+[data-rig-site-nav][data-scrolled] {
+  background: rgba(var(--rgb-space), 0.72);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid rgba(var(--rgb-rose-surface), 0.15);
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-rig-site-nav][data-scrolled] {
+    background: rgba(var(--rgb-space), 0.94);
+  }
+}
+
+/* ── Smooth scroll ── */
+
+html {
+  scroll-behavior: smooth;
+
+  /* iOS safe areas — prevent content under notch/home indicator */
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ── Focus rings (sage) ── */
+
+[data-rig-button]:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 3px;
+}
+
+[data-rig-accordion-trigger]:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+[data-rig-accordion-trigger] {
+  cursor: pointer;
+}
+
+/* ── Rig Hero overrides for demos ──
+ *
+ * 1. Responsive display size. Hex sets --rig-display-xl per theme to a fixed
+ *    value that doesn't scale below the chosen size. On a 375px viewport,
+ *    Undertow's 6rem clips off the edge. These clamp() overrides preserve each
+ *    theme's desktop maximum while giving mobile a width-safe floor.
+ *
+ * 2. Color contrast. Rig sets [data-rig-site-shell] h1 { color: primary },
+ *    which renders red-on-red when a demo uses a bg-primary hero block (KBCV).
+ *    Switch heading + body colors to primary-foreground there.
+ */
+
+[data-hex-theme='copper'],
+[data-hex-theme='orchid'] {
+  --rig-display-xl: clamp(2.75rem, 9vw, 6rem);
+  --rig-display-2xl: clamp(2.75rem, 10vw, 8rem);
+}
+
+[data-hex-theme='vesper'] {
+  --rig-display-xl: clamp(2.5rem, 8vw, 5.5rem);
+  --rig-display-2xl: clamp(2.5rem, 9vw, 7rem);
+}
+
+[data-hex-theme='juniper'] {
+  --rig-display-xl: clamp(2.5rem, 7vw, 4.5rem);
+}
+
+[data-hex-theme] [data-rig-hero].bg-primary [data-rig-hero-title] :where(h1, h2),
+[data-hex-theme] [data-rig-hero].bg-primary [data-rig-hero-eyebrow],
+[data-hex-theme] [data-rig-hero].bg-primary [data-rig-hero-description] {
+  color: var(--color-primary-foreground);
+}
+
+/* ── FlankedHeading + Ornament color inheritance ── */
+
+[data-rig-flanked-heading-ornament] {
+  color: var(--flanked-heading-color, var(--color-cream));
+}
+
+[data-rig-flanked-heading-rule] {
+  background: var(--flanked-heading-color, var(--color-cream));
+  opacity: 0.3;
+}
+
+/* ── FAQ accordion content reveal ──
+ * Replaces inline grid-template-rows toggle. Used by demos with FAQ sections.
+ */
+
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-panel[data-open] {
+  grid-template-rows: 1fr;
+}
+
+/* ── Native range input — themed with the active primary token ──
+ * Used by demos with mortgage/finance sliders that need to inherit theme.
+ */
+
+.range-primary {
+  accent-color: var(--color-primary);
+}
+
+/* ── Demo attribution band ──
+ * Theme-aware footer-band shown at the bottom of every demo. Inherits
+ * --color-card / --color-foreground / --color-primary from the active
+ * theme so it blends into each demo instead of breaking the palette.
+ */
+
+.demo-attribution {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-card, var(--color-purple-deep));
+  border-top: 4px solid var(--color-primary, var(--color-rose));
+  color: var(--color-foreground, var(--color-cream));
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.demo-attribution-credit {
+  opacity: 0.7;
+}
+
+.demo-attribution-link {
+  /* Use foreground (always meets contrast vs card-bg) with primary-colored underline. */
+  color: var(--color-foreground, var(--color-cream));
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: color-mix(
+    in srgb,
+    var(--color-primary, var(--color-rose)) 50%,
+    transparent
+  );
+  transition: text-decoration-color 0.2s ease;
+}
+
+.demo-attribution-link:hover {
+  text-decoration-color: var(--color-primary, var(--color-rose));
+}
+
+.demo-attribution-cta {
+  /* Outline pill — uses foreground on bg so contrast is theme-bg-derived
+     and passes WCAG regardless of how light the primary is. */
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.875rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-primary, var(--color-rose));
+  background: transparent;
+  color: var(--color-foreground, var(--color-cream));
+  font-weight: 600;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.demo-attribution-cta:hover {
+  background: var(--color-primary, var(--color-rose));
+  color: var(--color-primary-foreground, var(--color-cream));
+  transform: translateY(-1px);
+}
+
+/* "Built with" disclosure — collapsed pill that expands to show stack details. */
+
+.demo-attribution-details {
+  width: 100%;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.demo-attribution-summary {
+  cursor: pointer;
+  list-style: none;
+  text-align: center;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-foreground, var(--color-cream)) 60%, transparent);
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  transition: color 0.2s ease;
+}
+
+.demo-attribution-summary::-webkit-details-marker {
+  display: none;
+}
+
+.demo-attribution-summary:hover {
+  color: var(--color-foreground, var(--color-cream));
+}
+
+.demo-attribution-details[open] .demo-attribution-summary {
+  color: var(--color-primary, var(--color-rose));
+}
+
+.demo-attribution-built {
+  margin-top: 0.875rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius, 4px);
+  background: color-mix(in srgb, var(--color-foreground, var(--color-cream)) 4%, transparent);
+  text-align: left;
+}
+
+.demo-attribution-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1.5rem;
+  margin: 0;
+}
+
+@media (width >= 640px) {
+  .demo-attribution-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.demo-attribution-grid dt {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-foreground, var(--color-cream)) 55%, transparent);
+}
+
+.demo-attribution-grid dd {
+  margin: 0.125rem 0 0;
+  font-size: 0.75rem;
+  color: var(--color-foreground, var(--color-cream));
+}
+
+.demo-attribution-rig {
+  margin: 0.875rem 0 0;
+  font-size: 0.6875rem;
+  line-height: 1.7;
+}
+
+.demo-attribution-rig-label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-foreground, var(--color-cream)) 55%, transparent);
+}
+
+.demo-attribution-chip {
+  display: inline-block;
+  margin: 0 0.375rem 0.25rem 0;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  border: 1px solid color-mix(in srgb, var(--color-primary, var(--color-rose)) 35%, transparent);
+  color: var(--color-foreground, var(--color-cream));
+  background: transparent;
+}

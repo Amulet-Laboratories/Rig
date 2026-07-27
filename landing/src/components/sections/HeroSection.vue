@@ -52,9 +52,7 @@ async function copyInstall() {
     <h1
       class="fade-in delay-1 relative mb-5 text-[clamp(40px,6vw,72px)] font-bold leading-[1.05] tracking-tighter"
     >
-      <span class="text-text">Rig</span>
-      <span class="font-normal text-text-dim"> + </span>
-      <span class="text-primary">Hex</span>
+      <span class="text-text">Hex</span><span class="text-primary">rig</span>
     </h1>
 
     <p
