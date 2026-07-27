@@ -61,9 +61,9 @@ onUnmounted(() => {
           class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-primary text-[13px] font-bold tracking-wider text-bg"
           aria-hidden="true"
         >
-          R
+          H
         </span>
-        <span>Rig <span class="font-normal text-text-muted">+ Hex</span></span>
+        <span>Hexrig</span>
       </div>
 
       <div class="hidden items-center gap-7 text-sm sm:flex">
@@ -88,6 +88,7 @@ onUnmounted(() => {
         >
           Composables
         </button>
+        <a href="/hexrig/demos/" class="text-text-muted transition hover:text-text"> Examples </a>
         <a href="/hexrig/story/" class="text-text-muted transition hover:text-text"> Playground </a>
         <a
           href="https://github.com/Amulet-Laboratories/Rig"
@@ -151,6 +152,7 @@ onUnmounted(() => {
       >
         Composables
       </button>
+      <a href="/hexrig/demos/" class="text-text-muted" @click="mobileOpen = false">Examples</a>
       <a href="/hexrig/story/" class="text-text-muted" @click="mobileOpen = false">Playground</a>
       <a
         href="https://github.com/Amulet-Laboratories/Rig"

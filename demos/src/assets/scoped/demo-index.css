@@ -1,0 +1,157 @@
+/* Demo index — per-demo cards receive four CSS variables on the root
+   (--demo-accent, --demo-bg, --demo-fg, --demo-display) and the styles
+   below derive every visual from those. No inline styles in the template. */
+
+.demo-index-back-arrow {
+  font-size: 10px;
+}
+
+.demo-index-rule {
+  background: linear-gradient(90deg, transparent, var(--color-rose-surface), transparent);
+}
+
+/* ---------- Demo card ---------- */
+
+.demo-card {
+  border: 1px solid rgba(172, 57, 84, 0.12);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (hover: hover) {
+  .demo-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--demo-accent, #eb4963);
+    box-shadow:
+      0 4px 24px color-mix(in srgb, var(--demo-accent, #eb4963) 18%, transparent),
+      inset 0 0 0 1px color-mix(in srgb, var(--demo-accent, #eb4963) 15%, transparent);
+  }
+}
+
+/* Browser-mockup preview */
+
+.demo-card-preview {
+  min-height: 172px;
+  background: var(--demo-bg);
+}
+
+.demo-card-chrome {
+  background: var(--demo-bg);
+  border-bottom: 1px solid color-mix(in srgb, var(--demo-fg) 6.3%, transparent);
+}
+
+.demo-card-url {
+  background: color-mix(in srgb, var(--demo-fg) 2.4%, transparent);
+  color: color-mix(in srgb, var(--demo-fg) 31.4%, transparent);
+}
+
+.demo-card-nav-rule {
+  background: color-mix(in srgb, var(--demo-fg) 8.2%, transparent);
+}
+
+.demo-card-nav-item {
+  color: color-mix(in srgb, var(--demo-fg) 25.1%, transparent);
+}
+
+.demo-card-tagline {
+  color: var(--demo-fg);
+  font-family: var(--demo-display);
+}
+
+.demo-card-accent-bar {
+  background: var(--demo-accent);
+  transition: transform 0.3s ease;
+}
+
+.demo-card:hover .demo-card-accent-bar {
+  transform: scale(1.1);
+}
+
+.demo-card-content-line {
+  background: color-mix(in srgb, var(--demo-fg) 10%, transparent);
+}
+
+/* Info footer */
+
+.demo-card-page-count {
+  background: color-mix(in srgb, var(--demo-accent) 15%, transparent);
+  color: var(--demo-accent);
+}
+
+.demo-card-swatch--bg {
+  background: var(--demo-bg);
+}
+
+.demo-card-swatch--fg {
+  background: var(--demo-fg);
+}
+
+.demo-card-swatch--accent {
+  background: var(--demo-accent);
+}
+
+/* Arrow */
+
+.card-arrow {
+  background: color-mix(in srgb, var(--color-rose) 12%, transparent);
+  transition: all 0.3s ease;
+}
+
+@media (hover: hover) {
+  .demo-card:hover .card-arrow {
+    transform: translateX(3px);
+    background: color-mix(in srgb, var(--demo-accent, #eb4963) 25%, transparent);
+    color: var(--demo-accent, #eb4963);
+  }
+}
+
+/* Filter TransitionGroup */
+
+.demo-card-enter-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.demo-card-leave-active {
+  transition: all 0.25s ease;
+  position: absolute;
+}
+
+.demo-card-enter-from {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.demo-card-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.demo-card-enter-active:nth-child(2) {
+  transition-delay: 50ms;
+}
+
+.demo-card-enter-active:nth-child(3) {
+  transition-delay: 100ms;
+}
+
+.demo-card-enter-active:nth-child(n + 4) {
+  transition-delay: 150ms;
+}
+
+/* ---------- Brand card ---------- */
+
+.demo-brand-card {
+  border: 1px solid color-mix(in srgb, var(--color-rose-surface) 12%, transparent);
+}
+
+/* ---------- CTA card ---------- */
+
+.demo-cta-card {
+  background: color-mix(in srgb, var(--color-purple) 60%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-rose-surface) 15%, transparent);
+}
+
+/* ---------- Footer ---------- */
+
+.demo-index-footer {
+  border-color: color-mix(in srgb, var(--color-rose-surface) 12%, transparent);
+}

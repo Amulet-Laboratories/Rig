@@ -1,0 +1,65 @@
+/* salt-signal — Fraunces + Nunito Sans + Anybody + DM Mono */
+
+@font-face {
+  font-family: Fraunces;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/fraunces/fraunces-300.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Fraunces;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/fraunces/fraunces-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Fraunces;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/fraunces/fraunces-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/nunito-sans/nunito-sans-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/nunito-sans/nunito-sans-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Anybody;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/anybody/anybody-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Anybody;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/anybody/anybody-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/dm-mono/dm-mono-400.woff2') format('woff2');
+}

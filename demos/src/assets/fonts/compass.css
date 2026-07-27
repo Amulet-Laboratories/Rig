@@ -1,0 +1,51 @@
+/* compass — Outfit + Atkinson Hyperlegible */
+
+@font-face {
+  font-family: Outfit;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/outfit/outfit-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Outfit;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/outfit/outfit-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Outfit;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/outfit/outfit-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Outfit;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/outfit/outfit-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/atkinson-hyperlegible/atkinson-hyperlegible-400.woff2')
+    format('woff2');
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/atkinson-hyperlegible/atkinson-hyperlegible-700.woff2')
+    format('woff2');
+}

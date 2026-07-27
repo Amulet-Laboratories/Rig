@@ -1,0 +1,57 @@
+/* kbcv — Chivo + Newsreader + JetBrains Mono */
+
+@font-face {
+  font-family: Chivo;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/chivo/chivo-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Chivo;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/chivo/chivo-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Chivo;
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/chivo/chivo-900.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Newsreader;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/newsreader/newsreader-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Newsreader;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/newsreader/newsreader-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Newsreader;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/newsreader/newsreader-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/jetbrains-mono/jetbrains-mono-400.woff2') format('woff2');
+}

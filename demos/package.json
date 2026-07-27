@@ -1,0 +1,29 @@
+{
+  "name": "@amulet-laboratories/demos",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@amulet-laboratories/hex": "workspace:*",
+    "@amulet-laboratories/rig": "workspace:*",
+    "@iconify/vue": "^4.3.0",
+    "vue": "^3.5.0",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@amulet-laboratories/config": "workspace:*",
+    "@tailwindcss/vite": "^4.1.0",
+    "@vitejs/plugin-vue": "^6.0.4",
+    "tailwindcss": "^4.1.0",
+    "terser": "^5.46.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vue-tsc": "^3.2.6"
+  }
+}
