@@ -30,6 +30,28 @@ import vue from '@amulet-laboratories/config/eslint/vue'
 export default [...vue, { ignores: ['dist/', 'coverage/'] }]
 ```
 
+### Nuxt sites (the content network, site-boilerplate)
+
+Create `eslint.config.js`:
+
+```js
+export { default } from '@amulet-laboratories/config/eslint/nuxt'
+```
+
+That is the whole file. `eslint/nuxt` is `eslint/vue` plus the directories a Nuxt
+app generates (`.nuxt/`, `.output/`, `.netlify/`, `dist/`), and it turns
+`no-undef` off — Nuxt injects `useHead`, `useSeoMeta`, `computed` and friends at
+build time, so they are not declarable globals and the rule reports every one of
+them. TypeScript already catches genuinely undefined identifiers.
+
+Add site-specific rules by spreading instead:
+
+```js
+import nuxt from '@amulet-laboratories/config/eslint/nuxt'
+
+export default [...nuxt, { rules: { 'no-console': 'off' } }]
+```
+
 ### Base / JS-only (Hex)
 
 Create `eslint.config.js`:
