@@ -87,12 +87,19 @@ jobs:
       # short-lived, workflow-scoped credential from `id-token: write`. Nothing
       # to rotate, expire, or paste into the wrong box.
       #
-      # This requires a Trusted Publisher configured on npmjs.com for EACH of
-      # the three packages (Settings -> Trusted Publisher):
+      # This requires a Trusted Publisher configured on npmjs.com for EACH
+      # package published below — rig, config, rig-nuxt (Settings -> Trusted
+      # Publisher):
       #   Organization / user : Amulet-Laboratories
       #   Repository          : Rig
       #   Workflow filename   : release.yml     <- filename only, NOT a path
       #   Environment         : (leave blank)
+      #
+      # `config` is new to this workflow as of 3.0.0 and has never been
+      # published. npm cannot attach a Trusted Publisher to a package that does
+      # not exist yet, so it needs one manual first publish from a logged-in
+      # machine (`cd config && npm publish --access public`); after that, add
+      # the Trusted Publisher entry and this job takes over.
       # A mismatch in any field surfaces as an opaque `E404 ... PUT` — npm
       # reports a bad OIDC chain as "not found", not as an auth error. If this
       # job 404s, check those four fields before suspecting the code.
@@ -120,8 +127,17 @@ jobs:
             npm publish "$TARBALL" --access public
           fi
 
-      - name: Publish @amulet-laboratories/hex
-        working-directory: hex
+      # @amulet-laboratories/hex is deliberately NOT published here any more.
+      #
+      # As of rig 3.0.0 the theme layer ships inside rig under `hex/*`, and
+      # hex/package.json is marked `private: true`. The step that used to live
+      # here only avoided failing because its `npm view` guard found the already
+      # published 0.8.0 and skipped; the first bump of hex's version would have
+      # tried to publish a private package. 0.8.0 stays on npm as hex's final
+      # release, deprecated with a pointer at rig.
+
+      - name: Publish @amulet-laboratories/config
+        working-directory: config
         run: |
           NAME="$(node -p "require('./package.json').name")"
           VERSION="$(node -p "require('./package.json').version")"
