@@ -43,7 +43,12 @@ export async function readAllProducts() {
   if (cached && process.env.NODE_ENV === 'production') return cached
 
   const storage = assets()
-  const keys = await storage.getKeys()
+  // Sort the keys. `getKeys()` makes no ordering guarantee, and callers that
+  // slice this list — the comparison index picks pairs from it — turn any
+  // reshuffle into a different set of prerendered routes. Two builds of
+  // identical source were emitting 30 completely different /compare/* pages,
+  // so every deploy 404'd the URLs the previous one had published.
+  const keys = (await storage.getKeys()).slice().sort()
   const products = []
 
   for (const key of keys) {

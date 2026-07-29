@@ -1,9 +1,30 @@
-/* Hex — Roast Domains
- * Warm, artisanal coffee and tea authority site.
+/* Hex — Shared Site Layer
+ *
+ * The long-form content-site skin: fluid typography, hero, cards, prose,
+ * newsletter CTA, footer, nav. Extracted 2026-07-28 from six near-identical
+ * per-theme domains.css files (slate, roast, fern, quartz, damson, brass)
+ * that were 96% the same — 4,392 lines collapsed to this one file.
+ *
+ * This layer is OPT-IN. No theme imports it; a consuming site imports it
+ * explicitly, then supplies its own [data-category] accent map and any of the
+ * --site-* overrides below. Themes stay general-purpose.
+ *
+ * Plain CSS — no Tailwind features — so it needs no @reference and no
+ * Tailwind pass.
+ *
+ * Overridable hooks (all optional; fallbacks derive from theme tokens):
+ *   --site-hero-bg                 hero background
+ *   --site-hero-border             hero bottom border shorthand
+ *   --site-section-alt-bg          alternating section background
+ *   --site-prose-link              body-copy link colour
+ *   --site-cta-bg                  newsletter banner background
+ *   --site-cta-fg                  newsletter banner foreground
+ *   --site-cta-muted-fg            newsletter banner secondary text
+ *   --site-footer-bg               footer background
+ *   --site-btn-primary-fg          primary button label
+ *   --site-btn-primary-border      primary button border + shadow tint
+ *   --site-btn-secondary-hover-bg  secondary button hover fill
  */
-
-@reference 'tailwindcss';
-@reference './tokens.css';
 
 /* ── Reading typography ───────────────────────────────────────────────
  * Serif (Lora) for all reading surfaces. Sans (Source Sans 3) for UI.
@@ -20,30 +41,13 @@
   font-family: var(--font-serif);
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   Category accent colors
-   ═══════════════════════════════════════════════════════════════════ */
+/* Category accent colours (--card-accent per [data-category]) are supplied
+   by the consuming site; every rule below falls back to a theme token. */
 
 /* ═══════════════════════════════════════════════════════════════════
    Mobile-first fluid design
    All spacing, typography, and layout scales smoothly from 320px up.
    ═══════════════════════════════════════════════════════════════════ */
-
-[data-category='brewing-guides'] {
-  --card-accent: #c07840;
-}
-[data-category='equipment-reviews'] {
-  --card-accent: #5a7a8a;
-}
-[data-category='beans-and-blends'] {
-  --card-accent: #7a5636;
-}
-[data-category='buying-guides'] {
-  --card-accent: #8a7a5a;
-}
-[data-category='culture'] {
-  --card-accent: #9b6b7a;
-}
 
 /* ── Fluid typography — clamp between mobile and desktop ──────────── */
 
@@ -167,8 +171,16 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-hero] {
-  background: linear-gradient(170deg, #faf6ef 0%, #f2e8d8 40%, #eadcc8 100%);
-  border-bottom: 1px solid var(--color-accent);
+  background: var(
+    --site-hero-bg,
+    linear-gradient(
+      170deg,
+      var(--color-background) 0%,
+      color-mix(in srgb, var(--color-muted) 55%, var(--color-background)) 40%,
+      var(--color-muted) 100%
+    )
+  );
+  border-bottom: var(--site-hero-border, 1px solid var(--color-border));
 }
 
 [data-rig-hero][data-layout='centered'] [data-rig-hero-content] {
@@ -352,7 +364,14 @@ h2 {
 }
 
 [data-rig-section][data-variant='alternate'] {
-  background: linear-gradient(180deg, #f5ede0 0%, #f2e8da 100%);
+  background: var(
+    --site-section-alt-bg,
+    linear-gradient(
+      180deg,
+      var(--color-muted) 0%,
+      color-mix(in srgb, var(--color-muted) 85%, var(--color-background)) 100%
+    )
+  );
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
@@ -368,8 +387,12 @@ h2 {
 }
 
 [data-rig-prose] a {
-  color: #8a5a30;
-  text-decoration-color: color-mix(in srgb, #8a5a30 40%, transparent);
+  color: var(--site-prose-link, var(--color-primary));
+  text-decoration-color: color-mix(
+    in srgb,
+    var(--site-prose-link, var(--color-primary)) 40%,
+    transparent
+  );
   transition:
     color 0.15s ease,
     text-decoration-color 0.15s ease;
@@ -432,8 +455,15 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-cta-banner][data-variant='card'] {
-  background: linear-gradient(160deg, #3a2818 0%, #5a3a24 40%, #7a5636 100%);
-  color: #f5f5f0;
+  background: var(
+    --site-cta-bg,
+    linear-gradient(
+      160deg,
+      var(--color-primary) 0%,
+      color-mix(in srgb, var(--color-primary) 80%, var(--color-accent)) 100%
+    )
+  );
+  color: var(--site-cta-fg, var(--color-primary-foreground));
   border: none;
   position: relative;
   overflow: hidden;
@@ -463,7 +493,10 @@ h2 {
 
 [data-rig-cta-banner][data-variant='card'] p,
 [data-rig-cta-banner][data-variant='card'] [data-rig-newsletter-description] {
-  color: rgba(255, 255, 255, 0.75);
+  color: var(
+    --site-cta-muted-fg,
+    color-mix(in srgb, var(--site-cta-fg, var(--color-primary-foreground)) 80%, transparent)
+  );
   position: relative;
 }
 
@@ -517,7 +550,7 @@ h2 {
    ═══════════════════════════════════════════════════════════════════ */
 
 [data-rig-site-footer] {
-  background: linear-gradient(180deg, #2a1e14 0%, #1e140e 100%);
+  background: var(--site-footer-bg, var(--color-primary));
 }
 
 [data-rig-site-footer-grid] h3,
@@ -576,9 +609,10 @@ h2 {
 
 [data-rig-button][data-variant='primary'] {
   background: var(--color-accent);
-  color: #161616;
-  border-color: var(--color-accent);
-  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-accent) 30%, transparent);
+  color: var(--site-btn-primary-fg, #161616);
+  border-color: var(--site-btn-primary-border, var(--color-accent));
+  box-shadow: 0 2px 8px
+    color-mix(in srgb, var(--site-btn-primary-border, var(--color-accent)) 30%, transparent);
 }
 
 [data-rig-button][data-variant='primary']:hover {
@@ -593,9 +627,10 @@ h2 {
 }
 
 [data-rig-button][data-variant='secondary']:hover {
-  background: var(--color-primary);
+  background: var(--site-btn-secondary-hover-bg, var(--color-primary));
   color: #ffffff;
-  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-primary) 25%, transparent);
+  box-shadow: 0 2px 8px
+    color-mix(in srgb, var(--site-btn-secondary-hover-bg, var(--color-primary)) 25%, transparent);
 }
 
 /* ═══════════════════════════════════════════════════════════════════

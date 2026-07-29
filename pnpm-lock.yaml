@@ -165,9 +165,6 @@ importers:
 
   demos:
     dependencies:
-      '@amulet-laboratories/hex':
-        specifier: workspace:*
-        version: link:../hex
       '@amulet-laboratories/rig':
         specifier: workspace:*
         version: link:..

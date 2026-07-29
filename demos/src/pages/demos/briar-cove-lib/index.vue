@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DemoAttribution from '@/components/DemoAttribution.vue'
 import '@/assets/fonts/briar-cove-lib.css'
-import '@amulet-laboratories/hex/scoped/sienna'
+import '@amulet-laboratories/rig/hex/scoped/sienna'
 import { SiteShell, SiteNav, SiteFooter, Icon, useHashRouter } from '@amulet-laboratories/rig'
 import type { NavItem } from '@amulet-laboratories/rig'
 import HomePage from './pages/HomePage.vue'

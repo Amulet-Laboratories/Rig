@@ -2,7 +2,7 @@
  * Import this single file to get everything:
  * Tailwind + tokens + base styles + all component styles + domains.
  *
- * Usage: import '@amulet-laboratories/hex/vscode/source'
+ * Usage: import '@amulet-laboratories/rig/hex/vscode/source'
  */
 
 @import 'tailwindcss';

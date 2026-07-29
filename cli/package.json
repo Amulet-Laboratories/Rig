@@ -2,7 +2,7 @@
   "name": "create-rig",
   "version": "0.2.0",
   "type": "module",
-  "description": "Scaffold a new project with @amulet-laboratories/rig + hex + Tailwind pre-configured",
+  "description": "Scaffold a new project with @amulet-laboratories/rig (components + hex themes) and Tailwind pre-configured",
   "license": "MIT",
   "author": "Amulet Laboratories",
   "bin": {

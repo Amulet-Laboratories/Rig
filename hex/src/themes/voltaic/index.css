@@ -2,10 +2,11 @@
  * Import this single file to get everything:
  * Tailwind v4 + shared Rig tokens + base styles + theme tokens.
  *
- * Usage: import '@amulet-laboratories/hex/voltaic/source'
+ * Usage: import '@amulet-laboratories/rig/hex/voltaic/source'
  */
 
 @import 'tailwindcss';
 @import '../../shared/tokens.css';
 @import './base.css';
+@import './components.css';
 @import './tokens.css';

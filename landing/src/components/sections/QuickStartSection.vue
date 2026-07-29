@@ -32,11 +32,10 @@
           <div class="overflow-hidden rounded-lg border border-border-subtle bg-bg">
             <pre
               class="p-4 font-mono text-[12px] leading-relaxed text-text-muted"
-            ><span class="text-primary">$</span> pnpm add @amulet-laboratories/rig
-<span class="text-primary">$</span> pnpm add @amulet-laboratories/hex</pre>
+            ><span class="text-primary">$</span> pnpm add @amulet-laboratories/rig</pre>
           </div>
           <p class="mt-3 text-[13px] leading-relaxed text-text-dim">
-            Rig for components, Hex for themes. Vue 3.5+ and Floating UI are peer deps.
+            One package — components and all 27 themes. Vue 3.5+ and Floating UI are peer deps.
           </p>
         </div>
 
@@ -54,7 +53,7 @@
             <pre
               class="p-4 font-mono text-[12px] leading-relaxed text-text-muted"
             ><span class="code-cmt">/* main.css */</span>
-<span class="code-kw">@import</span> <span class="code-str">'@amulet-laboratories/hex/cobalt'</span>;</pre>
+<span class="code-kw">@import</span> <span class="code-str">'@amulet-laboratories/rig/hex/cobalt'</span>;</pre>
           </div>
           <p class="mt-3 text-[13px] leading-relaxed text-text-dim">
             Pick any of 27 themes. Swap by changing one import. Zero config.

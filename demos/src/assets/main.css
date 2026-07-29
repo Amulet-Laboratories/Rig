@@ -15,10 +15,10 @@
  */
 
 @import '@amulet-laboratories/rig/styles';
-@import '@amulet-laboratories/hex/garden/source';
+@import '@amulet-laboratories/rig/hex/garden/source';
 
 /* Demo theme tokens are NOT loaded globally — each demo imports its own
- * scoped block (@amulet-laboratories/hex/scoped/<theme>) in its index.vue so
+ * scoped block (@amulet-laboratories/rig/hex/scoped/<theme>) in its index.vue so
  * Vite code-splits it into that demo's chunk. This keeps the gallery from
  * shipping all 13 themes' tokens. */
 @import './fonts/main.css';

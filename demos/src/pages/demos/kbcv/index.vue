@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DemoAttribution from '@/components/DemoAttribution.vue'
 import '@/assets/fonts/kbcv.css'
-import '@amulet-laboratories/hex/scoped/cardinal'
+import '@amulet-laboratories/rig/hex/scoped/cardinal'
 import { SiteShell, SiteNav, SiteFooter, Icon, useHashRouter } from '@amulet-laboratories/rig'
 import type { NavItem } from '@amulet-laboratories/rig'
 import HomePage from './pages/HomePage.vue'

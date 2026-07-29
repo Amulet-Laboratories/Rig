@@ -1,8 +1,9 @@
 {
   "name": "@amulet-laboratories/hex",
   "version": "0.8.0",
+  "private": true,
   "type": "module",
-  "description": "Multi-theme layer for Rig — curated palettes targeting data-rig-* selectors",
+  "description": "Multi-theme layer for Rig — curated palettes targeting data-rig-* selectors. No longer published on its own: rig 3.0.0 ships it under @amulet-laboratories/rig/hex/*.",
   "license": "MIT",
   "author": "Amulet Laboratories",
   "engines": {
@@ -83,6 +84,7 @@
     "./slate/source": "./src/themes/slate/index.css",
     "./beacon": "./dist/beacon.css",
     "./beacon/source": "./src/themes/beacon/index.css",
+    "./shared/site": "./src/shared/site.css",
     "./shared/rig-defaults": "./src/shared/rig-defaults.css",
     "./shared/a11y": "./src/shared/a11y.css",
     "./shared/tokens": "./src/shared/tokens.css",

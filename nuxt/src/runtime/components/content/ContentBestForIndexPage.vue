@@ -31,7 +31,12 @@ useSeoMeta({
 })
 
 useSchemaOrg([
-  defineWebPage({ name: `Best For You | ${siteConfig.name}` }),
+  // State the description; schema-org's inference from the meta tag does not
+  // fire reliably for a component supplied by this module rather than the app.
+  defineWebPage({
+    name: `Best For You | ${siteConfig.name}`,
+    description: `Personalized product picks based on your quiz results. Find the best ${siteConfig.name} recommendations for your type.`,
+  }),
   defineBreadcrumb({
     itemListElement: [
       { name: 'Home', item: '/', position: 1 },

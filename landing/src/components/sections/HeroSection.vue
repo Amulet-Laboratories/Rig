@@ -7,9 +7,7 @@ const scrollTo = useScrollTo()
 
 async function copyInstall() {
   try {
-    await navigator.clipboard.writeText(
-      'pnpm add @amulet-laboratories/rig @amulet-laboratories/hex',
-    )
+    await navigator.clipboard.writeText('pnpm add @amulet-laboratories/rig')
     copied.value = true
     setTimeout(() => (copied.value = false), 2000)
   } catch {
@@ -87,10 +85,7 @@ async function copyInstall() {
         class="inline-flex items-center gap-3 rounded-lg border border-border bg-bg-surface px-[18px] py-2.5 font-mono text-sm text-text-muted transition hover:border-primary hover:bg-bg-surface-hover"
         @click="copyInstall"
       >
-        <span
-          ><span class="text-primary">$</span> pnpm add @amulet-laboratories/rig
-          @amulet-laboratories/hex</span
-        >
+        <span><span class="text-primary">$</span> pnpm add @amulet-laboratories/rig</span>
         <span class="font-sans text-[11px] text-text-dim">{{
           copied ? 'copied' : 'click to copy'
         }}</span>

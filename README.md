@@ -1,10 +1,37 @@
 # @amulet-laboratories/rig
 
-Headless, accessible Vue 3 component library. VSCode-style layout primitives, completely unstyled. Consumers supply all styling via CSS custom properties, Tailwind, or slot content.
+Headless, accessible Vue 3 component library. VSCode-style layout primitives, completely unstyled. Consumers supply all styling via CSS custom properties, Tailwind, or slot content — or drop in one of the 27 Hex themes that ship in the box.
+
+## Status
+
+**As of 2026-07-28.** Published and stable. `rig@3.0.0` and `rig-nuxt@0.6.6` live on npm.
+The surface has settled — a few components a year get added, one or two removed.
+
+**3.0.0 folded Hex into Rig.** `@amulet-laboratories/hex` was never a separate project — it
+has always been a workspace package in this repo, and splitting the published artifacts only
+meant the two could never move independently. The themes now ship under
+`@amulet-laboratories/rig/hex/*`; the standalone package is deprecated on npm at 0.8.0. See
+[MIGRATION.md](MIGRATION.md) — the change is a find-and-replace, and no theme names, token
+names, or selectors moved.
+
+The jump from 0.7.0 straight to 3.0.0 is deliberate, not a typo; see the note on version
+lines below.
+
+Rig is the load-bearing repository of the workspace: it is consumed by all seven content
+network sites, AmuletLabs.org, and Obelisk. It is also the largest, at ~87,000 lines of
+tracked source across the workspace's 270,000.
+
+**Note on version lines.** `@amulet-laboratories/rig` also exists on _GitHub Packages_ at
+2.x, consumed only by `vrd`. That is a separate registry and an unrelated version line —
+do not try to reconcile the two numbers. The npm line starts at 3.0.0 specifically so it
+sits clear of that 2.x line and no version number is ever ambiguous between the two.
+
+Note also that this repo's **git tags run on their own line** from the package versions:
+tag `v0.8.5` shipped `rig@0.7.0`. That is expected.
 
 ## Features
 
-- **149 components** across 12 packages — core primitives, layout, navigation, editor, lists, menus, extras, shell, data visualization, spatial, temporal, and marketing-web
+- **148 components** across 12 packages — core primitives, layout, navigation, editor, lists, menus, extras, shell, data visualization, spatial, temporal, and marketing-web
 - **Completely unstyled** — semantic HTML with `data-rig-*` attributes for styling hooks
 - **Accessible by default** — ARIA roles, keyboard navigation, focus management
 - **Slot-driven** — every visual element is customizable through typed named slots (`defineSlots`)
@@ -102,18 +129,22 @@ Rig exports **39 composables** across the packages. The most commonly used:
 
 ## Theming
 
-Rig is unstyled by default. For a ready-made theme, install the companion CSS package:
-
-```bash
-pnpm add @amulet-laboratories/hex
-```
+Rig is unstyled by default. For a ready-made theme, import one — the Hex theme layer ships
+inside the package, so there is nothing extra to install:
 
 ```ts
 // Pick a theme — each is a single minified CSS bundle
-import '@amulet-laboratories/hex/cobalt'
-import '@amulet-laboratories/hex/garden'
-import '@amulet-laboratories/hex/spacewizard'
+import '@amulet-laboratories/rig/hex/cobalt'
+import '@amulet-laboratories/rig/hex/garden'
+import '@amulet-laboratories/rig/hex/spacewizard'
 // …and 24 more
+```
+
+Each theme also ships as uncompiled source at `hex/<theme>/source`, for builds that run it
+through their own Tailwind pass:
+
+```css
+@import '@amulet-laboratories/rig/hex/slate/source';
 ```
 
 **27 themes** ship with Hex: beacon, brass, cardinal, citron, clover, cobalt, copper, cypress, damson, fern, forge, garden, greyline, harbor, hearth, iris, juniper, lagoon, ochre, orchid, quartz, roast, sienna, slate, spacewizard, vesper, voltaic. Each is a self-contained CSS bundle (typically 80–130 KB minified) targeting Rig's `data-rig-*` attributes. Switch themes by changing one import — every component re-skins on the next paint.
@@ -148,17 +179,43 @@ Components render semantic HTML with data attributes. Style them with CSS target
 - **State:** `data-state`, `data-variant`, `data-disabled`, `data-loading`, `data-selected`, `data-highlighted`
 - **Structural:** `data-depth`, `data-leaf`, `data-align`, `data-sort-direction`
 
+## CLI
+
+```bash
+rig build-theme            # compile public/theme.css for the site in cwd
+rig build-theme --site ../Beanwoven.com
+```
+
+`build-theme` compiles `hex/<theme>` + the opt-in `hex/shared/site` layer + the
+site's `assets/css/site.css` + `rig/styles` into a single `public/theme.css`,
+reading the theme codename from the site's `assets/css/main.css`. It is a
+maintainer tool — `theme.css` is committed and is the only stylesheet the
+consuming site loads.
+
+It needs the PostCSS toolchain in the site, which rig deliberately does not
+depend on:
+
+```bash
+pnpm add -D postcss postcss-import @tailwindcss/postcss cssnano
+```
+
+It will fall back to a copy found elsewhere and warn if it does. Take the
+warning seriously: which copy of Tailwind runs changes what gets emitted.
+
 ## Development
 
 ```bash
 pnpm install          # Install all workspace dependencies
-pnpm build            # Vite library build (ESM + CJS + .d.ts)
+pnpm build            # Vite library build (ESM + CJS + .d.ts) + all Hex CSS themes
+pnpm build:hex        # Just the Hex CSS themes
 pnpm test             # Run all tests
 pnpm test:watch       # Watch mode
 pnpm check            # Lint + format + type-check
 pnpm story:dev        # Histoire component stories dev server
-cd hex && pnpm build  # Build all Hex CSS themes
 ```
+
+`pnpm build` builds both halves of the package, because both are published: `dist/` from
+Vite and `hex/dist/` from `hex/build.mjs`. Both are gitignored build output.
 
 ## License
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DemoAttribution from '@/components/DemoAttribution.vue'
 import '@/assets/fonts/maren-lys.css'
-import '@amulet-laboratories/hex/scoped/orchid'
+import '@amulet-laboratories/rig/hex/scoped/orchid'
 import { SiteShell, SiteNav, SiteFooter, Icon, useHashRouter } from '@amulet-laboratories/rig'
 import type { NavItem } from '@amulet-laboratories/rig'
 import HomePage from './pages/HomePage.vue'

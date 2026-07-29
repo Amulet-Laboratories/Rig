@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DemoAttribution from '@/components/DemoAttribution.vue'
 import '@/assets/fonts/undertow.css'
-import '@amulet-laboratories/hex/scoped/copper'
+import '@amulet-laboratories/rig/hex/scoped/copper'
 import { SiteShell, SiteNav, SiteFooter, useHashRouter } from '@amulet-laboratories/rig'
 import type { NavItem } from '@amulet-laboratories/rig'
 import HomePage from './pages/HomePage.vue'

@@ -1,116 +1,59 @@
 /* Hex — Voltaic Base Styles
- * html/body defaults, element resets, scrollbar, focus, selection,
- * transitions, and utility classes from the original site.
+ * html/body defaults, scrollbar, focus, selection, transitions.
+ * Graphite canvas with an arc-chartreuse accent.
+ *
+ * Rewritten 2026-07-28 alongside the palette re-cut. This file previously held
+ * the base stylesheet of the portfolio site Voltaic was ported from — `#app` /
+ * `.my-app` roots, `.hero-heading`, `.section-heading`, and `job-slide-fade-*`
+ * transitions for that site's job-listing widget. None of it belonged in a
+ * general-purpose theme.
  */
 
 @reference 'tailwindcss';
 @reference './tokens.css';
 
-/* ───────── Reset ───────── */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
+/* Base styles */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
 
-/* ───────── Root ───────── */
-
 html,
-body,
-#app,
-.my-app {
-  @apply w-full bg-blue-darkest font-body;
-  font-size: 18px;
+body {
+  @apply bg-background text-foreground font-sans;
+
   color-scheme: dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (min-width: 768px) {
-  html,
-  body,
-  #app,
-  .my-app {
-    font-size: 16px;
-  }
+body {
+  font-size: var(--text-base);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-normal);
 }
 
-/* ───────── Typography resets ───────── */
-
-p,
-span,
-b,
-a,
-li,
+/* Heading defaults */
 h1,
 h2 {
-  @apply text-blue-lighter;
+  color: var(--color-foreground);
+  margin: 0;
+  padding: 0;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
 }
 
-p,
-span,
-div,
-a {
-  @apply font-body font-light leading-6;
+h1 {
+  font-size: 2rem;
+  font-weight: var(--weight-bold);
 }
 
 h2 {
-  @apply mb-8 mt-4 font-bold text-blue-lightest;
+  font-size: 1.5rem;
+  font-weight: var(--weight-semibold);
 }
 
-/* ───────── Links ───────── */
-
-a {
-  @apply transition-all;
-
-  &:hover {
-    @apply text-accent transition-all;
-  }
-}
-
-/* ───────── Buttons ───────── */
-
-button {
-  @apply max-w-fit rounded border border-accent px-4 py-2 font-accent text-sm text-green transition-all;
-
-  &:hover {
-    @apply bg-green text-blue-darkest drop-shadow-green;
-
-    > * {
-      @apply text-blue-darkest;
-    }
-  }
-}
-
-/* ───────── List markers ───────── */
-
-li {
-  &::before {
-    @apply mb-[0.1rem] mr-2 inline-block h-1 w-1 bg-accent;
-    content: '';
-  }
-}
-
-/* ───────── Utility classes ───────── */
-
-.hero-heading {
-  font-size: clamp(36px, 6vw, 72px);
-}
-
-.section-heading {
-  font-size: clamp(22px, 5vw, 30px);
-  @apply relative overflow-hidden;
-
-  &::after {
-    @apply absolute top-[13px] ml-4 h-px w-1/4 bg-blue-lighter;
-    content: '';
-  }
-}
-
-/* ───────── Scrollbar ───────── */
-
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -121,65 +64,33 @@ li {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(160, 178, 255, 0.2);
+  background: color-mix(in srgb, var(--color-foreground) 12%, transparent);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(160, 178, 255, 0.4);
+  background: color-mix(in srgb, var(--color-foreground) 22%, transparent);
 }
 
+/* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(160, 178, 255, 0.2) transparent;
+  scrollbar-color: color-mix(in srgb, var(--color-foreground) 12%, transparent) transparent;
 }
 
-/* ───────── Focus ───────── */
-
+/* Focus styles */
 *:focus-visible {
-  outline: 1px solid var(--color-ring);
-  outline-offset: -1px;
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
 }
 
-/* ───────── Selection ───────── */
-
+/* Selection */
 ::selection {
-  background: rgba(45, 79, 224, 0.4);
-  color: var(--color-blue-lightest);
+  background: color-mix(in srgb, var(--color-primary) 35%, transparent);
+  color: var(--color-foreground);
 }
 
-/* ───────── Transitions ───────── */
-
-.job-slide-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.job-slide-fade-leave-active {
-  transition: all 0s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.job-slide-fade-enter-from,
-.job-slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-}
-
-.header-slide-fade-enter-active {
-  transition: all 0.2s ease-out;
-}
-
-.header-slide-fade-leave-active {
-  transition: all 0.2s ease-out;
-}
-
-.header-slide-fade-enter-from,
-.header-slide-fade-leave-to {
-  transform: translateY(-40px);
-  opacity: 0;
-}
-
-/* ───────── Reduced motion ───────── */
-
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -188,5 +99,33 @@ li {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ───────── Scroll-reveal utility ───────── */
+
+@keyframes scroll-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-reveal {
+  animation: scroll-fade-in linear both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 30%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

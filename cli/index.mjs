@@ -6,7 +6,7 @@
  *
  * Usage:
  *   pnpm create rig my-app
- *   pnpm create rig my-app --theme vscode
+ *   pnpm create rig my-app --theme slate
  *   pnpm create rig my-app --nuxt
  */
 
@@ -15,7 +15,7 @@ import { resolve } from 'node:path'
 
 const args = process.argv.slice(2)
 const name = args.find((a) => !a.startsWith('--')) ?? 'my-rig-app'
-const theme = args.includes('--theme') ? (args[args.indexOf('--theme') + 1] ?? 'vscode') : 'vscode'
+const theme = args.includes('--theme') ? (args[args.indexOf('--theme') + 1] ?? 'cobalt') : 'cobalt'
 const useNuxt = args.includes('--nuxt')
 
 const dest = resolve(process.cwd(), name)
@@ -46,10 +46,9 @@ const pkg = {
     ...(useNuxt ? { nuxt: '^3.0.0' } : {}),
   },
   devDependencies: {
-    '@amulet-laboratories/rig': '^0.2.0',
-    '@amulet-laboratories/hex': '^0.2.0',
+    '@amulet-laboratories/rig': '^3.0.0',
     ...(useNuxt
-      ? { '@amulet-laboratories/rig-nuxt': '^0.2.0' }
+      ? { '@amulet-laboratories/rig-nuxt': '^0.6.0' }
       : {
           '@vitejs/plugin-vue': '^6.0.0',
           typescript: '^5.7.0',
@@ -109,7 +108,7 @@ if (useNuxt) {
     resolve(dest, 'nuxt.config.ts'),
     `export default defineNuxtConfig({
   modules: ['@amulet-laboratories/rig-nuxt'],
-  css: ['@amulet-laboratories/hex/${theme === 'vscode' ? '' : theme}'],
+  css: ['@amulet-laboratories/rig/hex/${theme}'],
 })
 `,
   )
@@ -142,10 +141,7 @@ const srcDir = resolve(dest, useNuxt ? 'app' : 'src')
 mkdirSync(srcDir, { recursive: true })
 
 if (!useNuxt) {
-  const themeImport =
-    theme === 'vscode'
-      ? `import '@amulet-laboratories/hex'`
-      : `import '@amulet-laboratories/hex/${theme}'`
+  const themeImport = `import '@amulet-laboratories/rig/hex/${theme}'`
 
   writeFileSync(
     resolve(srcDir, 'main.ts'),

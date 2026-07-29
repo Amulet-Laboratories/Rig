@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **A Nuxt layer at `@amulet-laboratories/rig-nuxt/layer`.** The six affiliate sites each carried byte-identical copies of `pages/index.vue`, `pages/category/[slug].vue`, `pages/compare/index.vue`, `pages/best-for/index.vue`, `pages/[...slug].vue`, `error.vue`, and `server/api/newsletter/subscribe.post.ts` — 741 lines per site, ~3,700 redundant across the network. Sites now `extends: ['@amulet-laboratories/rig-nuxt/layer']` and delete their copies. A site still overrides any of them by defining a file at the same path; project files win over layer files, which is also how per-site pieces like `components/content/CategoryIcon.vue` keep taking precedence.
+  - Three of the layer's pages are thin wrappers around `ContentHomePage`, `ContentCompareIndexPage`, and `ContentBestForIndexPage`. **Those components already existed in this module's runtime and no site had ever consumed them** — they were registered, shipped, and dead. The layer is what finally puts them to work.
+
+### Fixed
+
+- **`readAllProducts()` returned products in unspecified order.** `storage.getKeys()` makes no ordering guarantee, and the comparison index picks pairs off the front of that list, so **two builds of identical source emitted 30 completely different `/compare/*` routes** — every deploy 404'd the URLs the previous one published, and the sitemap churned. The keys are now sorted.
+- **`ContentHomePage` 500'd for any site without a quiz.** It dereferenced `appConfig.homepage.quiz.slug` unconditionally. All six affiliate sites define a quiz, so it was never hit — but `site-boilerplate`, the template every new site is cloned from, does not, and its homepage failed to prerender the moment it adopted the layer. `quiz` is now optional and the section is skipped when absent.
+- **Schema.org descriptions fell back to the site-wide description** on `/`, `/compare`, `/best-for`, `/category/*`, and every static page. `nuxt-schema-org` infers `WebPage.description` from the meta tag only when the component runs before schema-org resolves — which held while these pages lived in each site and stopped holding once they came from a layer or this module. `ContentHomePage`, `ContentCompareIndexPage`, `ContentBestForIndexPage`, and the layer's category and catch-all pages now state `description` explicitly.
+
+### Changed
+
+- **BREAKING: peer dependency is now `@amulet-laboratories/rig >= 3.0.0`** (was `>= 0.6.0`), and the stale optional peer entry for `@amulet-laboratories/hex` is gone — hex ships inside rig as of 3.0.0.
+
 ## [0.6.5] — 2026-07-17
 
 ### Changed

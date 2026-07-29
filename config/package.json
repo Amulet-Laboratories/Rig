@@ -10,6 +10,7 @@
   },
   "exports": {
     "./eslint/vue": "./eslint.vue.js",
+    "./eslint/nuxt": "./eslint.nuxt.js",
     "./eslint/base": "./eslint.base.js",
     "./prettier": "./prettier.js",
     "./stylelint/base": "./stylelint/base.js",

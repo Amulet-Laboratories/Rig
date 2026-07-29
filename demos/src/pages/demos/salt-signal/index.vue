@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DemoAttribution from '@/components/DemoAttribution.vue'
 import '@/assets/fonts/salt-signal.css'
-import '@amulet-laboratories/hex/scoped/ochre'
+import '@amulet-laboratories/rig/hex/scoped/ochre'
 import {
   SiteShell,
   SiteNav,

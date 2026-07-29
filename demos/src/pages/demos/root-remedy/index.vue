@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DemoAttribution from '@/components/DemoAttribution.vue'
 import '@/assets/fonts/root-remedy.css'
-import '@amulet-laboratories/hex/scoped/juniper'
+import '@amulet-laboratories/rig/hex/scoped/juniper'
 import {
   SiteShell,
   SiteNav,

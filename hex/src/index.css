@@ -1,10 +1,10 @@
 /* Hex — Default Entry
  * Imports the default theme (cobalt).
  * Override by importing a specific theme instead:
- *   import '@amulet-laboratories/hex/cobalt'
- *   import '@amulet-laboratories/hex/garden'
+ *   import '@amulet-laboratories/rig/hex/cobalt'
+ *   import '@amulet-laboratories/rig/hex/garden'
  *
- * Usage: import '@amulet-laboratories/hex/source'
+ * Usage: import '@amulet-laboratories/rig/hex/source'
  */
 
 @import './themes/cobalt/index.css';

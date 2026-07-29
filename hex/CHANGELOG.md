@@ -7,6 +7,58 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **`beacon` and `voltaic` shipped with no component styling at all.** Neither theme's
+  `index.css` imported a `components.css` barrel, and neither `tokens.css` declared the
+  typography tokens (`--font-sans`, `--font-mono`, the size scale) that the shared component
+  CSS `@apply`s. Both built to ~15 KB against 106–150 KB for a real theme — tokens and base
+  only, every `data-rig-*` component unstyled. `beacon` is offered in Obelisk's theme
+  switcher, which swaps the whole stylesheet via a single `<link>`, so choosing it left the
+  entire app unstyled. Both now build at ~105 KB with ~930 component selectors.
+- **`data-theme='unstyled'` now works in all 27 themes.** The escape hatch was defined in 11
+  themes' `domains.css` and silently absent from the other 16. Moved to
+  `shared/rig-defaults.css`, which every theme's barrel imports. `cobalt`'s extra
+  shell-chrome border rule stays in `cobalt`.
+- The build test suite iterated `['cobalt', 'garden']` — every "for every theme" assertion
+  was really checking 2 of 27, which is how the two broken themes stayed green. It now
+  enumerates the themes directory: **40 tests, up from 15**. Also dropped an assertion that
+  required `--spacing` in every bundle: no theme declares it, it comes from Tailwind's
+  defaults and lands in 2 of 27 bundles by accident, so the test measured tree-shaking rather
+  than a design contract. And `each theme has distinct primary colors` now actually compares
+  themes — it previously spot-checked two hex literals, which is why the duplicate below went
+  unnoticed.
+
+### Changed
+
+- **Extracted the content-site skin into an opt-in `shared/site.css`.** Six themes (`slate`,
+  `roast`, `fern`, `quartz`, `damson`, `brass`) each carried a ~730-line `domains.css` that
+  was not a domain accent map at all but the full long-form site skin — fluid typography,
+  hero, cards, prose, newsletter CTA, footer, nav. The six were **96% identical: 4,392 lines
+  of which 335 were unique**. The shared 335 now live in `shared/site.css`, which no theme
+  imports; the 12 declarations that genuinely varied became `--site-*` hooks with fallbacks.
+  Consuming sites supply their own `[data-category]` map and overrides. Those six bundles
+  each shrank ~13.4 KB (**−80,657 bytes across `dist/`**) and all 27 themes are now honestly
+  general-purpose. The other 21 bundles are byte-identical.
+- **`voltaic` re-cut** — was a byte-for-byte duplicate of `spacewizard` (`#aef66d` on
+  `#060d2b`), because it began as a port of a portfolio site rather than a designed theme,
+  carrying `--color-*: initial` namespace resets and that site's private `--color-blue-*`
+  utility names. Now arc chartreuse `#cfe84a` on graphite `#0d0f08` (h≈69°), filling the gap
+  between `citron` and `spacewizard`. Its `base.css`, which was that site's stylesheet down to
+  the job-listing transitions, was rewritten as a theme base.
+- **`forge` re-cut** from CRT yellow phosphor `#e6c830` (h≈50°, 1° from `citron`) to CRT
+  magenta phosphor `#dd55e8` (h≈296°), filling what was the palette's largest hue gap.
+  Surfaces, typography, and radii unchanged.
+- Palette after both re-cuts: **no duplicate primaries** (was 1), **largest hue gap 37°**
+  (was 55°), no incomplete themes (was 2), light/dark split unchanged at 14/13.
+- **Hex is no longer published as a standalone package.** As of `rig@3.0.0` the theme layer
+  ships inside `@amulet-laboratories/rig` under the `hex/` subpath. `@amulet-laboratories/hex`
+  is deprecated on npm at 0.8.0, its final release. This directory remains the source of
+  record for theme work; it is simply built and published as part of Rig now. Consumers
+  should replace `@amulet-laboratories/hex/…` with `@amulet-laboratories/rig/hex/…` — see
+  [../MIGRATION.md](../MIGRATION.md). No theme names, tokens, selectors, or compiled bytes
+  changed.
+
 ## [0.7.0] — 2026-07-14
 
 ### Changed

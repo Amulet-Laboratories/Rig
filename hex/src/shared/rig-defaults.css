@@ -119,3 +119,27 @@
   /* ── Sash / Resizer ──────────────────────────────────────────── */
   --rig-sash-hover: var(--color-primary);
 }
+
+/* ───────── Unstyled escape hatch ─────────
+ * `data-theme='unstyled'` strips visual styling (colors, borders, backgrounds,
+ * shadows) while preserving layout (flex, grid, sizing, positioning, overflow).
+ *
+ * Lived in 11 of 27 per-theme domains.css files until 2026-07-28, so the other
+ * 16 themes silently had no escape hatch at all. Hoisted here, which every
+ * theme's component barrel imports.
+ */
+
+[data-theme='unstyled'] *,
+[data-theme='unstyled'] *::before,
+[data-theme='unstyled'] *::after {
+  color: revert !important;
+  background-color: revert !important;
+  background: revert !important;
+  border-color: revert !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+
+  --domain-accent: initial !important;
+}

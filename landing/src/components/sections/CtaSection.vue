@@ -33,7 +33,7 @@
         </div>
         <pre
           class="p-5 font-mono text-sm leading-[1.7] text-text-muted"
-        ><span class="text-primary">$</span> pnpm add @amulet-laboratories/rig @amulet-laboratories/hex
+        ><span class="text-primary">$</span> pnpm add @amulet-laboratories/rig
 <span class="text-primary">$</span> pnpm add vue@^3.5 @floating-ui/vue@^1</pre>
       </div>
 

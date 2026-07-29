@@ -4,11 +4,31 @@
 
 Pure CSS — no JavaScript, no runtime. Hex styles Rig's headless components with a token-based contract. Swap themes by changing one import.
 
+## Status — shipped inside Rig, not installed separately
+
+**As of 2026-07-28.** Hex is no longer published on its own. As of `rig@3.0.0` it ships
+inside `@amulet-laboratories/rig` under the `hex/` subpath, and
+`@amulet-laboratories/hex` is deprecated on npm at its final version, 0.8.0.
+
+The fold itself changed nothing about the themes — same names, same tokens, same selectors.
+Only the specifier moved. See [../MIGRATION.md](../MIGRATION.md).
+
+The same release does carry real theme changes, made alongside it: the site layer was
+extracted (see below), `beacon` and `voltaic` were repaired, and `forge` and `voltaic` were
+re-cut. Those are listed in [CHANGELOG.md](CHANGELOG.md).
+
+This directory remains the source of record for the theme layer, and is still where theme
+work happens; it is simply built and published as part of Rig now.
+
 ## Install
 
 ```bash
-pnpm add @amulet-laboratories/hex
+pnpm add @amulet-laboratories/rig
 ```
+
+Then import a theme by its subpath — `@amulet-laboratories/rig/hex/<theme>` for the
+compiled bundle, or `@amulet-laboratories/rig/hex/<theme>/source` for the uncompiled
+source.
 
 ## Themes
 
@@ -16,7 +36,7 @@ Twenty-seven themes ship in a single package. Each is a self-contained CSS bundl
 
 | Theme         | Mode  | Feel                                   |
 | ------------- | ----- | -------------------------------------- |
-| `beacon`      | Dark  | Cobalt-adjacent, distinct primary      |
+| `beacon`      | Dark  | LCARS — peach on pure black            |
 | `brass`       | Light | Warm metallic neutrals                 |
 | `cardinal`    | Dark  | Saturated red on near-black            |
 | `citron`      | Light | High-contrast yellow-green             |
@@ -26,7 +46,7 @@ Twenty-seven themes ship in a single package. Each is a self-contained CSS bundl
 | `cypress`     | Light | Coastal-soft, ocean greens + sand      |
 | `damson`      | Dark  | Deep plum on dusk                      |
 | `fern`        | Light | Forested mid-tones                     |
-| `forge`       | Dark  | Iron + ember accent                    |
+| `forge`       | Dark  | Cockpit CRT — magenta phosphor         |
 | `garden`      | Light | Lab default — neutral developer        |
 | `greyline`    | Dark  | Achromatic with single accent          |
 | `harbor`      | Dark  | Slate + soft teal                      |
@@ -42,32 +62,32 @@ Twenty-seven themes ship in a single package. Each is a self-contained CSS bundl
 | `slate`       | Light | Cool grey neutrals                     |
 | `spacewizard` | Dark  | Cosmic violet + electric accent        |
 | `vesper`      | Dark  | Evening-warm — soft lavender + amber   |
-| `voltaic`     | Dark  | Deep navy + phosphor green             |
+| `voltaic`     | Dark  | Arc chartreuse on graphite             |
 
 ## Usage
 
 Import a single theme bundle (tokens + base + component styles):
 
 ```ts
-import '@amulet-laboratories/hex/cobalt'
-import '@amulet-laboratories/hex/garden'
-import '@amulet-laboratories/hex/spacewizard'
+import '@amulet-laboratories/rig/hex/cobalt'
+import '@amulet-laboratories/rig/hex/garden'
+import '@amulet-laboratories/rig/hex/spacewizard'
 ```
 
 Source files (uncompiled) are available at `{theme}/source` for custom PostCSS / Tailwind v4 builds:
 
 ```ts
-import '@amulet-laboratories/hex/cobalt/source'
+import '@amulet-laboratories/rig/hex/cobalt/source'
 ```
 
 Building a custom theme outside this package? Import the shared component CSS individually:
 
 ```ts
-import '@amulet-laboratories/hex/shared/rig-defaults'
-import '@amulet-laboratories/hex/shared/components/core'
-import '@amulet-laboratories/hex/shared/components/web'
+import '@amulet-laboratories/rig/hex/shared/rig-defaults'
+import '@amulet-laboratories/rig/hex/shared/components/core'
+import '@amulet-laboratories/rig/hex/shared/components/web'
 // …pick whichever Rig sub-packages your app uses
-import '@amulet-laboratories/hex/shared/a11y'
+import '@amulet-laboratories/rig/hex/shared/a11y'
 ```
 
 ## Architecture
@@ -78,6 +98,7 @@ src/
   shared/
     a11y.css                    forced-colors + prefers-contrast overrides
     rig-defaults.css            baseline data-rig-* defaults (theme-agnostic)
+    site.css                    OPT-IN content-site layer — see below
     components/
       core.css                  Button, Input, Select, Card, Badge, …
       layout.css                ShellGrid, Sidebar, Modal, Popover, …
@@ -99,8 +120,31 @@ src/
       tokens.css                @theme block + :root custom properties
       base.css                  html/body, scrollbar, focus, selection
       components.css            barrel importing all shared component CSS
-      domains.css               [data-domain] accent map
+      domains.css               [data-domain] accent map (most themes)
 ```
+
+## The site layer
+
+`shared/site.css` is the long-form content-site skin — fluid typography, hero,
+cards, prose, newsletter CTA, footer, nav. It is **opt-in**: no theme imports it,
+and it is not in any theme bundle. A site imports it explicitly and supplies its
+own `[data-category]` accent map plus any of the documented `--site-*` overrides.
+
+It exists because six themes (`slate`, `roast`, `fern`, `quartz`, `damson`,
+`brass`) each carried a ~730-line `domains.css` that was really this same site
+skin, copied. The six were 96% identical — 4,392 lines where 335 were unique.
+Extracting it on 2026-07-28 removed ~13.4 KB from each of those six bundles and
+left all 27 themes general-purpose, which is what they claim to be.
+
+```css
+@import '@amulet-laboratories/rig/hex/slate/source';
+@import '@amulet-laboratories/rig/hex/shared/site';
+/* then your own [data-category] map and --site-* overrides */
+```
+
+The layer is plain CSS, but compile it with the theme's `tokens.css`
+`@reference`'d if you want Tailwind's paired `@supports (color: color-mix(…))`
+fallbacks for browsers without `color-mix`.
 
 ## Styling contract
 

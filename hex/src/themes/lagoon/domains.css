@@ -53,20 +53,3 @@
     display: none;
   }
 }
-
-/* ───────── Unstyled theme overrides ───────── */
-
-[data-theme='unstyled'] *,
-[data-theme='unstyled'] *::before,
-[data-theme='unstyled'] *::after {
-  color: revert !important;
-  background-color: revert !important;
-  background: revert !important;
-  border-color: revert !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-  backdrop-filter: none !important;
-  opacity: 1 !important;
-
-  --domain-accent: initial !important;
-}

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DemoAttribution from '@/components/DemoAttribution.vue'
 import '@/assets/fonts/aldric-pace.css'
-import '@amulet-laboratories/hex/scoped/harbor'
+import '@amulet-laboratories/rig/hex/scoped/harbor'
 import { SiteShell, SiteNav, SiteFooter, Icon, useHashRouter } from '@amulet-laboratories/rig'
 import type { NavItem } from '@amulet-laboratories/rig'
 import HomePage from './pages/HomePage.vue'

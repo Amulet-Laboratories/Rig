@@ -3,14 +3,21 @@
 
 import { describe, it, before } from 'node:test'
 import assert from 'node:assert/strict'
-import { existsSync, readFileSync, rmSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, rmSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { execSync } from 'node:child_process'
 
 const ROOT = resolve(import.meta.dirname)
 const DIST = resolve(ROOT, 'dist')
+const SRC = resolve(ROOT, 'src')
 
-const themes = ['cobalt', 'garden']
+// Every theme, not a hand-picked pair. This list was `['cobalt', 'garden']`
+// until 2026-07-28, so each "for every theme" assertion below was really
+// checking 2 of 27 — which is how `beacon` and `voltaic` shipped for months
+// with no component styling at all and a green suite.
+const themes = readdirSync(resolve(SRC, 'themes')).filter((t) =>
+  existsSync(resolve(SRC, 'themes', t, 'index.css')),
+)
 
 describe('Hex build', () => {
   before(() => {
@@ -147,7 +154,10 @@ describe('Hex build', () => {
       const css = readFileSync(resolve(DIST, `${theme}.css`), 'utf-8')
       assert.ok(css.includes('--text-xs'), `${theme}.css should include type scale`)
       assert.ok(css.includes('--text-sm'), `${theme}.css should include text-sm`)
-      assert.ok(css.includes('--spacing'), `${theme}.css should include spacing`)
+      // No `--spacing` assertion: no theme declares it. It comes from Tailwind's
+      // default theme and is only emitted when a spacing utility happens to be
+      // used, so it lands in 2 of 27 bundles by accident. Asserting it tested
+      // tree-shaking, not a design contract.
       assert.ok(css.includes('--radius'), `${theme}.css should include radius`)
       assert.ok(css.includes('--font-sans'), `${theme}.css should include font-sans`)
       assert.ok(css.includes('--font-mono'), `${theme}.css should include font-mono`)
@@ -185,6 +195,21 @@ describe('Hex build', () => {
 
     assert.ok(cobalt.includes('#0078d4'), 'cobalt should use VS Code blue primary')
     assert.ok(garden.includes('#eb4963'), 'garden should use rose primary')
+
+    // Actually check distinctness, which the two spot-checks above do not.
+    // Until 2026-07-28 `voltaic` was a byte-for-byte copy of `spacewizard`'s
+    // palette and this test still passed, because it never compared themes.
+    const seen = new Map()
+    for (const theme of themes) {
+      const src = readFileSync(resolve(SRC, 'themes', theme, 'tokens.css'), 'utf-8')
+      const primary = src.match(/--color-primary:\s*(#[0-9a-fA-F]{3,8})/)?.[1]?.toLowerCase()
+      assert.ok(primary, `${theme} should declare --color-primary`)
+      assert.ok(
+        !seen.has(primary),
+        `${theme} shares primary ${primary} with ${seen.get(primary)} — themes must be visually distinct`,
+      )
+      seen.set(primary, theme)
+    }
   })
 
   it('theme bundles include unstyled reset selector', () => {

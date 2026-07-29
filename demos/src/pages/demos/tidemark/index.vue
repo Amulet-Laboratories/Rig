@@ -2,7 +2,7 @@
 import DemoAttribution from '@/components/DemoAttribution.vue'
 import { ref } from 'vue'
 import '@/assets/fonts/tidemark.css'
-import '@amulet-laboratories/hex/scoped/cypress'
+import '@amulet-laboratories/rig/hex/scoped/cypress'
 import {
   SiteShell,
   SiteNav,

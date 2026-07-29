@@ -50,7 +50,14 @@ useSeoMeta({
 })
 
 useSchemaOrg([
-  defineWebPage({ name: 'Product Comparisons' }),
+  // State the description; schema-org infers it from the meta tag only when
+  // this component runs before schema-org resolves, which does not hold for a
+  // component supplied by this module rather than by the app.
+  defineWebPage({
+    name: 'Product Comparisons',
+    description:
+      'Side-by-side product comparisons with specs, pros, cons, and our recommendations.',
+  }),
   defineBreadcrumb({
     itemListElement: [
       { name: 'Home', item: '/', position: 1 },

@@ -2,7 +2,7 @@
 import DemoAttribution from '@/components/DemoAttribution.vue'
 import { Icon } from '@iconify/vue'
 import '@/assets/fonts/fogline.css'
-import '@amulet-laboratories/hex/scoped/hearth'
+import '@amulet-laboratories/rig/hex/scoped/hearth'
 import { SiteShell, SiteNav, SiteFooter, useHashRouter } from '@amulet-laboratories/rig'
 import type { NavItem } from '@amulet-laboratories/rig'
 import HomePage from './pages/HomePage.vue'

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DemoAttribution from '@/components/DemoAttribution.vue'
 import '@/assets/fonts/briar-cove.css'
-import '@amulet-laboratories/hex/scoped/iris'
+import '@amulet-laboratories/rig/hex/scoped/iris'
 import {
   Alert,
   SiteShell,

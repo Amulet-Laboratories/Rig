@@ -37,7 +37,10 @@ const homepage = appConfig.homepage as {
   description: string
   cta: string
   seo: { title: string; description: string }
-  quiz: { slug: string; title: string; description: string }
+  // Optional: a site with no quiz simply omits the section. This was required
+  // until 2026-07-28, which meant any consumer without a `quiz` block — the
+  // site-boilerplate template included — got a 500 on its homepage.
+  quiz?: { slug: string; title: string; description: string }
 }
 
 const categoryImages = computed(() => {
@@ -60,7 +63,10 @@ useSeoMeta({
 
 useSchemaOrg([
   defineWebSite({ name: siteConfig.name }),
-  defineWebPage({ name: homepage.seo.title }),
+  // State the description; schema-org infers it from the meta tag only when
+  // this component runs before schema-org resolves, which does not hold for a
+  // component supplied by this module rather than by the app.
+  defineWebPage({ name: homepage.seo.title, description: homepage.seo.description }),
 ])
 </script>
 
@@ -142,7 +148,7 @@ useSchemaOrg([
       </div>
     </Section>
 
-    <Section variant="alternate">
+    <Section v-if="homepage.quiz" variant="alternate">
       <QuizPromo
         :quiz-slug="homepage.quiz.slug"
         :quiz-title="homepage.quiz.title"

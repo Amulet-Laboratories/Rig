@@ -4,7 +4,7 @@
  *
  * Usage:
  *   import '@amulet-laboratories/rig/styles'    // structural layout
- *   import '@amulet-laboratories/hex/obelisk'   // theme (colors, fonts, etc.)
+ *   import '@amulet-laboratories/rig/hex/obelisk'   // theme (colors, fonts, etc.)
  */
 
 @import './layout.css';

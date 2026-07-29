@@ -101,24 +101,6 @@
 
 /* ───────── Unstyled theme overrides ───────── */
 
-/* Strips visual styling (colors, borders, backgrounds, shadows)
-   while preserving layout (flex, grid, sizing, positioning, overflow). */
-
-[data-theme='unstyled'] *,
-[data-theme='unstyled'] *::before,
-[data-theme='unstyled'] *::after {
-  color: revert !important;
-  background-color: revert !important;
-  background: revert !important;
-  border-color: revert !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-  backdrop-filter: none !important;
-  opacity: 1 !important;
-
-  --domain-accent: initial !important;
-}
-
 [data-theme='unstyled'] [data-rig-shell-statusbar],
 [data-theme='unstyled'] [data-rig-shell-sidebar],
 [data-theme='unstyled'] [data-rig-shell-panel],

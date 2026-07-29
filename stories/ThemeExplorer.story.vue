@@ -558,7 +558,7 @@ const colorSlots = computed(() => [
             >
           </div>
           <code style="font-size: 11px; font-family: var(--font-mono, monospace); opacity: 0.5">
-            @import '@amulet-laboratories/hex/{{ active.id }}'
+            @import '@amulet-laboratories/rig/hex/{{ active.id }}'
           </code>
         </div>
 

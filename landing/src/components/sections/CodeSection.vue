@@ -65,7 +65,7 @@ const features = [
           class="overflow-x-auto p-5 font-mono text-[13px] leading-[1.7] text-text-muted"
         ><span class="code-cmt">&lt;!-- One import for the theme --&gt;</span>
 <span class="code-tag">&lt;script</span> <span class="code-attr">setup</span> <span class="code-attr">lang</span>=<span class="code-str">"ts"</span><span class="code-tag">&gt;</span>
-<span class="code-kw">import</span> <span class="code-str">'@amulet-laboratories/hex'</span>
+<span class="code-kw">import</span> <span class="code-str">'@amulet-laboratories/rig/hex'</span>
 <span class="code-kw">import</span> {
   <span class="code-comp">Button</span>,
   <span class="code-comp">Modal</span>,
@@ -90,10 +90,10 @@ const features = [
         <pre
           v-show="activeTab === 'theme'"
           class="overflow-x-auto p-5 font-mono text-[13px] leading-[1.7] text-text-muted"
-        ><span class="code-kw">@import</span> <span class="code-str">'@amulet-laboratories/hex/cobalt'</span>
+        ><span class="code-kw">@import</span> <span class="code-str">'@amulet-laboratories/rig/hex/cobalt'</span>
 
 <span class="code-cmt">/* or use source for Tailwind v4 */</span>
-<span class="code-kw">@import</span> <span class="code-str">'@amulet-laboratories/hex/cobalt/source'</span>
+<span class="code-kw">@import</span> <span class="code-str">'@amulet-laboratories/rig/hex/cobalt/source'</span>
 
 <span class="code-cmt">/* Every component re-skins instantly */</span>
 <span class="code-cmt">/* Switch themes by changing one import */</span></pre>

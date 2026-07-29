@@ -1,0 +1,11 @@
+# Intentionally near-empty.
+#
+# npm-packlist applies nested .gitignore files even to paths allow-listed in the
+# root package.json "files" field, so hex/.gitignore's `dist/` rule was silently
+# stripping the compiled themes out of the rig tarball. An .npmignore takes
+# precedence over a .gitignore in the same directory, so this file's only job is
+# to exist and let hex/dist ship.
+#
+# hex/dist stays gitignored — it is build output, published but not committed.
+
+node_modules/

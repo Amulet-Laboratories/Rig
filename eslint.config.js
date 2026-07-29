@@ -17,7 +17,9 @@ export default [
     ],
   },
   {
-    files: ['scripts/**/*.{js,mjs,ts}'],
+    // Node-side tooling: build scripts and the `rig` CLI. Both legitimately use
+    // process/console, which the browser-oriented base config does not declare.
+    files: ['scripts/**/*.{js,mjs,ts}', 'bin/**/*.{js,mjs}'],
     languageOptions: {
       globals: { process: 'readonly', console: 'readonly', __dirname: 'readonly' },
     },

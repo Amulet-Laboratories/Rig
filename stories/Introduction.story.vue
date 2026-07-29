@@ -178,7 +178,7 @@ import { Button, Input, Tabs } from '@amulet-laboratories/rig'
               font-family: var(--font-mono);
               font-size: 12px;
             "
-            >@amulet-laboratories/hex</code
+            >@amulet-laboratories/rig/hex</code
           >
           to apply branded multi-theme CSS layers targeting
           <code

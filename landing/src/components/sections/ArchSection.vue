@@ -30,11 +30,11 @@ const hexTags = [
           id="arch-title"
           class="mb-4 text-[clamp(28px,3.5vw,40px)] font-bold leading-tight tracking-tight"
         >
-          Two packages. Zero compromise.
+          Two layers. One install.
         </h2>
         <p class="mx-auto max-w-[520px] text-[17px] leading-relaxed text-text-muted">
           Separate the structure from the skin. Rig handles behavior and accessibility. Hex handles
-          aesthetics. Swap, extend, or replace either independently.
+          aesthetics. Swap, extend, or replace either independently — they just ship together.
         </p>
       </div>
 
@@ -79,7 +79,7 @@ const hexTags = [
           <h3 class="mb-2 text-[22px] font-bold tracking-tight">
             Hex
             <span class="ml-2 font-mono text-sm font-medium text-text-dim"
-              >@amulet-laboratories/hex</span
+              >@amulet-laboratories/rig/hex</span
             >
           </h3>
           <p class="mb-6 text-[15px] leading-relaxed text-text-muted">
@@ -97,7 +97,7 @@ const hexTags = [
           </div>
           <pre
             class="mt-4 rounded-lg bg-bg/50 p-3 font-mono text-[12px] text-text-dim"
-          ><code><span class="text-primary">@import</span> <span class="text-text-muted">'@amulet-laboratories/hex/cobalt'</span></code></pre>
+          ><code><span class="text-primary">@import</span> <span class="text-text-muted">'@amulet-laboratories/rig/hex/cobalt'</span></code></pre>
         </div>
       </div>
     </div>
