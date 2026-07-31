@@ -10,8 +10,18 @@ import {
   navigateTo,
 } from '#imports'
 
+import { csv } from '../../utils/csv.js'
+
 const runtimeConfig = useRuntimeConfig()
-const personaSlugs = runtimeConfig.contentPersonaSlugs.split(',')
+
+// This component renders on the client as well as the server, so the value has
+// to come from PUBLIC runtime config — `useRuntimeConfig()` exposes only
+// `public` in the browser. The bare `contentPersonaSlugs` fallback is for sites
+// that still declare it privately; they render the empty state rather than
+// crashing, and moving the key under `public` restores the personas.
+const personaSlugs = csv(
+  runtimeConfig.public.contentPersonaSlugs ?? runtimeConfig.contentPersonaSlugs,
+)
 
 const personaLabels = computed(() =>
   personaSlugs.map((slug: string) => ({
@@ -54,9 +64,14 @@ useSchemaOrg([
         { label: 'Best For', path: '/best-for' },
       ]"
     />
+    <!-- headingLevel 1: this section's title is the page's primary heading.
+         Without it the page ships with no h1 at all — axe flags it as
+         page-has-heading-one and screen-reader users get no top-level
+         landmark to orient by. -->
     <Section
       title="Best For You"
       subtitle="Personalized recommendations based on your quiz results"
+      :heading-level="1"
     >
       <div v-if="personaLabels.length" data-rig-article-grid>
         <Card

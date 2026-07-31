@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import ts from 'typescript'
 
@@ -18,7 +18,17 @@ import ts from 'typescript'
 
 const SERVER_DIR = join(import.meta.dirname, '..')
 
+/**
+ * `src/runtime/utils/` is scanned too. It holds helpers shared by components
+ * and server routes, so anything in it ends up inside a consumer's Nitro bundle
+ * and is subject to the same constraint — but it sits outside `server/`, so the
+ * original scan missed it. A `.ts` helper added there failed a consumer build
+ * with the same bare `Expected ',', got ':'` this test exists to prevent.
+ */
+const SHARED_DIR = join(import.meta.dirname, '..', '..', 'utils')
+
 function walk(dir: string): string[] {
+  if (!existsSync(dir)) return []
   return readdirSync(dir).flatMap((entry) => {
     const p = join(dir, entry)
     if (statSync(p).isDirectory()) return walk(p)
@@ -58,14 +68,14 @@ function typeScriptOnlySyntax(source: string, fileName: string): string[] {
 }
 
 describe('server runtime files stay JS-parseable', () => {
-  const files = walk(SERVER_DIR)
+  const files = [...walk(SERVER_DIR), ...walk(SHARED_DIR)]
 
   it('has files to check', () => {
     expect(files.length).toBeGreaterThan(0)
   })
 
   for (const file of files) {
-    it(`${relative(SERVER_DIR, file)} contains no TypeScript-only syntax`, () => {
+    it(`${relative(join(SERVER_DIR, '..'), file)} contains no TypeScript-only syntax`, () => {
       const offenders = typeScriptOnlySyntax(readFileSync(file, 'utf8'), file)
       expect(
         offenders,

@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/rig-nuxt",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "Nuxt module for @amulet-laboratories/rig — auto-imports, tree-shaking, SSR-safe",
   "license": "MIT",
@@ -23,7 +23,7 @@
     "layer"
   ],
   "peerDependencies": {
-    "@amulet-laboratories/rig": ">=3.0.0",
+    "@amulet-laboratories/rig": ">=3.1.0",
     "nuxt": "^3.21.7",
     "@nuxt/content": "^3.0.0",
     "@nuxtjs/seo": "^3.0.0",
