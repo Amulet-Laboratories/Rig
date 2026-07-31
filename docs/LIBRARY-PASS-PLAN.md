@@ -57,11 +57,11 @@ boundary — consumers reaching past the component API.
 
 ### Consumer landscape
 
-| Group                      | Projects                                                                                                    | Pins                                                   | How they consume                                                         |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------ |
-| **Nuxt content fleet (8)** | Beanwoven, FewerSerums, Meepleloft, OneGoodLamp, The Shelf Nook, TheScruffGuide, QuizSort, site-boilerplate | rig `0.5.1` / hex `0.6.0` / rig-nuxt `0.4.0` (uniform) | Nuxt module auto-import; hex as one theme `…/source` CSS import per site |
-| **SPA sites (2)**          | AmuletLabs.org (lagging `0.4.1`/`0.5.2`), vrd (**divergent `2.0.0` on `hex-origins`**)                      | mixed                                                  | Root barrel + `hex/tailwind` preset                                      |
-| **Desktop (1)**            | Obelisk                                                                                                     | `file:../Rig` (live dev)                               | Root barrel + hex `cobalt`/`beacon`                                      |
+| Group                      | Projects                                                                                  | Pins                                                   | How they consume                                                         |
+| -------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------ |
+| **Nuxt content fleet (7)** | Beanwoven, FewerSerums, Meepleloft, OneGoodLamp, The Shelf Nook, TheScruffGuide, QuizSort | rig `0.5.1` / hex `0.6.0` / rig-nuxt `0.4.0` (uniform) | Nuxt module auto-import; hex as one theme `…/source` CSS import per site |
+| **SPA sites (2)**          | AmuletLabs.org (lagging `0.4.1`/`0.5.2`), vrd (**divergent `2.0.0` on `hex-origins`**)    | mixed                                                  | Root barrel + `hex/tailwind` preset                                      |
+| **Desktop (1)**            | Obelisk                                                                                   | `file:../Rig` (live dev)                               | Root barrel + hex `cobalt`/`beacon`                                      |
 
 Non-consumers (verified): AndrewPassanisi.com, noosphere, spork, spork-wow,
 products-db. `Config` is the shared `@amulet-laboratories/config` package.
@@ -101,10 +101,10 @@ gaps Hex/rig-nuxt never covered.
   `components/content/{QuickAnswer,FaqBlock,ProductCardWrapper,CategoryIcon}.vue`
   so the upstream auto-imports win. These are shadow duplicates that have drifted
   — reconcile any intentional per-site tweaks into props first.
-- 🔵 **Decision:** `site-boilerplate` (cobalt) and QuizSort (citron) themes don't
-  import Hex `content.css`, so the content skin doesn't reach them. Confirm
-  whether those sites need it (site-boilerplate is the content-site template — it
-  probably should).
+- 🔵 **Decision:** QuizSort's (citron) theme doesn't import Hex `content.css`, so
+  the content skin doesn't reach it. Confirm whether it needs it. (`site-boilerplate`
+  carried the same gap as the cobalt template; the repo was archived and deleted
+  2026-07-31, so only QuizSort remains to decide.)
 - ⬜ Audit the remaining local `components/content/*` across the fleet for any
   other drifted-from-upstream copies or uncovered patterns.
 

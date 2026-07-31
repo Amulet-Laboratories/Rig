@@ -30,7 +30,7 @@ import vue from '@amulet-laboratories/config/eslint/vue'
 export default [...vue, { ignores: ['dist/', 'coverage/'] }]
 ```
 
-### Nuxt sites (the content network, site-boilerplate)
+### Nuxt sites (the content network)
 
 Create `eslint.config.js`:
 
