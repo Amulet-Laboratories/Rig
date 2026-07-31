@@ -221,4 +221,70 @@ describe('Hex build', () => {
       )
     }
   })
+
+  // ── Contrast-safe accent ────────────────────────────────────────────────
+  // The 2026-07-31 fleet audit found the brand accent used as SMALL TEXT on
+  // white, at 3.50:1 against a 4.5:1 AA floor, on all six content sites. The
+  // fix splits display from text: --card-accent / --color-accent stay as-is,
+  // and the few small-text rules read a darkened -text variant. These tests
+  // guard both halves, because either alone silently does nothing.
+
+  it('small-text accent rules read the contrast-safe -text token', () => {
+    const site = readFileSync(resolve(SRC, 'shared', 'site.css'), 'utf-8')
+    const content = readFileSync(resolve(SRC, 'shared', 'components', 'content.css'), 'utf-8')
+
+    // Each rule must consult the -text token FIRST and still fall through to
+    // the display accent, so themes that never opt in are unaffected.
+    const smallText = [
+      [site, '[data-rig-category-card-title]', '--card-accent-text'],
+      [site, '[data-rig-article-card-category]', '--card-accent-text'],
+      [site, '[data-rig-featured-card-category]', '--card-accent-text'],
+      [content, '[data-rig-quiz-promo-badge]', '--color-accent-text'],
+    ]
+    for (const [css, selector, token] of smallText) {
+      const i = css.indexOf(selector + ' {')
+      assert.ok(i !== -1, `${selector} should exist`)
+      const block = css.slice(i, css.indexOf('}', i))
+      assert.ok(
+        block.includes(`var(${token},`),
+        `${selector} is small text — it must read var(${token}, …) so it can clear 4.5:1`,
+      )
+    }
+
+    // The icon beside the featured-card category is NOT text and must keep the
+    // display accent — icons answer to the 3:1 non-text rule, and darkening
+    // them was never the point.
+    const svg = site.indexOf('[data-rig-featured-card-category] svg {')
+    assert.ok(svg !== -1)
+    assert.ok(
+      !site.slice(svg, site.indexOf('}', svg)).includes('--card-accent-text'),
+      'the category icon should keep the display accent, not the text variant',
+    )
+  })
+
+  it('--color-accent-text clears 4.5:1 wherever a theme declares it', () => {
+    const srgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255)
+    const lin = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)
+    const lum = (r) => 0.2126 * lin(r[0]) + 0.7152 * lin(r[1]) + 0.0722 * lin(r[2])
+    const ratio = (a, b) => {
+      const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x)
+      return (hi + 0.05) / (lo + 0.05)
+    }
+
+    let declared = 0
+    for (const theme of themes) {
+      const src = readFileSync(resolve(SRC, 'themes', theme, 'tokens.css'), 'utf-8')
+      const text = src.match(/--color-accent-text:\s*(#[0-9a-fA-F]{6})/)?.[1]
+      if (!text) continue // opting out is legitimate — see the note in shared/site.css
+      declared++
+      const card = src.match(/--color-card:\s*(#[0-9a-fA-F]{6})/)?.[1]
+      assert.ok(card, `${theme} should declare --color-card`)
+      const r = ratio(srgb(text), srgb(card))
+      assert.ok(
+        r >= 4.5,
+        `${theme}: --color-accent-text ${text} on card ${card} is ${r.toFixed(2)}:1, under the 4.5:1 AA floor`,
+      )
+    }
+    assert.ok(declared > 0, 'at least one theme should declare --color-accent-text')
+  })
 })

@@ -44,6 +44,30 @@
 /* Category accent colours (--card-accent per [data-category]) are supplied
    by the consuming site; every rule below falls back to a theme token. */
 
+/* --card-accent-text / --color-accent-text — the contrast-safe text variants.
+ *
+ * A brand accent chosen to look right as a fill is usually too light to be
+ * READABLE as small text: on Beanwoven the category-card title rendered
+ * #c07840 on white at 3.50:1, under the 4.5:1 WCAG AA floor, and the same
+ * pattern failed on all six content sites.
+ *
+ * The fix is not to darken the accent — that would dull every fill, border and
+ * hover state that is already fine. It is to separate the two uses:
+ *
+ *   --card-accent        the DISPLAY accent — fills, borders, icons, large text
+ *   --card-accent-text   the same hue, darkened only as far as 4.5:1 needs
+ *
+ * Only rules where the accent is small text read the -text token. Everything
+ * else is untouched, so the sites look the same apart from those few labels.
+ *
+ * Deliberately NOT given a derived default (e.g. color-mix with black): Hex
+ * ships 27 themes and several are dark, where darkening makes contrast WORSE
+ * — citron's accent measures 6.60:1 on its own card and needs no help. So the
+ * token falls through to --card-accent when a site has not set it, which keeps
+ * existing behaviour for every consumer that has not opted in.
+ *
+ * Set it per [data-category] in the site's own CSS, beside --card-accent. */
+
 /* ═══════════════════════════════════════════════════════════════════
    Mobile-first fluid design
    All spacing, typography, and layout scales smoothly from 320px up.
@@ -281,8 +305,9 @@ h2 {
   transform: scale(1.05);
 }
 
+/* Small text — reads the contrast-safe variant. See the note above. */
 [data-rig-category-card-title] {
-  color: var(--card-accent, var(--color-foreground));
+  color: var(--card-accent-text, var(--card-accent, var(--color-foreground)));
   transition: color 0.2s ease;
 }
 
@@ -290,8 +315,9 @@ h2 {
    Article card labels — category colored with dot separator
    ═══════════════════════════════════════════════════════════════════ */
 
+/* Small text — reads the contrast-safe variant. See the note above. */
 [data-rig-article-card-category] {
-  color: var(--card-accent, var(--color-primary));
+  color: var(--card-accent-text, var(--card-accent, var(--color-primary)));
   font-weight: 700;
 }
 
@@ -304,8 +330,10 @@ h2 {
   color: var(--card-accent, var(--color-primary));
 }
 
+/* Small text — reads the contrast-safe variant. The svg beside it is an icon,
+   so it keeps the display accent (icons answer to the 3:1 non-text rule). */
 [data-rig-featured-card-category] {
-  color: var(--card-accent, var(--color-accent));
+  color: var(--card-accent-text, var(--card-accent, var(--color-accent)));
 }
 
 [data-rig-featured-card-category] svg {

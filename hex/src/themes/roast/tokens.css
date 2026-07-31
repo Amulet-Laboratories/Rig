@@ -38,6 +38,9 @@
   --color-muted-foreground: #6b5d4f;
   --color-accent: #c07840;
   --color-accent-foreground: #ffffff;
+  /* Contrast-safe accent for SMALL TEXT only — #a36636 clears 4.5:1 on the card.
+     The display accent above is unchanged for fills, borders and icons. */
+  --color-accent-text: #a36636;
 
   /* Semantic status */
   --color-destructive: #dc2626;
@@ -118,6 +121,9 @@
   --color-muted-foreground: #6b5d4f;
   --color-accent: #c07840;
   --color-accent-foreground: #ffffff;
+  /* Contrast-safe accent for SMALL TEXT only — #a36636 clears 4.5:1 on the card.
+     The display accent above is unchanged for fills, borders and icons. */
+  --color-accent-text: #a36636;
   --color-destructive: #dc2626;
   --color-destructive-foreground: #ffffff;
   --color-success: #16a34a;
