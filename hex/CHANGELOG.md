@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **`--card-accent-text` / `--color-accent-text` — a contrast-safe variant of the accent, for
+  small text only.** A brand accent chosen to look right as a fill is usually too light to be
+  readable as small text: the 2026-07-31 fleet audit measured category card titles at **3.50:1**
+  on white against the 4.5:1 WCAG AA floor, on all six content sites, and it was the only
+  finding holding their accessibility score at 75.
+
+  Darkening the accent itself would have dulled every fill, border, icon and hover state that
+  already passed, so the two uses are separated instead. `--card-accent` / `--color-accent` stay
+  exactly as they were; the new tokens are the same hue darkened only as far as AA needs, and are
+  read by four rules where the accent is genuinely small text — `category-card-title`,
+  `article-card-category`, `featured-card-category` and `quiz-promo-badge`. The `svg` beside the
+  featured-card category deliberately keeps the display accent, because an icon answers to the
+  3:1 non-text rule rather than 4.5:1.
+
+  Declared in the six light content themes (`roast`, `quartz`, `damson`, `fern`, `brass`,
+  `slate`). **There is deliberately no derived default** — several of the 27 themes are dark,
+  where darkening makes contrast _worse_: `citron`'s accent measures 6.60:1 on its own card and
+  `garden`'s 4.97:1, so both already pass and are left alone. A theme that does not declare the
+  token falls through to the display accent, so nothing changes for existing consumers.
+
+  Two tests guard it, because either half alone silently does nothing: one asserts the small-text
+  rules read the token and the icon rule does not; the other recomputes the contrast ratio of
+  every declared `--color-accent-text` against its own theme's `--color-card` and fails under
+  4.5:1.
+
 ### Fixed
 
 - **`beacon` and `voltaic` shipped with no component styling at all.** Neither theme's
