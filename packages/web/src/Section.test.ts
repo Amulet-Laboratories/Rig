@@ -29,6 +29,20 @@ describe('Section', () => {
     expect(wrapper.find('[data-rig-section-title]').element.tagName).toBe('H2')
   })
 
+  it('renders title at the requested heading level', () => {
+    for (const level of [1, 2, 3, 4, 5, 6] as const) {
+      const wrapper = mount(Section, { props: { title: 'Features', headingLevel: level } })
+      expect(wrapper.find('[data-rig-section-title]').element.tagName).toBe(`H${level}`)
+    }
+  })
+
+  // The styling hook must not move with the tag: Hex targets the attribute, so
+  // an h1 has to stay indistinguishable from an h2 visually.
+  it('keeps the styling attribute at every level', () => {
+    const wrapper = mount(Section, { props: { title: 'Features', headingLevel: 1 } })
+    expect(wrapper.find('h1[data-rig-section-title]').exists()).toBe(true)
+  })
+
   it('renders subtitle when provided', () => {
     const wrapper = mount(Section, { props: { title: 'Features', subtitle: 'The best' } })
     expect(wrapper.find('[data-rig-section-subtitle]').text()).toBe('The best')

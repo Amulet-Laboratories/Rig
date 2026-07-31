@@ -75,7 +75,15 @@ useSchemaOrg([
         { label: 'Compare', path: '/compare' },
       ]"
     />
-    <Section title="Product Comparisons" subtitle="Side-by-side buying decisions">
+    <!-- headingLevel 1: this section's title is the page's primary heading.
+         Without it the page ships with no h1 at all — axe flags it as
+         page-has-heading-one and screen-reader users get no top-level
+         landmark to orient by. -->
+    <Section
+      title="Product Comparisons"
+      subtitle="Side-by-side buying decisions"
+      :heading-level="1"
+    >
       <div v-if="comparisons.length" data-rig-article-grid>
         <Card
           v-for="comparison in comparisons"

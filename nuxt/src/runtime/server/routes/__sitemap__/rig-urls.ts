@@ -4,6 +4,7 @@ import { parse } from 'yaml'
 import { defineEventHandler } from 'h3'
 import { useRuntimeConfig } from 'nitropack/runtime'
 import { queryCollection } from '@nuxt/content/nitro'
+import { csv } from '../../../utils/csv.js'
 
 /**
  * Sitemap URL source for @nuxtjs/sitemap.
@@ -50,13 +51,11 @@ export default defineEventHandler(async (event) => {
     pages = []
   }
 
-  const csv = (value) =>
-    String(value || '')
-      .split(',')
-      .map((s) => s.trim())
-      .filter(Boolean)
-
-  const personaSlugs = csv(config.contentPersonaSlugs)
+  // contentPersonaSlugs moved into `public` so the client-rendered best-for
+  // index can read it. Check both: reading only the private key here would
+  // silently drop every /best-for/* URL from the sitemap the moment a site
+  // moved it, and a missing sitemap entry produces no error anywhere.
+  const personaSlugs = csv(config.public?.contentPersonaSlugs ?? config.contentPersonaSlugs)
   const freePages = csv(config.contentFreePages)
   const categorySlugs = csv(config.contentCategorySlugs)
   const comparisonUrls = getComparisonUrls()
