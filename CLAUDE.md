@@ -93,6 +93,53 @@ pnpm story:preview    # Preview built Histoire site
 cd hex && pnpm build  # Build all Hex CSS themes
 ```
 
+## Releasing, and reaching the sites
+
+**Publishing is CI-only.** The Release workflow fires on any `v*` tag and
+authenticates by trusted publishing (OIDC) — there is no NPM_TOKEN. Never
+`npm publish` by hand; a broken OIDC chain and an expired local token both
+surface as an identical, useless `E404 ... PUT`.
+
+**Git tags run on their own line, separate from package versions.** `v0.8.5`
+shipped rig 0.7.0; `v0.9.0` shipped rig 3.0.0; `v0.9.3` shipped rig 3.1.0 +
+rig-nuxt 1.1.0. Don't try to reconcile the two numbers.
+
+### The order matters when a change spans rig-nuxt and the sites
+
+The content sites consume `rig-nuxt` from npm, and the layer pages live inside
+it. A change that touches both the layer and each site's `nuxt.config.ts` has a
+**window where landing half of it is worse than landing none of it.**
+
+That is not hypothetical. On 2026-07-31, `contentPersonaSlugs` moved from
+private to public runtime config. Merging the site half first would have left
+`/best-for` crashing exactly as before — the old component reads the private
+key, which the site had just emptied.
+
+The sequence:
+
+1. Land the fix in `nuxt/` and bump **both** versions.
+2. If the layer now uses a new rig API, **raise rig-nuxt's peer floor** to that
+   rig version. Otherwise a site resolves an older rig, the prop falls through
+   as a stray attribute, and the fix silently does not apply.
+3. Tag `v*` and wait for the Release workflow to actually publish — check
+   `npm view @amulet-laboratories/rig-nuxt version`, don't assume.
+4. Only then bump the sites (`pnpm up`), so their lockfiles pin the fixed
+   version. CI installs `--frozen-lockfile`, so an unbumped lockfile keeps the
+   old package no matter what the range allows.
+5. **Verify against the live sites**, not just CI.
+
+### Runtime files must stay JS-parseable
+
+Nitro does not transpile this package's TypeScript when it is imported from a
+consumer's `node_modules` — Rollup parses `nuxt/src/runtime/**` as plain
+JavaScript. One type annotation breaks **every consumer build** with a bare
+`Expected ',', got ':'`, while Rig's own CI stays green, because `nuxt/` is not
+in the root tsconfig `include`. Use JSDoc for types there.
+
+`server/utils/js-parseable.test.ts` enforces this across `runtime/server/` and
+`runtime/utils/`. If you add another directory that server code imports from,
+add it to that test — the scan is the guard, and it only covers what it walks.
+
 ## Histoire (Component Stories)
 
 Stories live in two locations:
