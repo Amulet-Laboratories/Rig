@@ -9,9 +9,9 @@
  *   #e8e4dc  light taupe      — muted
  *   #ddd8cf  warm border      — border, input
  *   #c17d5e  terracotta       — accent
- *   #779572  sage green       — primary
- *   #658560  darker sage      — hover
- *   #7a7872  muted foreground — muted-foreground
+ *   #587054  sage green       — primary
+ *   #495d45  darker sage      — hover
+ *   #6f6e68  muted foreground — muted-foreground
  *   #2a2a28  warm charcoal    — foreground
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
@@ -28,14 +28,14 @@
   --color-popover-foreground: #2a2a28;
 
   /* Brand */
-  --color-primary: #779572;
+  --color-primary: #587054;
   --color-primary-foreground: #ffffff;
 
   /* Soft accents */
   --color-secondary: #f0ede6;
   --color-secondary-foreground: #2a2a28;
   --color-muted: #e8e4dc;
-  --color-muted-foreground: #7a7872;
+  --color-muted-foreground: #6f6e68;
   --color-accent: #c17d5e;
   --color-accent-foreground: #ffffff;
   /* Contrast-safe accent for SMALL TEXT only — #9e674d clears 4.5:1 on the card.
@@ -52,7 +52,7 @@
   /* Borders and focus */
   --color-border: #ddd8cf;
   --color-input: #ddd8cf;
-  --color-ring: #779572;
+  --color-ring: #587054;
 
   /* Typography */
   --font-sans: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
@@ -89,12 +89,12 @@
   --card-foreground: #2a2a28;
   --popover: #ffffff;
   --popover-foreground: #2a2a28;
-  --primary: #779572;
+  --primary: #587054;
   --primary-foreground: #ffffff;
   --secondary: #f0ede6;
   --secondary-foreground: #2a2a28;
   --muted: #e8e4dc;
-  --muted-foreground: #7a7872;
+  --muted-foreground: #6f6e68;
   --accent: #c17d5e;
   --accent-foreground: #ffffff;
   --destructive: #dc2626;
@@ -104,7 +104,7 @@
   --info: #2563eb;
   --border: #ddd8cf;
   --input: #ddd8cf;
-  --ring: #779572;
+  --ring: #587054;
 
   /* Color token bridge -- component CSS uses var(--color-*) */
   --color-background: #f7f4ef;
@@ -113,12 +113,12 @@
   --color-card-foreground: #2a2a28;
   --color-popover: #ffffff;
   --color-popover-foreground: #2a2a28;
-  --color-primary: #779572;
+  --color-primary: #587054;
   --color-primary-foreground: #ffffff;
   --color-secondary: #f0ede6;
   --color-secondary-foreground: #2a2a28;
   --color-muted: #e8e4dc;
-  --color-muted-foreground: #7a7872;
+  --color-muted-foreground: #6f6e68;
   --color-accent: #c17d5e;
   --color-accent-foreground: #ffffff;
   /* Contrast-safe accent for SMALL TEXT only — #9e674d clears 4.5:1 on the card.
@@ -131,7 +131,7 @@
   --color-info: #2563eb;
   --color-border: #ddd8cf;
   --color-input: #ddd8cf;
-  --color-ring: #779572;
+  --color-ring: #587054;
   --font-sans: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
   --font-serif: 'Libre Baskerville', ui-serif, Georgia, serif;
   --font-heading: 'Playfair Display', ui-serif, Georgia, serif;
@@ -195,9 +195,9 @@
   --wainloft-light-taupe: #e8e4dc;
   --wainloft-warm-border: #ddd8cf;
   --wainloft-terracotta: #c17d5e;
-  --wainloft-sage: #779572;
-  --wainloft-dark-sage: #658560;
-  --wainloft-muted-fg: #7a7872;
+  --wainloft-sage: #587054;
+  --wainloft-dark-sage: #495d45;
+  --wainloft-muted-fg: #6f6e68;
   --wainloft-charcoal: #2a2a28;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
@@ -206,7 +206,7 @@
    */
 
   /* Button — darker sage for hover feedback */
-  --rig-button-hover-bg: #658560;
+  --rig-button-hover-bg: #495d45;
 
   /* Scrollbar — warm charcoal tint */
   --rig-scrollbar-thumb: rgba(42, 42, 40, 0.12);

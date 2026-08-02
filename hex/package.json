@@ -158,7 +158,7 @@
     "build": "node build.mjs",
     "prepare": "node build.mjs",
     "dev": "node build.mjs --watch",
-    "test": "node --test build.test.mjs",
+    "test": "node --test build.test.mjs contrast.test.mjs",
     "lint": "eslint .",
     "lint:css": "stylelint 'src/**/*.css'",
     "format": "prettier --write ."

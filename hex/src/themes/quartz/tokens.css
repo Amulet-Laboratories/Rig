@@ -8,10 +8,10 @@
  *   #f5efed  light rose tint  — secondary
  *   #f0eae7  warm gray        — muted
  *   #e8ddd8  warm border      — border, input
- *   #c08585  soft rose        — primary
- *   #b07070  darker rose      — hover
+ *   #a35454  soft rose        — primary
+ *   #8b4747  darker rose      — hover
  *   #a06b78  mauve            — accent
- *   #8a7575  muted foreground — muted-foreground
+ *   #7f6b6b  muted foreground — muted-foreground
  *   #2d2424  warm dark brown  — foreground
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
@@ -28,14 +28,14 @@
   --color-popover-foreground: #2d2424;
 
   /* Brand */
-  --color-primary: #c08585;
+  --color-primary: #a35454;
   --color-primary-foreground: #ffffff;
 
   /* Soft accents */
   --color-secondary: #f5efed;
   --color-secondary-foreground: #2d2424;
   --color-muted: #f0eae7;
-  --color-muted-foreground: #8a7575;
+  --color-muted-foreground: #7f6b6b;
   --color-accent: #a06b78;
   --color-accent-foreground: #ffffff;
   /* Contrast-safe accent for SMALL TEXT only — #9a6773 clears 4.5:1 on the card.
@@ -52,7 +52,7 @@
   /* Borders and focus */
   --color-border: #e8ddd8;
   --color-input: #e8ddd8;
-  --color-ring: #c08585;
+  --color-ring: #a35454;
 
   /* Typography */
   --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
@@ -89,12 +89,12 @@
   --card-foreground: #2d2424;
   --popover: #ffffff;
   --popover-foreground: #2d2424;
-  --primary: #c08585;
+  --primary: #a35454;
   --primary-foreground: #ffffff;
   --secondary: #f5efed;
   --secondary-foreground: #2d2424;
   --muted: #f0eae7;
-  --muted-foreground: #8a7575;
+  --muted-foreground: #7f6b6b;
   --accent: #a06b78;
   --accent-foreground: #ffffff;
   --destructive: #dc2626;
@@ -104,7 +104,7 @@
   --info: #2563eb;
   --border: #e8ddd8;
   --input: #e8ddd8;
-  --ring: #c08585;
+  --ring: #a35454;
 
   /* Color token bridge -- component CSS uses var(--color-*) */
   --color-background: #faf8f6;
@@ -113,12 +113,12 @@
   --color-card-foreground: #2d2424;
   --color-popover: #ffffff;
   --color-popover-foreground: #2d2424;
-  --color-primary: #c08585;
+  --color-primary: #a35454;
   --color-primary-foreground: #ffffff;
   --color-secondary: #f5efed;
   --color-secondary-foreground: #2d2424;
   --color-muted: #f0eae7;
-  --color-muted-foreground: #8a7575;
+  --color-muted-foreground: #7f6b6b;
   --color-accent: #a06b78;
   --color-accent-foreground: #ffffff;
   /* Contrast-safe accent for SMALL TEXT only — #9a6773 clears 4.5:1 on the card.
@@ -131,7 +131,7 @@
   --color-info: #2563eb;
   --color-border: #e8ddd8;
   --color-input: #e8ddd8;
-  --color-ring: #c08585;
+  --color-ring: #a35454;
   --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   --font-serif: 'Crimson Pro', ui-serif, Georgia, serif;
   --font-heading: 'DM Serif Display', ui-serif, Georgia, serif;
@@ -194,10 +194,10 @@
   --dewthread-rose-tint: #f5efed;
   --dewthread-warm-gray: #f0eae7;
   --dewthread-warm-border: #e8ddd8;
-  --dewthread-soft-rose: #c08585;
-  --dewthread-dark-rose: #b07070;
+  --dewthread-soft-rose: #a35454;
+  --dewthread-dark-rose: #8b4747;
   --dewthread-mauve: #a06b78;
-  --dewthread-muted-fg: #8a7575;
+  --dewthread-muted-fg: #7f6b6b;
   --dewthread-dark-brown: #2d2424;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
@@ -206,7 +206,7 @@
    */
 
   /* Button — darker rose for hover feedback */
-  --rig-button-hover-bg: #b07070;
+  --rig-button-hover-bg: #8b4747;
 
   /* Scrollbar — warm brown tint */
   --rig-scrollbar-thumb: rgba(45, 36, 36, 0.15);
