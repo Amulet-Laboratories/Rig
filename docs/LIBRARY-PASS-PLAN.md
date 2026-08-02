@@ -75,7 +75,7 @@ Kept from the original plan; these shipped and are live on npm.
 
 ## Consumer side — the actual remaining work
 
-### 1. Shadow components in six sites ⬜ **the one concrete defect**
+### 1. Shadow components in six sites ✅ **swept 2026-08-02**
 
 Each of the six affiliate sites still carries its own
 `components/content/QuickAnswer.vue` and `components/content/FaqBlock.vue`.
@@ -108,10 +108,16 @@ Exact scope — 12 files:
 because each site maps its own categories to its own icons. It is legitimately
 site-owned; the original instruction to delete it fleet-wide was wrong.
 
-This is a **rendering change**, not a pure deletion: both the DOM contract and
-the styling source change. It needs a per-site preview check, so it belongs in
-its own focused pass rather than bundled into unrelated work. QuizSort carries
-no local content components and is unaffected.
+**Swept 2026-08-02.** Investigating first changed the risk assessment: this was
+_not_ a rendering change. `QuickAnswer` and `FaqBlock` were referenced by
+nothing — not the 41 content files per site, not the templates, not the layer's
+own pages. They were registered for auto-import and never used, so the deletion
+was dead-code removal and needed no per-site preview. Beanwoven was built end to
+end to confirm. QuizSort carried no local content components and was unaffected.
+
+> **Could this have been done sooner?**
+> `npm view @amulet-laboratories/rig-nuxt version` — needed ≥ 0.6.0 for the
+> replacements to exist. It has been ≥ 0.6.0 since 2026-07-16.
 
 ### 2. Residual arbitrary Tailwind ⬜ small
 
@@ -126,16 +132,20 @@ Verified by grep for `text-[Npx]` / `grid-cols-[…]`:
 The six affiliate sites are clean. Only QuizSort and AmuletLabs have anything
 left, and both are SPA/quiz-specific rather than content-layer.
 
-### 3. Open decisions 🔵
+### 3. Decisions — settled 2026-08-02
 
-- **QuizSort's `citron` theme doesn't import Hex `content.css`**, so the
-  content skin doesn't reach it. Confirm whether it needs it.
-- **`vrd` divergence** — on the GitHub Packages `2.x` line with separately
-  named `hex-origins`. Reconcile with the mainline, or document it as an
-  intentional fork and stop counting it as skew.
-- **FAQ pattern** — ship a dedicated `Faq`/`FaqList`, or treat `FaqBlock` +
-  `Accordion` as the documented answer and close the question. `FaqBlock`
-  shipping in rig-nuxt arguably settled this by default already.
+- ✅ **QuizSort's `citron` theme now imports Hex `content.css`.** It was the
+  only content-consuming theme missing the barrel, so the content skin
+  (ProductCard, ArticleHeader, Callout, FAQ, TOC, affiliate blocks) never
+  reached QuizSort. Added; the bundle grew 130.6 KB → 151.3 KB.
+- ✅ **FAQ pattern: `FaqBlock` from rig-nuxt is the answer.** No dedicated
+  `Faq`/`FaqList` in rig. The content layer already ships the component the
+  sites need, and a second FAQ primitive in the headless layer would have two
+  things claiming the same job.
+- ⏸️ **`vrd` divergence — deferred.** Still on the GitHub Packages `2.x` line
+  with separately named `hex-origins`. Not urgent: `vrd` shipped at v1.3.0 and
+  is not tracking the mainline. Picked up in a lull; until then it is a known
+  fork, not unexplained skew.
 
 ---
 
@@ -145,7 +155,20 @@ Nothing in the library. The remaining work is twelve file deletions and three
 decisions, and the only reason it hasn't happened is that the release gate
 opened quietly and no one re-read the plan afterwards.
 
-If that pattern is worth fixing rather than just this instance of it: each
-blocked item should record **what would make it unblocked** — a version, a tag,
-a command that answers it — so a gate opening is something you can check for
-rather than something you have to remember.
+**The convention, adopted 2026-08-02: don't gate, ask.**
+
+The failure here wasn't that the work was hard. It was that the plan said "do
+not touch those repos until X" and then nothing announced when X happened. A
+gate is invisible by construction — it only speaks when you go and read it, and
+the moment it stops being true is exactly the moment nobody is reading.
+
+So this plan no longer blocks items behind conditions. Where something genuinely
+depends on a prior step, it is written as a **question with the command that
+answers it**, so the answer can be checked in seconds rather than remembered:
+
+> **Can the sites drop their shadow components yet?**
+> `npm view @amulet-laboratories/rig-nuxt version` — needs ≥ 0.6.0. Currently
+> 1.1.0, so yes.
+
+A question with a check attached goes stale loudly. A gate goes stale silently,
+which is how five days passed with the work already unblocked.

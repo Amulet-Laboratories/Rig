@@ -89,6 +89,9 @@ onUnmounted(() => {
           Composables
         </button>
         <a href="/hexrig/demos/" class="text-text-muted transition hover:text-text"> Examples </a>
+        <a href="/hexrig/demos/museum" class="text-text-muted transition hover:text-text">
+          Museum
+        </a>
         <a href="/hexrig/story/" class="text-text-muted transition hover:text-text"> Playground </a>
         <a
           href="https://github.com/Amulet-Laboratories/Rig"
@@ -153,6 +156,7 @@ onUnmounted(() => {
         Composables
       </button>
       <a href="/hexrig/demos/" class="text-text-muted" @click="mobileOpen = false">Examples</a>
+      <a href="/hexrig/demos/museum" class="text-text-muted" @click="mobileOpen = false">Museum</a>
       <a href="/hexrig/story/" class="text-text-muted" @click="mobileOpen = false">Playground</a>
       <a
         href="https://github.com/Amulet-Laboratories/Rig"

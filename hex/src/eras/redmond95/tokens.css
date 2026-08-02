@@ -167,4 +167,29 @@
   --m-tooltip-fg: #0a0a0a;
   --m-tab-radius: 0px;
   --m-tab-active-weight: 400;
+
+  /* ── Cursors ── Same 1-bit arrow lineage; the hand arrives with hyperlinks. */
+  --m-cursor:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='19' viewBox='0 0 12 19' shape-rendering='crispEdges'><path fill='%23ffffff' d='M1 1h1v15h1v-4h1v4h2v-3h1v-1H5v-1h5V9L2 1z'/><path fill='%23000000' d='M0 0h1v17h1v-4h1v5h4v-4h1v-1H6v-1h5V8L1 0zM2 2v13h1v-3h1v4h2v-4h1v-1H4v-1h4V9z'/></svg>")
+      0 0,
+    default;
+  --m-cursor-text:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='16' viewBox='0 0 8 16' shape-rendering='crispEdges'><path fill='%23000000' d='M1 0h6v1H5v14h2v1H1v-1h2V1H1z'/></svg>")
+      4 8,
+    text;
+  --m-cursor-busy:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'><path fill='%23000000' d='M3 0h10v2h-1v3h-1v2h-1v2h1v2h1v3h1v2H3v-2h1v-3h1v-2h1V9H5V7H4V4H3V2H3z'/><path fill='%23ffffff' d='M5 2h6v2h-1v2H9v1h1v2h1v2h1v2H5v-2h1v-2h1V7h1V6H7V4H5z'/></svg>")
+      8 8,
+    wait;
+  --m-cursor-link:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' shape-rendering='crispEdges'><path fill='%23000000' d='M5 0h2v6h1V2h2v4h1V3h2v4h1v6h-1v2H6v-1H4v-2H3V8h2z'/><path fill='%23ffffff' d='M6 1h1v6h2V3h1v4h1V4h1v3h1v6h-1v1H7v-1H5v-2H4V9h2z'/></svg>")
+      5 1,
+    pointer;
+  --m-cursor-move:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='19' viewBox='0 0 12 19' shape-rendering='crispEdges'><path fill='%23ffffff' d='M1 1h1v15h1v-4h1v4h2v-3h1v-1H5v-1h5V9L2 1z'/><path fill='%23000000' d='M0 0h1v17h1v-4h1v5h4v-4h1v-1H6v-1h5V8L1 0zM2 2v13h1v-3h1v4h2v-4h1v-1H4v-1h4V9z'/></svg>")
+      0 0,
+    default;
+
+  /* Dragging a window moved an outline; the window jumped on release. */
+  --m-drag-outline: 2px dotted #ffffff;
 }

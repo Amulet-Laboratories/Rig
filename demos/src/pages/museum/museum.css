@@ -251,3 +251,33 @@
 [data-museum-colophon] p + p {
   margin-top: 0.9rem;
 }
+
+/* Sound toggle — museum chrome, so it stays modern like the era picker. */
+[data-museum-sound] {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  color: var(--color-muted-foreground);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+[data-museum-sound][aria-pressed='true'] {
+  color: var(--color-foreground);
+  border-color: var(--color-primary);
+}
+
+/* The window is draggable, so it needs to be the thing that moves rather than
+ * the thing the layout centres. */
+[data-museum-window] {
+  will-change: transform;
+}
+
+[data-museum-window][data-dragging] {
+  user-select: none;
+}

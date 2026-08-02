@@ -15,6 +15,9 @@ import '@/assets/fonts/museum.css'
 import './museum.css'
 import ExhibitWindow from './ExhibitWindow.vue'
 import { eras, defaultEra } from './eras'
+import { useEraSound } from './useEraSound'
+
+const { enabled: soundOn } = useEraSound()
 
 const current = ref(defaultEra)
 const era = computed(() => eras.find((e) => e.id === current.value) ?? eras[0])
@@ -42,7 +45,9 @@ const specimenSelected = ref('a')
           Every exhibit here is the same set of components wearing a different set of materials. The
           window below is one Vue file with no knowledge of which era it is in — the bevels, the
           dither, the inverted press, the striped title bar all arrive as CSS custom properties.
-          Operate it; it is a working interface, not a screenshot.
+          Operate it; it is a working interface, not a screenshot — drag the title bar, and notice
+          that the rooms built before compositing drag a wireframe outline and only jump on release,
+          because redrawing a window at pointer speed was once unaffordable.
         </p>
       </header>
 
@@ -58,6 +63,14 @@ const specimenSelected = ref('a')
         >
           <strong>{{ e.name }}</strong>
           <span>{{ e.tagline }}</span>
+        </button>
+
+        <!-- Off by default: an exhibit that makes noise at someone who did not
+             ask for it is a worse exhibit. Every tone is synthesised — no
+             recording of any real system ships. -->
+        <button type="button" data-museum-sound :aria-pressed="soundOn" @click="soundOn = !soundOn">
+          <span aria-hidden="true">{{ soundOn ? '🔊' : '🔇' }}</span>
+          Sound {{ soundOn ? 'on' : 'off' }}
         </button>
       </div>
 

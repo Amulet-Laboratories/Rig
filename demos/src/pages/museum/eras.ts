@@ -27,6 +27,12 @@ export interface Era {
    * everything else in the collection splits them. Undefined means split.
    */
   steppers?: 'split' | 'start' | 'end'
+  /**
+   * True for eras that could not afford to redraw a window while it moved, so
+   * dragging tracked a wireframe outline and the window jumped on release.
+   * Compositing made this unnecessary around the turn of the century.
+   */
+  rubberBandDrag?: boolean
 }
 
 /* Typed as non-empty so callers can fall back to eras[0] without a null check —
@@ -34,6 +40,7 @@ export interface Era {
 export const eras: [Era, ...Era[]] = [
   {
     id: 'cupertino84',
+    rubberBandDrag: true,
     name: "Cupertino '84",
     year: 1984,
     tagline: 'One bit. No grey.',
@@ -47,6 +54,7 @@ export const eras: [Era, ...Era[]] = [
   },
   {
     id: 'cube91',
+    rubberBandDrag: true,
     name: "Cube '91",
     year: 1991,
     tagline: 'Machined, not painted.',
@@ -61,6 +69,7 @@ export const eras: [Era, ...Era[]] = [
   },
   {
     id: 'terminal93',
+    rubberBandDrag: true,
     name: "Terminal '93",
     year: 1993,
     tagline: 'Eighty columns, sixteen colours.',
@@ -74,6 +83,7 @@ export const eras: [Era, ...Era[]] = [
   },
   {
     id: 'redmond95',
+    rubberBandDrag: true,
     name: "Redmond '95",
     year: 1995,
     tagline: 'The canonical bevel.',

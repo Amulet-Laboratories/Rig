@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.0] — 2026-08-02
+
+### Added
+
+- **Era cursors, window drag and sound complete the museum's material vocabulary.** New tokens: `--m-cursor`, `--m-cursor-text`, `--m-cursor-busy`, `--m-cursor-link`, `--m-cursor-move`, and `--m-drag-outline`. Pre-compositing eras get 1-bit SVG pointers with explicit hotspots, and dragging a window tracks a wireframe outline that only commits on release — as it did when redrawing a window at pointer speed was unaffordable. Additive; every token is read with a fallback, so the 27 palette themes are unaffected.
+
+### Fixed
+
+- **The `citron` theme did not import Hex's `content.css`.** It was the only content-consuming theme missing the barrel, so QuizSort — which uses the content layer exactly as the six affiliate sites do — got no styling for `ProductCard`, `ArticleHeader`, `Callout`, FAQ, TOC or the affiliate blocks. The bundle grows 130.6 KB → 151.3 KB, which is the content skin arriving.
+
 ## [3.3.0] — 2026-08-02
 
 ### Added

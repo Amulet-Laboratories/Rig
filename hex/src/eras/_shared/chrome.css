@@ -21,6 +21,7 @@
 [data-hex-era] {
   background: var(--m-texture-desktop, var(--color-background));
   color: var(--color-foreground);
+  cursor: var(--m-cursor);
   font-family: var(--m-font);
   font-size: var(--m-font-size);
   line-height: var(--m-line-height);
@@ -550,4 +551,60 @@
   box-shadow: var(--m-elevation-menu);
   padding: 1px var(--m-space);
   font-size: inherit;
+}
+
+/* ── Cursors ──────────────────────────────────────────────────────────────
+ * Text-entry and interactive surfaces get their own pointers, so an era's
+ * I-beam and hand travel with it rather than falling back to the browser's. */
+
+[data-hex-era] [data-rig-input],
+[data-hex-era] [data-rig-input] input,
+[data-hex-era] textarea[data-rig-textarea],
+[data-hex-era] [data-rig-prose] {
+  cursor: var(--m-cursor-text);
+}
+
+[data-hex-era] [data-rig-button],
+[data-hex-era] [data-rig-menubar-trigger],
+[data-hex-era] [data-rig-menubar-item],
+[data-hex-era] [data-rig-list-item],
+[data-hex-era] [data-rig-tree-node],
+[data-hex-era] [data-rig-tabs-trigger],
+[data-hex-era] [data-rig-checkbox],
+[data-hex-era] [data-rig-radio],
+[data-hex-era] [data-rig-scroll-stepper],
+[data-hex-era] [data-rig-scroll-thumb] {
+  cursor: var(--m-cursor-link);
+}
+
+/* Progress is the one place an era can show its busy pointer without needing
+ * a real pending operation to hang the exhibit on. */
+[data-hex-era] [data-rig-progress] {
+  cursor: var(--m-cursor-busy);
+}
+
+/* ── Window drag ──────────────────────────────────────────────────────────
+ * Before compositing, dragging a window moved a wireframe outline and the
+ * window itself jumped to the new position on release — redrawing live was
+ * unaffordable. `--m-drag-outline` carries that rubber-band treatment; eras
+ * that composited in real time leave it unset. */
+
+[data-hex-era] [data-rig-titlebar] {
+  cursor: var(--m-cursor-move, var(--m-cursor));
+}
+
+[data-hex-era] [data-museum-window][data-dragging] {
+  outline: var(--m-drag-outline, none);
+  outline-offset: -1px;
+}
+
+/* The 90s rubber band: the window's own paint is suppressed mid-drag and only
+ * the outline tracks the pointer. */
+[data-hex-era] [data-museum-window][data-dragging][data-rubber-band] > * {
+  visibility: hidden;
+}
+
+[data-hex-era] [data-museum-window][data-dragging][data-rubber-band] {
+  background: transparent;
+  box-shadow: none;
 }

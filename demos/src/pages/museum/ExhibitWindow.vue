@@ -26,8 +26,12 @@ import {
 } from '@amulet-laboratories/rig'
 import type { MenubarEntry, ListItem } from '@amulet-laboratories/rig'
 import type { Era } from './eras'
+import { useEraSound } from './useEraSound'
 
 const props = defineProps<{ era: Era }>()
+
+/* Sound is muted unless the visitor turns it on; see useEraSound. */
+const { play } = useEraSound()
 
 const menus: MenubarEntry[] = [
   {
@@ -94,7 +98,60 @@ const files: ListItem[] = [
   { id: 'tooltip', label: 'TOOLTIP.HLP', description: '12 KB' },
 ]
 
+/* ── Window drag ───────────────────────────────────────────────────────────
+ * Before compositing, dragging a window moved a wireframe outline and the
+ * window jumped to its new position on release — redrawing the contents at
+ * pointer speed was unaffordable. Eras that set --m-drag-outline get that
+ * rubber-band behaviour; later ones drag live, as they did.
+ *
+ * Whether a period dragged live is a property of the era, so the flag comes
+ * from the era record rather than being decided here. */
+const dragging = ref(false)
+const offset = ref({ x: 0, y: 0 })
+const shift = ref({ x: 0, y: 0 })
+
+const rubberBand = computed(() => props.era.rubberBandDrag === true)
+
+function onTitleBarPointerdown(e: PointerEvent) {
+  // Ignore drags that start on a window control.
+  if ((e.target as HTMLElement).closest('[data-museum-control]')) return
+  const start = { x: e.clientX - shift.value.x, y: e.clientY - shift.value.y }
+  dragging.value = true
+
+  const el = e.currentTarget as HTMLElement
+  el.setPointerCapture?.(e.pointerId)
+
+  const move = (ev: PointerEvent) => {
+    offset.value = { x: ev.clientX - start.x, y: ev.clientY - start.y }
+    // A live-dragging era follows the pointer; a rubber-band era does not
+    // commit until release, which is the whole tell.
+    if (!rubberBand.value) shift.value = offset.value
+  }
+  const up = (ev: PointerEvent) => {
+    dragging.value = false
+    shift.value = offset.value
+    el.releasePointerCapture?.(ev.pointerId)
+    el.removeEventListener('pointermove', move)
+    el.removeEventListener('pointerup', up)
+    el.removeEventListener('pointercancel', up)
+  }
+  el.addEventListener('pointermove', move)
+  el.addEventListener('pointerup', up)
+  el.addEventListener('pointercancel', up)
+}
+
+/** The outline the rubber band tracks while the window itself stays put. */
+const windowStyle = computed(() => {
+  const live = dragging.value && rubberBand.value ? offset.value : shift.value
+  return { transform: `translate(${live.x}px, ${live.y}px)` }
+})
+
 const selected = ref<string>('readme')
+
+function onSelect(id: string | number) {
+  selected.value = String(id)
+  play('click')
+}
 const showHidden = ref(true)
 const readOnly = ref(false)
 const filter = ref('*.*')
@@ -109,8 +166,13 @@ const statusItems = computed(() => [
 </script>
 
 <template>
-  <div data-museum-window>
-    <TitleBar :title="`Collection — ${era.name}`">
+  <div
+    data-museum-window
+    :data-dragging="dragging || undefined"
+    :data-rubber-band="rubberBand || undefined"
+    :style="windowStyle"
+  >
+    <TitleBar :title="`Collection — ${era.name}`" @pointerdown="onTitleBarPointerdown">
       <template #leading>
         <Button aria-label="Window menu" data-museum-control>&#9776;</Button>
       </template>
@@ -130,7 +192,7 @@ const statusItems = computed(() => [
         :step="24"
         aria-label="Collection files"
       >
-        <List :items="files" :selected="selected" aria-label="Files" @select="selected = $event" />
+        <List :items="files" :selected="selected" aria-label="Files" @select="onSelect" />
       </ScrollArea>
 
       <div data-museum-inspector>
@@ -157,9 +219,9 @@ const statusItems = computed(() => [
         <Progress :value="62" aria-label="Disk used" />
 
         <div data-museum-actions>
-          <Button>OK</Button>
-          <Button>Cancel</Button>
-          <Button disabled>Apply</Button>
+          <Button @click="play('chime')">OK</Button>
+          <Button @click="play('click')">Cancel</Button>
+          <Button disabled @click="play('error')">Apply</Button>
         </div>
       </div>
     </div>

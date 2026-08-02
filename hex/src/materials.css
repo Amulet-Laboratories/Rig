@@ -111,6 +111,16 @@
   --m-titlebar-align: start;
   --m-window-pad: 3px;
 
+  /* ── Cursors ────────────────────────────────────────────────────────────
+   * The cheapest authenticity per byte in the whole layer. A 1-bit arrow with
+   * a hard black outline reads as "1984" before a single control has been
+   * looked at, and the hotspot coordinates matter — an arrow whose point is
+   * not at 0 0 feels subtly broken in a way people notice without naming. */
+  --m-cursor: auto;
+  --m-cursor-text: text;
+  --m-cursor-busy: wait;
+  --m-cursor-link: pointer;
+
   /* ── Typography ─────────────────────────────────────────────────────────
    * Bitmap faces mush at fractional sizes, so an era pins its own size and
    * disables smoothing rather than inheriting a fluid modern scale. */

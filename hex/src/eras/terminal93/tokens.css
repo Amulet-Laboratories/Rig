@@ -136,4 +136,14 @@
   --m-tooltip-fg: #000000;
   --m-tab-radius: 0px;
   --m-tab-active-weight: 400;
+
+  /* ── Cursors ── A text-mode display has no pointer at all; the block cursor lives in the text flow. */
+  --m-cursor: default;
+  --m-cursor-text: text;
+  --m-cursor-busy: wait;
+  --m-cursor-link: default;
+  --m-cursor-move: default;
+
+  /* Dragging a window moved an outline; the window jumped on release. */
+  --m-drag-outline: 1px solid #ffff55;
 }

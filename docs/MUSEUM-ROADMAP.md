@@ -275,8 +275,7 @@ content exists without inventing filler.
 - **Phase 2 — Two eras end to end.** ✅ Redmond '95 + Cupertino '84. **Gate passed.**
 - **Phase 3 — The museum shell.** ✅ Era picker, period room, specimen case, wall text.
 - **Phase 4 — Roster to eight.** ✅ All eight.
-- **Phase 5 — Polish.** Era cursors (cheap, enormous payoff), motion rules including
-  outline-only window drag for the 90s, optional sound muted by default.
+- **Phase 5 — Polish.** ✅ Era cursors, outline-only window drag, optional sound.
 
 Everything before the Phase 2 gate is cheap. Everything after it is volume.
 
@@ -357,10 +356,17 @@ properties will keep meeting this, so **check the rendered result, never just th
 
 ### Outstanding
 
-- The demos gallery has no link to the museum; it is reachable only by URL.
+- ✅ Linked from the demos gallery and the Hexrig landing nav.
 - `pnpm check` fails at the repo root with ~1346 pre-existing lint errors, unrelated to this
   work and present on a clean tree. Museum files lint clean.
-- Phase 5 polish untouched: era cursors, outline-only window drag, sound.
+- ✅ Phase 5 landed. Era cursors are 1-bit SVG pointers with explicit hotspots (an
+  arrow whose point isn't at `0 0` feels wrong in a way people notice without
+  naming it). Windows built before compositing drag a wireframe outline and jump
+  on release — `rubberBandDrag` on the era record, because whether a period could
+  afford live redraw is a fact about the era, not about the component. Sound is
+  synthesised from oscillators and noise at runtime: no recording of any real
+  system ships, and a square wave at 1000 Hz is closer to what a 1984 machine
+  produced than a sample of one would be. Muted by default.
 - Slider tracks read faintly in the two eras that draw them at 1–4px on a light ground
   (Cupertino '84, Flat '13). Accurate, but close to invisible in the specimen case.
 - The exhibit is one window. `CrashScreen` is still unused, and every era's failure mode
