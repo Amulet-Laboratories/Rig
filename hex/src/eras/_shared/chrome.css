@@ -1,0 +1,553 @@
+/* Hex — Era Engine
+ *
+ * The machinery that turns material tokens into a period interface. Every rule
+ * here reads from materials.css and nothing else; no era-specific values appear
+ * in this file.
+ *
+ * That is the whole design. An era directory should contain a tokens.css and
+ * almost nothing else — if an era needs to hand-write component rules, the
+ * vocabulary is short and the fix belongs here or in materials.css.
+ *
+ * Scoped to [data-hex-era] so that several eras can render on one page at once,
+ * which the museum's specimen-case view requires.
+ *
+ * Plain CSS on purpose — no Tailwind, no @apply. The era layer overrides a
+ * theme that has already been compiled, so it only needs to win on specificity
+ * and source order.
+ */
+
+/* ── Era root ─────────────────────────────────────────────────────────────── */
+
+[data-hex-era] {
+  background: var(--m-texture-desktop, var(--color-background));
+  color: var(--color-foreground);
+  font-family: var(--m-font);
+  font-size: var(--m-font-size);
+  line-height: var(--m-line-height);
+  letter-spacing: var(--m-letter-spacing);
+  -webkit-font-smoothing: var(--m-font-smooth);
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+
+/* Bitmap faces are drawn at one size and break at any other. Pin every nested
+ * element to the era's own scale rather than letting a fluid modern type ramp
+ * through. */
+[data-hex-era] * {
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  -webkit-font-smoothing: inherit;
+}
+
+/* Pre-2001 interfaces do not animate. The surrounding modern theme supplies
+ * transitions that have to be actively cancelled, not merely left unset. */
+[data-hex-era] *,
+[data-hex-era] *::before,
+[data-hex-era] *::after {
+  transition-duration: var(--m-duration);
+  transition-timing-function: var(--m-ease);
+  animation-duration: var(--m-duration);
+}
+
+/* ── Focus ────────────────────────────────────────────────────────────────── */
+
+[data-hex-era] :focus-visible {
+  outline: var(--m-focus-width) var(--m-focus-style) var(--m-focus-color);
+  outline-offset: var(--m-focus-offset);
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+
+[data-hex-era] [data-rig-button],
+[data-hex-era] [data-rig-button][data-variant] {
+  background: var(--m-texture-face, var(--m-face));
+  color: var(--color-foreground);
+  border: var(--m-border-width) var(--m-border-style) var(--m-face-edge);
+  border-radius: var(--m-radius);
+  box-shadow: var(--m-raised);
+  min-height: var(--m-control-h);
+  padding: 0 calc(var(--m-control-pad) * 2);
+  font-family: inherit;
+  font-size: inherit;
+  text-shadow: none;
+}
+
+[data-hex-era] [data-rig-button]:active,
+[data-hex-era] [data-rig-button][data-variant]:active,
+[data-hex-era] [data-rig-button][data-state='open'] {
+  box-shadow: var(--m-pressed);
+  /* 1-bit interfaces have no shadow to deepen, so they invert instead. Both
+   * traditions land on the same two tokens. */
+  background: var(--m-pressed-bg, var(--m-texture-face, var(--m-face)));
+  color: var(--m-pressed-fg, var(--color-foreground));
+  /* The label shifts a pixel down-right under the press. Every beveled UI did
+   * this; its absence is one of the tells that a modern imitation is fake. */
+  padding-top: var(--m-press-shift, 0px);
+  padding-left: calc(var(--m-control-pad) * 2 + var(--m-press-shift, 0px));
+}
+
+[data-hex-era] [data-rig-button][data-disabled],
+[data-hex-era] [data-rig-button]:disabled {
+  color: var(--m-disabled-fg, var(--m-shadow-1));
+  text-shadow: var(--m-disabled-emboss, none);
+  opacity: 1; /* eras emboss disabled text rather than fading it */
+}
+
+/* ── Text entry ───────────────────────────────────────────────────────────── */
+
+[data-hex-era] [data-rig-input],
+[data-hex-era] [data-rig-input] input,
+[data-hex-era] [data-rig-textarea],
+[data-hex-era] textarea[data-rig-textarea],
+[data-hex-era] [data-rig-select],
+[data-hex-era] select[data-rig-select] {
+  background: var(--m-well, var(--color-card));
+  color: var(--color-foreground);
+  border: var(--m-border-width) var(--m-border-style) var(--m-well-edge, var(--m-shadow-1));
+  border-radius: var(--m-radius);
+  box-shadow: var(--m-sunken);
+  min-height: var(--m-control-h);
+  padding: 0 var(--m-control-pad);
+  font-family: inherit;
+  font-size: inherit;
+}
+
+[data-hex-era] [data-rig-input] input {
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  min-height: 0;
+  padding: 0;
+}
+
+[data-hex-era] textarea[data-rig-textarea] {
+  padding: var(--m-control-pad);
+  line-height: inherit;
+}
+
+/* ── Checkbox and radio ───────────────────────────────────────────────────
+ * Rig renders a native input inside a label. `appearance: none` hands the box
+ * over completely, and the check glyph arrives as a background image so each
+ * era can supply its own pixel-exact mark. */
+
+[data-hex-era] [data-rig-checkbox] input[type='checkbox'],
+[data-hex-era] [data-rig-radio] input[type='radio'] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: var(--m-tick-size, 13px);
+  height: var(--m-tick-size, 13px);
+  flex: none;
+  background: var(--m-well, var(--color-card));
+  border: var(--m-border-width) var(--m-border-style) var(--m-well-edge, var(--m-shadow-1));
+  box-shadow: var(--m-sunken);
+  background-repeat: no-repeat;
+  background-position: center;
+  accent-color: auto;
+  position: relative;
+}
+
+[data-hex-era] [data-rig-checkbox] input[type='checkbox'] {
+  border-radius: var(--m-tick-radius, 0px);
+}
+
+[data-hex-era] [data-rig-radio] input[type='radio'] {
+  border-radius: var(--m-radio-radius, 50%);
+}
+
+/* Pre-2001 the mark is drawn dark straight onto the well. From Bondi onward the
+ * box fills with the accent and the mark is knocked out of it in white, so the
+ * checked state needs a fill colour as well as a glyph. */
+[data-hex-era] [data-rig-checkbox] input[type='checkbox']:checked,
+[data-hex-era] [data-rig-radio] input[type='radio']:checked {
+  background-color: var(--m-tick-checked-bg, var(--m-well, var(--color-card)));
+  border-color: var(--m-tick-checked-edge, var(--m-well-edge, var(--m-shadow-1)));
+}
+
+[data-hex-era] [data-rig-checkbox] input[type='checkbox']:checked {
+  background-image: var(--m-tick-glyph);
+}
+
+[data-hex-era] [data-rig-radio] input[type='radio']:checked {
+  background-image: var(--m-radio-glyph);
+}
+
+[data-hex-era] [data-rig-checkbox][data-indeterminate] input[type='checkbox'] {
+  background-image: var(--m-tick-glyph-mixed, var(--m-tick-glyph));
+}
+
+[data-hex-era] [data-rig-checkbox],
+[data-hex-era] [data-rig-radio],
+[data-hex-era] [data-rig-radio-group],
+[data-hex-era] [data-rig-label] {
+  gap: var(--m-space);
+  color: var(--color-foreground);
+}
+
+[data-hex-era] [data-rig-checkbox][data-disabled],
+[data-hex-era] [data-rig-radio][data-disabled] {
+  color: var(--m-disabled-fg, var(--m-shadow-1));
+  text-shadow: var(--m-disabled-emboss, none);
+  opacity: 1;
+}
+
+/* ── Window chrome ────────────────────────────────────────────────────────
+ * The control cluster swaps sides via --m-titlebar-order: right for Windows,
+ * left for Macintosh. Same component, same DOM, opposite tradition. */
+
+[data-hex-era] [data-rig-titlebar] {
+  background: var(--m-texture-titlebar, var(--color-primary));
+  /* Translucency arrives in 2007 and belongs to exactly two surfaces: window
+   * chrome and menus. Nothing before Glass sets it, so the fallback is none. */
+  backdrop-filter: var(--m-backdrop-window, none);
+  -webkit-backdrop-filter: var(--m-backdrop-window, none);
+  color: var(--m-titlebar-fg);
+  min-height: var(--m-titlebar-h);
+  height: var(--m-titlebar-h);
+  padding: 0 var(--m-window-pad);
+  border: 0;
+  border-radius: 0;
+  gap: var(--m-space);
+  align-items: center;
+  justify-content: space-between;
+  font-weight: var(--m-titlebar-weight, 700);
+  user-select: none;
+}
+
+/* The caption carries its own background so a striped or textured title bar can
+ * knock out cleanly behind the text — which is how the 1-bit Mac title bar
+ * works, and it needs no extra markup to do it. */
+[data-hex-era] [data-rig-titlebar] [data-rig-titlebar-caption] {
+  justify-content: var(--m-titlebar-align);
+  order: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background: var(--m-titlebar-caption-bg, transparent);
+  padding: var(--m-titlebar-caption-pad, 0);
+  /* Shrink to the text so a textured bar shows either side of the caption
+   * rather than being covered by a full-width knockout. */
+  flex: 0 1 auto;
+  color: var(--m-titlebar-fg);
+}
+
+/* The scaffold pins the trailing cluster right with `margin-left: auto`, which
+ * would override any `order` we set. Neutralising it and letting the flex line
+ * space itself is what actually makes the Macintosh convention reachable:
+ * the caption is absolutely positioned and out of flow, so the line holds only
+ * the two clusters and `order` alone decides which edge each lands on. */
+[data-hex-era] [data-rig-titlebar] [data-rig-titlebar-trailing] {
+  order: var(--m-titlebar-order);
+  margin-left: 0;
+  margin-right: 0;
+}
+
+[data-hex-era] [data-rig-titlebar] [data-rig-titlebar-leading] {
+  order: calc(var(--m-titlebar-order) * -1);
+  margin-left: 0;
+  margin-right: 0;
+}
+
+[data-hex-era] [data-rig-titlebar] [data-rig-titlebar-title],
+[data-hex-era] [data-rig-titlebar] [data-rig-titlebar-subtitle],
+[data-hex-era] [data-rig-titlebar] [data-rig-titlebar-separator] {
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+/* ── Panels, cards, modals ────────────────────────────────────────────────── */
+
+[data-hex-era] [data-rig-panel],
+[data-hex-era] [data-rig-card],
+[data-hex-era] [data-rig-modal],
+[data-hex-era] [data-rig-modal-content] {
+  background: var(--m-texture-face, var(--m-face));
+  color: var(--color-foreground);
+  border: var(--m-border-width) var(--m-border-style) var(--m-face-edge);
+  border-radius: var(--m-radius-window);
+  box-shadow: var(--m-raised), var(--m-elevation-window);
+  padding: var(--m-window-pad);
+}
+
+[data-hex-era] [data-rig-modal],
+[data-hex-era] [data-rig-modal-content] {
+  box-shadow: var(--m-raised), var(--m-elevation-modal);
+}
+
+[data-hex-era] [data-rig-divider] {
+  border: 0;
+  height: var(--m-divider-h, 2px);
+  background: transparent;
+  box-shadow: var(--m-groove);
+  margin: var(--m-space) 0;
+}
+
+/* ── Menus ────────────────────────────────────────────────────────────────── */
+
+[data-hex-era] [data-rig-menubar] {
+  background: var(--m-texture-menu, var(--m-face));
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--m-menubar-shadow, none);
+  min-height: var(--m-menubar-h, var(--m-control-h));
+  padding: 0 var(--m-space);
+  gap: 0;
+}
+
+[data-hex-era] [data-rig-menubar-trigger],
+[data-hex-era] [data-rig-menubar-item] {
+  border-radius: 0;
+  padding: 0 calc(var(--m-space) * 2);
+  min-height: var(--m-menubar-h, var(--m-control-h));
+  color: var(--color-foreground);
+  background: transparent;
+}
+
+[data-hex-era] [data-rig-menubar-trigger]:hover,
+[data-hex-era] [data-rig-menubar-trigger][data-state='open'],
+[data-hex-era] [data-rig-menubar-item]:hover,
+[data-hex-era] [data-rig-menubar-item][data-highlighted] {
+  background: var(--m-highlight, var(--color-primary));
+  color: var(--m-highlight-fg, var(--color-primary-foreground));
+}
+
+[data-hex-era] [data-rig-menubar-content],
+[data-hex-era] [data-rig-menu-list],
+[data-hex-era] [data-rig-context-menu],
+[data-hex-era] [data-rig-dropdown-menu-content] {
+  background: var(--m-texture-face, var(--m-face));
+  backdrop-filter: var(--m-backdrop-menu, none);
+  -webkit-backdrop-filter: var(--m-backdrop-menu, none);
+  border: var(--m-border-width) var(--m-border-style) var(--m-face-edge);
+  border-radius: var(--m-radius);
+  box-shadow: var(--m-raised), var(--m-elevation-menu);
+  padding: var(--m-menu-pad, 2px);
+}
+
+[data-hex-era] [data-rig-menubar-separator] {
+  height: var(--m-divider-h, 2px);
+  background: transparent;
+  box-shadow: var(--m-groove);
+  border: 0;
+  margin: var(--m-space) 0;
+}
+
+[data-hex-era] [data-rig-menubar-item-keybinding] {
+  color: inherit;
+  opacity: var(--m-keybinding-opacity, 1);
+}
+
+/* ── Status bar ───────────────────────────────────────────────────────────── */
+
+[data-hex-era] [data-rig-status-bar] {
+  background: var(--m-face);
+  color: var(--color-foreground);
+  border: 0;
+  border-radius: 0;
+  min-height: var(--m-statusbar-h, var(--m-control-h));
+  padding: var(--m-window-pad);
+  gap: var(--m-space);
+  font-size: inherit;
+}
+
+/* Status panes are individually sunken in every beveled era — a detail that
+ * reads instantly as "1995" and costs one rule. */
+[data-hex-era] [data-rig-status-bar-item] {
+  box-shadow: var(--m-status-pane, var(--m-sunken));
+  padding: 0 var(--m-space);
+  border-radius: 0;
+  background: transparent;
+}
+
+/* ── Scrollbars ───────────────────────────────────────────────────────────
+ * Rig's ScrollArea renders track, thumb and steppers itself, so unlike a
+ * native scrollbar the whole assembly is reachable. Scrollbars carry more era
+ * identity per pixel than anything else on screen. */
+
+[data-hex-era] [data-rig-scroll-bar] {
+  background: var(--m-scrollbar-texture, var(--m-scrollbar-track));
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--m-scrollbar-trough, none);
+}
+
+[data-hex-era] [data-rig-scroll-bar][data-orientation='vertical'] {
+  width: var(--m-scrollbar-size);
+}
+
+[data-hex-era] [data-rig-scroll-bar][data-orientation='horizontal'] {
+  height: var(--m-scrollbar-size);
+}
+
+[data-hex-era] [data-rig-scroll-thumb] {
+  background: var(--m-texture-face, var(--m-scrollbar-thumb));
+  border: var(--m-border-width) var(--m-border-style) var(--m-face-edge);
+  border-radius: var(--m-thumb-radius, var(--m-radius));
+  box-shadow: var(--m-raised);
+}
+
+[data-hex-era] [data-rig-scroll-stepper] {
+  width: var(--m-scrollbar-size);
+  height: var(--m-scrollbar-size);
+  flex: none;
+  background: var(--m-texture-face, var(--m-face));
+  border: var(--m-border-width) var(--m-border-style) var(--m-face-edge);
+  border-radius: var(--m-radius);
+  box-shadow: var(--m-raised);
+  color: var(--m-stepper-glyph);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+[data-hex-era] [data-rig-scroll-stepper]:active {
+  box-shadow: var(--m-pressed);
+}
+
+[data-hex-era] [data-rig-scroll-stepper] svg {
+  width: var(--m-stepper-glyph-size, 100%);
+  height: var(--m-stepper-glyph-size, 100%);
+  shape-rendering: crispEdges;
+}
+
+/* ── Lists, trees, tables ─────────────────────────────────────────────────── */
+
+[data-hex-era] [data-rig-list],
+[data-hex-era] [data-rig-tree-view],
+[data-hex-era] [data-rig-table] {
+  background: var(--m-well, var(--color-card));
+  border-radius: var(--m-radius);
+  box-shadow: var(--m-sunken);
+  font-size: inherit;
+}
+
+[data-hex-era] [data-rig-list-item],
+[data-hex-era] [data-rig-tree-node],
+[data-hex-era] [data-rig-table] td,
+[data-hex-era] [data-rig-table] th {
+  border-radius: 0;
+  padding: var(--m-row-pad, 1px) var(--m-space);
+  min-height: 0;
+}
+
+[data-hex-era] [data-rig-list-item][data-selected],
+[data-hex-era] [data-rig-list-item][aria-selected='true'],
+[data-hex-era] [data-rig-tree-node][data-selected],
+[data-hex-era] [data-rig-tree-node][aria-selected='true'] {
+  background: var(--m-highlight, var(--color-primary));
+  color: var(--m-highlight-fg, var(--color-primary-foreground));
+  border-radius: 0;
+}
+
+/* Row sub-parts carry their own colour from the base theme, which would leave
+ * the label unreadable against the selection fill. */
+[data-hex-era] [data-rig-list-item] [data-rig-list-item-label],
+[data-hex-era] [data-rig-list-item] [data-rig-list-item-description],
+[data-hex-era] [data-rig-tree-node] > * {
+  color: inherit;
+}
+
+[data-hex-era] [data-rig-table] th {
+  background: var(--m-texture-face, var(--m-face));
+  box-shadow: var(--m-raised);
+  font-weight: var(--m-th-weight, 400);
+  text-align: left;
+}
+
+/* ── Sliders and progress ─────────────────────────────────────────────────── */
+
+[data-hex-era] [data-rig-slider] input[type='range'] {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  height: var(--m-control-h);
+}
+
+[data-hex-era] [data-rig-slider] input[type='range']::-webkit-slider-runnable-track {
+  height: var(--m-track-h, 4px);
+  background: var(--m-well, var(--color-muted));
+  box-shadow: var(--m-sunken);
+  border-radius: var(--m-radius);
+}
+
+[data-hex-era] [data-rig-slider] input[type='range']::-moz-range-track {
+  height: var(--m-track-h, 4px);
+  background: var(--m-well, var(--color-muted));
+  box-shadow: var(--m-sunken);
+  border-radius: var(--m-radius);
+}
+
+[data-hex-era] [data-rig-slider] input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: var(--m-knob-w, 11px);
+  height: var(--m-knob-h, 21px);
+  margin-top: calc((var(--m-track-h, 4px) - var(--m-knob-h, 21px)) / 2);
+  background: var(--m-texture-face, var(--m-face));
+  border: var(--m-border-width) var(--m-border-style) var(--m-face-edge);
+  border-radius: var(--m-knob-radius, 0px);
+  box-shadow: var(--m-raised);
+}
+
+[data-hex-era] [data-rig-slider] input[type='range']::-moz-range-thumb {
+  width: var(--m-knob-w, 11px);
+  height: var(--m-knob-h, 21px);
+  background: var(--m-texture-face, var(--m-face));
+  border: var(--m-border-width) var(--m-border-style) var(--m-face-edge);
+  border-radius: var(--m-knob-radius, 0px);
+  box-shadow: var(--m-raised);
+}
+
+[data-hex-era] [data-rig-progress] {
+  background: var(--m-well, var(--color-muted));
+  border-radius: var(--m-radius);
+  box-shadow: var(--m-sunken);
+  height: var(--m-progress-h, var(--m-control-h));
+  padding: var(--m-progress-pad, 2px);
+  overflow: hidden;
+}
+
+/* One declaration, not two: setting `background` and then `background-image`
+ * separately meant an era without segments wiped its own gradient fill back to
+ * `none`. Segments win where an era defines them; otherwise the fill stands. */
+[data-hex-era] [data-rig-progress-fill] {
+  background: var(--m-progress-segments, var(--m-progress-fill, var(--color-primary)));
+  background-size: var(--m-progress-segment-size, auto);
+  background-repeat: repeat-x;
+  border-radius: var(--m-progress-fill-radius, 0);
+}
+
+/* ── Tabs ─────────────────────────────────────────────────────────────────── */
+
+[data-hex-era] [data-rig-tabs-trigger] {
+  background: var(--m-texture-face, var(--m-face));
+  border: var(--m-border-width) var(--m-border-style) var(--m-face-edge);
+  border-bottom: 0;
+  border-radius: var(--m-tab-radius, 0px) var(--m-tab-radius, 0px) 0 0;
+  box-shadow: var(--m-raised);
+  padding: 0 calc(var(--m-space) * 2);
+  min-height: var(--m-control-h);
+  color: var(--color-foreground);
+}
+
+[data-hex-era] [data-rig-tabs-trigger][data-state='active'],
+[data-hex-era] [data-rig-tabs-trigger][aria-selected='true'] {
+  background: var(--m-face);
+  font-weight: var(--m-tab-active-weight, 700);
+  z-index: 1;
+}
+
+/* ── Tooltip ──────────────────────────────────────────────────────────────── */
+
+[data-hex-era] [data-rig-tooltip-content] {
+  background: var(--m-tooltip-bg, #ffffe1);
+  color: var(--m-tooltip-fg, var(--color-foreground));
+  border: var(--m-border-width) var(--m-border-style) var(--m-shadow-2);
+  border-radius: 0;
+  box-shadow: var(--m-elevation-menu);
+  padding: 1px var(--m-space);
+  font-size: inherit;
+}

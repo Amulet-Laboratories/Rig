@@ -1,0 +1,157 @@
+/* Cube '91 — 1991
+ *
+ * NeXTSTEP. The most influential interface almost nobody used, and the one this
+ * collection is least likely to be mistaken for anything else.
+ *
+ * Its argument was that an interface should look *machined* — greyscale only,
+ * no colour at all in the chrome, with light falling consistently from the
+ * top-left onto surfaces that read as milled aluminium rather than painted
+ * plastic. Redmond '95 shipped a coarser version of the same idea four years
+ * later to a hundred times the audience.
+ *
+ * Two details are unmistakably NeXT: the scroll arrows grouped together at one
+ * end of the bar rather than one at each end, and the deep sculpted bezel
+ * around every text well.
+ *
+ * Reference palette (2-bit greyscale, as the hardware shipped):
+ *   #FFFFFF  white
+ *   #AAAAAA  light grey — the face colour of the entire system
+ *   #555555  dark grey
+ *   #000000  black
+ */
+
+[data-hex-era='cube91'] {
+  /* ── Palette ── Four greys. No hue anywhere in the chrome. */
+  --color-background: #555555;
+  --color-foreground: #000000;
+  --color-card: #ffffff;
+  --color-card-foreground: #000000;
+  --color-primary: #aaaaaa;
+  --color-primary-foreground: #000000;
+  --color-secondary: #aaaaaa;
+  --color-muted: #aaaaaa;
+  --color-muted-foreground: #555555;
+  --color-border: #555555;
+
+  --m-light-1: #ffffff;
+  --m-light-2: #dddddd;
+  --m-shadow-1: #555555;
+  --m-shadow-2: #000000;
+  --m-face: #aaaaaa;
+  --m-well: #ffffff;
+  --m-well-edge: #555555;
+
+  /* ── Composed surfaces ──
+   * A two-tone bevel, lighter and more restrained than Redmond's four. The
+   * sunken well is deliberately deeper than the raised bevel is tall — NeXT
+   * treated text fields as holes cut into the panel. */
+  --m-border-width: 0px;
+
+  --m-raised:
+    inset 1px 1px 0 var(--m-light-1), inset -1px -1px 0 var(--m-shadow-1),
+    inset 2px 2px 0 rgba(255, 255, 255, 0.35);
+
+  --m-pressed:
+    inset 1px 1px 0 var(--m-shadow-1), inset -1px -1px 0 var(--m-light-1),
+    inset 2px 2px 2px rgba(0, 0, 0, 0.25);
+
+  --m-sunken:
+    inset 1px 1px 0 var(--m-shadow-2), inset -1px -1px 0 var(--m-light-1),
+    inset 2px 2px 0 var(--m-shadow-1);
+
+  --m-groove: inset 0 1px var(--m-shadow-1), inset 0 -1px var(--m-light-1);
+  --m-status-pane: 0 0 transparent;
+  --m-press-shift: 0px;
+
+  --m-disabled-fg: #777777;
+  --m-disabled-emboss: 1px 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* ── Elevation ── A hard black edge, no blur. Ten years early for that. */
+  --m-elevation-window: 0 2px 0 rgba(0, 0, 0, 0.45);
+  --m-elevation-menu: 1px 1px 0 rgba(0, 0, 0, 0.5);
+  --m-elevation-modal: 0 3px 0 rgba(0, 0, 0, 0.5);
+
+  /* ── Texture ──
+   * The title bar is the era's signature: fine horizontal scoring across the
+   * full width, machined rather than drawn. */
+  --m-texture-titlebar: repeating-linear-gradient(180deg, #cccccc 0 1px, #9e9e9e 1px 3px);
+  --m-texture-titlebar-inactive: #aaaaaa;
+  --m-texture-desktop: #555555;
+  --m-texture-menu: #aaaaaa;
+
+  /* ── Window chrome ── Close box on the right, title centred. */
+  --m-titlebar-h: 21px;
+  --m-titlebar-order: 1;
+  --m-titlebar-align: center;
+  --m-titlebar-fg: #000000;
+  --m-titlebar-fg-inactive: #555555;
+  --m-titlebar-weight: 700;
+  --m-titlebar-caption-bg: transparent;
+
+  /* ── Geometry ── Square, and tighter than Redmond. */
+  --m-radius: 0px;
+  --m-radius-window: 0px;
+  --m-space: 4px;
+  --m-density: 0.9;
+  --m-control-h: 21px;
+  --m-window-pad: 2px;
+  --m-menubar-h: 21px;
+  --m-statusbar-h: 20px;
+  --m-row-pad: 1px;
+  --m-divider-h: 2px;
+  --m-th-weight: 700;
+  --m-menu-pad: 0px;
+
+  /* ── Selection ── Black on grey; there is no accent colour to reach for. */
+  --m-highlight: #000000;
+  --m-highlight-fg: #ffffff;
+
+  --m-duration: 0ms;
+  --m-ease: linear;
+
+  --m-focus-width: 2px;
+  --m-focus-style: solid;
+  --m-focus-color: #000000;
+  --m-focus-offset: -2px;
+
+  /* ── Typography ── Helvetica, set tight. NeXT's other lasting influence. */
+  --m-font: 'Inter', 'Nimbus Sans', Helvetica, Arial, sans-serif;
+  --m-font-size: 12px;
+  --m-line-height: 1.25;
+  --m-font-smooth: antialiased;
+  --m-letter-spacing: -0.004em;
+
+  /* ── Controls ── A deep well with a heavy black check. */
+  --m-tick-size: 14px;
+  --m-tick-radius: 0px;
+  --m-tick-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M1 5l2.6 2.8L9 1.8' stroke='%23000000' stroke-width='2.2' fill='none' stroke-linecap='square'/></svg>");
+  --m-radio-radius: 50%;
+  --m-radio-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6' viewBox='0 0 6 6'><rect width='6' height='6' rx='3' fill='%23000000'/></svg>");
+
+  /* ── Scrollbars ──
+   * Both arrows grouped at the far end, which is the detail that dates a
+   * screenshot to NeXT instantly. Reachable only because ScrollArea grew a
+   * stepperPlacement prop for it. */
+  --m-scrollbar-size: 16px;
+  --m-scrollbar-track: #888888;
+  --m-scrollbar-thumb: #aaaaaa;
+  --m-scrollbar-texture: #888888;
+  --m-scrollbar-trough: inset 1px 1px 0 var(--m-shadow-2), inset -1px -1px 0 var(--m-light-1);
+  --m-thumb-radius: 0px;
+  --m-stepper-glyph: #000000;
+  --m-stepper-glyph-size: 8px;
+
+  --m-track-h: 4px;
+  --m-knob-w: 12px;
+  --m-knob-h: 20px;
+  --m-knob-radius: 0px;
+
+  --m-progress-h: 16px;
+  --m-progress-pad: 2px;
+  --m-progress-fill: #555555;
+
+  --m-tooltip-bg: #ffffcc;
+  --m-tooltip-fg: #000000;
+  --m-tab-radius: 0px;
+  --m-tab-active-weight: 700;
+}

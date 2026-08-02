@@ -3,7 +3,7 @@
 // and writes the output to dist/
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, watch } from 'node:fs'
-import { resolve } from 'node:path'
+import { resolve, dirname } from 'node:path'
 import postcss from 'postcss'
 import postcssImport from 'postcss-import'
 import tailwindcss from '@tailwindcss/postcss'
@@ -45,14 +45,35 @@ const themes = [
   'beacon',
 ]
 
+// Eras — the Museum of User Interfaces. Structurally different from the palette
+// themes above: they carry material tokens (bevels, texture, density, motion)
+// and are scoped to [data-hex-era] rather than applied globally, so several
+// periods can render on one page. See docs/MUSEUM-ROADMAP.md.
+const eras = [
+  'cupertino84',
+  'cube91',
+  'terminal93',
+  'redmond95',
+  'bondi01',
+  'glass07',
+  'flat13',
+  'soft25',
+]
+
 const getThemeEntrypoints = (theme) => [
   { input: `src/themes/${theme}/index.css`, output: `dist/${theme}.css` },
+]
+
+const getEraEntrypoints = (era) => [
+  { input: `src/eras/${era}/index.css`, output: `dist/eras/${era}.css` },
 ]
 
 // Default theme entry (builds cobalt as the root bundle)
 const rootEntrypoints = [
   { input: 'src/themes/cobalt/index.css', output: 'dist/hex.css' },
   { input: 'src/scoped/index.css', output: 'dist/scoped.css' },
+  // Every era in one file — what the museum loads.
+  { input: 'src/eras/index.css', output: 'dist/eras.css' },
 ]
 
 async function buildEntry(entry) {
@@ -65,6 +86,9 @@ async function buildEntry(entry) {
   }
 
   const css = readFileSync(inputPath, 'utf-8')
+
+  // Entries may nest (dist/eras/*.css), so ensure the target directory exists.
+  mkdirSync(dirname(outputPath), { recursive: true })
 
   try {
     const result = await postcss([
@@ -97,7 +121,11 @@ async function build() {
   const start = Date.now()
 
   // Collect all entries
-  const allEntries = [...rootEntrypoints, ...themes.flatMap(getThemeEntrypoints)]
+  const allEntries = [
+    ...rootEntrypoints,
+    ...themes.flatMap(getThemeEntrypoints),
+    ...eras.flatMap(getEraEntrypoints),
+  ]
 
   // Build all entries in parallel
   await Promise.all(allEntries.map(buildEntry))

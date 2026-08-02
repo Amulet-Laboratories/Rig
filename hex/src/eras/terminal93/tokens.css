@@ -1,0 +1,139 @@
+/* Terminal '93 — 1993
+ *
+ * Eighty columns and sixteen colours. The stress test for the material
+ * vocabulary: if a token set built for bevels and drop shadows can also express
+ * an interface with no graphics at all — where every "widget" is characters on
+ * a grid and the only depth cue is background colour — then the vocabulary
+ * describes materials rather than merely decorating buttons.
+ *
+ * Almost everything here is a negation. No radius, no bevel, no shadow, no
+ * texture, no motion. What remains is colour, a monospace grid, and inversion.
+ *
+ * Reference palette (IBM CGA/EGA):
+ *   #0000AA  blue      — the desktop every DOS utility used
+ *   #00AAAA  cyan      — panel fill
+ *   #AAAAAA  light grey — body text
+ *   #FFFFFF  white     — emphasis
+ *   #FFFF55  yellow    — highlights and hotkeys
+ *   #AA0000  red       — destructive
+ */
+
+[data-hex-era='terminal93'] {
+  /* ── Palette ── */
+  --color-background: #0000aa;
+  --color-foreground: #aaaaaa;
+  --color-card: #00aaaa;
+  --color-card-foreground: #000000;
+  --color-primary: #00aaaa;
+  --color-primary-foreground: #000000;
+  --color-secondary: #00aaaa;
+  --color-muted: #0000aa;
+  --color-muted-foreground: #5555ff;
+  --color-border: #aaaaaa;
+
+  --m-light-1: #ffffff;
+  --m-light-2: #aaaaaa;
+  --m-shadow-1: #555555;
+  --m-shadow-2: #000000;
+  --m-face: #00aaaa;
+  --m-face-edge: #aaaaaa;
+  --m-well: #0000aa;
+  --m-well-edge: #aaaaaa;
+
+  /* ── Composed surfaces ──
+   * There is no relief on a character grid. Depth is colour, and only colour. */
+  --m-border-width: 1px;
+  --m-raised: 0 0 transparent;
+  --m-pressed: 0 0 transparent;
+  --m-pressed-bg: #ffff55;
+  --m-pressed-fg: #000000;
+  --m-sunken: 0 0 transparent;
+  --m-groove: inset 0 1px #ffffff;
+  --m-press-shift: 0px;
+
+  --m-disabled-fg: #5555ff;
+  --m-disabled-emboss: none;
+
+  /* ── Elevation ── The one exception: a hard black character shadow, which is
+   * how every DOS text-mode dialog implied a floating panel. */
+  --m-elevation-window: 2px 1px 0 rgba(0, 0, 0, 0.6);
+  --m-elevation-menu: 2px 1px 0 rgba(0, 0, 0, 0.6);
+  --m-elevation-modal: 2px 1px 0 rgba(0, 0, 0, 0.6);
+
+  --m-texture-titlebar: #aaaaaa;
+  --m-texture-titlebar-inactive: #555555;
+  --m-texture-desktop: #0000aa;
+  --m-texture-menu: #aaaaaa;
+
+  /* ── Window chrome ── */
+  --m-titlebar-h: 20px;
+  --m-titlebar-order: 1;
+  --m-titlebar-align: center;
+  --m-titlebar-fg: #000000;
+  --m-titlebar-weight: 400;
+
+  /* ── Geometry ── Everything snaps to a character cell. */
+  --m-radius: 0px;
+  --m-radius-window: 0px;
+  --m-space: 4px;
+  --m-density: 0.75;
+  --m-control-h: 20px;
+  --m-window-pad: 2px;
+  --m-menubar-h: 20px;
+  --m-statusbar-h: 20px;
+  --m-row-pad: 0px;
+  --m-divider-h: 1px;
+  --m-th-weight: 400;
+  --m-menu-pad: 0px;
+
+  /* ── Selection ── Cyan on the blue field, the DOS convention. */
+  --m-highlight: #00aaaa;
+  --m-highlight-fg: #000000;
+
+  --m-duration: 0ms;
+  --m-ease: linear;
+
+  --m-focus-width: 1px;
+  --m-focus-style: solid;
+  --m-focus-color: #ffff55;
+  --m-focus-offset: 0px;
+
+  /* ── Typography ── The whole interface is one monospace face. */
+  --m-font: 'VT323', 'IBM Plex Mono', 'Courier New', monospace;
+  --m-font-size: 16px;
+  --m-line-height: 1.05;
+  --m-font-smooth: none;
+  --m-letter-spacing: 0;
+
+  /* ── Controls ── Brackets and characters, not drawn shapes. */
+  --m-tick-size: 14px;
+  --m-tick-radius: 0px;
+  --m-tick-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8' shape-rendering='crispEdges'><path fill='%23ffff55' d='M0 3h1v2H0zM1 4h1v2H1zM2 5h1v2H2zM3 4h1v2H3zM4 2h1v2H4zM5 1h1v2H5zM6 0h1v2H6z'/></svg>");
+  --m-radio-radius: 0px;
+  --m-radio-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6' viewBox='0 0 6 6'><rect width='6' height='6' fill='%23ffff55'/></svg>");
+
+  /* ── Scrollbars ── A column of shade characters with a solid block thumb. */
+  --m-scrollbar-size: 14px;
+  --m-scrollbar-track: #0000aa;
+  --m-scrollbar-thumb: #aaaaaa;
+  --m-scrollbar-texture: repeating-linear-gradient(0deg, #5555ff 0 1px, #0000aa 1px 2px), #0000aa;
+  --m-thumb-radius: 0px;
+  --m-stepper-glyph: #ffff55;
+  --m-stepper-glyph-size: 8px;
+
+  --m-track-h: 2px;
+  --m-knob-w: 10px;
+  --m-knob-h: 16px;
+  --m-knob-radius: 0px;
+
+  --m-progress-h: 18px;
+  --m-progress-pad: 0px;
+  --m-progress-fill: #aaaaaa;
+  --m-progress-segments: repeating-linear-gradient(90deg, #aaaaaa 0 8px, #0000aa 8px 10px);
+  --m-progress-segment-size: 10px 100%;
+
+  --m-tooltip-bg: #aaaaaa;
+  --m-tooltip-fg: #000000;
+  --m-tab-radius: 0px;
+  --m-tab-active-weight: 400;
+}

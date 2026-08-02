@@ -1,0 +1,4 @@
+/* Redmond '95 — standalone bundle */
+@import '../../materials.css';
+@import './tokens.css';
+@import '../_shared/chrome.css';

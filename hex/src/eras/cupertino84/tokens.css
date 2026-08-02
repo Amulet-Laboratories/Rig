@@ -1,0 +1,165 @@
+/* Cupertino '84 — 1984
+ *
+ * One bit. There is no grey on this machine: every shade you think you see is a
+ * checkerboard of black and white pixels, and the desktop's "grey" is literally
+ * a 50% dither. That constraint produced a visual language with no bevels at
+ * all — depth is drawn with a single hard black outline and a one-pixel drop
+ * shadow, and a pressed control simply inverts.
+ *
+ * The maximum contrast with Redmond '95, which is why the two ship together:
+ * one era is four tones of grey arranged into sculpted relief, the other is two
+ * colours and a rule. If both reach their look through the same tokens, the
+ * vocabulary is proven.
+ *
+ * Reference palette:
+ *   #000000  black — every border, every mark
+ *   #FFFFFF  white — every fill
+ *   (50% checkerboard dither stands in for grey)
+ */
+
+[data-hex-era='cupertino84'] {
+  /* ── Palette ── Two colours. */
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-card: #ffffff;
+  --color-card-foreground: #000000;
+  --color-primary: #000000;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #ffffff;
+  --color-muted: #ffffff;
+  --color-muted-foreground: #000000;
+  --color-border: #000000;
+
+  --m-light-1: #ffffff;
+  --m-light-2: #ffffff;
+  --m-shadow-1: #000000;
+  --m-shadow-2: #000000;
+  --m-face: #ffffff;
+  --m-face-edge: #000000;
+  --m-well: #ffffff;
+  --m-well-edge: #000000;
+
+  /* ── Composed surfaces ──
+   * No bevel exists. Relief is a 1px outline plus a hard, unblurred drop
+   * shadow — and a press inverts rather than deepening. */
+  --m-border-width: 1px;
+  --m-raised: 1px 1px 0 #000000;
+  --m-pressed: 1px 1px 0 #000000;
+  --m-pressed-bg: #000000;
+  --m-pressed-fg: #ffffff;
+  --m-sunken: 0 0 transparent;
+  --m-groove: inset 0 1px #000000;
+  --m-press-shift: 0px;
+
+  /* Disabled text is dithered out, not greyed — there is no grey to use. */
+  --m-disabled-fg: #000000;
+  --m-disabled-emboss: none;
+
+  /* ── Elevation ── Hard 1px offsets, never blurred. */
+  --m-elevation-window: 2px 2px 0 #000000;
+  --m-elevation-menu: 2px 2px 0 #000000;
+  --m-elevation-modal: 2px 2px 0 #000000;
+
+  /* ── Texture ──
+   * The striped title bar, and the dithered desktop that gave the Mac its
+   * characteristic grey without a grey pixel anywhere on the machine. */
+  --m-texture-titlebar: repeating-linear-gradient(180deg, #000000 0 1px, #ffffff 1px 2px);
+  --m-texture-titlebar-inactive: #ffffff;
+  --m-texture-desktop:
+    linear-gradient(45deg, #000000 25%, transparent 25%, transparent 75%, #000000 75%) 0 0 / 2px 2px,
+    linear-gradient(45deg, #000000 25%, transparent 25%, transparent 75%, #000000 75%) 1px 1px / 2px
+      2px,
+    #ffffff;
+  --m-texture-menu: #ffffff;
+
+  /* ── Window chrome ──
+   * The close box sits on the left, the title is centred, and the caption
+   * knocks a white gap out of the stripes behind it. */
+  --m-titlebar-h: 19px;
+  --m-titlebar-order: -1;
+  --m-titlebar-align: center;
+  --m-titlebar-fg: #000000;
+  --m-titlebar-fg-inactive: #000000;
+  --m-titlebar-weight: 400;
+  --m-titlebar-caption-bg: #ffffff;
+  --m-titlebar-caption-pad: 0 8px;
+
+  /* ── Geometry ──
+   * Rounded rects for controls, square for windows. */
+  --m-radius: 4px;
+  --m-radius-window: 0px;
+  --m-space: 4px;
+  --m-density: 1;
+  --m-control-h: 20px;
+  --m-window-pad: 2px;
+  --m-menubar-h: 20px;
+  --m-menubar-shadow: inset 0 -1px #000000;
+  --m-statusbar-h: 20px;
+  --m-row-pad: 1px;
+  --m-divider-h: 1px;
+  --m-th-weight: 400;
+  --m-menu-pad: 0px;
+
+  /* ── Selection ── Inversion, the only highlight a 1-bit display can make. */
+  --m-highlight: #000000;
+  --m-highlight-fg: #ffffff;
+
+  /* ── Motion ── None. */
+  --m-duration: 0ms;
+  --m-ease: linear;
+
+  /* ── Focus ── */
+  --m-focus-width: 1px;
+  --m-focus-style: dotted;
+  --m-focus-color: #000000;
+  --m-focus-offset: 2px;
+
+  /* ── Typography ── */
+  --m-font: 'Silkscreen', 'ChiKareGo2', 'Chicago', Geneva, sans-serif;
+  --m-font-size: 12px;
+  --m-line-height: 1.15;
+  --m-font-smooth: none;
+  --m-letter-spacing: 0;
+
+  /* ── Controls ──
+   * A square box with a hairline X, and a radio filled by a solid disc. */
+  --m-tick-size: 12px;
+  --m-tick-radius: 0px;
+  --m-tick-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8' shape-rendering='crispEdges'><path stroke='%23000000' stroke-width='1' d='M0.5 0.5l7 7M7.5 0.5l-7 7'/></svg>");
+  --m-tick-glyph-mixed: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8' shape-rendering='crispEdges'><path fill='%23000000' d='M0 3h8v2H0z'/></svg>");
+  --m-radio-radius: 50%;
+  --m-radio-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6' viewBox='0 0 6 6'><rect width='6' height='6' rx='3' fill='%23000000'/></svg>");
+
+  /* ── Scrollbars ──
+   * A dithered trough with a plain white thumb — the assembly that taught
+   * everyone what a scrollbar was. */
+  --m-scrollbar-size: 15px;
+  --m-scrollbar-track: #ffffff;
+  --m-scrollbar-thumb: #ffffff;
+  --m-scrollbar-texture:
+    linear-gradient(45deg, #000000 25%, transparent 25%, transparent 75%, #000000 75%) 0 0 / 2px 2px,
+    linear-gradient(45deg, #000000 25%, transparent 25%, transparent 75%, #000000 75%) 1px 1px / 2px
+      2px,
+    #ffffff;
+  --m-scrollbar-trough: inset 0 0 0 1px #000000;
+  --m-thumb-radius: 0px;
+  --m-stepper-glyph: #000000;
+  --m-stepper-glyph-size: 7px;
+
+  /* ── Sliders ── */
+  --m-track-h: 1px;
+  --m-knob-w: 12px;
+  --m-knob-h: 16px;
+  --m-knob-radius: 0px;
+
+  /* ── Progress ── */
+  --m-progress-h: 14px;
+  --m-progress-pad: 1px;
+  --m-progress-fill: #000000;
+
+  /* ── Tooltips and tabs ── */
+  --m-tooltip-bg: #ffffff;
+  --m-tooltip-fg: #000000;
+  --m-tab-radius: 0px;
+  --m-tab-active-weight: 400;
+}
