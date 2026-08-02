@@ -350,6 +350,106 @@ describe('ScrollArea', () => {
       wrapper.unmount()
     })
 
+    /** Mount a vertical scroll area with overflow already measured. */
+    async function mountScrolled(props: Record<string, unknown> = {}, scrollTop = 0) {
+      const wrapper = mount(ScrollArea, {
+        props: { vertical: true, ...props },
+        attachTo: document.body,
+      })
+      const viewport = wrapper.find('[data-rig-scroll-viewport]').element as HTMLElement
+      mockViewportMetrics(viewport, { scrollHeight: 1000, clientHeight: 300, scrollTop })
+      await wrapper.find('[data-rig-scroll-viewport]').trigger('scroll')
+      flushRAF()
+      await nextTick()
+      return { wrapper, viewport }
+    }
+
+    it('renders no steppers by default', async () => {
+      const { wrapper } = await mountScrolled()
+      expect(wrapper.find('[data-rig-scroll-stepper]').exists()).toBe(false)
+      wrapper.unmount()
+    })
+
+    it('renders both steppers when steppers is enabled', async () => {
+      const { wrapper } = await mountScrolled({ steppers: true })
+      expect(wrapper.find('[data-rig-scroll-stepper][data-direction="up"]').exists()).toBe(true)
+      expect(wrapper.find('[data-rig-scroll-stepper][data-direction="down"]').exists()).toBe(true)
+      wrapper.unmount()
+    })
+
+    it('defaults to split stepper placement', async () => {
+      const { wrapper } = await mountScrolled({ steppers: true })
+      const bar = wrapper.find('[data-rig-scroll-bar][data-orientation="vertical"]')
+      expect(bar.attributes('data-stepper-placement')).toBe('split')
+      wrapper.unmount()
+    })
+
+    it('exposes grouped stepper placement, keeping up before down in the DOM', async () => {
+      const { wrapper } = await mountScrolled({ steppers: true, stepperPlacement: 'end' })
+      const bar = wrapper.find('[data-rig-scroll-bar][data-orientation="vertical"]')
+      expect(bar.attributes('data-stepper-placement')).toBe('end')
+      const dirs = bar
+        .findAll('[data-rig-scroll-stepper]')
+        .map((s) => s.attributes('data-direction'))
+      expect(dirs).toEqual(['up', 'down'])
+      wrapper.unmount()
+    })
+
+    it('omits stepper placement when steppers are off', async () => {
+      const { wrapper } = await mountScrolled({ stepperPlacement: 'end' })
+      const bar = wrapper.find('[data-rig-scroll-bar][data-orientation="vertical"]')
+      expect(bar.attributes('data-stepper-placement')).toBeUndefined()
+      wrapper.unmount()
+    })
+
+    it('always renders a track wrapper around the thumb', async () => {
+      const { wrapper } = await mountScrolled()
+      const track = wrapper.find('[data-rig-scroll-track]')
+      expect(track.exists()).toBe(true)
+      expect(track.find('[data-rig-scroll-thumb]').exists()).toBe(true)
+      wrapper.unmount()
+    })
+
+    it('stepper press scrolls by the step distance', async () => {
+      const { wrapper, viewport } = await mountScrolled({ steppers: true }, 100)
+      await wrapper
+        .find('[data-rig-scroll-stepper][data-direction="down"]')
+        .trigger('pointerdown', { pointerId: 1 })
+      expect(viewport.scrollTop).toBe(140)
+      wrapper.unmount()
+    })
+
+    it('honours a custom step distance', async () => {
+      const { wrapper, viewport } = await mountScrolled({ steppers: true, step: 10 }, 100)
+      await wrapper
+        .find('[data-rig-scroll-stepper][data-direction="up"]')
+        .trigger('pointerdown', { pointerId: 1 })
+      expect(viewport.scrollTop).toBe(90)
+      wrapper.unmount()
+    })
+
+    it('clicking the trough below the thumb pages down', async () => {
+      const { wrapper, viewport } = await mountScrolled({}, 0)
+      const track = wrapper.find('[data-rig-scroll-track]')
+      // Thumb sits at the top, so a click near the bottom is a page-forward.
+      track.element.getBoundingClientRect = () =>
+        ({ top: 0, left: 0, height: 300, width: 14 }) as DOMRect
+      await track.trigger('pointerdown', { clientY: 290, clientX: 0 })
+      expect(viewport.scrollTop).toBe(300) // one page = clientHeight
+      wrapper.unmount()
+    })
+
+    it('marks the bar as dragging while the thumb is held', async () => {
+      const { wrapper } = await mountScrolled()
+      const thumb = wrapper.find('[data-rig-scroll-thumb]')
+      thumb.element.setPointerCapture = () => {}
+      thumb.element.releasePointerCapture = () => {}
+      await thumb.trigger('pointerdown', { pointerId: 1, clientY: 10 })
+      const bar = wrapper.find('[data-rig-scroll-bar][data-orientation="vertical"]')
+      expect(bar.attributes('data-dragging')).toBe('true')
+      wrapper.unmount()
+    })
+
     it('onScrollbarKeydown ArrowUp scrolls viewport up', async () => {
       const wrapper = mount(ScrollArea, {
         props: { vertical: true },
