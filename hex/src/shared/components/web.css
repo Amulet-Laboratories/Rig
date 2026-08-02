@@ -77,11 +77,15 @@
   color: var(--color-primary-foreground);
 }
 
+/* 0.9, not 0.85. Now that these inherit the footer's foreground, the opacity is
+ * the only thing standing between them and the AA threshold: at 0.85 quartz
+ * lands on 4.32 and fern on 4.47. Quartz is the binding constraint and needs
+ * 0.88, so 0.9 clears every in-use theme with a little room. */
 [data-rig-site-footer-grid] p,
 [data-rig-site-footer-grid] ul,
 [data-rig-site-footer-grid] li,
 [data-rig-site-footer-post] {
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 [data-rig-site-footer-grid] h3,
@@ -287,7 +291,18 @@
 }
 
 [data-rig-site-footer-post] {
-  color: var(--color-muted-foreground);
+  /* Inherit the footer's own foreground rather than reaching for a page-level
+   * token. --color-muted-foreground is defined as "muted against the *page*
+   * background", and the footer's background is --color-primary — so this rule
+   * used to put a light-page grey on a saturated brand colour and every footer
+   * link across the estate measured 1.02-1.67:1. Effectively invisible.
+   *
+   * All three footer variants set a background and a matching foreground
+   * (default: primary/primary-foreground, card: card/foreground, inverted:
+   * foreground/background), so inheriting is correct for each of them, where a
+   * fixed token could only ever be right for one by accident. The muted effect
+   * comes from the opacity rule above, not from a different hue. */
+  color: inherit;
 }
 
 /* ───────── Site Nav — Scroll State ───────── */
