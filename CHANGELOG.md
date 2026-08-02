@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.1] — 2026-08-02
+
+### Fixed
+
+- **`quartz`, `fern` and `brass` failed WCAG AA on the site nav and on primary buttons.** The failing selectors are Rig's, but the failing values were the themes': `[data-rig-site-nav-link][data-active]` resolves to `--color-primary` on `--color-secondary`, a harder pair than primary on the page background, and it read 2.53–2.84 across the three. White button labels were failing too, at 2.98–3.32, and had not been reported at all. Each primary is darkened by the minimal hue-preserving amount that clears 4.5 with headroom, and each `--rig-button-hover-bg` moves down with it so hover feedback stays darker than the button. `brass`'s `--color-muted-foreground` is untouched — 4.61 already passes. `roast`, `damson` and `slate` were already compliant and are unchanged.
+
+  **This changes the look of three themes.** Consuming sites will see a darker primary in buttons, links, focus rings and the active nav item.
+
+### Added
+
+- **`hex/contrast.test.mjs`** — asserts WCAG AA over the design tokens for the seven themes in production use, on the four pairs the shared CSS actually composes. A contrast ratio is arithmetic over two hex values, so it needs no browser; the failures above survived precisely because contrast was only ever checked by rendering a page and running axe, which reaches one theme, in one colour scheme, on whatever pages get crawled. It also reports — without failing — 13 AA failures across the twenty themes nobody ships, worst being `garden` (1.63) and `beacon` (1.95).
+
 ## [3.4.0] — 2026-08-02
 
 ### Added
