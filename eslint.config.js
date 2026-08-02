@@ -4,9 +4,14 @@ export default [
   ...vue,
   {
     ignores: [
-      'dist/',
-      'coverage/',
-      'node_modules/',
+      // Glob-prefixed on purpose: in ESLint flat config a bare `dist/` matches
+      // only the root directory, so nested build output (demos/dist) was still
+      // being linted. Building the demos locally produced ~1350 phantom errors
+      // in minified bundles — invisible in CI, which never builds before
+      // linting, and thoroughly confusing anywhere else.
+      '**/dist/',
+      '**/coverage/',
+      '**/node_modules/',
       'hex/',
       'config/',
       '.histoire/',
