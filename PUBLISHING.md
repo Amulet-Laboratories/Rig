@@ -10,11 +10,13 @@ expire. Each run mints a short-lived credential scoped to this workflow.
 
 ## One-time setup on npmjs.com
 
-Required **once per package**, for all three. Until this exists, every publish
-fails with an opaque `E404`.
+Required **once per package**. Until this exists, every publish fails with an
+opaque `E404`.
 
-For each of `@amulet-laboratories/rig`, `@amulet-laboratories/hex`,
-`@amulet-laboratories/rig-nuxt`:
+For each of `@amulet-laboratories/rig`, `@amulet-laboratories/rig-nuxt`, and
+`@amulet-laboratories/config`. **`@amulet-laboratories/hex` is not on this list**
+— since 3.0.0 it ships inside rig and the Release workflow no longer publishes
+it; it is deprecated on npm at its final version, 0.8.0.
 
 1. npmjs.com → the package → **Settings** → **Trusted Publisher** → GitHub Actions
 2. Fill in **exactly**:
