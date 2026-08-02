@@ -10,9 +10,9 @@
  *   #DCD5C8  warm border      — borders
  *   #7A6E5E  warm muted       — muted foreground
  *   #2C2418  warm dark brown  — foreground text
- *   #B88F42  soft amber       — primary, ring
+ *   #81642e  deep amber       — primary, ring
  *   #548383  dusty teal       — accent
- *   #A07A30  darker amber     — hover
+ *   #624c23  darker amber     — hover
  *
  * @theme feeds Tailwind v4 utility generation (bg-background, text-foreground, etc.)
  * :root provides standalone CSS custom property access for non-Tailwind consumers.
@@ -28,7 +28,7 @@
   --color-popover-foreground: #2c2418;
 
   /* Brand */
-  --color-primary: #b88f42;
+  --color-primary: #81642e;
   --color-primary-foreground: #ffffff;
 
   /* Soft accents */
@@ -52,7 +52,7 @@
   /* Borders and focus */
   --color-border: #dcd5c8;
   --color-input: #dcd5c8;
-  --color-ring: #b88f42;
+  --color-ring: #81642e;
 
   /* Typography */
   --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
@@ -89,7 +89,7 @@
   --card-foreground: #2c2418;
   --popover: #ffffff;
   --popover-foreground: #2c2418;
-  --primary: #b88f42;
+  --primary: #81642e;
   --primary-foreground: #ffffff;
   --secondary: #f0ece4;
   --secondary-foreground: #2c2418;
@@ -104,7 +104,7 @@
   --info: #2563eb;
   --border: #dcd5c8;
   --input: #dcd5c8;
-  --ring: #b88f42;
+  --ring: #81642e;
 
   /* Color token bridge -- component CSS uses var(--color-*) */
   --color-background: #f8f6f2;
@@ -113,7 +113,7 @@
   --color-card-foreground: #2c2418;
   --color-popover: #ffffff;
   --color-popover-foreground: #2c2418;
-  --color-primary: #b88f42;
+  --color-primary: #81642e;
   --color-primary-foreground: #ffffff;
   --color-secondary: #f0ece4;
   --color-secondary-foreground: #2c2418;
@@ -131,7 +131,7 @@
   --color-info: #2563eb;
   --color-border: #dcd5c8;
   --color-input: #dcd5c8;
-  --color-ring: #b88f42;
+  --color-ring: #81642e;
   --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
   --font-serif: 'Lora', ui-serif, Georgia, serif;
   --font-heading: 'Bitter', ui-serif, Georgia, serif;
@@ -196,9 +196,9 @@
   --td-border: #dcd5c8;
   --td-muted: #7a6e5e;
   --td-dark: #2c2418;
-  --td-amber: #b88f42;
+  --td-amber: #81642e;
   --td-teal: #548383;
-  --td-amber-hover: #a07a30;
+  --td-amber-hover: #624c23;
 
   /* ── Rig component token bridge ─────────────────────────────────────────
    * Overrides shared/tokens.css defaults where the Burrowtail palette needs
@@ -206,7 +206,7 @@
    */
 
   /* Button — darker amber for hover feedback */
-  --rig-button-hover-bg: #a07a30;
+  --rig-button-hover-bg: #624c23;
 
   /* Scrollbar — warm brown tint for light mode */
   --rig-scrollbar-thumb: rgba(44, 36, 24, 0.12);
