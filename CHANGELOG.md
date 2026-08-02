@@ -9,6 +9,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **The Museum of User Interfaces** — an exhibit at `/hexrig/demos/museum` where eight
+  historical interfaces, 1984 to 2025, are rendered from unmodified Rig components and
+  operated rather than looked at. See [docs/MUSEUM-ROADMAP.md](docs/MUSEUM-ROADMAP.md).
+- **A material token layer for Hex.** Hex's theme tokens answer "what colour is it"; the
+  new `--m-*` tokens answer "what is it made of" — bevel, elevation, density, texture,
+  motion, control geometry. Scoped to `[data-hex-era]` so several periods can render on one
+  page. The 27 palette themes never import it and are unaffected.
+- **`ScrollArea` steppers.** Optional arrow buttons with the two-stage auto-repeat every
+  platform scrollbar uses, a `step` prop, per-direction glyph slots, and `stepperPlacement`
+  for traditions that group both arrows at one end (NeXTSTEP, Mac OS 8) rather than
+  splitting them.
+
+### Fixed
+
+- **`ScrollArea`'s thumb could not be dragged.** It responded to keyboard only; there was no
+  pointer handling at all, and clicking the trough did nothing. Both now work.
+- **Demo deep links served the wrong app.** `netlify.toml` had SPA fallbacks for the story
+  site and the landing page but none for `/hexrig/demos/*`, so any direct hit or refresh on
+  a demo route fell through to `/hexrig/*` and returned the landing page's `index.html`.
+  This affected all 13 example sites and went unnoticed because navigating in from the
+  gallery never asks the server.
+- **`pnpm lint` reported ~1350 phantom errors locally.** In ESLint flat config a bare
+  `dist/` ignores only the root directory, so `demos/dist/` was linted whenever it had been
+  built. Invisible in CI, which lints without building.
+
+## [3.2.0] — 2026-07-31
+
+Shipped by tag `v0.9.4`. The change was in the theme layer — contrast-safe accent tokens
+separated from the display accent. See [hex/CHANGELOG.md](hex/CHANGELOG.md).
+
+## [3.1.0] — 2026-07-31
+
+Shipped by tag `v0.9.3`. The change was in the Nuxt module — `/best-for` crashed in every
+browser on all six content sites. See [nuxt/CHANGELOG.md](nuxt/CHANGELOG.md).
+
+## [3.0.0] — 2026-07-28
+
+Shipped by tag `v0.9.0`.
+
+### Added
+
 - **A `rig` CLI, with one command: `rig build-theme`.** Compiles a site's `public/theme.css` from `hex/<theme>` + the opt-in `hex/shared/site` layer + the site's own `assets/css/site.css` + `rig/styles`. Each of the six affiliate sites carried its own 108-line `scripts/build-theme.mjs` doing this, and every copy resolved Rig and Hex from a **sibling monorepo checkout** — so a site could not rebuild its own stylesheet unless the Rig repo happened to sit beside it on disk. The CLI reads everything from the installed package instead, which works because 3.0.0 ships hex's sources. The PostCSS toolchain stays out of rig's dependencies (dead weight for consumers who never build a theme); the command resolves it from the site, then rig, then hex, and **warns when it falls back** — a fallback copy of Tailwind generated ~1,800 extra utility classes and inflated `theme.css` by 38%, which would otherwise have looked like a legitimate rebuild.
 
 ### Fixed
@@ -26,17 +67,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `@amulet-laboratories/rig-nuxt` now requires `@amulet-laboratories/rig >= 3.0.0`, and its stale optional peer entry for `@amulet-laboratories/hex` is removed.
 - `create-rig` scaffolds against rig 3.x and defaults to the `cobalt` theme. It previously defaulted to a `vscode` theme that no longer exists, emitting a broken trailing-slash import specifier.
 
+## [0.7.0] — 2026-07-17
+
+Shipped by tag `v0.8.0`.
+
 ### Added
 
 - **`@amulet-laboratories/rig-nuxt` (0.6.4) — build-time content guard against self-closing MDC component tags.** MDC (`@nuxtjs/mdc` 0.20–0.22) does not honor `/>` on component tags: `<ProductCardWrapper slug="x" />` parses as an _open_ tag that swallows every following sibling (prose, headings, later cards) as its children, and since these leaf components have no `<slot/>` the swallowed content is discarded at render — so a roundup with N cards rendered only the first. The module now scans `content/**/*.md` in a `build:before` hook and fails the build with a file:line list if any self-closing PascalCase component tag is present, directing authors to the explicit-close form (`<X></X>`). This replaces a per-site `scripts/check-content-components.mjs` that had to be copied into every authority site — the rule now lives once in the library. Lowercase HTML voids (`<br/>`, `<img/>`) are intentionally ignored.
-
-### Security
-
-- **Resolved dependency advisories surfaced by `pnpm audit --prod`.** Tightened the loose `vite` (`^7.3.2` → `>=7.3.5 <8`, kept within the v7 line) and `nuxt` (`>=3.21.6` → `>=3.21.7`) overrides, which had permitted patched-but-vulnerable versions, and added overrides for the transitive `shell-quote` (critical), `tar`, `esbuild`, `js-yaml`, `launch-editor`, `nuxt-og-image`, and `@babel/core` advisories (all in the Nuxt toolchain). The remaining 3 "nuxt <3.21.7" audit findings are a false positive — `pnpm audit` matches our own `@amulet-laboratories/rig-nuxt@0.5.0` workspace package (directory `nuxt/`) against the npm `nuxt` advisories; the real, resolved `nuxt` is 3.21.8, patched against all three. They're pinned in `auditConfig.ignoreGhsas` (GHSA-934w-87qh-qr26, GHSA-c9cv-mq2m-ppp3, GHSA-m3q2-p4fw-w38m).
-
-### CI
-
-- Bumped `.node-version` `22.14.0` → `22.23.1` to satisfy `@babel/generator@8`'s engine floor (`^22.18.0 || >=24.11.0`), which was failing every job at install.
 
 ## [0.6.0] — 2026-07-14
 
@@ -57,6 +94,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - **`@amulet-laboratories/rig/manifest` export** — a pure-data inventory of the library's auto-importable surface (`components: readonly string[]`, `composables: readonly string[]`, plus `RigComponentName` / `RigComposableName` union types). Generated from the barrel via `pnpm manifest:gen` and pinned by a CI drift guard (`src/manifest.test.ts`), so it can never fall behind the actual exports. `@amulet-laboratories/rig-nuxt` now derives its auto-import list from this instead of a hardcoded array that had drifted ~18 components behind. The manifest is data-only (no Vue/optional-peer imports), so consuming it never pulls `d3`/`markdown-it` into a bundle.
+
+### Security
+
+- **Resolved dependency advisories surfaced by `pnpm audit --prod`.** Tightened the loose `vite` (`^7.3.2` → `>=7.3.5 <8`, kept within the v7 line) and `nuxt` (`>=3.21.6` → `>=3.21.7`) overrides, which had permitted patched-but-vulnerable versions, and added overrides for the transitive `shell-quote` (critical), `tar`, `esbuild`, `js-yaml`, `launch-editor`, `nuxt-og-image`, and `@babel/core` advisories (all in the Nuxt toolchain). The remaining 3 "nuxt <3.21.7" audit findings are a false positive — `pnpm audit` matches our own `@amulet-laboratories/rig-nuxt@0.5.0` workspace package (directory `nuxt/`) against the npm `nuxt` advisories; the real, resolved `nuxt` is 3.21.8, patched against all three. They're pinned in `auditConfig.ignoreGhsas` (GHSA-934w-87qh-qr26, GHSA-c9cv-mq2m-ppp3, GHSA-m3q2-p4fw-w38m).
+
+### CI
+
+- Bumped `.node-version` `22.14.0` → `22.23.1` to satisfy `@babel/generator@8`'s engine floor (`^22.18.0 || >=24.11.0`), which was failing every job at install.
 
 ## [0.5.1] — 2026-06-20
 
