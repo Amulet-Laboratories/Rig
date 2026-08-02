@@ -1,6 +1,7 @@
 import js from '@eslint/js'
 import prettier from 'eslint-config-prettier'
 import pluginVue from 'eslint-plugin-vue'
+import globals from 'globals'
 import tseslint from 'typescript-eslint'
 import vueParser from 'vue-eslint-parser'
 
@@ -10,6 +11,17 @@ export default [
   ...tseslint.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
   prettier,
+  {
+    // Browser globals, declared here on purpose. eslint-plugin-vue 9 shipped
+    // `globals.browser` inside its own `flat/base`, so every consumer got them
+    // for free without asking; v10 dropped that, and `no-undef` then fired on
+    // window/document/HTMLElement across the whole fleet. This config is the
+    // one that turns `no-undef` on (via js.configs.recommended), so it is the
+    // one that owes the globals — not a transitive plugin.
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
   {
     files: ['**/*.vue'],
     languageOptions: {

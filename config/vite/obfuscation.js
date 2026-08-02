@@ -1,6 +1,7 @@
 /**
  * javascript-obfuscator post-build configuration.
- * Applied via the obfuscate script, not as a Vite plugin.
+ * Applied via a post-build Node script, not as a Vite plugin — which is why
+ * this file is plain JS. Node will not strip types under `node_modules`.
  */
 export const obfuscationConfig = {
   compact: true,
@@ -15,5 +16,4 @@ export const obfuscationConfig = {
   stringArrayEncoding: ['base64'],
   stringArrayThreshold: 0.5,
   sourceMap: false,
-  sourceMapMode: 'separate',
 }
