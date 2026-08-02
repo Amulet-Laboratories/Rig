@@ -1,0 +1,92 @@
+/* Museum — period typefaces
+ *
+ * Era authenticity is mostly typography, and the original faces are all
+ * licensed: Chicago, MS Sans Serif, Geneva and Lucida Grande cannot ship. These
+ * are freely licensed bitmap faces standing in for them — evocation, not
+ * replica, which is the museum's whole posture.
+ *
+ *   Silkscreen  — Jason Kottke, SIL Open Font License 1.1
+ *                 Blocky and chunky; stands in for Chicago in Cupertino '84.
+ *                 No true lowercase, which is wrong for Chicago but reads
+ *                 convincingly as a 1-bit system face.
+ *   Jersey 10   — Sarah Cadigan-Fried, SIL Open Font License 1.1
+ *                 Condensed proportional pixel sans with true lowercase;
+ *                 stands in for MS Sans Serif in Redmond '95.
+ *
+ * Pixelify Sans was tried first and rejected: its numerals are unreadable at
+ * any size — 5 and 2 both render as S — which makes it *less* faithful than a
+ * plainer face, since MS Sans Serif was crisp. Verified across 11–20px.
+ *
+ * Attribution is carried in the museum colophon.
+ *
+ * url() paths are hard-coded to /hexrig/demos/fonts/ because Vite does not
+ * rewrite public/ asset URLs for a non-root base — see demos/CLAUDE.md.
+ */
+
+/* Silkscreen — Cupertino '84 */
+@font-face {
+  font-family: 'Silkscreen';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/silkscreen/silkscreen-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Silkscreen';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/silkscreen/silkscreen-700.woff2') format('woff2');
+}
+
+/* Jersey 10 — Redmond '95. Single weight; the era asks for bold title bars, so
+ * the browser synthesises it rather than the face supplying a cut. */
+@font-face {
+  font-family: 'Jersey 10';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/jersey10/jersey10-400.woff2') format('woff2');
+}
+
+/* VT323 — Terminal '93. Peter Hull, SIL Open Font License 1.1. A DEC VT320
+ * terminal face; the one room where the typeface *is* the interface. */
+@font-face {
+  font-family: 'VT323';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/vt323/vt323-400.woff2') format('woff2');
+}
+
+/* Bondi '01, Flat '13 and Soft '25 use Inter, already vendored for the demo
+ * sites. Their originals — Lucida Grande, Helvetica Neue, the current system
+ * stacks — are licensed or platform-bound, and Inter is the honest stand-in for
+ * all three. That the three most recent rooms share one face is itself a
+ * finding: type stopped being era-distinguishing once everyone shipped a
+ * neutral grotesque. */
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/inter/inter-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/inter/inter-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/hexrig/demos/fonts/inter/inter-600.woff2') format('woff2');
+}
