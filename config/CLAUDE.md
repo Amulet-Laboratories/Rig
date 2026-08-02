@@ -60,6 +60,11 @@ anything under `node_modules` — a `.ts` file there is unimportable, exactly th
 `nuxt/src/runtime/**` already hit in this repo. All three stay `.js` so the rule is
 one rule and not a per-file judgement call.
 
+**Peer ranges must cover what the fleet actually runs.** As of 2026-08-01 that spans
+TypeScript 5.6 (the content sites, Rig, Obelisk) to 6.0 (AmuletLabs.org), and ESLint
+9.20 to 10.0. A peer range narrower than the spread is what pushes a repo into keeping
+its own fork — check the fleet before tightening one.
+
 ## Releasing
 
 Publishing is CI-only, from the Rig repo, on a `v*` tag via trusted publishing (OIDC).
