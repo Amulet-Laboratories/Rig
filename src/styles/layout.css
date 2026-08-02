@@ -594,6 +594,7 @@
   user-select: none;
   touch-action: none;
   z-index: 11;
+  display: flex;
 }
 
 [data-rig-scroll-bar][data-orientation='vertical'] {
@@ -601,6 +602,7 @@
   right: 0;
   bottom: 0;
   width: 14px;
+  flex-direction: column;
 }
 
 [data-rig-scroll-bar][data-orientation='horizontal'] {
@@ -608,6 +610,39 @@
   right: 0;
   bottom: 0;
   height: 14px;
+  flex-direction: row;
+}
+
+/* The track absorbs whatever the steppers leave behind, so thumb percentages
+ * resolve against the space the thumb can actually travel. With steppers off it
+ * fills the bar exactly, leaving prior rendering untouched. */
+[data-rig-scroll-track] {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Grouped steppers are pure visual order — the DOM keeps up-before-down so the
+ * reading order stays sensible however they are arranged. */
+[data-rig-scroll-bar][data-stepper-placement='start'] [data-rig-scroll-track] {
+  order: 1;
+}
+
+[data-rig-scroll-bar][data-stepper-placement='end'] [data-rig-scroll-track] {
+  order: -1;
+}
+
+[data-rig-scroll-stepper] {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: default;
 }
 
 [data-rig-scroll-bar][data-orientation='vertical'] [data-rig-scroll-thumb] {
