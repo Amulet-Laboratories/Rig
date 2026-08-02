@@ -1,0 +1,253 @@
+/* Museum layout.
+ *
+ * Structure only — the frame the exhibits hang in. Nothing here styles a Rig
+ * component; every period appearance comes from Hex's era layer. The split
+ * matters: the museum chrome is modern and stays modern, and only the exhibit
+ * pane travels back in time.
+ */
+
+/* ── The gallery frame ──────────────────────────────────────────────────── */
+
+[data-museum] {
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+[data-museum-inner] {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+[data-museum-lede] {
+  max-width: 60ch;
+  margin-bottom: 2.5rem;
+}
+
+[data-museum-lede] h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+[data-museum-lede] h2 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+}
+
+[data-museum-lede] p {
+  color: var(--color-muted-foreground);
+  line-height: 1.6;
+}
+
+/* ── Era picker ─────────────────────────────────────────────────────────── */
+
+[data-museum-picker] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+[data-museum-era-tab] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  align-items: flex-start;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  color: var(--color-foreground);
+  cursor: pointer;
+  text-align: left;
+}
+
+[data-museum-era-tab][aria-pressed='true'] {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border-color: var(--color-primary);
+}
+
+[data-museum-era-tab] strong {
+  font-size: 0.95rem;
+}
+
+[data-museum-era-tab] span {
+  font-size: 0.78rem;
+  opacity: 0.75;
+}
+
+/* ── The period room ────────────────────────────────────────────────────
+ * The exhibit pane. Padding and the inset shadow are the vitrine — they read
+ * as "object on display" rather than "chrome of this website". */
+
+[data-museum-room] {
+  padding: clamp(1rem, 4vw, 3rem);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+/* ── The exhibit window ─────────────────────────────────────────────────── */
+
+/* The window is a surface in its own right: without a face of its own the
+ * desktop shows through behind the controls, which on a dithered 1-bit desktop
+ * makes black text unreadable. Chrome comes from the era's material tokens, so
+ * this is one rule for every period rather than one per period. */
+[data-museum-window] {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  min-height: 420px;
+  background: var(--m-texture-face, var(--m-face));
+  border: var(--m-border-width) var(--m-border-style) var(--m-face-edge);
+  border-radius: var(--m-radius-window);
+  box-shadow: var(--m-raised), var(--m-elevation-window);
+  padding: var(--m-window-pad);
+}
+
+[data-museum-window] [data-rig-titlebar] {
+  flex: none;
+}
+
+[data-museum-body] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
+  gap: 6px;
+  flex: 1;
+  padding: 6px;
+  min-height: 0;
+}
+
+@container (max-width: 560px) {
+  [data-museum-body] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+[data-museum-body] [data-rig-scroll-area] {
+  height: 320px;
+}
+
+[data-museum-inspector] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* Controls keep their intrinsic height instead of stretching to fill the
+ * column — an era sets control height as a token and the layout must respect
+ * it. */
+[data-museum-inspector] > * {
+  flex: none;
+}
+
+[data-museum-actions] {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+/* Title-bar controls are square, which no token expresses because it is a
+ * property of this composition rather than of the era. */
+[data-museum-window] [data-rig-titlebar] [data-museum-control] {
+  min-width: var(--m-titlebar-h, 20px);
+  min-height: calc(var(--m-titlebar-h, 20px) - 4px);
+  padding: 0;
+  line-height: 1;
+}
+
+/* ── Wall text ──────────────────────────────────────────────────────────── */
+
+[data-museum-wall] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+[data-museum-wall] section h3 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted-foreground);
+  margin-bottom: 0.4rem;
+}
+
+[data-museum-wall] section p {
+  line-height: 1.55;
+  font-size: 0.92rem;
+}
+
+/* ── Specimen case ──────────────────────────────────────────────────────
+ * The comparative view: one widget, every era, side by side. This is the part
+ * that makes it a museum rather than a costume, and it is only possible
+ * because era styling is scoped rather than global. */
+
+[data-museum-case] {
+  margin-top: 4rem;
+}
+
+[data-museum-case-grid] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+[data-museum-specimen] {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+[data-museum-specimen-label] {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  background: var(--color-card);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Specimens sit on the era's window face rather than its desktop. A vitrine is
+ * lit for looking at the object, and Cupertino's dithered desktop makes its own
+ * black labels unreadable. */
+[data-museum-specimen-stage] {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: flex-start;
+  background: var(--m-texture-face, var(--m-face));
+}
+
+/* Short enough that the list always overflows — the scrollbar is the specimen
+ * most worth comparing. */
+[data-museum-specimen-stage] [data-rig-scroll-area] {
+  height: 72px;
+  width: 100%;
+}
+
+[data-museum-colophon] {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.85rem;
+  color: var(--color-muted-foreground);
+  line-height: 1.6;
+  max-width: 70ch;
+}
+
+[data-museum-colophon] p + p {
+  margin-top: 0.9rem;
+}

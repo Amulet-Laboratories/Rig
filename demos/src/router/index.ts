@@ -81,6 +81,14 @@ const router = createRouter({
       component: () => import('@/pages/demos/root-remedy/index.vue'),
     },
     {
+      // Not a demo site — the Museum of User Interfaces is the argument *for*
+      // the design system rather than an example of it. See
+      // ../../../docs/MUSEUM-ROADMAP.md.
+      path: '/museum',
+      name: 'museum',
+      component: () => import('@/pages/museum/index.vue'),
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       redirect: '/',
