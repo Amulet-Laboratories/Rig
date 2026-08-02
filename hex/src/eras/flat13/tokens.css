@@ -1,0 +1,141 @@
+/* Flat '13 — 2013
+ *
+ * The great flattening. Within about eighteen months the entire industry threw
+ * out gradients, bevels, textures and shadows — the whole vocabulary the
+ * previous four eras were built from — and replaced them with hairlines,
+ * flat fills and a great deal of white space.
+ *
+ * This era is defined almost entirely by *absence*, which makes it the best
+ * test of whether the material layer can express restraint as deliberately as
+ * it expresses ornament. Every composed surface below is a no-op on purpose.
+ *
+ * The one thing that grew was type: bigger, lighter, and given room.
+ *
+ * Reference palette:
+ *   #FFFFFF  white          — the dominant surface
+ *   #007AFF  system blue    — the only saturated colour on screen
+ *   #8E8E93  secondary grey
+ *   #C7C7CC  hairline
+ *   #F2F2F7  grouped background
+ */
+
+[data-hex-era='flat13'] {
+  /* ── Palette ── */
+  --color-background: #f2f2f7;
+  --color-foreground: #1c1c1e;
+  --color-card: #ffffff;
+  --color-card-foreground: #1c1c1e;
+  --color-primary: #007aff;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #ffffff;
+  --color-muted: #f2f2f7;
+  --color-muted-foreground: #8e8e93;
+  --color-border: #c7c7cc;
+
+  --m-light-1: #ffffff;
+  --m-light-2: #ffffff;
+  --m-shadow-1: #c7c7cc;
+  --m-shadow-2: #c7c7cc;
+  --m-face: #ffffff;
+  --m-face-edge: #c7c7cc;
+  --m-well: #ffffff;
+  --m-well-edge: #c7c7cc;
+
+  /* ── Composed surfaces ──
+   * Deliberately empty. A hairline border does all the work that four tones of
+   * bevel did in 1995, and the era considered that an improvement. */
+  --m-border-width: 1px;
+  --m-raised: 0 0 transparent;
+  --m-pressed: 0 0 transparent;
+  --m-pressed-bg: #e5e5ea;
+  --m-pressed-fg: #007aff;
+  --m-sunken: 0 0 transparent;
+  --m-groove: inset 0 -1px 0 #c7c7cc;
+  --m-press-shift: 0px;
+
+  /* Disabled is opacity, not emboss — the first era to fade rather than carve. */
+  --m-disabled-fg: #c7c7cc;
+  --m-disabled-emboss: none;
+
+  --m-elevation-window: 0 0 transparent;
+  --m-elevation-menu: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --m-elevation-modal: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  --m-texture-desktop: #f2f2f7;
+  --m-texture-titlebar: #f9f9f9;
+  --m-texture-titlebar-inactive: #f9f9f9;
+  --m-texture-menu: #ffffff;
+
+  /* ── Window chrome ── A title bar reduced to a strip of type and a hairline. */
+  --m-titlebar-h: 44px;
+  --m-titlebar-order: 1;
+  --m-titlebar-align: center;
+  --m-titlebar-fg: #1c1c1e;
+  --m-titlebar-fg-inactive: #8e8e93;
+  --m-titlebar-weight: 600;
+
+  /* ── Geometry ── Airy. Density inverts from the 90s. */
+  --m-radius: 8px;
+  --m-radius-window: 12px;
+  --m-space: 6px;
+  --m-density: 1.6;
+  --m-control-h: 34px;
+  --m-window-pad: 0px;
+  --m-menubar-h: 40px;
+  --m-statusbar-h: 32px;
+  --m-row-pad: 9px;
+  --m-divider-h: 1px;
+  --m-th-weight: 600;
+  --m-menu-pad: 6px;
+
+  --m-highlight: #007aff;
+  --m-highlight-fg: #ffffff;
+
+  --m-duration: 220ms;
+  --m-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --m-focus-width: 2px;
+  --m-focus-style: solid;
+  --m-focus-color: #007aff;
+  --m-focus-offset: 2px;
+
+  /* ── Typography ── Bigger and lighter than anything before it. */
+  --m-font: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+  --m-font-size: 15px;
+  --m-line-height: 1.45;
+  --m-font-smooth: antialiased;
+  --m-letter-spacing: -0.01em;
+
+  /* ── Controls ── */
+  --m-tick-size: 20px;
+  --m-tick-radius: 5px;
+  --m-tick-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 6.4l2.6 2.6L10 3.2' stroke='%23ffffff' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  --m-tick-checked-bg: #007aff;
+  --m-tick-checked-edge: #007aff;
+  --m-progress-fill-radius: 2px;
+  --m-radio-radius: 50%;
+  --m-radio-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'><rect width='8' height='8' rx='4' fill='%23ffffff'/></svg>");
+
+  /* ── Scrollbars ── Nearly invisible: a thin grey capsule on nothing. */
+  --m-scrollbar-size: 8px;
+  --m-scrollbar-track: transparent;
+  --m-scrollbar-thumb: #c7c7cc;
+  --m-scrollbar-texture: transparent;
+  --m-thumb-radius: 4px;
+  --m-stepper-glyph: #c7c7cc;
+  --m-stepper-glyph-size: 6px;
+
+  --m-track-h: 4px;
+  --m-knob-w: 22px;
+  --m-knob-h: 22px;
+  --m-knob-radius: 50%;
+
+  --m-progress-h: 4px;
+  --m-progress-pad: 0px;
+  --m-progress-fill: #007aff;
+
+  --m-tooltip-bg: #1c1c1e;
+  --m-tooltip-fg: #ffffff;
+  --m-tab-radius: 8px;
+  --m-tab-active-weight: 600;
+}

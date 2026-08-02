@@ -1,0 +1,175 @@
+/* Hex — Material Token Layer
+ *
+ * The second token axis. Hex's theme tokens answer "what colour is it"; these
+ * answer "what is it made of" — bevels, elevation, density, texture, motion.
+ *
+ * The 27 palette themes never import this file, so they are unaffected by it.
+ * It is consumed only by `eras/` (the Museum of User Interfaces), where the
+ * whole point is that a Windows 95 control and a Mac System 1 control are the
+ * same Rig component wearing different materials.
+ *
+ * ── Two kinds of token ────────────────────────────────────────────────────
+ *
+ * Tokens are read by eras/_shared/chrome.css in one of two ways, and the
+ * distinction is load-bearing:
+ *
+ *   1. BARE — `var(--m-radius)`. These need a declared default, below.
+ *
+ *   2. FALLBACK — `var(--m-texture-face, var(--m-face))`. These must NOT be
+ *      declared here. A CSS fallback only fires when the property is entirely
+ *      undefined, so declaring `--m-texture-face: none` would resolve to
+ *      `none` and destroy the face colour rather than falling through to it.
+ *      For these the fallback at the use site *is* the default; they are
+ *      documented at the bottom of this file but deliberately left unset.
+ *
+ * ── Contract ──────────────────────────────────────────────────────────────
+ * An era is *data*: it sets these tokens and inherits its entire look from
+ * eras/_shared/chrome.css, which is the engine that spends them.
+ *
+ * If an era needs a rule the engine can't express, that is a signal the
+ * vocabulary is missing something. Grow this file and the engine — don't grow
+ * the era.
+ */
+
+[data-hex-era] {
+  /* ── Geometry ───────────────────────────────────────────────────────────
+   * Corner radius is deliberately separate from the palette themes' --radius:
+   * an era sets control geometry wholesale, and must not inherit whatever the
+   * surrounding museum chrome happens to use. */
+  --m-radius: 0px; /* control corner radius */
+  --m-radius-window: var(--m-radius); /* window/panel corners */
+  --m-border-width: 1px;
+  --m-border-style: solid;
+  --m-space: 4px; /* base spacing unit */
+  --m-density: 1; /* padding multiplier — 90s ~0.75, flat ~1.5 */
+  --m-control-h: 22px; /* standard interactive control height */
+  --m-control-pad: calc(var(--m-space) * 2 * var(--m-density));
+
+  /* ── Bevel palette ──────────────────────────────────────────────────────
+   * Four tones, outermost first. The 1985–2000 visual language is built
+   * entirely from these: a raised control puts light on the top-left and
+   * shadow on the bottom-right, and a sunken one inverts it. Eras with no
+   * bevel (flat, 1-bit) leave the composed surfaces below as no-ops. */
+  --m-light-1: #ffffff; /* outer highlight */
+  --m-light-2: #dfdfdf; /* inner highlight */
+  --m-shadow-1: #808080; /* inner shadow */
+  --m-shadow-2: #0a0a0a; /* outer shadow */
+  --m-face: var(--color-secondary, #c0c0c0); /* control face */
+  --m-face-edge: var(--m-face);
+
+  /* ── Composed surfaces ──────────────────────────────────────────────────
+   * Whole box-shadow values, not fragments. An era supplies these directly,
+   * which is what lets one vocabulary cover both Win95's four-tone inset
+   * bevel and System 1's single hard 1-bit drop shadow — structurally
+   * different effects, same token.
+   *
+   * The empty value is `0 0 transparent`, not `none`, because these get
+   * composed into shadow lists (`var(--m-raised), var(--m-elevation-window)`)
+   * where a literal `none` would make the whole declaration invalid. */
+  --m-raised: 0 0 transparent; /* buttons, title bars, panels at rest */
+  --m-pressed: 0 0 transparent; /* the same control, active */
+  --m-sunken: 0 0 transparent; /* text fields, list wells, scroll troughs */
+  --m-groove: 0 0 transparent; /* separators, group boxes */
+
+  /* ── Elevation ──────────────────────────────────────────────────────────
+   * Detached surfaces. Pre-2001 these are hard 1px offsets or nothing at all;
+   * post-2001 they are soft and blurred. */
+  --m-elevation-window: 0 0 transparent;
+  --m-elevation-menu: 0 0 transparent;
+  --m-elevation-modal: 0 0 transparent;
+
+  /* ── Motion ─────────────────────────────────────────────────────────────
+   * Pre-2001 interfaces do not animate. That has to be asserted, not assumed:
+   * the browser and the surrounding modern theme both supply transitions the
+   * era must actively cancel. */
+  --m-duration: 0ms;
+  --m-ease: linear;
+
+  /* ── Focus ──────────────────────────────────────────────────────────────
+   * The dotted "marching ants" focus rectangle is one of the most era-legible
+   * details there is, and disappeared almost entirely after 2001. */
+  --m-focus-width: 1px;
+  --m-focus-style: dotted;
+  --m-focus-color: currentColor;
+  --m-focus-offset: -4px;
+
+  /* ── Scrollbars ─────────────────────────────────────────────────────────
+   * The single most era-defining element in any interface. Rig's ScrollArea
+   * renders its own track, thumb and steppers, so these are fully reachable. */
+  --m-scrollbar-size: 16px;
+  --m-scrollbar-track: var(--m-face);
+  --m-scrollbar-thumb: var(--m-face);
+  --m-stepper-glyph: currentColor;
+
+  /* ── Window chrome ──────────────────────────────────────────────────────
+   * --m-titlebar-order flips the control cluster: `1` puts it on the right
+   * (Windows), `-1` on the left (Macintosh). This is the whole reason
+   * TitleBar's leading/caption/trailing split is enough for both traditions. */
+  --m-titlebar-h: 20px;
+  --m-titlebar-fg: var(--color-primary-foreground, #ffffff);
+  --m-titlebar-order: 1;
+  --m-titlebar-align: start;
+  --m-window-pad: 3px;
+
+  /* ── Typography ─────────────────────────────────────────────────────────
+   * Bitmap faces mush at fractional sizes, so an era pins its own size and
+   * disables smoothing rather than inheriting a fluid modern scale. */
+  --m-font: var(--font-sans);
+  --m-font-size: 12px;
+  --m-line-height: 1.2;
+  --m-font-smooth: auto;
+  --m-letter-spacing: normal;
+}
+
+/* ── Fallback-only tokens — documented, deliberately not declared ──────────
+ *
+ * Setting any of these here would shadow the engine's fallback and break it.
+ * Eras declare the ones they need; the rest fall through.
+ *
+ *   Texture (fall through to a flat colour)
+ *     --m-texture-face              control/panel fill
+ *     --m-texture-titlebar          active title bar
+ *     --m-texture-titlebar-inactive inactive title bar
+ *     --m-texture-desktop           the desktop behind the windows
+ *     --m-texture-menu              menu bar fill
+ *
+ *   Surfaces
+ *     --m-well                      text fields, list wells → --color-card
+ *     --m-well-edge                 their border           → --m-shadow-1
+ *     --m-highlight / --m-highlight-fg   selection, menu hover
+ *     --m-status-pane               status bar pane inset  → --m-sunken
+ *
+ *   Press behaviour
+ *     --m-press-shift               label offset under press (0px)
+ *     --m-pressed-bg / --m-pressed-fg   full inversion, as on 1-bit Macs
+ *
+ *   Disabled
+ *     --m-disabled-fg               → --m-shadow-1
+ *     --m-disabled-emboss           text-shadow, e.g. `1px 1px 0 #fff`
+ *
+ *   Controls
+ *     --m-tick-checked-bg / --m-tick-checked-edge
+ *                                   checked fill. Feeds background-color, so it
+ *                                   must be a solid colour — never a gradient.
+ *     --m-tick-size (13px) --m-tick-radius (0) --m-tick-glyph
+ *     --m-tick-glyph-mixed --m-radio-radius (50%) --m-radio-glyph
+ *     --m-track-h (4px) --m-knob-w (11px) --m-knob-h (21px) --m-knob-radius
+ *     --m-progress-h --m-progress-pad --m-progress-fill
+ *     --m-progress-segments --m-progress-segment-size
+ *
+ *   Chrome metrics
+ *     --m-titlebar-weight (700) --m-titlebar-fg-inactive
+ *     --m-menubar-h --m-menubar-shadow --m-statusbar-h --m-menu-pad
+ *     --m-row-pad (1px) --m-divider-h (2px) --m-th-weight (400)
+ *     --m-tab-radius (0) --m-tab-active-weight (700)
+ *     --m-keybinding-opacity (1)
+ *
+ *   Scrollbar detail
+ *     --m-scrollbar-texture         dither/gradient trough
+ *     --m-scrollbar-trough          inset shadow on the trough
+ *     --m-thumb-radius              → --m-radius
+ *     --m-stepper-glyph-size        → 100%
+ *
+ *   Tooltip
+ *     --m-tooltip-bg (#ffffe1) --m-tooltip-fg
+ */

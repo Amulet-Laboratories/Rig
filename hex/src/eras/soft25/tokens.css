@@ -1,0 +1,140 @@
+/* Soft '25 — 2025
+ *
+ * The present, hung on the wall as an exhibit.
+ *
+ * This is the argument the museum exists to make. A visitor walks in assuming
+ * that today's interface is neutral — that the previous rooms are *styles* and
+ * this one is simply what a correct interface looks like. It isn't. Large
+ * radii, dark-by-default, soft diffuse shadows, generous spacing, springy
+ * motion and low-contrast secondary text are as specific and as datable as a
+ * four-tone bevel, and in thirty years they will read exactly the way Bondi's
+ * pinstripes read now.
+ *
+ * It is built from the same tokens as every other room, which is the point.
+ *
+ * Reference palette:
+ *   #0F1115  near-black ground
+ *   #181B21  raised surface
+ *   #6E8BFF  periwinkle accent
+ *   #9AA3B2  secondary text
+ */
+
+[data-hex-era='soft25'] {
+  /* ── Palette ── Dark by default, which itself dates the room. */
+  --color-background: #0f1115;
+  --color-foreground: #e8eaf0;
+  --color-card: #181b21;
+  --color-card-foreground: #e8eaf0;
+  --color-primary: #6e8bff;
+  --color-primary-foreground: #0f1115;
+  --color-secondary: #181b21;
+  --color-muted: #1e222a;
+  --color-muted-foreground: #9aa3b2;
+  --color-border: #272c36;
+
+  --m-light-1: rgba(255, 255, 255, 0.08);
+  --m-light-2: rgba(255, 255, 255, 0.04);
+  --m-shadow-1: #272c36;
+  --m-shadow-2: #05070a;
+  --m-face: #181b21;
+  --m-face-edge: #272c36;
+  --m-well: #12151a;
+  --m-well-edge: #272c36;
+
+  /* ── Composed surfaces ──
+   * A hairline of light along the top edge and a wide, soft, low-opacity
+   * shadow beneath. The 2020s rediscovered relief, then made it whisper. */
+  --m-border-width: 1px;
+  --m-raised:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 1px 2px rgba(0, 0, 0, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.28);
+  --m-pressed: inset 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 transparent;
+  --m-pressed-bg: #1e222a;
+  --m-sunken: inset 0 1px 2px rgba(0, 0, 0, 0.45);
+  --m-groove: inset 0 -1px 0 #272c36;
+  --m-press-shift: 0px;
+
+  --m-disabled-fg: #4c5462;
+  --m-disabled-emboss: none;
+
+  /* ── Elevation ── Wide, soft, layered. Never a hard edge. */
+  --m-elevation-window: 0 24px 64px rgba(0, 0, 0, 0.55);
+  --m-elevation-menu: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --m-elevation-modal: 0 32px 80px rgba(0, 0, 0, 0.6);
+
+  --m-texture-face: linear-gradient(180deg, #1c202880 0%, #181b21 60%);
+  --m-texture-titlebar: linear-gradient(180deg, #1c2028 0%, #171a20 100%);
+  --m-texture-titlebar-inactive: #14171c;
+  --m-texture-desktop: radial-gradient(1200px 600px at 30% -10%, #1b2130 0%, #0f1115 60%);
+  --m-texture-menu: #181b21;
+
+  --m-titlebar-h: 38px;
+  --m-titlebar-order: 1;
+  --m-titlebar-align: center;
+  --m-titlebar-fg: #e8eaf0;
+  --m-titlebar-fg-inactive: #9aa3b2;
+  --m-titlebar-weight: 600;
+
+  /* ── Geometry ── The largest radii and the loosest spacing in the collection. */
+  --m-radius: 12px;
+  --m-radius-window: 16px;
+  --m-space: 6px;
+  --m-density: 1.5;
+  --m-control-h: 36px;
+  --m-window-pad: 10px;
+  --m-menubar-h: 38px;
+  --m-statusbar-h: 34px;
+  --m-row-pad: 8px;
+  --m-divider-h: 1px;
+  --m-th-weight: 600;
+  --m-menu-pad: 6px;
+
+  --m-highlight: #6e8bff;
+  --m-highlight-fg: #0f1115;
+
+  /* ── Motion ── Springy overshoot, the tell of the decade. */
+  --m-duration: 260ms;
+  --m-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --m-focus-width: 2px;
+  --m-focus-style: solid;
+  --m-focus-color: #6e8bff;
+  --m-focus-offset: 2px;
+
+  --m-font: 'Inter', system-ui, sans-serif;
+  --m-font-size: 14px;
+  --m-line-height: 1.5;
+  --m-font-smooth: antialiased;
+  --m-letter-spacing: -0.011em;
+
+  --m-tick-size: 18px;
+  --m-tick-radius: 6px;
+  --m-tick-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2.4 6.3l2.4 2.4L9.6 3.4' stroke='%230f1115' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  --m-tick-checked-bg: #6e8bff;
+  --m-tick-checked-edge: #6e8bff;
+  --m-progress-fill-radius: 3px;
+  --m-radio-radius: 50%;
+  --m-radio-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'><rect width='8' height='8' rx='4' fill='%230f1115'/></svg>");
+
+  --m-scrollbar-size: 10px;
+  --m-scrollbar-track: transparent;
+  --m-scrollbar-thumb: #39404e;
+  --m-scrollbar-texture: transparent;
+  --m-thumb-radius: 5px;
+  --m-stepper-glyph: #4c5462;
+  --m-stepper-glyph-size: 6px;
+
+  --m-track-h: 6px;
+  --m-knob-w: 20px;
+  --m-knob-h: 20px;
+  --m-knob-radius: 50%;
+
+  --m-progress-h: 6px;
+  --m-progress-pad: 0px;
+  --m-progress-fill: linear-gradient(90deg, #6e8bff 0%, #9a7cff 100%);
+
+  --m-tooltip-bg: #262b34;
+  --m-tooltip-fg: #e8eaf0;
+  --m-tab-radius: 10px;
+  --m-tab-active-weight: 600;
+}

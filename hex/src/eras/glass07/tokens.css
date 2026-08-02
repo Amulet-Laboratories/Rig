@@ -1,0 +1,173 @@
+/* Glass '07 — 2007
+ *
+ * Aero. The one era in the collection that could not have been faked in CSS
+ * until recently, because its defining property is not a colour or a shadow but
+ * a *live blur of whatever is behind it* — and `backdrop-filter` is the only
+ * thing that does that honestly.
+ *
+ * It is the high-water mark of interface materialism. Bondi '01 pretended
+ * surfaces were made of plastic; Glass claims they are made of frosted sheet
+ * glass, lit from behind, with a bright rim where the light catches the edge.
+ * It arrived at the exact moment GPUs made per-frame blur affordable, which is
+ * the whole reason it looks the way it does — as with every other room here,
+ * the hardware wrote the style.
+ *
+ * Reference palette:
+ *   rgba(255,255,255,0.55)  the glass itself
+ *   #7EB6E8  aero blue
+ *   #1F5FA8  deep accent
+ *   #2B3B4E  text on glass
+ */
+
+[data-hex-era='glass07'] {
+  /* ── Palette ── */
+  --color-background: #2f5a8c;
+  --color-foreground: #17222e;
+  --color-card: #ffffff;
+  --color-card-foreground: #17222e;
+  --color-primary: #1f5fa8;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #eef5fc;
+  --color-muted: #e2edf8;
+  --color-muted-foreground: #5a6b7d;
+  --color-border: #9fbcd8;
+
+  --m-light-1: rgba(255, 255, 255, 0.95);
+  --m-light-2: rgba(255, 255, 255, 0.6);
+  --m-shadow-1: #9fbcd8;
+  --m-shadow-2: #5c7f9f;
+  --m-face: rgba(238, 245, 252, 0.82);
+  --m-face-edge: rgba(255, 255, 255, 0.7);
+  --m-well: #ffffff;
+  --m-well-edge: #9fbcd8;
+
+  /* ── Composed surfaces ──
+   * The Aero button: a glossy top half, a bright inner rim all the way round,
+   * and a soft blue outer glow instead of a hard shadow. */
+  --m-border-width: 1px;
+  --m-raised:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 0 0 1px rgba(255, 255, 255, 0.45),
+    inset 0 -8px 10px -8px rgba(31, 95, 168, 0.35), 0 1px 3px rgba(23, 34, 46, 0.22);
+  --m-pressed:
+    inset 0 2px 6px rgba(31, 95, 168, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+    0 0 transparent;
+  --m-sunken: inset 0 2px 4px rgba(31, 95, 168, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  --m-groove: inset 0 1px 0 rgba(92, 127, 159, 0.35), inset 0 -1px 0 rgba(255, 255, 255, 0.85);
+  --m-press-shift: 0px;
+
+  --m-disabled-fg: #9db0c2;
+  --m-disabled-emboss: 0 1px 0 rgba(255, 255, 255, 0.85);
+
+  /* ── Elevation ── Soft, wide, and tinted toward the accent rather than black. */
+  --m-elevation-window: 0 12px 36px rgba(12, 30, 52, 0.45);
+  --m-elevation-menu: 0 6px 20px rgba(12, 30, 52, 0.32);
+  --m-elevation-modal: 0 20px 56px rgba(12, 30, 52, 0.5);
+
+  /* ── Translucency ──
+   * The era's whole thesis, and the one token no earlier room sets. */
+  --m-backdrop-window: blur(18px) saturate(150%);
+  --m-backdrop-menu: blur(14px) saturate(140%);
+
+  /* ── Texture ──
+   * Glass is a vertical gradient from bright to dim with a specular band across
+   * the upper half, over whatever the blur pulls through from behind. */
+  --m-texture-face: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(240, 247, 253, 0.78) 48%,
+    rgba(214, 232, 247, 0.72) 52%,
+    rgba(232, 243, 252, 0.8) 100%
+  );
+  --m-texture-titlebar: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(190, 218, 242, 0.5) 55%,
+    rgba(160, 198, 232, 0.55) 100%
+  );
+  --m-texture-titlebar-inactive: rgba(238, 245, 252, 0.6);
+  --m-texture-desktop: linear-gradient(165deg, #4d84bd 0%, #2f5a8c 55%, #1d3a5c 100%);
+  --m-texture-menu: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(232, 243, 252, 0.85) 100%
+  );
+
+  /* ── Window chrome ── Tall glass caption bar, controls right. */
+  --m-titlebar-h: 30px;
+  --m-titlebar-order: 1;
+  --m-titlebar-align: center;
+  --m-titlebar-fg: #17222e;
+  --m-titlebar-fg-inactive: #6d8095;
+  --m-titlebar-weight: 400;
+
+  /* ── Geometry ── Rounded, but not yet 2013-round. */
+  --m-radius: 4px;
+  --m-radius-window: 8px;
+  --m-space: 5px;
+  --m-density: 1.2;
+  --m-control-h: 26px;
+  --m-window-pad: 5px;
+  --m-menubar-h: 26px;
+  --m-statusbar-h: 24px;
+  --m-row-pad: 3px;
+  --m-divider-h: 2px;
+  --m-th-weight: 600;
+  --m-menu-pad: 4px;
+
+  --m-highlight: #cbe3f7;
+  --m-highlight-fg: #17222e;
+
+  /* ── Motion ── Glows fade in and out rather than snapping. */
+  --m-duration: 200ms;
+  --m-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Focus ── The blue glow, Aero's most-copied detail. */
+  --m-focus-width: 3px;
+  --m-focus-style: solid;
+  --m-focus-color: rgba(126, 182, 232, 0.75);
+  --m-focus-offset: 1px;
+
+  --m-font: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  --m-font-size: 13px;
+  --m-line-height: 1.35;
+  --m-font-smooth: antialiased;
+  --m-letter-spacing: 0;
+
+  /* ── Controls ── */
+  --m-tick-size: 15px;
+  --m-tick-radius: 3px;
+  --m-tick-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M1.4 5.2l2.3 2.4L8.7 2.2' stroke='%23ffffff' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  --m-tick-checked-bg: #1f5fa8;
+  --m-tick-checked-edge: #17497f;
+  --m-radio-radius: 50%;
+  --m-radio-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6' viewBox='0 0 6 6'><rect width='6' height='6' rx='3' fill='%23ffffff'/></svg>");
+
+  /* ── Scrollbars ── A glass lozenge in a recessed channel. */
+  --m-scrollbar-size: 16px;
+  --m-scrollbar-track: rgba(226, 237, 248, 0.7);
+  --m-scrollbar-thumb: rgba(255, 255, 255, 0.9);
+  --m-scrollbar-texture: linear-gradient(
+    90deg,
+    rgba(200, 220, 238, 0.75) 0%,
+    rgba(232, 243, 252, 0.7) 100%
+  );
+  --m-scrollbar-trough: inset 1px 0 3px rgba(31, 95, 168, 0.18);
+  --m-thumb-radius: 4px;
+  --m-stepper-glyph: #3f6c99;
+  --m-stepper-glyph-size: 7px;
+
+  --m-track-h: 5px;
+  --m-knob-w: 15px;
+  --m-knob-h: 22px;
+  --m-knob-radius: 3px;
+
+  --m-progress-h: 18px;
+  --m-progress-pad: 2px;
+  --m-progress-fill: linear-gradient(180deg, #a8e06a 0%, #5eb52c 50%, #74c93f 100%);
+  --m-progress-fill-radius: 3px;
+
+  --m-tooltip-bg: rgba(255, 255, 255, 0.95);
+  --m-tooltip-fg: #17222e;
+  --m-tab-radius: 4px;
+  --m-tab-active-weight: 600;
+}

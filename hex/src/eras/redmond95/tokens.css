@@ -1,0 +1,170 @@
+/* Redmond '95 — 1995
+ *
+ * The canonical bevel. Four tones of gray arranged so that light falls from the
+ * top-left, applied to every raised surface on screen: buttons, title bars,
+ * scroll thumbs, status panes, menu bars. Once you see the four-tone rule you
+ * cannot unsee it — it is the entire grammar of the era.
+ *
+ * Reference palette:
+ *   #FFFFFF  button highlight   — outer top-left
+ *   #DFDFDF  button light       — inner top-left
+ *   #C0C0C0  button face        — the famous gray
+ *   #808080  button shadow      — inner bottom-right
+ *   #0A0A0A  window frame       — outer bottom-right
+ *   #000080  active title, selection
+ *   #008080  desktop teal
+ *   #FFFFE1  tooltip cream
+ *
+ * This era is pure data: it sets tokens and inherits everything else from
+ * eras/_shared/chrome.css. There is no chrome.css here, which is the outcome
+ * the material vocabulary was designed to make possible.
+ */
+
+[data-hex-era='redmond95'] {
+  /* ── Palette ── */
+  --color-background: #c0c0c0;
+  --color-foreground: #0a0a0a;
+  --color-card: #ffffff;
+  --color-card-foreground: #0a0a0a;
+  --color-primary: #000080;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #c0c0c0;
+  --color-muted: #c0c0c0;
+  --color-muted-foreground: #808080;
+  --color-border: #808080;
+
+  /* ── Bevel tones ── */
+  --m-light-1: #ffffff;
+  --m-light-2: #dfdfdf;
+  --m-shadow-1: #808080;
+  --m-shadow-2: #0a0a0a;
+  --m-face: #c0c0c0;
+  --m-well: #ffffff;
+  --m-well-edge: #808080;
+
+  /* ── Composed surfaces ──
+   * Borders are zero-width here: the entire edge treatment is inset shadow, so
+   * the bevel can be four tones thick inside a 2px band. */
+  --m-border-width: 0px;
+
+  --m-raised:
+    inset -1px -1px var(--m-shadow-2), inset 1px 1px var(--m-light-1),
+    inset -2px -2px var(--m-shadow-1), inset 2px 2px var(--m-light-2);
+
+  --m-pressed:
+    inset -1px -1px var(--m-light-1), inset 1px 1px var(--m-shadow-2),
+    inset -2px -2px var(--m-light-2), inset 2px 2px var(--m-shadow-1);
+
+  --m-sunken:
+    inset -1px -1px var(--m-light-1), inset 1px 1px var(--m-shadow-1),
+    inset -2px -2px var(--m-light-2), inset 2px 2px var(--m-shadow-2);
+
+  --m-groove: inset 0 1px var(--m-shadow-1), inset 0 -1px var(--m-light-1);
+  --m-status-pane: inset -1px -1px var(--m-light-1), inset 1px 1px var(--m-shadow-1);
+
+  /* The label shifts down-right under a press. */
+  --m-press-shift: 1px;
+
+  /* Disabled text is embossed, not faded — gray with a white shadow beneath. */
+  --m-disabled-fg: #808080;
+  --m-disabled-emboss: 1px 1px 0 var(--m-light-1);
+
+  /* ── Elevation ── Hard-edged and flat; nothing blurs before 2001.
+   * `0 0 transparent` rather than `none`, because these compose into a
+   * comma-separated shadow list where a literal `none` invalidates the whole
+   * declaration and silently drops the bevel with it. */
+  --m-elevation-window: 0 0 transparent;
+  --m-elevation-menu: 0 0 transparent;
+  --m-elevation-modal: 0 0 transparent;
+
+  /* ── Texture ── */
+  --m-texture-titlebar: #000080;
+  --m-texture-titlebar-inactive: #808080;
+  --m-texture-desktop: #008080;
+
+  /* ── Geometry ── */
+  --m-radius: 0px;
+  --m-radius-window: 0px;
+  --m-space: 4px;
+  --m-density: 0.75;
+  --m-control-h: 23px;
+  --m-window-pad: 3px;
+  --m-titlebar-h: 18px;
+  --m-titlebar-order: 1; /* controls on the right */
+  --m-titlebar-align: start;
+  --m-titlebar-weight: 700;
+  --m-menubar-h: 20px;
+  --m-statusbar-h: 20px;
+  --m-row-pad: 0px;
+  --m-divider-h: 2px;
+  --m-th-weight: 400;
+
+  /* ── Selection ── */
+  --m-highlight: #000080;
+  --m-highlight-fg: #ffffff;
+
+  /* ── Motion ── None. */
+  --m-duration: 0ms;
+  --m-ease: linear;
+
+  /* ── Focus ── The dotted marching-ants rectangle. */
+  --m-focus-width: 1px;
+  --m-focus-style: dotted;
+  --m-focus-color: #0a0a0a;
+  --m-focus-offset: -4px;
+
+  /* ── Typography ── */
+  --m-font: 'Jersey 10', 'W95FA', 'MS Sans Serif', Tahoma, sans-serif;
+  --m-font-size: 13px;
+  --m-line-height: 1.1;
+  --m-font-smooth: none;
+  --m-letter-spacing: 0;
+
+  /* ── Controls ──
+   * The tick is a two-pixel-thick check drawn on a 7×7 grid, rendered with
+   * crisp edges so it stays a pixel mark at any scale. */
+  --m-tick-size: 13px;
+  --m-tick-radius: 0px;
+  --m-tick-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='7' height='7' viewBox='0 0 7 7' shape-rendering='crispEdges'><path fill='%23000000' d='M0 2h1v2H0zM1 3h1v2H1zM2 4h1v2H2zM3 3h1v2H3zM4 2h1v2H4zM5 1h1v2H5zM6 0h1v2H6z'/></svg>");
+  --m-tick-glyph-mixed: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='7' height='7' viewBox='0 0 7 7' shape-rendering='crispEdges'><path fill='%23808080' d='M1 3h5v1H1z'/></svg>");
+  --m-radio-radius: 50%;
+  --m-radio-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'><rect width='4' height='4' rx='2' fill='%23000000'/></svg>");
+
+  /* ── Scrollbars ──
+   * The trough is a one-pixel checkerboard dither of white and face gray — a
+   * detail invented to fake a lighter shade on a 16-colour display, and the
+   * fastest way to date a screenshot to the nineties. */
+  --m-scrollbar-size: 16px;
+  --m-scrollbar-track: #ffffff;
+  --m-scrollbar-texture:
+    linear-gradient(45deg, #c0c0c0 25%, transparent 25%, transparent 75%, #c0c0c0 75%) 0 0 / 2px 2px,
+    linear-gradient(45deg, #c0c0c0 25%, transparent 25%, transparent 75%, #c0c0c0 75%) 1px 1px / 2px
+      2px,
+    #ffffff;
+  --m-thumb-radius: 0px;
+  --m-stepper-glyph: #0a0a0a;
+  --m-stepper-glyph-size: 8px;
+
+  /* ── Sliders ── */
+  --m-track-h: 4px;
+  --m-knob-w: 11px;
+  --m-knob-h: 21px;
+  --m-knob-radius: 0px;
+
+  /* ── Progress ── Discrete blocks, never a smooth fill. */
+  --m-progress-h: 20px;
+  --m-progress-pad: 2px;
+  --m-progress-fill: #000080;
+  /* The gaps must paint the trough, not fall through to the fill beneath —
+   * otherwise the segmented bar renders as one solid block. */
+  --m-progress-segments: repeating-linear-gradient(90deg, #000080 0 10px, #ffffff 10px 12px);
+  --m-progress-segment-size: 12px 100%;
+
+  /* ── Menus and tooltips ── */
+  --m-texture-menu: #c0c0c0;
+  --m-menu-pad: 2px;
+  --m-tooltip-bg: #ffffe1;
+  --m-tooltip-fg: #0a0a0a;
+  --m-tab-radius: 0px;
+  --m-tab-active-weight: 400;
+}

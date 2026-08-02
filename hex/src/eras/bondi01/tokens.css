@@ -1,0 +1,148 @@
+/* Bondi '01 — 2001
+ *
+ * The skeuomorphic peak, and the first era in the collection where a shadow is
+ * allowed to blur. Everything before this drew depth with hard one-pixel
+ * offsets because the hardware could not afford anything else; here depth
+ * becomes soft, glossy and wet-looking, and the interface starts pretending to
+ * be made of physical material.
+ *
+ * Two signatures do most of the work: the pinstripe — fine horizontal lines
+ * ruled across every window — and the gel fill, a light-to-dark gradient with a
+ * bright specular highlight along the top edge.
+ *
+ * Reference palette:
+ *   #EDEDED  window grey
+ *   #FFFFFF  pinstripe white
+ *   #3F7FD0  aqua blue     — selection, default button
+ *   #8CB8E8  gel highlight
+ *   #7D7D7D  bezel grey
+ */
+
+[data-hex-era='bondi01'] {
+  /* ── Palette ── */
+  --color-background: #6e8fb8;
+  --color-foreground: #1a1a1a;
+  --color-card: #ffffff;
+  --color-card-foreground: #1a1a1a;
+  --color-primary: #3f7fd0;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #ededed;
+  --color-muted: #e4e4e4;
+  --color-muted-foreground: #6b6b6b;
+  --color-border: #a8a8a8;
+
+  --m-light-1: #ffffff;
+  --m-light-2: #f2f2f2;
+  --m-shadow-1: #b4b4b4;
+  --m-shadow-2: #7d7d7d;
+  --m-face: #ededed;
+  --m-face-edge: #a0a0a0;
+  --m-well: #ffffff;
+  --m-well-edge: #9a9a9a;
+
+  /* ── Composed surfaces ──
+   * The gel: a bright inner highlight along the top, a soft inner shade at the
+   * bottom, and a real drop shadow underneath. */
+  --m-border-width: 1px;
+  --m-raised:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -6px 8px -6px rgba(0, 0, 0, 0.28),
+    0 1px 2px rgba(0, 0, 0, 0.22);
+  --m-pressed:
+    inset 0 2px 5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 0 transparent;
+  --m-sunken: inset 0 2px 4px rgba(0, 0, 0, 0.22), inset 0 -1px 0 rgba(255, 255, 255, 0.9);
+  --m-groove: inset 0 1px 0 rgba(0, 0, 0, 0.12), inset 0 -1px 0 rgba(255, 255, 255, 0.9);
+  --m-press-shift: 0px;
+
+  --m-disabled-fg: #a5a5a5;
+  --m-disabled-emboss: 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  /* ── Elevation ── Soft and blurred, for the first time in the collection. */
+  --m-elevation-window: 0 10px 28px rgba(0, 0, 0, 0.35);
+  --m-elevation-menu: 0 6px 16px rgba(0, 0, 0, 0.28);
+  --m-elevation-modal: 0 18px 48px rgba(0, 0, 0, 0.42);
+
+  /* ── Texture ──
+   * The pinstripe. One-pixel white rules on grey, ruled across the title bar
+   * and the window face alike. */
+  --m-texture-face: repeating-linear-gradient(180deg, #ededed 0 3px, #f7f7f7 3px 4px);
+  --m-texture-titlebar: repeating-linear-gradient(180deg, #e2e2e2 0 3px, #f4f4f4 3px 4px);
+  --m-texture-titlebar-inactive: repeating-linear-gradient(180deg, #f0f0f0 0 3px, #f8f8f8 3px 4px);
+  --m-texture-desktop: linear-gradient(160deg, #6e8fb8 0%, #4a6f9e 60%, #3d5c85 100%);
+  --m-texture-menu: linear-gradient(180deg, #ffffff 0%, #e9e9e9 100%);
+
+  /* ── Window chrome ── Traffic lights on the left, title centred. */
+  --m-titlebar-h: 22px;
+  --m-titlebar-order: -1;
+  --m-titlebar-align: center;
+  --m-titlebar-fg: #3a3a3a;
+  --m-titlebar-fg-inactive: #9a9a9a;
+  --m-titlebar-weight: 700;
+
+  /* ── Geometry ── Soft everywhere. */
+  --m-radius: 9px;
+  --m-radius-window: 8px;
+  --m-space: 5px;
+  --m-density: 1.15;
+  --m-control-h: 24px;
+  --m-window-pad: 6px;
+  --m-menubar-h: 22px;
+  --m-statusbar-h: 22px;
+  --m-row-pad: 3px;
+  --m-divider-h: 2px;
+  --m-th-weight: 600;
+  --m-menu-pad: 4px;
+
+  --m-highlight: #3f7fd0;
+  --m-highlight-fg: #ffffff;
+
+  /* ── Motion ── The era that introduced it. Genie effects, pulsing buttons. */
+  --m-duration: 180ms;
+  --m-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* ── Focus ── The soft blue glow that replaced the dotted rectangle. */
+  --m-focus-width: 3px;
+  --m-focus-style: solid;
+  --m-focus-color: rgba(63, 127, 208, 0.55);
+  --m-focus-offset: 1px;
+
+  --m-font: 'Inter', 'Lucida Grande', 'Helvetica Neue', sans-serif;
+  --m-font-size: 13px;
+  --m-line-height: 1.35;
+  --m-font-smooth: antialiased;
+  --m-letter-spacing: -0.005em;
+
+  /* ── Controls ── Rounded gel capsules with a white mark. */
+  --m-tick-size: 15px;
+  --m-tick-radius: 4px;
+  --m-tick-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M1.5 5.2l2.2 2.4L8.6 2.4' stroke='%23ffffff' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  /* Solid, not a gradient: this feeds background-color, which cannot take one. */
+  --m-tick-checked-bg: #3f7fd0;
+  --m-tick-checked-edge: #2f66ad;
+  --m-progress-fill-radius: 7px;
+  --m-radio-radius: 50%;
+  --m-radio-glyph: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6' viewBox='0 0 6 6'><rect width='6' height='6' rx='3' fill='%23ffffff'/></svg>");
+
+  /* ── Scrollbars ── The blue gel lozenge. */
+  --m-scrollbar-size: 15px;
+  --m-scrollbar-track: #e6e6e6;
+  --m-scrollbar-thumb: #3f7fd0;
+  --m-scrollbar-texture: linear-gradient(90deg, #dcdcdc 0%, #ececec 50%, #dcdcdc 100%);
+  --m-scrollbar-trough: inset 1px 0 2px rgba(0, 0, 0, 0.16);
+  --m-thumb-radius: 7px;
+  --m-stepper-glyph: #5b5b5b;
+  --m-stepper-glyph-size: 7px;
+
+  --m-track-h: 5px;
+  --m-knob-w: 16px;
+  --m-knob-h: 16px;
+  --m-knob-radius: 50%;
+
+  --m-progress-h: 14px;
+  --m-progress-pad: 0px;
+  --m-progress-fill: linear-gradient(180deg, #6ba6e8 0%, #3f7fd0 55%, #2f66ad 100%);
+
+  --m-tooltip-bg: #ffffcc;
+  --m-tooltip-fg: #1a1a1a;
+  --m-tab-radius: 8px;
+  --m-tab-active-weight: 700;
+}

@@ -1,0 +1,20 @@
+/* Hex — All eras, one bundle
+ *
+ * The museum loads this. Every era's tokens are scoped to its own
+ * [data-hex-era] value, so several periods can render side by side on one page
+ * — which the specimen-case view requires and a global theme could not do.
+ *
+ * The engine and the material defaults appear once; each era contributes only
+ * its token block. Ordered chronologically, which is also the order the museum
+ * presents them in.
+ */
+@import '../materials.css';
+@import './cupertino84/tokens.css';
+@import './cube91/tokens.css';
+@import './terminal93/tokens.css';
+@import './redmond95/tokens.css';
+@import './bondi01/tokens.css';
+@import './glass07/tokens.css';
+@import './flat13/tokens.css';
+@import './soft25/tokens.css';
+@import './_shared/chrome.css';
