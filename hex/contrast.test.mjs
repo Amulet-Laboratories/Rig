@@ -66,6 +66,23 @@ function contrast(fg, bg) {
   return (hi + 0.05) / (lo + 0.05)
 }
 
+const toHex = (n) => Math.round(n).toString(16).padStart(2, '0')
+
+/** Composite `fg` over `bg` at `alpha`, the way `opacity` actually renders. */
+function flatten(fg, bg, alpha) {
+  const f = channels(fg)
+  const b = channels(bg)
+  return '#' + [0, 1, 2].map((i) => toHex(f[i] * alpha + b[i] * (1 - alpha))).join('')
+}
+
+function channels(hex) {
+  const h = hex.replace('#', '')
+  return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16))
+}
+
+/** Matches the opacity in shared/components/web.css for footer text. */
+const FOOTER_TEXT_OPACITY = 0.9
+
 /**
  * The pairs that shared CSS actually composes. Each mirrors a rule in
  * src/shared/components/web.css — change one there and this list must follow.
@@ -100,6 +117,27 @@ describe('hex theme contrast', () => {
           )
         })
       }
+
+      it('keeps footer links legible on the footer', () => {
+        // [data-rig-site-footer] paints itself --color-primary and sets its
+        // foreground to --color-primary-foreground; [data-rig-site-footer-post]
+        // inherits that and is dimmed to FOOTER_TEXT_OPACITY.
+        //
+        // This pair is asserted because it was the worst contrast anywhere in
+        // the estate and nothing was watching it: footer-post used to hardcode
+        // --color-muted-foreground, a token defined against the *page*
+        // background, which put a light grey on a saturated brand colour for a
+        // ratio of 1.02-1.67 — invisible, on every page of every property.
+        const bg = tokens['--color-primary']
+        const fg = tokens['--color-primary-foreground']
+        const rendered = flatten(fg, bg, FOOTER_TEXT_OPACITY)
+
+        const ratio = contrast(rendered, bg)
+        assert.ok(
+          ratio >= AA,
+          `${theme}: footer link is ${ratio.toFixed(2)}:1 (${fg} at ${FOOTER_TEXT_OPACITY} over ${bg}), below AA's ${AA}:1`,
+        )
+      })
 
       it('hovers a button darker than the button itself', () => {
         // --rig-button-hover-bg is defined outside @theme, so read it directly.

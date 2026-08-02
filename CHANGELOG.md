@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.2] — 2026-08-02
+
+### Fixed
+
+- **Footer links measured 1.02–1.67:1 on every theme — effectively invisible.** `[data-rig-site-footer]` paints itself `--color-primary`, but `[data-rig-site-footer-post]` hardcoded its text to `--color-muted-foreground`, a token whose definition is "muted against the _page_ background". That put a light-page grey on a saturated brand colour, on every page of every consuming site. It now inherits the footer's own foreground, which is correct for all three footer variants (`default` primary/primary-foreground, `card` card/foreground, `inverted` foreground/background) where a fixed token could only ever suit one of them by accident. Footer text opacity moves `0.85` → `0.9`, since with the colour corrected the opacity became the only thing between these links and the threshold — `quartz` is the binding constraint at 0.88. Every in-use theme now lands between 4.5 and 10.2.
+
+  This is the worst contrast defect the estate had, and it outranked everything fixed in 3.4.1. It survived because contrast was only ever checked by rendering a page and running axe, which reports _that_ elements fail without saying which token pairing caused it.
+
+### Added
+
+- **`hex/contrast.test.mjs` now asserts the footer pairing** — `--color-primary-foreground` composited over `--color-primary` at the real 0.9 opacity, per in-use theme. Negative-tested: restoring the old 0.85 fails `quartz` and `fern` precisely.
+
 ## [3.4.1] — 2026-08-02
 
 ### Fixed
