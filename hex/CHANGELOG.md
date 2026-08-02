@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **A material token layer (`src/materials.css`) and eight period eras.** Hex's theme tokens answer "what colour is it"; the new `--m-*` tokens answer "what is it made of" — bevel, elevation, density, texture, motion, control geometry, translucency. Eras are scoped to `[data-hex-era]` rather than applied globally so several periods can render on one page, and build to `dist/eras/{name}.css` plus a combined `dist/eras.css`. Eight rooms spanning 1984–2025: `cupertino84`, `cube91`, `terminal93`, `redmond95`, `bondi01`, `glass07`, `flat13`, `soft25`. Each is a `tokens.css` and nothing else — the engine in `src/eras/_shared/chrome.css` spends the tokens, so no era carries hand-written component CSS. The 27 palette themes never import any of it and are byte-for-byte unaffected. See [../docs/MUSEUM-ROADMAP.md](../docs/MUSEUM-ROADMAP.md).
+
+### Added
+
 - **`--card-accent-text` / `--color-accent-text` — a contrast-safe variant of the accent, for
   small text only.** A brand accent chosen to look right as a fill is usually too light to be
   readable as small text: the 2026-07-31 fleet audit measured category card titles at **3.50:1**
