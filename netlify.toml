@@ -18,6 +18,17 @@
   to = "/hexrig/story/index.html"
   status = 200
 
+# SPA fallback for the demos app (gallery, the 13 example sites, the museum).
+# Must come BEFORE the landing rule below — Netlify takes the first match, and
+# `/hexrig/*` would otherwise serve the landing page's index.html for every
+# demo deep link. The app is a single-page build with one index.html, so
+# without this rule any direct hit or refresh on /hexrig/demos/<anything>
+# lands on the wrong app entirely.
+[[redirects]]
+  from = "/hexrig/demos/*"
+  to = "/hexrig/demos/index.html"
+  status = 200
+
 # SPA fallback for landing page
 [[redirects]]
   from = "/hexrig/*"
