@@ -74,10 +74,20 @@ The `themes` array in `build.mjs` is the source of truth for what gets built;
 `./{name}/source` → `src/themes/{name}/index.css`).
 
 ```js
-// Import a theme (built bundle or raw source)
-import '@amulet-laboratories/hex' // default (cobalt), built
-import '@amulet-laboratories/hex/garden' // a specific theme, built
-import '@amulet-laboratories/hex/garden/source' // raw source (for Vite/Tailwind pipelines)
+// Import a theme (built bundle or raw source). Since rig 3.0.0 Hex ships *inside*
+// @amulet-laboratories/rig under the hex/ subpath — the standalone
+// @amulet-laboratories/hex package is deprecated at its final version, 0.8.0.
+import '@amulet-laboratories/rig/hex' // default (cobalt), built
+import '@amulet-laboratories/rig/hex/garden' // a specific theme, built
+import '@amulet-laboratories/rig/hex/garden/source' // raw source (Vite/Tailwind pipelines)
+```
+
+Era bundles (the Museum of User Interfaces) live alongside the themes but are scoped to
+`[data-hex-era]` rather than applied globally, so several can coexist on one page:
+
+```js
+import '@amulet-laboratories/rig/hex/eras' // all eras, one bundle
+import '@amulet-laboratories/rig/hex/eras/redmond95' // one era
 ```
 
 ## Token API

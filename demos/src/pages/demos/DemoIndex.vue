@@ -270,6 +270,17 @@ const filteredDemos = computed(() =>
           The businesses are fictional. They share an invented coastal town, Briar Cove, so each
           demo reads like a real site rather than a disconnected component playground.
         </p>
+
+        <!-- The museum is not one of the thirteen — it is the argument for the
+             system rather than an example of it, so it gets its own entry. -->
+        <RouterLink
+          to="/museum"
+          class="mt-6 inline-flex items-center gap-2 rounded-full bg-cream/5 px-4 py-2 text-sm font-light text-cream transition-colors hover:bg-cream/10"
+        >
+          <span aria-hidden="true">🏛</span>
+          The Museum of User Interfaces
+          <span class="text-warm-pink">— eight eras, one component set</span>
+        </RouterLink>
       </div>
       <!-- Filter pills + live count -->
       <div class="mt-8 flex flex-wrap items-center gap-2">

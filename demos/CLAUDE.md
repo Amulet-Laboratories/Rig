@@ -18,7 +18,7 @@ are its named layers (see the root `CLAUDE.md`).
 - `src/pages/demos/DemoIndex.vue` — the gallery (filter pills + cards)
 - `src/pages/demos/<name>/index.vue` — one self-contained mini-site per demo; internal pages via
   Rig's `useHashRouter`, theme via `data-hex-theme` on `<SiteShell>` + a scoped token import
-  (`@amulet-laboratories/hex/scoped/<theme>`), code-split into that demo's chunk
+  (`@amulet-laboratories/rig/hex/scoped/<theme>`), code-split into that demo's chunk
 - `src/router/index.ts` — `/` gallery + one route per demo; base `/hexrig/demos/`
 - `src/components/DemoAttribution.vue` + `src/lib/demoManifest.ts` — the "Built with" panel.
   Manifests are keyed by demo id but looked up by `data-hex-theme` value via

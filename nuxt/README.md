@@ -2,15 +2,18 @@
 
 Nuxt module for [@amulet-laboratories/rig](https://github.com/Amulet-Laboratories/rig) — auto-imports every Rig component and composable with full tree-shaking and SSR support. The name list is derived from Rig's own [`/manifest`](https://github.com/Amulet-Laboratories/rig) export, so it never falls behind when Rig ships new components.
 
-> Requires `@amulet-laboratories/rig` **≥ 0.6.0** (the version that introduced the `/manifest` export).
+> Requires `@amulet-laboratories/rig` **≥ 3.0.0** — the version that folded Hex in, so the
+> theme CSS now comes from the same package.
 
 ## Install
 
 ```bash
 pnpm add @amulet-laboratories/rig @amulet-laboratories/rig-nuxt
-# Optional — theme CSS
-pnpm add @amulet-laboratories/hex
 ```
+
+Theme CSS ships inside `@amulet-laboratories/rig` under the `hex/` subpath — there is no
+separate package to install. `@amulet-laboratories/hex` is deprecated on npm at its final
+version, 0.8.0; do not add it.
 
 ## Setup
 
@@ -51,14 +54,14 @@ Import a Hex theme in your Nuxt app entry:
 
 ```ts
 // plugins/hex.client.ts
-import '@amulet-laboratories/hex/cobalt'
+import '@amulet-laboratories/rig/hex/cobalt'
 ```
 
 Or in `nuxt.config.ts`:
 
 ```ts
 export default defineNuxtConfig({
-  css: ['@amulet-laboratories/hex/cobalt'],
+  css: ['@amulet-laboratories/rig/hex/cobalt'],
 })
 ```
 
