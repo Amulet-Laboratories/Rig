@@ -1,6 +1,6 @@
 {
   "name": "@amulet-laboratories/rig",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "type": "module",
   "engines": {
     "node": ">=22",
