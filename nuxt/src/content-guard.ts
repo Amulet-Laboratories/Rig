@@ -27,7 +27,10 @@ export function scanSource(file: string, source: string): ContentViolation[] {
   const out: ContentViolation[] = []
   source.split('\n').forEach((line, i) => {
     for (const m of line.matchAll(SELF_CLOSING)) {
-      out.push({ file, line: i + 1, tag: m[1], text: m[0].trim() })
+      // The capture group always participates when SELF_CLOSING matches, but
+      // noUncheckedIndexedAccess cannot know that — and consumers who enable it
+      // typecheck this file, since the package ships its src.
+      out.push({ file, line: i + 1, tag: m[1] ?? '', text: m[0].trim() })
     }
   })
   return out
