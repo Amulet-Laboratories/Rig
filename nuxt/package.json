@@ -42,7 +42,9 @@
   },
   "devDependencies": {
     "@amulet-laboratories/rig": "workspace:*",
-    "@nuxt/kit": "^3.0.0"
+    "@nuxt/kit": "^3.0.0",
+    "h3": "^1.15.11",
+    "nitropack": "^2.13.4"
   },
   "dependencies": {
     "yaml": "^2.0.0"
