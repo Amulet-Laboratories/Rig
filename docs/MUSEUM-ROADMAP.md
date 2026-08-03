@@ -711,6 +711,50 @@ the visitor for their diagonal, or to offer a physical calibrator (drag until th
 matches a credit card). Either is fine; silently guessing is not, and this is the same class
 of mistake as §11's "check the rendered result, never just the build."
 
+### The scale room — built 2026-08-03
+
+Every screen nested from one shared corner, plus a density table and a "you are here". The
+`ScaleRecord` on each era carries a diagonal and a native pixel count; density is computed,
+never stored, so it cannot drift from the two numbers it comes from.
+
+**What the numbers turned out to say**, which is more than the plan guessed:
+
+| Year | Diagonal | Native        | Density |
+| ---- | -------- | ------------- | ------- |
+| 1984 | 9″       | 512 × 342     | 68 ppi  |
+| 1991 | 17″      | 1120 × 832    | 82 ppi  |
+| 1993 | 14″      | 80 × 24 cells | —       |
+| 1995 | 15″      | 800 × 600     | 67 ppi  |
+| 2001 | 15″      | 1024 × 768    | 85 ppi  |
+| 2007 | 22″      | 1680 × 1050   | 90 ppi  |
+| 2013 | 24″      | 1920 × 1080   | 92 ppi  |
+| 2025 | 27″      | 2560 × 1440   | 109 ppi |
+
+- **The diagonal grew ~3.0×; density grew ~1.6×.** Screens got bigger far faster than they got
+  sharper, which is the mechanical reason a hairline border and a light typeface were unusable
+  on the desktop for twenty-five years. §13's Wing II claim now has its baseline measured
+  rather than asserted — and measured _before_ the wing that depends on it exists.
+- **Density did not even move monotonically.** The sparsest screen in the collection is
+  **1995 at 67 ppi** — a fifteen-inch display is _less_ dense than the nine-inch one from
+  eleven years earlier, because the glass grew faster than the pixels behind it. Nobody would
+  have written that down from memory; it fell out of dividing two verified numbers.
+- **Terminal '93 carries no density figure at all.** A character-cell display has no pixel
+  grid to divide by. `pixels` is `null` and the column reads `—`; the absence is the exhibit.
+- **Two eras share a rectangle.** Redmond '95 and Bondi '01 are both fifteen inches at 4:3, so
+  they occupy exactly the same box. The drawing groups them into one outline labelled
+  `1995 · 2001` rather than stacking two identical outlines, which would read as a rendering
+  bug when it is actually a finding.
+
+"You are here" reports `screen.width/height` and `devicePixelRatio` and is explicit that a
+browser exposes pixels and a ratio and never inches — so the drawing's proportions are exact
+_relative to each other_ and are not claimed to be life-size.
+
+**Outstanding:** the two-density demonstration — one Rig window at 68 ppi beside the same
+window at ~460 ppi, both at true physical scale. It is the exhibit that proves Wing II's
+central claim, and it wants Wing II's verified phone figures, so it lands with Phase 8 rather
+than being guessed now. The physical calibrator is also unbuilt; the limit is stated on the
+wall in the meantime.
+
 ### Library gaps the expansion forces
 
 Verified against the codebase 2026-08-03, not assumed:
@@ -760,8 +804,9 @@ biggest library change:
   the bezel case, the `--h-*` axis, and the era-is-data gate enforced by tests. Needed no
   library changes, exactly as predicted. Detail and the outstanding items are at the end of
   §12.
-- **Phase 7 — The Scale.** Cross-cutting instrument. No new eras, no new components, high
-  payoff — and the honest place to solve true-size rendering _before_ two wings depend on it.
+- **Phase 7 — The Scale.** 🔶 **Mostly built 2026-08-03.** The drawing, the density table and
+  "you are here" ship; the two-density demonstration is the remaining piece and it wants Wing
+  II's data. Detail below.
 - **Phase 8 — Wing II, The Hand.** Five eras. Needs app bar, tab bar, `safe-area-inset`, and
   hit-target/density tokens.
 - **Phase 9 — Wing III, The Room.** Four eras. **Blocked on directional focus navigation**,

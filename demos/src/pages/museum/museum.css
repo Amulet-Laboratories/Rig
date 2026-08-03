@@ -274,6 +274,108 @@
   border-bottom-color: currentColor;
 }
 
+/* ── Scale room ─────────────────────────────────────────────────────────
+ * Screens nested from a shared bottom-left corner. Anchoring them all to one
+ * corner is what makes the growth readable without the eye having to compare
+ * two distant edges — the same reason a nested-rectangle drawing is how every
+ * sensor-size and paper-size chart has ever been drawn. */
+
+[data-museum-scale] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 2rem;
+  align-items: end;
+  margin-top: 1rem;
+}
+
+@media (max-width: 860px) {
+  [data-museum-scale] {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+[data-museum-scale-stage] {
+  position: relative;
+  overflow-x: auto;
+}
+
+[data-museum-scale-screen] {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 1px;
+}
+
+/* Inside the corner, not above it — the largest rectangle sits flush with the
+   top of the stage, so an outside label would be clipped. */
+[data-museum-scale-screen] span {
+  position: absolute;
+  top: 0.15rem;
+  right: 0.3rem;
+  font-size: 0.62rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--color-muted-foreground);
+}
+
+/* The selected room fills, so the drawing stays tied to the picker above and
+   the visitor can see which rectangle they are standing in. */
+[data-museum-scale-screen][data-current] {
+  background: color-mix(in oklab, var(--color-primary) 18%, transparent);
+  border-color: var(--color-primary);
+}
+
+[data-museum-scale-screen][data-current] span {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+[data-museum-scale-table] table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.82rem;
+}
+
+[data-museum-scale-table] th {
+  text-align: left;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0 0.75rem 0.4rem 0;
+}
+
+[data-museum-scale-table] td {
+  padding: 0.3rem 0.75rem 0.3rem 0;
+  border-bottom: 1px solid var(--color-border);
+  font-variant-numeric: tabular-nums;
+}
+
+[data-museum-scale-table] tr[data-current] td {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+[data-museum-scale-table] p {
+  margin: 0.9rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-muted-foreground);
+}
+
+[data-museum-scale-table] p strong {
+  color: var(--color-foreground);
+}
+
+[data-museum-scale-you] {
+  border-left: 2px solid var(--color-primary);
+  padding-left: 0.9rem;
+}
+
 /* ── Specimen case ──────────────────────────────────────────────────────
  * The comparative view: one widget, every era, side by side. This is the part
  * that makes it a museum rather than a costume, and it is only possible

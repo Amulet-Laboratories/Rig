@@ -41,6 +41,29 @@ export interface Era {
   machine: Machine
   /** What this room is after, with dates and sources. See Provenance. */
   provenance: Provenance
+  /** Physical size and pixel count, for the scale room. See ScaleRecord. */
+  scale: ScaleRecord
+}
+
+/**
+ * What the screen actually measured.
+ *
+ * Two numbers that move at very different rates, which is the whole reason the
+ * scale room exists: across forty-one years the desktop's diagonal roughly
+ * tripled while its pixel density barely moved. Density is the variable nobody
+ * sees, and it is what Wing II's central claim turns on.
+ *
+ * `pixels` is null for the one display in the collection that had none. A
+ * character-cell terminal has no pixel grid to divide by, so it carries no
+ * density figure — an absence worth showing rather than a gap to paper over.
+ */
+export interface ScaleRecord {
+  /** Diagonal in inches. */
+  diagonalIn: number
+  /** Native addressable pixels, or null for a character-cell display. */
+  pixels: { w: number; h: number } | null
+  /** Character grid, where that is what the display actually had. */
+  cells?: { cols: number; rows: number; note: string }
 }
 
 /**
@@ -123,6 +146,10 @@ export const eras: [Era, ...Era[]] = [
       keys: ['⌥', '⌘'],
       tell: 'No power indicator anywhere on the front. You knew it was on because the tube glowed — for one era, the first thing a machine told you about itself was told by physics rather than by a light.',
     },
+    scale: {
+      diagonalIn: 9,
+      pixels: { w: 512, h: 342 },
+    },
     provenance: {
       interprets: [{ name: 'System 1', vendor: 'Apple', released: '24 January 1984' }],
       display: {
@@ -164,6 +191,10 @@ export const eras: [Era, ...Era[]] = [
       buttons: 2,
       keys: ['Alt', 'Cmd'],
       tell: 'Milled, not painted: the object makes exactly the argument its software does. It is the only machine here with no colour on it anywhere except a five-pixel indicator.',
+    },
+    scale: {
+      diagonalIn: 17,
+      pixels: { w: 1120, h: 832 },
     },
     provenance: {
       interprets: [{ name: 'NeXTSTEP', vendor: 'NeXT', released: 'September 1989' }],
@@ -207,6 +238,15 @@ export const eras: [Era, ...Era[]] = [
       keys: ['Ctrl', 'Alt'],
       tell: "The thickest bezel and the two dials are the same fact — the display's own settings were physical, outside any software's reach. The empty deck is the exhibit: the wall text says nothing could be pointed at, and here is why.",
     },
+    scale: {
+      diagonalIn: 14,
+      pixels: null,
+      cells: {
+        cols: 80,
+        rows: 24,
+        note: 'plus a reserved status line — the “80 × 25” everyone quotes',
+      },
+    },
     provenance: {
       interprets: [
         {
@@ -218,7 +258,7 @@ export const eras: [Era, ...Era[]] = [
       ],
       display: {
         description: 'DEC VT320 serial terminal, deep-set tube',
-        resolution: '25 lines × 80 or 132 columns',
+        resolution: '80 or 132 columns × 24 lines, plus a status line',
         dated: 'August 1987',
       },
       accessories: [
@@ -251,6 +291,10 @@ export const eras: [Era, ...Era[]] = [
       buttons: 2,
       keys: ['Ctrl', '❖', 'Alt'],
       tell: 'The busiest chin in the collection: indicator, media aperture, vent bank, silkscreened plate. Every later object removes one of these and never adds anything back.',
+    },
+    scale: {
+      diagonalIn: 15,
+      pixels: { w: 800, h: 600 },
     },
     provenance: {
       interprets: [{ name: 'Windows 95', vendor: 'Microsoft', released: '24 August 1995' }],
@@ -304,6 +348,10 @@ export const eras: [Era, ...Era[]] = [
       keys: ['Ctrl', '⌥', '⌘'],
       tell: 'The case became translucent in the same year the interface became glossy — one argument in two materials. The indicator also stopped being a state and became a behaviour: it breathes.',
     },
+    scale: {
+      diagonalIn: 15,
+      pixels: { w: 1024, h: 768 },
+    },
     provenance: {
       interprets: [
         {
@@ -350,6 +398,10 @@ export const eras: [Era, ...Era[]] = [
       keys: ['Ctrl', '❖', 'Alt'],
       tell: 'The first screen here with no raster — no tube, so no scanlines, no vignette, no corner curvature. The gloss doubles instead. The era whose software claims to be sheet glass shipped on hardware that literally was.',
     },
+    scale: {
+      diagonalIn: 22,
+      pixels: { w: 1680, h: 1050 },
+    },
     provenance: {
       interprets: [
         {
@@ -395,6 +447,10 @@ export const eras: [Era, ...Era[]] = [
       buttons: 0,
       keys: ['Ctrl', '⌥', '⌘'],
       tell: 'The flattening was not only a rendering decision. In one window the hardware lost its bevel, its vents, its indicator and its cable — and the mouse lost its buttons and became a surface. Affordance collapsed on both sides of the glass at once.',
+    },
+    scale: {
+      diagonalIn: 24,
+      pixels: { w: 1920, h: 1080 },
     },
     provenance: {
       interprets: [
@@ -443,6 +499,10 @@ export const eras: [Era, ...Era[]] = [
       buttons: 0,
       keys: ['Ctrl', '⌥', '⌘'],
       tell: "Nothing is silkscreened on it, nothing indicates power, nothing vents, nothing plugs in, nothing clicks. The object makes the room's point faster than its wall text does.",
+    },
+    scale: {
+      diagonalIn: 27,
+      pixels: { w: 2560, h: 1440 },
     },
     provenance: {
       interprets: [
