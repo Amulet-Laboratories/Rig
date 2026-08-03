@@ -7,8 +7,16 @@
  * The engine and the material defaults appear once; each era contributes only
  * its token block. Ordered chronologically, which is also the order the museum
  * presents them in.
+ *
+ * Two token axes, two passes. Materials describe the interface; hardware
+ * describes the machine it ran on. They are separate files per era so that one
+ * era's record stays readable, and because a consumer wanting period *controls*
+ * has no use for a bezel.
  */
 @import '../materials.css';
+@import '../hardware.css';
+
+/* Materials — what the interface is made of */
 @import './cupertino84/tokens.css';
 @import './cube91/tokens.css';
 @import './terminal93/tokens.css';
@@ -17,4 +25,15 @@
 @import './glass07/tokens.css';
 @import './flat13/tokens.css';
 @import './soft25/tokens.css';
+
+/* Hardware — what it was running on */
+@import './cupertino84/hardware.css';
+@import './cube91/hardware.css';
+@import './terminal93/hardware.css';
+@import './redmond95/hardware.css';
+@import './bondi01/hardware.css';
+@import './glass07/hardware.css';
+@import './flat13/hardware.css';
+@import './soft25/hardware.css';
+
 @import './_shared/chrome.css';

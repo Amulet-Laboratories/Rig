@@ -18,6 +18,9 @@ export default defineConfig({
       'packages/*/src/**/*.test.ts',
       'nuxt/src/**/*.test.ts',
       'stories/__tests__/**/*.test.ts',
+      // The museum asserts contracts that span hex's token files and the demos
+      // app — see demos/src/pages/museum/museum.test.ts.
+      'demos/src/**/*.test.ts',
     ],
     coverage: {
       provider: 'v8',

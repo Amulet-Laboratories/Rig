@@ -1,0 +1,124 @@
+/* The gallery — the room the objects stand in.
+ *
+ * Scenography, not a component and not a Rig concern (roadmap §15). Everything
+ * here belongs to the institution rather than to any era, which is why it is a
+ * separate file from hardware.css: that draws the artifact, this lights it.
+ *
+ * ── The one rule ──────────────────────────────────────────────────────────
+ * The room is allowed to be a space; the exhibit never is. No transform, no
+ * filter and no backdrop-filter on any ancestor of the exhibit — each creates
+ * a containing block and changes how descendants position, and the museum's
+ * opening claim is that you can operate what is behind the glass. The
+ * environment renders behind and beneath the object, never around it.
+ *
+ * ── The exhibit this file exists for ──────────────────────────────────────
+ * Every era's wall text asserts that depth is drawn rather than simulated.
+ * Redmond '95: "Light falls from the top-left." Cube '91: "light falling
+ * consistently from the top-left onto surfaces with real thickness."
+ *
+ * The museum could keep asserting it. Instead the visitor can drag the gallery
+ * light — and watch the beige case obey while the interface inside it does not
+ * move at all. Seven of eight rooms ignore a light they can see moving. That is
+ * the difference between a shadow and a picture of a shadow, and nobody has to
+ * be told it.
+ */
+
+/* Registered so it interpolates as an angle rather than as an unparsed token —
+ * without this the transition below snaps and sin()/cos() get a raw string. */
+@property --g-light-angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 315deg;
+}
+
+/* The default is 315deg — top-left — because that is exactly where every era's
+ * painted bevel claims its light comes from. The exhibit starts in agreement
+ * with the artifact, and only disagrees once the visitor moves it. */
+[data-museum] {
+  --g-light-angle: 315deg;
+}
+
+/* Screen y runs downward, so a light arriving from angle A throws its shadow
+ * along (-sin A, +cos A). At 315deg that is down-and-right, which is what a
+ * top-left light does. */
+[data-museum-room] {
+  --g-cast-x: calc(sin(var(--g-light-angle)) * -1 * var(--h-cast-dist));
+  --g-cast-y: calc(cos(var(--g-light-angle)) * var(--h-cast-dist));
+  --g-mouse-cast-x: calc(sin(var(--g-light-angle)) * -1 * var(--h-mouse-cast-dist));
+  --g-mouse-cast-y: calc(cos(var(--g-light-angle)) * var(--h-mouse-cast-dist));
+}
+
+/* The plinth is lit, not just tinted: brighter on the side the light comes
+   from. `linear-gradient(A, …)` runs its line toward A, so the last stop is the
+   lit edge. Kept very low contrast — a gallery is evenly lit and this is a
+   gradient you should only notice when it moves. */
+[data-museum-room][data-hex-era] {
+  background:
+    linear-gradient(
+      var(--g-light-angle),
+      rgba(0, 0, 0, 0.11) 0%,
+      rgba(0, 0, 0, 0) 42%,
+      rgba(255, 255, 255, 0.12) 100%
+    ),
+    color-mix(in oklab, var(--color-card) 90%, var(--color-foreground) 10%);
+  transition: --g-light-angle 120ms linear;
+}
+
+/* ── The light control ──────────────────────────────────────────────────────
+ * Museum chrome, so it lives outside [data-hex-era] and stays modern. It sits
+ * directly above the room because it operates the room, not the object. */
+
+[data-museum-lightbar] {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+}
+
+[data-museum-lightbar] [data-lightbar-label] {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  white-space: nowrap;
+}
+
+[data-museum-lightbar] [data-slider] {
+  flex: 1 1 180px;
+  min-width: 140px;
+}
+
+[data-museum-lightbar] p {
+  flex: 1 1 100%;
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--color-muted-foreground);
+}
+
+[data-museum-lightbar] p strong {
+  color: var(--color-foreground);
+  font-weight: 600;
+}
+
+/* A readout of where the light is, so the control is legible without dragging
+   it, and so the two figures can be compared aloud. */
+[data-museum-lightbar] output {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+  color: var(--color-foreground);
+  min-width: 3.6em;
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-museum-room][data-hex-era] {
+    transition: none;
+  }
+}

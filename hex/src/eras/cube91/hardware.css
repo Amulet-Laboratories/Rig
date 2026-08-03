@@ -1,0 +1,66 @@
+/* Cube '91 — the machine
+ *
+ * A greyscale workstation display in matte magnesium. The object makes exactly
+ * the argument its software does: milled rather than painted, no colour
+ * anywhere in the chrome. It is the only machine in the collection with no
+ * colour on it at all except a five-pixel green indicator.
+ */
+
+[data-hex-era='cube91'] {
+  --h-scene-w: 565px;
+  --h-screen-pad: 14px;
+
+  --h-shell: #3d3d3f;
+  --h-shell-top: #4b4b4d;
+  --h-shell-bot: #2e2e30;
+  --h-shell-edge:
+    inset 0 1px 0 #6a6a6c, inset 0 -1px 0 #1c1c1e, inset 1px 0 0 #565658, inset -1px 0 0 #262628;
+  --h-cast-dist: 22px;
+  --h-cast-blur: 30px;
+  --h-cast-color: rgba(0, 0, 0, 0.36);
+  --h-parting: rgba(255, 255, 255, 0.06);
+
+  --h-radius: 5px;
+  --h-pad: 24px;
+  --h-chin: 42px;
+  --h-aperture: 4px;
+
+  --h-screen-bg: #555555;
+  --h-recess: inset 0 0 0 2px #191919, inset 0 3px 8px rgba(0, 0, 0, 0.6);
+  --h-scan: 0.035;
+  --h-vignette: 0.2;
+  --h-glare: 0.08;
+
+  --h-plate-ink: #6e6e70;
+  --h-plate-size: 6.5px;
+  --h-led: #7de08a;
+  --h-led-size: 5px;
+  --h-led-bloom: 5px;
+  --h-vent-w: 60px;
+  --h-vent-ink: #1e1e20;
+  --h-vent-op: 0.9;
+
+  --h-neck-w: 26%;
+  --h-neck-h: 26px;
+  --h-foot-w: 52%;
+  --h-foot-h: 8px;
+  --h-foot-radius: 3px;
+  --h-foot-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+
+  /* Two buttons, squared off to match the case. */
+  --h-cable: #3a3a3c;
+  --h-mouse-w: 52px;
+  --h-mouse-h: 60px;
+  --h-mouse-radius: 5px;
+  --h-mouse-top: #4a4a4c;
+  --h-mouse-bot: #333335;
+  --h-mouse-edge: inset 0 1px 0 #656567, inset 0 -1px 0 #1c1c1e;
+  --h-mouse-cast-dist: 7px;
+  --h-mouse-cast-blur: 10px;
+  --h-mouse-cast-color: rgba(0, 0, 0, 0.34);
+  --h-seam-ink: #1e1e20;
+  --h-split-op: 1;
+  --h-split-y: 42%;
+  --h-seam-op: 1;
+  --h-seam-h: 42%;
+}

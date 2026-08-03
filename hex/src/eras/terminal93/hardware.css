@@ -1,0 +1,62 @@
+/* Terminal '93 — the machine
+ *
+ * The thickest bezel and the deepest-set tube in the collection, and the only
+ * object with an empty deck: no pointing device existed for it.
+ *
+ * That absence is the exhibit rather than a gap. The era's own wall text says
+ * nothing could be pointed at; the object is why. --h-mouse-op goes to 0 and
+ * --h-absent-op to 1, so the plinth carries a label instead of a blank space —
+ * an unexplained absence reads as a bug.
+ *
+ * The two dials are the same fact as the thick bezel: brightness and contrast
+ * were physical, analogue, and outside any software's reach.
+ */
+
+[data-hex-era='terminal93'] {
+  --h-scene-w: 605px;
+
+  --h-shell: #cec6b0;
+  --h-shell-top: #ddd6c2;
+  --h-shell-bot: #b3aa93;
+  --h-shell-edge:
+    inset 0 1px 0 #f4eedd, inset 0 -1px 0 #948b76, inset 1px 0 0 #e6e0cd, inset -1px 0 0 #a49b86;
+  --h-cast-dist: 22px;
+  --h-cast-blur: 30px;
+  --h-cast-color: rgba(30, 24, 14, 0.26);
+  --h-parting: rgba(255, 255, 255, 0.24);
+
+  --h-radius: 18px;
+  --h-pad: 40px;
+  --h-chin: 66px;
+  --h-aperture: 26px;
+  --h-screen-pad: 18px;
+
+  --h-screen-bg: #0000aa;
+  --h-recess: inset 0 0 0 3px #4a4436, inset 0 4px 12px rgba(0, 0, 0, 0.7), 0 1px 0 #f4eedd;
+  --h-scan: 0.16;
+  --h-vignette: 0.46;
+  --h-glare: 0.1;
+
+  --h-plate-ink: #8d8471;
+  --h-plate-size: 6.5px;
+  --h-led: #63e06d;
+  --h-led-bloom: 8px;
+  /* Two dials, and the only era that puts them to the right of the plate. */
+  --h-dial: 13px;
+  --h-dial-2: 13px;
+  --h-dial-order: 5;
+  --h-dial-fill: #c0b7a1;
+  --h-dial-edge: inset 0 1px 0 #ece5d4, inset 0 -1px 0 #948b76, 0 1px 2px rgba(0, 0, 0, 0.22);
+  --h-dial-mark: #6a6250;
+
+  --h-neck-w: 34%;
+  --h-neck-h: 22px;
+  --h-foot-w: 62%;
+  --h-foot-radius: 5px;
+  --h-foot-shadow: 0 6px 12px rgba(30, 24, 14, 0.2);
+
+  /* No mouse, no cable. The label on the plinth says so. */
+  --h-cable-op: 0;
+  --h-mouse-op: 0;
+  --h-absent-op: 1;
+}

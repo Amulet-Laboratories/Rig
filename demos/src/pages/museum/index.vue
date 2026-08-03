@@ -13,7 +13,10 @@ import { Button, Checkbox, ScrollArea, List, Slider } from '@amulet-laboratories
 import '@amulet-laboratories/rig/hex/eras'
 import '@/assets/fonts/museum.css'
 import './museum.css'
+import './hardware.css'
+import './gallery.css'
 import ExhibitWindow from './ExhibitWindow.vue'
+import ExhibitHardware from './ExhibitHardware.vue'
 import { eras, defaultEra } from './eras'
 import { useEraSound } from './useEraSound'
 
@@ -21,6 +24,24 @@ const { enabled: soundOn } = useEraSound()
 
 const current = ref(defaultEra)
 const era = computed(() => eras.find((e) => e.id === current.value) ?? eras[0])
+
+/* The gallery light. Starts at 315° — top-left — which is exactly where every
+ * era's painted bevel claims its own light comes from, so the exhibit opens in
+ * agreement with the artifact and only disagrees once you move it. */
+const lightAngle = ref(315)
+const lightBearing = computed(() => {
+  const points = [
+    'top',
+    'top-right',
+    'right',
+    'bottom-right',
+    'bottom',
+    'bottom-left',
+    'left',
+    'top-left',
+  ]
+  return points[Math.round(lightAngle.value / 45) % 8]
+})
 
 /* Specimens get their own tiny state so the comparative view is operable, not
  * a screenshot. */
@@ -74,9 +95,47 @@ const specimenSelected = ref('a')
         </button>
       </div>
 
-      <!-- Period room -->
-      <div data-museum-room :data-hex-era="era.id">
-        <ExhibitWindow :era="era" />
+      <!-- Gallery light — museum chrome, so it sits outside [data-hex-era] and
+           stays modern. It operates the room rather than the object, which is
+           why it is here and not on the machine. -->
+      <div data-museum-lightbar>
+        <!-- A <label for> cannot reach this control: Rig's Slider puts the id
+             on its wrapper element and the range input inside it is anonymous,
+             so `for` would point at a non-labelable div. The accessible name
+             comes from aria-label instead, and the visible text is presentational.
+             Worth a prop on Slider eventually — noted in the roadmap. -->
+        <span data-lightbar-label>Gallery light</span>
+        <div data-slider>
+          <Slider
+            v-model="lightAngle"
+            :min="0"
+            :max="359"
+            :step="1"
+            aria-label="Gallery light direction, in degrees"
+          />
+        </div>
+        <output>{{ lightAngle }}°</output>
+        <p>
+          The light is coming from the <strong>{{ lightBearing }}</strong
+          >. Move it and watch the case: the shadow it throws swings across the plinth, because the
+          object is really there. <strong>The interface inside it does not move at all.</strong>
+          Its bevel has been claiming a light source since 1995 and there was never one — those are
+          four tones of grey painted into a two-pixel band, and they point top-left whatever the
+          room does.
+        </p>
+      </div>
+
+      <!-- Period room. The exhibit now stands inside the machine it ran on —
+           both are the same era's token file, one describing the interface and
+           one describing the object. -->
+      <div
+        data-museum-room
+        :data-hex-era="era.id"
+        :style="{ '--g-light-angle': `${lightAngle}deg` }"
+      >
+        <ExhibitHardware :era="era">
+          <ExhibitWindow :era="era" />
+        </ExhibitHardware>
       </div>
 
       <!-- Wall text -->
@@ -93,7 +152,58 @@ const specimenSelected = ref('a')
           <h3>What it got wrong</h3>
           <p>{{ era.critique }}</p>
         </section>
+        <section>
+          <h3>The machine</h3>
+          <p>{{ era.machine.tell }}</p>
+        </section>
       </div>
+
+      <!-- Provenance. The room keeps its descriptive name because it is a
+           reconstruction with substitute typefaces and no original artwork —
+           calling it "Windows 95" would claim something it cannot deliver. But
+           an interpretation with no stated source is just a vibe, so the source
+           is stated here with dates, exactly as the colophon has always done
+           for typefaces. Every date is cited; none is from memory. -->
+      <section data-museum-tombstone>
+        <h3>Provenance</h3>
+        <dl>
+          <dt>Interprets</dt>
+          <dd>
+            <span v-for="src in era.provenance.interprets" :key="src.name">
+              <strong>{{ src.name }}</strong> · {{ src.vendor }} · {{ src.released }}
+            </span>
+          </dd>
+
+          <dt>Object</dt>
+          <dd>
+            {{ era.provenance.display.description }} · {{ era.provenance.display.resolution }} ·
+            {{ era.provenance.display.dated }}
+          </dd>
+
+          <dt>Accessories</dt>
+          <dd>
+            <span v-for="a in era.provenance.accessories" :key="a.name">
+              <strong>{{ a.name }}</strong> · {{ a.dated }}<br />
+              <em>{{ a.note }}</em>
+            </span>
+          </dd>
+
+          <dt>Substituted</dt>
+          <dd>{{ era.provenance.substituted }}</dd>
+
+          <dt>Sources</dt>
+          <dd data-sources>
+            <a
+              v-for="(url, i) in era.provenance.sources"
+              :key="url"
+              :href="url"
+              target="_blank"
+              rel="noopener noreferrer"
+              >[{{ i + 1 }}]</a
+            >
+          </dd>
+        </dl>
+      </section>
 
       <!-- Specimen case: one widget set, every era at once. Only possible
            because era styling is scoped rather than applied globally. -->
@@ -128,6 +238,37 @@ const specimenSelected = ref('a')
               </ScrollArea>
             </div>
           </article>
+        </div>
+      </section>
+
+      <!-- The bezel case. The specimen case above compares controls; this
+           compares the machines they ran on — eight frames, no content, no
+           fonts, no live components. It is the cheapest exhibit here and it
+           makes the hardware layer's whole argument at a glance. -->
+      <section data-museum-case>
+        <header data-museum-lede>
+          <h2>The bezel case</h2>
+          <p>
+            Every frame in the collection, empty, at one scale. The interface inside them changed
+            eight times over forty years; the machine around them did something simpler. It receded
+            — from forty pixels of moulding around a nine-inch tube to four pixels of almost
+            nothing.
+          </p>
+        </header>
+
+        <div data-museum-bezel-grid>
+          <!-- [data-hex-era] scopes to the frame only, never to the figure. On
+               the figure it would hand the caption the era's desktop colour and
+               period typeface, and eight labels would become unreadable — the
+               framing rule again, at the scale of a single grid cell. -->
+          <figure v-for="e in eras" :key="e.id">
+            <div data-museum-bezel :data-hex-era="e.id"><div></div></div>
+            <figcaption data-museum-bezel-label>
+              <strong>{{ e.year }}</strong>
+              {{ e.machine.bezel }} px · {{ e.machine.buttons }}
+              {{ e.machine.buttons === 1 ? 'button' : 'buttons' }}
+            </figcaption>
+          </figure>
         </div>
       </section>
 

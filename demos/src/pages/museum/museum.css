@@ -187,6 +187,93 @@
   font-size: 0.92rem;
 }
 
+/* ── Provenance tombstone ───────────────────────────────────────────────
+ * Institutional register, and deliberately drier than the wall text above it.
+ * Wall text argues; a tombstone label states what the thing is and where the
+ * claim comes from. Keeping the two visually distinct is what stops the dates
+ * reading as more interpretation. */
+
+[data-museum-tombstone] {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+
+[data-museum-tombstone] h3 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted-foreground);
+  margin-bottom: 0.75rem;
+}
+
+[data-museum-tombstone] dl {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 0.55rem 1.25rem;
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  [data-museum-tombstone] dl {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.2rem;
+  }
+
+  [data-museum-tombstone] dd {
+    margin-bottom: 0.7rem;
+  }
+}
+
+[data-museum-tombstone] dt {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  padding-top: 0.15rem;
+}
+
+[data-museum-tombstone] dd {
+  margin: 0;
+  min-width: 0;
+}
+
+/* Each entry on its own line — several rooms interpret more than one system,
+   and Redmond '95 lists three accessories because two of them are the exhibit. */
+[data-museum-tombstone] dd > span {
+  display: block;
+}
+
+[data-museum-tombstone] dd > span + span {
+  margin-top: 0.5rem;
+}
+
+[data-museum-tombstone] dd em {
+  font-style: normal;
+  color: var(--color-muted-foreground);
+}
+
+[data-museum-tombstone] [data-sources] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+[data-museum-tombstone] [data-sources] a {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+[data-museum-tombstone] [data-sources] a:hover,
+[data-museum-tombstone] [data-sources] a:focus-visible {
+  border-bottom-color: currentColor;
+}
+
 /* ── Specimen case ──────────────────────────────────────────────────────
  * The comparative view: one widget, every era, side by side. This is the part
  * that makes it a museum rather than a costume, and it is only possible
