@@ -1,0 +1,69 @@
+/* Bondi '01 — the machine
+ *
+ * The year the case stopped being opaque. Tinted polycarbonate over white ABS,
+ * large radii, a gloss highlight along the top edge — the same argument the
+ * software makes that year, made in polymer instead of pixels.
+ *
+ * The indicator also changes category here: it stops being a state and becomes
+ * a behaviour. It breathes. --h-led-anim carries the animation *name*, which is
+ * what keeps the drawing layer to a single rule and the component free of any
+ * era flag. Disabled under prefers-reduced-motion.
+ */
+
+[data-hex-era='bondi01'] {
+  --h-scene-w: 606px;
+  --h-screen-pad: 14px;
+
+  --h-shell: #b9ceda;
+  --h-shell-top: #d3e2e8;
+  --h-shell-bot: #93aebd;
+  --h-shell-edge:
+    inset 0 2px 0 rgba(255, 255, 255, 0.85), inset 0 -2px 0 rgba(80, 110, 128, 0.55),
+    inset 2px 0 0 rgba(255, 255, 255, 0.45), inset -2px 0 0 rgba(80, 110, 128, 0.3);
+  --h-cast-dist: 24px;
+  --h-cast-blur: 34px;
+  --h-cast-color: rgba(24, 44, 58, 0.28);
+  --h-parting: rgba(255, 255, 255, 0.5);
+
+  --h-radius: 30px;
+  --h-pad: 26px;
+  --h-chin: 52px;
+  --h-aperture: 16px;
+
+  --h-screen-bg: #6e8fb8;
+  --h-recess:
+    inset 0 0 0 3px #46606f, inset 0 4px 12px rgba(0, 0, 0, 0.42), 0 2px 0 rgba(255, 255, 255, 0.8);
+  --h-scan: 0.04;
+  --h-vignette: 0.2;
+  --h-glare: 0.3;
+
+  --h-plate-ink: #5d7a8a;
+  --h-led: #ffd27a;
+  --h-led-size: 8px;
+  --h-led-bloom: 12px;
+  --h-led-anim: museum-breathe;
+  --h-slot-w: 52px;
+  --h-slot-h: 5px;
+  --h-slot-ink: rgba(40, 66, 80, 0.5);
+  --h-slot-edge: 0 1px 0 rgba(255, 255, 255, 0.7);
+
+  --h-neck-w: 34%;
+  --h-neck-h: 20px;
+  --h-foot-w: 54%;
+  --h-foot-h: 12px;
+  --h-foot-radius: 0 0 22px 22px;
+  --h-foot-shadow: 0 8px 16px rgba(24, 44, 58, 0.24);
+
+  /* Back to one button, and round — the count is not a ratchet. Neither seam
+     nor split: the shell is a single moulded surface with no visible division. */
+  --h-cable: #c3d6df;
+  --h-mouse-w: 62px;
+  --h-mouse-h: 62px;
+  --h-mouse-radius: 50%;
+  --h-mouse-top: #dcebf1;
+  --h-mouse-bot: #a8c2ce;
+  --h-mouse-edge: inset 0 2px 0 rgba(255, 255, 255, 0.9), inset 0 -2px 0 rgba(80, 110, 128, 0.5);
+  --h-mouse-cast-dist: 8px;
+  --h-mouse-cast-blur: 14px;
+  --h-mouse-cast-color: rgba(24, 44, 58, 0.26);
+}

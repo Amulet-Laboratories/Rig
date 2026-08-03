@@ -1,0 +1,62 @@
+/* Flat '13 — the machine
+ *
+ * The last object in the collection with a visible frame, and the first with an
+ * empty deck for a different reason than 1993: the cable is gone, not the
+ * pointing device.
+ *
+ * Read this era's tokens next to its software: the interface lost its bevels,
+ * gradients and shadows in the same window that the object lost its vents, its
+ * indicator, its media aperture and its cable — and the mouse lost its buttons
+ * and became a surface. The flattening was not only a rendering decision.
+ */
+
+[data-hex-era='flat13'] {
+  --h-scene-w: 1029px;
+
+  --h-shell: #b4b7ba;
+  --h-shell-top: #c6c8cb;
+  --h-shell-bot: #9ea1a5;
+  --h-shell-edge:
+    inset 0 1px 0 #e2e4e6, inset 0 -1px 0 #85888c, inset 1px 0 0 #d2d4d7, inset -1px 0 0 #8f9296;
+  --h-cast-dist: 22px;
+  --h-cast-blur: 30px;
+  --h-cast-color: rgba(20, 24, 28, 0.2);
+  --h-parting: rgba(255, 255, 255, 0.28);
+
+  --h-radius: 5px;
+  --h-pad: 8px;
+  --h-chin: 20px;
+  --h-aperture: 1px;
+  --h-aspect: 1.7778;
+  --h-screen-pad: 12px;
+
+  --h-screen-bg: #f2f2f7;
+  --h-recess: inset 0 0 0 1px #6c6f73;
+  --h-scan: 0;
+  --h-vignette: 0.04;
+  --h-glare: 0.07;
+
+  /* An etched plate and nothing else. No indicator, no vents, no aperture. */
+  --h-plate-ink: #8b8e92;
+  --h-plate-size: 5.5px;
+  --h-led-op: 0;
+
+  --h-neck-w: 11%;
+  --h-neck-h: 40px;
+  --h-foot-w: 34%;
+  --h-foot-h: 7px;
+  --h-foot-shadow: 0 7px 14px rgba(20, 24, 28, 0.24);
+
+  /* Zero visible buttons and no cable. Every topography opacity stays at its
+     default of 0 — the era says nothing about them, which is the point. */
+  --h-cable-op: 0;
+  --h-mouse-w: 56px;
+  --h-mouse-h: 80px;
+  --h-mouse-radius: 48% 48% 42% 42% / 26% 26% 74% 74%;
+  --h-mouse-top: #fbfbfc;
+  --h-mouse-bot: #dcdee1;
+  --h-mouse-edge: inset 0 1px 0 #fff, inset 0 -1px 0 #b9bcc0;
+  --h-mouse-cast-dist: 7px;
+  --h-mouse-cast-blur: 12px;
+  --h-mouse-cast-color: rgba(20, 24, 28, 0.2);
+}

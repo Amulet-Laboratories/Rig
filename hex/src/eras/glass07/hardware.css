@@ -1,0 +1,79 @@
+/* Glass '07 — the machine
+ *
+ * The first object here with no cathode ray tube, and the transition is visible
+ * in the tokens rather than described: --h-scan and --h-vignette both go to
+ * zero, because there is no raster and no tube falloff to model.
+ *
+ * --h-glare does the opposite and peaks. The era whose software claims to be
+ * frosted sheet glass shipped on hardware that literally was, and the two are
+ * not the same effect: one is a backdrop-filter in materials.css, the other is
+ * a reflection on a piano-black moulding.
+ *
+ * Also the first widescreen object. 16 : 10, not 16 : 9 — that comes in 2013.
+ */
+
+[data-hex-era='glass07'] {
+  --h-scene-w: 758px;
+  --h-screen-pad: 14px;
+
+  --h-shell: #17171a;
+  --h-shell-top: #232326;
+  --h-shell-bot: #0e0e10;
+  --h-shell-edge:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24), inset 0 -1px 0 #000,
+    inset 1px 0 0 rgba(255, 255, 255, 0.1), inset -1px 0 0 #000;
+  --h-cast-dist: 24px;
+  --h-cast-blur: 34px;
+  --h-cast-color: rgba(0, 0, 0, 0.42);
+  --h-parting: rgba(255, 255, 255, 0.05);
+
+  --h-radius: 9px;
+  --h-pad: 15px;
+  --h-chin: 34px;
+  --h-aperture: 3px;
+  --h-aspect: 1.6;
+
+  --h-screen-bg: #2f5a8c;
+  --h-recess: inset 0 0 0 1px #000, inset 0 2px 6px rgba(0, 0, 0, 0.5);
+  --h-scan: 0;
+  --h-vignette: 0.08;
+  --h-glare: 0.2;
+
+  --h-plate-ink: #6d6d72;
+  --h-plate-size: 6.5px;
+  --h-led: #6fb8ff;
+  --h-led-size: 5px;
+  --h-led-bloom: 10px;
+  /* The one era that moves the indicator to the right of the plate. Ordering,
+     not markup — the chin's contents are identical in every room. */
+  --h-led-order: 5;
+  --h-slot-w: 34px;
+  --h-slot-h: 2px;
+  --h-slot-ink: #3a3a3f;
+
+  --h-neck-w: 15%;
+  --h-neck-h: 34px;
+  --h-foot-w: 40%;
+  --h-foot-h: 9px;
+  --h-foot-radius: 50%;
+  --h-foot-shadow: 0 8px 16px rgba(0, 0, 0, 0.36);
+
+  /* The peak: two buttons and a wheel. Nothing after this has more. */
+  --h-cable: #2a2a2e;
+  --h-mouse-w: 54px;
+  --h-mouse-h: 82px;
+  --h-mouse-radius: 46% 46% 38% 38% / 30% 30% 70% 70%;
+  --h-mouse-top: #2c2c31;
+  --h-mouse-bot: #131316;
+  --h-mouse-edge: inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -1px 0 #000;
+  --h-mouse-cast-dist: 8px;
+  --h-mouse-cast-blur: 13px;
+  --h-mouse-cast-color: rgba(0, 0, 0, 0.4);
+  --h-seam-ink: #4a4a50;
+  --h-split-op: 1;
+  --h-split-y: 40%;
+  --h-seam-op: 1;
+  --h-seam-h: 12%;
+  --h-wheel-op: 1;
+  --h-wheel: #55555c;
+}
