@@ -1,10 +1,14 @@
 name: CI
 
+# `develop` is included deliberately. Under the release train, work accumulates
+# on develop for up to half a month before it reaches main — running CI only on
+# main would mean the first validation of a fortnight's commits happens in the
+# release PR, which is the worst possible moment to discover a break.
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   pull_request:
-    branches: [main]
+    branches: [main, develop]
 
 concurrency:
   group: ci-${{ github.ref }}
