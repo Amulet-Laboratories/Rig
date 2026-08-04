@@ -11,10 +11,15 @@ Status: **Roster complete, Phases 1–5 done** and rendering at `/hexrig/demos/m
 rooms (§12), then three wings and a cross-cutting instrument (§13). Sequencing and the
 explicit do-not-build list are in §14.
 
-**Phases 6 and 6b are built** — all eight machines, the bezel case, the movable gallery light
-and a working power switch render at `/hexrig/demos/museum` on `feat/museum-hardware`. What
-shipped and what it cost are at the end of §12 and §15. Phase 7 (The Scale) onward is not
-started.
+**Phases 6, 6b and most of 7 are built and merged to `develop`** — all eight machines, the
+bezel case, the movable gallery light, a working power switch, and the scale room. What
+shipped and what it cost are at the end of §12, §13 and §15. The remaining Phase 7 piece is
+the two-density demonstration, which waits on Wing II's figures.
+
+**Next: §16 — organising the building.** The page is 5.2 screens for eight rooms and never
+says which parts respond to the era picker. Phase 7b names the three zones and turns the
+picker into a timeline, and it has to come before Wing II because that timeline is Wing II's
+spine.
 
 **A provenance layer landed 2026-08-03.** Every room now states what it interprets, with
 researched and cited dates for the system, the object and the accessories. The naming rule is
@@ -43,7 +48,7 @@ which is the vocabulary behaving as designed rather than being patched:
   (`--m-backdrop-window`, `--m-backdrop-menu`) applied to exactly two surfaces.
 
 Phase 5 polish landed too — era cursors, outline-only window drag, optional sound. Remaining
-items from that phase are in §11; everything new is in §12–§14.
+items from that phase are in §11; everything new is in §12–§16.
 
 ---
 
@@ -807,6 +812,9 @@ biggest library change:
 - **Phase 7 — The Scale.** 🔶 **Mostly built 2026-08-03.** The drawing, the density table and
   "you are here" ship; the two-density demonstration is the remaining piece and it wants Wing
   II's data. Detail below.
+- **Phase 7b — Organising the building.** Name the three zones, and turn the era picker into
+  a timeline. Must come before Wing II: the timeline is that wing's spine, and a flat tab row
+  gets thrown away either way. Full plan and the measurements behind it: **§16**.
 - **Phase 8 — Wing II, The Hand.** Five eras. Needs app bar, tab bar, `safe-area-inset`, and
   hit-target/density tokens.
 - **Phase 9 — Wing III, The Room.** Four eras. **Blocked on directional focus navigation**,
@@ -1015,3 +1023,102 @@ The same taste failure as §12's retrowave risk, one room over:
 **Nothing here needs a Rig component.** A gallery room is app-level scenography, not a
 reusable primitive — §3's "gaps go back into the library" rule is about component internals
 and does not apply. The environment lives in `demos/src/pages/museum/` and stays there.
+
+The wayfinding sketch above is superseded in detail by **§16**, which measures the page that
+actually exists and sequences the fix. The conclusion is unchanged — routing and a floor plan
+are mandatory before the roster passes roughly ten rooms — but §16 is the plan to work from.
+
+---
+
+## 16. Organising the building
+
+Everything so far has been about what the museum contains. This is about how a visitor moves
+through it, and it is the part that quietly stops working as the roster grows.
+
+### Measured, not asserted
+
+The museum at 1280 × 900, 2026-08-03, with eight rooms:
+
+| Depth | Section       | Depth | Section       |
+| ----- | ------------- | ----- | ------------- |
+| 9%    | Era picker    | 50%   | Specimen case |
+| 13%   | Gallery light | 66%   | Scale room    |
+| 15%   | Period room   | 87%   | Bezel case    |
+| 32%   | Wall text     | 92%   | Colophon      |
+| 38%   | Provenance    |       |               |
+
+**4675px — 5.2 screens — for eight rooms.** Two things fall out of that immediately. The
+**bezel case sits at 87%**, so the cheapest and clearest exhibit in the building (§12) is
+effectively unpublished. And a structure that needs five screens for eight rooms does not
+survive seventeen.
+
+### The core defect: the page never says what changes
+
+Click an era tab and three blocks change — period room, wall text, provenance. Two do not —
+specimen case, bezel case. The scale room does both, drawing all eight while highlighting one.
+
+**Nothing signals which is which.** A visitor selects a room and half the page silently
+updates while the other half silently does not, and there is no way to tell from looking
+which half is which. This is the biggest organisational problem in the museum and it is a
+labelling fix, not a routing one.
+
+### The taxonomy is already latent in the build
+
+Three kinds of content, which is also how museums are actually organised — period rooms, a
+study collection, and interpretation:
+
+| Zone            | What it is                     | What is in it today                |
+| --------------- | ------------------------------ | ---------------------------------- |
+| **Rooms**       | One era. You walk in.          | Period room, wall text, provenance |
+| **Vitrines**    | All eras at once. You compare. | Specimen case, bezel case          |
+| **Instruments** | Measure rather than argue.     | Scale room, gallery light          |
+
+Naming those three zones is most of the fix, and it is nearly free.
+
+### The moves, ranked
+
+1. **Name the zones.** Persistent headers, so the picker visibly governs the rooms and only
+   the rooms. Cheap, purely additive, and it fixes the silent-change problem outright.
+
+2. **Make the picker a timeline, not a tab row.** _The highest-leverage single move._ Space
+   the rooms proportionally by year and an exhibit appears for nothing: the
+   1984 · 1991 · 1993 · 1995 cluster against the 2013 → 2025 gap, with no copy required.
+   More importantly it is **the substrate §13 already needs** — Wing II's whole argument is
+   the desktop and phone timelines aligned by year to show the compression. Build the timeline
+   at eight rooms and Wing II's spine exists before the wing does. A flat row of seventeen
+   equal-weight tabs has to be thrown away regardless, so this is not extra work; it is the
+   same work done earlier and cheaper.
+
+3. **Route per room** — `/museum/redmond95`. A single room cannot currently be linked, which
+   for something that is a portfolio and citation asset is a real loss, and it is the
+   precondition for a floor plan.
+
+4. **Lift the vitrines out from under the rooms.** Once routing exists they get their own
+   route rather than living at 87% depth.
+
+5. **Sticky room identity** — a slim bar naming the room you are in while scrolling its wall
+   text and provenance. Polish, and last.
+
+Moves 1 and 2 are independent of routing and carry most of the benefit.
+
+### What not to build
+
+- **No floor plan yet.** It is the seventeen-room fix, it wants routing underneath it, and
+  building it for eight rooms is premature. The trigger stands: before the roster passes
+  roughly ten.
+- **No search, filters or tags.** Eight rooms, and seventeen is still not a search problem.
+- **No sidebar app shell.** It would fight the framing rule in §12 — the institution is
+  supposed to read as a gallery, not as a dashboard.
+
+### Housekeeping while in there
+
+The colophon's font list now duplicates every room's `provenance.substituted`. One of them
+should be the source; the colophon is the better place for the universal statement (no marks,
+no artwork, no sounds) and the room is the better place for its own typeface swap.
+
+### Where it slots
+
+**Phase 7b — moves 1 and 2**, directly after The Scale and before Wing II, because the
+timeline is Wing II's spine and building it afterwards means building it twice. Moves 3 and 4
+follow whenever routing is worth the churn; both must land before the roster passes ten rooms,
+which means before Wing II ships.
