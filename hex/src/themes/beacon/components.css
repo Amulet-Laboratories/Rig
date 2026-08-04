@@ -20,5 +20,18 @@
 @import '../../shared/a11y.css';
 @import '../../shared/components/prose.css';
 
+/* Marketing-site chrome — SiteNav, SiteFooter, Hero, Section, CTABanner.
+ *
+ * Added 2026-08-04. Six of the 27 themes omitted this — beacon, cobalt, forge,
+ * greyline, spacewizard, voltaic — so a consumer who picked one for a site got
+ * completely unstyled page chrome: `[data-rig-site-nav-links]` computing
+ * `display: block`, the footer transparent. cobalt and spacewizard are both
+ * named in the README's example block, and the README promises every component
+ * re-skins on the next paint.
+ *
+ * These are app/IDE aesthetics, which is presumably how the omission happened,
+ * but the rules are token-driven — they take each theme's own palette. */
+@import '../../shared/components/web.css';
+
 @reference 'tailwindcss';
 @reference './tokens.css';

@@ -122,7 +122,7 @@ writeFileSync(
   join(dir, 'app.vue'),
   `<script setup lang="ts">
 import '@amulet-laboratories/rig/styles'
-import '@amulet-laboratories/rig/hex/citron'
+import '@amulet-laboratories/rig/hex/cobalt'
 </script>
 <template><NuxtPage /></template>
 `,
