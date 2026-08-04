@@ -6,7 +6,7 @@
     "node": ">=22",
     "pnpm": ">=10"
   },
-  "description": "Headless, accessible Vue 3 component library with 27 built-in themes — VSCode-style, slot-driven, unstyled",
+  "description": "Headless, accessible Vue 3 component library with 27 built-in themes \u2014 VSCode-style, slot-driven, unstyled",
   "license": "MIT",
   "author": "Amulet Laboratories",
   "pnpm": {
@@ -287,7 +287,8 @@
     "test:e2e": "playwright test",
     "story:dev": "histoire dev",
     "story:build": "histoire build && node scripts/histoire-post-build.mjs",
-    "story:preview": "histoire preview"
+    "story:preview": "histoire preview",
+    "test:consumer": "node scripts/consumer-smoke.mjs"
   },
   "lint-staged": {
     "*.{ts,vue}": "eslint --fix",
@@ -297,8 +298,6 @@
     "@floating-ui/vue": "^1.0.0",
     "@iconify/vue": "^4.0.0",
     "d3": "^7.0.0",
-    "dompurify": "^3.0.0",
-    "markdown-it": "^14.0.0",
     "vue": "^3.5.0"
   },
   "peerDependenciesMeta": {
@@ -306,12 +305,6 @@
       "optional": true
     },
     "d3": {
-      "optional": true
-    },
-    "dompurify": {
-      "optional": true
-    },
-    "markdown-it": {
       "optional": true
     }
   },
@@ -346,5 +339,9 @@
     "vitest": "^4.0.0",
     "vue": "^3.5.0",
     "vue-tsc": "^2.2.0"
+  },
+  "dependencies": {
+    "dompurify": "^3.0.0",
+    "markdown-it": "^14.0.0"
   }
 }

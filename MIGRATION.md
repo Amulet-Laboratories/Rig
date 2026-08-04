@@ -1,3 +1,43 @@
+# Migration
+
+## Unreleased — spatial components move off the root barrel
+
+**Breaking, and small.** The five spatial components — `MapCanvas`, `GlobeView`,
+`GraphNetwork`, `PointCloud`, `ScatterPlot3D` — are no longer re-exported from
+`@amulet-laboratories/rig`. Import them from the subpath, which has always existed:
+
+```diff
+-import { GraphNetwork } from '@amulet-laboratories/rig'
++import { GraphNetwork } from '@amulet-laboratories/rig/spatial'
+```
+
+They are also no longer in `src/generated/manifest.ts`, so **`rig-nuxt` no longer
+auto-imports them** — a Nuxt app using `<GraphNetwork>` without an explicit import will
+now fail to resolve the component. Add the import.
+
+### Why
+
+`@spatial` statically imports `d3`, which is declared an **optional** peer. Re-exporting it
+from the root barrel made that claim false: Node resolves the import when the barrel is
+evaluated, so any consumer who had not installed `d3` got
+
+```
+Cannot find package 'd3' imported from …/useForceGraph-*.js
+```
+
+on their first server render, from a page with no graph on it. Tree-shaking does not help —
+it runs in the bundler, and SSR evaluates real ESM.
+
+Nobody inside the estate hit it because QuizSort declares `d3` itself. It was found on
+2026-08-04 by installing the published package into an empty Nuxt app, which is now
+`scripts/consumer-smoke.mjs` and runs in CI.
+
+`dompurify` and `markdown-it` moved the other way, from optional peers to ordinary
+dependencies: `renderMarkdown` is a synchronous export of `core`, which every consumer
+loads, so they were never optional. **No action needed** — they now install with the package.
+
+---
+
 # Migration Guide
 
 Newest first.
