@@ -1200,11 +1200,40 @@ body {
 [data-rig-data-grid-row]:hover {
   background: var(--accent);
 }
+[data-rig-data-grid-row][data-selected] {
+  background: var(--accent);
+}
 [data-rig-data-grid-cell] {
   color: var(--foreground);
 }
 [data-rig-data-grid-empty] {
   color: var(--muted-foreground);
+}
+[data-rig-data-grid-toolbar] {
+  background: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+[data-rig-data-grid-footer] {
+  background: var(--muted);
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+}
+[data-rig-data-grid-search],
+[data-rig-data-grid-filter] {
+  color: var(--foreground);
+  border: 1px solid var(--border);
+}
+[data-rig-data-grid-columns-toggle]:hover,
+[data-rig-data-grid-clear]:hover {
+  background: var(--accent);
+}
+[data-rig-data-grid-columns-menu] {
+  background: var(--background);
+  border: 1px solid var(--border);
+}
+[data-rig-data-grid-resize-handle]:hover,
+[data-rig-data-grid][data-resizing] [data-rig-data-grid-resize-handle] {
+  background: var(--accent);
 }
 
 /* ━━━━━━━━━━━━ Extras (new) ━━━━━━━━━━━━ */

@@ -39,9 +39,12 @@ describe('DataGrid', () => {
     expect(firstCell.text()).toContain('Avatar')
   })
 
-  it('has grid role', () => {
+  // `role="grid"` sits on the scroller, not the root. A grid may only contain
+  // rows and rowgroups, so the toolbar and the pagination nav have to live
+  // outside it — the root is the shell that holds all three.
+  it('has grid role on the scroller', () => {
     const wrapper = mount(DataGrid, { props: { columns, rows } })
-    expect(wrapper.attributes('role')).toBe('grid')
+    expect(wrapper.get('[data-rig-data-grid-scroll]').attributes('role')).toBe('grid')
   })
 
   it('emits row-click', async () => {
@@ -76,8 +79,9 @@ describe('DataGrid', () => {
         rows: [{ a: 1, b: 2 }],
       },
     })
-    expect(wrapper.attributes('aria-rowcount')).toBe('2')
-    expect(wrapper.attributes('aria-colcount')).toBe('2')
+    const grid = wrapper.get('[data-rig-data-grid-scroll]')
+    expect(grid.attributes('aria-rowcount')).toBe('2')
+    expect(grid.attributes('aria-colcount')).toBe('2')
   })
 
   it('reacts to prop updates', async () => {
@@ -281,5 +285,269 @@ describe('DataGrid interactions', () => {
     const wrapper = mount(DataGrid, { props: { columns, rows: [] } })
     expect(wrapper.find('[data-rig-data-grid-empty]').text()).toBe('No data')
     wrapper.unmount()
+  })
+})
+
+// ── Datatable capabilities ───────────────────────────────────────────────────
+// Sorting by type, filtering, paging, selection, column visibility and resize.
+
+const cellTexts = (wrapper: ReturnType<typeof mount>, col = 0) =>
+  wrapper
+    .findAll('[data-rig-data-grid-row]')
+    .map((r) => r.findAll('[data-rig-data-grid-cell]')[col]!.text())
+
+describe('DataGrid sorting', () => {
+  it('sorts numbers numerically, not lexically', async () => {
+    // The old comparator ran String().localeCompare on everything, which put
+    // 100 before 9 unless numeric collation happened to save it.
+    const wrapper = mount(DataGrid, {
+      props: {
+        columns: [{ key: 'n', label: 'N', sortable: true, type: 'number' as const }],
+        rows: [{ n: 9 }, { n: 100 }, { n: 20 }],
+      },
+    })
+    await wrapper.find('[data-rig-data-grid-header-cell]').trigger('click')
+    expect(cellTexts(wrapper)).toEqual(['9', '20', '100'])
+  })
+
+  it('sorts dates chronologically', async () => {
+    const wrapper = mount(DataGrid, {
+      props: {
+        columns: [{ key: 'd', label: 'D', sortable: true, type: 'date' as const }],
+        rows: [{ d: '2026-03-01' }, { d: '2025-12-31' }, { d: '2026-01-15' }],
+      },
+    })
+    await wrapper.find('[data-rig-data-grid-header-cell]').trigger('click')
+    expect(cellTexts(wrapper)).toEqual(['2025-12-31', '2026-01-15', '2026-03-01'])
+  })
+
+  it('sorts blanks last in both directions', async () => {
+    const wrapper = mount(DataGrid, {
+      props: {
+        columns: [{ key: 'n', label: 'N', sortable: true, type: 'number' as const }],
+        rows: [{ n: 2 }, { n: null }, { n: 1 }],
+      },
+    })
+    const header = wrapper.find('[data-rig-data-grid-header-cell]')
+    await header.trigger('click')
+    expect(cellTexts(wrapper)).toEqual(['1', '2', ''])
+    await header.trigger('click')
+    expect(cellTexts(wrapper)).toEqual(['2', '1', ''])
+  })
+
+  it('sorts on the accessor value, not the raw field', async () => {
+    // The cell renders a label; the column sorts on the rank behind it.
+    const wrapper = mount(DataGrid, {
+      props: {
+        columns: [
+          {
+            key: 'label',
+            label: 'Priority',
+            sortable: true,
+            type: 'number' as const,
+            accessor: (r: Record<string, unknown>) => r.rank,
+          },
+        ],
+        rows: [
+          { label: 'low', rank: 3 },
+          { label: 'high', rank: 1 },
+          { label: 'medium', rank: 2 },
+        ],
+      },
+    })
+    await wrapper.find('[data-rig-data-grid-header-cell]').trigger('click')
+    expect(cellTexts(wrapper)).toEqual(['high', 'medium', 'low'])
+  })
+
+  it('exposes sort through v-model', async () => {
+    const wrapper = mount(DataGrid, {
+      props: { columns: [{ key: 'a', label: 'A', sortable: true }], rows: [{ a: 1 }] },
+    })
+    await wrapper.find('[data-rig-data-grid-header-cell]').trigger('click')
+    expect(wrapper.emitted('update:sort')?.at(-1)).toEqual([{ column: 'a', direction: 'asc' }])
+  })
+})
+
+describe('DataGrid filtering', () => {
+  const columns = [
+    { key: 'name', label: 'Name', filter: 'text' as const },
+    { key: 'kind', label: 'Kind', filter: 'select' as const },
+  ]
+  const rows = [
+    { name: 'alpha', kind: 'tool' },
+    { name: 'beta', kind: 'site' },
+    { name: 'gamma', kind: 'tool' },
+  ]
+
+  it('narrows rows by global search', async () => {
+    const wrapper = mount(DataGrid, { props: { columns, rows, search: 'a', searchable: true } })
+    await wrapper.setProps({ search: 'beta' })
+    expect(wrapper.findAll('[data-rig-data-grid-row]')).toHaveLength(1)
+  })
+
+  it('narrows rows by column filter, exact for select and substring for text', async () => {
+    const wrapper = mount(DataGrid, { props: { columns, rows, filters: { kind: 'tool' } } })
+    expect(wrapper.findAll('[data-rig-data-grid-row]')).toHaveLength(2)
+    await wrapper.setProps({ filters: { name: 'mm' } })
+    expect(cellTexts(wrapper)).toEqual(['gamma'])
+  })
+
+  it('offers each distinct value as a select-filter option', () => {
+    const wrapper = mount(DataGrid, { props: { columns, rows, filterable: true } })
+    const options = wrapper.findAll('[data-rig-data-grid-filter] option').map((o) => o.text())
+    expect(options).toEqual(['All', 'site', 'tool'])
+  })
+
+  it('search spans visible columns only', async () => {
+    // `site` lives in the hidden column — matching it would surface a row with
+    // no visible reason for being there.
+    const wrapper = mount(DataGrid, {
+      props: { columns, rows, search: 'site', hiddenColumns: ['kind'] },
+    })
+    expect(wrapper.findAll('[data-rig-data-grid-row]')).toHaveLength(0)
+  })
+
+  it('clears search and filters together', async () => {
+    const wrapper = mount(DataGrid, {
+      props: { columns, rows, searchable: true, search: 'beta' },
+    })
+    await wrapper.find('[data-rig-data-grid-clear]').trigger('click')
+    expect(wrapper.emitted('update:search')?.at(-1)).toEqual([''])
+    expect(wrapper.emitted('update:filters')?.at(-1)).toEqual([{}])
+  })
+})
+
+describe('DataGrid paging', () => {
+  const columns = [{ key: 'n', label: 'N' }]
+  const rows = Array.from({ length: 25 }, (_, i) => ({ n: i + 1 }))
+
+  it('renders only the current page', () => {
+    const wrapper = mount(DataGrid, { props: { columns, rows, pageSize: 10 } })
+    expect(wrapper.findAll('[data-rig-data-grid-row]')).toHaveLength(10)
+    expect(cellTexts(wrapper)[0]).toBe('1')
+  })
+
+  it('row-click reports the index in the full set, not the page', async () => {
+    const wrapper = mount(DataGrid, { props: { columns, rows, pageSize: 10, page: 3 } })
+    await wrapper.findAll('[data-rig-data-grid-row]')[0]!.trigger('click')
+    expect(wrapper.emitted('row-click')?.[0]?.[1]).toBe(20)
+  })
+
+  it('pulls the page back when a filter shortens the list', async () => {
+    const wrapper = mount(DataGrid, {
+      props: {
+        columns: [{ key: 'n', label: 'N', filter: 'text' as const }],
+        rows,
+        pageSize: 10,
+        page: 3,
+      },
+    })
+    await wrapper.setProps({ filters: { n: '1' } })
+    // 13 matches ('1', '10'–'19', '21') → 2 pages, so page 3 cannot stand.
+    expect(wrapper.emitted('update:page')?.at(-1)?.[0]).toBeLessThan(3)
+  })
+
+  it('does not page when pageSize is unset', () => {
+    const wrapper = mount(DataGrid, { props: { columns, rows } })
+    expect(wrapper.findAll('[data-rig-data-grid-row]')).toHaveLength(25)
+    expect(wrapper.find('[data-rig-data-grid-footer]').exists()).toBe(false)
+  })
+})
+
+describe('DataGrid selection', () => {
+  const columns = [{ key: 'id', label: 'ID' }]
+  const rows = [{ id: 'a' }, { id: 'b' }, { id: 'c' }]
+
+  it('adds a checkbox column only when selectable', () => {
+    expect(
+      mount(DataGrid, { props: { columns, rows } })
+        .find('[data-rig-data-grid-select-cell]')
+        .exists(),
+    ).toBe(false)
+    const wrapper = mount(DataGrid, { props: { columns, rows, selectable: true } })
+    expect(wrapper.findAll('[data-rig-data-grid-select-cell]')).toHaveLength(4) // header + 3 rows
+  })
+
+  it('toggles a row', async () => {
+    const wrapper = mount(DataGrid, { props: { columns, rows, selectable: true } })
+    await wrapper.findAll('[data-rig-data-grid-row] input[type="checkbox"]')[1]!.trigger('change')
+    expect(wrapper.emitted('update:selection')?.at(-1)).toEqual([['b']])
+  })
+
+  it('select-all covers the filtered set, not every loaded row', async () => {
+    const wrapper = mount(DataGrid, {
+      props: {
+        columns: [{ key: 'id', label: 'ID', filter: 'text' as const }],
+        rows,
+        selectable: true,
+        filters: { id: 'a' },
+      },
+    })
+    await wrapper.find('[data-rig-data-grid-header] input[type="checkbox"]').trigger('change')
+    expect(wrapper.emitted('update:selection')?.at(-1)).toEqual([['a']])
+  })
+
+  it('Space toggles selection instead of opening the row when selectable', async () => {
+    const wrapper = mount(DataGrid, { props: { columns, rows, selectable: true } })
+    await wrapper.trigger('keydown', { key: ' ' })
+    expect(wrapper.emitted('update:selection')?.at(-1)).toEqual([['a']])
+    expect(wrapper.emitted('row-click')).toBeFalsy()
+  })
+})
+
+describe('DataGrid columns', () => {
+  const columns = [
+    { key: 'a', label: 'A' },
+    { key: 'b', label: 'B', hideable: true },
+  ]
+  const rows = [{ a: 1, b: 2 }]
+
+  it('hides a column and drops its cells', () => {
+    const wrapper = mount(DataGrid, { props: { columns, rows, hiddenColumns: ['b'] } })
+    expect(wrapper.findAll('[data-rig-data-grid-header-cell]')).toHaveLength(1)
+    expect(wrapper.findAll('[data-rig-data-grid-cell]')).toHaveLength(1)
+  })
+
+  it('lists only hideable columns in the picker', () => {
+    const wrapper = mount(DataGrid, { props: { columns, rows, columnPicker: true } })
+    const items = wrapper.findAll('[data-rig-data-grid-columns-item]')
+    expect(items).toHaveLength(1)
+    expect(items[0]!.text()).toBe('B')
+  })
+
+  it('width emits an explicit flex basis so the stylesheet cannot override it', () => {
+    // `flex: 1 1 0%` in lists.css beat a bare `width`, which is why every
+    // column used to render the same size regardless of what it declared.
+    const wrapper = mount(DataGrid, {
+      props: { columns: [{ key: 'a', label: 'A', width: 200 }], rows },
+    })
+    expect(wrapper.find('[data-rig-data-grid-header-cell]').attributes('style')).toContain(
+      'flex: 0 0 200px',
+    )
+  })
+
+  it('renders a resize handle only for resizable columns', () => {
+    const wrapper = mount(DataGrid, {
+      props: {
+        columns: [
+          { key: 'a', label: 'A' },
+          { key: 'b', label: 'B', resizable: true },
+        ],
+        rows,
+      },
+    })
+    expect(wrapper.findAll('[data-rig-data-grid-resize-handle]')).toHaveLength(1)
+  })
+
+  it('right-aligns number columns by default', () => {
+    const wrapper = mount(DataGrid, {
+      props: { columns: [{ key: 'a', label: 'A', type: 'number' as const }], rows },
+    })
+    expect(wrapper.find('[data-rig-data-grid-cell]').attributes('data-align')).toBe('right')
+  })
+
+  it('carries density onto the root', () => {
+    const wrapper = mount(DataGrid, { props: { columns, rows, density: 'compact' as const } })
+    expect(wrapper.attributes('data-density')).toBe('compact')
   })
 })

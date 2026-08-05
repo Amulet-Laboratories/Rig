@@ -15,7 +15,9 @@
   transition: color 0.15s ease;
 }
 
-[data-rig-table-header]:hover {
+/* Scoped to sortable headers to match the cursor: lighting up on hover is the
+   same promise the pointer makes, and a header that doesn't sort keeps neither. */
+[data-rig-table-header][data-sortable]:hover {
   color: var(--color-foreground);
 }
 
@@ -165,6 +167,10 @@
   background: color-mix(in srgb, var(--color-foreground) 2%, transparent);
 }
 
+[data-rig-data-grid-row][data-selected] {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
 [data-rig-data-grid-cell] {
   color: var(--color-foreground);
   border-right-color: color-mix(in srgb, var(--color-border) 30%, transparent);
@@ -172,4 +178,58 @@
 
 [data-rig-data-grid-empty] {
   color: var(--rig-description-fg);
+}
+
+/* ── DataGrid chrome: toolbar, filters, resize, footer ── */
+
+[data-rig-data-grid-toolbar] {
+  background: var(--color-card);
+  border-bottom-color: var(--color-border);
+}
+
+[data-rig-data-grid-footer] {
+  background: var(--color-card);
+  border-top-color: var(--color-border);
+  color: var(--rig-description-fg);
+}
+
+[data-rig-data-grid-search],
+[data-rig-data-grid-filter] {
+  color: var(--color-foreground);
+  border-color: color-mix(in srgb, var(--color-border) 70%, transparent);
+}
+
+[data-rig-data-grid-search]:focus-visible,
+[data-rig-data-grid-filter]:focus-visible {
+  outline: none;
+  border-color: var(--color-ring);
+  box-shadow: 0 0 0 1px var(--color-ring);
+}
+
+[data-rig-data-grid-columns-toggle],
+[data-rig-data-grid-clear] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-data-grid-columns-toggle]:hover,
+[data-rig-data-grid-clear]:hover {
+  background: var(--rig-list-hover-bg);
+  color: var(--color-foreground);
+}
+
+[data-rig-data-grid-columns-menu] {
+  background: var(--color-popover, var(--color-card));
+  border-color: var(--color-border);
+  box-shadow: var(--rig-shadow-md, 0 4px 12px rgb(0 0 0 / 0.3));
+}
+
+[data-rig-data-grid-columns-item]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+/* The handle is invisible until the pointer is near it — a visible rule per
+   column reads as a heavier border than the grid actually has. */
+[data-rig-data-grid-resize-handle]:hover,
+[data-rig-data-grid][data-resizing] [data-rig-data-grid-resize-handle] {
+  background: color-mix(in srgb, var(--color-ring) 60%, transparent);
 }
