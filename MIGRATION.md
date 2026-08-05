@@ -1,6 +1,6 @@
 # Migration
 
-## Unreleased — spatial components move off the root barrel
+## 3.4.2 → 4.0.0 — spatial components move off the root barrel
 
 **Breaking, and small.** The five spatial components — `MapCanvas`, `GlobeView`,
 `GraphNetwork`, `PointCloud`, `ScatterPlot3D` — are no longer re-exported from
