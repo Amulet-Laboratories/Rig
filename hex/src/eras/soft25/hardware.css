@@ -1,0 +1,61 @@
+/* Soft '25 — the machine
+ *
+ * The end of the argument, and the room a visitor does not expect to find in a
+ * museum. Nothing is silkscreened on it, nothing indicates power, nothing
+ * vents, nothing plugs in, nothing clicks.
+ *
+ * Almost every token here is an absence: --h-plate-op 0, --h-led-op 0,
+ * --h-cable-op 0, --h-vent-w 0, --h-dial 0, --h-slot-w 0, and every button
+ * topography left at its default of 0. --h-pad reaches 4px, which is one tenth
+ * of Terminal '93. The object has receded to the point of being only the image.
+ *
+ * The pointing device is a trackpad rather than a mouse: wider than it is tall,
+ * squared off, no buttons at all. It is the one object whose --h-mouse-w
+ * exceeds its --h-mouse-h, which is the shape of the whole change.
+ */
+
+[data-hex-era='soft25'] {
+  --h-scene-w: 1064px;
+
+  --h-shell: #101216;
+  --h-shell-top: #17191d;
+  --h-shell-bot: #0a0b0e;
+  --h-shell-edge: inset 0 1px 0 rgba(255, 255, 255, 0.13), inset 0 -1px 0 #000;
+  --h-cast-dist: 30px;
+  --h-cast-blur: 44px;
+  --h-cast-color: rgba(0, 0, 0, 0.4);
+
+  --h-radius: 12px;
+  --h-pad: 4px;
+  --h-chin: 12px;
+  --h-aperture: 9px;
+  --h-aspect: 1.7778;
+  --h-screen-pad: 12px;
+
+  --h-screen-bg: #0f1115;
+  --h-recess: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --h-scan: 0;
+  --h-vignette: 0;
+  --h-glare: 0.05;
+
+  --h-plate-op: 0;
+  --h-led-op: 0;
+
+  --h-neck-w: 9%;
+  --h-neck-h: 46px;
+  --h-foot-w: 30%;
+  --h-foot-h: 6px;
+  --h-foot-radius: 3px;
+  --h-foot-shadow: 0 10px 20px rgba(0, 0, 0, 0.34);
+
+  --h-cable-op: 0;
+  --h-mouse-w: 108px;
+  --h-mouse-h: 74px;
+  --h-mouse-radius: 10px;
+  --h-mouse-top: #24262b;
+  --h-mouse-bot: #17191d;
+  --h-mouse-edge: inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -1px 0 #000;
+  --h-mouse-cast-dist: 8px;
+  --h-mouse-cast-blur: 14px;
+  --h-mouse-cast-color: rgba(0, 0, 0, 0.36);
+}

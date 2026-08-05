@@ -119,6 +119,19 @@ jobs:
       - name: Check exports
         run: node scripts/check-exports.mjs
 
+      # Installs the packed tarball into a throwaway app with ONLY the peers the
+      # README tells a consumer to add, builds it, renders a page, and checks the
+      # structural CSS arrived.
+      #
+      # Added 2026-08-04, after a consumer test found three defects that every
+      # in-repo check was structurally unable to see: `demos/`, `landing/`,
+      # `stories/` and `e2e/` all exercise Rig from inside this repo, where every
+      # dependency is already installed and every stylesheet already wired. A
+      # fresh install 500'd on its first render for want of `d3` — an *optional*
+      # peer, statically imported through the root barrel.
+      - name: Consumer smoke test
+        run: node scripts/consumer-smoke.mjs
+
       - name: Upload dist
         uses: actions/upload-artifact@v4
         with:

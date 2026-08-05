@@ -33,6 +33,94 @@ export interface Era {
    * Compositing made this unnecessary around the turn of the century.
    */
   rubberBandDrag?: boolean
+  /**
+   * The object the era's software ran on. Wall-label content for the hardware
+   * layer — the paint and geometry of the machine live in Hex as `--h-*`
+   * tokens; only the words and the two comparable figures live here.
+   */
+  machine: Machine
+  /** What this room is after, with dates and sources. See Provenance. */
+  provenance: Provenance
+  /** Physical size and pixel count, for the scale room. See ScaleRecord. */
+  scale: ScaleRecord
+}
+
+/**
+ * What the screen actually measured.
+ *
+ * Two numbers that move at very different rates, which is the whole reason the
+ * scale room exists: across forty-one years the desktop's diagonal roughly
+ * tripled while its pixel density barely moved. Density is the variable nobody
+ * sees, and it is what Wing II's central claim turns on.
+ *
+ * `pixels` is null for the one display in the collection that had none. A
+ * character-cell terminal has no pixel grid to divide by, so it carries no
+ * density figure — an absence worth showing rather than a gap to paper over.
+ */
+export interface ScaleRecord {
+  /** Diagonal in inches. */
+  diagonalIn: number
+  /** Native addressable pixels, or null for a character-cell display. */
+  pixels: { w: number; h: number } | null
+  /** Character grid, where that is what the display actually had. */
+  cells?: { cols: number; rows: number; note: string }
+}
+
+/**
+ * What a room interprets, named plainly.
+ *
+ * The museum's display names stay descriptive — Redmond '95, not Windows 95 —
+ * because the room is a reconstruction with substitute typefaces and no
+ * original artwork, and naming it after the product would claim something it
+ * cannot deliver. But an interpretation with no stated source is just a vibe,
+ * so the source is stated here, with dates, exactly as §7 has always done for
+ * typefaces. Naming a real thing in provenance is scholarship; reproducing its
+ * marks and artwork is what §1 forbids, and this does not do that.
+ *
+ * Every date below was verified against a source at the time of writing rather
+ * than recalled — a wrong date renders as fact on a wall label. `sources` is
+ * not decoration; it is the reason to believe the rest of the record.
+ */
+export interface Provenance {
+  /** The systems this room is after. Plural where the look was not one product's. */
+  interprets: SourceSystem[]
+  /** The display the object is drawn from — a typical machine of the period, never one model. */
+  display: { description: string; resolution: string; dated: string }
+  /** Peripherals worth dating, and why each one is in the record. */
+  accessories: Accessory[]
+  /** What this room deliberately does not reproduce. */
+  substituted: string
+  sources: string[]
+}
+
+export interface SourceSystem {
+  name: string
+  vendor: string
+  released: string
+}
+
+export interface Accessory {
+  name: string
+  dated: string
+  /** What this object tells you that the room otherwise only asserts. */
+  note: string
+}
+
+export interface Machine {
+  /** Silkscreened on the chin. Descriptive, never a product name. */
+  plate: string
+  /** The single detail on the object most worth pointing at. */
+  tell: string
+  /** Bezel thickness in px — must match this era's `--h-pad`. */
+  bezel: number
+  /** Visible buttons on the pointing device. Zero is a real answer twice. */
+  buttons: number
+  /**
+   * The modifier keys left of the space bar, in order. The most era-legible
+   * part of any keyboard: the count goes 2 → 3 in 1995 and never comes back
+   * down. Glyphs are generic on purpose — no key here carries a trade mark.
+   */
+  keys: string[]
 }
 
 /* Typed as non-empty so callers can fall back to eras[0] without a null check —
@@ -51,6 +139,37 @@ export const eras: [Era, ...Era[]] = [
     critique:
       'Nothing could be de-emphasised. With no grey available, a disabled control had to be dithered into a pattern, and the difference between "unavailable" and "just noisy" was often a coin flip.',
     typeface: 'Chicago — shipping as Silkscreen',
+    machine: {
+      plate: 'Compact monochrome · 9-inch',
+      bezel: 30,
+      buttons: 1,
+      keys: ['⌥', '⌘'],
+      tell: 'No power indicator anywhere on the front. You knew it was on because the tube glowed — for one era, the first thing a machine told you about itself was told by physics rather than by a light.',
+    },
+    scale: {
+      diagonalIn: 9,
+      pixels: { w: 512, h: 342 },
+    },
+    provenance: {
+      interprets: [{ name: 'System 1', vendor: 'Apple', released: '24 January 1984' }],
+      display: {
+        description: 'Built-in 9-inch monochrome CRT, Macintosh 128K',
+        resolution: '512 × 342',
+        dated: '24 January 1984',
+      },
+      accessories: [
+        {
+          name: 'Single-button mouse, shipped with the Macintosh 128K',
+          dated: '24 January 1984',
+          note: "One button, and the whole interface was designed around never needing a second. This room's menus and its modifier keys are both downstream of that decision.",
+        },
+      ],
+      substituted: 'Silkscreen for Chicago. No icon artwork, marks or system sounds reproduced.',
+      sources: [
+        'https://en.wikipedia.org/wiki/Macintosh_128K',
+        'https://en.wikipedia.org/wiki/System_1',
+      ],
+    },
   },
   {
     id: 'cube91',
@@ -66,6 +185,38 @@ export const eras: [Era, ...Era[]] = [
       'Beautiful and unaffordable. The hardware cost as much as a car, and an interface language this restrained gave users almost no colour cues to navigate by — every control looked exactly as important as every other.',
     typeface: 'Helvetica — shipping as Inter',
     steppers: 'end',
+    machine: {
+      plate: 'Greyscale workstation display',
+      bezel: 24,
+      buttons: 2,
+      keys: ['Alt', 'Cmd'],
+      tell: 'Milled, not painted: the object makes exactly the argument its software does. It is the only machine here with no colour on it anywhere except a five-pixel indicator.',
+    },
+    scale: {
+      diagonalIn: 17,
+      pixels: { w: 1120, h: 832 },
+    },
+    provenance: {
+      interprets: [{ name: 'NeXTSTEP', vendor: 'NeXT', released: 'September 1989' }],
+      display: {
+        description: 'NeXT MegaPixel Display, 17-inch, four levels of grey',
+        resolution: '1120 × 832',
+        dated: '1990',
+      },
+      accessories: [
+        {
+          name: 'Two-button mouse, shipped with the NeXTcube',
+          dated: '18 September 1990',
+          note: "Two buttons on a machine that cost as much as a car, and almost nobody used it — which is this era's critique in one object.",
+        },
+      ],
+      substituted: 'Inter for Helvetica. No icon artwork or marks reproduced.',
+      sources: [
+        'https://en.wikipedia.org/wiki/NeXTcube',
+        'https://en.wikipedia.org/wiki/NeXT_MegaPixel_Display',
+        'https://en.wikipedia.org/wiki/NeXTSTEP',
+      ],
+    },
   },
   {
     id: 'terminal93',
@@ -80,6 +231,46 @@ export const eras: [Era, ...Era[]] = [
     critique:
       'Nothing could be pointed at. Every action lived behind a key combination you had to already know, and discoverability as a design concern barely existed — which is precisely the gap the mouse was sold to close.',
     typeface: 'DEC VT320 — shipping as VT323',
+    machine: {
+      plate: 'Serial text terminal · 80 × 25',
+      bezel: 40,
+      buttons: 0,
+      keys: ['Ctrl', 'Alt'],
+      tell: "The thickest bezel and the two dials are the same fact — the display's own settings were physical, outside any software's reach. The empty deck is the exhibit: the wall text says nothing could be pointed at, and here is why.",
+    },
+    scale: {
+      diagonalIn: 14,
+      pixels: null,
+      cells: {
+        cols: 80,
+        rows: 24,
+        note: 'plus a reserved status line — the “80 × 25” everyone quotes',
+      },
+    },
+    provenance: {
+      interprets: [
+        {
+          name: 'VT320 character-cell terminal',
+          vendor: 'Digital Equipment Corporation',
+          released: 'August 1987',
+        },
+        { name: 'VT220', vendor: 'Digital Equipment Corporation', released: 'November 1983' },
+      ],
+      display: {
+        description: 'DEC VT320 serial terminal, deep-set tube',
+        resolution: '80 or 132 columns × 24 lines, plus a status line',
+        dated: 'August 1987',
+      },
+      accessories: [
+        {
+          name: 'Keyboard only — no pointing device existed for it',
+          dated: 'August 1987',
+          note: "The empty deck is the exhibit. This room's wall text says nothing could be pointed at; the object is why.",
+        },
+      ],
+      substituted: "VT323 for the VT320's character ROM. No marks reproduced.",
+      sources: ['https://en.wikipedia.org/wiki/VT320', 'https://en.wikipedia.org/wiki/VT220'],
+    },
   },
   {
     id: 'redmond95',
@@ -94,6 +285,49 @@ export const eras: [Era, ...Era[]] = [
     critique:
       'Disabled text was embossed grey-on-grey, which is close to unreadable and was shipped to hundreds of millions of screens anyway. The era treated legibility as a styling problem rather than a floor.',
     typeface: 'MS Sans Serif — shipping as Jersey 10',
+    machine: {
+      plate: 'Desktop CRT · 15-inch',
+      bezel: 30,
+      buttons: 2,
+      keys: ['Ctrl', '❖', 'Alt'],
+      tell: 'The busiest chin in the collection: indicator, media aperture, vent bank, silkscreened plate. Every later object removes one of these and never adds anything back.',
+    },
+    scale: {
+      diagonalIn: 15,
+      pixels: { w: 800, h: 600 },
+    },
+    provenance: {
+      interprets: [{ name: 'Windows 95', vendor: 'Microsoft', released: '24 August 1995' }],
+      display: {
+        description: '15-inch desktop CRT, typical of the period',
+        resolution: '800 × 600',
+        dated: 'typical of 1995',
+      },
+      accessories: [
+        {
+          name: 'Two-button mouse, no wheel',
+          dated: '1995',
+          note: 'Correct for the year, and not an omission — see the next two entries.',
+        },
+        {
+          name: 'Microsoft IntelliMouse — the first mouse with a scroll wheel',
+          dated: 'announced 22 July 1996, shipped November 1996',
+          note: "Eleven months AFTER this room's operating system. The wheel is missing here because in 1995 it did not exist yet.",
+        },
+        {
+          name: 'Microsoft Natural Keyboard — introduced the third modifier',
+          dated: 'announced September 1994, on sale October 1994',
+          note: 'Two new modifier keys between Ctrl and Alt, shipped a year before the system they were made for. This is the room where the modifier row goes from two keys to three.',
+        },
+      ],
+      substituted:
+        'Jersey 10 for MS Sans Serif. No icon artwork, marks or system sounds reproduced.',
+      sources: [
+        'https://en.wikipedia.org/wiki/Windows_95',
+        'https://en.wikipedia.org/wiki/Windows_key',
+        'https://www.howtogeek.com/741726/why-do-mice-have-scroll-wheels-microsoft-intellimouse-turns-25/',
+      ],
+    },
   },
   {
     id: 'bondi01',
@@ -107,6 +341,43 @@ export const eras: [Era, ...Era[]] = [
     critique:
       'Ornament outgrew its usefulness. Once every surface glistened, gloss stopped signalling "this is a button" and became merely what surfaces looked like, which is most of why the next era threw all of it out.',
     typeface: 'Lucida Grande — shipping as Inter',
+    machine: {
+      plate: 'Translucent CRT · 15-inch',
+      bezel: 26,
+      buttons: 1,
+      keys: ['Ctrl', '⌥', '⌘'],
+      tell: 'The case became translucent in the same year the interface became glossy — one argument in two materials. The indicator also stopped being a state and became a behaviour: it breathes.',
+    },
+    scale: {
+      diagonalIn: 15,
+      pixels: { w: 1024, h: 768 },
+    },
+    provenance: {
+      interprets: [
+        {
+          name: 'Mac OS X 10.0 “Cheetah” — the Aqua interface',
+          vendor: 'Apple',
+          released: '24 March 2001',
+        },
+      ],
+      display: {
+        description: '15-inch translucent all-in-one CRT, typical of the period',
+        resolution: '1024 × 768',
+        dated: 'typical of 1998–2001',
+      },
+      accessories: [
+        {
+          name: 'Apple USB Mouse, round and translucent — the “hockey puck”',
+          dated: 'released 15 August 1998, discontinued July 2000',
+          note: "One button and perfectly circular, so it gave the hand no clue which way it was pointing. The object predates this room's software by three years, which is honest: people ran 10.0 on the machines they already had.",
+        },
+      ],
+      substituted: 'Inter for Lucida Grande. No icon artwork, marks or system sounds reproduced.',
+      sources: [
+        'https://en.wikipedia.org/wiki/Mac_OS_X_10.0',
+        'https://en.wikipedia.org/wiki/Hockey_puck_mouse',
+      ],
+    },
   },
   {
     id: 'glass07',
@@ -120,6 +391,43 @@ export const eras: [Era, ...Era[]] = [
     critique:
       'It cost a GPU. Aero was the first interface that could not be drawn on a machine that could not afford to redraw it every frame — and on hardware that could not, the whole language silently degraded to flat grey.',
     typeface: 'Segoe UI — shipping as Inter',
+    machine: {
+      plate: 'Widescreen LCD · 22-inch',
+      bezel: 15,
+      buttons: 3,
+      keys: ['Ctrl', '❖', 'Alt'],
+      tell: 'The first screen here with no raster — no tube, so no scanlines, no vignette, no corner curvature. The gloss doubles instead. The era whose software claims to be sheet glass shipped on hardware that literally was.',
+    },
+    scale: {
+      diagonalIn: 22,
+      pixels: { w: 1680, h: 1050 },
+    },
+    provenance: {
+      interprets: [
+        {
+          name: 'Windows Vista — the Aero interface',
+          vendor: 'Microsoft',
+          released: '30 January 2007',
+        },
+      ],
+      display: {
+        description: '22-inch widescreen LCD, glossy, typical of the period',
+        resolution: '1680 × 1050',
+        dated: 'typical of 2007',
+      },
+      accessories: [
+        {
+          name: 'Two-button mouse with a scroll wheel',
+          dated: '2007',
+          note: 'The peak of the pointing device: three inputs, and a direct descendant of the 1996 IntelliMouse. Nothing after this room has more.',
+        },
+      ],
+      substituted: 'Inter for Segoe UI. No icon artwork, marks or system sounds reproduced.',
+      sources: [
+        'https://en.wikipedia.org/wiki/Windows_Vista',
+        'https://en.wikipedia.org/wiki/Windows_Aero',
+      ],
+    },
   },
   {
     id: 'flat13',
@@ -133,6 +441,45 @@ export const eras: [Era, ...Era[]] = [
     critique:
       'Affordance collapsed. With shadows and bevels gone, nothing distinguished a button from a label except convention, and a decade of research went into rediscovering that people could no longer tell what was clickable.',
     typeface: 'Helvetica Neue — shipping as Inter',
+    machine: {
+      plate: 'Aluminium LCD · 24-inch',
+      bezel: 8,
+      buttons: 0,
+      keys: ['Ctrl', '⌥', '⌘'],
+      tell: 'The flattening was not only a rendering decision. In one window the hardware lost its bevel, its vents, its indicator and its cable — and the mouse lost its buttons and became a surface. Affordance collapsed on both sides of the glass at once.',
+    },
+    scale: {
+      diagonalIn: 24,
+      pixels: { w: 1920, h: 1080 },
+    },
+    provenance: {
+      interprets: [
+        { name: 'iOS 7', vendor: 'Apple', released: '18 September 2013' },
+        {
+          name: 'Windows 8 — the Metro design language',
+          vendor: 'Microsoft',
+          released: 'October 2012',
+        },
+      ],
+      display: {
+        description: '24-inch LCD, matte, typical of the period',
+        resolution: '1920 × 1080',
+        dated: 'typical of 2013',
+      },
+      accessories: [
+        {
+          name: 'Apple Magic Mouse — multi-touch, no visible buttons',
+          dated: '20 October 2009',
+          note: 'The pointing device lost its buttons four years before the interface lost its bevels. The hardware flattened first.',
+        },
+      ],
+      substituted: 'Inter for Helvetica Neue. No icon artwork or marks reproduced.',
+      sources: [
+        'https://en.wikipedia.org/wiki/IOS_7',
+        'https://en.wikipedia.org/wiki/Magic_Mouse',
+        'https://en.wikipedia.org/wiki/Windows_8',
+      ],
+    },
   },
   {
     id: 'soft25',
@@ -146,6 +493,40 @@ export const eras: [Era, ...Era[]] = [
     critique:
       'Too early to say — which is exactly what every previous room would have answered in its own decade. The low-contrast secondary text is the most likely candidate, and it is already being walked back.',
     typeface: 'System stacks — shipping as Inter',
+    machine: {
+      plate: '—',
+      bezel: 4,
+      buttons: 0,
+      keys: ['Ctrl', '⌥', '⌘'],
+      tell: "Nothing is silkscreened on it, nothing indicates power, nothing vents, nothing plugs in, nothing clicks. The object makes the room's point faster than its wall text does.",
+    },
+    scale: {
+      diagonalIn: 27,
+      pixels: { w: 2560, h: 1440 },
+    },
+    provenance: {
+      interprets: [
+        {
+          name: 'Present-day system interfaces — no single release',
+          vendor: 'various',
+          released: 'the room is named for the year it was built, not for a product',
+        },
+      ],
+      display: {
+        description: '27-inch bezel-less panel',
+        resolution: '2560 × 1440',
+        dated: 'typical of 2025',
+      },
+      accessories: [
+        {
+          name: 'Apple Magic Trackpad — the entire surface is the button',
+          dated: '27 July 2010',
+          note: 'The last step of the argument: not fewer buttons, no buttons. The peripheral became a surface fifteen years before this room.',
+        },
+      ],
+      substituted: 'Inter for system stacks. No icon artwork or marks reproduced.',
+      sources: ['https://en.wikipedia.org/wiki/Magic_Trackpad'],
+    },
   },
 ]
 

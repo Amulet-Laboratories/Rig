@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0] — 2026-08-05
+
+### Removed
+
+- **BREAKING: the five spatial components are no longer re-exported from the root barrel.** `MapCanvas`, `GlobeView`, `GraphNetwork`, `PointCloud` and `ScatterPlot3D` must be imported from `@amulet-laboratories/rig/spatial`, the subpath that has always existed. They are also out of `src/generated/manifest.ts`, so **`rig-nuxt` no longer auto-imports them** — a Nuxt app using `<GraphNetwork>` with no explicit import will now fail to resolve the component.
+
+  `@spatial` statically imports `d3`, which is declared an _optional_ peer. Re-exporting it from the root barrel made that claim false: Node resolves the import when the barrel is evaluated, so a consumer who had not installed `d3` got `Cannot find package 'd3'` on their first server render, from a page with no graph on it. Tree-shaking does not help — it runs in the bundler, and SSR evaluates real ESM. See `MIGRATION.md`.
+
+  No consumer in the estate imports a spatial component, so this breaks nothing here — but it is a genuine breaking change to the public surface and is versioned as one.
+
+### Added
+
+- **`DataGrid` is a datatable rather than a card grid, and shares one pipeline with `Table`.** The new `useDataTable` composable in `@core` owns sorting, filtering and selection for both, so the two can no longer disagree about what a column is or how a sort behaves.
+
+### Fixed
+
+- **`Table`'s `rowClick` was unreachable.** The handler was bound to an element a person cannot click. Its test passed throughout, because it dispatched the event on the `<tr>` directly — asserting the mechanism rather than the outcome. Four of the six defects fixed in this release had passing tests of exactly that shape, which is why they survived.
+- **`PropertyGrid` had never rendered two columns**, despite that being its whole purpose.
+- **Table rows only look clickable when they are.** The pointer cursor and hover affordance were applied unconditionally, so static tables invited a click that did nothing.
+- **Six hex themes shipped no page chrome**, including the one the README demos.
+- **A stranger could not install Rig and use it as the README documents** — the packaging fix that also moved spatial off the barrel above.
+
 ## [3.4.2] — 2026-08-02
 
 ### Fixed

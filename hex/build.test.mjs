@@ -288,3 +288,37 @@ describe('Hex build', () => {
     assert.ok(declared > 0, 'at least one theme should declare --color-accent-text')
   })
 })
+
+/**
+ * Every theme must skin the page chrome.
+ *
+ * The README lists all 27 as interchangeable — "switch themes by changing one
+ * import, every component re-skins on the next paint" — and names `cobalt` and
+ * `spacewizard` in its example block. Six themes (beacon, cobalt, forge,
+ * greyline, spacewizard, voltaic) shipped with no rules at all for SiteNav or
+ * SiteFooter, so choosing one for a site produced a nav computing
+ * `display: block` and an invisible footer.
+ *
+ * This is the same failure the theme list at the top of this file records —
+ * a "for every theme" claim that was really checking a couple of them. The
+ * omission is easy to reintroduce, because a new theme is made by copying an
+ * existing one and any of the six was a plausible thing to copy.
+ */
+describe('theme coverage', () => {
+  // The chrome a marketing site cannot render without.
+  const chrome = ['data-rig-site-nav', 'data-rig-site-footer', 'data-rig-hero', 'data-rig-section']
+
+  for (const theme of themes) {
+    it(`${theme} skins the page chrome`, () => {
+      const css = readFileSync(resolve(DIST, `${theme}.css`), 'utf8')
+      const missing = chrome.filter((sel) => !css.includes(sel))
+      assert.deepEqual(
+        missing,
+        [],
+        `${theme}.css has no rules for ${missing.join(', ')} — ` +
+          `add \`@import '../../shared/components/web.css'\` to its components.css, ` +
+          `with the other @imports (an @import after any other rule is dropped).`,
+      )
+    })
+  }
+})

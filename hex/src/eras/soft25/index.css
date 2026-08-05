@@ -1,4 +1,6 @@
 /* soft25 — standalone bundle */
 @import '../../materials.css';
+@import '../../hardware.css';
 @import './tokens.css';
+@import './hardware.css';
 @import '../_shared/chrome.css';

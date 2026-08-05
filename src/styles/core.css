@@ -621,8 +621,13 @@
 
 /* ── PropertyGrid ── */
 
+/* Two columns, which is what a property grid is. It was `display: grid` with no
+   `grid-template-columns`, so every key and value fell into a single column and
+   stacked — and `keyWidth` set a `width` on a child of a `display: contents`
+   row, which sizes nothing. The prop now drives the track. */
 [data-rig-property-grid] {
   display: grid;
+  grid-template-columns: var(--rig-property-key-width, max-content) minmax(0, 1fr);
   gap: 0;
 }
 

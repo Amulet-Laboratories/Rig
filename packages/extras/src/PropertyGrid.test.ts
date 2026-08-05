@@ -30,10 +30,14 @@ describe('PropertyGrid', () => {
     expect(wrapper.find('[data-rig-property-value]').attributes('data-mono')).not.toBeUndefined()
   })
 
-  it('applies keyWidth style', () => {
+  // This used to assert `width: 120px` on the key element — which is a child of
+  // a `display: contents` row, so it sized nothing. The test pinned the
+  // mechanism rather than the outcome and passed while the prop did nothing.
+  // `keyWidth` now drives the grid's first track.
+  it('keyWidth drives the grid track, not a width on the key element', () => {
     const wrapper = mount(PropertyGrid, { props: { items: [items[0]!], keyWidth: '120px' } })
-    const key = wrapper.find('[data-rig-property-key]')
-    expect(key.attributes('style')).toContain('width: 120px')
+    expect(wrapper.attributes('style')).toContain('--rig-property-key-width: 120px')
+    expect(wrapper.find('[data-rig-property-key]').attributes('style')).toBeUndefined()
   })
 
   it('supports named slots per key', () => {

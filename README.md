@@ -31,7 +31,7 @@ tag `v0.8.5` shipped `rig@0.7.0`. That is expected.
 
 ## Features
 
-- **148 components** across 12 packages — core primitives, layout, navigation, editor, lists, menus, extras, shell, data visualization, spatial, temporal, and marketing-web
+- **148 components** across 12 packages — core primitives, layout, navigation, editor, lists, menus, extras, shell, data visualization, spatial, temporal, and marketing-web. 143 are auto-importable from the root barrel; the 5 spatial components come from `@amulet-laboratories/rig/spatial`, because they need `d3`
 - **Completely unstyled** — semantic HTML with `data-rig-*` attributes for styling hooks
 - **Accessible by default** — ARIA roles, keyboard navigation, focus management
 - **Slot-driven** — every visual element is customizable through typed named slots (`defineSlots`)
@@ -52,7 +52,25 @@ pnpm add vue@^3.5.0
 pnpm add @floating-ui/vue@^1.0.0
 # Optional — required only if using the Icon component
 pnpm add @iconify/vue@^4.0.0
+# Optional — required only if you import from `rig/spatial` (MapCanvas,
+# GlobeView, GraphNetwork, PointCloud, ScatterPlot3D)
+pnpm add d3@^7.0.0
 ```
+
+`dompurify` and `markdown-it` are ordinary dependencies and install with the package —
+`renderMarkdown` is a synchronous export of `core`, so they were never optional in practice.
+
+### Styling: two imports, not one
+
+Rig ships **structure** and Hex ships **skin**, and you need both:
+
+```ts
+import '@amulet-laboratories/rig/styles' // layout, sizing, interaction
+import '@amulet-laboratories/rig/hex/citron' // colour, type, borders — pick any theme
+```
+
+Without the first, components render as unstyled runs of inline text: `[data-rig-site-nav-links]`
+computes `display: block` and breadcrumbs stack. Both imports are needed once, at the app root.
 
 > **Upgrading from 0.1.0?** `@floating-ui/vue` is now a required peer dependency. See [MIGRATION.md](./MIGRATION.md) for details.
 
@@ -75,7 +93,11 @@ import { Button, Modal, TreeView } from '@amulet-laboratories/rig'
 
 ### Subpackage imports (smaller bundles)
 
-The root barrel re-exports every component. For projects that only need a slice — say, primitives + marketing-web bits — import from a subpackage instead. This skips the data / spatial / temporal trees and their optional peer deps (`d3`, `markdown-it`, `dompurify`) entirely.
+The root barrel re-exports every component. For projects that only need a slice — say, primitives + marketing-web bits — import from a subpackage instead. This skips the data / spatial / temporal trees entirely.
+
+**`./spatial` is not re-exported from the root barrel**, deliberately: it imports `d3`, and a
+re-export made the optional peer non-optional — every consumer without `d3` installed failed to
+build, from a page with no graph on it. Import spatial components from `@amulet-laboratories/rig/spatial`.
 
 ```ts
 // Just primitives — Button, Card, Badge, Avatar, Icon, etc.

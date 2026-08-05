@@ -1,0 +1,58 @@
+/* Redmond '95 — the machine
+ *
+ * The canonical object: beige ABS, front vents, a green indicator, a media
+ * aperture and a silkscreened plate. This is the busiest chin in the
+ * collection, and every later machine removes one of these and never adds
+ * anything back — which is the hardware layer's whole argument in one object.
+ */
+
+[data-hex-era='redmond95'] {
+  --h-scene-w: 577px;
+  --h-screen-pad: 14px;
+
+  --h-shell: #d5cebc;
+  --h-shell-top: #e3ddcd;
+  --h-shell-bot: #bab2a0;
+  --h-shell-edge:
+    inset 0 1px 0 #f7f2e4, inset 0 -1px 0 #9b937f, inset 1px 0 0 #ece6d6, inset -1px 0 0 #aaa28e;
+  --h-cast-dist: 22px;
+  --h-cast-blur: 30px;
+  --h-cast-color: rgba(28, 22, 12, 0.24);
+  --h-parting: rgba(255, 255, 255, 0.26);
+
+  --h-radius: 14px;
+  --h-pad: 30px;
+  --h-chin: 54px;
+  --h-aperture: 12px;
+
+  --h-screen-bg: #c0c0c0;
+  --h-recess: inset 0 0 0 3px #565044, inset 0 3px 9px rgba(0, 0, 0, 0.55), 0 1px 0 #f7f2e4;
+  --h-scan: 0.08;
+  --h-vignette: 0.28;
+  --h-glare: 0.13;
+
+  --h-plate-ink: #8d8571;
+  --h-led: #5ed46a;
+  --h-vent-w: 78px;
+  --h-vent-h: 10px;
+  --h-vent-ink: #8d8571;
+  --h-slot-w: 40px;
+  --h-slot-ink: #46402f;
+  --h-slot-edge: 0 1px 0 #f7f2e4;
+
+  --h-neck-w: 30%;
+  --h-foot-w: 58%;
+  --h-foot-shadow: 0 6px 12px rgba(28, 22, 12, 0.2);
+
+  /* Two buttons, a ball underneath, and no wheel — that arrives with 2007. */
+  --h-cable: #cfc7b4;
+  --h-mouse-top: #e0dac8;
+  --h-mouse-bot: #c1b9a6;
+  --h-mouse-edge: inset 0 1px 0 #f7f2e4, inset 0 -1px 0 #9b937f;
+  --h-mouse-cast-dist: 7px;
+  --h-mouse-cast-blur: 11px;
+  --h-mouse-cast-color: rgba(28, 22, 12, 0.26);
+  --h-seam-ink: #a49c88;
+  --h-split-op: 1;
+  --h-seam-op: 1;
+}

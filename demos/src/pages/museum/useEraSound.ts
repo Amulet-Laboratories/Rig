@@ -12,7 +12,7 @@ import { ref } from 'vue'
  * is a worse exhibit, and autoplay policy would block it anyway.
  */
 
-export type EraSound = 'beep' | 'click' | 'chime' | 'error' | 'none'
+export type EraSound = 'beep' | 'click' | 'chime' | 'error' | 'power' | 'none'
 
 const enabled = ref(false)
 
@@ -60,6 +60,22 @@ function click(ac: AudioContext) {
   src.start()
 }
 
+/** A degaussing coil: a low sine sliding down, plus a short noise transient. */
+function thump(ac: AudioContext) {
+  const osc = ac.createOscillator()
+  const gain = ac.createGain()
+  osc.type = 'sine'
+  osc.frequency.setValueAtTime(120, ac.currentTime)
+  osc.frequency.exponentialRampToValueAtTime(38, ac.currentTime + 0.32)
+  gain.gain.setValueAtTime(0.0001, ac.currentTime)
+  gain.gain.exponentialRampToValueAtTime(0.16, ac.currentTime + 0.012)
+  gain.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + 0.36)
+  osc.connect(gain).connect(ac.destination)
+  osc.start()
+  osc.stop(ac.currentTime + 0.4)
+  click(ac)
+}
+
 export function useEraSound() {
   function play(sound: EraSound) {
     if (!enabled.value || sound === 'none') return
@@ -83,6 +99,12 @@ export function useEraSound() {
         // Falling, which is how every era signalled refusal.
         beep(ac, 330, 120)
         window.setTimeout(() => beep(ac, 220, 200), 110)
+        break
+      case 'power':
+        // The degauss thump. Not a beep at all — a CRT's power-on noise came
+        // from the degaussing coil physically moving, so it is a low sine that
+        // drops rather than a tone that plays, with a noise transient on top.
+        thump(ac)
         break
     }
   }

@@ -1,0 +1,76 @@
+/* Cupertino '84 — the machine
+ *
+ * An all-in-one compact chassis: a nine-inch monochrome tube in a case with a
+ * handle moulded into the top. The most bezel in the collection relative to its
+ * aperture, and the only object here with no power indicator at all — you knew
+ * it was on because the tube glowed.
+ *
+ * The screen is 512 × 342, which is 1.5 : 1 and not 4 : 3. Worth getting right:
+ * every other CRT in the collection is 4 : 3, and this one visibly is not.
+ */
+
+[data-hex-era='cupertino84'] {
+  --h-scene-w: 642px;
+  --h-screen-pad: 14px;
+
+  --h-shell: #dbd3bf;
+  --h-shell-top: #e8e1cf;
+  --h-shell-bot: #c3baa4;
+  --h-shell-edge:
+    inset 0 1px 0 #fffaf0, inset 0 -1px 0 #a89f8a, inset 1px 0 0 #f2ecdc, inset -1px 0 0 #b3ab96;
+  --h-cast-dist: 19px;
+  --h-cast-blur: 26px;
+  --h-cast-color: rgba(20, 16, 10, 0.22);
+  --h-parting: rgba(255, 255, 255, 0.28);
+
+  --h-radius: 14px;
+  --h-pad: 30px;
+  --h-chin: 62px;
+  --h-aperture: 10px;
+  --h-aspect: 1.5;
+
+  --h-screen-bg: #ffffff;
+  --h-recess: inset 0 0 0 2px #6f6857, inset 0 3px 7px rgba(0, 0, 0, 0.55), 0 1px 0 #fffaf0;
+  --h-scan: 0.05;
+  --h-vignette: 0.3;
+  --h-glare: 0.16;
+
+  /* Silkscreened plate, no indicator, and a brightness dial — the display's
+     own settings were physical and outside the software's reach. */
+  --h-plate-ink: #8b826c;
+  --h-plate-size: 6.5px;
+  --h-led-op: 0;
+  --h-dial: 11px;
+  --h-dial-fill: #cdc4ae;
+  --h-dial-edge: inset 0 1px 0 #f0e9d8, inset 0 -1px 0 #a29a85, 0 1px 1px rgba(0, 0, 0, 0.2);
+  --h-dial-mark: #6d6553;
+
+  /* A 3.5-inch aperture, vertical, on the chin. */
+  --h-slot-w: 46px;
+  --h-slot-h: 5px;
+  --h-slot-ink: #2a2721;
+
+  /* No neck: the case sits flat on the desk and the foot is the case bottom. */
+  --h-neck-w: 0;
+  --h-neck-h: 0;
+  --h-foot-w: 74%;
+  --h-foot-h: 9px;
+  --h-foot-radius: 0 0 8px 8px;
+  --h-foot-shadow: 0 5px 10px rgba(20, 16, 10, 0.18);
+
+  /* One button, and a boxy shell with almost no radius — the rounded mouse
+     arrives later. The split line is there; the centre seam is not. */
+  --h-cable: #cdc4ae;
+  --h-mouse-w: 46px;
+  --h-mouse-h: 60px;
+  --h-mouse-radius: 6px 6px 5px 5px;
+  --h-mouse-top: #e3dcca;
+  --h-mouse-bot: #c6bda7;
+  --h-mouse-edge: inset 0 1px 0 #fffaf0, inset 0 -1px 0 #a89f8a;
+  --h-mouse-cast-dist: 7px;
+  --h-mouse-cast-blur: 10px;
+  --h-mouse-cast-color: rgba(20, 16, 10, 0.24);
+  --h-seam-ink: #a29a85;
+  --h-split-op: 1;
+  --h-split-y: 40%;
+}

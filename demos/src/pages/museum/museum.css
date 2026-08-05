@@ -187,6 +187,195 @@
   font-size: 0.92rem;
 }
 
+/* ── Provenance tombstone ───────────────────────────────────────────────
+ * Institutional register, and deliberately drier than the wall text above it.
+ * Wall text argues; a tombstone label states what the thing is and where the
+ * claim comes from. Keeping the two visually distinct is what stops the dates
+ * reading as more interpretation. */
+
+[data-museum-tombstone] {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+
+[data-museum-tombstone] h3 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted-foreground);
+  margin-bottom: 0.75rem;
+}
+
+[data-museum-tombstone] dl {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 0.55rem 1.25rem;
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  [data-museum-tombstone] dl {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.2rem;
+  }
+
+  [data-museum-tombstone] dd {
+    margin-bottom: 0.7rem;
+  }
+}
+
+[data-museum-tombstone] dt {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  padding-top: 0.15rem;
+}
+
+[data-museum-tombstone] dd {
+  margin: 0;
+  min-width: 0;
+}
+
+/* Each entry on its own line — several rooms interpret more than one system,
+   and Redmond '95 lists three accessories because two of them are the exhibit. */
+[data-museum-tombstone] dd > span {
+  display: block;
+}
+
+[data-museum-tombstone] dd > span + span {
+  margin-top: 0.5rem;
+}
+
+[data-museum-tombstone] dd em {
+  font-style: normal;
+  color: var(--color-muted-foreground);
+}
+
+[data-museum-tombstone] [data-sources] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+[data-museum-tombstone] [data-sources] a {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+[data-museum-tombstone] [data-sources] a:hover,
+[data-museum-tombstone] [data-sources] a:focus-visible {
+  border-bottom-color: currentColor;
+}
+
+/* ── Scale room ─────────────────────────────────────────────────────────
+ * Screens nested from a shared bottom-left corner. Anchoring them all to one
+ * corner is what makes the growth readable without the eye having to compare
+ * two distant edges — the same reason a nested-rectangle drawing is how every
+ * sensor-size and paper-size chart has ever been drawn. */
+
+[data-museum-scale] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 2rem;
+  align-items: end;
+  margin-top: 1rem;
+}
+
+@media (max-width: 860px) {
+  [data-museum-scale] {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+[data-museum-scale-stage] {
+  position: relative;
+  overflow-x: auto;
+}
+
+[data-museum-scale-screen] {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 1px;
+}
+
+/* Inside the corner, not above it — the largest rectangle sits flush with the
+   top of the stage, so an outside label would be clipped. */
+[data-museum-scale-screen] span {
+  position: absolute;
+  top: 0.15rem;
+  right: 0.3rem;
+  font-size: 0.62rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--color-muted-foreground);
+}
+
+/* The selected room fills, so the drawing stays tied to the picker above and
+   the visitor can see which rectangle they are standing in. */
+[data-museum-scale-screen][data-current] {
+  background: color-mix(in oklab, var(--color-primary) 18%, transparent);
+  border-color: var(--color-primary);
+}
+
+[data-museum-scale-screen][data-current] span {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+[data-museum-scale-table] table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.82rem;
+}
+
+[data-museum-scale-table] th {
+  text-align: left;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0 0.75rem 0.4rem 0;
+}
+
+[data-museum-scale-table] td {
+  padding: 0.3rem 0.75rem 0.3rem 0;
+  border-bottom: 1px solid var(--color-border);
+  font-variant-numeric: tabular-nums;
+}
+
+[data-museum-scale-table] tr[data-current] td {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+[data-museum-scale-table] p {
+  margin: 0.9rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-muted-foreground);
+}
+
+[data-museum-scale-table] p strong {
+  color: var(--color-foreground);
+}
+
+[data-museum-scale-you] {
+  border-left: 2px solid var(--color-primary);
+  padding-left: 0.9rem;
+}
+
 /* ── Specimen case ──────────────────────────────────────────────────────
  * The comparative view: one widget, every era, side by side. This is the part
  * that makes it a museum rather than a costume, and it is only possible

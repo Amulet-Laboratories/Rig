@@ -1,0 +1,218 @@
+/* Hex — Hardware Token Layer
+ *
+ * The third token axis. Palette tokens answer "what colour is it"; material
+ * tokens answer "what is it made of"; these answer "what was it running on".
+ *
+ * Like materials.css, this file is never imported by the 27 palette themes, so
+ * they are unaffected by it. It is consumed only by `eras/` (the Museum of User
+ * Interfaces), where the exhibit is not just an interface but a machine.
+ *
+ * ── What it is for ────────────────────────────────────────────────────────
+ * The museum's first thesis is that one component set can wear eight sets of
+ * materials. This layer carries the second:
+ *
+ *     Across forty years the machine receded.
+ *
+ * The bezel goes from 40px of beige around a nine-inch tube to 4px of nothing.
+ * The pointing device goes from one button to two to three to none. The cable
+ * disappears. By 2025 the object *is* the image. That is a fact about the whole
+ * roster which no single room can state, and it is spelled out here as a range
+ * of values rather than as prose.
+ *
+ * ── Two kinds of token — the same rule as materials.css ───────────────────
+ * This bit is load-bearing and it has already cost a day once (see §11 of
+ * docs/MUSEUM-ROADMAP.md):
+ *
+ *   1. BARE — `var(--h-pad)`. These need a declared default, below.
+ *
+ *   2. FALLBACK — `var(--h-shell-top, var(--h-shell))`. These must NOT be
+ *      declared here. A CSS fallback only fires when the property is entirely
+ *      undefined, so declaring `--h-shell-top: #ccc` means an era that sets
+ *      only `--h-shell` gets this file's highlight instead of a tone derived
+ *      from its own shell. The fallback at the use site *is* the default.
+ *      They are documented at the bottom of this file, deliberately unset.
+ *
+ * ── The empty value for a composed shadow is `0 0 transparent` ────────────
+ * Not `none`. Every `--h-*-edge`, `--h-cast`, `--h-recess` and `--h-*-shadow`
+ * below gets composed into a box-shadow list. A literal `none` anywhere in
+ * `var(--h-shell-edge), var(--h-cast)` makes the WHOLE declaration invalid and
+ * CSS drops it silently, taking the rest of the object's shading with it. This
+ * is the same trap materials.css documents; it does not stop being true here.
+ *
+ * ── Contract ──────────────────────────────────────────────────────────────
+ * An era's machine is *data*. It sets these tokens; the drawing lives in the
+ * museum app (demos/src/pages/museum/hardware.css + ExhibitHardware.vue) and
+ * contains no conditional on era id.
+ *
+ * Why the split: the tokens belong here because an era is a token file and
+ * splitting one era's record across two packages would break that. The drawing
+ * belongs in the museum because a monitor bezel is scenography, not a reusable
+ * primitive — see §15 of the roadmap.
+ */
+
+[data-hex-era] {
+  /* ── Scene ──────────────────────────────────────────────────────────────
+   * How wide the object stands on its plinth. Grows across the collection
+   * because screens did, and it is the one hardware token the layout reads. */
+  --h-scene-w: 480px;
+
+  /* ── Bezel geometry ─────────────────────────────────────────────────────
+   * --h-pad is the spine of the whole argument: 40px in 1993, 4px in 2025.
+   * Everything else here is detail hanging off it. */
+  --h-pad: 24px; /* bezel thickness, all four sides */
+  --h-chin: 48px; /* extra depth below the glass, where the badges live */
+  --h-radius: 12px; /* outer corner of the moulding */
+  --h-aperture: 8px; /* corner of the glass itself — round tube, square panel */
+  --h-aspect: 1.3333; /* 4:3 until flat panels arrive */
+  --h-screen-pad: 14px; /* inset from glass edge to the exhibit */
+
+  /* ── Shell ──────────────────────────────────────────────────────────────
+   * One colour is mandatory; the highlight and shade tones fall back to it so
+   * an era can specify a machine in a single declaration if it wants to. */
+  --h-shell: #d5cebc;
+
+  /* ── Glass ──────────────────────────────────────────────────────────────
+   * Scanlines and vignette are properties of a cathode ray tube and go to
+   * exactly zero the year the tube does. Glare does not — it peaks in the
+   * gloss years and is still present on a 2025 panel, which is why these are
+   * three tokens and not one "is it a CRT" flag.
+   *
+   * Numeric alphas, so 0 is the correct empty value and declaring it here is
+   * safe. They are used as `rgba(0, 0, 0, var(--h-scan))`, never composed. */
+  --h-scan: 0;
+  --h-vignette: 0;
+  --h-glare: 0;
+
+  /* ── Composed shading ───────────────────────────────────────────────────
+   * Whole box-shadow values, exactly like materials.css's --m-raised family,
+   * and for the same reason: a 1984 case edge and a 2025 case edge are
+   * structurally different effects rather than different values of one effect. */
+  --h-shell-edge: 0 0 transparent; /* the moulding's own edge lighting */
+  --h-recess: 0 0 transparent; /* the glass sitting down inside the bezel */
+  --h-foot-shadow: 0 0 transparent; /* contact shadow — ambient, so it does not swing */
+
+  /* ── Cast shadow — split on purpose ─────────────────────────────────────
+   * The object's shadow is the one piece of its appearance that is NOT a
+   * property of the object. Its distance, blur and colour are (a heavy beige
+   * CRT throws a different shadow than a thin aluminium panel); its direction
+   * belongs to the room the object is standing in.
+   *
+   * So the era owns these three, and the gallery owns --g-light-angle. The
+   * museum's drawing layer composes them. That split is what makes the light
+   * exhibit possible: move the gallery light and the case's shadow swings,
+   * while the bevel painted on the interface inside it does not move at all,
+   * because that light was never real. */
+  --h-cast-dist: 0px;
+  --h-cast-blur: 0px;
+  --h-cast-color: transparent;
+  --h-mouse-cast-dist: 0px;
+  --h-mouse-cast-blur: 0px;
+  --h-mouse-cast-color: transparent;
+
+  /* ── Stand ──────────────────────────────────────────────────────────────
+   * A CRT sits directly on a wide tilt-swivel foot; a panel is held up by a
+   * thin stem. Width is a percentage of the object so it scales with it. */
+  --h-neck-w: 30%;
+  --h-neck-h: 24px;
+  --h-foot-w: 58%;
+  --h-foot-h: 10px;
+  --h-foot-radius: 4px;
+
+  /* ── Pointing device ────────────────────────────────────────────────────
+   * Button topography is expressed as three independent opacities rather than
+   * a count, so that "two buttons and a wheel" and "one seamless surface" are
+   * the same markup with different data — and no era branches on button count.
+   *
+   * --h-mouse-op itself goes to 0 for Terminal '93, which had none. */
+  --h-mouse-op: 1;
+  --h-mouse-w: 56px;
+  --h-mouse-h: 74px;
+  --h-mouse-radius: 46% 46% 40% 40% / 32% 32% 68% 68%;
+  --h-mouse-edge: 0 0 transparent;
+  --h-split-op: 0; /* the horizontal line where buttons meet the body */
+  --h-split-y: 42%;
+  --h-seam-op: 0; /* the vertical line between left and right button */
+  --h-seam-h: 40%;
+  --h-wheel-op: 0;
+  --h-absent-op: 0; /* the "no pointing device" label on the plinth */
+
+  /* ── Cable ──────────────────────────────────────────────────────────────
+   * One token, one line of the thesis. 1 until 2013, 0 after. */
+  --h-cable-op: 1;
+  --h-cable-w: 3;
+
+  /* ── Chin furniture ─────────────────────────────────────────────────────
+   * Every one of these is present in 1995 and absent by 2025. Their defaults
+   * are the *absent* state, so an era adds furniture rather than removing it,
+   * which matches the direction the collection actually travels. */
+  --h-plate-op: 1;
+  --h-plate-size: 7px;
+  --h-led-op: 1;
+  --h-led-size: 6px;
+  --h-led-bloom: 7px;
+  --h-vent-w: 0;
+  --h-vent-h: 9px;
+  --h-vent-op: 0.55;
+  --h-dial: 0;
+  --h-slot-w: 0;
+  --h-slot-h: 4px;
+
+  /* ── Power ──────────────────────────────────────────────────────────────
+   * The one control on the chin that is not decoration. Every machine in the
+   * collection had one, so unlike the dials and the media aperture it is
+   * present in all eight rooms and needs no presence token.
+   *
+   * --h-screen-off is what an unlit tube looks like: not black, slightly
+   * green-grey, because the phosphor is still there. */
+  --h-power-w: 22px;
+  --h-power-h: 9px;
+  --h-power-radius: 2px;
+  --h-screen-off: #0b0d0c;
+
+  /* ── Keyboard ───────────────────────────────────────────────────────────
+   * A modifier strip, not a board. Six keycaps at most, and the count is the
+   * exhibit: two modifiers left of the space bar until 1995, three after. */
+  --h-key-w: 30px;
+  --h-key-h: 26px;
+  --h-key-radius: 3px;
+  --h-key-gap: 4px;
+  --h-keys-op: 1;
+}
+
+/* ── Deliberately unset ─────────────────────────────────────────────────────
+ * Everything below is read with a fallback at the use site and MUST NOT be
+ * given a value here. Listed so the vocabulary is discoverable without
+ * grepping the engine, and so the next person does not "fix" the omission.
+ *
+ *   --h-shell-top      highlight tone     → var(--h-shell-top, var(--h-shell))
+ *   --h-shell-bot      shade tone         → var(--h-shell-bot, var(--h-shell))
+ *   --h-parting        moulding seam      → transparent
+ *   --h-screen-bg      glass ground       → var(--color-background)
+ *   --h-plate-ink      silkscreen ink     → transparent  (no plate by default)
+ *   --h-led            indicator colour   → transparent  (no indicator)
+ *   --h-vent-ink       vent slot colour   → transparent
+ *   --h-dial-fill      dial face          → transparent
+ *   --h-dial-edge      dial edge shading  → none         (not composed)
+ *   --h-dial-mark      dial index line    → transparent
+ *   --h-slot-ink       media aperture     → transparent
+ *   --h-slot-edge      aperture lip       → none         (not composed)
+ *   --h-mouse-top      mouse highlight    → var(--h-mouse-top, var(--h-shell-top, var(--h-shell)))
+ *   --h-mouse-bot      mouse shade        → var(--h-mouse-bot, var(--h-shell-bot, var(--h-shell)))
+ *   --h-cable          cable colour       → var(--h-cable, var(--h-shell-top, var(--h-shell)))
+ *   --h-seam-ink       button seam ink    → var(--h-seam-ink, var(--h-shell-bot, var(--h-shell)))
+ *   --h-wheel          scroll wheel       → transparent
+ *   --h-led-anim       indicator animation → none  (Bondi '01 sets it to
+ *                                          `museum-breathe`. Carrying the
+ *                                          animation *name* in the token is
+ *                                          what keeps the drawing layer to one
+ *                                          rule and the component free of any
+ *                                          era flag.)
+ *   --h-led-order      indicator position  → 0     (only Glass '07 moves it)
+ *   --h-dial-order     dial position       → 0     (only Terminal '93 moves it)
+ *   --h-dial-2         second dial size    → 0     (Terminal '93 only)
+ *
+ * Two of these are the exact trap materials.css warns about. Declaring
+ * `--h-shell-top` here would mean Cube '91 — which sets only a charcoal
+ * --h-shell — draws a beige highlight on a magnesium case, and nothing would
+ * error. Leave them unset.
+ */

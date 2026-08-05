@@ -1,0 +1,645 @@
+/* The machine — drawing layer.
+ *
+ * Spends the --h-* tokens from hex/src/hardware.css. Every rule here is
+ * era-agnostic: there is no [data-hex-era='…'] selector in this file and there
+ * must never be one. If an object cannot be reached from tokens, the
+ * vocabulary is missing something — grow hex/src/hardware.css, not this file.
+ *
+ * That is the same gate the material layer passed in Phase 2, applied to the
+ * machine. See docs/MUSEUM-ROADMAP.md §12.
+ *
+ * Why this lives in the museum and not in Hex: a monitor bezel is scenography,
+ * not a reusable primitive. Hex owns the era's *data*; the museum owns its
+ * *depiction*. Roadmap §15.
+ */
+
+/* ── The plinth ─────────────────────────────────────────────────────────────
+ * Even, neutral light. Deliberately not a desk: a museum lights an object for
+ * looking at, and a wood-grain surface would turn the exhibit into nostalgia. */
+
+/* The plinth's own surface is lit by gallery.css, which overrides the era
+   engine's `background: var(--m-texture-desktop, …)` on [data-hex-era]. That
+   override matters: before the hardware layer the exhibit sat directly on the
+   era's desktop and inheriting it was correct, but the desktop has moved inside
+   the tube and what surrounds the object is now the gallery. Leaving it would
+   put a teal 1995 desktop behind a 1995 monitor. Declared there rather than
+   here so a single file owns the room's appearance. */
+
+[data-museum-plinth] {
+  container-type: inline-size;
+  display: flex;
+  justify-content: center;
+}
+
+[data-museum-scene] {
+  width: 100%;
+  max-width: var(--h-scene-w);
+}
+
+/* ── The moulding ───────────────────────────────────────────────────────── */
+
+[data-museum-monitor] {
+  position: relative;
+  border-radius: var(--h-radius);
+  padding: var(--h-pad);
+  padding-bottom: var(--h-chin);
+  background: linear-gradient(
+    178deg,
+    var(--h-shell-top, var(--h-shell)) 0%,
+    var(--h-shell) 46%,
+    var(--h-shell-bot, var(--h-shell)) 100%
+  );
+  /* Edge lighting is painted onto the moulding and never moves. The cast
+     shadow is thrown by the gallery and does — see gallery.css. */
+  box-shadow:
+    var(--h-shell-edge),
+    var(--g-cast-x, 0px) var(--g-cast-y, 0px) var(--h-cast-blur) var(--h-cast-color);
+}
+
+/* Injection-moulded shells have a parting line where the front bezel meets the
+   back housing. One hairline, and it is most of what says "moulded plastic"
+   rather than "rounded rectangle". */
+[data-museum-monitor]::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: calc(var(--h-radius) - 2px);
+  border: 1px solid var(--h-parting, transparent);
+  pointer-events: none;
+}
+
+/* ── The glass ──────────────────────────────────────────────────────────── */
+
+[data-museum-screen] {
+  position: relative;
+  aspect-ratio: var(--h-aspect);
+  border-radius: var(--h-aperture);
+  padding: var(--h-screen-pad);
+  background: var(--h-screen-bg, var(--color-background));
+  box-shadow: var(--h-recess);
+  overflow: hidden;
+  /* Deliberately NOT a container. museum.css collapses [data-museum-body] to
+     one column under @container (max-width: 560px) — a rule meant for a narrow
+     *viewport*. Making the glass a query container put a 517px tube inside that
+     breakpoint and folded the exhibit into a single column in every era. The
+     room stays the container; a tube is not a phone. */
+}
+
+/* Two inert layers: the raster on the tube, and the reflection on the glass in
+   front of it. Neither may ever intercept a pointer — the exhibit underneath is
+   operable and that is the whole claim. */
+[data-museum-screen]::before,
+[data-museum-screen]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+[data-museum-screen]::before {
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, var(--h-scan)) 0 1px,
+      rgba(0, 0, 0, 0) 1px 3px
+    ),
+    radial-gradient(
+      120% 130% at 50% 50%,
+      rgba(0, 0, 0, 0) 52%,
+      rgba(0, 0, 0, var(--h-vignette)) 100%
+    );
+}
+
+[data-museum-screen]::after {
+  background: linear-gradient(
+    148deg,
+    rgba(255, 255, 255, var(--h-glare)) 0%,
+    rgba(255, 255, 255, calc(var(--h-glare) * 0.35)) 18%,
+    rgba(255, 255, 255, 0) 44%
+  );
+}
+
+/* The exhibit fills the tube rather than sitting centred in a letterbox, and
+   stays draggable — dragging it past the edge clips, which is what a window
+   leaving a screen actually does. */
+[data-museum-screen] [data-museum-window] {
+  min-height: 0;
+  max-width: none;
+  height: 100%;
+}
+
+[data-museum-screen] [data-museum-body] [data-rig-scroll-area] {
+  height: 100%;
+}
+
+/* Safety valve. Each era's --h-scene-w is sized so the exhibit fits its own
+   tube exactly at full width — but the scene is a max-width, so a narrow
+   viewport shrinks the glass while the exhibit's intrinsic height does not
+   shrink with it. Without this the OK button is the first thing to disappear,
+   silently, which is the worst possible failure for an exhibit whose whole
+   claim is that you can operate it.
+
+   The later eras need roughly 60% more height than the earlier ones for the
+   same controls — Soft '25 wants 570px where Cupertino '84 wants 358 — because
+   generous spacing is that era's actual argument. Measured, not guessed. */
+[data-museum-screen] [data-museum-inspector] {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* ── The chin ───────────────────────────────────────────────────────────────
+ * Fixed markup, fixed left-to-right order, presence driven entirely by tokens.
+ * Two items move across the collection rather than appearing and disappearing,
+ * so they get an order token — that is still data, not a conditional. */
+
+[data-museum-chin] {
+  position: absolute;
+  left: var(--h-pad);
+  right: var(--h-pad);
+  bottom: 0;
+  height: var(--h-chin);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: calc(var(--h-chin) * 0.18);
+}
+
+[data-museum-chin] [data-spacer] {
+  order: 2;
+  flex: 1 1 auto;
+}
+
+/* ── Power ──────────────────────────────────────────────────────────────────
+ * The only control on the object that does anything, and the thing that turns
+ * the bezel from a picture into UI. It is a real <button>: focusable, named,
+ * and operable from the keyboard, because the museum keeps Rig's accessibility
+ * machinery intact and the machine should not be the exception. */
+
+[data-museum-power] {
+  order: 5;
+  flex: none;
+  width: var(--h-power-w);
+  height: var(--h-power-h);
+  padding: 0;
+  border: 0;
+  border-radius: var(--h-power-radius);
+  cursor: pointer;
+  background: linear-gradient(
+    178deg,
+    var(--h-shell-top, var(--h-shell)),
+    var(--h-shell-bot, var(--h-shell))
+  );
+  box-shadow: var(--h-shell-edge);
+}
+
+[data-museum-power]:active,
+[data-museum-power][aria-pressed='false'] {
+  background: linear-gradient(
+    178deg,
+    var(--h-shell-bot, var(--h-shell)),
+    var(--h-shell-top, var(--h-shell))
+  );
+}
+
+[data-museum-power]:focus-visible {
+  outline: 2px solid var(--color-ring, #4a9eff);
+  outline-offset: 2px;
+}
+
+/* Powered down: the indicator goes out with the tube, which is the whole
+   reason an indicator existed. */
+[data-museum-monitor][data-off] [data-museum-led] {
+  opacity: 0;
+}
+
+/* The unlit tube. An opaque overlay rather than a filter on the screen: a
+   filter would create a containing block around the exhibit, which §15 forbids
+   for exactly the reason it matters here — what is behind the glass has to stay
+   real, not become an image of itself. */
+[data-museum-glass] {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: var(--h-screen-off);
+}
+
+[data-museum-screen][data-off] [data-museum-glass] {
+  opacity: 1;
+}
+
+/* And the exhibit genuinely leaves — hidden, not just covered, so it is out of
+   the tab order and out of the accessibility tree while the machine is off. */
+[data-museum-screen][data-off] [data-museum-window] {
+  visibility: hidden;
+}
+
+/* The collapse: the image falls to a horizontal line, the line shrinks to a
+   point, the point fades. Every CRT did this and nothing since has. */
+[data-museum-screen][data-off] [data-museum-glass]::after {
+  content: '';
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.75);
+  transform-origin: 50% 50%;
+  animation: museum-collapse 460ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes museum-collapse {
+  0% {
+    transform: scaleY(160) scaleX(1);
+    opacity: 0.55;
+  }
+  40% {
+    transform: scaleY(1) scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1) scaleX(0.01);
+    opacity: 0;
+  }
+}
+
+/* Silkscreened, not printed: low-contrast ink sitting on the plastic. */
+[data-museum-plate] {
+  order: 1;
+  min-width: 0;
+  font-size: var(--h-plate-size);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--h-plate-ink, transparent);
+  opacity: var(--h-plate-op);
+}
+
+[data-museum-led] {
+  order: var(--h-led-order, 0);
+  flex: none;
+  width: var(--h-led-size);
+  height: var(--h-led-size);
+  border-radius: 50%;
+  background: var(--h-led, transparent);
+  box-shadow: 0 0 var(--h-led-bloom) var(--h-led, transparent);
+  opacity: var(--h-led-op);
+}
+
+/* Bondi is the one era where the indicator stopped being a state and became a
+   behaviour. The animation *name* is the token, so this stays one rule for
+   every era and the component needs no flag — the alternative was a boolean on
+   the era record and a `:data-pulse` binding, which is a conditional wearing a
+   different hat. `none` is a valid animation-name, so the fallback is safe. */
+[data-museum-led] {
+  animation: var(--h-led-anim, none) 3.4s ease-in-out infinite;
+}
+
+@keyframes museum-breathe {
+  0%,
+  100% {
+    opacity: var(--h-led-op);
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Ventilation — the other honest moulding cue, and nearly free. */
+[data-museum-vents] {
+  order: 4;
+  flex: none;
+  width: var(--h-vent-w);
+  height: var(--h-vent-h);
+  opacity: var(--h-vent-op);
+  background: repeating-linear-gradient(
+    to right,
+    var(--h-vent-ink, transparent) 0 1px,
+    rgba(0, 0, 0, 0) 1px 4px
+  );
+}
+
+/* Brightness and contrast, back when a display's own settings were physical
+   and outside any software's reach. Gone by 2001. */
+[data-museum-dial] {
+  order: var(--h-dial-order, 0);
+  position: relative;
+  flex: none;
+  width: var(--h-dial);
+  height: var(--h-dial);
+  border-radius: 50%;
+  background: var(--h-dial-fill, transparent);
+  box-shadow: var(--h-dial-edge, none);
+}
+
+[data-museum-dial][data-second] {
+  width: var(--h-dial-2, 0);
+  height: var(--h-dial-2, 0);
+}
+
+[data-museum-dial]::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 12%;
+  width: 1px;
+  height: 38%;
+  background: var(--h-dial-mark, transparent);
+  transform: translateX(-50%) rotate(var(--dial-r, 0deg));
+  transform-origin: 50% 130%;
+}
+
+/* A 3.5-inch aperture, a tray lip, or nothing at all. */
+[data-museum-slot] {
+  order: 3;
+  flex: none;
+  width: var(--h-slot-w);
+  height: var(--h-slot-h);
+  border-radius: 1px;
+  background: var(--h-slot-ink, transparent);
+  box-shadow: var(--h-slot-edge, none);
+}
+
+/* ── Stand ──────────────────────────────────────────────────────────────── */
+
+[data-museum-neck] {
+  width: var(--h-neck-w);
+  height: var(--h-neck-h);
+  margin: 0 auto;
+  clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
+  background: linear-gradient(
+    90deg,
+    var(--h-shell-bot, var(--h-shell)),
+    var(--h-shell-top, var(--h-shell)) 40%,
+    var(--h-shell-bot, var(--h-shell))
+  );
+}
+
+[data-museum-foot] {
+  width: var(--h-foot-w);
+  height: var(--h-foot-h);
+  margin: 0 auto;
+  border-radius: var(--h-foot-radius);
+  background: linear-gradient(
+    178deg,
+    var(--h-shell-top, var(--h-shell)),
+    var(--h-shell-bot, var(--h-shell))
+  );
+  box-shadow: var(--h-foot-shadow);
+}
+
+/* ── Deck: cable and pointing device ────────────────────────────────────── */
+
+[data-museum-deck] {
+  position: relative;
+  height: 118px;
+  margin-top: 0.5rem;
+}
+
+[data-museum-cord] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: var(--h-cable-op);
+  pointer-events: none;
+}
+
+[data-museum-cord] path {
+  fill: none;
+  stroke: var(--h-cable, var(--h-shell-top, var(--h-shell)));
+  stroke-width: var(--h-cable-w);
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+[data-museum-pointer] {
+  position: absolute;
+  left: 68%;
+  top: 42px;
+  transform: translateX(-50%);
+  width: var(--h-mouse-w);
+  height: var(--h-mouse-h);
+  border-radius: var(--h-mouse-radius);
+  opacity: var(--h-mouse-op);
+  box-shadow:
+    var(--h-mouse-edge),
+    var(--g-mouse-cast-x, 0px) var(--g-mouse-cast-y, 0px) var(--h-mouse-cast-blur)
+      var(--h-mouse-cast-color);
+  background: linear-gradient(
+    168deg,
+    var(--h-mouse-top, var(--h-shell-top, var(--h-shell))),
+    var(--h-mouse-bot, var(--h-shell-bot, var(--h-shell)))
+  );
+}
+
+/* Button topography. Three independent opacities rather than a count, so
+   "two buttons and a wheel" and "one seamless surface" are the same markup. */
+[data-museum-pointer] [data-split] {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: var(--h-split-y);
+  height: 1px;
+  opacity: var(--h-split-op);
+  background: var(--h-seam-ink, var(--h-shell-bot, var(--h-shell)));
+}
+
+[data-museum-pointer] [data-seam] {
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  width: 1px;
+  height: var(--h-seam-h);
+  opacity: var(--h-seam-op);
+  background: var(--h-seam-ink, var(--h-shell-bot, var(--h-shell)));
+}
+
+[data-museum-pointer] [data-wheel] {
+  position: absolute;
+  left: 50%;
+  top: 12%;
+  width: 8px;
+  height: 15px;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  opacity: var(--h-wheel-op);
+  background: var(--h-wheel, transparent);
+}
+
+/* An absence has to be labelled or it reads as a bug. Terminal '93 is the only
+   object with no pointing device, and that is an exhibit rather than a gap. */
+[data-museum-absent] {
+  position: absolute;
+  left: 68%;
+  top: 52px;
+  transform: translateX(-50%);
+  /* A gallery label, so it is set in the museum's own face rather than the
+     era's — the room inherits --m-font from the era engine and this is one of
+     the few things inside it that belongs to the institution. */
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  padding: 0.7rem 1rem;
+  border: 1px dashed var(--color-border);
+  color: var(--color-muted-foreground);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: var(--h-absent-op);
+}
+
+/* ── Keyboard ───────────────────────────────────────────────────────────────
+ * The modifier row, and nothing else. Six caps at most: the keys left of the
+ * space bar are the era-legible part of a keyboard, and their count going from
+ * two to three in 1995 is a one-line exhibit that a full board would bury.
+ *
+ * It is also the only peripheral Terminal '93 has, which is where it earns its
+ * place most — that deck would otherwise be empty twice over. */
+
+[data-museum-keys] {
+  position: absolute;
+  left: 27%;
+  top: 46px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--h-key-gap);
+  opacity: var(--h-keys-op);
+}
+
+[data-museum-keys] kbd {
+  display: grid;
+  place-items: center;
+  width: var(--h-key-w);
+  height: var(--h-key-h);
+  border-radius: var(--h-key-radius);
+  font-family: inherit;
+  font-size: 10px;
+  line-height: 1;
+  color: var(--h-key-ink, var(--h-shell-bot, var(--h-shell)));
+  background: linear-gradient(
+    168deg,
+    var(--h-mouse-top, var(--h-shell-top, var(--h-shell))),
+    var(--h-mouse-bot, var(--h-shell-bot, var(--h-shell)))
+  );
+  box-shadow: var(--h-mouse-edge);
+}
+
+@container (max-width: 420px) {
+  [data-museum-deck] {
+    height: 96px;
+  }
+
+  [data-museum-pointer] {
+    left: 72%;
+  }
+
+  [data-museum-absent] {
+    left: 50%;
+    top: 60px;
+  }
+}
+
+/* ── Stepping back ──────────────────────────────────────────────────────────
+ * Below this width the object stops being the exhibit and starts being in the
+ * way: forty pixels of moulding around a two-hundred-pixel window is a joke at
+ * the visitor's expense, and the deck's mouse and cable are pure decoration at
+ * phone width.
+ *
+ * So the machine steps back to the bezel-case treatment — a thin frame, no
+ * furniture, no peripherals — and hands the exhibit its full width and its
+ * natural height. The aspect ratio goes too: honouring 4:3 here would waste the
+ * only dimension a phone has. The object is still present, still the right
+ * colour, still visibly a frame; it has simply stopped pretending to be
+ * furniture on a plinth.
+ *
+ * Keyed to the plinth's container rather than the viewport so the rule holds
+ * wherever the room is embedded. */
+@container (max-width: 640px) {
+  [data-museum-monitor] {
+    padding: 7px;
+    padding-bottom: 7px;
+    border-radius: calc(var(--h-radius) * 0.5);
+  }
+
+  [data-museum-monitor]::after,
+  [data-museum-chin],
+  [data-museum-neck],
+  [data-museum-foot],
+  [data-museum-deck] {
+    display: none;
+  }
+
+  [data-museum-screen] {
+    aspect-ratio: auto;
+    padding: 6px;
+  }
+
+  [data-museum-screen] [data-museum-window] {
+    height: auto;
+    min-height: 320px;
+  }
+
+  [data-museum-screen] [data-museum-inspector] {
+    overflow-y: visible;
+  }
+}
+
+/* ── The bezel case ─────────────────────────────────────────────────────────
+ * Eight frames, no content, no fonts, no live components. The cheapest exhibit
+ * in the building and the one that makes the whole argument at a glance. */
+
+[data-museum-bezel-grid] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(116px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+[data-museum-bezel-grid] figure {
+  margin: 0;
+  align-self: end;
+}
+
+[data-museum-bezel] {
+  border-radius: calc(var(--h-radius) * 0.55);
+  padding: calc(var(--h-pad) * 0.55);
+  padding-bottom: calc(var(--h-chin) * 0.55);
+  box-shadow: var(--h-shell-edge);
+  background: linear-gradient(
+    178deg,
+    var(--h-shell-top, var(--h-shell)),
+    var(--h-shell-bot, var(--h-shell))
+  );
+}
+
+[data-museum-bezel] > div {
+  aspect-ratio: var(--h-aspect);
+  border-radius: calc(var(--h-aperture) * 0.55);
+  background: #0c0e10;
+  box-shadow: var(--h-recess);
+}
+
+[data-museum-bezel-label] {
+  margin-top: 0.5rem;
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: var(--color-muted-foreground);
+}
+
+[data-museum-bezel-label] strong {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--color-foreground);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-museum-led] {
+    animation: none;
+  }
+}
