@@ -19,6 +19,17 @@ const props = withDefaults(
   },
 )
 
+/**
+ * `cellClick` deliberately does **not** stop propagation, so a click on a cell
+ * emits `cellClick` and then `rowClick`.
+ *
+ * It used to be `@click.stop`, which made `rowClick` unreachable: every pixel
+ * of a row is inside some `<td>`, so the row handler had no surface left to
+ * fire from. The emit was declared, documented and dead, and a consumer wiring
+ * `@row-click` to open a record got a table where clicking a row did nothing.
+ * A caller that genuinely wants cell-only handling can stop the event itself;
+ * the component cannot make that choice for everyone.
+ */
 const emit = defineEmits<{
   'update:sort': [sort: SortState]
   rowClick: [row: T]
@@ -104,7 +115,7 @@ function ariaSortValue(col: ColumnDef): 'none' | 'ascending' | 'descending' | 'o
           :key="col.id"
           data-rig-table-cell
           :data-align="col.align"
-          @click.stop="emit('cellClick', { row, column: col })"
+          @click="emit('cellClick', { row, column: col })"
         >
           <slot :name="`cell-${col.id}`" :row="row" :column="col" :value="row[col.id as keyof T]">
             {{ row[col.id as keyof T] }}

@@ -96,6 +96,29 @@ describe('Table', () => {
     expect(wrapper.emitted('rowClick')?.[0]?.[0]).toEqual(rows[0])
   })
 
+  // The test above triggers on the <tr>, which is not what a person does —
+  // every pixel of a row is inside a <td>. `cellClick` was `@click.stop`, so a
+  // real click emitted only `cellClick` and `rowClick` was unreachable: a
+  // declared, documented, dead event. The test passed the whole time because it
+  // clicked an element no user can click.
+  it('emits rowClick when the click lands on a cell, which is where clicks land', async () => {
+    const wrapper = mount(Table, {
+      props: { columns, rows, rowKey: 'id' },
+    })
+    await wrapper.findAll('[data-rig-table-cell]')[0]!.trigger('click')
+    expect(wrapper.emitted('rowClick')?.[0]?.[0]).toEqual(rows[0])
+  })
+
+  it('emits cellClick as well, so a caller can have both', async () => {
+    const wrapper = mount(Table, {
+      props: { columns, rows, rowKey: 'id' },
+    })
+    await wrapper.findAll('[data-rig-table-cell]')[1]!.trigger('click')
+    const payload = wrapper.emitted('cellClick')?.[0]?.[0] as { column: { id: string } }
+    expect(payload.column.id).toBe(columns[1]!.id)
+    expect(wrapper.emitted('rowClick')).toBeTruthy()
+  })
+
   it('shows empty state when no rows', () => {
     const wrapper = mount(Table, {
       props: { columns, rows: [], rowKey: 'id' },
