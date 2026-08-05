@@ -30,9 +30,12 @@
 }
 
 [data-rig-table-body] [data-rig-table-row] {
-  cursor: pointer;
   border-bottom-width: 1px;
   border-bottom-style: solid;
+}
+
+[data-rig-table-body] [data-rig-table-row][data-interactive] {
+  cursor: pointer;
 }
 
 [data-rig-table-cell] {

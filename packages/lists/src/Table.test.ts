@@ -119,6 +119,16 @@ describe('Table', () => {
     expect(wrapper.emitted('rowClick')).toBeTruthy()
   })
 
+  // Rows carried `cursor: pointer` unconditionally, so a table with no
+  // rowClick handler still looked clickable everywhere.
+  it('marks rows interactive by default and drops it when told', () => {
+    const on = mount(Table, { props: { columns, rows, rowKey: 'id' } })
+    expect(on.find('[data-rig-table-row]').attributes('data-interactive')).toBe('true')
+
+    const off = mount(Table, { props: { columns, rows, rowKey: 'id', interactive: false } })
+    expect(off.find('[data-rig-table-row]').attributes('data-interactive')).toBeUndefined()
+  })
+
   it('shows empty state when no rows', () => {
     const wrapper = mount(Table, {
       props: { columns, rows: [], rowKey: 'id' },

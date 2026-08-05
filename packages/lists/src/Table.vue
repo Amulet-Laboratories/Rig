@@ -13,9 +13,17 @@ const props = withDefaults(
     rowKey: keyof T | ((row: T) => string)
     /** Whether columns can be resized */
     resizableColumns?: boolean
+    /**
+     * Whether rows respond to a click. Rows carried `cursor: pointer`
+     * unconditionally, which is a promise a table with no `rowClick` handler
+     * cannot keep — every row looked clickable whether or not anything
+     * happened. Defaults true, so existing tables are unchanged.
+     */
+    interactive?: boolean
   }>(),
   {
     resizableColumns: false,
+    interactive: true,
   },
 )
 
@@ -107,6 +115,7 @@ function ariaSortValue(col: ColumnDef): 'none' | 'ascending' | 'descending' | 'o
         v-for="row in rows"
         :key="getRowId(row)"
         data-rig-table-row
+        :data-interactive="interactive || undefined"
         @click="emit('rowClick', row)"
         @dblclick="emit('rowDblclick', row)"
       >
