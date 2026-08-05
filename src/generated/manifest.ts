@@ -160,6 +160,7 @@ export const composables = [
   'useConfig',
   'useConfirm',
   'useContainerSize',
+  'useDataTable',
   'useDetailView',
   'useDragDrop',
   'useFathom',

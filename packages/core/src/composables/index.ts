@@ -7,6 +7,15 @@ export { useCommandRegistry } from './useCommandRegistry'
 export { useTooltip } from './useTooltip'
 export { useVirtualList } from './useVirtualList'
 export type { VirtualItem, VirtualState } from './useVirtualList'
+export { useDataTable, compareValues } from './useDataTable'
+export type {
+  DataTableValueType,
+  DataTableColumnSpec,
+  DataTableState,
+  UseDataTableOptions,
+  UseDataTableReturn,
+  WritableRef,
+} from './useDataTable'
 export { provideDragDrop, useDragDrop } from './useDragDrop'
 export type { DragItem, DropResult, DragOptions } from './useDragDrop'
 export { useReducedMotion } from './useReducedMotion'

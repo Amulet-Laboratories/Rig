@@ -17,26 +17,45 @@
 [data-rig-table-header] {
   text-align: left;
   padding: 0.5rem 1.25rem;
-  cursor: pointer;
   user-select: none;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
+/* The base rule used to set `cursor: pointer` on every header, which made this
+   one a no-op and promised a click on headers that don't sort. */
 [data-rig-table-header][data-sortable] {
   cursor: pointer;
 }
 
 [data-rig-table-body] [data-rig-table-row] {
-  cursor: pointer;
   border-bottom-width: 1px;
   border-bottom-style: solid;
+}
+
+[data-rig-table-body] [data-rig-table-row][data-interactive] {
+  cursor: pointer;
 }
 
 [data-rig-table-cell] {
   padding: 0.625rem 1.25rem;
   font-size: 13px;
+}
+
+/* Table.vue has always emitted `data-align` from each column's `align` prop and
+   nothing styled it, so a column declaring `align: 'right'` — which is what
+   every currency and count column declares — still rendered left and the
+   figures didn't line up on the decimal. */
+[data-rig-table-header][data-align='right'],
+[data-rig-table-cell][data-align='right'] {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-rig-table-header][data-align='center'],
+[data-rig-table-cell][data-align='center'] {
+  text-align: center;
 }
 
 [data-rig-table-empty] {
@@ -221,27 +240,131 @@
 
 /* ── DataGrid ── */
 
+/* The root is a shell — toolbar, scroller, footer — so the border and radius
+   live here while the scrolling happens one level in. `overflow: hidden` is
+   what makes the radius actually clip the header's top corners. */
 [data-rig-data-grid] {
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  min-height: 0;
+  overflow: hidden;
   font-size: 13px;
   border-width: 1px;
   border-style: solid;
   border-radius: var(--radius);
 }
 
-[data-rig-data-grid-header] {
+[data-rig-data-grid-scroll] {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: auto;
+}
+
+[data-rig-data-grid-toolbar],
+[data-rig-data-grid-footer] {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.5rem;
+  flex-wrap: wrap;
+}
+
+[data-rig-data-grid-toolbar] {
   border-bottom-width: 1px;
   border-bottom-style: solid;
 }
 
-[data-rig-data-grid-header-cell] {
-  flex: 1 1 0%;
+[data-rig-data-grid-footer] {
+  border-top-width: 1px;
+  border-top-style: solid;
+  justify-content: space-between;
+}
+
+[data-rig-data-grid-search] {
+  flex: 1 1 12rem;
+  min-width: 0;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+  background: transparent;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: var(--radius);
+}
+
+[data-rig-data-grid-columns] {
+  position: relative;
+}
+
+[data-rig-data-grid-columns-toggle] {
+  cursor: pointer;
+  user-select: none;
+  padding: 0.25rem 0.5rem;
+  font-size: 12px;
+  border-radius: var(--radius);
+}
+
+[data-rig-data-grid-columns-menu] {
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 10rem;
+  padding: 0.375rem;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: var(--radius);
+}
+
+[data-rig-data-grid-columns-item] {
   display: flex;
   align-items: center;
+  gap: 0.375rem;
+  padding: 0.125rem 0.25rem;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+[data-rig-data-grid-clear] {
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius);
+}
+
+[data-rig-data-grid-count] {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-rig-data-grid-header] {
+  display: flex;
+  align-items: stretch;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+[data-rig-data-grid][data-sticky] [data-rig-data-grid-header] {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* A header cell stacks its label over an optional filter control, so the
+   filters stay column-aligned without a second row of `columnheader`s. */
+[data-rig-data-grid-header-cell] {
+  position: relative;
+  flex: 1 1 0%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 0.25rem;
   padding: 0.5rem;
   cursor: pointer;
@@ -252,12 +375,59 @@
   border-right-style: solid;
 }
 
+[data-rig-data-grid-header-label] {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+[data-rig-data-grid-header-cell][data-align='right'] [data-rig-data-grid-header-label] {
+  justify-content: flex-end;
+}
+
+[data-rig-data-grid-header-cell][data-align='center'] [data-rig-data-grid-header-label] {
+  justify-content: center;
+}
+
 [data-rig-data-grid-header-cell]:focus-visible {
   outline: none;
 }
 
+[data-rig-data-grid-filter] {
+  width: 100%;
+  min-width: 0;
+  padding: 0.125rem 0.25rem;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 400;
+  cursor: auto;
+  background: transparent;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: var(--radius);
+}
+
+[data-rig-data-grid-resize-handle] {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  bottom: 0;
+  width: 7px;
+  z-index: 1;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+/* Suppress text selection across the whole grid mid-drag — without this a
+   resize drag paints a selection over every row it passes. */
+[data-rig-data-grid][data-resizing] {
+  user-select: none;
+}
+
 [data-rig-data-grid-body] {
-  display: contents;
+  display: flex;
+  flex-direction: column;
 }
 
 [data-rig-data-grid-row] {
@@ -274,12 +444,41 @@
 
 [data-rig-data-grid-cell] {
   flex: 1 1 0%;
+  min-width: 0;
   padding: 0.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   border-right-width: 1px;
   border-right-style: solid;
+}
+
+[data-rig-data-grid-cell][data-align='right'] {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-rig-data-grid-cell][data-align='center'] {
+  text-align: center;
+}
+
+[data-rig-data-grid-select-cell] {
+  flex: 0 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+  cursor: default;
+}
+
+[data-rig-data-grid][data-density='compact'] [data-rig-data-grid-cell],
+[data-rig-data-grid][data-density='compact'] [data-rig-data-grid-header-cell] {
+  padding: 0.25rem 0.5rem;
+}
+
+[data-rig-data-grid][data-density='comfortable'] [data-rig-data-grid-cell],
+[data-rig-data-grid][data-density='comfortable'] [data-rig-data-grid-header-cell] {
+  padding: 0.75rem;
 }
 
 [data-rig-data-grid-empty] {
