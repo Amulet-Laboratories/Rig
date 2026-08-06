@@ -34,4 +34,3 @@
 @import '../../shared/components/web.css';
 
 @reference 'tailwindcss';
-@reference './tokens.css';

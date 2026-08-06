@@ -1,6 +1,5 @@
 /* Hex — Clover Domains */
 @reference 'tailwindcss';
-@reference './tokens.css';
 
 [data-domain='legal'] {
   --domain-accent: #d16b3f;

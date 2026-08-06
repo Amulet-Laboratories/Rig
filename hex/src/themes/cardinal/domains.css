@@ -1,6 +1,5 @@
 /* Hex — Cardinal Domains */
 @reference 'tailwindcss';
-@reference './tokens.css';
 
 [data-domain='legal'] {
   --domain-accent: #b83232;
