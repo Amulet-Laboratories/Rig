@@ -1,6 +1,5 @@
 /* Hex — Copper Domains */
 @reference 'tailwindcss';
-@reference './tokens.css';
 
 [data-domain='legal'] {
   --domain-accent: #c9b458;

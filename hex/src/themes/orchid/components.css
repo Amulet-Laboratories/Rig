@@ -24,4 +24,3 @@
 @import '../../shared/scroll-animations.css';
 
 @reference 'tailwindcss';
-@reference './tokens.css';
