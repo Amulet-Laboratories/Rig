@@ -1390,6 +1390,19 @@
   gap: 24px;
 }
 
+/* Masonry via CSS columns. The prop existed since Gallery shipped with no rule
+   anywhere matching it — it silently fell back to the stacked base layout. */
+[data-rig-gallery][data-layout='masonry'] {
+  display: block;
+  columns: 2;
+  column-gap: 24px;
+}
+
+[data-rig-gallery][data-layout='masonry'] [data-rig-gallery-item] {
+  break-inside: avoid;
+  margin-bottom: 24px;
+}
+
 @media (min-width: 640px) {
   [data-rig-gallery][data-layout='alternating'] [data-rig-gallery-item] {
     grid-template-columns: 1fr 1fr;
