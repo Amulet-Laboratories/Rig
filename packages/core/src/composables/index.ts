@@ -7,6 +7,13 @@ export { useCommandRegistry } from './useCommandRegistry'
 export { useTooltip } from './useTooltip'
 export { useVirtualList } from './useVirtualList'
 export type { VirtualItem, VirtualState } from './useVirtualList'
+export { useVirtualGrid } from './useVirtualGrid'
+export type {
+  VirtualGridCell,
+  VirtualGridRow,
+  VirtualGridState,
+  VirtualGridOptions,
+} from './useVirtualGrid'
 export { useDataTable, compareValues } from './useDataTable'
 export type {
   DataTableValueType,

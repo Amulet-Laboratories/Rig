@@ -50,6 +50,7 @@ export const components = [
   'EditorWorkbench',
   'EmptyState',
   'ErrorBoundary',
+  'FacetList',
   'FeatureList',
   'FileBrowser',
   'FileInput',
@@ -69,6 +70,7 @@ export const components = [
   'Kbd',
   'KeyboardHint',
   'Label',
+  'Lightbox',
   'LineChart',
   'List',
   'LiveRegion',
@@ -111,6 +113,7 @@ export const components = [
   'SearchPanel',
   'Section',
   'SectionDivider',
+  'SectionHeader',
   'Select',
   'ServiceGrid',
   'SettingsView',
@@ -149,6 +152,7 @@ export const components = [
   'TreeView',
   'Treemap',
   'View',
+  'VirtualGrid',
   'WelcomeView',
 ] as const
 

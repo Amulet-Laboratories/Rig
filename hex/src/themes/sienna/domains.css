@@ -1,6 +1,5 @@
 /* Hex — Sienna Domains */
 @reference 'tailwindcss';
-@reference './tokens.css';
 
 [data-domain='legal'] {
   --domain-accent: #9e4a2f;

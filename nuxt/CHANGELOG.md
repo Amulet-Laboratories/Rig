@@ -22,6 +22,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **BREAKING: peer dependency is now `@amulet-laboratories/rig >= 3.0.0`** (was `>= 0.6.0`), and the stale optional peer entry for `@amulet-laboratories/hex` is gone — hex ships inside rig as of 3.0.0.
 
+## [1.1.1] — 2026-08-05
+
+### Fixed
+
+- **The newsletter told visitors it had saved an email it had discarded.** With ConvertKit unconfigured the subscribe handler returned HTTP 200 and `{ success: true, message: 'Subscribed (dev mode)' }` — in every environment, production included. All six content sites ship `newsletterApiKey: ''` and `convertkitFormId: ''` hardcoded with no Netlify env vars set, so every live `/free/*` lead-magnet page took an address, dropped it, and rendered "Check your inbox. Your download link is on its way."
+
+  The fix has been merged since 2026-08-02 and **inert**: rig-nuxt 1.1.0 was published on 2026-07-31, two days earlier, and no version bump followed. The release workflow skips a version already on npm, so today's `v0.11.0` tag published rig 4.0.0 and passed straight over rig-nuxt. This is the bump that actually ships it.
+
+- **`content-guard`'s scanner dereferenced an unguarded capture group.**
+
+### Note on `[Unreleased]` above
+
+That section still holds entries that shipped in 1.0.0 and 1.1.0 — it was never cut at either release, so it reads as pending work that is already live. Untangling which entry shipped where needs the release history, not a guess, and is tracked separately.
+
 ## [0.6.5] — 2026-07-17
 
 ### Changed

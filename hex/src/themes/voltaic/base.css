@@ -10,7 +10,6 @@
  */
 
 @reference 'tailwindcss';
-@reference './tokens.css';
 
 /* Base styles */
 html {

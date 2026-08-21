@@ -4,7 +4,6 @@
  */
 
 @reference 'tailwindcss';
-@reference './tokens.css';
 
 /* ───────── Scrollbar ─────────
  * Solid LCARS orange — no track, no border. Pure block-color thumb.

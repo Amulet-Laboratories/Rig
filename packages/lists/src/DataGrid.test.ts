@@ -53,6 +53,17 @@ describe('DataGrid', () => {
     expect(wrapper.emitted('row-click')).toBeTruthy()
   })
 
+  it('emits contextmenu with the row and event', async () => {
+    const wrapper = mount(DataGrid, { props: { columns, rows } })
+    await wrapper.findAll('[data-rig-data-grid-row]')[1]!.trigger('contextmenu')
+    const payload = wrapper.emitted('contextmenu')?.at(-1)?.[0] as {
+      row: Record<string, unknown>
+      event: MouseEvent
+    }
+    expect(payload.row).toEqual(rows[1])
+    expect(payload.event).toBeInstanceOf(MouseEvent)
+  })
+
   it('handles keyboard navigation', async () => {
     const wrapper = mount(DataGrid, {
       props: {

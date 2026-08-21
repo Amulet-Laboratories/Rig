@@ -106,6 +106,15 @@ describe('Hex build', () => {
     }
   })
 
+  // NB: this asserts a *declaration* (`--color-x:`), not an occurrence. Until
+  // 2026-08-06 it used `css.includes('--color-background')`, which is satisfied
+  // by any `var(--color-background)` reference in component CSS — and every
+  // bundle has ~90 of those. So the test passed while 21 of 30 bundles declared
+  // none of these tokens at all and every reference resolved to nothing.
+  // Match `--color-x:` but not `--color-x-y:` so a longer token can't stand in
+  // for a missing shorter one.
+  const declares = (css, token) => new RegExp(`${token}\\s*:`).test(css)
+
   it('theme bundles declare semantic color utilities', () => {
     for (const theme of themes) {
       const css = readFileSync(resolve(DIST, `${theme}.css`), 'utf-8')
@@ -121,8 +130,38 @@ describe('Hex build', () => {
         '--color-destructive',
       ]
       for (const token of semanticTokens) {
-        assert.ok(css.includes(token), `${theme}.css should declare ${token}`)
+        assert.ok(
+          declares(css, token),
+          `${theme}.css should declare ${token}, not merely reference it`,
+        )
       }
+    }
+  })
+
+  // The regression guard for the above. `@reference './tokens.css'` inside a
+  // theme's base/components/domains puts tokens.css in Tailwind reference mode,
+  // and Tailwind then emits none of its @theme variables — silently, because the
+  // `var()` references that need them are still emitted. The tokens are already
+  // in scope via index.css's `@import './tokens.css'`, so the @reference is
+  // redundant as well as harmful. Same trap in src/scoped/index.css for bridge.css.
+  it('no theme re-references its own tokens.css', () => {
+    for (const theme of themes) {
+      for (const file of ['base.css', 'components.css', 'domains.css']) {
+        const path = resolve(SRC, 'themes', theme, file)
+        if (!existsSync(path)) continue
+        const css = readFileSync(path, 'utf-8')
+        assert.ok(
+          !/@reference\s+['"]\.\/tokens\.css['"]/.test(css),
+          `${theme}/${file} must not @reference ./tokens.css — it suppresses every @theme token in the bundle`,
+        )
+      }
+    }
+  })
+
+  it('the scoped bundle declares the bridge tokens', () => {
+    const css = readFileSync(resolve(DIST, 'scoped.css'), 'utf-8')
+    for (const token of ['--color-background', '--color-foreground', '--color-primary']) {
+      assert.ok(declares(css, token), `scoped.css should declare ${token}, not merely reference it`)
     }
   })
 

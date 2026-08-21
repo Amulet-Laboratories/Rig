@@ -579,3 +579,27 @@
 [data-rig-loading-overlay-label] {
   color: var(--rig-description-fg);
 }
+
+/* ───────── Lightbox ───────── */
+
+[data-rig-lightbox-nav],
+[data-rig-lightbox-close] {
+  color: var(--color-foreground);
+  border-radius: var(--radius);
+  transition: background-color 0.15s ease;
+}
+
+[data-rig-lightbox-nav]:hover:not(:disabled),
+[data-rig-lightbox-close]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+[data-rig-lightbox-nav]:disabled {
+  color: var(--rig-description-fg);
+  opacity: 0.4;
+}
+
+[data-rig-lightbox-caption],
+[data-rig-lightbox-counter] {
+  color: var(--rig-description-fg);
+}

@@ -9,9 +9,11 @@
 /* Universal token bridge — maps Tailwind utilities to CSS custom properties */
 @import './bridge.css';
 
-/* References for @apply resolution */
+/* References for @apply resolution.
+ * bridge.css is @import-ed above, so its tokens are already in scope — adding
+ * @reference for it as well puts the file in reference mode and Tailwind stops
+ * emitting its --color-* declarations entirely. Don't reinstate it. */
 @reference 'tailwindcss';
-@reference './bridge.css';
 
 /* Rig component token defaults */
 @import '../shared/rig-defaults.css';

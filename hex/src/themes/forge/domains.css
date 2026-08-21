@@ -5,7 +5,6 @@
  */
 
 @reference 'tailwindcss';
-@reference './tokens.css';
 
 /* ───────── Domain accent colors ───────── */
 
