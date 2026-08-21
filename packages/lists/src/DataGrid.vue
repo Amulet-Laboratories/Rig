@@ -113,6 +113,7 @@ const props = withDefaults(
 const emit = defineEmits<{
   sort: [column: string, direction: 'asc' | 'desc']
   'row-click': [row: Record<string, unknown>, index: number]
+  contextmenu: [payload: { row: Record<string, unknown>; event: MouseEvent }]
 }>()
 
 defineSlots<Record<string, (props: Record<string, unknown>) => unknown>>()
@@ -517,6 +518,7 @@ const showFooter = computed(() => paged.value || !!slots.footer)
           :tabindex="focusedRow === index + pageOffset ? 0 : -1"
           :style="virtual ? { height: `${rowHeight}px` } : undefined"
           @click="emit('row-click', row, index + pageOffset)"
+          @contextmenu="emit('contextmenu', { row, event: $event })"
           @keydown.enter="emit('row-click', row, index + pageOffset)"
           @focus="focusedRow = index + pageOffset"
         >
