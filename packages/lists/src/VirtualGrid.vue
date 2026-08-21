@@ -53,6 +53,12 @@ const emit = defineEmits<{
   /** A cell's selection toggled */
   select: [payload: { item: T; index: number; selected: boolean }]
   contextmenu: [payload: { item: T; event: MouseEvent }]
+  /**
+   * The rendered window moved — first and last rendered flat index. This is
+   * the hook for windowed paging: when `end` nears the loaded count, fetch
+   * the next page and append.
+   */
+  'visible-range': [payload: { start: number; end: number }]
 }>()
 
 defineSlots<{
@@ -225,6 +231,22 @@ function onContextMenu(item: T, index: number, event: MouseEvent) {
   setActive(index)
   emit('contextmenu', { item, event })
 }
+
+watch(
+  () => {
+    const rows = virtualState.value.rows
+    if (!rows.length) return null
+    const last = rows[rows.length - 1]!
+    return {
+      start: rows[0]!.cells[0]?.index ?? 0,
+      end: last.cells[last.cells.length - 1]?.index ?? 0,
+    }
+  },
+  (range) => {
+    if (range) emit('visible-range', range)
+  },
+  { immediate: true },
+)
 
 const activeDescendant = computed(() =>
   activeIndex.value >= 0 ? `${cellIdPrefix}-${activeIndex.value}` : undefined,

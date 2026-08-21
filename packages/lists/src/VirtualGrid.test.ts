@@ -147,6 +147,18 @@ describe('VirtualGrid', () => {
     expect(payload.item).toEqual(items[6])
   })
 
+  it('emits visible-range for the rendered window', async () => {
+    const many = Array.from({ length: 100 }, (_, i) => ({ id: `m${i}`, name: `M${i}` }))
+    const wrapper = mount(VirtualGrid<Thing>, {
+      props: { items: many, columns: 4, rowHeight: 100, overscan: 0 },
+    })
+    await wrapper.vm.$nextTick()
+    const first = wrapper.emitted('visible-range')?.[0]?.[0] as { start: number; end: number }
+    expect(first.start).toBe(0)
+    expect(first.end).toBeGreaterThan(0)
+    expect(first.end).toBeLessThan(99)
+  })
+
   it('itemKey accepts a function', async () => {
     const wrapper = mount(VirtualGrid<Thing>, {
       props: { items, itemKey: (t: Thing) => t.name },
