@@ -488,3 +488,32 @@
   text-align: center;
   padding: 24px 0;
 }
+
+/* ───────── VirtualGrid ───────── */
+
+[data-rig-virtual-grid] {
+  overflow-y: auto;
+  height: 100%;
+  outline-offset: -2px;
+}
+
+[data-rig-virtual-grid-row] {
+  display: grid;
+  grid-template-columns: repeat(var(--rig-virtual-grid-columns, 4), minmax(0, 1fr));
+  gap: 0 var(--rig-virtual-grid-gap, 8px);
+  height: var(--rig-virtual-grid-row-height, 144px);
+  margin-bottom: var(--rig-virtual-grid-gap, 8px);
+  box-sizing: border-box;
+}
+
+[data-rig-virtual-grid-cell] {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+[data-rig-virtual-grid-empty] {
+  padding: 24px;
+  text-align: center;
+}

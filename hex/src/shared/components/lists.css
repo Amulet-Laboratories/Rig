@@ -233,3 +233,33 @@
 [data-rig-data-grid][data-resizing] [data-rig-data-grid-resize-handle] {
   background: color-mix(in srgb, var(--color-ring) 60%, transparent);
 }
+
+/* ───────── VirtualGrid ───────── */
+
+[data-rig-virtual-grid]:focus-visible {
+  outline: 2px solid var(--color-ring);
+}
+
+[data-rig-virtual-grid-cell] {
+  border-radius: var(--radius);
+  transition:
+    box-shadow 0.1s ease,
+    background-color 0.15s ease;
+}
+
+[data-rig-virtual-grid-cell]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+[data-rig-virtual-grid-cell][data-active] {
+  box-shadow: inset 0 0 0 2px var(--color-ring);
+}
+
+[data-rig-virtual-grid-cell][data-selected] {
+  background: var(--rig-list-inactive-bg);
+  box-shadow: inset 0 0 0 2px var(--color-primary);
+}
+
+[data-rig-virtual-grid-empty] {
+  color: var(--rig-description-fg);
+}
