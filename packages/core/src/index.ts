@@ -110,6 +110,7 @@ export {
   Icon,
   Button,
   Input,
+  SectionHeader,
   Select,
   Textarea,
   Checkbox,
