@@ -314,3 +314,38 @@
 [data-rig-chart-empty-hint] {
   @apply text-muted-foreground;
 }
+
+/* ───────── FacetList ───────── */
+
+[data-rig-facet-list-title] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-facet-list-option] {
+  border-radius: var(--radius);
+  transition: background-color 0.15s ease;
+}
+
+[data-rig-facet-list-option]:hover {
+  background: var(--rig-list-hover-bg);
+}
+
+[data-rig-facet-list-option][data-empty] [data-rig-facet-list-label],
+[data-rig-facet-list-option][data-empty] [data-rig-facet-list-count] {
+  color: var(--rig-description-fg);
+  opacity: 0.6;
+}
+
+[data-rig-facet-list-count] {
+  color: var(--rig-description-fg);
+}
+
+[data-rig-facet-list-clear],
+[data-rig-facet-list-more] {
+  color: var(--color-primary);
+}
+
+[data-rig-facet-list-clear]:hover,
+[data-rig-facet-list-more]:hover {
+  text-decoration: underline;
+}
